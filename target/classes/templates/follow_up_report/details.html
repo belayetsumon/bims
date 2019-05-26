@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Follow Up
+                    <a   th:href="@{/followupmother/mothersearch }" type="button" class="btn  btn-warning pull-right"> Close </a>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Mother  Follow Up </h3>
+                                <a   th:href="@{/followupmother/add/{m_id}(m_id = ${m_id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="overflow-x: scroll">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                        <th>Mother Id </th>
+                                        <th>Release date </th>
+                                        <th> Visited Staff name</th>
+                                        <th>Follow up date</th>
+                                        <th>Last follow up date   </th>
+                                        <th>umber of follow up</th>
+                                        <th>Duration of stay community</th>
+                                        <th>Address with contact </th>
+                                        <th>Home environment</th>
+                                        <th>Work site environment </th>
+                                        <th>Current Property</th>
+                                        <th>Link with any GO/NGO support </th>
+                                        <th>How to utilized SPP saving money  </th>
+                                        <th>Present carry on IGA </th>
+                                        <th>Present challenges  </th>
+                                        <th>Action taken for resolved these challenges</th>
+                                        <th>Expectations from SPP   </th>
+                                        <th>How many times went to clinic/doctor</th>
+                                        <th>Used to hand wash after toileting  </th>
+                                        <th>Recommendation </th>
+                                        <th>Remarks </th>
+                                    </tr>
+                                    <tr th:each="motherlist,status:${motherlist}">  
+                                        <td> <a   th:href="@{/followupmother/edit/{id} (id=${motherlist.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/followupmother/delete/{id} (id=${motherlist.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                        <td th:text="${motherlist.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${motherlist.releaseDate}">  </td>
+                                        <td th:text="${motherlist.visitedStaffName}">   </td>
+                                        <td th:text="${motherlist.FollowUpDate}">   </td>
+                                        <td th:text="${motherlist.lastFollowUpDate}">   </td>
+                                        <td th:text="${motherlist.numberOfFollowUp}">   </td>
+                                        <td th:text="${motherlist.durationOfStayCommunity}">   </td>
+                                        <td th:text="${motherlist.addressWithContact}">   </td>
+                                        <td th:text="${motherlist.homeEnvironment}">   </td>
+                                        <td th:text="${motherlist.worksiteEnvironment}">   </td>
+                                        <td th:text="${motherlist.currentProperty}">   </td>
+                                        <td th:text="${motherlist.goNgoSupport}">   </td>
+                                        <td th:text="${motherlist.sppsavingMoney}">   </td>
+                                        <td th:text="${motherlist.presentIga}">   </td>
+                                        <td th:text="${motherlist.presentChallenges}">   </td>
+                                        <td th:text="${motherlist.resolvedChallenges}">   </td>
+                                        <td th:text="${motherlist.expectationsFromSpp}">   </td>
+                                        <td th:text="${motherlist.clinic}">   </td>
+                                        <td th:text="${motherlist.handWash}">   </td>
+                                        <td th:text="${motherlist.recommendation}">   </td>
+                                        <td th:text="${motherlist.remarks}">   </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="box box-primary"  style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Per capita income </h3>
+                                <a   th:href="@{/followmotherpercapitaincome/add/{m_id}(m_id = ${m_id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                        <th>Mother Id </th>
+                                        <th>Income Generating Activities  </th>
+                                        <th>Monthly Income (Approx)/Taka</th>
+                                        <th>Other Income Source</th>
+                                        <th>Other Income Amount/Taka</th>
+                                        <th>Total Household Members</th>
+                                        <th>monthly expenditure</th>
+
+                                        <th>Per Capita Income/Taka</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                    <tr th:each="income,status:${income}">      
+                                        <td > <a   th:href="@{/followmotherpercapitaincome/edit/{id} (id=${income.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td > <a   th:href="@{/followmotherpercapitaincome/delete/{id} (id=${income.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                        <td th:text="${income.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${income.incomeGeneratingActivites.name}">  </td>
+                                        <td th:text="${income.monthlyIncome}"> </td>
+                                        <td th:text="${income.otherIncomeSource}">  </td>
+                                        <td th:text="${income.otherIncomeAmt}">  </td>     
+                                        <td th:text="${income.totalHouseMember}">  </td>
+                                        <td th:text="${income.monthlyTotalExpence}">  </td>
+                                        <td th:text="${(income.monthlyIncome+income.otherIncomeAmt)/income.totalHouseMember}">  </td>
+                                        <td th:text="${income.remark}">  </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Children Follow Up  </h3>
+                                <a    th:href="@{/followupchildren/add/{m_id} (m_id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                        <th>Mother Id </th>
+                                        <th>Child Id </th>
+                                        <th>Release date: </th>
+                                        <th>Visit date:</th>
+                                        <th>Visited staff name: </th>
+                                        <th>Involved work: yes/no, why: </th>
+                                        <th>Note </th>
+                                        <th>Class: </th>
+                                        <th>Comments: </th>
+
+                                    </tr>
+
+                                    <tr th:each="childlist,status:${childrenlist}">  
+                                        <td> <a   th:href="@{/followupchildren/edit/{id} (id=${childlist.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/followupchildren/delete/{id} (id=${childlist.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                        <td th:text="${childlist.motherMasterCode.motherMasterCode}">  </td>
+                                       <td th:text="${childlist.childMasterCode.childMasterCode}">  </td>
+                                        <td th:text="${childlist.releaseDate}">  </td>
+                                        <td th:text="${childlist.visitDate}">  </td>
+                                        <td th:text="${childlist.visitedStaffName}">  </td>
+                                        <td th:text="${childlist.involvedWork}">  </td>
+                                        
+                                        <td th:text="${childlist.workNote}">  </td>
+                                        <td th:text="${childlist.childClass}">  </td>                    
+                                        <td th:text="${childlist.remarks}">  </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

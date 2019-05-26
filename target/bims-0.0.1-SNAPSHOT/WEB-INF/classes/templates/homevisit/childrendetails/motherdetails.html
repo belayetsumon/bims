@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Children  Basic Information </h3>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+<!--                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+
+                                        <th>Id</th>                        
+                                        <th>Visit Officers Name </th><td th:text="${m_info.visitOfficersName}">Chakma</td>
+                                    </tr>     <tr>
+                                        <th>Refer From </th> <td th:text="${m_info.referredFrom}">Chakma</td>
+
+                                        <th> Referral Date</th> <td th:text="${m_info.dateReferral}">Chakma</td>
+                                    </tr>   <tr>
+                                        <th>Reasons </th><td th:text="${m_info.resons.NAME}">Chakma</td>
+                                        <th>Home Visit Date</th> <td th:text="${m_info.homeVisitDate}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>  Id</th><td th:text="${m_info.motherMasterCode}">Chakma</td>
+                                        <th> Mother Name</th> <td th:text="${m_info.motherName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Date of Birth</th> <td th:text="${m_info.dateOfBirths}">Chakma</td>
+                                        <th> Mothers Mother Name</th><td th:text="${m_info.mMothersName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th> Father Name</th><td th:text="${m_info.fathersName}">Chakma</td>
+                                        <th>Religion</th> <td th:text="${m_info.religion.NAME}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Marital Status</th><td th:text="${m_info.maritalStatus.NAME}">Chakma</td>
+                                        <th>Husbands Name</th> <td th:text="${m_info.husbandsName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Husbands status</th>  <td th:text="${m_info.husbandsStatus.NAME}">Chakma</td>
+                                        <th>Prime Family Member Name</th> <td th:text="${m_info.primeFamilyMemberName}">Chakma</td>
+                                    <tr></tr>
+                                    <th>Relations</th> <td th:text="${m_info.relationWithPfm.NAME}">Chakma</td>
+                                    <th>Ethnic Identity</th> <td th:text="${m_info.ethnicIdentity.name}">Chakma</td>
+                                </tr> <tr>
+                                <th>Education Level</th> <td th:text="${m_info.educationLevel.NAME}">Chakma</td>
+                                <th>Education Type</th><td th:text="${m_info.educationType.NAME}">Chakma</td>
+                            </tr> <tr>
+                                <th>Occupation</th> <td th:text="${m_info.occupation.NAME}">Chakma</td>
+                                <th>Physical Status</th><td th:text="${m_info.physicalStatus.NAME}">Chakma</td>
+                            </tr> <tr>
+                                <th>Immunization</th>   <td th:text="${m_info.immunization.NAME}">Chakma</td>
+                                <th>Number of Sons</th><td th:text="${m_info.numberOfSons}">Chakma</td>
+                            </tr> <tr>
+                                <th>Number of Daughters</th><td th:text="${m_info.numberOfDaughters}">Chakma</td>
+                                
+                                <th>Number of Eligible Children</th><td th:text="${m_info.numberOfEligibleChildren}">Chakma</td>
+                            <tr></tr>
+                            <th>Major Findings</th> <td th:text="${m_info.majorFindings}">Chakma</td>
+                            <th>Other Remarks</th>    <td th:text="${m_info.otherRemarks}">Chakma</td>
+                        </tr> <tr>
+                        <th>Eligibility</th><td th:text="${m_info.eligibility}">Chakma</td>
+                        <th> Created Date </th>   <td th:text="${m_info.created}">Chakma</td>
+                    </tr> <tr>
+                        <th> Created By</th> <td th:text="${m_info.createdBy}">Chakma</td>
+                        <th>UPDATED Updated </th>  <td th:text="${m_info.updated}">Chakma</td>
+                    </tr> <tr>
+                        <th>Updated By</th> <td th:text="${m_info.updatedBy}">Chakma</td>
+                    </tr>                        
+
+                </table>-->
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix">
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+</div>
+
+</section>
+<!-- /.content -->
+</div>
+</div>
+</div>

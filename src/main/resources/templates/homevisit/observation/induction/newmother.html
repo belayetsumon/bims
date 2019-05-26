@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Observation
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Approve Mother List For Induction.<b> Total Mother: </b><span th:text="${list.size()}"></span></h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>  
+                                        <th> Mother  Id</th>
+                                        <th>Home Visit Date</th>
+                                        <th> Mother Name</th>
+                                        <th> Mobile Number</th>
+                                        <th>Date of Birth</th>
+                                        <th>Number of Eligible Children</th>
+                                        <th>Eligibility </th>
+                                        <th>Approval</th>
+                                        <th>Approval Date</th>
+                                        <th>Add Induction</th>
+                                    </tr>                          
+                                    <tr th:each="list,status:${list}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${ list.homeVisitDate}" >Chakma</td>
+                                        <td th:text="${list.motherName}">Chakma</td>
+                                        <td th:text="${list.mobileNumber}">Chakma</td>
+                                        <td th:text="${list.dateOfBirth}" >Chakma</td>
+                                        <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
+                                        <td th:text="${list.eligibility}">Chakma</td>
+                                        <td th:text="${list.mApproval.decission}">Chakma</td>
+                                        <td th:text="${list.mApproval.approveDate}" >Chakma</td>
+                                        <td> <a th:href="@{/induction/index/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Induction</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

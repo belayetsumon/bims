@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="front-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                         <div th:replace="banner-ads">  </div>
+                         <div class="col-xs-2 pull-right"> <a  th:href="@{/}" type="button" class="btn  btn-warning btn-xs   ">Close</a></div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered">
+                            <tr>
+    
+                                <th class="text-center"> বই এর নাম এর তালিকা </th>
+
+                            </tr>
+                            <tr th:each=" bookList, status : ${bookList}">
+                    
+                                <td >  <a type="button" class="btn btn-block  btn-warning btn-xs "  th:href="@{/frontend/chapterlistbybook/{id} (id=${bookList.id})}" th:text="${bookList.name}"> </a></td>
+                            </tr>                            
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+<div class="col-xs-2 pull-right"> <a  th:href="@{/}" type="button" class="btn  btn-warning btn-xs   ">Close</a></div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div> 
+
+
+
+    </div>
+
+</div>

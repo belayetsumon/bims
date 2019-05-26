@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+               <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Mother Basic Information: <span th:text="${m_info.motherName}">Chakma</span></h3>
+                                <div class="box-tools pull-right">
+                                    <div class="btn-group">          
+                                        <button type="button" class="btn  bg-maroon " data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <a  th:href="@{/motherdetails/mothersearch}"  type="button" class="btn  btn-warning ">Close</a>
+                                    </div>              
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered  table-striped">
+                                    <tr>
+                                        <th >Visit Officers Name</th>
+                                        <td th:text="${m_info.visitOfficersName}">Id</td>                        
+                                        <th> </th> <td > </td>
+                                    </tr><tr>
+                                        <th>Refer From </th> <td th:text="${m_info.referredFrom}">Chakma</td>
+
+                                        <th> Referral Date</th> <td th:text="${m_info.dateReferral}">Chakma</td>
+                                    </tr>   <tr>
+                                        <th>Reasons </th><td th:text="${m_info.resons.NAME}">Chakma</td>
+                                        <th>Home Visit Date</th> <td th:text="${m_info.homeVisitDate}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>  Id</th><td th:text="${m_info.motherMasterCode}">Chakma</td>
+                                        <th> Mother Name</th> <td th:text="${m_info.motherName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Date of Birth</th> <td th:text="${m_info.dateOfBirth}">Chakma</td>
+                                        <th> Mothers Mother Name</th><td th:text="${m_info.mMothersName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th> Father Name</th><td th:text="${m_info.fathersName}">Chakma</td>
+                                        <th>Religion</th> <td th:text="${m_info.religion.NAME}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Marital Status</th><td th:text="${m_info.maritalStatus.NAME}">Chakma</td>
+                                        <th>Husbands Name</th> <td th:text="${m_info.husbandsName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Husbands status</th>  <td th:text="${m_info.husbandsStatus.NAME}">Chakma</td>
+                                        <th>Prime Family Member Name</th> <td th:text="${m_info.primeFamilyMemberName}">Chakma</td>
+                                    </tr> <tr>
+                                        <th>Relations</th> <td th:text="${m_info.relationWithPfm.NAME}">Chakma</td>
+
+                                        <th>Ethnic Identity</th> <td th:text="${m_info.ethnicIdentity.name}">Chakma</td>
+                                    </tr> 
+
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+                            </div>
+                        </div>
+                        <!-- /.box -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Mother Address </h3>
+                                <a   th:href="@{/m_address/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Address Type </th>
+
+                                        <th>C/O</th>
+                                        <th>Vill/House</th>
+                                        <th>P.O</th>
+                                        <th>District</th>
+                                        <th>Thana</th>
+
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                    <tr th:each="addres,status:${addres}">        
+                                        <td th:text="${addres.addressType}">  </td>
+                                        <td th:text="${addres.co}"> cccz </td>
+                                        <td th:text="${addres.vill}">    </td>
+                                        <td th:text="${addres.po}">   </td>
+                                        <td th:text="${addres.district}">  </td>
+                                        <td th:text="${addres.thana.name}">   </td>     
+                                        <td> <a   th:href="@{/m_address/edit/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
+                                        <td> <a   th:href="@{/m_address/delete/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+                            </div>
+                        </div>
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Mother House Information</h3>
+                                <a   th:href="@{/m_house_information/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Master Code</th>
+                                        <th>House Type</th>
+                                        <th>Ownership</th>
+                                        <th>Value Title</th>
+                                        <th>Value</th>
+                                        <th>Remarks</th>
+
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr th:each="house,status:${house}">        
+
+                                        <td th:text="${house.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${house.houseType.name}"> cccz </td>
+                                        <td th:text="${house.ownership.name}">    </td>
+                                        <td th:text="${house.valueTitle}">   </td>
+                                        <td th:text="${house.value}">  </td>
+                                        <td th:text="${house.remarks}">   </td> 
+                                        <td> <a   th:href="@{/m_house_information/edit/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
+                                        <td> <a   th:href="@{/m_house_information/delete/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Per Capita Income  </h3>
+                                <a   th:href="@{/m_income_information/create/{id} (id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Income Generating Activities  </th>
+                                        <th>Monthly Income (Approx)/Taka</th>
+                                        <th>Other Income Source</th>
+                                        <th>Other Income Amount/Taka</th>
+                                        <th>Total Household Members</th>
+                                        <th>Per Capita Income/Taka</th>
+                                        <th>Remark</th>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                    </tr>
+                                    <tr th:each="income,status:${income}">      
+
+                                        <td th:text="${income.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${income.incomeGeneratingActivites.name}">  </td>
+                                        <td th:text="${income.monthlyIncome}"> </td>
+                                        <td th:text="${income.otherIncomeSource}">  </td>
+                                        <td th:text="${income.otherIncomeAmt}">  </td>     
+                                        <td th:text="${income.totalHouseMember}">  </td>
+                                        <td th:text="${(income.monthlyIncome+income.otherIncomeAmt)/income.totalHouseMember}">  </td>
+                                        <td th:text="${income.remark}">  </td>
+                                        <td > <a   th:href="@{/m_income_information/edit/{id} (id=${income.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td > <a   th:href="@{/m_income_information/delete/{id} (id=${income.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary" style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Property</h3>
+                                <a   th:href="@{/m_property/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered" style="overflow-x: scroll">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Homestead Land Quantity/Decimal</th>
+                                        <th>Homestead Land Value/Taka</th>
+                                        <th>Cultivable Land Quantity/Decimal</th>
+                                        <th>Cultivable Land Value/Taka</th>
+                                        <th>Jewelry Quantity/vori</th>
+                                        <th>Jewelry Value/Taka</th>  
+                                        <th>Animals Quantity/Numbers</th>   
+                                        <th>Animals Value/Taka</th>  
+                                        <th>Investments/Shares Quantity(Numbers)</th> 
+                                        <th>Investments/Shares Value(Taka)</th> 
+                                        <th>Loan (Person) /Quantity</th>
+                                        <th>Loan (Person) Name</th>
+                                        <th>Loan (Organization) Quantity</th> 
+                                        <th>Loan (Organization) Name</th>
+                                        <th>Remark</th>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                    </tr>
+                                    <tr th:each="property,status:${property}">      
+
+                                        <td th:text="${property.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${property.homelandQuantity}">  </td>
+                                        <td th:text="${property.homeLandValue}">   </td>
+                                        <td th:text="${property.cultivableLandQuantity}">  </td>
+                                        <td th:text="${property.cultivableLandValue}">   </td>
+                                        <td th:text="${property.jewelryQuentity}">   </td>
+                                        <td th:text="${property.jewelryValue}">   </td>
+                                        <td th:text="${property.animalsQuantity}">   </td>
+                                        <td th:text="${property.animalsValue}">   </td>
+                                        <td th:text="${property.investmentsSharesQuentity}">   </td>
+                                        <td th:text="${property.investmentsSharesValue}">   </td>
+                                        <td th:text="${property.loanPersonQuantity}">   </td>
+                                        <td th:text="${property.loanPersonName}">   </td>
+                                        <td th:text="${property.organizationsLoanQuantity}">   </td>
+                                        <td th:text="${property.organizationName}">   </td>
+                                        <td th:text="${property.remark}">   </td>
+                                        <td>  <a   th:href="@{/m_property/edit/{id} (id=${property.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td>  <a   th:href="@{/m_property/delete/{id} (id=${property.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Current Support</h3>
+                                <a   th:href="@{/m_current_help/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Organization/Person </th>
+                                        <th> Help Type</th>
+                                        <th>Remarks</th>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr th:each="current,status:${current}">   
+
+                                        <td th:text="${current.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${current.organizations}">  </td>
+                                        <td th:text="${current.aidType.name}">  </td>
+                                        <td th:text="${current.remarks}">  </td>
+                                        <td>  <a   th:href="@{/m_current_help/edit/{id} (id=${current.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td>  <a   th:href="@{/m_current_help/delete/{id} (id=${current.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Community Information</h3>
+                                <a    th:href="@{/m_community_information/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Economy Type </th>
+                                        <th> Available IGA
+                                        </th>
+                                        <th>Note</th>
+                                        <th>Prospective IGA</th>
+                                        <th>Note</th>
+                                        <th>Unemployment session</th>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr th:each="community,status:${community}">  
+
+                                        <td th:text="${community.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${community.economyType.name}">  </td>
+                                        <td th:text="${community.avilableIga}">  </td>
+                                        <td th:text="${community.avilableIgaNote}">  </td>
+                                        <td th:text="${community.prospectiveIga}">  </td>
+                                        <td th:text="${community.prospectiveIgaNote}">  </td>
+                                        <td th:text="${community.unemploymentSession}">  </td>
+                                        <td th:text="${community.REMARKS}">  </td>
+                                        <td> <a   th:href="@{/m_community_information/edit/{id} (id=${community.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/m_community_information/delete/{id} (id=${community.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary"  style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Accessibility</h3>
+                                <a   th:href="@{/m_accessibility/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Road Type </th>
+                                        <th> Transport Type</th>
+                                        <th>Distance To Main Road </th>
+                                        <th>Primary School </th>
+                                        <th>Primary School Distance</th>
+                                        <th>Secondary School </th>
+                                        <th>Secondary School Distance </th>
+                                        <th>Health Care  </th>
+                                        <th>Hospital/Clinic Distance </th>
+                                        <th>Market Place</th>
+                                        <th>Market Place Distance </th>
+                                        <th>Bank </th>
+                                        <th>Bank Distance </th>
+                                        <th>NGO  </th>
+                                        <th>NGO Distance </th>
+                                        <th>Welfare Institutions  </th>
+                                        <th>Welfare Institutions Distance </th>
+                                        <th>Technical Training Institute  </th>
+                                        <th>Technical Training Institute Distance </th>
+                                        <th>Remarks </th>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                    </tr>
+                                    <tr th:each="accessibility,status:${accessibility}">  
+
+
+                                        <td th:text="${accessibility.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${accessibility.roadType.name}">  </td>
+                                        <td th:text="${accessibility.transportType.NAME}">   </td>
+                                        <td th:text="${accessibility.distanceToMainRoad}">   </td>
+                                        <td th:text="${accessibility.primarySchool}">   </td>
+                                        <td th:text="${accessibility.primarySchoolDistance}">   </td>
+                                        <td th:text="${accessibility.secondarySchool}">   </td>
+                                        <td th:text="${accessibility.secondarySchoolDistance}">   </td>
+                                        <td th:text="${accessibility.hospital}">   </td>
+                                        <td th:text="${accessibility.hospitalDistance}">   </td>
+                                        <td th:text="${accessibility.marketPlace}">   </td>
+                                        <td th:text="${accessibility.marketPlaceDistance}">   </td>
+                                        <td th:text="${accessibility.bank}">   </td>
+                                        <td th:text="${accessibility.bankDistance}">   </td>
+                                        <td th:text="${accessibility.ngo}">   </td>
+                                        <td th:text="${accessibility.ngoDistance}">   </td>
+                                        <td th:text="${accessibility.wellfareInstitutions}">   </td>
+                                        <td th:text="${accessibility.wellfareInstitutionsDistance}">   </td>
+                                        <td th:text="${accessibility.technicalInstiute}">   </td>
+                                        <td th:text="${accessibility.technicalInstiuteDistance}">   </td>
+                                        <td th:text="${accessibility.REMARKS}">   </td>
+                                        <td> <a   th:href="@{/m_accessibility/edit/{id} (id=${accessibility.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/m_accessibility/delete/{id} (id=${accessibility.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Lifestyle</h3>
+                                <a    th:href="@{/m_lifestyle/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+
+                                        <th>Water Source  </th>
+
+                                        <th> Source Of Drinking Water </th>
+                                        <th>Toilet Type</th>
+                                        <th>Cooking Fuel </th>
+                                        <th>Light Source </th>
+                                        <th>Leisure Facilities   </th>
+                                        <th>Leisure Engagement  </th>
+                                        <th>Personal Habits  </th>
+                                        <th>Craftsmanship </th>
+                                        <th>Remarks</th>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+
+                                    </tr>
+
+                                    <tr th:each="lifestyle,status:${lifestyle}">  
+
+                                        <td th:text="${lifestyle.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${lifestyle.waterSource.name}">  </td>
+                                        <td th:text="${lifestyle.drinkingWaterSource.name}">  </td>
+                                        <td th:text="${lifestyle.toilet_type.name}">  </td>
+                                        <td th:text="${lifestyle.cookingFuel.name}">  </td>
+                                        <td th:text="${lifestyle.lightSource.name}">  </td>                    
+                                        <td th:text="${lifestyle.leisurFacilities.name}">  </td>
+                                        <td th:text="${lifestyle.leisureEngagment}">  </td>
+                                        <td th:text="${lifestyle.personalHabits.name}">  </td>
+                                        <td th:text="${lifestyle.craftsManShip}">  </td>
+                                        <td th:text="${lifestyle.remarks}">  </td>
+                                        <td> <a   th:href="@{/m_lifestyle/edit/{id} (id=${lifestyle.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/m_lifestyle/delete/{id} (id=${lifestyle.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Nutrition</h3>
+                                <a   th:href="@{/m_nutrition/create/{m_id} (m_id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>No of Meal Daily </th>
+
+                                        <th> Fish </th>
+                                        <th>Meat </th>
+
+                                        <th>Milk </th>
+                                        <th>Fruits</th>
+                                        <th>Remarks </th>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+
+                                    </tr>
+                                    <tr th:each="nutrition,status:${nutrition}">  
+
+                                        <td th:text="${nutrition.motherMasterCode.motherMasterCode}">  </td>
+                                        <td th:text="${nutrition.dailyMeal}">  </td>  
+                                        <td th:text="${nutrition.fish}">  </td>
+                                        <td th:text="${nutrition.meat}">  </td>
+                                        <td th:text="${nutrition.milk}">  </td>
+                                        <td th:text="${nutrition.fruits}">  </td>
+                                        <td th:text="${nutrition.remarks}">  </td>
+                                        <td><a   th:href="@{/m_nutrition/edit/{id} (id=${nutrition.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>  </td>
+                                        <td><a   th:href="@{/m_nutrition/delete/{id} (id=${nutrition.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a>  </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary"  style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Local Govt Facilities</h3>
+                                <a   th:href="@{/m_local_govt_facilities/create/{m_id} (m_id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+
+                                        <th>Mother Id </th>
+                                        <th>Local Elite Person</th>
+
+                                        <th> Name</th>
+                                        <th>Contact Number </th>
+
+                                        <th>Voter of this community </th>
+                                        <th>VGF /VGD Card</th>
+                                        <th>Any Govt. Support </th>
+                                        <th>Number of SPP Mother in Valage </th>
+                                        <th>Remarks  </th>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                    <tr th:each="localgovt,status:${localgovt}">  
+
+                                        <td th:text="${localgovt.motherMasterCode.motherMasterCode}"> </td>
+
+                                        <td th:text="${localgovt.localContactPersons.name}"> </td>
+                                        <td th:text="${localgovt.name}">  </td>
+                                        <td th:text="${localgovt.contactNumber}">  </td>
+                                        <td th:text="${localgovt.votingParticipation}">  </td>
+                                        <td th:text="${localgovt.vgfCard}">  </td>
+                                        <td th:text="${localgovt.govtSupport}">  </td>
+                                        <td th:text="${localgovt.sppMotherNo}">  </td>
+                                        <td th:text="${localgovt.remarks}">  </td>
+                                        <td><a   th:href="@{/m_local_govt_facilities/edit/{id} (id=${localgovt.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>  </td>
+                                        <td><a   th:href="@{/m_local_govt_facilities/delete/{id} (id=${localgovt.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a>  </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <div class="box box-primary" >
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Family Information</h3>
+                                <a   th:href="@{/m_family_information/create/{m_id} (m_id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Mother Id </th>
+                                        <th>Name Of Member</th>
+                                        <th> Date Of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Occupation</th>
+                                        <th>Relationship</th>
+                                        <th>Cell No</th>
+                                        <th>Remarks  </th>
+                                        <th>Edit </th>
+                                        <th>Delete </th>
+                                    </tr>
+                                    <tr th:each="family,status:${family}">  
+
+                                        <td th:text="${family.motherMasterCode.motherMasterCode}"> </td>
+                                        <td th:text="${family.name}"> </td>
+                                        <td th:text="${family.dateofBirth}"> </td>
+                                        <td th:text="${family.sex}"> </td>
+                                        <td th:text="${family.occopation.NAME}"> </td>
+                                        <td th:text="${family.relation.NAME}"> </td>
+                                        <td th:text="${family.cellNo}"> </td>
+                                        <td th:text="${family.remarks}"> </td>
+                                        <td><a   th:href="@{/m_family_information/edit/{id} (id=${family.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>  </td>
+                                        <td><a   th:href="@{/m_family_information/delete/{id} (id=${family.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a></td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+
+                        <!--                        <div class="box box-primary" >
+                                                    <div class="box-header with-border">
+                                                        <h3 class="box-title"> Approval</h3>
+                                                        <a   th:href="@{/m_approval/create/{id} (id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
+                        
+                                                    </div>
+                                                     /.box-header 
+                                                    <div class="box-body">
+                                                        <table class="table table-bordered">
+                                                            <tr>
+                                                                <th>Edit </th>
+                                                                <th>Delete</th>
+                                                                <th>Mother Id </th>
+                                                                <th>Approve Date</th>
+                                                                <th> Approve By </th>
+                                                                <th>Decision </th>
+                                                                <th>Remarks</th>
+                                                            </tr>
+                                                            <tr th:each="approval,status:${approval}">  
+                                                                <td>
+                                                                    <a  th:href="@{/m_approval/edit/{id} (id=${approval.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> 
+                                                                </td>
+                                                                <td> <a  th:href="@{/m_approval/delete/{id} (id=${approval.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a> </td>
+                                                                <td th:text="${approval.motherMasterCode.motherMasterCode}"> </td>
+                                                                <td th:text="${approval.approveDate}"> </td>
+                                                                <td th:text="${approval.approveBy}"> </td>
+                                                                <td th:text="${approval.decission}"> </td>
+                                                                <td th:text="${approval.REMARKS}"> </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                        
+                        
+                        
+                                                     /.box-body 
+                                                    <div class="box-footer clearfix">
+                        
+                                                    </div>
+                                                </div>-->
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

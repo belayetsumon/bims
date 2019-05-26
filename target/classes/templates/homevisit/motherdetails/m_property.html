@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                    <small> </small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <span th:text='${form_title}'> </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/motherdetails/motherdetails/{m_id}(m_id=${m_Property.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <form  th:action="@{/m_property/save/{id}(id=${m_Property.motherMasterCode.id})}"  th:object="${m_Property}"  method="post" class="form-horizontal">
+                            <div class="box-body">
+
+                                <div class="row">
+                                    <input type="hidden"    class="form-control " th:field="*{id}" />
+
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
+
+                                    <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"   />   
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
+                                </div>  
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+
+                                        <label for="co" class="col-sm-6 control-label">  Bank Account Number :<span class="text-red">  </span> </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="co"  th:field="*{bankAccount}" name="homelandQuantity"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bankAccount')}" th:errors="*{bankAccount}">First Name Error</span>
+                                        </div>         <div class="col-sm-1"> </div>                   
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="vill" class="col-sm-6 control-label">Amount of saving money  <span class="text-red"></span> :</label>
+                                        <div class="col-sm-4">  
+                                            <div class="input-group" >
+                                                <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{savingMoney}"   />                                                        
+                                            </div>                                                     
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('savingMoney')}" th:errors="*{savingMoney}">First Name Error</span>
+                                        </div>     <div class="col-sm-1"> Taka</div>                  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+
+                                        <label for="co" class="col-sm-6 control-label">  Homesate Land Quantity :<span class="text-red">  </span> </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="co"  th:field="*{homelandQuantity}" name="homelandQuantity"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('homelandQuantity')}" th:errors="*{homelandQuantity}">First Name Error</span>
+                                        </div>         <div class="col-sm-1"> Decimal</div>                   
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="vill" class="col-sm-6 control-label">Home State Land Value <span class="text-red"></span> :</label>
+                                        <div class="col-sm-4">  
+                                            <div class="input-group" >
+                                                <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{homeLandValue}"   />                                                        
+                                            </div>                                                     
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('homeLandValue')}" th:errors="*{homeLandValue}">First Name Error</span>
+                                        </div>     <div class="col-sm-1"> Taka</div>                  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Cultivable Land Quantity<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName" th:field="*{cultivableLandQuantity}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('cultivableLandQuantity')}" th:errors="*{cultivableLandQuantity}">First Name Error</span>
+                                        </div>   <div class="col-sm-1"> Decimal</div>                          
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Cultivable Land Value<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"   th:field="*{cultivableLandValue}"   />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('cultivableLandValue')}" th:errors="*{cultivableLandValue}">First Name Error</span>
+                                        </div>    <div class="col-sm-1"> Taka</div>                          
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Jewelry Quantity<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"   th:field="*{jewelryQuentity}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('jewelryQuentity')}" th:errors="*{jewelryQuentity}">First Name Error</span>
+                                        </div>     <div class="col-sm-1"> Vori</div>                              
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Jewelry Value <span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"    th:field="*{jewelryValue}" />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('jewelryValue')}" th:errors="*{jewelryValue}">First Name Error</span>
+                                        </div>  <div class="col-sm-1"> Taka</div>                           
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Livestock Quantity<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"   th:field="*{animalsQuantity}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('animalsQuantity')}" th:errors="*{animalsQuantity}">First Name Error</span>
+                                        </div>   <div class="col-sm-1">Pcs</div>                          
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Animals Value<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"   th:field="*{animalsValue}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('animalsValue')}" th:errors="*{animalsValue}">First Name Error</span>
+                                        </div>      <div class="col-sm-1"> Taka</div>                       
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Investments Shares Quantity  <span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"  th:field="*{investmentsSharesQuentity}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('investmentsSharesQuentity')}" th:errors="*{investmentsSharesQuentity}">First Name Error</span>
+                                        </div>                            
+                                    </div> 
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Investments Shares Value<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"  th:field="*{investmentsSharesValue}"   />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('investmentsSharesValue')}" th:errors="*{investmentsSharesValue}">First Name Error</span>
+                                        </div>    <div class="col-sm-1"> Taka</div>                          
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Loan Person Quantity<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any"  class="form-control  "  id="bookName"  th:field="*{loanPersonQuantity}"   />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('loanPersonQuantity')}" th:errors="*{loanPersonQuantity}">First Name Error</span>
+                                        </div>    <div class="col-sm-1"> Taka</div>                          
+                                    </div>
+
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Loan Person Name <span class="text-red">  </span>: </label>
+                                        <div class="col-sm-6">                   
+                                            <input type="text"  class="form-control  "  id="bookName"    th:field="*{loanPersonName}"   />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('loanPersonName')}" th:errors="*{loanPersonName}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Organization Name <span class="text-red">  </span>: </label>
+                                        <div class="col-sm-6">                   
+                                            <input type="text"  class="form-control  "  id="bookName"    th:field="*{organizationName}" />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('organizationName')}" th:errors="*{organizationName}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-6 control-label"> Organizations Loan Quantity<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-4">                   
+                                            <input type="number"  min="0"  step="any" class="form-control  "  id="bookName"    th:field="*{organizationsLoanQuantity}"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('organizationsLoanQuantity')}" th:errors="*{organizationsLoanQuantity}">First Name Error</span>
+                                        </div>  <div class="col-sm-1"> Taka</div>                            
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label for="name" class="col-sm-3 control-label"> Remark<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-8">                   
+                                            <textarea cols="20" rows="15"  class="form-control  "  id="bookName"   th:field="*{remark}"  >     </textarea>        
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

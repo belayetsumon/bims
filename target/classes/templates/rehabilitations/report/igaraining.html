@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Rehabilitations
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Mother IGA Training Report</h3>
+                                <div class="box-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/rehabilitations/report}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                             
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Mother Name </th>
+                                        <th>Training Name</th>
+                                        <th>Prerequisite Skill </th>
+                                        <th>Location</th>
+                                        <th> Start Date</th>
+                                        <th>End Date</th>
+                                        <th> Total Days</th>
+                                        <th> Ext Date </th>
+                                        <th> Total Days </th>
+                                        <th>Conducted By</th>
+                                    </tr>
+                                    <tr th:each="list2,status:${r_IGA_Training}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list2.name}">Chakma</td>
+                                        <td th:text="${list2.trainingName.name}">Chakma</td>
+                                        <td th:text="${list2.prerequisiteSkill}">Chakma</td>
+                                        <td th:text="${list2.location}">Chakma</td>
+                                        <td th:text="${list2.startDate}">Chakma</td>
+                                        <td th:text="${list2.endDate}">Chakma</td>
+                                        <td th:text="${list2.endDate}">Chakma</td>                                 
+                                        <td th:text="${list2.extentionDate}">Chakma</td>
+                                        <td th:text="${list2.extentionDate}">Chakma</td>
+                                        <td th:text="${list2.conductedBy}">Chakma</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

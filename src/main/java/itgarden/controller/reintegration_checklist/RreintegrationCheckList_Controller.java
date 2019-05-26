@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package itgarden.controller.reintegration_checklist;
+
+import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.homevisit.Yes_No;
+import itgarden.model.pre_reintegration_checklist.Complete_incomplete;
+import itgarden.model.pre_reintegration_checklist.ReintegrationCheckList;
+import itgarden.repository.homevisit.MotherMasterDataRepository;
+import itgarden.repository.reintegration_checklist.ReintegrationCheckListRepository;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+/**
+ *
+ * @author User
+ */
+@Controller
+@RequestMapping("/reintegrationcheklist")
+public class RreintegrationCheckList_Controller {
+
+    @Autowired
+    MotherMasterDataRepository motherMasterDataRepository;
+
+    @Autowired
+    ReintegrationCheckListRepository reintegrationCheckListRepository;
+
+    @RequestMapping("/motherlist")
+    public String motherlist(Model model) {
+      model.addAttribute("list", motherMasterDataRepository.findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNull());
+        return "reintegration_checklist/mothersearch";
+    }
+
+    @RequestMapping("/index")
+    public String add(Model model) {
+        model.addAttribute("list", reintegrationCheckListRepository.findAll());
+        return "reintegration_checklist/index";
+    }
+
+    @RequestMapping("/details/{m_id}")
+    public String details(Model model, @PathVariable Long m_id, ReintegrationCheckList reintegrationCheckList) {
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(m_id);
+
+        return "pre_reintegration_visit/details";
+    }
+
+    @RequestMapping("/add/{m_id}")
+    public String add(Model model, @PathVariable Long m_id, ReintegrationCheckList reintegrationCheckList) {
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(m_id);
+        reintegrationCheckList.setMotherMasterCode(motherMasterData);
+        model.addAttribute("yes_no", Yes_No.values());
+        model.addAttribute("complete_incomplete", Complete_incomplete.values());
+        return "reintegration_checklist/reintegrationcheklist";
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String edit(@PathVariable Long id, ReintegrationCheckList reintegrationCheckList, Model model) {
+        model.addAttribute("reintegrationCheckList", reintegrationCheckListRepository.findOne(id));
+        model.addAttribute("yes_no", Yes_No.values());
+        model.addAttribute("complete_incomplete", Complete_incomplete.values());
+        return "reintegration_checklist/reintegrationcheklist";
+    }
+
+    @RequestMapping("/save")
+    public String save(Model model, @Valid ReintegrationCheckList reintegrationCheckList, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("yes_no", Yes_No.values());
+            model.addAttribute("complete_incomplete", Complete_incomplete.values());
+
+            return "reintegration_checklist/reintegrationcheklist";
+        }
+        reintegrationCheckListRepository.save(reintegrationCheckList);
+
+        return "redirect:/reintegrationcheklist/index";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id, ReintegrationCheckList reintegrationCheckList, RedirectAttributes redirectAttrs) {
+        reintegrationCheckList = reintegrationCheckListRepository.findOne(id);
+        redirectAttrs.addAttribute("m_id", reintegrationCheckList.getMotherMasterCode().getId());
+        reintegrationCheckListRepository.delete(id);
+        return "redirect:/reintegrationcheklist/index";
+    }
+}

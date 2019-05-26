@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="front-layout">
+    <div layout:fragment = "main_content">
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <div class="col-xs-2 pull-right"> <a  th:href="@{/frontend/chapterlistbybook/{id} (id=${chapter.bookName.id})}" type="button" class="btn  btn-warning btn-xs   ">Close</a></div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table" > 
+                  
+                            <tr><td  class=" text-left"><span    th:text="${chapter.bookName.writerName.name}">রবীন্দ্রনাথ ঠাকুর</span></td>
+                             <td  class=" text-left"> উপন্যাস:<span th:text="${chapter.bookName.name}"> </span></td>
+                            </tr>
+                            <tr>
+          
+                                <td>অধ্যায় : <span th:text="${chapter.chaptername}"> </span></td>
+                                <td>    
+
+                                    <span th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+                                         <span th:if='${item.current}' th:text=" | পৃষ্ঠা নম্বর :   ${item.number} | ">1</span>
+                                        
+                                    </span>  </td>
+                            </tr>
+                            
+                                         <tr><td  class=" text-left">      <div th:class="${page.hasPreviousPage}? '' : 'disabled'">
+                            <a th:if='${not page.hasPreviousPage}' type="button" class="btn btn-warning btn-xs  btn-block">পূর্ববর্তী পাতা</a>
+                            <a type="button" class="btn btn-warning btn-xs btn-block " th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>পূর্ববর্তী পাতা</a>
+                        </div></td>
+                             <td  class=" text-left">         
+
+                        <div th:class="${page.hasNextPage}? '' : 'disabled'">
+                            <a  type="button" class="btn btn-warning btn-xs  btn-block" th:if='${not page.hasNextPage}'>পরবর্তী পৃষ্ঠা</a>
+                            <a  type="button" class="btn btn-warning btn-xs  btn-block"  th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>পরবর্তী পৃষ্ঠা</a>
+                        </div></td>
+                            </tr>
+                  
+                            <tr>
+                                <td colspan="2" >   <div th:replace="banner-ads">  </div> </td>
+                                
+                            </tr>
+                        </table>  
+                        
+                        <table class="display" width="100%" cellspacing="0">
+                            <tr th:each="pageList, status : ${pageList}">
+                                <td th:utext="${pageList.pagename}">   </td>
+                            </tr>   
+
+                        </table>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer clearfix">
+                        <div th:fragment='paginationbar'>
+                            <div>
+                                <ul class='pagination pagination-centered pagination-sm'>
+                   
+                                    <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
+                                        <span th:if='${not page.hasPreviousPage}'>প্রথম পৃষ্ঠা</span>
+                                        <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>পূর্ববর্তী পৃষ্ঠা</a>
+                                    </li>
+                                    <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+                                        <span th:if='${item.current}' th:text='${item.number}'>1</span>
+                                        <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
+                                    </li>
+                                    <li th:class="${page.hasNextPage}? '' : 'disabled'">
+                                        <span th:if='${not page.hasNextPage}'>শেষ পৃষ্ঠা</span>
+                                        <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>পরবর্তী পৃষ্ঠা</a>
+                                    </li>
+                       
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div th:class="${page.hasPreviousPage}? '' : 'disabled'">
+                            <a th:if='${not page.hasPreviousPage}' type="button" class="btn btn-warning btn-xs col-xs-6">পূর্ববর্তী পৃষ্ঠা</a>
+                            <a type="button" class="btn btn-warning btn-xs col-xs-6" th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>পূর্ববর্তী পাতা</a>
+                        </div>
+
+                        <div th:class="${page.hasNextPage}? '' : 'disabled'">
+                            <a  type="button" class="btn btn-warning btn-xs col-xs-6" th:if='${not page.hasNextPage}'>পরবর্তী পৃষ্ঠা</a>
+                            <a  type="button" class="btn btn-warning btn-xs col-xs-6"  th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>পরবর্তী পৃষ্ঠা</a>
+                        </div>
+
+                    </div>  </div>
+
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div> 
+    </div>
+</div>

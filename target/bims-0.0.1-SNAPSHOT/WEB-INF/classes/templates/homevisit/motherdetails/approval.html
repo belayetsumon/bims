@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">All Approve Mother List </h3>
+
+                            </div>                         
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>  
+
+
+                                        <th>Home Visit Date</th>
+
+                                        <th>Mother  Id</th>
+
+                                        <th> Mother Name</th>
+
+                                        <th>Approve Date</th>
+
+                                        <th>Number of Eligible Children</th>
+
+                                        <th>Approved By</th>
+                                        <th>Action</th>
+
+                                    </tr>                          
+                                    <tr th:each="list,status:${list}">
+
+                                        <td th:text="${status.count}">2.</td>
+
+                                        <td th:text="${list.motherMasterCode.homeVisitDate}">Chakma</td>
+
+                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+
+                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+
+                                        <td th:text="${list.approveDate}">Chakma</td> 
+
+                                        <td th:text="${list.motherMasterCode.numberOfEligibleChildren}">Chakma</td>
+
+                                        <td th:text="${list.approveBy}">Chakma</td>
+                                        <td> 
+                                            <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">View</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

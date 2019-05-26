@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Search
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary" style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Mother Search Result</h3>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Mother Id</th>
+                                        <th>Mother Name</th>
+                                        <th>Contact number</th>
+                                        <th>Husband Status</th>
+                                        <th>Children </th>
+                                        <th>Literacy</th>
+                                        <th>Area</th>
+                                        <th>Income/Taka</th>
+                                        <th>Economics Status</th>
+                                        <th>Admission</th>
+                                        <th>Image</th>
+                                        <th>Training</th>
+                                        <th>Release</th>
+                                    </tr> 
+
+                                    <tr th:each="list,status:${motheronfo}">                                
+                                        <td th:text="${status.count}">2.</td>      
+                                        <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherName}">Chakma</td>
+                                        <td th:text="${list.mobileNumber}">Contact number</td>
+                                        <td th:text="${list.husbandsStatus.NAME}">Chakma</td>
+                                        <td th:text="${list.numberOfEligibleChildren}"> 	</td> 
+                                        <td th:text="${list.educationLevel.NAME}">Literacy</td>
+                                        <td>
+                                            <span th:if="${ not #lists.isEmpty(list.mAddress)}">  
+                                                <span  th:each="addres,status:${list.mAddress}">  
+                                                    <span  th:text="${addres.addressType +':'+addres.thana.name +','+ addres.district}">  
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            <span  th:if="${ #lists.isEmpty(list.mAddress)}">  
+                                                No Area
+                                            </span>
+                                        </td>
+                                        <td> 
+                                            <span th:if="${ not #lists.isEmpty(list.mIncomeInformation)}">  
+
+                                                <span th:text="${(list.mIncomeInformation.monthlyIncome +list.mIncomeInformation.otherIncomeAmt)/list.mIncomeInformation.totalHouseMember}">  </span>
+
+                                            </span>
+                                            <span  th:if="${ #lists.isEmpty(list.mIncomeInformation)}">  
+                                                No Income
+                                            </span>
+                                        </td>
+                                        <td th:text="${list.mIncomeInformation.remark}">Economics Status</td>
+                                        <td>              
+                                            <span th:if="${ not #lists.isEmpty(list.addmission)}">  
+
+                                                <span th:text="${list.addmission.dateAdmission}">  </span>
+
+                                            </span>
+                                            <span  th:if="${ #lists.isEmpty(list.addmission)}">  
+
+                                                No Admission
+
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span  th:if="${ not #lists.isEmpty(list.mImage)}">  
+                                                <img  class="profile-user-img img-responsive" th:src="@{/files/}+${list.mImage.imageName}" width="100px"  height="100px"/>
+                                            </span>
+                                            <span  th:if="${ #lists.isEmpty(list.mImage)}">  
+                                                <img class="profile-user-img img-responsive" th:src="@{/images/profile.png}" alt="User profile picture"/>
+                                            </span>
+                                        </td>
+
+                                        <td>
+                                            <span th:if="${ not #lists.isEmpty(list.rIGATraining)}">  
+
+                                                <span  th:each="IGATraining:${list.rIGATraining}">  
+
+                                                    <span  th:text="${IGATraining.name}">
+                                                    </span>
+
+                                                </span>
+
+                                            </span>
+
+                                            <span  th:if="${ #lists.isEmpty(list.rIGATraining)}">  
+                                                No IGA Training
+                                            </span>
+
+                                            <span th:if="${ not #lists.isEmpty(list.rLifeSkillTrainning)}">  
+
+                                                <span  th:each="LifeSkillTrainning{list.rLifeSkillTrainning}">  
+
+                                                    <span  th:text="${LifeSkillTrainning.name}">
+                                                    </span>
+
+                                                </span>
+
+                                            </span>
+
+                                            <span  th:if="${ #lists.isEmpty(list.rLifeSkillTrainning)}">  
+                                                No Life Skill Training
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            <span th:if="${ not #lists.isEmpty(list.releaseMother)}">  
+                                                <span th:text="${list.releaseMother.releaseDate}">  </span>
+                                            </span>
+                                            <span  th:if="${ #lists.isEmpty(list.releaseMother)}">  
+                                                Not Yet  Release
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment="main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>Psychology </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary" style='overflow: scroll;'>
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Mother Name</th>
+                                        <th>Anger</th>
+                                        <th>Sad</th>
+                                        <th>Guilt</th>
+                                        <th>Happy</th>
+                                        <th>Tensed</th>
+                                        <th>Stress</th>
+                                         <th>Emotion Status </th>
+                                        <th>Self-herm</th>
+                                        <th>Coping strategy</th>
+                                        <th>Presence of trauma</th>
+                                        <th>Relationship with family and others</th>
+                                        <th>Hallucination</th>
+                                        <th>Delusion</th>
+                                        <th>Sleep disturbance</th>
+                                        <th>IQ</th>
+                                           <th>Five basic need</th>
+                                              <th>Child protection/parenting</th>
+                                                 <th>Working Performance</th>
+                                                    <th>Literacy performance</th>
+                                                       <th> Economy performance</th>
+                                        
+                                         <th>Child</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr th:each="list,status:${rpsychology}">
+
+                                        <td th:text="${status.count}">2.</td>
+                                        
+                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+
+                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+
+                                        <td th:text="${list.anger}">Chakma</td>
+
+                                        <td th:text="${list.sad}">Chakma</td>
+
+                                        <td th:text="${list.guilt}">Chakma</td>
+
+                                        <td th:text="${list.happy}">Chakma</td>
+
+                                        <td th:text="${list.tensed}">Chakma</td>
+
+                                        <td th:text="${list.stress}">Chakma</td>
+                                         <td th:text="${list.emotionStatus}">Chakma</td>
+
+                                        <td th:text="${list.selfHerm}">Chakma</td>
+                                        
+                                        <td th:text="${list.copingStrategy}">Chakma</td>
+                                        
+                                        <td th:text="${list.presenceTrauma}">Chakma</td>
+                                        
+                                        <td th:text="${list.familyRelationship}">Chakma</td>
+                                        
+                                        <td th:text="${list.hallucination}">Chakma</td>
+                                        
+                                        <td th:text="${list.delusion}">Chakma</td>
+
+                                        <td th:text="${list.sleepDisturbance}">Chakma</td>
+                                       
+                                        <td th:text="${list.iQ}">Chakma</td>
+                                        
+                                        <td th:text="${list.fivebBasicNeed}">Chakma</td>
+                                        <td th:text="${list.protection}">Chakma</td>
+                                        <td th:text="${list.performanceWorkingSection}">Chakma</td>
+                                        <td th:text="${list.performanceLiteracy}">Chakma</td>
+                                        <td th:text="${list.performanceEconomy}">Chakma</td>
+                                        
+                                         <td>
+                                         
+                                         <a th:href="@{/psychologychild/childlist/{m_id} (m_id=${list.motherMasterCode.id})}"
+                                               type="button" class="btn btn-xs bg-maroon ">Child</a>
+                                         </td>
+
+
+                                        <td>
+                                            <a th:href="@{/psychologymother/edit/{id} (id=${list.id})}"
+                                               type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+
+                                        <td>
+                                            <a th:href="@{/psychologymother/delete/{id} (id=${list.id})}"
+                                               type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix"></div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

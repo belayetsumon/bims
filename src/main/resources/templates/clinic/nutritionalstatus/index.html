@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+	<div layout:fragment="main_content">
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Nutritional Status <a th:href="@{/nutritionalstatus/mothersearch}"
+						type="button" class="btn  btn-warning pull-right"> Close </a>
+				</h1>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-primary" style="overflow-x: scroll">
+							<div class="box-header with-border">
+								<h3 class="box-title">Mother Nutritional Status </h3>
+								<a th:href="@{/nutritionalstatus/motheradd/{id}(id=${m_id})}"
+									type="button" class="btn  btn-warning pull-right"> Mother
+									Nutritional Add </a>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+
+								<table class="table table-bordered">
+									<tr>
+										<th>Mother Master Code</th>
+										<th>Mothers Name</th>
+										<th>Admission Date</th>
+										<th>Date of Birth</th>
+										<th>Entry Date</th>
+										<th>Height(CM)</th>
+										<th>Weight(kg)</th>
+										<th>BM(KG)</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+									<tr th:each="mnutritionalStatus,status:${m_nutritionalStatus}">
+
+										<td
+											th:text="${mnutritionalStatus.motherMasterCode.motherMasterCode}">Chakma</td>
+
+										<td th:text="${mnutritionalStatus.name}">Chakma</td>
+										<td th:text="${mnutritionalStatus.admissionDate}">Chakma</td>
+										<td th:text="${mnutritionalStatus.entryDate}">Chakma</td>
+										<td th:text="${mnutritionalStatus.dob}">Chakma</td>
+
+										<td th:text="${mnutritionalStatus.height}">Chakma</td>
+
+										<td th:text="${mnutritionalStatus.weight}">Chakma</td>
+										<td th:text="${mnutritionalStatus.bmi}">Chakma</td>
+										
+										
+										<th><a
+											th:href="@{/nutritionalstatus/motheredit/{id}(id=${mnutritionalStatus.id})}"
+											type="button" class="btn btn-xs bg-maroon ">Edit</a></th>
+											<th><a
+											th:href="@{/nutritionalstatus/motheredelete/{id}(id=${mnutritionalStatus.id})}"
+											type="button" class="btn btn-xs bg-maroon ">Delete</a></th>
+									</tr>
+								</table>
+
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer clearfix"></div>
+						</div>
+						<!-- /.box -->
+
+					</div>
+					<!-- /.col -->
+
+					<!-- /.col -->
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box box-primary" style="overflow-x: scroll">
+							<div class="box-header with-border">
+								<h3 class="box-title">Child Nutritional Status</h3>
+								<a th:href="@{/childsutritionalstatus/childadd/{id}(id=${m_id})}"
+									type="button" class="btn  btn-warning pull-right"> Child Nutritional Status Add</a>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<table class="table table-bordered">
+											<tr>
+										<th>Mother Master Code</th>
+										<th>Mothers Name</th>
+										<th>Child Master Code</th>
+										<th>Chaild Name</th>
+										<th>Admission Date</th>
+										<th>Date of Birth</th>
+										<th>Entry Date</th>
+										<th>Height(CM)</th>
+										<th>Weight(kg)</th>
+										<th>BM(KG)</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+											<tr th:each="childnutritionalstatus,status:${c_childnutritionalStatus}">
+
+										<td
+											th:text="${childnutritionalstatus.motherMasterCode.motherMasterCode}">Chakma</td>
+
+										<td th:text="${childnutritionalstatus.motherMasterCode.motherName}">Chakma</td>
+										<td th:text="${childnutritionalstatus.childMasterCode.childMasterCode}">Chakma</td>
+										<td th:text="${childnutritionalstatus.childMasterCode.name}">Chakma</td>
+										<td th:text="${childnutritionalstatus.childMasterCode.childAdmission.dateAdmission}">Chakma</td>
+										
+										<td th:text="${childnutritionalstatus.childMasterCode.dateOfBirth}">Chakma</td>
+										<td th:text="${childnutritionalstatus.entryDate}">Chakma</td>
+										
+
+										<td th:text="${childnutritionalstatus.height}">Chakma</td>
+
+										<td th:text="${childnutritionalstatus.weight}">Chakma</td>
+										<td th:text="${childnutritionalstatus.bmi}">Chakma</td>
+									<th><a
+											th:href="@{/childsutritionalstatus/childedit/{id}(id=${childnutritionalstatus.id})}"
+											type="button" class="btn btn-xs bg-maroon ">Edit</a></th>
+											<th><a
+											th:href="@{/childsutritionalstatus/delete/{id}(id=${childnutritionalstatus.id})}"
+											type="button" class="btn btn-xs bg-maroon ">Delete</a></th>
+									</tr>
+								</table>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer clearfix"></div>
+						</div>
+						<!-- /.box -->
+
+					</div>
+					<!-- /.col -->
+
+					<!-- /.col -->
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+	</div>
+</div>

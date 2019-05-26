@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Observation 
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary" style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Mother Health Condition </h3>
+                                <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Mother Health Condition </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                
+                                <table class="table">
+                                    <tr th:each="o_MHConditions,status:${o_MHConditions}">
+                                        <td>
+                                       
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th><a th:href="@{/mhealthconditions/edit/{id}(id=${o_MHConditions.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></th> <th></th>
+                                                    <th><a th:href="@{/mhealthconditions/delete/{id}(id=${o_MHConditions.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></th> <th></th>
+                                                </tr>
+                                                <tr><th>Mother Master Code</th> <td th:text="${o_MHConditions.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                    <th>Observation Duration</th> <td th:text="${o_MHConditions.observationDuration}+'Day'">Chakma</td>
+                                                </tr><tr>
+
+                                                    <th> Previous Disease</th> <td th:text="${o_MHConditions.previousDisease}">Chakma</td>
+                                                    <th> Previous Treatment</th> <td th:text="${o_MHConditions.previousTreatment}">Chakma</td>
+                                                </tr><tr>
+
+                                                </tr><tr>
+                                                    <th> Present Health Status</th> <td th:text="${o_MHConditions.preasentHealtsStatus}">Chakma</td>
+                                                    <th> Nutrition Status </th> <td th:text="${o_MHConditions.nutritionStatus}">Chakma</td>
+                                                </tr><tr>
+                                                    <th> Height(CM) </th> <td th:text="${o_MHConditions.height}">Chakma</td>
+                                                    <th> Weight(KG) </th> <td th:text="${o_MHConditions.weight}">Chakma</td>
+                                                </tr>
+                                                <tr>
+                                                    <th> Blood Pressure </th> <td th:text="${o_MHConditions.bloodPressure}">Chakma</td>
+                                                    <th> TT </th> <td th:text="${o_MHConditions.tt}">Chakma</td>
+                                                </tr><tr>
+                                                    <th> Eye Problem </th> <td th:text="${o_MHConditions.eyeProblem}">Chakma</td>
+                                                    <th> Ear Problem </th> <td th:text="${o_MHConditions.earProblem}">Chakma</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th> Gynecological Problem </th> <td th:text="${o_MHConditions.gynologicalProblem}">Chakma</td>
+                                                    <th> Diabetes</th> <td th:text="${o_MHConditions.diabetes}">Chakma</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>  Heart Disease </th> <td th:text="${o_MHConditions.heart_disease}">Chakma</td>
+                                                    <th>  </th> <td></td>
+                                                </tr><tr>
+                                                    <th> Bony Fracture </th> <td th:text="${o_MHConditions.bonyFracture}">Chakma</td>
+                                                    <th> Note</th> <td th:text="${o_MHConditions.note}">Chakma</td>
+                                                </tr>
+                                                <tr>
+                                                    <th> Neurological Disease </th> <td th:text="${o_MHConditions.neurologicalDisease}">Chakma</td>
+                                                    <th> Respiratory  Problem </th> <td th:text="${o_MHConditions.resporatoryProblem}">Chakma</td>
+                                                </tr><tr>
+                                                    <th> UTI </th> <td th:text="${o_MHConditions.uti}">Chakma</td>
+                                                    <th> Previous Report </th> <td th:text="${o_MHConditions.previousReport}">Chakma</td>
+                                                </tr><tr>
+                                                    <th> Plan For Further Action </th> <td th:text="${o_MHConditions.planForFurtherAction}">Chakma</td>
+                                                    <th> Other Important Findings </th> <td th:text="${o_MHConditions.otherImportantFindings}">Chakma</td>
+                                                </tr>
+                                            </table>
+                                        </td>   </tr> </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary" style="overflow-x: scroll">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Child Health Condition </h3>
+                                <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Child Health Condition </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>  
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Child Master Code</th>
+                                        <th>Observation Duration/Day</th>
+                                        <th> Previous Disease</th>
+                                        <th> Previous Treatment</th>
+                                        <th> Present Health Status</th>
+                                        <th> Nutrition Status </th>
+                                        <th> Height(CM) </th>
+                                        <th> Weight(KG) </th>
+                                        <th> Blood Pressure </th>
+                                        <!--                                        <th> LMP </th>-->
+                                        <th> Ear Problem </th>
+                                        <th> Eye Problem </th>
+
+                                        <th> TT </th>
+                                        <th> Heart Disease </th>
+                                        <th> Disability </th>
+                                        <th> Bony Fracture </th>
+                                        <th> Note</th>
+                                        <th> Neurological Disease </th>
+                                        <th> Respiratory Problem  </th>
+                                        <th> UTI  </th>
+                                        <th> Previous Report </th>
+                                        <th> Plan For Further Action </th>
+                                        <th> Other Important Findings </th>
+                                    </tr>                                                    
+                                    <tr th:each="o_CHealthConditions,status:${o_CHealthConditions}">
+                                        <td th:text="${status.count}">2.</td>
+
+                                        <td><a   th:href="@{/chealthconditions/edit/{id} (id=${o_CHealthConditions.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+
+                                        <td> <a   th:href="@{/chealthconditions/delete/{id} (id=${o_CHealthConditions.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
+
+                                        <td th:text="${o_CHealthConditions.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.observationDuration}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.previousDisease}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.previousTreatment}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.preasentHealtsStatus}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.nutritionStatus}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.height}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.weight}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.bloodPressure}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.earProblem}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.eyeProblem}">Chakma</td>
+
+                                        <td th:text="${o_CHealthConditions.tt}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.heart_disease}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.disability}">Chakma</td>
+
+                                        <td th:text="${o_CHealthConditions.bonyFracture}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.note}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.neurologicalDisease}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.resporatoryProblem}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.uti}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.previousReport}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.planForFurtherAction}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.otherImportantFindings}">Chakma</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

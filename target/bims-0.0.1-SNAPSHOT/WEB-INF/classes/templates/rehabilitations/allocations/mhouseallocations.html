@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Rehabilitations
+                    <small> </small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <span th:text='${form_title}'>Add </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/houseworkallocation/index/{id}(id=${r_M_HousAllocation.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <form  th:action="@{/rmhousallocation/save/{id}(id=${r_M_HousAllocation.motherMasterCode.id})}"  th:object="${r_M_HousAllocation}"  method="post" class="form-horizontal">
+
+                            <input type="hidden"    class="form-control " th:field="*{id}"  />    
+
+                            <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode"  name="motherMasterCode"  th:value="motherMasterCode"/>     
+
+                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
+
+                            <div class="box-body">
+
+                                <div class="row">
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-4 control-label"> House Name<span class="text-red"> * </span> :</label>
+
+                                        <div class="col-sm-6">   
+                                            <select class="form-control  "   th:field="*{houseName}"  >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" houseName :${houseName}"
+                                                        th:value=" ${houseName.id}" 
+                                                        th:text="${houseName.name}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('houseName')}" th:errors="*{houseName}">First Name Error</span>
+                                        </div>    
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="co" class="col-sm-4 control-label"> Start Date  :<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-8">    
+                                            <div class="input-group date" >
+                                                <div class="input-group-addon" > 
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+
+                                                <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{allocationDate}" id="startDate"/>    
+                                            </div>
+                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('allocationDate')}" th:errors="*{allocationDate}">First Name Error</span>
+                                        </div>     
+                                    </div>                                   
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="col-sm-4 control-label"> End Date   <span class="text-red"> * </span> </label>
+                                        <div class="col-sm-8">    
+                                            <div class="input-group date" >
+                                                <div class="input-group-addon" > 
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{endDate}"  id="endDate"   />                
+                                            </div>  
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">First Name Error</span>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div  id ="extdate" class="form-group col-sm-6"  th:if="${ #strings.isEmpty(r_M_HousAllocation.id) }">
+
+                                        <label for="co" class="col-sm-4 control-label"> Ext Date  :<span class="text-red">  </span> </label>
+                                        <div class="col-sm-8">    
+                                            <div class="input-group date" >
+                                                <div class="input-group-addon" > 
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+
+                                                <input type="text" placeholder="dd/mm/yyyy"  class="form-control  "   th:field="*{extDate}" />    
+                                            </div>
+                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('extDate')}" th:errors="*{extDate}">First Name Error</span>
+                                        </div>     
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                        <div class="col-sm-8">                   
+                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div>                 
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+
+
+</div>

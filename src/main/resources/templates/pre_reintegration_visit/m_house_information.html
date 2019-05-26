@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Pre Reintegration 
+                    <small> </small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Mother Address <span th:text='${form_title}'>Add </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/pre_reintegration_visit/details/{m_id}(m_id=${m_House_Information_ReintegrationVisit.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <form  th:action="@{/pre_reintegration_m_house_information/save/{id} (id=${m_House_Information_ReintegrationVisit.motherMasterCode.id})}"  th:object="${m_House_Information_ReintegrationVisit}"  method="post" class="form-horizontal">
+                            <div class="row">
+                                <input type="hidden"    class="form-control " th:field="*{id}" />
+                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
+                                <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"   />   
+                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
+                            </div> 
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="name" class="col-sm-3 control-label"> House Type <span class="text-red"> * </span> :</label>
+                                    <div class="col-sm-6">                   
+                                        <select class="form-control  "  id="bookName"  th:field="*{houseType}" >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" houseType :${houseType}"
+                                                    th:value=" ${houseType.id}" 
+                                                    th:text="${houseType.name}"> Select one</option>
+                                        </select>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('houseType')}" th:errors="*{houseType}">First Name Error</span>
+                                    </div>   
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="name" class="col-sm-4 control-label"> Ownership Type <span class="text-red"> * </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{ownership}" >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" ownership :${ownership}"
+                                                th:value=" ${ownership.id}" 
+                                                th:text="${ownership.name}"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('houseType')}" th:errors="*{houseType}">First Name Error</span>
+                                </div>     
+                            </div>
+                                </div>
+                           <div class="row">
+                                 <div class="form-group col-sm-6">
+                                    <label for="name" class="col-sm-3 control-label">Value Title <span class="text-red"> * </span>: </label>
+                                    <div class="col-sm-6">                   
+                                        <select class="form-control  "  id="bookName"  th:field="*{valueTitle}"  >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" valueTitle : ${valueTitle}"
+                                                    th:value=" ${valueTitle}" 
+                                                    th:text="${valueTitle}"> Select one</option>
+                                        </select>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('valueTitle')}" th:errors="*{valueTitle}">First Name Error</span>
+                                    </div>                            
+                                </div>
+                               
+                                        <div class="form-group col-sm-6">
+                                    <label for="name"  class="col-sm-3 control-label">Value <span class="text-red"> * </span>: </label>
+                                    <div class="col-sm-6">                   
+                            <input type="number" min="0"  class="form-control  "   th:field="*{value}" />      
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">First Name Error</span>
+                                    </div>                            
+                                </div>
+                            </div>
+                            
+                                       <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                        <div class="col-sm-8">                   
+                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div> 
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

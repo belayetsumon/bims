@@ -1,0 +1,40 @@
+<div  th:fragment="header-nav-top">
+    <header class="main-header">  
+        <!-- Logo -->
+        <a th:href="@{/}" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">BIMS</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">BIMS</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle col-xs-1" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <div class="col-sm-7">
+                <form class="form-inline text-center" style="margin-top: 10px" th:action="@{/search/searchmother}" >
+                    <div class="form-group">
+                        <input type="text"  th:required="required"  name = "motherName" placeholder="Search By Mother Name" class="form-control "  />
+                    </div>
+                    <button type="submit" class="btn btn-flat bg-maroon">Search</button>
+                </form> 
+            </div>
+
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/users/logout}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- =============================================== -->
+    </header>
+</div>
+

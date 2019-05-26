@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Observation
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Health Checkup complete Mother List <b>Total :</b> <span th:text="${list.size()}"></span></h3>
+
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th>  
+                                        <th> Mother  Id</th>
+                                        <th>Home Visit Date</th>
+                                        <th> Mother Name</th>
+                                        <th> Mother Mobile Number </th>
+                                        <th>Induction  Start Date</th>
+                                        <th>Induction  End Date</th>
+                                        <th>Observation Duration/Days</th>
+                                        <th>Edit</th>
+                                    </tr>                          
+                                    <tr th:each="list,status:${list}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td th:text="${list.induction.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.induction.motherMasterCode.homeVisitDate}" >Chakma</td>
+                                        <td th:text="${list.induction.motherMasterCode.motherName}">Chakma</td>
+                                        <td th:text="${list.induction.motherMasterCode.mobileNumber}">Chakma</td>
+                                        <td th:text="${list.induction.startDate}" >Chakma</td>
+                                        <td th:text="${list.induction.endDate}" >Chakma</td>
+                                        <td th:text="${list.observationDuration}" >Chakma</td>
+                                        <td> 
+                                            <a   th:href="@{/healthcheckup/index/{id} (id=${list.induction.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Edit Health Checkup</a>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

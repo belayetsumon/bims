@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                       <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Mother List For Daily Visit </h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">#</th> 
+                                        <th>Allocations Details</th>
+                                        <th> Id</th>
+                                        <th>Mother Master Code</th>
+                                         <th>Mother Name</th>
+                                          <th>Number Eligible Child </th>
+                                        <th>Date Arrival</th>
+                                        <th>Date Admission</th>
+<!--                                        <th>Pic</th>-->
+                                      
+                                    </tr>                          
+                                    <tr th:each="o_MAddmission,status:${list}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td> 
+                                           <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Add Daily Visit</a>
+                                        </td>
+                                        <td th:text="${o_MAddmission.id}">Chakma</td>
+                                        <td th:text="${o_MAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
+                                             <td th:text="${o_MAddmission.motherMasterCode.motherName}">Chakma</td>
+                                               <td th:text="${o_MAddmission.motherMasterCode.numberOfEligibleChildren}">Chakma</td>
+                                        <td th:text="${o_MAddmission.dateArrival}">Chakma</td>
+                                        <td th:text="${o_MAddmission.dateAdmission}">Chakma</td>
+<!--                                        <td>
+                                            <img  class="img-responsive" th:src="${repo_url}+${o_MAddmission.picName}" width="50px" height="50px"/>
+                                        </td> -->
+                                       </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>    
+                
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

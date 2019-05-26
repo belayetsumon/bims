@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Observation
+                    <small> </small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <span th:text='${form_title}'>Add </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/admission/index/{id}(id=${o_MAddmission.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <form  th:action="@{/admission/save/{id}(id=${o_MAddmission.motherMasterCode.id})}"   enctype="multipart/form-data" th:object="${o_MAddmission}"  method="post" class="form-horizontal">
+                            <div class="row">
+                                <input type="hidden"    class="form-control " th:field="*{id}"  />    
+                                <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode"  name="motherMasterCode"  th:value="motherMasterCode"/>     
+                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}"> First Name Error </span>
+                            </div>
+                            <div class="row">
+                                 <div class="form-group col-sm-12">
+                                    <label for="name" class="col-sm-2 control-label"> Date Arrival <span class="text-red">  </span> </label>  
+                                      <div class="col-sm-4">   
+                                     <div class="input-group" >
+                                         
+                                                <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{dateArrival}"   />                
+                                               </div> 
+                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dateArrival')}" th:errors="*{dateArrival}">First Name Error</span>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label for="name" class="col-sm-2 control-label"> Date Admission <span class="text-red">  </span> </label>
+                                    <div class="col-sm-4">       
+                                           <div class="input-group date" >
+                                                <div class="input-group-addon" > 
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{dateAdmission}"  id="endDate"   />                
+                                               </div> 
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dateAdmission')}" th:errors="*{dateAdmission}">First Name Error</span>
+                                    </div>                            
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label for="name" class="col-sm-2 control-label"> Add Image <span class="text-red">  </span> </label>
+                                    <div class="col-sm-8">                   
+                                        <input type="file" th:name="mpic"  />
+                                       
+                                        <h5 class="help-block has-error text-red" th:text="${message}" > </h5>
+                                 
+                                    </div>                            
+                                </div>
+                            </div>                 
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                    <small> </small>
+                </h1>
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><span th:text='${form_title}'>Add </span></h3>
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">                 
+                             <a  th:href="@{/motherdetails/motherdetails/{m_id}(m_id=${m_Family_information.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                       <form  th:action="@{/m_family_information/save/{m_id}(m_id=${m_Family_information.motherMasterCode.id})}"   th:object="${m_Family_information}"  method="post" class="form-horizontal">
+                            <div class="box-body">
+                                <div class="row">
+                                    <input type="hidden"    class="form-control " th:field="*{id}" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
+                                    <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"   />   
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
+                                </div> 
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                        <label for="co" class="col-sm-6 control-label">  Name  <span class="text-red">*  </span> :</label>
+                                        <div class="col-sm-6">                   
+                                            <input type="text"  class="form-control  "  id="co"  th:field="*{name}" name="name"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
+                                        </div>                            
+
+                                    </div>
+
+                                    <div class="form-group col-sm-6">
+                                        <label for="co" class="col-sm-6 control-label">  Date of Birth <span class="text-red"> </span> :</label>
+                                        <div class="col-sm-6">  
+                                                   <div class="input-group date" >
+                                                <div class="input-group-addon" > 
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="text"  placeholder="dd/mm/yyyy"  data-date-format="dd/mm/yyyy" class="form-control  "    th:field="*{dateofBirth}"   />                                                        
+                                            </div> 
+<!--                                            <input type="text"  class="form-control  "  id="co"  th:field="*{dateofBirth}" name="name"  />                -->
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dateofBirth')}" th:errors="*{dateofBirth}">First Name Error</span>
+                                        </div>                            
+                                   </div>
+                                </div>
+
+                      <div class="row">
+                                             <div class="form-group col-sm-6">
+                                        <label for="vill" class="col-sm-6 control-label">Gender <span class="text-red">* </span> :</label>
+                                        <div class="col-sm-6">  
+                                            <select class="form-control  "  id="bookName"  th:field="*{sex}" name="sex" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" sex :${sex}"
+                                                        th:value=" ${sex}" 
+                                                        th:text="${sex}"> Select one</option>
+                                            </select>                                                    
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">First Name Error</span>
+                                        </div>               
+                                    </div>
+
+                                      <div class="form-group col-sm-6">
+                                        <label for="vill" class="col-sm-6 control-label">Occupation  <span class="text-red">* </span> :</label>
+                                        <div class="col-sm-6">  
+                                            <select class="form-control  "  id="bookName"  th:field="*{occopation}" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" occopation :${occopation}"
+                                                        th:value=" ${occopation.id}" 
+                                                        th:text="${occopation.NAME}"> Select one</option>
+                                            </select>                                                    
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('occopation')}" th:errors="*{occopation}">First Name Error</span>
+                                        </div>               
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                
+                                                  <div class="row">
+                                             <div class="form-group col-sm-6">
+                                        <label for="vill" class="col-sm-6 control-label">Relation <span class="text-red">* </span> :</label>
+                                        <div class="col-sm-6">  
+                                            <select class="form-control  "  id="bookName"  th:field="*{relation}" name="relation" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" relation :${relation}"
+                                                        th:value=" ${relation.id}" 
+                                                        th:text="${relation.NAME}"> Select one</option>
+                                            </select>                                                    
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('relation')}" th:errors="*{relation}">First Name Error</span>
+                                        </div>               
+                                    </div>
+
+                             <div class="form-group col-sm-6">
+                                        <label for="co" class="col-sm-6 control-label">  Mobile Number <span class="text-red"> </span> :</label>
+                                        <div class="col-sm-6">                   
+                                            <input type="text"  class="form-control  "  id="co"  th:field="*{cellNo}" name="cellNo"  />                
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('cellNo')}" th:errors="*{cellNo}">First Name Error</span>
+                                        </div>                            
+                                   </div>
+                                </div>
+
+                 <div class="row">
+                              
+
+
+                                    <div class="form-group col-sm-12">
+                                        <label for="name" class="col-sm-3 control-label"> Remark<span class="text-red">  </span>: </label>
+                                        <div class="col-sm-8">                   
+                                           <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Welcome Shisu Polli Plus  BMIS     Dashboards Mr.<span  class=" text-success " th:text="${userinfo.name}"></span>
+                    <small>  </small>
+                </h1>         
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${totalHomeVisit}">53</h3>
+                                        <p>Total Home Visit</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${eligible}">53</h3>
+                                        <p>Total Eligible Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${noteligible}">53</h3>
+                                        <p>Total Not Eligible Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${approve}">53</h3>
+                                        <p>Total Approved Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${notapprove}">53</h3>
+                                        <p>Total Not Approved Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${eligiblechild}">53</h3>
+
+                                        <p>Total Eligible Child </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${totalobservationmother}">53</h3>
+                                        <p>Total Observation Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmotheradmission}">53</h3>
+                                        <p>Total Mother Admission</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmothernow}">53</h3>
+                                        <p>Total Mother In SPP Now </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${totalchildadmission}">53</h3>
+                                        <p>Total Child Admission</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalchildnow}">53</h3>
+                                        <p>Total child in SPP Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+
+                                    <div class="inner">
+
+                                        <h3 th:text="${longtermcarechildlist}">53</h3>
+
+                                        <p>Total Long Term Care </p>
+
+                                    </div>
+
+                                    <div class="icon">
+
+                                        <i class="ion ion-stats-bars"></i>
+
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                 <h3 th:text="${totalhigherstudy}">53</h3>
+                                        <p> Total Higher Study Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                              <h3 th:text="${totaljob}">53</h3>
+                                        <p> Total Job Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a  class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                    <h3 th:text="${totalmarrage}">53</h3>
+                                        <p> Total Marriage  Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${preReintegrationNow}">53</h3>
+                                        <p>Pre Reintegration Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${totalreintegrationmother}">53</h3>
+                                        <p>Total Reintegration Mother </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${totalreintegrationchild}">53</h3>
+
+                                        <p>Total Reintegration Child</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                    <h3 th:text="${totalmotherfollowup}">53</h3>
+
+                                        <p>Total Follow Up Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${totalchildfollowup}">53</h3>
+
+                                        <p>Total Follow Up Child </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a   class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                          </div>
+
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>
