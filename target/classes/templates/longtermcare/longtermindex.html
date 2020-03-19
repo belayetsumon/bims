@@ -371,6 +371,52 @@
 
                             </div>
                         </div>
+                        
+                        
+                                <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Child Crisis Meet Up </h3>
+                                <a   th:href="@{/childcrisismeetup/create/{mid}(mid=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Crisis Meet Up   </a>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                        <th>Mother Id </th>
+                                        <th>Date</th>
+                                        <th>Location </th>
+                                         <th>Reason </th>
+                                        <th>Challenges</th>
+                                        <th>Action</th>
+                                        <th>Victim Number </th>
+                                        <th>Supports </th>
+                                        <th>Expected Solving Date</th>
+                                        <th>Remarks </th>
+                                    </tr>                      
+                                    <tr th:each="list,status:${childcrisismeet}">                                
+                                      
+                                  <td> <a   th:href="@{/childcrisismeetup/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
+                                        <td> <a   th:href="@{/childcrisismeetup/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
+                                        <td th:text="${list.childMasterCode.childMasterCode}">  </td>
+                                        <td th:text="${list.entrydate}">  </td>
+                                        <td th:text="${list.location}">  </td>
+                                        <td th:text="${list.reason}">  </td>
+                                        <td th:text="${list.challenge}">  </td>
+                                        <td th:text="${list.action}">  </td>
+                                        <td th:text="${list.victimnumber}">  </td>
+                                        <td th:text="${list.supports}">  </td>      
+                                        <td th:text="${list.expectedsolvingdate}">  </td>      
+                                        <td th:text="${list.remarks}">  </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+
+                            </div>
+                        </div>
                     </div>
                     <!-- /.col -->
 

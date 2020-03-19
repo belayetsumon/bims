@@ -86,13 +86,11 @@ public class MotherMasterData {
 
     @NotEmpty(message = "This field cannot be blank.")
     public String dateOfBirth;
-    
-   
+
     public String age;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String mMothersName;
-    
 
     @NotEmpty(message = "This field cannot be blank.")
     public String fathersName;
@@ -184,19 +182,19 @@ public class MotherMasterData {
     /*      Relations ship  Start */
  /*      Home Visit */
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<M_Address> mAddress = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_Accessibility mAccessibility;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_Approval mApproval;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<M_Child_info> mChildinfo;
 
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -204,36 +202,36 @@ public class MotherMasterData {
     public M_Community_Information mCommunityInformation;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<M_Current_Help> mCurrentHelp = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<M_Family_information> mFamilynformation = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_House_Information mHouseInformation;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Income_Information mIncomeInformation;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_Local_Govt_Facilities mLocalGovtFacilities;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_Nutrition mNutrition;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public M_Property mProperty;
 
     // objerbations
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public O_Induction oInduction;
 //
 //    // objerbations
@@ -254,82 +252,65 @@ public class MotherMasterData {
 //    public O_Professional_Obserbations_Child professionalObserbationsChild;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public O_MAddmission addmission;
-    
-    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public MotherImage mImage;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<O_ChildAdmission> childAdmission = new ArrayList<>();
 
     // Rehabilations 
     //@LazyCollection(LazyCollectionOption.TRUE)
-    @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public R_C_HouseAllocations rCHouseAllocations;
 
-  
     //@LazyCollection(LazyCollectionOption.TRUE)
-    @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public R_M_HousAllocation rMHousAllocation;
 
-
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<R_M_WorkAllocation> rMWorkAllocation = new ArrayList<>();
 
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<R_IGA_Training> rIGATraining = new ArrayList<>();
 
-    
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<R_Life_Skill_Trainning> rLifeSkillTrainning = new ArrayList<>();
 
-   
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public List<R_OT> rOT = new ArrayList<>();
 
-    
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_PT> rPT = new ArrayList<>();
-    
-    
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public List<R_PsychologyMother> rPsychologyMother = new ArrayList<>();
-    
-    
-   
-    
-    //clinic  C_NutritionalStatus
-    
-    @OneToMany(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    public List<C_NutritionalStatus> cNutritionalStatus = new ArrayList<>();
-    
 
-    
-    
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<R_PsychologyMother> rPsychologyMother = new ArrayList<>();
+
+    //clinic  C_NutritionalStatus
+    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    public List<C_NutritionalStatus> cNutritionalStatus = new ArrayList<>();
+
     //  RE intrigations
-    
-    @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public PreReintegrationVisit preReintegrationVisit;
 
-    
-    @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
     public ReintegrationCheckList reintegrationCheckList;
 
-    
-    @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public ReleaseMother releaseMother;
-    
-     @OneToOne(mappedBy = "motherMasterCode",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public FollowUpMother followUpMother;
-    
+
 
     /*      Relations ship  end*/
     /**
      * audit end*********************
      */
-    
     public MotherMasterData() {
     }
 
@@ -899,5 +880,4 @@ public class MotherMasterData {
         this.followUpMother = followUpMother;
     }
 
-    
 }

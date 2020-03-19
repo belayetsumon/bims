@@ -7,11 +7,11 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Pre Reintegration 
-                    <a   th:href="@{/pre_reintegration_visit/index }" type="button" class="btn  btn-warning pull-right"> Close </a>
+                    Reintegration  Check List
+                    <a   th:href="@{/reintegrationcheklist/index }" type="button" class="btn  btn-warning pull-right"> Close </a>
                 </h1>
-                
-                
+
+
             </section>
 
             <!-- Main content -->
@@ -20,311 +20,118 @@
                     <div class="col-md-12">
                         <div class="box box-primary">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Mother Pre Reintegration Details </h3>
+                                <h3 class="box-title">Mother Reintegration Check List  Details </h3>
 
                             </div>
                             <!-- /.box-header -->
+
+
                             <div class="box-body">
-                                <table class="table table-bordered">
+                                
+                                
+                                  <table class="table table-bordered">
                                     <tr>
-                                        <th> Mother  Id</th>
-                                        <th> Mother Name</th>
-                                        <th>visitOfficersName</th>
-                                        <th>visitDate</th>
+                                        <th> Date </th>
+                                        <td> <span th:text="${list.date}"> </span></td>
+                                        <td> <span > </span></td>
+                                    </tr>  
+                                      <tr>
+                                        <th> Tentative date of reintegration </th>
+                                        <td> <span th:text="${list.tentativeDate}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                    <tr th:each="list,status:${preReintegrationVisit}">
-                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>                                      
-                                        <td th:text="${list.visitOfficersName}" >Chakma</td>
-                                        <td th:text="${list.visitDate}">Chakma</td>
+                                          <tr>
+                                        <th> Reintegration employment  </th>
+                                        <td> <span th:text="${list.reintegrationEmployment}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Address </h3>
-                                <a   th:href="@{/pre_reintegration_m_address/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Address Type </th>
-
-                                        <th>C/O</th>
-                                        <th>Vill/House</th>
-                                        <th>P.O</th>
-                                        <th>District</th>
-                                        <th>Thana</th>
-
+                                          <tr>
+                                        <th> Address with phone number </th>
+                                        <td> <span th:text="${list.addresss}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                    <tr th:each="addres,status:${m_address}">        
-                                        <td> <a   th:href="@{/pre_reintegration_m_address/edit/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
-                                        <td> <a   th:href="@{/pre_reintegration_m_address/delete/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
-                                        <td th:text="${addres.addressType}">  </td>
-                                        <td th:text="${addres.co}"> cccz </td>
-                                        <td th:text="${addres.vill}">    </td>
-                                        <td th:text="${addres.po}">   </td>
-                                        <td th:text="${addres.district}">  </td>
-                                        <td th:text="${addres.thana.name}">   </td>     
+                                          <tr>
+                                        <th> Individual rehabilitation planning :
+ </th>
+                                        <td> <span th:text="${list.individualRehabilitationPlanning}"> </span></td>
+                                        <td> <span  th:text="${list.individualRehabilitationPlanningNote}"> </span></td>
                                     </tr>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-                            </div>
-                        </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother House Information</h3>
-                                <a   th:href="@{/pre_reintegration_m_house_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Mother Master Code</th>
-                                        <th>House Type</th>
-                                        <th>Ownership</th>
-                                        <th>Value Title</th>
-                                        <th>Value</th>
-                                        <th>Remarks</th>
+                                          <tr>
+                                        <th> Talk over mother with children /any comments /concerns from them on this stage * : </th>
+                                        <td> <span th:text="${list.talkOverMother}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                    <tr th:each="house,status:${house}">        
-                                        <td> <a   th:href="@{/pre_reintegration_m_house_information/edit/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
-                                        <td> <a   th:href="@{/pre_reintegration_m_house_information/delete/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
-                                        <td th:text="${house.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${house.houseType.name}"> cccz </td>
-                                        <td th:text="${house.ownership.name}">    </td>
-                                        <td th:text="${house.valueTitle}">   </td>
-                                        <td th:text="${house.value}">  </td>
-                                        <td th:text="${house.remarks}">   </td>     
+                                          <tr>
+                                        <th> Amount of saving to be given when mother with children are released  </th>
+                                        <td> <span th:text="${list.savingAmoun}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
-                            </div>
-                        </div>
-
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Community Information</h3>
-                                <a    th:href="@{/pre_reintegration_m_community_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Mother Id </th>
-                                        <th>Economy Type </th>
-                                        <th> Available IGA
-                                        </th>
-                                        <th>Note</th>
-                                        <th>Prospective IGA</th>
-                                        <th>Note</th>
-                                        <th>Unemployment session</th>
+                                          <tr>
+                                        <th> How saving will be used </th>
+                                        <td> <span th:text="${list.savingUsed}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                    <tr th:each="community,status:${community}">  
-                                        <td> <a   th:href="@{/pre_reintegration_m_community_information/edit/{id} (id=${community.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
-                                        <td> <a   th:href="@{/pre_reintegration_m_community_information/delete/{id} (id=${community.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
-                                        <td th:text="${community.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${community.economyType.name}">  </td>
-                                        <td th:text="${community.avilableIga}">  </td>
-                                        <td th:text="${community.avilableIgaNote}">  </td>
-                                        <td th:text="${community.prospectiveIga}">  </td>
-                                        <td th:text="${community.prospectiveIgaNote}">  </td>
-                                        <td th:text="${community.unemploymentSession}">  </td>
-                                        <td th:text="${community.REMARKS}">  </td>
+                                          <tr>
+                                        <th> Others support taken by SPP </th>
+                                        <td> <span th:text="${list.sppOtherSupport}"> </span></td>
+                                        <td> <span > </span></td>
                                     </tr>
-                                </table>
-                            </div>
-
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
-                            </div>
-                        </div>
-
-                        <div class="box box-primary"  style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Accessibility</h3>
-                                <a   th:href="@{/pre_reintegration_m_accessibility/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete </th>
-                                        <th>Mother Id </th>
-                                        <th>Road Type </th>
-                                        <th> Transport Type</th>
-                                        <th>Distance To Main Road </th>
-                                        <th>Primary School </th>
-                                        <th>Primary School Distance</th>
-                                        <th>Secondary School </th>
-                                        <th>Secondary School Distance </th>
-                                        <th>Health Care  </th>
-                                        <th>Hospital/Clinic Distance </th>
-                                        <th>Market Place</th>
-                                        <th>Market Place Distance </th>
-                                        <th>Bank </th>
-                                        <th>Bank Distance </th>
-                                        <th>NGO  </th>
-                                        <th>NGO Distance </th>
-                                        <th>Welfare Institutions  </th>
-                                        <th>Welfare Institutions Distance </th>
-                                        <th>Technical Training Institute  </th>
-                                        <th>Technical Training Institute Distance </th>
-                                        <th>Remarks </th>
+                                          <tr>
+                                        <th> Financial Training Received </th>
+                                        <td> <span th:text="${list.financialTrainingReceived}"> </span></td>
+                                        <td> Note: <span th:text="${list.financialTrainingReceivedNote}"> </span></td>
                                     </tr>
-                                    <tr th:each="accessibility,status:${accessibility}">  
-
-                                        <td> <a   th:href="@{/pre_reintegration_m_accessibility/edit/{id} (id=${accessibility.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
-                                        <td> <a   th:href="@{/pre_reintegration_m_accessibility/delete/{id} (id=${accessibility.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
-                                        <td th:text="${accessibility.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${accessibility.roadType.name}">  </td>
-                                        <td th:text="${accessibility.transportType.NAME}">   </td>
-                                        <td th:text="${accessibility.distanceToMainRoad}">   </td>
-                                        <td th:text="${accessibility.primarySchool}">   </td>
-                                        <td th:text="${accessibility.primarySchoolDistance}">   </td>
-                                        <td th:text="${accessibility.secondarySchool}">   </td>
-                                        <td th:text="${accessibility.secondarySchoolDistance}">   </td>
-                                        <td th:text="${accessibility.hospital}">   </td>
-                                        <td th:text="${accessibility.hospitalDistance}">   </td>
-                                        <td th:text="${accessibility.marketPlace}">   </td>
-                                        <td th:text="${accessibility.marketPlaceDistance}">   </td>
-                                        <td th:text="${accessibility.bank}">   </td>
-                                        <td th:text="${accessibility.bankDistance}">   </td>
-                                        <td th:text="${accessibility.ngo}">   </td>
-                                        <td th:text="${accessibility.ngoDistance}">   </td>
-                                        <td th:text="${accessibility.wellfareInstitutions}">   </td>
-                                        <td th:text="${accessibility.wellfareInstitutionsDistance}">   </td>
-                                        <td th:text="${accessibility.technicalInstiute}">   </td>
-                                        <td th:text="${accessibility.technicalInstiuteDistance}">   </td>
-                                        <td th:text="${accessibility.REMARKS}">   </td>
+                                    
+                                                <tr>
+                                        <th> Financial planning done </th>
+                                        <td> <span th:text="${list.financialPlanningDone}"> </span></td>
+                                        <td> Note: <span th:text="${list.financialPlanningDoneNote}"> </span></td>
                                     </tr>
-                                </table>
-                            </div>
-
-
-
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
-                            </div>
-                        </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Lifestyle</h3>
-                                <a    th:href="@{/pre_reintegration_m_lifestyle/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Mother Id </th>
-
-                                        <th>Water Source  </th>
-
-                                        <th> Source Of Drinking Water </th>
-                                        <th>Toilet Type</th>
-                                        <th>Cooking Fuel </th>
-                                        <th>Light Source </th>
-                                        <th>Leisure Facilities   </th>
-                                        <th>Leisure Engagement  </th>
-                                        <th>Personal Habits  </th>
-                                        <th>Craftsmanship </th>
-                                        <th>Remarks</th>
-
+                                
+                                    
+                                                <tr>
+                                        <th> Bank account opened </th>
+                                        <td> <span th:text="${list.bankAccountOened}"> </span></td>
+                                        <td> Note: <span th:text="${list.bankAccountOenedNote}"> </span></td>
                                     </tr>
-
-                                    <tr th:each="lifestyle,status:${lifestyle}">  
-                                        <td> <a   th:href="@{/pre_reintegration_m_lifestyle/edit/{id} (id=${lifestyle.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
-                                        <td> <a   th:href="@{/pre_reintegration_m_lifestyle/delete/{id} (id=${lifestyle.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
-                                        <td th:text="${lifestyle.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${lifestyle.waterSource.name}">  </td>
-                                        <td th:text="${lifestyle.drinkingWaterSource.name}">  </td>
-                                        <td th:text="${lifestyle.toilet_type.name}">  </td>
-                                        <td th:text="${lifestyle.cookingFuel.name}">  </td>
-                                        <td th:text="${lifestyle.lightSource.name}">  </td>                    
-                                        <td th:text="${lifestyle.leisurFacilities.name}">  </td>
-                                        <td th:text="${lifestyle.leisureEngagment}">  </td>
-                                        <td th:text="${lifestyle.personalHabits.name}">  </td>
-                                        <td th:text="${lifestyle.craftsManShip}">  </td>
-                                        <td th:text="${lifestyle.remarks}">  </td>
+                                    
+                                                <tr>
+                                        <th> Income generating training received </th>
+                                        <td> <span th:text="${list.incomeGeneratingTrainingReceived}"> </span></td>
+                                        <td> Note: <span th:text="${list.incomeGeneratingTrainingReceivedNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> All necessary Skill Training received </th>
+                                        <td> <span th:text="${list.allNecessarySkillTrainingReceived}"> </span></td>
+                                        <td> Note: <span th:text="${list.allNecessarySkillTrainingReceivedNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> Received Medical Documents </th>
+                                        <td> <span th:text="${list.receivedMedicalDocuments}"> </span></td>
+                                        <td> Note: <span th:text="${list.receivedMedicalDocumentsNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> Pre-reintegration’s home visit (using related Ax. Form): </th>
+                                        <td> <span th:text="${list.preReintegrationHomeVisit}"> </span></td>
+                                        <td> Note: <span th:text="${list.preReintegrationHomeVisitNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> Work site assessment </th>
+                                        <td> <span th:text="${list.workSiteAssessment}"> </span></td>
+                                        <td> Note: <span th:text="${list.workSiteAssessmentNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> Health on discharge </th>
+                                        <td> <span th:text="${list.healthOnDischarge}"> </span></td>
+                                        <td> Note: <span th:text="${list.healthOnDischargeNote}"> </span></td>
+                                    </tr>            <tr>
+                                        <th> Ready to Reintegration/release </th>
+                                        <td> <span th:text="${list.reintegration}"> </span></td>
+                                        <td> </td>
                                     </tr>
-                                </table>
-                            </div>
-
-
-
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
-                            </div>
-                        </div>
-
-                        <div class="box box-primary" >
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Family Information</h3>
-                               <a   th:href="@{/pre_reintegration_m_family_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete </th>
-                                        <th>Mother Id </th>
-                                        <th>Name Of Member</th>
-                                        <th> Date Of Birth</th>
-                                        <th>Gender</th>
-                                        <th>Occupation</th>
-                                        <th>Relationship</th>
-                                        <th>Cell No</th>
-                                        <th>Remarks  </th>
-                                    </tr>
-                                    <tr th:each="family,status:${family}">  
-                                        <td><a   th:href="@{/pre_reintegration_m_family_information/edit/{id} (id=${family.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>  </td>
-                                        <td><a   th:href="@{/pre_reintegration_m_family_information/delete/{id} (id=${family.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a></td>
-                                        <td th:text="${family.motherMasterCode.motherMasterCode}"> </td>
-                                        <td th:text="${family.name}"> </td>
-                                        <td th:text="${family.dateofBirth}"> </td>
-                                        <td th:text="${family.sex}"> </td>
-                                        <td th:text="${family.occopation.NAME}"> </td>
-                                        <td th:text="${family.relation.NAME}"> </td>
-                                        <td th:text="${family.cellNo}"> </td>
-                                        <td th:text="${family.remarks}"> </td>
-
-                                    </tr>
-                                </table>
-                            </div>
-
-
-
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
+                                    
+                                    
+                                    
+                                  </table>
+                                
                             </div>
                         </div>
                     </div>
-                    <!-- /.col -->
-
-                    <!-- /.col -->
                 </div>
             </section>
             <!-- /.content -->

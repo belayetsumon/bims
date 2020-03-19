@@ -49,7 +49,7 @@ public class InductionController {
     @RequestMapping("/newmother")
     public String newmother(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-      model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNullAndMApprovalDecission(Decision.Approve));
+      model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNullAndMApprovalDecissionOrderByIdDesc(Decision.Approve));
         return "homevisit/observation/induction/newmother";
     }
     

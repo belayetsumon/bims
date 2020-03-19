@@ -130,7 +130,7 @@ public class ChildrenDetailsController {
         motherMasterData = motherMasterDataRepository.findOne(m_id);
         int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
 
-        if (totalChild >= eligiblechildren) {
+        if (totalChild >= eligiblechildren&& m_Child_info.getId()==null) {
             redirectAttrs.addFlashAttribute("error", "Already All Eligible Childen Inserted");
             return "redirect:/childrendetails/index/{m_id}";
         } else {

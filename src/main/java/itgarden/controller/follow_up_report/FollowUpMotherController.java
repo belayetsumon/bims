@@ -10,6 +10,7 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.follow_up_report.FollowMotherPerCapitaIncomeRepository;
 import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.follow_up_report.FollowUpMotherRepsitory;
+import itgarden.repository.follow_up_report.MotherCrisisMeetUpRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,14 @@ public class FollowUpMotherController {
 
     @Autowired
     FollowUpMotherRepsitory followUpMotherRepsitory;
+    
+    @Autowired
+    MotherCrisisMeetUpRepository  motherCrisisMeetUpRepository;
 
     @GetMapping("/mothersearch")
     public String motherSearch(Model model) {
 
-      model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNull());
+      model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
 
         return "follow_up_report/mothersearch";
     }
@@ -53,16 +57,12 @@ public class FollowUpMotherController {
     public String motherdetails(Model model, @PathVariable Long m_id, FollowUpMother followUpMother) {
 
         model.addAttribute("m_id", m_id);
-
         MotherMasterData motherMasterData = new MotherMasterData();
-
         motherMasterData.setId(m_id);
-
         model.addAttribute("motherlist", followUpMotherRepsitory.findBymotherMasterCode(motherMasterData));
-
         model.addAttribute("childrenlist", followUpChildrenRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("income", followMotherPerCapitaIncomeRepository.findBymotherMasterCode(motherMasterData));
-
+        model.addAttribute("mothercrisismeetup", motherCrisisMeetUpRepository.findBymotherMasterCode(motherMasterData));
         return "follow_up_report/details";
     }
 

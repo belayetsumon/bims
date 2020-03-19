@@ -32,10 +32,12 @@ J:\jdbc\bims\src\main\java\itgarden\controller\pre_reintegration_visit\M_Address
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\Income_Generating.java
 J:\jdbc\bims\src\main\java\itgarden\repository\pre_reintegration_visit\Pre_reintegration_visit_M_Community_InformationRepository.java
 J:\jdbc\bims\src\main\java\itgarden\controller\lookuptable\Economic_TypeController.java
+J:\jdbc\bims\src\main\java\itgarden\repository\follow_up_report\ChildCrisisMeetUpRepository.java
 J:\jdbc\bims\src\main\java\itgarden\repository\rehabilitations\SessionTypeRepository.java
 J:\jdbc\bims\src\main\java\itgarden\model\rehabilitations\Mucsuloskeletal.java
 J:\jdbc\bims\src\main\java\itgarden\model\rehabilitations\R_Higher_study.java
 J:\jdbc\bims\src\main\java\itgarden\repository\homevisit\MotherMasterDataRepository.java
+J:\jdbc\bims\src\main\java\itgarden\model\follow_up_report\MotherCrisisMeetUp.java
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\Economic_Type.java
 J:\jdbc\bims\src\main\java\itgarden\model\rehabilitations\Diagonosis.java
 J:\jdbc\bims\src\main\java\itgarden\controller\lookuptable\Transport_TypeController.java
@@ -230,6 +232,7 @@ J:\jdbc\bims\src\main\java\itgarden\controller\auth\UsersController.java
 J:\jdbc\bims\src\main\java\itgarden\model\rehabilitations\R_C_HouseAllocations.java
 J:\jdbc\bims\src\main\java\itgarden\repository\rehabilitations\HouseNameRepository.java
 J:\jdbc\bims\src\main\java\itgarden\repository\longtermcare\L_HigherStudyRepository.java
+J:\jdbc\bims\src\main\java\itgarden\model\follow_up_report\ChildCrisisMeetUp.java
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\Drinking_Water_Source.java
 J:\jdbc\bims\src\main\java\itgarden\model\school\AdmissionClass.java
 J:\jdbc\bims\src\main\java\itgarden\controller\search\SearchController.java
@@ -244,6 +247,7 @@ J:\jdbc\bims\src\main\java\itgarden\model\homevisit\EthinicIdentity.java
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\VisitsOfficersName.java
 J:\jdbc\bims\src\main\java\itgarden\model\pre_reintegration_visit\M_House_Information_ReintegrationVisit.java
 J:\jdbc\bims\src\main\java\itgarden\controller\test\MyTestController.java
+J:\jdbc\bims\src\main\java\itgarden\controller\follow_up_report\MotherCrisisMeetUpController.java
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\Yes_No.java
 J:\jdbc\bims\src\main\java\itgarden\controller\rehabilitations\OtController.java
 J:\jdbc\bims\src\main\java\itgarden\model\clinic\C_visit.java
@@ -309,6 +313,7 @@ J:\jdbc\bims\src\main\java\itgarden\controller\rehabilitations\TherapeuticSessio
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\M_Nutrition.java
 J:\jdbc\bims\src\main\java\itgarden\repository\reintegration_checklist\ReintegrationCheckListRepository.java
 J:\jdbc\bims\src\main\java\itgarden\controller\lookuptable\LookupDashbords.java
+J:\jdbc\bims\src\main\java\itgarden\repository\follow_up_report\MotherCrisisMeetUpRepository.java
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\Toilet_Type.java
 J:\jdbc\bims\src\main\java\itgarden\controller\homevisit\ChildrenDetailsController.java
 J:\jdbc\bims\src\main\java\itgarden\exception\ExceptionResponse.java
@@ -370,6 +375,7 @@ J:\jdbc\bims\src\main\java\itgarden\repository\school\DiscontinuityRepository.ja
 J:\jdbc\bims\src\main\java\itgarden\model\homevisit\M_Current_Help.java
 J:\jdbc\bims\src\main\java\itgarden\repository\pre_reintegration_visit\Pre_reintegration_visit_M_AccessibilityRepository.java
 J:\jdbc\bims\src\main\java\itgarden\repository\reintegration_release\ReleaseChildRepository.java
+J:\jdbc\bims\src\main\java\itgarden\controller\longtremcare\ChildCrisisMeetUpController.java
 J:\jdbc\bims\src\main\java\itgarden\repository\rehabilitations\R_M_WorkAllocationRepository.java
 J:\jdbc\bims\src\main\java\itgarden\controller\DashboardsController.java
 J:\jdbc\bims\src\main\java\itgarden\model\rehabilitations\R_M_HousAllocation.java

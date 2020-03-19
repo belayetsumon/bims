@@ -7,6 +7,7 @@ package itgarden.repository.observation;
 
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.observation.O_MAddmission;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,4 +22,9 @@ public interface O_MAddmissionRepository extends JpaRepository<O_MAddmission, Lo
     O_MAddmission findByMotherMasterCode(MotherMasterData motherMasterData);
 
     List<O_MAddmission> findBymotherImageIsNullOrderByIdDesc();
+
+    List<O_MAddmission> findByCreated(MotherMasterData motherMasterData);
+
+    List<O_MAddmission> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
+
 }

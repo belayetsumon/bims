@@ -7,6 +7,7 @@ package itgarden.repository.homevisit;
 
 import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.homevisit.MotherMasterData;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -36,8 +37,14 @@ public interface M_Child_infoRepository extends JpaRepository<M_Child_info, Long
     
     List<M_Child_info> findByChildAdmissionIsNotNullAndReleaseChildIsNull();
     
+    // new discontinue 
+    
+    List<M_Child_info> findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull();
     
     List<M_Child_info> findByFollowUpChildrenIsNotNull();
+    
+    
+    List<M_Child_info> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
     
     
 }

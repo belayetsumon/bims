@@ -42,7 +42,7 @@ public class R_PsychologyMotherController {
 	@RequestMapping("/mothersearch")
 	public String mothersearch(Model model) {
 		model.addAttribute("list",
-				motherMasterDataRepository.findByAddmissionIsNotNullAndRPsychologyMotherIsNullAndReleaseMotherIsNull());
+				motherMasterDataRepository.findByAddmissionIsNotNullAndRPsychologyMotherIsNullAndReleaseMotherIsNullOrderByIdDesc());
 		return "/rehabilitations/psychology/mothersearch";
 	}
 

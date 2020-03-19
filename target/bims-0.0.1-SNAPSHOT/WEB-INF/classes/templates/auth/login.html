@@ -23,7 +23,8 @@
     <body class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
-                <a href="#"><b></b>BIMS</a>
+                 <img   th:src="@{/images/logo.jpg}" class="" alt="User Image"/>
+              
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
@@ -35,14 +36,16 @@
                 <form th:action="@{/users/login}" method="post">
                     <div class="form-group has-feedback">
                         <span th:text="${message}"></span>
-                        <input type="text"  name="username" class="form-control" placeholder="Email" value="sumon@yahoo.com" />
+                        <input type="text"  name="username" class="form-control" placeholder="" value="" />
+                        <input type="hidden"  name="username" class="form-control" placeholder="Email" value="sumon@yahoo.com" />
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        <span class=""> User Name: sumon@yahoo.com</span>
+                
                     </div>
                     <div class="form-group has-feedback">
-                        <input type="password"  name="password" class="form-control" placeholder="1234567890"  value="bangladesh"/>
+                        <input type="password"  name="password" class="form-control" placeholder=""  value=""/>
+                         <input type="hidden"  name="password" class="form-control" placeholder="Email" value="bangladesh" />
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                          <span class=""> Password:bangladesh</span>
+                   
                     </div>
                     <div class="row">
 

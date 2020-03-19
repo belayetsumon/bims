@@ -6,7 +6,9 @@
 package itgarden.repository.longtermcare;
 
 import itgarden.model.homevisit.M_Child_info;
+import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.model.longtermcare.L_Foste;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,4 +18,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface L_FosteRepository extends JpaRepository<L_Foste, Long> {
     List<L_Foste> findBychildMasterCode(M_Child_info m_Child_info);
+    
+     List<L_Foste> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
 }

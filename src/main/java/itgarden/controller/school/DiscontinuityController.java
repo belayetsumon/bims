@@ -7,6 +7,7 @@ package itgarden.controller.school;
 
 import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.school.Discontinuity;
+import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.school.DiscontinuityRepository;
 import itgarden.repository.school.S_RegularAdmissionClassRepository;
 import javax.validation.Valid;
@@ -32,9 +33,12 @@ public class DiscontinuityController {
     @Autowired
     DiscontinuityRepository discontinuityRepository;
     
+     @Autowired
+    M_Child_infoRepository m_Child_infoRepository;
+    
     @RequestMapping("/admissionstudentlistl")
     public String page(Model model) {
-        model.addAttribute("clildlist", s_RegularAdmissionClassRepository.findAll());
+        model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
         return "school/admissionstudentlist";
     }
     
@@ -68,6 +72,7 @@ public class DiscontinuityController {
     public String save(Model model, @Valid Discontinuity discontinuity, BindingResult bindingResult) {
         
         if (bindingResult.hasErrors()) {
+            
 //        M_Child_info m_Child_info = new M_Child_info();
 //
 //        m_Child_info.setId(id);

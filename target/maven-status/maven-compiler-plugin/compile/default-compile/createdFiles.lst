@@ -27,6 +27,7 @@ itgarden\model\homevisit\Personal_Habits.class
 itgarden\model\follow_up_report\FollowUpChildren.class
 itgarden\model\homevisit\M_House_Information.class
 itgarden\controller\front\FrontController.class
+itgarden\controller\longtremcare\ChildCrisisMeetUpController.class
 itgarden\controller\lookuptable\ReasonsController.class
 itgarden\model\reintegration_release\ReleaseMother.class
 itgarden\repository\clinic\C_ReferralRepository.class
@@ -88,6 +89,7 @@ itgarden\controller\lookuptable\avilableIga.class
 itgarden\controller\rehabilitations\MucsuloskeletalController.class
 itgarden\model\homevisit\ProspectiveIga.class
 itgarden\controller\lookuptable\House_TypeController.class
+itgarden\repository\follow_up_report\MotherCrisisMeetUpRepository.class
 itgarden\repository\homevisit\PhysicalStatusRepository.class
 itgarden\controller\observation\InHouseInductionController.class
 itgarden\controller\rehabilitations\TNAController.class
@@ -175,6 +177,7 @@ itgarden\repository\reintegration_checklist\ReintegrationCheckListRepository.cla
 itgarden\controller\observation\O_Professional_Obserbations_ChildController.class
 itgarden\controller\rehabilitations\TrainingNameController.class
 itgarden\controller\pre_reintegration_visit\M_House_Information_Pre_reintegration_visitController.class
+itgarden\controller\follow_up_report\MotherCrisisMeetUpController.class
 itgarden\repository\observation\O_ChildAdmissionRepository.class
 itgarden\controller\longtremcare\L_FollowUpController.class
 itgarden\model\homevisit\Work.class
@@ -193,6 +196,7 @@ itgarden\model\homevisit\CommunityType.class
 itgarden\controller\observation\O_Professional_Obserbations_MotherController.class
 itgarden\model\homevisit\Income_Generating.class
 itgarden\repository\pre_reintegration_visit\Pre_reintegration_visit_M_AccessibilityRepository.class
+itgarden\model\follow_up_report\MotherCrisisMeetUp.class
 itgarden\model\homevisit\HusbandsStatus.class
 itgarden\repository\homevisit\M_NutritionRepository.class
 itgarden\repository\homevisit\HusbandsStatusRepository.class
@@ -316,6 +320,7 @@ itgarden\model\rehabilitations\TrainingName.class
 itgarden\controller\observation\ProfessionalObservationController.class
 itgarden\model\longtermcare\L_HigherStudy.class
 itgarden\repository\homevisit\Transport_TypeRepository.class
+itgarden\repository\follow_up_report\ChildCrisisMeetUpRepository.class
 itgarden\controller\observation\MotherImageController.class
 itgarden\controller\homevisit\MotherMasterDataController.class
 itgarden\model\longtermcare\LongtrmcareController.class
@@ -380,6 +385,7 @@ itgarden\model\homevisit\M_ChildImage.class
 itgarden\controller\follow_up_report\FollowUpMotherController.class
 itgarden\controller\lookuptable\Personal_HabitsController.class
 itgarden\repository\homevisit\Light_Source_typeRepository.class
+itgarden\model\follow_up_report\ChildCrisisMeetUp.class
 itgarden\controller\longtremcare\LongtremcareController.class
 itgarden\controller\lookuptable\OccupationController.class
 itgarden\controller\homevisit\M_Current_HelpController.class

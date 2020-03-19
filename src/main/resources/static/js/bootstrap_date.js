@@ -6,9 +6,31 @@
 
 $(document).ready(function () {
 
+
+
     $(function () {
         $("#referral_date").datepicker({
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+
+    $(function () {
+        $("#dateReferral").datepicker({
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+
+
+
+
+
+    $(function () {
+        $("#referral_date").datepicker({
+            dateFormat: 'dd-mm-yy',
              yearRange: "1940:+nn",
              changeYear: true
         });
@@ -140,6 +162,42 @@ $(document).ready(function () {
     
         $(function () {
         $("#postDischargeVisitDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+    
+    
+    $(function () {
+        $("#FollowUpDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+    
+    
+       $(function () {
+        $("#lastFollowUpDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+    
+    
+         $(function () {
+        $("#entrydate").datepicker({
+            dateFormat: 'dd-mm-yy',
+             yearRange: "1940:+nn",
+             changeYear: true
+        });
+    });
+    
+    
+          $(function () {
+        $("#expectedsolvingdate").datepicker({
             dateFormat: 'dd-mm-yy',
              yearRange: "1940:+nn",
              changeYear: true

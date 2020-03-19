@@ -25,9 +25,11 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
-
-                                        <th> Discontinuity</th>     
+                                        <th> Discontinuity</th>   
+                                        <th>Mother master code</th>
+                                        <th>Mother Name</th>
                                         <th>Child master code</th>
+                                        <th>Child Name</th>
                                         <th> Date Admission</th>
                                         <th>Admission Session </th>
                                         <th>Admission Class  </th>
@@ -36,25 +38,22 @@
                                         <th>Last Attended Education Type</th>
                                         <th>Special Need</th>
                                         <th>Remark</th>
-
                                     </tr>                          
                                     <tr th:each="list,status:${clildlist}">                                
                                         <td th:text="${status.count}">2.</td>      
                                         <td><a th:href="@{/discontinuity/create/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> New Discontinuity</a></td>
-
-
-                                        <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
-                                        <td th:text="${list.dateAdmission}">Chakma</td>
-
-                                        <td th:text="${list.admissionSession}">Chakma</td>
-                                        <td th:text="${list.admissionClass.NAME}">Chakma</td>
-                                        <td th:text="${list.LastAttendedSession}">Chakma</td>
-                                        <td th:text="${list.lastAttendedClass.NAME}">Chakma</td>
-                                        <td th:text="${list.lastAttendedEducationType.NAME}">Chakma</td>
-                                        <td th:text="${list.specialNeed}">Chakma</td>
-                                        <td th:text="${list.remark}">Chakma</td>
-
-                                        <!--<td th:text="${#dates.format(list.created)}">Chakma</td>-->
+                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                        <td th:text="${list.childMasterCode}">Chakma</td>
+                                        <td th:text="${list.name}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.dateAdmission}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.admissionSession}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.admissionClass.NAME}">Chakma</td>
+                                        <td   th:text="${list.regularAdmissionClass.LastAttendedSession}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.lastAttendedClass.NAME}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.lastAttendedEducationType.NAME}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.specialNeed}">Chakma</td>
+                                        <td th:text="${list.regularAdmissionClass.remark}">Chakma</td>
 
                                     </tr>
                                 </table>

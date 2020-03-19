@@ -43,7 +43,7 @@ public class S_RegularAdmissionController {
     @RequestMapping("/index")
     public String index(Model model) {
 
-        model.addAttribute("clildlist", s_RegularAdmissionClassRepository.findAll());
+        model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
 
         return "school/radmissionindex";
     }

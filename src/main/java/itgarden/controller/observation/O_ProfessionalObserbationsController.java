@@ -40,7 +40,7 @@ public class O_ProfessionalObserbationsController {
 
     @RequestMapping("/newmother")
     public String newmother(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOProfessionalObserbationsMotherIsNull());
+        model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOProfessionalObserbationsMotherIsNullOrderByIdDesc());
         return "homevisit/observation/fobservations/newmother";
     }
     

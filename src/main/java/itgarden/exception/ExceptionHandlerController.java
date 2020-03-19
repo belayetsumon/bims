@@ -48,9 +48,9 @@ public class ExceptionHandlerController {
     public String Notfound(Model model, HttpServletRequest request, Exception ex) {
 
         model.addAttribute("error","An error occurred, please try again later");
-//        model.addAttribute("cause", ex.getCause());
-//        model.addAttribute("message", ex.getMessage());
-//        model.addAttribute("stacktrace", ex.getStackTrace());
+       model.addAttribute("cause", ex.getCause());
+       model.addAttribute("message", ex.getMessage());
+       model.addAttribute("stacktrace", ex.getStackTrace());
         return "error/index";
     }
 

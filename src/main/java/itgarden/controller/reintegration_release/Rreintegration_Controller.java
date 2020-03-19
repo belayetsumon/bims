@@ -41,7 +41,7 @@ public class Rreintegration_Controller {
 
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNull(Yes_No.Yes));
+        model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
         return "reintegration/mothersearch";
     }
 
@@ -85,7 +85,7 @@ public class Rreintegration_Controller {
 
     @GetMapping(value = "/mother_delete/{id}")
     public String delete(@PathVariable Long id, ReleaseMother releaseMother, RedirectAttributes redirectAttrs) {
-        releaseMother = releaseMotherRepository.findOne(id);
+        releaseMother = releaseMotherRepository.getOne(id);
         redirectAttrs.addAttribute("m_id", releaseMother.getMotherMasterCode().getId());
         releaseMotherRepository.delete(id);
         return "redirect:/reintegration/index";

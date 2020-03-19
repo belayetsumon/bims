@@ -8,6 +8,7 @@ package itgarden.controller.longtremcare;
 import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.longtermcare.FollowUpType;
+import itgarden.repository.follow_up_report.ChildCrisisMeetUpRepository;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.longtermcare.L_FollowUpRepository;
 import itgarden.repository.longtermcare.L_FosteRepository;
@@ -52,13 +53,19 @@ public class LongtremcareController {
     @Autowired
     ReleaseChildRepository releaseChildRepository;
 
+     @Autowired
+    ChildCrisisMeetUpRepository  childCrisisMeetUpRepository;
+    
+    
+    
     @RequestMapping("/childindex")
     public String childlist(Model model, M_Child_info m_Child_info) {
 
         // model.addAttribute("list", m_Child_infoRepository.findAll());
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        motherMasterData.setId(3l);
+        motherMasterData.setId(176l);
+        // id 20200105B0100
 
         List<M_Child_info> childlist = m_Child_infoRepository.findByMotherMasterCodeAndLfosteIsNullAndReleaseChildIsNull(motherMasterData);
 
@@ -102,6 +109,9 @@ public class LongtremcareController {
         model.addAttribute("marriage", l_MarriageRepository.findBychildMasterCode(m_Child_info));
 
         model.addAttribute("marriage_follow_up", l_FollowUpRepository.findByChildMasterCodeAndFollowUpType(m_Child_info, FollowUpType.Marrige));
+        
+        
+         model.addAttribute("childcrisismeet", childCrisisMeetUpRepository.findBychildMasterCode(m_Child_info));
 
         //model.addAttribute("release", releaseChildRepository.findByChildMasterCode(m_Child_info));
         

@@ -32,8 +32,8 @@ public class C_ChildNutritionalStatusController {
 	@Autowired
 	MotherMasterDataRepository motherMasterDataRepository;
 
-	@Autowired
-	M_Child_infoRepository m_Child_infoRepository;
+//	@Autowired
+//	M_Child_infoRepository m_Child_infoRepository;
 	
 	
 	@Autowired

@@ -13,12 +13,11 @@ import itgarden.model.longtermcare.L_Job;
 import itgarden.model.longtermcare.L_Marriage;
 import itgarden.model.observation.O_ChildAdmission;
 import itgarden.model.reintegration_release.ReleaseChild;
+import itgarden.model.school.Discontinuity;
 import itgarden.model.school.EligibilityStudent;
 import itgarden.model.school.S_RegularAdmissionClass;
-
 import java.time.LocalDate;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -159,10 +158,12 @@ public class M_Child_info {
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public L_Marriage marriage;
     
-    
-    // @LazyCollection(LazyCollectionOption.FALSE)
+
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public S_RegularAdmissionClass regularAdmissionClass;
+    
+    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public Discontinuity discontinuity;
 
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public EligibilityStudent eligibilityStudent;
@@ -173,11 +174,13 @@ public class M_Child_info {
 
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public FollowUpChildren followUpChildren;
+    
+    
 
     public M_Child_info() {
     }
 
-    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, String dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, L_Foste lfoste, S_RegularAdmissionClass regularAdmissionClass, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild, FollowUpChildren followUpChildren) {
+    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, String dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, L_Foste lfoste, L_HigherStudy higherStudy, L_Job job, L_Marriage marriage, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild, FollowUpChildren followUpChildren) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -204,7 +207,11 @@ public class M_Child_info {
         this.updatedBy = updatedBy;
         this.childAdmission = childAdmission;
         this.lfoste = lfoste;
+        this.higherStudy = higherStudy;
+        this.job = job;
+        this.marriage = marriage;
         this.regularAdmissionClass = regularAdmissionClass;
+        this.discontinuity = discontinuity;
         this.eligibilityStudent = eligibilityStudent;
         this.releaseChild = releaseChild;
         this.followUpChildren = followUpChildren;
@@ -434,12 +441,44 @@ public class M_Child_info {
         this.lfoste = lfoste;
     }
 
+    public L_HigherStudy getHigherStudy() {
+        return higherStudy;
+    }
+
+    public void setHigherStudy(L_HigherStudy higherStudy) {
+        this.higherStudy = higherStudy;
+    }
+
+    public L_Job getJob() {
+        return job;
+    }
+
+    public void setJob(L_Job job) {
+        this.job = job;
+    }
+
+    public L_Marriage getMarriage() {
+        return marriage;
+    }
+
+    public void setMarriage(L_Marriage marriage) {
+        this.marriage = marriage;
+    }
+
     public S_RegularAdmissionClass getRegularAdmissionClass() {
         return regularAdmissionClass;
     }
 
     public void setRegularAdmissionClass(S_RegularAdmissionClass regularAdmissionClass) {
         this.regularAdmissionClass = regularAdmissionClass;
+    }
+
+    public Discontinuity getDiscontinuity() {
+        return discontinuity;
+    }
+
+    public void setDiscontinuity(Discontinuity discontinuity) {
+        this.discontinuity = discontinuity;
     }
 
     public EligibilityStudent getEligibilityStudent() {
@@ -466,4 +505,5 @@ public class M_Child_info {
         this.followUpChildren = followUpChildren;
     }
 
+    
 }

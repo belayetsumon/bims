@@ -7,6 +7,7 @@ package itgarden.repository.follow_up_report;
 
 import itgarden.model.follow_up_report.FollowUpMother;
 import itgarden.model.homevisit.MotherMasterData;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,5 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author User
  */
 public interface FollowUpMotherRepsitory extends JpaRepository<FollowUpMother, Long> {
+    
     List<FollowUpMother> findBymotherMasterCode(MotherMasterData motherMasterData);
+    
+    List<FollowUpMother> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
 }

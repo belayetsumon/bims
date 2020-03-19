@@ -5,10 +5,9 @@
  */
 package itgarden.repository.reintegration_release;
 
-import itgarden.repository.reintegration_checklist.*;
 import itgarden.model.homevisit.MotherMasterData;
-import itgarden.model.pre_reintegration_checklist.ReintegrationCheckList;
 import itgarden.model.reintegration_release.ReleaseMother;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,9 +16,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author User
  */
 public interface ReleaseMotherRepository extends JpaRepository<ReleaseMother, Long> {
+    
 
     List<ReleaseMother> findBymotherMasterCode(MotherMasterData motherMasterData);
     
+
     ReleaseMother findByMotherMasterCode(MotherMasterData motherMasderCode);
     
+
+    List<ReleaseMother> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
+    
+
 }
