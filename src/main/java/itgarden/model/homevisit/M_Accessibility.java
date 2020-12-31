@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -40,10 +41,12 @@ public class M_Accessibility {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @ManyToOne(optional = true)
+    @NotNull(message = "This field cannot be blank.")
+    @ManyToOne(optional = false)
     public Road_Type roadType;
 
-    @ManyToOne(optional = true)
+    @NotNull(message = "This field cannot be blank.")
+    @ManyToOne(optional = false)
     public Transport_Type transportType;
 
     public String distanceToMainRoad;

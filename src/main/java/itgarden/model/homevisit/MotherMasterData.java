@@ -6,13 +6,28 @@
 package itgarden.model.homevisit;
 
 import itgarden.model.auth.Users;
+import itgarden.model.clinic.C_Admission;
 import itgarden.model.clinic.C_NutritionalStatus;
+import itgarden.model.clinic.C_Referral;
+import itgarden.model.clinic.C_Release;
+import itgarden.model.clinic.C_visit;
+import itgarden.model.follow_up_report.FollowMotherPerCapitaIncome;
 import itgarden.model.follow_up_report.FollowUpMother;
+import itgarden.model.follow_up_report.MotherCrisisMeetUp;
 import itgarden.model.observation.MotherImage;
 import itgarden.model.observation.O_ChildAdmission;
 import itgarden.model.observation.O_Induction;
+import itgarden.model.observation.O_Inhouse_Inductions_Mother;
 import itgarden.model.observation.O_MAddmission;
+import itgarden.model.observation.O_MHealthConditions;
+import itgarden.model.observation.O_Professional_Obserbations_Mother;
 import itgarden.model.pre_reintegration_checklist.ReintegrationCheckList;
+import itgarden.model.pre_reintegration_visit.M_Accessibility_ReintegrationVisit;
+import itgarden.model.pre_reintegration_visit.M_Address_ReintegrationVisit;
+import itgarden.model.pre_reintegration_visit.M_Community_Information_ReintegrationVisit;
+import itgarden.model.pre_reintegration_visit.M_Family_information_ReintegrationVisit;
+import itgarden.model.pre_reintegration_visit.M_House_Information_ReintegrationVisit;
+import itgarden.model.pre_reintegration_visit.M_Lifestyle_ReintegrationVisit;
 import itgarden.model.pre_reintegration_visit.PreReintegrationVisit;
 import itgarden.model.rehabilitations.R_C_HouseAllocations;
 import itgarden.model.rehabilitations.R_IGA_Training;
@@ -27,7 +42,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,8 +58,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -182,74 +194,73 @@ public class MotherMasterData {
     /*      Relations ship  Start */
  /*      Home Visit */
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Address> mAddress = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Accessibility mAccessibility;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Approval mApproval;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Child_info> mChildinfo;
 
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Community_Information mCommunityInformation;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Current_Help> mCurrentHelp = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Family_information> mFamilynformation = new ArrayList<>();
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_House_Information mHouseInformation;
+
+    // @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public M_Lifestyle mLifestyle;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Income_Information mIncomeInformation;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Local_Govt_Facilities mLocalGovtFacilities;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Nutrition mNutrition;
 
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public M_Property mProperty;
 
     // objerbations
+    
+    
     //@LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public O_Induction oInduction;
 //
-//    // objerbations
-    //@LazyCollection(LazyCollectionOption.FALSE)
-//    @OneToOne(mappedBy = "motherMasterCode")
-//    public O_MHealthConditions mHealthConditions;
-//
-//    //@LazyCollection(LazyCollectionOption.FALSE)
-//    @OneToOne(mappedBy = "motherMasterCode")
-//    public O_CHealthConditions cHealthConditions;
-//
-//    //@LazyCollection(LazyCollectionOption.FALSE)
-//    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL)
-//    public O_Professional_Obserbations_Mother professionalObserbationsMother;
-//
-//   // @LazyCollection(LazyCollectionOption.FALSE)
-//    @OneToOne(mappedBy = "motherMasterCode", cascade = CascadeType.ALL)
-//    public O_Professional_Obserbations_Child professionalObserbationsChild;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public O_Inhouse_Inductions_Mother oInhouseInductionsMother;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public O_MHealthConditions oMHealthConditions;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public O_Professional_Obserbations_Mother oProfessionalObserbationsMother;
 
     // @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
@@ -264,23 +275,23 @@ public class MotherMasterData {
 
     // Rehabilations 
     //@LazyCollection(LazyCollectionOption.TRUE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public R_C_HouseAllocations rCHouseAllocations;
 
     //@LazyCollection(LazyCollectionOption.TRUE)
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public R_M_HousAllocation rMHousAllocation;
 
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_M_WorkAllocation> rMWorkAllocation = new ArrayList<>();
 
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_IGA_Training> rIGATraining = new ArrayList<>();
 
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_Life_Skill_Trainning> rLifeSkillTrainning = new ArrayList<>();
 
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_OT> rOT = new ArrayList<>();
 
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
@@ -290,21 +301,69 @@ public class MotherMasterData {
     public List<R_PsychologyMother> rPsychologyMother = new ArrayList<>();
 
     //clinic  C_NutritionalStatus
-    @OneToMany(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    
+    
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_NutritionalStatus> cNutritionalStatus = new ArrayList<>();
 
-    //  RE intrigations
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
-    public PreReintegrationVisit preReintegrationVisit;
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<C_visit> cvisit = new ArrayList<>();
 
-    @OneToOne(mappedBy = "motherMasterCode",  fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<C_Admission> cAdmission = new ArrayList<>();
+    
+     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<C_Referral> cReferral = new ArrayList<>();
+     
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<C_Release> cRelease = new ArrayList<>();
+
+    //   pree RE intrigations
+    
+    
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public PreReintegrationVisit preReintegrationVisit;
+    
+     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_Accessibility_ReintegrationVisit> mAccessibilityReintegrationVisit = new ArrayList<>();
+     
+     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_Address_ReintegrationVisit> mAddressReintegrationVisit = new ArrayList<>();
+     
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_Community_Information_ReintegrationVisit> mCommunityInformationReintegrationVisit = new ArrayList<>();
+    
+     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_Family_information_ReintegrationVisit> mFamilyinformationReintegrationVisit = new ArrayList<>();
+     
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_House_Information_ReintegrationVisit> mHouseInformationReintegrationVisit = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<M_Lifestyle_ReintegrationVisit> mLifestyleReintegrationVisit = new ArrayList<>();
+
+    
+    // re intrigration check list
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public ReintegrationCheckList reintegrationCheckList;
+    
+    // relase
 
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public ReleaseMother releaseMother;
+    
+    // fllow up
 
-    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
-    public FollowUpMother followUpMother;
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<FollowUpMother> followUpMother = new ArrayList<>();
+    
+      @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<FollowMotherPerCapitaIncome> followMotherPerCapitaIncome = new ArrayList<>();;
+    
+    
+    
+     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<MotherCrisisMeetUp> motherCrisisMeetUp = new ArrayList<>();
 
 
     /*      Relations ship  end*/
@@ -314,7 +373,7 @@ public class MotherMasterData {
     public MotherMasterData() {
     }
 
-    public MotherMasterData(Long id, String visitOfficersName, String dateReferral, String referredFrom, Reasons resons, String homeVisitDate, String motherMasterCode, String motherName, String dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility mAccessibility, M_Approval mApproval, List<M_Child_info> mChildinfo, M_Community_Information mCommunityInformation, M_House_Information mHouseInformation, M_Income_Information mIncomeInformation, M_Local_Govt_Facilities mLocalGovtFacilities, M_Nutrition mNutrition, M_Property mProperty, O_Induction oInduction, O_MAddmission addmission, MotherImage mImage, R_C_HouseAllocations rCHouseAllocations, R_M_HousAllocation rMHousAllocation, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother, FollowUpMother followUpMother) {
+    public MotherMasterData(Long id, String visitOfficersName, String dateReferral, String referredFrom, Reasons resons, String homeVisitDate, String motherMasterCode, String motherName, String dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility mAccessibility, M_Approval mApproval, List<M_Child_info> mChildinfo, M_Community_Information mCommunityInformation, M_House_Information mHouseInformation, M_Lifestyle mLifestyle, M_Income_Information mIncomeInformation, M_Local_Govt_Facilities mLocalGovtFacilities, M_Nutrition mNutrition, M_Property mProperty, O_Induction oInduction, O_Inhouse_Inductions_Mother oInhouseInductionsMother, O_MHealthConditions oMHealthConditions, O_Professional_Obserbations_Mother oProfessionalObserbationsMother, O_MAddmission addmission, MotherImage mImage, R_C_HouseAllocations rCHouseAllocations, R_M_HousAllocation rMHousAllocation, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -353,11 +412,15 @@ public class MotherMasterData {
         this.mChildinfo = mChildinfo;
         this.mCommunityInformation = mCommunityInformation;
         this.mHouseInformation = mHouseInformation;
+        this.mLifestyle = mLifestyle;
         this.mIncomeInformation = mIncomeInformation;
         this.mLocalGovtFacilities = mLocalGovtFacilities;
         this.mNutrition = mNutrition;
         this.mProperty = mProperty;
         this.oInduction = oInduction;
+        this.oInhouseInductionsMother = oInhouseInductionsMother;
+        this.oMHealthConditions = oMHealthConditions;
+        this.oProfessionalObserbationsMother = oProfessionalObserbationsMother;
         this.addmission = addmission;
         this.mImage = mImage;
         this.rCHouseAllocations = rCHouseAllocations;
@@ -365,7 +428,6 @@ public class MotherMasterData {
         this.preReintegrationVisit = preReintegrationVisit;
         this.reintegrationCheckList = reintegrationCheckList;
         this.releaseMother = releaseMother;
-        this.followUpMother = followUpMother;
     }
 
     public Long getId() {
@@ -712,6 +774,14 @@ public class MotherMasterData {
         this.mHouseInformation = mHouseInformation;
     }
 
+    public M_Lifestyle getmLifestyle() {
+        return mLifestyle;
+    }
+
+    public void setmLifestyle(M_Lifestyle mLifestyle) {
+        this.mLifestyle = mLifestyle;
+    }
+
     public M_Income_Information getmIncomeInformation() {
         return mIncomeInformation;
     }
@@ -750,6 +820,30 @@ public class MotherMasterData {
 
     public void setoInduction(O_Induction oInduction) {
         this.oInduction = oInduction;
+    }
+
+    public O_Inhouse_Inductions_Mother getoInhouseInductionsMother() {
+        return oInhouseInductionsMother;
+    }
+
+    public void setoInhouseInductionsMother(O_Inhouse_Inductions_Mother oInhouseInductionsMother) {
+        this.oInhouseInductionsMother = oInhouseInductionsMother;
+    }
+
+    public O_MHealthConditions getoMHealthConditions() {
+        return oMHealthConditions;
+    }
+
+    public void setoMHealthConditions(O_MHealthConditions oMHealthConditions) {
+        this.oMHealthConditions = oMHealthConditions;
+    }
+
+    public O_Professional_Obserbations_Mother getoProfessionalObserbationsMother() {
+        return oProfessionalObserbationsMother;
+    }
+
+    public void setoProfessionalObserbationsMother(O_Professional_Obserbations_Mother oProfessionalObserbationsMother) {
+        this.oProfessionalObserbationsMother = oProfessionalObserbationsMother;
     }
 
     public O_MAddmission getAddmission() {
@@ -848,12 +942,92 @@ public class MotherMasterData {
         this.cNutritionalStatus = cNutritionalStatus;
     }
 
+    public List<C_visit> getCvisit() {
+        return cvisit;
+    }
+
+    public void setCvisit(List<C_visit> cvisit) {
+        this.cvisit = cvisit;
+    }
+
+    public List<C_Admission> getcAdmission() {
+        return cAdmission;
+    }
+
+    public void setcAdmission(List<C_Admission> cAdmission) {
+        this.cAdmission = cAdmission;
+    }
+
+    public List<C_Referral> getcReferral() {
+        return cReferral;
+    }
+
+    public void setcReferral(List<C_Referral> cReferral) {
+        this.cReferral = cReferral;
+    }
+
+    public List<C_Release> getcRelease() {
+        return cRelease;
+    }
+
+    public void setcRelease(List<C_Release> cRelease) {
+        this.cRelease = cRelease;
+    }
+
     public PreReintegrationVisit getPreReintegrationVisit() {
         return preReintegrationVisit;
     }
 
     public void setPreReintegrationVisit(PreReintegrationVisit preReintegrationVisit) {
         this.preReintegrationVisit = preReintegrationVisit;
+    }
+
+    public List<M_Accessibility_ReintegrationVisit> getmAccessibilityReintegrationVisit() {
+        return mAccessibilityReintegrationVisit;
+    }
+
+    public void setmAccessibilityReintegrationVisit(List<M_Accessibility_ReintegrationVisit> mAccessibilityReintegrationVisit) {
+        this.mAccessibilityReintegrationVisit = mAccessibilityReintegrationVisit;
+    }
+
+    public List<M_Address_ReintegrationVisit> getmAddressReintegrationVisit() {
+        return mAddressReintegrationVisit;
+    }
+
+    public void setmAddressReintegrationVisit(List<M_Address_ReintegrationVisit> mAddressReintegrationVisit) {
+        this.mAddressReintegrationVisit = mAddressReintegrationVisit;
+    }
+
+    public List<M_Community_Information_ReintegrationVisit> getmCommunityInformationReintegrationVisit() {
+        return mCommunityInformationReintegrationVisit;
+    }
+
+    public void setmCommunityInformationReintegrationVisit(List<M_Community_Information_ReintegrationVisit> mCommunityInformationReintegrationVisit) {
+        this.mCommunityInformationReintegrationVisit = mCommunityInformationReintegrationVisit;
+    }
+
+    public List<M_Family_information_ReintegrationVisit> getmFamilyinformationReintegrationVisit() {
+        return mFamilyinformationReintegrationVisit;
+    }
+
+    public void setmFamilyinformationReintegrationVisit(List<M_Family_information_ReintegrationVisit> mFamilyinformationReintegrationVisit) {
+        this.mFamilyinformationReintegrationVisit = mFamilyinformationReintegrationVisit;
+    }
+
+    public List<M_House_Information_ReintegrationVisit> getmHouseInformationReintegrationVisit() {
+        return mHouseInformationReintegrationVisit;
+    }
+
+    public void setmHouseInformationReintegrationVisit(List<M_House_Information_ReintegrationVisit> mHouseInformationReintegrationVisit) {
+        this.mHouseInformationReintegrationVisit = mHouseInformationReintegrationVisit;
+    }
+
+    public List<M_Lifestyle_ReintegrationVisit> getmLifestyleReintegrationVisit() {
+        return mLifestyleReintegrationVisit;
+    }
+
+    public void setmLifestyleReintegrationVisit(List<M_Lifestyle_ReintegrationVisit> mLifestyleReintegrationVisit) {
+        this.mLifestyleReintegrationVisit = mLifestyleReintegrationVisit;
     }
 
     public ReintegrationCheckList getReintegrationCheckList() {
@@ -872,12 +1046,27 @@ public class MotherMasterData {
         this.releaseMother = releaseMother;
     }
 
-    public FollowUpMother getFollowUpMother() {
+    public List<FollowUpMother> getFollowUpMother() {
         return followUpMother;
     }
 
-    public void setFollowUpMother(FollowUpMother followUpMother) {
+    public void setFollowUpMother(List<FollowUpMother> followUpMother) {
         this.followUpMother = followUpMother;
     }
 
+    public List<FollowMotherPerCapitaIncome> getFollowMotherPerCapitaIncome() {
+        return followMotherPerCapitaIncome;
+    }
+
+    public void setFollowMotherPerCapitaIncome(List<FollowMotherPerCapitaIncome> followMotherPerCapitaIncome) {
+        this.followMotherPerCapitaIncome = followMotherPerCapitaIncome;
+    }
+
+    public List<MotherCrisisMeetUp> getMotherCrisisMeetUp() {
+        return motherCrisisMeetUp;
+    }
+
+    public void setMotherCrisisMeetUp(List<MotherCrisisMeetUp> motherCrisisMeetUp) {
+        this.motherCrisisMeetUp = motherCrisisMeetUp;
+    }
 }

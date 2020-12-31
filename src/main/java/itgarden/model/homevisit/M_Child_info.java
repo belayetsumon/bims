@@ -6,18 +6,29 @@
 package itgarden.model.homevisit;
 
 import itgarden.model.auth.Users;
+import itgarden.model.follow_up_report.ChildCrisisMeetUp;
 import itgarden.model.follow_up_report.FollowUpChildren;
+import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.model.longtermcare.L_Foste;
 import itgarden.model.longtermcare.L_HigherStudy;
 import itgarden.model.longtermcare.L_Job;
 import itgarden.model.longtermcare.L_Marriage;
+import itgarden.model.observation.Child_image;
+import itgarden.model.observation.O_CHealthConditions;
 import itgarden.model.observation.O_ChildAdmission;
+import itgarden.model.observation.O_Inhouse_Inductions_child;
+import itgarden.model.observation.O_Professional_Obserbations_Child;
+import itgarden.model.rehabilitations.R_C_HouseAllocations;
+import itgarden.model.rehabilitations.R_OtChild;
+import itgarden.model.rehabilitations.R_PsychologyChild;
 import itgarden.model.reintegration_release.ReleaseChild;
 import itgarden.model.school.Discontinuity;
 import itgarden.model.school.EligibilityStudent;
 import itgarden.model.school.S_RegularAdmissionClass;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,6 +40,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -141,27 +153,61 @@ public class M_Child_info {
     // @Column(insertable = false, updatable = true)
     public Users updatedBy;
 
+    // Home Visit
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<M_Child_Address> mChildAddress = new ArrayList<>();
+
+    // Observation
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<O_Inhouse_Inductions_child> oInhouseInductionschild = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<O_CHealthConditions> oCHealthConditions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<O_Professional_Obserbations_Child> oProfessionalObserbationsChild = new ArrayList<>();
+
     // @LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public O_ChildAdmission childAdmission;
 
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<Child_image> childimage = new ArrayList<>();
+
+    // Rehabilitations 
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<R_C_HouseAllocations> rCHouseAllocations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<R_OtChild> rOtChild = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<R_PsychologyChild> rPsychologyChild = new ArrayList<>();
+
+    // Long term care
     // @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
-    public L_Foste lfoste;
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<L_Foste> lfoste = new ArrayList<>();
 
-    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
-    public L_HigherStudy higherStudy;
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<L_HigherStudy> higherStudy = new ArrayList<>();
 
-    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
-    public L_Job job;
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<L_Job> job = new ArrayList<>();
 
-    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
-    public L_Marriage marriage;
-    
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<L_Marriage> marriage = new ArrayList<>();
 
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<L_FollowUp> lFollowUp = new ArrayList<>();
+
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<ChildCrisisMeetUp> childCrisisMeetUp = new ArrayList<>();
+
+    // School
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public S_RegularAdmissionClass regularAdmissionClass;
-    
+
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public Discontinuity discontinuity;
 
@@ -172,15 +218,15 @@ public class M_Child_info {
     @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public ReleaseChild releaseChild;
 
-    @OneToOne(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
-    public FollowUpChildren followUpChildren;
-    
-    
+    @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
+    public List<FollowUpChildren> followUpChildren = new ArrayList<>();
+
+    ;
 
     public M_Child_info() {
     }
 
-    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, String dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, L_Foste lfoste, L_HigherStudy higherStudy, L_Job job, L_Marriage marriage, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild, FollowUpChildren followUpChildren) {
+    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, String dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -206,15 +252,10 @@ public class M_Child_info {
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
         this.childAdmission = childAdmission;
-        this.lfoste = lfoste;
-        this.higherStudy = higherStudy;
-        this.job = job;
-        this.marriage = marriage;
         this.regularAdmissionClass = regularAdmissionClass;
         this.discontinuity = discontinuity;
         this.eligibilityStudent = eligibilityStudent;
         this.releaseChild = releaseChild;
-        this.followUpChildren = followUpChildren;
     }
 
     public Long getId() {
@@ -425,6 +466,38 @@ public class M_Child_info {
         this.updatedBy = updatedBy;
     }
 
+    public List<M_Child_Address> getmChildAddress() {
+        return mChildAddress;
+    }
+
+    public void setmChildAddress(List<M_Child_Address> mChildAddress) {
+        this.mChildAddress = mChildAddress;
+    }
+
+    public List<O_Inhouse_Inductions_child> getoInhouseInductionschild() {
+        return oInhouseInductionschild;
+    }
+
+    public void setoInhouseInductionschild(List<O_Inhouse_Inductions_child> oInhouseInductionschild) {
+        this.oInhouseInductionschild = oInhouseInductionschild;
+    }
+
+    public List<O_CHealthConditions> getoCHealthConditions() {
+        return oCHealthConditions;
+    }
+
+    public void setoCHealthConditions(List<O_CHealthConditions> oCHealthConditions) {
+        this.oCHealthConditions = oCHealthConditions;
+    }
+
+    public List<O_Professional_Obserbations_Child> getoProfessionalObserbationsChild() {
+        return oProfessionalObserbationsChild;
+    }
+
+    public void setoProfessionalObserbationsChild(List<O_Professional_Obserbations_Child> oProfessionalObserbationsChild) {
+        this.oProfessionalObserbationsChild = oProfessionalObserbationsChild;
+    }
+
     public O_ChildAdmission getChildAdmission() {
         return childAdmission;
     }
@@ -433,36 +506,84 @@ public class M_Child_info {
         this.childAdmission = childAdmission;
     }
 
-    public L_Foste getLfoste() {
+    public List<Child_image> getChildimage() {
+        return childimage;
+    }
+
+    public void setChildimage(List<Child_image> childimage) {
+        this.childimage = childimage;
+    }
+
+    public List<R_C_HouseAllocations> getrCHouseAllocations() {
+        return rCHouseAllocations;
+    }
+
+    public void setrCHouseAllocations(List<R_C_HouseAllocations> rCHouseAllocations) {
+        this.rCHouseAllocations = rCHouseAllocations;
+    }
+
+    public List<R_OtChild> getrOtChild() {
+        return rOtChild;
+    }
+
+    public void setrOtChild(List<R_OtChild> rOtChild) {
+        this.rOtChild = rOtChild;
+    }
+
+    public List<R_PsychologyChild> getrPsychologyChild() {
+        return rPsychologyChild;
+    }
+
+    public void setrPsychologyChild(List<R_PsychologyChild> rPsychologyChild) {
+        this.rPsychologyChild = rPsychologyChild;
+    }
+
+    public List<L_Foste> getLfoste() {
         return lfoste;
     }
 
-    public void setLfoste(L_Foste lfoste) {
+    public void setLfoste(List<L_Foste> lfoste) {
         this.lfoste = lfoste;
     }
 
-    public L_HigherStudy getHigherStudy() {
+    public List<L_HigherStudy> getHigherStudy() {
         return higherStudy;
     }
 
-    public void setHigherStudy(L_HigherStudy higherStudy) {
+    public void setHigherStudy(List<L_HigherStudy> higherStudy) {
         this.higherStudy = higherStudy;
     }
 
-    public L_Job getJob() {
+    public List<L_Job> getJob() {
         return job;
     }
 
-    public void setJob(L_Job job) {
+    public void setJob(List<L_Job> job) {
         this.job = job;
     }
 
-    public L_Marriage getMarriage() {
+    public List<L_Marriage> getMarriage() {
         return marriage;
     }
 
-    public void setMarriage(L_Marriage marriage) {
+    public void setMarriage(List<L_Marriage> marriage) {
         this.marriage = marriage;
+    }
+
+    public List<L_FollowUp> getlFollowUp() {
+        return lFollowUp;
+    }
+
+    public void setlFollowUp(List<L_FollowUp> lFollowUp) {
+        this.lFollowUp = lFollowUp;
+    }
+
+    public List<ChildCrisisMeetUp> getChildCrisisMeetUp() {
+        return childCrisisMeetUp;
+    }
+
+    public void setChildCrisisMeetUp(List<ChildCrisisMeetUp> childCrisisMeetUp) {
+        this.childCrisisMeetUp = childCrisisMeetUp;
     }
 
     public S_RegularAdmissionClass getRegularAdmissionClass() {
@@ -497,13 +618,12 @@ public class M_Child_info {
         this.releaseChild = releaseChild;
     }
 
-    public FollowUpChildren getFollowUpChildren() {
+    public List<FollowUpChildren> getFollowUpChildren() {
         return followUpChildren;
     }
 
-    public void setFollowUpChildren(FollowUpChildren followUpChildren) {
+    public void setFollowUpChildren(List<FollowUpChildren> followUpChildren) {
         this.followUpChildren = followUpChildren;
     }
 
-    
 }

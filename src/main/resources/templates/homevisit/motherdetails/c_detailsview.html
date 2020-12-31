@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Home Visit
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title"> Children Basic Information </h3>
+                                <div class="box-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/childrendetails/index/{c_id}(c_id=${cinfo.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th> Mother master code</th><td th:text="${cinfo.motherMasterCode.motherMasterCode}"></td><th>Child master code</th><td class="bg-yellow" th:text="${cinfo.childMasterCode}"></td>
+                                    </tr><tr>
+                                        <th>Mother's Name</th><td th:text="${cinfo.motherName}"></td><th>Father's Name</th><td th:text="${cinfo.fathersName}"></td>
+                                    </tr><tr>
+                                        <th>Prime Care Name</th><td th:text="${cinfo.primeFamilyMemberName}"></td><th>Name</th><td th:text="${cinfo.name}"></td>
+                                    </tr><tr>
+                                        <th>Date Of Birth </th><td th:text="${cinfo.dateOfBirth}"></td><th>Gender  </th><td th:text="${cinfo.gender}"></td>
+                                    </tr>
+                                </table>
+
+
+
+                                <table class="table table-bordered">
+                                    <tr class="bg-maroon">
+                                        <th> Section Name : Home Visit</th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td> 1.Children Address </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.mChildAddress.size()}]]</span></td>
+                                    </tr>
+                                    <tr class="bg-maroon">
+                                        <th> Section Name : Observation</th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td> 2.In House Induction Children </td> 
+                                        <td> 
+                                            <span th:inline="text"> [[${cinfo.oInhouseInductionschild.size()}]]</span>
+                                        </td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td> 3. Child Health Condition  </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.oCHealthConditions.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 4. Professional Observation Children  </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.oProfessionalObserbationsChild.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 5. Child Admission  </td> 
+                                        <td> <span   th:if="${ not #strings.isEmpty(cinfo.childAdmission)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.childAdmission)}" > 0 </span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 6. Child Child Image   </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.childimage.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr class="bg-maroon">
+                                        <th> Section Name : Rehabilitations</th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td> 7. Child House Allocation   </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.rCHouseAllocations.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 8. Child Occupational Therapy Session   </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.rOtChild.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 9. Child Psychology Session  </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.rPsychologyChild.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr class="bg-maroon">
+                                        <th> Section Name :  Long Term Care </th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td> 10. Foster </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.lfoste.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 11. Higher Study</td> 
+                                        <td> <span th:inline="text"> [[${cinfo.higherStudy.size()}]]</span></td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td> 12. Job</td> 
+                                        <td> <span th:inline="text"> [[${cinfo.job.size()}]]</span></td>
+                                    </tr>
+
+
+
+                                    <tr>
+                                        <td> 13. Marriage</td> 
+                                        <td> <span th:inline="text"> [[${cinfo.marriage.size()}]]</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td> 14.Follow Up</td> 
+                                        <td> <span th:inline="text"> [[${cinfo.lFollowUp.size()}]]</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td> 15. Long term care child release </td> 
+                                        <td> 
+                                            <span   th:if="${ not #strings.isEmpty(cinfo.releaseChild)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.releaseChild)}" > 0 </span>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 16. Child Crisis Meet Up </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.childCrisisMeetUp.size()}]]</span></td>
+                                    </tr>
+
+                                    <tr class="bg-maroon">
+                                        <th> Section Name :  School  </th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td> 17. Regular Admission </td> 
+                                        <td><span   th:if="${ not #strings.isEmpty(cinfo.regularAdmissionClass)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.regularAdmissionClass)}" > 0 </span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 18. Eligibility </td> 
+                                        <td> <span   th:if="${ not #strings.isEmpty(cinfo.eligibilityStudent)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.eligibilityStudent)}" > 0 </span></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td> 19. Discontinuity </td> 
+                                        <td> <span   th:if="${ not #strings.isEmpty(cinfo.discontinuity)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.discontinuity)}" > 0 </span></td>
+                                    </tr>
+
+                                    <tr class="bg-maroon">
+                                        <th> Section Name :  Reintegration Child </th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td> 20. Reintegration/Release </td> 
+                                        <td> <span   th:if="${ not #strings.isEmpty(cinfo.releaseChild)}" > 1 </span>
+                                            <span   th:if="${#strings.isEmpty(cinfo.releaseChild)}" > 0 </span></td>
+                                    </tr>
+
+                                    <tr class="bg-maroon">
+                                        <th> Section Name :  Follow Up  </th> 
+                                        <th> Data Size</th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td> 21. Children Follow Up </td> 
+                                        <td> <span th:inline="text"> [[${cinfo.followUpChildren.size()}]]</span></td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+                            </div>
+                        </div>
+                        <!-- /.box -->
+
+
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

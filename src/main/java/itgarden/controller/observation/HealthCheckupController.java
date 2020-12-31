@@ -5,8 +5,6 @@
  */
 package itgarden.controller.observation;
 
-import itgarden.model.homevisit.Decision;
-import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.M_ApprovalRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
@@ -40,13 +38,13 @@ public class HealthCheckupController {
 
     @RequestMapping("/newmother")
     public String newmother(Model model) {
-       model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc());
         return "homevisit/observation/healthcheckup/newmother";
     }
 
     @RequestMapping("/mothersearch")
     public String motherSearch(Model model) {
-        model.addAttribute("list",o_MHealthConditionsRepository.findAll());
+        model.addAttribute("list", o_MHealthConditionsRepository.findAll());
         return "homevisit/observation/healthcheckup/mothersearch";
     }
 

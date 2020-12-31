@@ -62,7 +62,7 @@ public class ChildrenDetailsController {
     @RequestMapping("/index/{m_id}")
 
     public String index(Model model, @PathVariable Long m_id, M_Child_info m_Child_info) {
-        
+
         model.addAttribute("mInfo", m_id);
 
         MotherMasterData motherMasterData = new MotherMasterData();
@@ -70,7 +70,7 @@ public class ChildrenDetailsController {
         motherMasterData.setId(m_id);
 
         model.addAttribute("list", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
-        
+
         return "homevisit/motherdetails/childindex";
     }
 
@@ -114,8 +114,8 @@ public class ChildrenDetailsController {
 
         model.addAttribute("gender", Gender.values());
         model.addAttribute("work", Yes_No.values());
-        
-         model.addAttribute("eligibility", Eligibility.values());
+
+        model.addAttribute("eligibility", Eligibility.values());
 
         return "homevisit/motherdetails/createchild";
     }
@@ -130,7 +130,7 @@ public class ChildrenDetailsController {
         motherMasterData = motherMasterDataRepository.findOne(m_id);
         int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
 
-        if (totalChild >= eligiblechildren&& m_Child_info.getId()==null) {
+        if (totalChild >= eligiblechildren && m_Child_info.getId() == null) {
             redirectAttrs.addFlashAttribute("error", "Already All Eligible Childen Inserted");
             return "redirect:/childrendetails/index/{m_id}";
         } else {
@@ -167,8 +167,8 @@ public class ChildrenDetailsController {
 
                 model.addAttribute("gender", Gender.values());
                 model.addAttribute("work", Yes_No.values());
-                
-                 model.addAttribute("eligibility", Eligibility.values());
+
+                model.addAttribute("eligibility", Eligibility.values());
 
                 return "homevisit/motherdetails/createchild";
 
@@ -192,8 +192,8 @@ public class ChildrenDetailsController {
 
         model.addAttribute("gender", Gender.values());
         model.addAttribute("work", Yes_No.values());
-        
-         model.addAttribute("eligibility", Eligibility.values());
+
+        model.addAttribute("eligibility", Eligibility.values());
 
         return "homevisit/motherdetails/createchild";
     }
@@ -208,6 +208,16 @@ public class ChildrenDetailsController {
         m_Child_infoRepository.delete(id);
 
         return "redirect:/childrendetails/index/{m_id}";
+    }
+
+    @GetMapping(value = "/cdetails/{c_id}")
+    public String details(@PathVariable Long c_id, Model model, M_Child_info m_Child_info, RedirectAttributes redirectAttrs) {
+
+        m_Child_info = m_Child_infoRepository.findOne(c_id);
+
+        model.addAttribute("cinfo", m_Child_info);
+
+        return "homevisit/motherdetails/c_detailsview";
     }
 
 }

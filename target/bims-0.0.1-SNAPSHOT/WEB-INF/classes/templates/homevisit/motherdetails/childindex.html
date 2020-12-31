@@ -26,6 +26,7 @@
                                         <th style="width: 10px">#</th>
                                         <th>Edit</th>
                                         <th> Delete</th>
+                                        <th> view </th>
                                         <th> Add Address </th>                                   
                                         <th> Mother master code</th>
                                         <th>Child master code</th>
@@ -43,6 +44,8 @@
                                         <td th:text="${status.count}">2.</td>      
                                         <td><a   th:href="@{/childrendetails/edit/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
                                         <td><a   th:href="@{/childrendetails/delete/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>                              
+
+                                        <td><a   th:href="@{/childrendetails/cdetails/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-green ">View</a></td> 
                                         <td><a th:href="@{/childaddress/index/{c_id}(c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> Add Address</a></td>
                                         <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list.childMasterCode}">Chakma</td>

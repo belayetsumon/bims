@@ -10,7 +10,6 @@ import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Yes_No;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -22,8 +21,6 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
 
     List<MotherMasterData> findAllBycreated(LocalDate date);
 
-   
-    
     List<MotherMasterData> findByHomeVisitDateBetween(LocalDate fromdate, LocalDate todate);
 
     MotherMasterData findById(Long id);
@@ -33,8 +30,6 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
     List<MotherMasterData> findAllByeligibilityOrderByIdDesc(Eligibility eligibility);
 
     List<MotherMasterData> findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility eligibility);
-    
-    
 
     List<MotherMasterData> findAllByMAddressIsNotNullAndMAccessibilityIsNotNullAndMCommunityInformationIsNotNullAndMCurrentHelpIsNotNullAndMFamilynformationIsNotNullAndMHouseInformationIsNotNullAndMIncomeInformationIsNotNullAndMLocalGovtFacilitiesIsNotNullAndMNutritionIsNotNullAndMPropertyIsNotNullAndMApprovalIsNullOrderByIdDesc();
 
@@ -59,6 +54,7 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
     List<MotherMasterData> findByOInductionIsNotNullAndAddmissionIsNullOrderByIdDesc();
 
     // new mother health conditions check
+    //  List<MotherMasterData> findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
     List<MotherMasterData> findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
 
     // new  professional observations
@@ -88,16 +84,10 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
 
     // Follow up
     List<MotherMasterData> findByFollowUpMotherIsNotNullOrderByIdDesc();
-    
-    
-    
-   // Custom report
-            
-          List<MotherMasterData> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
-          
-          
-           List<MotherMasterData> findByEligibilityAndCreatedBetween(Eligibility eligibility,LocalDate fromdate, LocalDate todate);  
-           
-           
+
+    // Custom report
+    List<MotherMasterData> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
+
+    List<MotherMasterData> findByEligibilityAndCreatedBetween(Eligibility eligibility, LocalDate fromdate, LocalDate todate);
 
 }

@@ -27,6 +27,14 @@
                     <div class="box-body">
                         <form  th:action="@{/m_accessibility/save/{m_id}(m_id=${m_Accessibility.motherMasterCode.id})}"   th:object="${m_Accessibility}"  method="post" class="form-horizontal">
 
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
                             <div class="box-body">
                                 <div class="row">
                                     <input type="hidden"    class="form-control " th:field="*{id}" />
@@ -36,26 +44,26 @@
                                 </div>   
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label for="name" class="col-sm-6 control-label"> Road <span class="text-red">  </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> Road <span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{roadType}"  >
-                                                <option value=" "> Select one</option>
-                                                <option th:each =" road :${road}"
-                                                        th:value=" ${road.id}" 
-                                                        th:text="${road.name}"> Select one</option>
+
+                                                <option th:each =" roads :${road}"
+                                                        th:value=" ${roads.id}" 
+                                                        th:text="${roads.name}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('roadType')}" th:errors="*{roadType}">First Name Error</span>
                                         </div>                            
                                     </div>
 
                                     <div class="form-group col-sm-6">
-                                        <label for="name" class="col-sm-6 control-label"> Transport<span class="text-red">  </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> Transport<span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{transportType}"  >
-                                                <option value=" "> Select one</option>
-                                                <option th:each =" transport :${transport}"
-                                                        th:value=" ${transport.id}" 
-                                                        th:text="${transport.NAME}"> Select one</option>
+
+                                                <option th:each =" transports :${transport}"
+                                                        th:value=" ${transports.id}" 
+                                                        th:text="${transports.NAME}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('transportType')}" th:errors="*{transportType}">First Name Error</span>
                                         </div>      
@@ -71,7 +79,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Distance from  Main Road <span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                              <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{distanceToMainRoad}"  />                                                        
+                                                <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{distanceToMainRoad}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('distanceToMainRoad')}" th:errors="*{distanceToMainRoad}">First Name Error</span>
                                         </div>     <div class="col-sm-1">Km</div>                       
@@ -98,7 +106,7 @@
                                         <label for="number" class="col-sm-6 control-label"> Primary School Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                              <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{primarySchoolDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any" class="form-control  "    th:field="*{primarySchoolDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('primarySchoolDistance')}" th:errors="*{primarySchoolDistance}">First Name Error</span>
                                         </div> <div class="col-sm-1">Km</div>                              
@@ -123,7 +131,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Secondary School Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                               <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{secondarySchoolDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{secondarySchoolDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('secondarySchoolDistance')}" th:errors="*{secondarySchoolDistance}">First Name Error</span>
                                         </div>    <div class="col-sm-1">Km</div>                           
@@ -149,7 +157,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Health Care Center Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                             <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{hospitalDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{hospitalDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('hospitalDistance')}" th:errors="*{hospitalDistance}">First Name Error</span>
                                         </div>    <div class="col-sm-1">Km</div>                            
@@ -203,7 +211,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Bank  Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                               <input type="number"  min="0"  step="any"  class="form-control  "    th:field="*{bankDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"  class="form-control  "    th:field="*{bankDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bankDistance')}" th:errors="*{bankDistance}">First Name Error</span>
                                         </div>    <div class="col-sm-1">Km</div>                            
@@ -229,7 +237,7 @@
                                         <label for="name" class="col-sm-6 control-label"> NGO   Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                            <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{ngoDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{ngoDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('ngoDistance')}" th:errors="*{ngoDistance}">First Name Error</span>
                                         </div>   <div class="col-sm-1">Km</div>                             
@@ -256,7 +264,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Welfare Institutions   Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                             <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{ngoDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{ngoDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('ngoDistance')}" th:errors="*{ngoDistance}">First Name Error</span>
                                         </div>    <div class="col-sm-1">Km</div>                            
@@ -282,7 +290,7 @@
                                         <label for="name" class="col-sm-6 control-label"> Technical Training Institute  Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
-                                              <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{technicalInstiuteDistance}"  />                                                        
+                                                <input type="number"  min="0"  step="any"   class="form-control  "    th:field="*{technicalInstiuteDistance}"  />                                                        
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('technicalInstiuteDistance')}" th:errors="*{technicalInstiuteDistance}">First Name Error</span>
                                         </div>    <div class="col-sm-1">Km</div>                            
