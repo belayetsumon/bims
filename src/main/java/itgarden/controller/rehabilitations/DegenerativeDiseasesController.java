@@ -7,7 +7,7 @@ package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.DegenerativeDiseases;
 import itgarden.repository.rehabilitations.DegenerativeDiseasesRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class DegenerativeDiseasesController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, DegenerativeDiseases degenerativeDiseases, Model model) {
-        model.addAttribute("degenerativeDiseases", degenerativeDiseasesRepository.findOne(id));
+        model.addAttribute("degenerativeDiseases", degenerativeDiseasesRepository.findById(id));
           model.addAttribute("list", degenerativeDiseasesRepository.findAll());
         model.addAttribute("table_name", "Degenerative Diseases");
         return "rehabilitations/lookup/degenerative";
@@ -59,7 +59,7 @@ public class DegenerativeDiseasesController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, DegenerativeDiseases degenerativeDiseases) {
-        degenerativeDiseasesRepository.delete(id);
+        degenerativeDiseasesRepository.deleteById(id);
         return "redirect:/degenerative/index";
     }
 

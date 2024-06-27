@@ -7,7 +7,7 @@ package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.Tenderness;
 import itgarden.repository.rehabilitations.TendernessRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class TendernessController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Tenderness tenderness, Model model) {
-        model.addAttribute("tenderness", tendernessRepository.findOne(id));
+        model.addAttribute("tenderness", tendernessRepository.findById(id));
         model.addAttribute("list", tendernessRepository.findAll());
         model.addAttribute("table_name", "Diagonosis");
         return "rehabilitations/lookup/tenderness";
@@ -59,7 +59,7 @@ public class TendernessController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Tenderness tenderness) {
-        tendernessRepository.delete(id);
+        tendernessRepository.deleteById(id);
         return "redirect:/tenderness/index";
     }
 

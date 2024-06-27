@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.House_Type;
 import itgarden.repository.homevisit.House_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class House_TypeController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, House_Type house_Type, Model model) {
-       model.addAttribute("house_Type",   house_TypeRepository.findOne(id));
+       model.addAttribute("house_Type",   house_TypeRepository.findById(id));
         model.addAttribute("list",  house_TypeRepository.findAll());
                    model.addAttribute("table_name"," House Type" );
          return "/homevisit/lookup/house_type";
@@ -65,7 +65,7 @@ public class House_TypeController {
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, House_Type house_Type) {        
 
-     house_TypeRepository.delete(id);
+     house_TypeRepository.deleteById(id);
           return "redirect:/house_type/index";
     }    
     

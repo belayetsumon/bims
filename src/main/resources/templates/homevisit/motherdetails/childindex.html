@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
             <section class="content-header">
-                <h1>
-                    Home Visit
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#"> New Children Insert</a></li>
+                                <li class="breadcrumb-item active">
+                                    Children list</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
+
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Children List .      <span  class="bg-danger" th:text="${error}">gdfgdfgdf</span> </h3>
-                                <a   th:href="@{/childrendetails/create/{m_id} (m_id=${mInfo})}" type="button" class="btn  btn-warning pull-right"> Insert Children </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Children List .      <span  class="bg-danger" th:text="${error}">gdfgdfgdf</span> </h3>
+
+                                <div class="card-tools">
+                                    <!-- Buttons, labels, and many other things can be placed here! -->
+                                    <!-- Here is a label for example -->
+                                    <a   th:href="@{/childrendetails/create/{m_id} (m_id=${mInfo})}" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Insert Children </a>
+                                </div> 
+
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body" style="overflow-x: scroll">                 
-                                <table class="table table-bordered">
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">              
+                                <table id="tablesdata" class="table table-bordered table-striped">
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Edit</th>
@@ -56,18 +78,18 @@
                                         <td th:text="${list.dateOfBirth}">Chakma</td>
                                         <td th:text="${list.gender}">Chakma</td>
                                         <td th:text="${list.work}">Chakma</td>           
-                                        <td th:text="${list.religion.NAME}">Chakma</td>
+                                        <td th:text="${list.religion.name}">Chakma</td>
                                         <td th:text="${list.ethnicIdentity.name}">Chakma</td>
 
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

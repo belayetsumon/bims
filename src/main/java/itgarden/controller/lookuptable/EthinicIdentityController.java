@@ -6,19 +6,15 @@
 package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.EthinicIdentity;
-import itgarden.model.homevisit.EthinicIdentity;
 import itgarden.repository.homevisit.EthinicIdentityRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -57,7 +53,7 @@ public class EthinicIdentityController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, EthinicIdentity ethinicIdentity, Model model) {
-        model.addAttribute("ethinicIdentity", ethinicIdentityRepository.findOne(id));
+        model.addAttribute("ethinicIdentity", ethinicIdentityRepository.findById(id));
         model.addAttribute("list", ethinicIdentityRepository.findAll());
         model.addAttribute("table_name", " Ethnic Identity");
         return "/homevisit/lookup/ethnicIdentity";
@@ -66,7 +62,7 @@ public class EthinicIdentityController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, EthinicIdentity ethinicIdentity) {
 
-        ethinicIdentityRepository.delete(id);
+        ethinicIdentityRepository.deleteById(id);
         return "redirect:/ethnicIdentity/index";
     }
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Home Visit Search Data </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Total Home Visit Mother List</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <form  th:action="@{/homevisitreport/homevisitreportsearchresult}"   method="get" >
+                                    <div class="card-body">
+
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Inserted From <span class="text-red">  </span> </label>
+                                                <div class="col-sm-8"> 
+                                                    <div class="input-group ">
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"  id="dateFrom"    name="from" />                              
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Inserted To <span class="text-red">  </span> </label>
+                                                <div class="col-sm-8"> 
+                                                    <div class="input-group ">
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="dateTo"  name="to" />                              
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Reasons<span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control"  name="resons" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" resons :${resons}"
+                                                                th:value=" ${resons.id}" 
+                                                                th:text="${resons.name}"> Select one</option>
+                                                    </select>
+                                                </div>                            
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Mother ID<span class="text-red">  </span> </label>
+                                                <div class="col-sm-8">                   
+                                                    <input type="text"  class="form-control"  name="motherMasterCode" />                
+                                                </div>                            
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-4 control-label"> Name<span class="text-red">  </span></label>
+                                                <div class="col-sm-8">                   
+                                                    <input type="text"  class="form-control  "  id="bookName"  name="motherName"  />                
+                                                </div>                            
+                                            </div>
+
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Date of Birth<span class="text-red">  </span> </label>
+                                                <div class="col-sm-8"> 
+                                                    <div class="input-group ">
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="dateOfBirth"  name="dateOfBirth" />                              
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-4 control-label"> Religion<span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "     name="religion" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" religion :${religion}"
+                                                                th:value=" ${religion.id}" 
+                                                                th:text="${religion.name}"> Select one</option>
+                                                    </select>
+                                                </div>                            
+                                            </div>
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Marital Status<span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  name="maritalStatus" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" maritalStatus :${maritalStatus}"
+                                                                th:value=" ${maritalStatus.id}" 
+                                                                th:text="${maritalStatus.name}"> Select one</option>
+                                                    </select>
+                                                </div>                            
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-group col-sm-6 row">
+                                                <label for="name" class="col-sm-3 control-label"> Relation<span class="text-red">  </span></label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  id="bookName"   name="relationWithPfm" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" relationWithPfm :${relationWithPfm}"
+                                                                th:value=" ${relationWithPfm.id}" 
+                                                                th:text="${relationWithPfm.name}"> Select one</option>
+                                                    </select>
+                                                </div>                            
+                                            </div>
+                                        </div>
+                                        <div class="row">        
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-6 control-label"> Ethnic Identity<span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  id="bookName"   name="ethnicIdentity" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" ethnicIdentity :${ethnicIdentity}"
+                                                                th:value=" ${ethnicIdentity.id}" 
+                                                                th:text="${ethnicIdentity.name}"> Select one</option>
+                                                    </select>
+                                                </div>  
+                                            </div>
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-6 control-label"> Education Level <span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  id="bookName"   name="educationLevel" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" educationLevel :${educationLevel}"
+                                                                th:value=" ${educationLevel.id}" 
+                                                                th:text="${educationLevel.name}"> Select one</option>
+                                                    </select>
+                                                </div>     
+                                            </div>
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-6 control-label"> Education Type <span class="text-red">  </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  id="bookName"  name="educationType" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" educationType :${educationType}"
+                                                                th:value=" ${educationType.id}" 
+                                                                th:text="${educationType.name}"> Select one</option>
+                                                    </select>
+                                                </div>    
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-6 control-label"> Occupation <span class="text-red"> </span> </label>
+                                                <div class="col-sm-6">                   
+                                                    <select class="form-control  "  id="bookName"   name="occupation" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" occupation :${occupation}"
+                                                                th:value=" ${occupation.id}" 
+                                                                th:text="${occupation.name}"> Select one</option>
+                                                    </select>
+                                                </div>                            
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-6 control-label"> Number of Sons<span class="text-red">  </span> </label>
+                                                <div class="col-sm-4">   
+                                                    <input type="number"  min="0" class="form-control  "     name="numberOfSons" />                
+                                                </div>                            
+                                            </div>
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-8 control-label"> Number Of Daughters<span class="text-red">  </span> </label>
+                                                <div class="col-sm-4">                   
+                                                    <input type="number"  min="0" class="form-control  "  id="bookName"  name="numberOfDaughters"  />
+                                                </div>                            
+                                            </div>
+                                            <div class="form-group col-sm-4 row">
+                                                <label for="name" class="col-sm-8 control-label">  Number Of Eligible Children <span class="text-red">  </span> </label>
+                                                <div class="col-sm-4">                   
+                                                    <input type="number"   min="0" class="form-control  "  id="bookName"   name="numberOfEligibleChildren"  />                
+                                                </div>                            
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12 row">
+                                                <label for="name" class="col-sm-5 control-label"> Investigator recommendation <span class="text-red">  </span> </label>
+                                                <div class="col-sm-2">          
+                                                    <select class="form-control  "  id="bookName"   name="eligibility" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" eligibility :${eligibility}"
+                                                                th:value=" ${eligibility}" 
+                                                                th:text="${eligibility}"> Select one</option>
+                                                    </select>
+
+                                                </div>                            
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-info btn-sm">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

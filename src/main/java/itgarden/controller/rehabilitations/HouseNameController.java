@@ -7,7 +7,7 @@ package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.HouseName;
 import itgarden.repository.rehabilitations.HouseNameRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class HouseNameController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, HouseName houseName, Model model) {
-        model.addAttribute("houseName", houseNameRepository.findOne(id));
+        model.addAttribute("houseName", houseNameRepository.findById(id));
         model.addAttribute("list", houseNameRepository.findAll());
         model.addAttribute("table_name", "House Name");
          return "rehabilitations/lookup/housename";
@@ -59,7 +59,7 @@ public class HouseNameController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, HouseName  houseName) {
-        houseNameRepository.delete(id);
+        houseNameRepository.deleteById(id);
         return "redirect:/housename/index";
     }
 

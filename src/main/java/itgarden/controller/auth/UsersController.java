@@ -10,9 +10,9 @@ import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.auth.RoleRepository;
 import itgarden.repository.auth.UsersRepository;
 import itgarden.validator.UserValidator;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,7 +61,7 @@ public class UsersController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, Users users, @PathVariable Long id) {
-        model.addAttribute("users", usersRepository.findOne(id));
+        model.addAttribute("users", usersRepository.findById(id).orElse(null));
         model.addAttribute("roles", roleRepository.findAll());
         model.addAttribute("status", Yes_No.values());
         return "auth/registration";
@@ -105,7 +105,7 @@ public class UsersController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id) {
-        usersRepository.delete(id);
+        usersRepository.deleteById(id);
         return "redirect:/users/index";
     }
 

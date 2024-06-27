@@ -6,7 +6,6 @@
 package itgarden.repository.homevisit;
 
 import itgarden.model.homevisit.Aid_Type;
-import javax.persistence.Id;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -19,10 +19,10 @@ import itgarden.repository.homevisit.PhysicalStatusRepository;
 import itgarden.repository.homevisit.ReasonsRepository;
 import itgarden.repository.homevisit.RelationsRepository;
 import itgarden.repository.homevisit.ReligionRepository;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -196,7 +196,7 @@ public class MotherMasterDataController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, MotherMasterData motherMasterData, Model model) {
-        model.addAttribute("motherMasterData", motherMasterDataRepository.findOne(id));
+        model.addAttribute("motherMasterData", motherMasterDataRepository.findById(id).orElse(null));
         model.addAttribute("list", motherMasterDataRepository.findAll());
         model.addAttribute("resons", reasonsRepository.findAll());
         model.addAttribute("religion", religionRepository.findAll());
@@ -223,14 +223,14 @@ public class MotherMasterDataController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, MotherMasterData motherMasterData) {
-        motherMasterDataRepository.delete(id);
+        motherMasterDataRepository.deleteById(id);
         return "redirect:/mothermasterdata/index";
     }
 
     @GetMapping(value = "/view/{id}")
     public String view(@PathVariable Long id, MotherMasterData motherMasterData, Model model) {
 
-        model.addAttribute("motherMasterData", motherMasterDataRepository.findOne(id));
+        model.addAttribute("motherMasterData", motherMasterDataRepository.findById(id).orElse(null));
         model.addAttribute("list", motherMasterDataRepository.findAll());
         model.addAttribute("resons", reasonsRepository.findAll());
         model.addAttribute("religion", religionRepository.findAll());

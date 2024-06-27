@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Ownershif_type;
 import itgarden.repository.homevisit.Ownershif_typeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +56,7 @@ public class Ownershif_typeController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Ownershif_type ownershif_type, Model model) {
-       model.addAttribute("ownershif_type",   ownershif_typeRepository.findOne(id));
+       model.addAttribute("ownershif_type",   ownershif_typeRepository.findById(id));
         model.addAttribute("list",  ownershif_typeRepository.findAll());
             model.addAttribute("table_name"," Ownershif Type" );
          return "/homevisit/lookup/ownershif_type";
@@ -65,7 +65,7 @@ public class Ownershif_typeController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Ownershif_type ownershif_type) {        
-     ownershif_typeRepository.delete(id);
+     ownershif_typeRepository.deleteById(id);
           return "redirect:/ownershif_type/index";
     }    
     

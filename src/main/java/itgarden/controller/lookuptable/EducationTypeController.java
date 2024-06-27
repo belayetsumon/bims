@@ -7,8 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.EducationType;
 import itgarden.repository.homevisit.EducationTypeRepository;
-import itgarden.repository.homevisit.EducationTypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,48 +26,43 @@ public class EducationTypeController {
     
     @Autowired
     EducationTypeRepository educationTypeRepository;
-
+    
     @RequestMapping("/index")
     
-    public String index(Model model,EducationType educationType ) {
-      model.addAttribute("list",educationTypeRepository.findAll() );
-        model.addAttribute("table_name"," Education Type" );
-       
+    public String index(Model model, EducationType educationType) {
+        model.addAttribute("list", educationTypeRepository.findAll());
+        model.addAttribute("table_name", " Education Type");
+        
         return "homevisit/lookup/educationtype";
     }
     
+    @RequestMapping("/save")
     
-  @RequestMapping("/save")
-    
-    public String save(Model model, @Valid EducationType educationType ,BindingResult bindingResult) {
+    public String save(Model model, @Valid EducationType educationType, BindingResult bindingResult) {
         
-        if(bindingResult.hasErrors()){
-             model.addAttribute("list",educationTypeRepository.findAll() );
-                model.addAttribute("table_name"," Education Type" );
-         return "homevisit/lookup/educationtype";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("list", educationTypeRepository.findAll());
+            model.addAttribute("table_name", " Education Type");
+            return "homevisit/lookup/educationtype";
         }
         
         educationTypeRepository.save(educationType);
-
+        
         return "redirect:/educationtype/index";
-    }  
-    
-    
+    }    
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, EducationType educationType, Model model) {
-       model.addAttribute("educationType",   educationTypeRepository.findOne(id));
-        model.addAttribute("list",  educationTypeRepository.findAll());
-          model.addAttribute("table_name"," Education Type" );
-         return "/homevisit/lookup/educationtype";
+        model.addAttribute("educationType", educationTypeRepository.findById(id));
+        model.addAttribute("list", educationTypeRepository.findAll());
+        model.addAttribute("table_name", " Education Type");
+        return "/homevisit/lookup/educationtype";
     }
-
     
     @GetMapping(value = "/delete/{id}")    
-    public String delete (@PathVariable Long id, EducationType educationType) {        
-     educationTypeRepository.delete(id);
-          return "redirect:/educationtype/index";
+    public String delete(@PathVariable Long id, EducationType educationType) {        
+        educationTypeRepository.deleteById(id);
+        return "redirect:/educationtype/index";
     }    
     
-
 }

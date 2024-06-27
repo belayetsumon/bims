@@ -6,18 +6,19 @@
 package itgarden.model.homevisit;
 
 import itgarden.model.auth.Users;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -26,35 +27,34 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class M_ChildImage {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    
-  @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
+
+    @NotNull(message = "This field cannot be blank.")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public M_Child_info motherMasterCode;
-  
-  @NotNull
+
+    @NotNull
     @Size(min = 1, max = 200, message = "Name must between 1 and 200 characters")
     String child_image;
-          
-          
-          /*********** Audit *******************************/
-    
+
+    /**
+     * ********* Audit ******************************
+     */
     @Column(insertable = true, updatable = false)
-    public LocalDate created =  LocalDate.now();
+    public LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = true)
-    
     public Users createdBy;
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
     public Date updated = new Date();
 
     @ManyToOne(optional = true)
- 
     public Users updatedBy;
 
     public M_ChildImage() {
@@ -124,9 +124,7 @@ public class M_ChildImage {
         this.updatedBy = updatedBy;
     }
 
-  
-    /** audit end**********************/
-    
-    
-   
+    /**
+     * audit end*********************
+     */
 }

@@ -8,7 +8,7 @@ package itgarden.controller.observation;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.observation.O_Inhouse_Inductions_Mother;
 import itgarden.repository.observation.O_Inhouse_Inductions_MotherRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,23 +45,23 @@ public class InHouseInductionController {
             return "homevisit/observation/induction/inhouseinductionmother";
         }
         o_Inhouse_Inductions_MotherRepository.save(o_Inhouse_Inductions_Mother);
-        return "redirect:/induction//index/{id}";
+        return "redirect:/induction/index/{id}";
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model ,@PathVariable Long id, O_Inhouse_Inductions_Mother o_Inhouse_Inductions_Mother) {
-        model.addAttribute("o_Inhouse_Inductions_Mother", o_Inhouse_Inductions_MotherRepository.findOne(id));
+        model.addAttribute("o_Inhouse_Inductions_Mother", o_Inhouse_Inductions_MotherRepository.findById(id).orElse(null));
         return "homevisit/observation/induction/inhouseinductionmother";
     }
     
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, O_Inhouse_Inductions_Mother o_Inhouse_Inductions_Mother, RedirectAttributes redirectAttrs) {
         
-        o_Inhouse_Inductions_Mother = o_Inhouse_Inductions_MotherRepository.findOne(id);
+        o_Inhouse_Inductions_Mother = o_Inhouse_Inductions_MotherRepository.findById(id).orElse(null);
         
         redirectAttrs.addAttribute("id", o_Inhouse_Inductions_Mother.motherMasterCode.getId());
         
-        o_Inhouse_Inductions_MotherRepository.delete(id);
+        o_Inhouse_Inductions_MotherRepository.deleteById(id);
         
          return "redirect:/induction//index/{id}";
     }

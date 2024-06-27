@@ -1,57 +1,69 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
+
             <section class="content-header">
-                <h1>
-                    Home Visit Report 
-
-                </h1>
-
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item active">Report </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="col-sm-6"> 
-                    <div class="box box-primary col-sm-6">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Report List</h3>
+                <!-- Default card -->
+                <div class="col-sm-12"> 
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Report List</h3>
 
-                            <div class="box-tools pull-right">
+                            <div class="card-tools pull-right">
                                 <div class="btn-group">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="box-body">
-                             <a  th:href="@{/homevisitreport/homevisitlist}" type="button" class="btn btn-block btn-danger"> Home Visit List</a>
-                            <a  th:href="@{/homevisitreport/eligiblemothermlist}" type="button" class="btn btn-block btn-danger"> Eligible Mother List</a>
+                        <div class="card-body row">
+                            <div class="col-sm-6">
+                            
+                            <a  th:href="@{/homevisitreport/homevisitreportsearch}" type="button" class="btn btn-block btn-danger"> Home Visit </a>
+                                             <a  th:href="@{/homevisitreport/homevisitreportsearch}" type="button" class="btn btn-block btn-danger"> Mother Property </a>
+                            <a  th:href="@{/homevisitreport/homevisitreportsearch}" type="button" class="btn btn-block btn-danger"> Mother Property </a>
+<!--                            <a  th:href="@{/homevisitreport/eligiblemothermlist}" type="button" class="btn btn-block btn-danger"> Eligible Mother List</a>
                             <a  th:href="@{/homevisitreport/noteligiblemotherlist}" type="button" class="btn btn-block btn-danger"> Not Eligible Mother List</a>
                             <a  th:href="@{/homevisitreport/approvemotherlist}" type="button" class="btn btn-block btn-danger"> Approve Mother List</a>
-                           <a  th:href="@{/homevisitreport/notapprovemotherlist}" type="button" class="btn btn-block btn-danger"> Not Approve Mother List</a>
-                           <a  th:href="@{/homevisitreport/approvewithinstructionsmotherlist}" type="button" class="btn btn-block btn-danger"> Approve With Instruction List</a>
-<!--                           <a  th:href="@{/homevisitreport/addresslist}" type="button" class="btn btn-block btn-danger"> Address List</a>-->
-                            </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-
-
-
-                            <div class="box-tools pull-right">
-                                <div class="btn-group">
-
-                                </div>
-                            </div>
+                            <a  th:href="@{/homevisitreport/notapprovemotherlist}" type="button" class="btn btn-block btn-danger"> Not Approve Mother List</a>
+                            <a  th:href="@{/homevisitreport/approvewithinstructionsmotherlist}" type="button" class="btn btn-block btn-danger"> Approve With Instruction List</a>-->
+                            <!--                           <a  th:href="@{/homevisitreport/addresslist}" type="button" class="btn btn-block btn-danger"> Address List</a>-->
                         </div>
-                        <!-- /.box-footer-->
+                            
+                                       <div class="col-sm-6">
+                            
+                            
+                                     
+                                       </div>
+                        <!-- /.card-body -->
+       
+                        <!-- /.card-footer-->
                     </div>
 
 
                 </div>
-    
+
 
             </section>
             <!-- /.content -->

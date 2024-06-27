@@ -10,7 +10,7 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.follow_up_report.FollowMotherPerCapitaIncomeRepository;
 import itgarden.repository.homevisit.Income_GeneratingRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +53,7 @@ public class FollowMotherPerCapitaIncomeController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, FollowMotherPerCapitaIncome followMotherPerCapitaIncome) {
 
-        model.addAttribute("followMotherPerCapitaIncome", followMotherPerCapitaIncomeRepository.findOne(id));
+        model.addAttribute("followMotherPerCapitaIncome", followMotherPerCapitaIncomeRepository.findById(id).orElse(null));
         
         model.addAttribute("income_activity", income_GeneratingRepository.findAll());
 
@@ -77,11 +77,11 @@ public class FollowMotherPerCapitaIncomeController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Model model, FollowMotherPerCapitaIncome followMotherPerCapitaIncome, RedirectAttributes redirectAttrs) {
 
-        followMotherPerCapitaIncome = followMotherPerCapitaIncomeRepository.findOne(id);
+        followMotherPerCapitaIncome = followMotherPerCapitaIncomeRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", followMotherPerCapitaIncome.motherMasterCode.getId());
 
-        followMotherPerCapitaIncomeRepository.delete(id);
+        followMotherPerCapitaIncomeRepository.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
     }
 

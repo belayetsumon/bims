@@ -10,7 +10,7 @@ import itgarden.model.homevisit.Yes_No;
 import itgarden.model.observation.O_CHealthConditions;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.observation.O_CHealthConditionsRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,7 +57,7 @@ public class O_CHealthConditionsController {
     public String edit(Model model, @PathVariable Long id, O_CHealthConditions o_CHealthConditions) {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
-        model.addAttribute("o_CHealthConditions", o_CHealthConditionsRepository.findOne(id));
+        model.addAttribute("o_CHealthConditions", o_CHealthConditionsRepository.findById(id).orElse(null));
         model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("bloodPressure", Yes_No.values());
         model.addAttribute("eyeProblem", Yes_No.values());
@@ -95,15 +95,15 @@ public class O_CHealthConditionsController {
             return "homevisit/observation/healthcheckup/chealthcondition";
         }
         o_CHealthConditionsRepository.save(o_CHealthConditions);
-        return "redirect:/healthcheckup//index/{m_id}";
+        return "redirect:/healthcheckup/index/{m_id}";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, O_CHealthConditions o_CHealthConditions, RedirectAttributes redirectAttrs) {
-        o_CHealthConditions = o_CHealthConditionsRepository.findOne(id);
+        o_CHealthConditions = o_CHealthConditionsRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", o_CHealthConditions.motherMasterCode.getId());
-        o_CHealthConditionsRepository.delete(id);
-        return "redirect:/healthcheckup//index/{m_id}";
+        o_CHealthConditionsRepository.deleteById(id);
+        return "redirect:/healthcheckup/index/{m_id}";
     }
 
 }

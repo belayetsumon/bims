@@ -5,9 +5,6 @@
  */
 package itgarden.model.homevisit;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 /**
  *
  * @author Md Belayet Hossin

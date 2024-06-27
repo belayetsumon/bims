@@ -11,7 +11,8 @@ import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.school.S_RegularAdmissionClassRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +43,7 @@ public class S_RegularAdmissionController {
 
     @RequestMapping("/index")
     public String index(Model model) {
-
         model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
-
         return "school/radmissionindex";
     }
 
@@ -72,7 +71,7 @@ public class S_RegularAdmissionController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, S_RegularAdmissionClass s_RegularAdmissionClass) {
 
-        model.addAttribute("s_RegularAdmissionClass", s_RegularAdmissionClassRepository.findOne(id));
+        model.addAttribute("s_RegularAdmissionClass", s_RegularAdmissionClassRepository.findById(id));
 
         model.addAttribute("admissionClass", educationLevelRepository.findAll());
 
@@ -100,9 +99,12 @@ public class S_RegularAdmissionController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, S_RegularAdmissionClass s_RegularAdmissionClass, RedirectAttributes redirectAttrs) {
-        s_RegularAdmissionClass = s_RegularAdmissionClassRepository.findOne(id);
+      
+        
+        Optional<S_RegularAdmissionClass> optionals_RegularAdmissionClass = s_RegularAdmissionClassRepository.findById(id);
+       s_RegularAdmissionClass = optionals_RegularAdmissionClass.orElse(null);
         redirectAttrs.addAttribute("id", s_RegularAdmissionClass.getChildMasterCode().getId());
-        s_RegularAdmissionClassRepository.delete(id);
+        s_RegularAdmissionClassRepository.deleteById(id);
         return "redirect:/sregularadmission/index";
     }
 

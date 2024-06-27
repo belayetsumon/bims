@@ -13,7 +13,7 @@ import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_Inhouse_Inductions_MotherRepository;
 import itgarden.repository.observation.O_Inhouse_Inductions_childRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +49,7 @@ public class InductionController {
     @RequestMapping("/newmother")
     public String newmother(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-      model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNullAndMApprovalDecissionOrderByIdDesc(Decision.Approve));
+      model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision.Approve));
         return "homevisit/observation/induction/newmother";
     }
     
@@ -91,23 +91,23 @@ public class InductionController {
             return "homevisit/observation/induction/inductionCreate";
         }
         o_InductionRepository.save(o_Induction);
-        return "redirect:/induction//index/{id}";
+        return "redirect:/induction/index/{id}";
     }
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, O_Induction o_Induction) {
         model.addAttribute("m_id", id);
-        model.addAttribute("o_Induction", o_InductionRepository.findOne(id));
+        model.addAttribute("o_Induction", o_InductionRepository.findById(id).orElse(null));
         return "homevisit/observation/induction/inductionCreate";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, O_Induction o_Induction, RedirectAttributes redirectAttrs) {
-        o_Induction = o_InductionRepository.findOne(id);
+        o_Induction = o_InductionRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("id", o_Induction.motherMasterCode.getId());
 
-        o_InductionRepository.delete(id);
+        o_InductionRepository.deleteById(id);
 
         return "redirect:/induction/index/{id}";
     }

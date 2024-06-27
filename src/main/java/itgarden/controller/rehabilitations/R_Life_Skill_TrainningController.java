@@ -10,7 +10,8 @@ import itgarden.model.rehabilitations.R_Life_Skill_Trainning;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.rehabilitations.R_Life_Skill_TrainningRepository;
 import itgarden.repository.rehabilitations.TrainingNameRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,13 +41,15 @@ public class R_Life_Skill_TrainningController {
     public String create(Model model, @PathVariable Long mid, R_Life_Skill_Trainning r_Life_Skill_Trainning) {
 
         MotherMasterData motherMasterData = new MotherMasterData();
-        
-        motherMasterData = motherMasterDataRepository.findOne(mid);
+
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(mid);
+
+        motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_Life_Skill_Trainning.setMotherMasterCode(motherMasterData);
-        
+
         r_Life_Skill_Trainning.setName(motherMasterData.getMotherName());
-        
+
         model.addAttribute("trainingName", trainingNameRepository.findAll());
 
         return "rehabilitations/training/lifeskilltraining";
@@ -54,14 +57,17 @@ public class R_Life_Skill_TrainningController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_Life_Skill_Trainning r_Life_Skill_Trainning) {
-        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findOne(id));
+        
+        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findById(id));
 
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        motherMasterData = motherMasterDataRepository.findOne(id);
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(id);
+
+        motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_Life_Skill_Trainning.setName(motherMasterData.getMotherName());
-        
+
         model.addAttribute("trainingName", trainingNameRepository.findAll());
 
         return "rehabilitations/training/lifeskilltraining";
@@ -74,7 +80,9 @@ public class R_Life_Skill_TrainningController {
 
             MotherMasterData motherMasterData = new MotherMasterData();
 
-            motherMasterData = motherMasterDataRepository.findOne(mid);
+            Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(mid);
+
+            motherMasterData = optionalMotherMasterData.orElse(null);
 
             r_Life_Skill_Trainning.setMotherMasterCode(motherMasterData);
 
@@ -84,7 +92,7 @@ public class R_Life_Skill_TrainningController {
 
             return "rehabilitations/training/lifeskilltraining";
         }
-        
+
         r_Life_Skill_TrainningRepository.save(r_Life_Skill_Trainning);
 
         return "redirect:/rtraining/index/{mid}";
@@ -92,9 +100,14 @@ public class R_Life_Skill_TrainningController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_Life_Skill_Trainning r_Life_Skill_Trainning, RedirectAttributes redirectAttrs) {
-        r_Life_Skill_Trainning = r_Life_Skill_TrainningRepository.findOne(id);
+        MotherMasterData motherMasterData = new MotherMasterData();
+
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(id);
+
+        motherMasterData = optionalMotherMasterData.orElse(null);
         redirectAttrs.addAttribute("mid", r_Life_Skill_Trainning.motherMasterCode.getId());
-        r_Life_Skill_TrainningRepository.delete(id);
+        r_Life_Skill_TrainningRepository.deleteById(id);
+
         return "redirect:/rtraining/index/{mid}";
 
     }

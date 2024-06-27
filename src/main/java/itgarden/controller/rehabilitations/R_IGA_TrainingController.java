@@ -10,7 +10,8 @@ import itgarden.model.rehabilitations.R_IGA_Training;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.rehabilitations.R_IGA_TrainingRepository;
 import itgarden.repository.rehabilitations.TrainingNameRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,9 @@ public class R_IGA_TrainingController {
 
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        motherMasterData = motherMasterDataRepository.findOne(mid);
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(mid);
+
+        motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_IGA_Training.setMotherMasterCode(motherMasterData);
 
@@ -54,10 +57,13 @@ public class R_IGA_TrainingController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_IGA_Training r_IGA_Training) {
-        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findOne(id));
+        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findById(id));
+
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        motherMasterData = motherMasterDataRepository.findOne(id);
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(id);
+
+        motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_IGA_Training.setName(motherMasterData.getMotherName());
 
@@ -72,7 +78,10 @@ public class R_IGA_TrainingController {
         if (bindingResult.hasErrors()) {
 
             MotherMasterData motherMasterData = new MotherMasterData();
-            motherMasterData = motherMasterDataRepository.findOne(mid);
+            Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(mid);
+
+            motherMasterData = optionalMotherMasterData.orElse(null);
+            
             r_IGA_Training.setMotherMasterCode(motherMasterData);
 
             model.addAttribute("trainingName", trainingNameRepository.findAll());
@@ -86,9 +95,13 @@ public class R_IGA_TrainingController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_IGA_Training r_IGA_Training, RedirectAttributes redirectAttrs) {
-        r_IGA_Training = r_IGA_TrainingRepository.findOne(id);
+        Optional<R_IGA_Training> optionalR_IGA_Training = r_IGA_TrainingRepository.findById(id);
+        
+        r_IGA_Training = optionalR_IGA_Training.orElse(null);
+        
         redirectAttrs.addAttribute("mid", r_IGA_Training.motherMasterCode.getId());
-        r_IGA_TrainingRepository.delete(id);
+        
+        r_IGA_TrainingRepository.deleteById(id);
         return "redirect:/rtraining/index/{mid}";
 
     }

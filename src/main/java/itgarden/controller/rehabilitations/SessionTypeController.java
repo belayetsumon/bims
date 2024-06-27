@@ -7,7 +7,7 @@ package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.SessionType;
 import itgarden.repository.rehabilitations.SessionTypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +34,7 @@ public class SessionTypeController {
         
         model.addAttribute("list", SessionTypeRepository.findAll());
         
-        model.addAttribute("table_name", "  Session Type");
+        model.addAttribute("table_name", "   Therapeutic  Session  ");
         
         return "rehabilitations/lookup/sessiontype";
     }
@@ -47,7 +47,7 @@ public class SessionTypeController {
             
             model.addAttribute("list", SessionTypeRepository.findAll());
             
-            model.addAttribute("table_name", "Session Type");
+           model.addAttribute("table_name", "   Therapeutic  Session  ");
             
             return "rehabilitations/lookup/sessiontype";
         }
@@ -59,15 +59,15 @@ public class SessionTypeController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, SessionType  sessionType, Model model) {
-        model.addAttribute("sessionType", SessionTypeRepository.findOne(id));
+        model.addAttribute("sessionType", SessionTypeRepository.findById(id));
         model.addAttribute("list", SessionTypeRepository.findAll());
-        model.addAttribute("table_name", "Session Type");
+        model.addAttribute("table_name", "   Therapeutic  Session  ");
         return "rehabilitations/lookup/sessiontype";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, SessionType  sessionType) {
-        SessionTypeRepository.delete(id);
+        SessionTypeRepository.deleteById(id);
         return "redirect:/sessiontype/index";
     }
 

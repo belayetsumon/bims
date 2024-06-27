@@ -7,12 +7,9 @@ package itgarden.controller.longtremcare;
 
 import itgarden.model.follow_up_report.ChildCrisisMeetUp;
 import itgarden.model.homevisit.M_Child_info;
-import itgarden.model.longtermcare.FollowUpType;
-import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.repository.follow_up_report.ChildCrisisMeetUpRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +42,7 @@ public class ChildCrisisMeetUpController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, ChildCrisisMeetUp childCrisisMeetUp) {
-        model.addAttribute("childCrisisMeetUp", childCrisisMeetUpRepository.findOne(id));
+        model.addAttribute("childCrisisMeetUp", childCrisisMeetUpRepository.findById(id).orElse(null));
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
         childCrisisMeetUp.setChildMasterCode(m_Child_info);
@@ -68,9 +65,9 @@ public class ChildCrisisMeetUpController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, ChildCrisisMeetUp childCrisisMeetUp, RedirectAttributes redirectAttrs) {
-        childCrisisMeetUp = childCrisisMeetUpRepository.findOne(id);
+        childCrisisMeetUp = childCrisisMeetUpRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("mid", childCrisisMeetUp.childMasterCode.getId());
-        childCrisisMeetUpRepository.delete(id);
+        childCrisisMeetUpRepository.deleteById(id);
         return "redirect:/longtremcare/index/{mid}";
     }
 

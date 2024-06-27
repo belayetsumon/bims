@@ -10,7 +10,7 @@ import itgarden.model.homevisit.M_Nutrition;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Nutritions_trems;
 import itgarden.repository.homevisit.M_NutritionRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,7 +86,7 @@ public class M_NutritionController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Nutrition m_Nutrition, Model model) {
-        model.addAttribute("m_Nutrition", m_NutritionRepository.findOne(id));
+        model.addAttribute("m_Nutrition", m_NutritionRepository.findById(id).orElse(null));
       
         model.addAttribute("form_title", "Mother Nutrition Edit");
 
@@ -99,9 +99,9 @@ public class M_NutritionController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Nutrition m_Nutrition,RedirectAttributes redirectAttrs) {
-        m_Nutrition = m_NutritionRepository.findOne(id);
+        m_Nutrition = m_NutritionRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Nutrition.motherMasterCode.getId());
-        m_NutritionRepository.delete(id);
+        m_NutritionRepository.deleteById(id);
         return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

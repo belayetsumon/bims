@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.CommunityType;
 import itgarden.repository.homevisit.CommunityTypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,54 +21,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Md Belayet Hossin
  */
 @Controller
- @RequestMapping("/communitytype")
+@RequestMapping("/communitytype")
 public class CommunityTypeController {
     
-   @Autowired
-   CommunityTypeRepository communityTypeRepository;
-
+    @Autowired
+    CommunityTypeRepository communityTypeRepository;
+    
     @RequestMapping("/index")
     
-    public String index(Model model,CommunityType  CommunityType ) {
-      model.addAttribute("list",communityTypeRepository.findAll() );
-      model.addAttribute("table_name"," Community Type " );
-       
+    public String index(Model model, CommunityType CommunityType) {
+        model.addAttribute("list", communityTypeRepository.findAll());
+        model.addAttribute("table_name", " Community Type ");
+        
         return "homevisit/lookup/communitytype";
     }
     
+    @RequestMapping("/save")
     
-  @RequestMapping("/save")
-    
-    public String save(Model model, @Valid CommunityType  communityType ,BindingResult bindingResult) {
+    public String save(Model model, @Valid CommunityType communityType, BindingResult bindingResult) {
         
-        if(bindingResult.hasErrors()){
-             model.addAttribute("list",communityTypeRepository.findAll() );
-               model.addAttribute("table_name"," Community Type" );
-         return "homevisit/lookup/communitytype";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("list", communityTypeRepository.findAll());
+            model.addAttribute("table_name", " Community Type");
+            return "homevisit/lookup/communitytype";
         }
         
         communityTypeRepository.save(communityType);
-
+        
         return "redirect:/communitytype/index";
-    }  
-    
-    
+    }    
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, CommunityType communityType, Model model) {
-       model.addAttribute("communityType",   communityTypeRepository.findOne(id));
-        model.addAttribute("list",  communityTypeRepository.findAll());
-         model.addAttribute("table_name"," Community Type l" );
-         return "/homevisit/lookup/communitytype";
+        model.addAttribute("communityType", communityTypeRepository.findById(id));
+        model.addAttribute("list", communityTypeRepository.findAll());
+        model.addAttribute("table_name", " Community Type l");
+        return "/homevisit/lookup/communitytype";
     }
-
     
     @GetMapping(value = "/delete/{id}")    
-    public String delete (@PathVariable Long id, CommunityType communityType) {        
-
-     communityTypeRepository.delete(id);
-          return "redirect:/communitytype/index";
+    public String delete(@PathVariable Long id, CommunityType communityType) {        
+        
+        communityTypeRepository.deleteById(id);
+        return "redirect:/communitytype/index";
     }    
     
-
 }

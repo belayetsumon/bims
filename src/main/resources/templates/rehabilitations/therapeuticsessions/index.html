@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Rehabilitations  Therapeutic Sessions 
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>Psychological and Therapy Support</h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support</a></li>
+                                <li class="breadcrumb-item active">Occupational Therapy Session</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Occupational Therapy Session </h3>
-                                <a   th:href="@{/ot/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Mother OT </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+
+                                <h3 class="card-title"> Mother Occupational Therapy Session </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/ot/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Mother OT </a>
+                                </div>        </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
@@ -37,8 +50,8 @@
                                     </tr>
                                     <tr th:each="list,status:${r_ot}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/ot/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td> <a   th:href="@{/ot/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
+                                        <td><a   th:href="@{/ot/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                        <td> <a   th:href="@{/ot/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list.sessionType.name}">Chakma</td>
@@ -49,28 +62,30 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
 
                     <!-- /.col -->
                 </div>
-                
-                 <div class="row">
+
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Child Occupational Therapy Session </h3>
-                                <a   th:href="@{/otchild/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Child OT </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+
+                                <h3 class="card-title"> Child Occupational Therapy Session </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/otchild/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Child OT </a>
+                                </div>       </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
@@ -87,10 +102,10 @@
                                     </tr>
                                     <tr th:each="lists,status:${r_OtChild}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/otchild/edit/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td> <a   th:href="@{/otchild/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
+                                        <td><a   th:href="@{/otchild/edit/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                        <td> <a   th:href="@{/otchild/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
-                                         <td th:text="${lists.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${lists.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${lists.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${lists.sessionType.name}">Chakma</td>
                                         <td th:text="${lists.diagonosis.name}">Chakma</td>
@@ -100,12 +115,12 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
@@ -114,13 +129,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Physical Therapy Session </h3>
-                                <a   th:href="@{/pt/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Mother PT </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother Physical Therapy Session </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/pt/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Mother PT </a>
+                                </div>       </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
@@ -139,14 +155,14 @@
                                         <th>Previously Therapy Taken</th>
                                         <th>Previously Therapy Taken Note</th>
                                         <th>Remark</th>
-                                    
+
                                     </tr>                           
                                     <tr th:each="list2,status:${r_pt}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/pt/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td> <a   th:href="@{/pt/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
+                                        <td><a   th:href="@{/pt/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                        <td> <a   th:href="@{/pt/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
-                                       <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
+                                        <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list2.pain}">Chakma</td>
                                         <td th:text="${list2.painNote}">Chakma</td>
                                         <td th:text="${list2.Tenderness.name}">Chakma</td>
@@ -157,17 +173,17 @@
                                         <td th:text="${list2.degenerativeDiseases.name}">Chakma</td>
                                         <td th:text="${list2.previouslyTherapyTaken}">Chakma</td>
                                         <td th:text="${list2.previouslyTherapyTakenNote}">Chakma</td>
-                                                <td th:text="${list2.remark}">Chakma</td>
-                                    
+                                        <td th:text="${list2.remark}">Chakma</td>
+
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

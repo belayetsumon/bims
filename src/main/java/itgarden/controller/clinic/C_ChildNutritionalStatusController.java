@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import itgarden.model.clinic.C_ChildNutritionalStatus;
-import itgarden.model.clinic.C_NutritionalStatus;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ChildNutritionalStatusRepository;
-import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_ChildAdmissionRepository;
 
@@ -47,7 +45,7 @@ public class C_ChildNutritionalStatusController {
 
 		MotherMasterData motherMasterData = new MotherMasterData();
 
-		motherMasterData = motherMasterDataRepository.findById(m_id);
+		motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
 		c_ChildNutritionalStatus.setMotherMasterCode(motherMasterData);
 
@@ -66,7 +64,7 @@ public class C_ChildNutritionalStatusController {
 		if (bindingResult.hasErrors()) {
 		MotherMasterData motherMasterData = new MotherMasterData();
 
-		motherMasterData = motherMasterDataRepository.findById(m_id);
+		motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
 		c_ChildNutritionalStatus.setMotherMasterCode(motherMasterData);
 
@@ -85,7 +83,7 @@ public class C_ChildNutritionalStatusController {
 	public String edit(Model model, @PathVariable Long id, C_ChildNutritionalStatus c_ChildNutritionalStatus) {
 		
 		
-		c_ChildNutritionalStatus =c_ChildNutritionalStatusRepository.findOne(id);
+		c_ChildNutritionalStatus =c_ChildNutritionalStatusRepository.findById(id).orElse(null);
 		
 		
 		model.addAttribute("c_ChildNutritionalStatus", c_ChildNutritionalStatus);
@@ -94,7 +92,7 @@ public class C_ChildNutritionalStatusController {
 		MotherMasterData motherMasterData = new MotherMasterData();
 		
 
-		motherMasterData = motherMasterDataRepository.findById(c_ChildNutritionalStatus.motherMasterCode.getId());
+		motherMasterData = motherMasterDataRepository.findById(c_ChildNutritionalStatus.motherMasterCode.getId()).orElse(null);
 		
 
 		c_ChildNutritionalStatus.setMotherMasterCode(motherMasterData);
@@ -110,9 +108,9 @@ public class C_ChildNutritionalStatusController {
 	@RequestMapping("/delete/{id}")
 	public String motherdelete(Model model, @PathVariable Long id, C_ChildNutritionalStatus c_ChildNutritionalStatus,
 			RedirectAttributes redirectAttrs) {
-		c_ChildNutritionalStatus = c_ChildNutritionalStatusRepository.findOne(id);
+		c_ChildNutritionalStatus = c_ChildNutritionalStatusRepository.findById(id).orElse(null);
 		redirectAttrs.addAttribute("m_id", c_ChildNutritionalStatus.motherMasterCode.getId());
-		c_ChildNutritionalStatusRepository.delete(id);
+		c_ChildNutritionalStatusRepository.deleteById(id);
 		return "redirect:/nutritionalstatus/index/{m_id}";
 	}
 

@@ -8,7 +8,7 @@ package itgarden.controller.homevisit;
 import itgarden.model.homevisit.M_Property;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.M_PropertyRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,16 +67,16 @@ public class M_PropertyController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Property m_Property, Model model) {
         model.addAttribute("form_title", "Mother Property Edit");
-        model.addAttribute("m_Property", m_PropertyRepository.findOne(id));
+        model.addAttribute("m_Property", m_PropertyRepository.findById(id).orElse(null));
         model.addAttribute("list", m_PropertyRepository.findAll());
         return "/homevisit/motherdetails/m_property";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Property m_Property, RedirectAttributes redirectAttrs) {
-        m_Property = m_PropertyRepository.findOne(id);
+        m_Property = m_PropertyRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Property.motherMasterCode.getId());
-        m_PropertyRepository.delete(id);
+        m_PropertyRepository.deleteById(id);
         return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

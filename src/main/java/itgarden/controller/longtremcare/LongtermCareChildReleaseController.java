@@ -12,7 +12,7 @@ import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.reintegration_release.ReleaseMotherRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -159,9 +159,9 @@ public class LongtermCareChildReleaseController {
 
     @GetMapping(value = "/child_delete/{id}")
     public String delete(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
-        releaseChild = releaseChildRepository.findOne(id);
+        releaseChild = releaseChildRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
-        releaseChildRepository.delete(id);
+        releaseChildRepository.deleteById(id);
         return "redirect:/longtremcare/longtermindex/{c_id}";
     }
 

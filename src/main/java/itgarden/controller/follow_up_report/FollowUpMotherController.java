@@ -12,7 +12,7 @@ import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.follow_up_report.FollowUpMotherRepsitory;
 import itgarden.repository.follow_up_report.MotherCrisisMeetUpRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +48,7 @@ public class FollowUpMotherController {
     @GetMapping("/mothersearch")
     public String motherSearch(Model model) {
 
-      model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
+    //  model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
 
         return "follow_up_report/mothersearch";
     }
@@ -80,7 +80,7 @@ public class FollowUpMotherController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, FollowUpMother followUpMother) {
-        model.addAttribute("followUpMother", followUpMotherRepsitory.findOne(id));
+        model.addAttribute("followUpMother", followUpMotherRepsitory.findById(id).orElse(null));
         return "follow_up_report/followupmother";
     }
 
@@ -106,11 +106,11 @@ public class FollowUpMotherController {
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Model model, FollowUpMother followUpMother, RedirectAttributes redirectAttrs) {
 
-        followUpMother = followUpMotherRepsitory.findOne(id);
+        followUpMother = followUpMotherRepsitory.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", followUpMother.motherMasterCode.getId());
 
-        followUpMotherRepsitory.delete(id);
+        followUpMotherRepsitory.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
     }
 }

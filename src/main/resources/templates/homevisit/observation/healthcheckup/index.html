@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Observation 
-                </h1>
+               <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">New Mother List </li>
+                                <li class="breadcrumb-item active">Health Checkup Index </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Mother Health Condition </h3>
-                                <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Mother Health Condition </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Mother Health Condition </h3>
+                                 <div class="card-tools">
+                                <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Mother Health Condition </a>
+                            </div>        </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 
                                 <table class="table">
                                     <tr th:each="o_MHConditions,status:${o_MHConditions}">
@@ -80,12 +93,12 @@
                                             </table>
                                         </td>   </tr> </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
@@ -94,14 +107,20 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Child Health Condition </h3>
-                                <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Child Health Condition </a>
+                        <div class="card card-info" style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Child Health Condition </h3>
+                                
+                                        <div class="card-tools">
+
+                           
+                                         <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Child Health Condition </a>
+                                        </div> 
+                               
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
+                            <!-- /.card-header -->
+                          <div class="card-body table-responsive ">
+                        <table class="table table-bordered table-striped">
                                     <tr>
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
@@ -168,12 +187,12 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

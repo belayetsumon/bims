@@ -5,7 +5,6 @@
  */
 package itgarden.controller.observation;
 
-import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_InductionRepository;

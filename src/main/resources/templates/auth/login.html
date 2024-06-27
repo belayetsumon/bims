@@ -4,71 +4,94 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Shishu Polli Plus</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
         <!-- Font Awesome -->
-        <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+        <link rel="stylesheet" th:href="@{~/webjars/AdminLTE/3.2.0/plugins/fontawesome-free/css/all.min.css}"
+              type="text/css">
         <!-- Ionicons -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+        <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <!-- icheck bootstrap -->
+        <link rel="stylesheet" th:href="@{~/webjars/AdminLTE/3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css}"
+              type="text/css">
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{~/webjars/AdminLTE/3.2.0/dist/css/adminlte.min.css}" type="text/css">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"
+              type="text/css"></head>
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-        <link th:href="@{/webjars/adminlte/2.3.11/dist/css/AdminLTE.min.css}"   rel="stylesheet" type="text/css"  />
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        <link th:href="@{/webjars/adminlte/2.3.11/dist/css/skins/_all-skins.min.css}"   rel="stylesheet" type="text/css"  />
-        <link th:href="@{/css/apps.css}"   rel="stylesheet" type="text/css"  />
-     
-        <!-- Google Font -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-    </head>
-    <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="login-logo">
-                 <img   th:src="@{/images/logo.jpg}" class="" alt="User Image"/>
-              
+
+    <body class="login-page">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-success">
+            <div class="card-header text-center">
+                <img   th:src="@{/images/logo.jpg}" class="" alt="User Image"/>
+                <a href="../../index2.html" class="h1"><b>Shisu Polli</b>Plus</a>
             </div>
-            <!-- /.login-logo -->
-            <div class="login-box-body">
-                <h3>   <span  class="help-block has-error text-red text-center" th:if="${logout}" th:text="${logout}">First Name Error</span></h3>
+            <div class="card-body">
                 <div class="help-block has-error text-red text-center" th:if="${param.error}">
-                    <h3>   Invalid Username or Password.</h3>
-                </div>
-                <h4>Please Sign In</h4>
+                    <h5>   Invalid Username or Password.</h5>       </div>
                 <form th:action="@{/users/login}" method="post">
-                    <div class="form-group has-feedback">
-                        <span th:text="${message}"></span>
-                        <input type="text"  name="username" class="form-control" placeholder="" value="" />
-                        <input type="hidden"  name="username" class="form-control" placeholder="Email" value="sumon@yahoo.com" />
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                
-                    </div>
-                    <div class="form-group has-feedback">
-                        <input type="password"  name="password" class="form-control" placeholder=""  value=""/>
-                         <input type="hidden"  name="password" class="form-control" placeholder="Email" value="bangladesh" />
-                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                   
-                    </div>
-                    <div class="row">
-
-                        <div class="col-xs-4">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <div class="input-group mb-3">
+                        <input type="email" name="username"class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope text-info"></span>
+                            </div>
                         </div>
-                        <!-- /.col -->
                     </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock text-info"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <!--                            <div class="col-8">
+                                                        <div class="icheck-primary">
+                                                            <input type="checkbox" id="remember">
+                                                            <label for="remember">
+                                                                Remember Me
+                                                            </label>
+                                                        </div>
+                                                    </div>-->
+                        <!-- /.col -->
+                        <div class="form-group">
+                      <div class="text-center">
+                            <button type="submit" class="btn btn-info  ">Sign In</button>
+                        </div>
+                            </div>
+                        <!-- /.col -->
+                
                 </form>
-                <div class="social-auth-links text-center">
-                </div>
+
+                <!--                    <div class="social-auth-links text-center mt-2 mb-3">
+                                        <a href="#" class="btn btn-block btn-primary">
+                                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                                        </a>
+                                        <a href="#" class="btn btn-block btn-danger">
+                                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                                        </a>
+                                    </div>-->
                 <!-- /.social-auth-links -->
+
+                <p class="mb-1 text-center ">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <!--                    <p class="mb-0">
+                                        <a href="register.html" class="text-center">Register a new membership</a>
+                                    </p>-->
             </div>
-            <!-- /.login-box-body -->
+            <!-- /.card-body -->
         </div>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- Bootstrap 3.3.6 -->
-        <script   type="text/javascript"  th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>   
-        <script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.js}"></script>
-        <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-        <script th:src="@{/webjars/adminlte/2.3.11/dist/js/app.min.js}">...</script>
-        <script th:src="@{/webjars/datatables/1.10.6/datatables.js}"></script>
-        <script th:src="@{/js/apps.js}">...</script>
-        <script th:src="@{/js/bootstrap_date.js}">...</script>
+        <!-- /.card -->
+
+        <!-- /.login-box -->
+
+        <!-- Bootstrap 4 -->
+        <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+        <!-- AdminLTE App -->
+        <script th:src="@{/webjars/adminlte/3.2.0/js/adminlte.min.js}"></script>
+
     </body>
 </html>

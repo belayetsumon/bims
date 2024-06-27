@@ -5,12 +5,13 @@
  */
 package itgarden.model.homevisit;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 
 /**
  *
@@ -19,19 +20,19 @@ import javax.validation.constraints.Size;
 @Entity 
 public class Reasons {
      @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Please Enter Name!")
+    @NotEmpty(message = "Please Enter Name!")
     @Size(min = 2,max=100,message = "This field cannot be blank.")
-    public String NAME;
-
-    public Reasons(Long id, String NAME) {
-        this.id = id;
-        this.NAME = NAME;
-    }
+    public String name;
 
     public Reasons() {
+    }
+
+    public Reasons(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -42,15 +43,12 @@ public class Reasons {
         this.id = id;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    
-    
-    
+
 }

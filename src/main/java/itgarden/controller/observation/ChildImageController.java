@@ -12,10 +12,10 @@ import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.Child_imageRepository;
 import itgarden.repository.observation.MotherImageRepository;
 import itgarden.services.StorageProperties;
+import jakarta.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +61,7 @@ public class ChildImageController {
 
     @RequestMapping("/edit/{id}")
     public String mEdit(Model model, @PathVariable Long id, Child_image child_image) {
-        model.addAttribute("o_MAddmission", motherImageRepository.findOne(id));
+        model.addAttribute("o_MAddmission", motherImageRepository.findById(id).orElse(null));
         return "homevisit/observation/admission/addmotherimg";
     }
 
@@ -137,12 +137,12 @@ public class ChildImageController {
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, Child_image child_image, RedirectAttributes redirectAttrs) {
 
-        child_image = child_imageRepository.findOne(id);
+        child_image = child_imageRepository.findById(id).orElse(null);
 
         File file = new File(properties.getRootPath() + File.separator + "bims_repo/childimage" + File.separator + child_image.getImageName());
         file.delete();
         redirectAttrs.addAttribute("m_id", child_image.motherMasterCode.getId());
-        child_imageRepository.delete(id);
+        child_imageRepository.deleteById(id);
 
         return "redirect:/image/index/{m_id}";
     }

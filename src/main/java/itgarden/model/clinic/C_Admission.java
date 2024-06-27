@@ -5,33 +5,31 @@
  */
 package itgarden.model.clinic;
 
-import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Md Belayet Hossin
  */
-
 @Entity
 public class C_Admission {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
@@ -53,33 +51,32 @@ public class C_Admission {
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 2000, message = "This field must between 1 and 200 characters")
     public String remark;
-    
-    
+
     /**
-             * ********* Audit ******************************
-             */
+     * ********* Audit ******************************
+     */
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
-    @ManyToOne(optional = true)
-    public Users createdBy;
-    
+//    @ManyToOne(optional = true)
+//    public Users createdBy;
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
     public Date updated = new Date();
 
-    public C_Admission() {
-    }
-
-    public C_Admission(Long id, MotherMasterData motherMasterCode, String admissionDate, String admittedTo, String reason, String remark, Users createdBy) {
+//    @ManyToOne(optional = true)
+//    public Users updatedBy;
+    public C_Admission(Long id, MotherMasterData motherMasterCode, String admissionDate, String admittedTo, String reason, String remark) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
         this.admittedTo = admittedTo;
         this.reason = reason;
         this.remark = remark;
-        this.createdBy = createdBy;
+    }
+
+    public C_Admission() {
     }
 
     public Long getId() {
@@ -138,14 +135,6 @@ public class C_Admission {
         this.created = created;
     }
 
-    public Users getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Users createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public Date getUpdated() {
         return updated;
     }
@@ -153,6 +142,4 @@ public class C_Admission {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
-
-   
 }

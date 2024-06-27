@@ -13,7 +13,8 @@ import itgarden.repository.rehabilitations.JointMobilityRepository;
 import itgarden.repository.rehabilitations.MucsuloskeletalRepository;
 import itgarden.repository.rehabilitations.R_PTRepository;
 import itgarden.repository.rehabilitations.TendernessRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,22 +30,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/pt")
 public class PtController {
-
+    
     @Autowired
     R_PTRepository r_PTRepository;
-
+    
     @Autowired
     JointMobilityRepository jointMobilityRepository;
-
+    
     @Autowired
     MucsuloskeletalRepository mucsuloskeletalRepository;
-
+    
     @Autowired
     DegenerativeDiseasesRepository degenerativeDiseasesRepository;
     
-     @Autowired
+    @Autowired
     TendernessRepository tendernessRepository;
-
+    
     @RequestMapping("/create/{mid}")
     public String create(Model model, @PathVariable Long mid, R_PT r_PT) {
         MotherMasterData motherMasterData = new MotherMasterData();
@@ -52,87 +53,88 @@ public class PtController {
         r_PT.setMotherMasterCode(motherMasterData);
         
         model.addAttribute("form_title", "  Mother PT");
-
+        
         model.addAttribute("jointMobility", jointMobilityRepository.findAll());
-
+        
         model.addAttribute("mucsuloskeletal", mucsuloskeletalRepository.findAll());
-
+        
         model.addAttribute("degenerativeDiseases", degenerativeDiseasesRepository.findAll());
         
         model.addAttribute("tenderness", tendernessRepository.findAll());
         
-         model.addAttribute("pain", Yes_No.values());
-
+        model.addAttribute("pain", Yes_No.values());
+        
         model.addAttribute("PhysicalDisability", Yes_No.values());
-
+        
         model.addAttribute("previouslyTherapyTaken", Yes_No.values());
-
+        
         return "rehabilitations/therapeuticsessions/mpt";
     }
-
+    
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_PT r_PT) {
-
-        model.addAttribute("r_PT", r_PTRepository.findOne(id));
-
-        model.addAttribute("form_title", "  Mother PT");
-         model.addAttribute("tenderness", tendernessRepository.findAll());
         
-            model.addAttribute("pain", Yes_No.values());
-
+        model.addAttribute("r_PT", r_PTRepository.findById(id));
+        
+        model.addAttribute("form_title", "  Mother PT");
+        model.addAttribute("tenderness", tendernessRepository.findAll());
+        
+        model.addAttribute("pain", Yes_No.values());
+        
         model.addAttribute("jointMobility", jointMobilityRepository.findAll());
-
+        
         model.addAttribute("mucsuloskeletal", mucsuloskeletalRepository.findAll());
-
+        
         model.addAttribute("degenerativeDiseases", degenerativeDiseasesRepository.findAll());
-
+        
         model.addAttribute("PhysicalDisability", Yes_No.values());
-
+        
         model.addAttribute("previouslyTherapyTaken", Yes_No.values());
-
+        
         return "rehabilitations/therapeuticsessions/mpt";
     }
-
+    
     @RequestMapping("/save/{mid}")
-    public String save(Model model, @PathVariable Long mid, @Valid  R_PT r_PT, BindingResult bindingResult) {
-
+    public String save(Model model, @PathVariable Long mid, @Valid R_PT r_PT, BindingResult bindingResult) {
+        
         if (bindingResult.hasErrors()) {
-
+            
             MotherMasterData motherMasterData = new MotherMasterData();
             motherMasterData.setId(mid);
             r_PT.setMotherMasterCode(motherMasterData);
             
             model.addAttribute("form_title", "  Mother PT");
             
-                model.addAttribute("pain", Yes_No.values());
-                 model.addAttribute("tenderness", tendernessRepository.findAll());
-
+            model.addAttribute("pain", Yes_No.values());
+            model.addAttribute("tenderness", tendernessRepository.findAll());
+            
             model.addAttribute("jointMobility", jointMobilityRepository.findAll());
-
+            
             model.addAttribute("mucsuloskeletal", mucsuloskeletalRepository.findAll());
-
+            
             model.addAttribute("degenerativeDiseases", degenerativeDiseasesRepository.findAll());
-
+            
             model.addAttribute("PhysicalDisability", Yes_No.values());
-
+            
             model.addAttribute("previouslyTherapyTaken", Yes_No.values());
-
+            
             return "rehabilitations/therapeuticsessions/mpt";
         }
         r_PTRepository.save(r_PT);
         return "redirect:/therapeuticsessions/index/{mid}";
     }
-
+    
     @RequestMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable Long id,  R_PT r_PT, RedirectAttributes redirectAttrs) {
+    public String delete(Model model, @PathVariable Long id, R_PT r_PT, RedirectAttributes redirectAttrs) {
         
-        r_PT = r_PTRepository.findOne(id);
+        Optional<R_PT> optionalR_PT = r_PTRepository.findById(id);
+        r_PT = optionalR_PT.orElse(null);
         
         redirectAttrs.addAttribute("mid", r_PT.motherMasterCode.getId());
         
-        r_PTRepository.delete(id);
+        r_PTRepository.deleteById(id);
         
         return "redirect:/therapeuticsessions/index/{mid}";
     }
-
+    
 }

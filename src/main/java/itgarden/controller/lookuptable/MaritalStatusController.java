@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.MaritalStatus;
 import itgarden.repository.homevisit.MaritalStatusRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class MaritalStatusController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, MaritalStatus maritalStatus, Model model) {
-       model.addAttribute("maritalStatus",   maritalStatusRepository.findOne(id));
+       model.addAttribute("maritalStatus",   maritalStatusRepository.findById(id));
         model.addAttribute("list",  maritalStatusRepository.findAll());
         model.addAttribute("table_name"," Marital Status" );
          return "/homevisit/lookup/maritalstatus";
@@ -64,7 +64,7 @@ public class MaritalStatusController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, MaritalStatus maritalStatus) {        
-     maritalStatusRepository.delete(id);
+     maritalStatusRepository.deleteById(id);
           return "redirect:/maritalstatus/index";
     }    
     

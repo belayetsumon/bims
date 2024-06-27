@@ -14,7 +14,7 @@ import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.M_Child_AddressRepository;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.ThanaRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,19 +45,19 @@ public class M_Child_AddressController {
 
     public String index(Model model, @PathVariable Long c_id) {
 
-        model.addAttribute("child_info", m_Child_infoRepository.findOne(c_id));
+        model.addAttribute("child_info", m_Child_infoRepository.findById(c_id).orElse(null));
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(c_id);
         model.addAttribute("c_addres", m_Child_AddressRepository.findBychildMasterCode(m_Child_info));
         return "homevisit/motherdetails/childAddressIndex";
-    }
+    } 
 
     @RequestMapping("/create/{c_id}")
     public String add(@PathVariable Long c_id, M_Child_Address m_Child_Address, Model model) {
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(c_id);
         m_Child_Address.setChildMasterCode(m_Child_info);
-        m_Child_info = m_Child_infoRepository.findOne(c_id);
+        m_Child_info = m_Child_infoRepository.findById(c_id).orElse(null);
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData = m_Child_info.getMotherMasterCode();
         m_Child_Address.setMotherMasterCode(motherMasterData);
@@ -72,7 +72,7 @@ public class M_Child_AddressController {
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable Long id, M_Child_Address m_Child_Address, Model model) {
-        model.addAttribute("m_Child_Address", m_Child_AddressRepository.findOne(id));
+        model.addAttribute("m_Child_Address", m_Child_AddressRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Add");
         model.addAttribute("same", Yes_No.values());
         model.addAttribute("addressType", Address_Type.values());
@@ -87,7 +87,7 @@ public class M_Child_AddressController {
             M_Child_info m_Child_info = new M_Child_info();
             m_Child_info.setId(c_id);
             m_Child_Address.setChildMasterCode(m_Child_info);
-            m_Child_info = m_Child_infoRepository.findOne(c_id);
+            m_Child_info = m_Child_infoRepository.findById(c_id).orElse(null);
             MotherMasterData motherMasterData = new MotherMasterData();
             motherMasterData = m_Child_info.getMotherMasterCode();
             m_Child_Address.setMotherMasterCode(motherMasterData);
@@ -106,9 +106,9 @@ public class M_Child_AddressController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Child_Address m_Child_Address, RedirectAttributes redirectAttrs) {
 
-        m_Child_Address = m_Child_AddressRepository.findOne(id);
+        m_Child_Address = m_Child_AddressRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("c_id", m_Child_Address.getChildMasterCode());
-        m_Child_AddressRepository.delete(id);
+        m_Child_AddressRepository.deleteById(id);
         return "redirect:/childaddress//index/{c_id}";
     }
 }

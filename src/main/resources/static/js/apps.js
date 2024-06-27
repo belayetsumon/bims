@@ -49,6 +49,10 @@ $(document).ready(function () {
         totalCounts: 50,
         pageSize: 0,
         currentPage: 1,
-        visiblePages: 7,
+        visiblePages: 7
     });
 });
+
+
+
+

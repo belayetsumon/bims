@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
+
+
             <section class="content-header">
-                <h1>
-                    Observation 
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item "><a href="#">Induction Mother List</a> </li>
+                                <li class="breadcrumb-item active">In House Induction Children</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
+
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">
+                            In House Induction Children</h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/induction/index/{id}(id=${o_Inhouse_Inductions_child.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/induction/index/{id}(id=${o_Inhouse_Inductions_child.motherMasterCode.id})}"   type="button" class="btn  btn-light text-red btn-xs">Close</a>
                             </div>
                         </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/inhouseinductionchild/save/{id}(id=${o_Inhouse_Inductions_child.motherMasterCode.id})}"   th:object="${o_Inhouse_Inductions_child}"  method="post" class="form-horizontal">
-                            <div class="box-body">
+                            <div class="card-body">
                                 <div class="row">
                                     <input type="hidden"    class="form-control " th:field="*{id}" />
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
@@ -34,7 +51,7 @@
                                 </div> 
 
                                 <div class="row">  
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Child ID<span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{childMasterCode}"  >
@@ -48,7 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-3 control-label"> Overall Behavior<span class="text-red">  </span>: </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "   th:field="*{overallBehavior}" > </textarea>         
@@ -56,7 +73,7 @@
                                         </div>                            
                                     </div>
                                 </div>          <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-3 control-label"> Advocate Feedback<span class="text-red">  </span>: </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "      th:field="*{advocateFeedback}" > </textarea>         
@@ -64,7 +81,7 @@
                                         </div>                            
                                     </div>
                                 </div>          <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-3 control-label"> Beneficiary Opinion<span class="text-red">  </span>: </label>
                                         <div class="col-sm-8">        
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{beneficiaryOpinion}" > </textarea> 
@@ -74,7 +91,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-3 control-label"> Remark<span class="text-red">  </span>: </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
@@ -84,21 +101,21 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                   <button type="submit" class="btn btn-info btn-sm">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
             </section>
             <!-- /.content -->
         </div>

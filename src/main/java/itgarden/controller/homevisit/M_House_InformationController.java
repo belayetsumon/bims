@@ -11,7 +11,7 @@ import itgarden.model.homevisit.Value_type;
 import itgarden.repository.homevisit.House_TypeRepository;
 import itgarden.repository.homevisit.M_House_InformationRepository;
 import itgarden.repository.homevisit.Ownershif_typeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,10 +98,10 @@ public class M_House_InformationController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_House_Information m_House_Information, Model model) {
-        
+
         model.addAttribute("form_title", "Mother House Information Edit");
 
-        model.addAttribute("m_House_Information", m_House_InformationRepository.findOne(id));
+        model.addAttribute("m_House_Information", m_House_InformationRepository.findById(id).orElse(null));
 
         model.addAttribute("houseType", house_TypeRepository.findAll());
 
@@ -115,13 +115,13 @@ public class M_House_InformationController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_House_Information m_House_Information, RedirectAttributes redirectAttrs) {
 
-        m_House_Information = m_House_InformationRepository.findOne(id);
+        m_House_Information = m_House_InformationRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", m_House_Information.motherMasterCode.getId());
 
-        m_House_InformationRepository.delete(id);
+        m_House_InformationRepository.deleteById(id);
 
-       return "redirect:/motherdetails/motherdetails/{m_id}";
+        return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 
 }

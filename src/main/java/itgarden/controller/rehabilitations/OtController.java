@@ -10,7 +10,8 @@ import itgarden.model.rehabilitations.R_OT;
 import itgarden.repository.rehabilitations.DiagonosisRepository;
 import itgarden.repository.rehabilitations.R_OTRepository;
 import itgarden.repository.rehabilitations.SessionTypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,7 @@ public class OtController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_OT r_OT) {
 
-        model.addAttribute("r_OT", r_OTRepository.findOne(id));
+        model.addAttribute("r_OT", r_OTRepository.findById(id));
 
         model.addAttribute("form_title", "  Mother OT Edit");
 
@@ -79,9 +80,10 @@ public class OtController {
     
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id,  R_OT r_OT,  RedirectAttributes redirectAttrs ) {
-       r_OT = r_OTRepository.findOne(id);
+       Optional<R_OT> optionalr_OT = r_OTRepository.findById(id);
+        r_OT = optionalr_OT.orElse(null);
         redirectAttrs.addAttribute("mid", r_OT.motherMasterCode.getId());
-        r_OTRepository.delete(id);
+        r_OTRepository.deleteById(id);
         return "redirect:/therapeuticsessions/index/{mid}";
     }
     

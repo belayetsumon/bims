@@ -13,7 +13,7 @@ import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
 import itgarden.repository.longtermcare.L_FollowUpRepository;
 import itgarden.repository.longtermcare.L_HigherStudyRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +71,7 @@ public class L_HigherStudyController {
 
         model.addAttribute("form_title", "Higher Study");
 
-        model.addAttribute("l_HigherStudy", l_HigherStudyRepository.findOne(id));
+        model.addAttribute("l_HigherStudy", l_HigherStudyRepository.findById(id).orElse(null));
 
         model.addAttribute("educationType", educationTypeRepository.findAll());
 
@@ -106,9 +106,9 @@ public class L_HigherStudyController {
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, L_HigherStudy l_HigherStudy, RedirectAttributes redirectAttrs) {
 
-        l_HigherStudy = l_HigherStudyRepository.findOne(id);
+        l_HigherStudy = l_HigherStudyRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("mid", l_HigherStudy.childMasterCode.getId());
-        l_HigherStudyRepository.delete(id);
+        l_HigherStudyRepository.deleteById(id);
         return "redirect:/longtremcare/index/{mid}";
     }
 
@@ -125,7 +125,7 @@ public class L_HigherStudyController {
 
     @RequestMapping("/higherstudyfollowupedit/{id}")
     public String fosterfollowupedit(Model model, @PathVariable Long id, L_FollowUp l_FollowUp) {
-        model.addAttribute("l_FollowUp", l_FollowUpRepository.findOne(id));
+        model.addAttribute("l_FollowUp", l_FollowUpRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Higher study Follow Up Edit");
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
@@ -154,9 +154,9 @@ public class L_HigherStudyController {
 
     @RequestMapping("/higherstudyfllowupdelete/{id}")
     public String fosterfollowupdelete(Model model, @PathVariable Long id, L_FollowUp l_FollowUp, RedirectAttributes redirectAttrs) {
-        l_FollowUp = l_FollowUpRepository.findOne(id);
+        l_FollowUp = l_FollowUpRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("mid", l_FollowUp.childMasterCode.getId());
-        l_FollowUpRepository.delete(id);
+        l_FollowUpRepository.deleteById(id);
         return "redirect:/longtremcare/index/{mid}";
     }
 

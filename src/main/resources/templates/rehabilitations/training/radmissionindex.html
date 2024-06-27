@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    School
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Children List For Swim Safe Lesson</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">  
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+
+
+                                            <th>Mother master code</th>
+                                            <th>Mother Name</th>
+                                            <th>Child master code</th>
+                                            <th>Child Name</th>
+                                            <th>Add</th>  
+                                        </tr>                          
+                                        <tr th:each="list,status:${clildlist}">                                
+                                            <td th:text="${status.count}">2.</td>      
+
+
+                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
+                                            <td><a th:href="@{/swimming/create/{id}(id=${list.id})}" type="button" class="btn btn-sm bg-info ">Add</a></td>
+
+                                        </tr> 
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

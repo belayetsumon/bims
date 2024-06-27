@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Water_Source;
 import itgarden.repository.homevisit.Water_SourceRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class Water_SourceController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Water_Source water_Source, Model model) {
-       model.addAttribute("water_Source",   water_SourceRepository.findOne(id));
+       model.addAttribute("water_Source",   water_SourceRepository.findById(id));
         model.addAttribute("list",  water_SourceRepository.findAll());
           model.addAttribute("table_name", " Water Source ");
          return "/homevisit/lookup/water_source";
@@ -64,7 +64,7 @@ public class Water_SourceController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Water_Source water_Source) {        
-     water_SourceRepository.delete(id);
+     water_SourceRepository.deleteById(id);
           return "redirect:/water_source/index";
     }    
     

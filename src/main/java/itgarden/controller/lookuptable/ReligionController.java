@@ -5,10 +5,9 @@
  */
 package itgarden.controller.lookuptable;
 
-import itgarden.model.homevisit.Reasons;
 import itgarden.model.homevisit.Religion;
 import itgarden.repository.homevisit.ReligionRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +26,6 @@ public class ReligionController {
     @Autowired
     ReligionRepository religionRepository;
     
-    
   @RequestMapping("/index")
     public String index(Model model,Religion religion ) {
       model.addAttribute("list",religionRepository.findAll() );
@@ -35,7 +33,6 @@ public class ReligionController {
        
         return "homevisit/lookup/religion";
     }
-    
     
   @RequestMapping("/save")
     
@@ -56,7 +53,7 @@ public class ReligionController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Religion religion, Model model) {
-       model.addAttribute("religion",   religionRepository.findOne(id));
+       model.addAttribute("religion",   religionRepository.findById(id));
         model.addAttribute("list",  religionRepository.findAll());
         model.addAttribute("table_name"," Religion" );
          return "/homevisit/lookup/religion";
@@ -65,7 +62,7 @@ public class ReligionController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Religion religion) {        
-    religionRepository.delete(id);
+    religionRepository.deleteById(id);
           return "redirect:/religion/index";
     }    
     

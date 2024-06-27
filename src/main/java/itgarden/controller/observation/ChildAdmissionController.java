@@ -72,9 +72,9 @@ public class ChildAdmissionController {
     @RequestMapping("/edit/{c_id}")
     public String mEdit(Model model, @PathVariable Long c_id, O_ChildAdmission o_ChildAdmission) {
 
-        model.addAttribute("o_ChildAdmission", o_ChildAdmissionRepository.findOne(c_id));
+        model.addAttribute("o_ChildAdmission", o_ChildAdmissionRepository.findById(c_id).orElse(null));
 
-        O_ChildAdmission oo_ChildAdmission = o_ChildAdmissionRepository.findOne(c_id);
+        O_ChildAdmission oo_ChildAdmission = o_ChildAdmissionRepository.findById(c_id).orElse(null);
 
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(oo_ChildAdmission.getMotherMasterCode().getId());
@@ -117,9 +117,9 @@ public class ChildAdmissionController {
     @Transactional
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, O_ChildAdmission o_ChildAdmission, RedirectAttributes redirectAttrs) {
-        o_ChildAdmission = o_ChildAdmissionRepository.findOne(id);
+        o_ChildAdmission = o_ChildAdmissionRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", o_ChildAdmission.motherMasterCode.getId());
-        o_ChildAdmissionRepository.delete(id);
+        o_ChildAdmissionRepository.deleteById(id);
         return "redirect:/admission/index/{m_id}";
     }
 

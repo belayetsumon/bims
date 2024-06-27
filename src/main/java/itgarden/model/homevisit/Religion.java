@@ -5,12 +5,13 @@
  */
 package itgarden.model.homevisit;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 /**
  *
@@ -20,19 +21,19 @@ import javax.validation.constraints.Size;
 public class Religion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Please Enter Name!")
-    @Size(min = 2,max=100,message = "This field cannot be blank.")
-    public String NAME;
+     @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, max = 100, message = "This field cannot be blank.")
+    public String name;
 
     public Religion() {
     }
 
-    public Religion(Long id, String NAME) {
+    public Religion(Long id, String name) {
         this.id = id;
-        this.NAME = NAME;
+        this.name = name;
     }
 
     public Long getId() {
@@ -43,12 +44,13 @@ public class Religion {
         this.id = id;
     }
 
-    public String getNAME() {
-        return NAME;
+    public String getName() {
+        return name;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
+    public void setName(String name) {
+        this.name = name;
     }
 
+   
 }

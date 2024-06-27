@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" >
@@ -11,6 +11,27 @@
                 </h1>
 
             </section>
+
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">Induction Mother List </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
 
             <!-- Main content -->
             <section class="content">
@@ -100,37 +121,37 @@
                         </div>
                         <div class="box-body col-sm-3 ">                                     
 
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Indicator Name </a>
-
-                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Indicator Mark </a>
-                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger"> Outreach type</a>
-                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Participant</a>-->
-             <a  th:href="@{/housename/index}" type="button" class="btn btn-block btn-danger">    Rehab House name      </a>
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Indicator Name </a>
+                            
+                                                        <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Indicator Mark </a>
+                                                        <a  th:href="@{#}" type="button" class="btn btn-block btn-danger"> Outreach type</a>
+                                                        <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Participant</a>-->
+                            <a  th:href="@{/housename/index}" type="button" class="btn btn-block btn-danger">    Rehab House name      </a>
                             <a  th:href="@{/trainingname/index}" type="button" class="btn btn-block btn-danger">   Training Name    </a>
-<!--                            <a  th:href="@{/pain/index}" type="button" class="btn btn-block btn-danger">   Pain </a>-->
+                            <!--                            <a  th:href="@{/pain/index}" type="button" class="btn btn-block btn-danger">   Pain </a>-->
                             <a  th:href="@{/tenderness/index}" type="button" class="btn btn-block btn-danger">  Tenderness</a>
                             <a  th:href="@{/jointmobility/index}" type="button" class="btn btn-block btn-danger">  Joint Mobility</a>
-                             <a  th:href="@{/sessiontype/index}" type="button" class="btn btn-block btn-danger">   Therapeutic  Session    </a>
+                            <a  th:href="@{/sessiontype/index}" type="button" class="btn btn-block btn-danger">   Therapeutic  Session    </a>
                             <a  th:href="@{/diagonosis/index}" type="button" class="btn btn-block btn-danger">   Therapeutic   Diagnosis    </a>
                         </div>
 
 
                         <div class="box-body col-sm-3">                                     
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">   NUTRITION STATUS    </a>-->
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">   PLAN FURTHER ACTION      </a>-->
-               
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">    Job type     </a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">   NUTRITION STATUS    </a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">   PLAN FURTHER ACTION      </a>-->
+
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">    Job type     </a>-->
                             <a  th:href="@{/degenerative/index}" type="button" class="btn btn-block btn-danger">   Degenerative Diseases    </a>
                             <a  th:href="@{/mucsuloskeletal/index}" type="button" class="btn btn-block btn-danger">  Musculoskeletal   </a>
                         </div>
 
                         <div class="box-body col-sm-3">       
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Action   </a>-->
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">School Session</a>-->
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  School Class   </a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Action   </a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">School Session</a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  School Class   </a>-->
                             <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  School Subject   </a>
                             <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  School Batch   </a>
-<!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Reason Discontinuity  </a>-->
+                            <!--                            <a  th:href="@{#}" type="button" class="btn btn-block btn-danger">  Reason Discontinuity  </a>-->
 
                         </div>
                         <!-- /.box-body -->

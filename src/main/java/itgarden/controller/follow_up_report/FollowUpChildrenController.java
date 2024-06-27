@@ -6,12 +6,11 @@
 package itgarden.controller.follow_up_report;
 
 import itgarden.model.follow_up_report.FollowUpChildren;
-import itgarden.model.follow_up_report.FollowUpMother;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +43,7 @@ public class FollowUpChildrenController {
         followUpChildren.setMotherMasterCode(motherMasterData);
 
         //model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
-        model.addAttribute("motherid", motherMasterDataRepository.findById(m_id));
+        model.addAttribute("motherid", motherMasterDataRepository.findById(m_id).orElse(null));
         model.addAttribute("yes_no", Yes_No.values());
 
         // model.addAttribute("childList", releaseChildRepository.findAll());
@@ -53,11 +52,11 @@ public class FollowUpChildrenController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, FollowUpChildren followUpChildren) {
-        model.addAttribute("followUpChildren", followUpChildrenRepository.findOne(id));
+        model.addAttribute("followUpChildren", followUpChildrenRepository.findById(id).orElse(null));
 
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        followUpChildren = followUpChildrenRepository.findOne(id);
+        followUpChildren = followUpChildrenRepository.findById(id).orElse(null);
 
         //model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("motherid", motherMasterDataRepository.findById(followUpChildren.getMotherMasterCode().getId()));
@@ -84,9 +83,9 @@ public class FollowUpChildrenController {
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Model model, FollowUpChildren followUpChildren, RedirectAttributes redirectAttrs) {
-        followUpChildren = followUpChildrenRepository.findOne(id);
+        followUpChildren = followUpChildrenRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", followUpChildren.motherMasterCode.getId());
-        followUpChildrenRepository.delete(id);
+        followUpChildrenRepository.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
     }
 }

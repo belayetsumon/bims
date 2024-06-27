@@ -1,29 +1,48 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
+
+
             <section class="content-header">
-                <h1>
-                    Home Visit Mother Details Information
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit Mother Details Information</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"> <a href="#">Mother Details</a></li>
+                                <li class="breadcrumb-item active"> Approve Mother Details Information </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" >
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Approval</h3>
-                                <a   th:href="@{/m_approval/create/{id} (id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
+                        <div class="card card-info" >
+                            <div class="card-header with-border">
 
+                                <h3 class="card-title">Approval </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/m_approval/create/{id} (id=${m_info.id})}" type="button" 
+                                            class="btn btn-block btn-light text-red  btn-sm pull-right ">Add</a>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped">
                                     <tr>
 
                                         <th>Mother Id </th>
@@ -50,12 +69,12 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Basic Information: <span th:text="${m_info.motherName}">Chakma</span></h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother Basic Information: <span th:text="${m_info.motherName}">Chakma</span></h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -66,7 +85,7 @@
 
                                         <th> Referral Date</th> <td th:text="${m_info.dateReferral}">Chakma</td>
                                     </tr>   <tr>
-                                        <th>Reasons </th><td th:text="${m_info.resons.NAME}">Chakma</td>
+                                        <th>Reasons </th><td th:text="${m_info.resons.name}">Chakma</td>
                                         <th>Home Visit Date</th> <td th:text="${m_info.homeVisitDate}">Chakma</td>
                                     </tr> <tr>
                                         <th>  Id</th><td th:text="${m_info.motherMasterCode}">Chakma</td>
@@ -76,32 +95,32 @@
                                         <th> Mothers Mother Name</th><td th:text="${m_info.mMothersName}">Chakma</td>
                                     </tr> <tr>
                                         <th> Father Name</th><td th:text="${m_info.fathersName}">Chakma</td>
-                                        <th>Religion</th> <td th:text="${m_info.religion.NAME}">Chakma</td>
+                                        <th>Religion</th> <td th:text="${m_info.religion.name}">Chakma</td>
                                     </tr> <tr>
-                                        <th>Marital Status</th><td th:text="${m_info.maritalStatus.NAME}">Chakma</td>
+                                        <th>Marital Status</th><td th:text="${m_info.maritalStatus.name}">Chakma</td>
                                         <th>Husbands Name</th> <td th:text="${m_info.husbandsName}">Chakma</td>
                                     </tr> <tr>
-                                        <th>Husbands status</th>  <td th:text="${m_info.husbandsStatus.NAME}">Chakma</td>
+                                        <th>Husbands status</th>  <td th:text="${m_info.husbandsStatus.name}">Chakma</td>
                                         <th>Prime Family Member Name</th> <td th:text="${m_info.primeFamilyMemberName}">Chakma</td>
                                     </tr> <tr>
-                                        <th>Relations</th> <td th:text="${m_info.relationWithPfm.NAME}">Chakma</td>
+                                        <th>Relations</th> <td th:text="${m_info.relationWithPfm.name}">Chakma</td>
 
                                         <th>Ethnic Identity</th> <td th:text="${m_info.ethnicIdentity.name}">Chakma</td>
                                     </tr> 
 
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <!-- /.box -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Address </h3>
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother Address </h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Address Type </th>
@@ -121,16 +140,16 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother House Information</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother House Information</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Master Code</th>
@@ -150,18 +169,18 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Per Capita Income  </h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Per Capita Income  </h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -185,18 +204,18 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Property</h3>
+                        <div class="card card-info" style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Property</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered" style="overflow-x: scroll">
                                     <tr>
                                         <th>Mother Id </th>
@@ -236,18 +255,18 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Current Support</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Current Support</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -264,19 +283,19 @@
                                 </table>
                             </div>
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Community Information</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Community Information</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -301,18 +320,18 @@
                                 </table>
                             </div>
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary"  style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Accessibility</h3>
+                        <div class="card card-info"  style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Accessibility</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -340,7 +359,7 @@
                                     <tr th:each="accessibility,status:${accessibility}">  
                                         <td th:text="${accessibility.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${accessibility.roadType.name}">  </td>
-                                        <td th:text="${accessibility.transportType.NAME}">   </td>
+                                        <td th:text="${accessibility.transportType.name}">   </td>
                                         <td th:text="${accessibility.distanceToMainRoad}">   </td>
                                         <td th:text="${accessibility.primarySchool}">   </td>
                                         <td th:text="${accessibility.primarySchoolDistance}">   </td>
@@ -362,20 +381,20 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Lifestyle</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Lifestyle</h3>
 
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -409,18 +428,18 @@
 
 
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Nutrition</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Nutrition</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -442,18 +461,18 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary"  style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Local Govt Facilities</h3>
+                        <div class="card card-info"  style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Local Govt Facilities</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -483,12 +502,12 @@
                             </div>
                         </div>
 
-                        <div class="box box-primary" >
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Family Information</h3>
+                        <div class="card card-info" >
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Family Information</h3>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Id </th>
@@ -505,8 +524,8 @@
                                         <td th:text="${family.name}"> </td>
                                         <td th:text="${family.dateofBirth}"> </td>
                                         <td th:text="${family.sex}"> </td>
-                                        <td th:text="${family.occopation.NAME}"> </td>
-                                        <td th:text="${family.relation.NAME}"> </td>
+                                        <td th:text="${family.occopation.name}"> </td>
+                                        <td th:text="${family.relation.name}"> </td>
                                         <td th:text="${family.cellNo}"> </td>
                                         <td th:text="${family.remarks}"> </td>
                                     </tr>

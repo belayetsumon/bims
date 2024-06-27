@@ -8,7 +8,7 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_Referral;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ReferralRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +49,7 @@ public class C_ReferralController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, C_Referral c_Referral) {
-        model.addAttribute("c_Referral", c_ReferralRepository.findOne(id));
+        model.addAttribute("c_Referral", c_ReferralRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother Referral edit");
         return "clinic/referraladd";
     }
@@ -71,9 +71,9 @@ public class C_ReferralController {
     
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, C_Referral c_Referral, RedirectAttributes redirectAttrs) {
-        c_Referral = c_ReferralRepository.findOne(id);
+        c_Referral = c_ReferralRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("id", c_Referral.motherMasterCode.getId());
-        c_ReferralRepository.delete(id);
+        c_ReferralRepository.deleteById(id);
         return "redirect:/referral/index";
         }
     

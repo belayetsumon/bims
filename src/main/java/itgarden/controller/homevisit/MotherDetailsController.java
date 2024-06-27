@@ -129,7 +129,8 @@ public class MotherDetailsController {
     @RequestMapping("/mothersearch")
     public String motherSearch(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility.Eligible));
+        
+        model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
 
         return "homevisit/motherdetails/mothersearch";
     }
@@ -137,7 +138,7 @@ public class MotherDetailsController {
     @RequestMapping("/allmotherdetails")
     public String allmotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMAddressIsNotNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
 
         return "homevisit/motherdetails/allmotherdetails";
     }
@@ -145,7 +146,7 @@ public class MotherDetailsController {
     @RequestMapping("/incompletemotherdetails")
     public String incompletemotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMAddressIsNotNullAndMAccessibilityIsNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullAndMaccessibilityIsNullOrderByIdDesc());
 
         return "homevisit/motherdetails/incompletemotherdetails";
     }
@@ -153,7 +154,7 @@ public class MotherDetailsController {
     @RequestMapping("/completemotherdetails")
     public String completemotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMAddressIsNotNullAndMAccessibilityIsNotNullAndMCommunityInformationIsNotNullAndMCurrentHelpIsNotNullAndMFamilynformationIsNotNullAndMHouseInformationIsNotNullAndMIncomeInformationIsNotNullAndMLocalGovtFacilitiesIsNotNullAndMNutritionIsNotNullAndMPropertyIsNotNullAndMApprovalIsNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullAndMaccessibilityIsNotNullAndMcommunityInformationIsNotNullAndMcurrentHelpIsNotNullAndMfamilynformationIsNotNullAndMhouseInformationIsNotNullAndMincomeInformationIsNotNullAndMlocalGovtFacilitiesIsNotNullAndMnutritionIsNotNullAndMpropertyIsNotNullAndMapprovalIsNullOrderByIdDesc());
 
         return "homevisit/motherdetails/completemotherdetails";
     }
@@ -169,7 +170,7 @@ public class MotherDetailsController {
 
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(mother_id);
-        model.addAttribute("m_info", motherMasterDataRepository.findOne(mother_id));
+        model.addAttribute("m_info", motherMasterDataRepository.findById(mother_id).orElse(null));
         model.addAttribute("accessibility", m_AccessibilityRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("addres", m_AddressRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("approval", m_ApprovalRepository.findBymotherMasterCode(motherMasterData));
@@ -188,22 +189,25 @@ public class MotherDetailsController {
     @RequestMapping("/newchildren")
     public String newchildren(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMChildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMApprovalDecissionOrderByIdDesc(0, Decision.Approve));
+        model.addAttribute("list", motherMasterDataRepository.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(0, Decision.Approve));
         return "homevisit/motherdetails/newchildren";
     }
 
     @RequestMapping("/msearchchildinfo")
     public String msearchchildinfo(Model model) {
-        //model.addAttribute("list", motherMasterDataRepository.findAll());
-       model.addAttribute("list", motherMasterDataRepository.findByMChildinfoIsNotNullOrderByIdDesc());
-       // model.addAttribute("childlist", m_Child_infoRepository.findDistinctMotherMasterCodeOrderByIdDesc());
+  
+       model.addAttribute("list", motherMasterDataRepository.findByMchildinfoIsNotNullOrderByIdDesc());
+       
         return "homevisit/motherdetails/msearchforchildinfo";
     }
+    
+    
 
     @RequestMapping("/motherapproval")
     public String motherApproval(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+     // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+        model.addAttribute("list", m_ApprovalRepository.findAllProjectedBydecissionOrderByIdDesc(Decision.Approve));
         return "homevisit/motherdetails/approval";
     }
 }

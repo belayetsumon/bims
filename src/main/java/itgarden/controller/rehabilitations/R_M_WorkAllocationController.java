@@ -8,7 +8,8 @@ package itgarden.controller.rehabilitations;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.rehabilitations.R_M_WorkAllocation;
 import itgarden.repository.rehabilitations.R_M_WorkAllocationRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,7 @@ public class R_M_WorkAllocationController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_M_WorkAllocation r_M_WorkAllocation) {
-        model.addAttribute("r_M_WorkAllocation", r_M_WorkAllocationRepository.findOne(id));
+        model.addAttribute("r_M_WorkAllocation", r_M_WorkAllocationRepository.findById(id));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
         r_M_WorkAllocation.setMotherMasterCode(motherMasterData);
@@ -60,11 +61,17 @@ public class R_M_WorkAllocationController {
         return "redirect:/houseworkallocation/index/{mid}";
     }
 
-    @RequestMapping("/delete/{id}")
+   @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_M_WorkAllocation r_M_WorkAllocation, RedirectAttributes redirectAttrs) {
-        r_M_WorkAllocation = r_M_WorkAllocationRepository.findOne(id);
+      
+        Optional<R_M_WorkAllocation> optionalr_M_WorkAllocation = r_M_WorkAllocationRepository.findById(id);
+        
+        r_M_WorkAllocation = optionalr_M_WorkAllocation.orElse(null);
+        
         redirectAttrs.addAttribute("mid", r_M_WorkAllocation.motherMasterCode.getId());
-        r_M_WorkAllocationRepository.delete(id);
+        
+        r_M_WorkAllocationRepository.deleteById(id);
+        
         return "redirect:/houseworkallocation/index/{mid}";
     }
 }

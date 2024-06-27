@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Relations;
 import itgarden.repository.homevisit.RelationsRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class RelationsController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Relations relations, Model model) {
-       model.addAttribute("relations",   relationsRepository.findOne(id));
+       model.addAttribute("relations",   relationsRepository.findById(id));
         model.addAttribute("list",  relationsRepository.findAll());
          model.addAttribute("table_name"," Relations" );
          return "/homevisit/lookup/relations";
@@ -64,7 +64,7 @@ public class RelationsController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Relations relations) {        
-     relationsRepository.delete(id);
+     relationsRepository.deleteById(id);
           return "redirect:/relations/index";
     }    
     

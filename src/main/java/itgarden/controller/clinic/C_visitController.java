@@ -8,7 +8,7 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_visit;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_visitRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,7 +57,7 @@ public class C_visitController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, C_visit c_visit) {
 
-        model.addAttribute("c_visit", c_visitRepository.findOne(id));
+        model.addAttribute("c_visit", c_visitRepository.findById(id).orElse(null));
 
         return "clinic/cvisit";
     }
@@ -75,10 +75,10 @@ public class C_visitController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, C_visit c_visit, RedirectAttributes redirectAttrs) {
 
-        c_visit = c_visitRepository.findOne(id);
+        c_visit = c_visitRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("id", c_visit.motherMasterCode.getId());
 
-        c_visitRepository.delete(id);
+        c_visitRepository.deleteById(id);
         return "redirect:/cvisit/index/{id}";
     }
 }

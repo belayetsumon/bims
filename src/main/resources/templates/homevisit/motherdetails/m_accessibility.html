@@ -1,30 +1,41 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Home Visit
-                    <small> </small>
-                </h1>
+             <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"> <a href="#">Mother Details</a></li>
+                                <li class="breadcrumb-item active"> Add Mother Accessibility </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"><span th:text='${form_title}'>Add </span></h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/motherdetails/motherdetails/{m_id}(m_id=${m_Accessibility.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/motherdetails/motherdetails/{m_id}(m_id=${m_Accessibility.motherMasterCode.id})}"   type="button" 
+                                    class="btn btn-block btn-light text-red  btn-sm pull-right ">Close</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/m_accessibility/save/{m_id}(m_id=${m_Accessibility.motherMasterCode.id})}"   th:object="${m_Accessibility}"  method="post" class="form-horizontal">
 
                             <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
@@ -35,7 +46,7 @@
                                 </ul>
                             </div>
 
-                            <div class="box-body">
+                            <div class="card-body">
                                 <div class="row">
                                     <input type="hidden"    class="form-control " th:field="*{id}" />
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
@@ -43,7 +54,7 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
                                 </div>   
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Road <span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{roadType}"  >
@@ -56,14 +67,14 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Transport<span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{transportType}"  >
 
                                                 <option th:each =" transports :${transport}"
                                                         th:value=" ${transports.id}" 
-                                                        th:text="${transports.NAME}"> Select one</option>
+                                                        th:text="${transports.name}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('transportType')}" th:errors="*{transportType}">First Name Error</span>
                                         </div>      
@@ -75,7 +86,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Distance from  Main Road <span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -89,7 +100,7 @@
                                 </div>          
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Primary School <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{primarySchool}"  >
@@ -102,7 +113,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="number" class="col-sm-6 control-label"> Primary School Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -114,7 +125,7 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Secondary School <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{secondarySchool}"  >
@@ -127,7 +138,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Secondary School Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -140,7 +151,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Health Care <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{hospital}"  >
@@ -153,7 +164,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Health Care Center Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -167,7 +178,7 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Market Place <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{marketPlace}"  >
@@ -180,7 +191,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Market Place Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -194,7 +205,7 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Bank <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{bank}"  >
@@ -207,7 +218,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Bank  Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -220,7 +231,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> NGO  <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{ngo}"  >
@@ -233,7 +244,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> NGO   Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -247,7 +258,7 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Welfare Institutions  <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{wellfareInstitutions}"  >
@@ -260,7 +271,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Welfare Institutions   Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -273,7 +284,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Technical Training Institute <span class="text-red">  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{technicalInstiute}"  >
@@ -286,7 +297,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-6 control-label"> Technical Training Institute  Distance<span class="text-red">  </span> :</label>
                                         <div class="col-sm-4">                   
                                             <div class="input-group" >
@@ -298,7 +309,7 @@
 
                                 </div>
 
-                                <div class="form-group col-sm-12">
+                                <div class="form-group col-sm-12 row">
                                     <label for="name" class="col-sm-3 control-label"> Remark<span class="text-red">  </span>: </label>
                                     <div class="col-sm-8">                   
                                         <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{REMARKS}" > </textarea>         
@@ -307,23 +318,23 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info btn-sm">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
 
 
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

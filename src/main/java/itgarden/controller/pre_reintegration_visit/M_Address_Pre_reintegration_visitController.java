@@ -12,7 +12,8 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.pre_reintegration_visit.M_Address_ReintegrationVisit;
 import itgarden.repository.homevisit.ThanaRepository;
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_AddressRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,7 +83,9 @@ public class M_Address_Pre_reintegration_visitController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Address_ReintegrationVisit m_Address_ReintegrationVisit, Model model) {
-        model.addAttribute("m_Address_ReintegrationVisit", pre_reintegration_visit_M_AddressRepository.findOne(id));
+
+        model.addAttribute("m_Address_ReintegrationVisit", pre_reintegration_visit_M_AddressRepository.findById(id));
+
         model.addAttribute("form_title", "Add");
         model.addAttribute("addressType", Address_Type.values());
 
@@ -94,13 +97,15 @@ public class M_Address_Pre_reintegration_visitController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String delete(@PathVariable Long id, Model model, M_Address_ReintegrationVisit m_Address_ReintegrationVisit ,RedirectAttributes redirectAttrs) {
+    public String delete(@PathVariable Long id, Model model, M_Address_ReintegrationVisit m_Address_ReintegrationVisit, RedirectAttributes redirectAttrs) {
 
-        m_Address_ReintegrationVisit = pre_reintegration_visit_M_AddressRepository.findOne(id);
+        Optional<M_Address_ReintegrationVisit> optionalm_Address_ReintegrationVisit = pre_reintegration_visit_M_AddressRepository.findById(id);
+
+        m_Address_ReintegrationVisit = optionalm_Address_ReintegrationVisit.orElse(null);
 
         redirectAttrs.addAttribute("m_id", m_Address_ReintegrationVisit.motherMasterCode.getId());
 
-        pre_reintegration_visit_M_AddressRepository.delete(id);
+        pre_reintegration_visit_M_AddressRepository.deleteById(id);
         return "redirect:/pre_reintegration_visit/details/{m_id}";
     }
 

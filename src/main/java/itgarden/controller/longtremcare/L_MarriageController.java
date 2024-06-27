@@ -11,7 +11,7 @@ import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.model.longtermcare.L_Marriage;
 import itgarden.repository.longtermcare.L_FollowUpRepository;
 import itgarden.repository.longtermcare.L_MarriageRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +47,7 @@ public class L_MarriageController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, L_Marriage l_Marriage) {
         model.addAttribute("form_title", "Marriage");
-        model.addAttribute("l_Marriage", l_MarriageRepository.findOne(id));
+        model.addAttribute("l_Marriage", l_MarriageRepository.findById(id).orElse(null));
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
         l_Marriage.setChildMasterCode(m_Child_info);
@@ -74,9 +74,9 @@ public class L_MarriageController {
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, L_Marriage l_Marriage, RedirectAttributes redirectAttrs) {
 
-        l_Marriage = l_MarriageRepository.findOne(id);
+        l_Marriage = l_MarriageRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("mid", l_Marriage.childMasterCode.getId());
-        l_MarriageRepository.delete(id);
+        l_MarriageRepository.deleteById(id);
         return "redirect:/longtremcare/index/{mid}";
     }
 
@@ -93,7 +93,7 @@ public class L_MarriageController {
 
     @RequestMapping("/marriagefollowupedit/{id}")
     public String fosterfollowupedit(Model model, @PathVariable Long id, L_FollowUp l_FollowUp) {
-        model.addAttribute("l_FollowUp", l_FollowUpRepository.findOne(id));
+        model.addAttribute("l_FollowUp", l_FollowUpRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Marriage Follow Up Edit");
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
@@ -120,9 +120,9 @@ public class L_MarriageController {
 
     @RequestMapping("/marriagefllowupdelete/{id}")
     public String fosterfollowupdelete(Model model, @PathVariable Long id, L_FollowUp l_FollowUp, RedirectAttributes redirectAttrs) {
-        l_FollowUp = l_FollowUpRepository.findOne(id);
+        l_FollowUp = l_FollowUpRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("mid", l_FollowUp.childMasterCode.getId());
-        l_FollowUpRepository.delete(id);
+        l_FollowUpRepository.deleteById(id);
         return "redirect:/longtremcare/index/{mid}";
     }
 

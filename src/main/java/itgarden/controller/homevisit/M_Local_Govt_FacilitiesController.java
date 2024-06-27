@@ -10,7 +10,7 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.LocalContactPersionRepository;
 import itgarden.repository.homevisit.M_Local_Govt_FacilitiesRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,7 +83,7 @@ public class M_Local_Govt_FacilitiesController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Local_Govt_Facilities m_Local_Govt_Facilities, Model model) {
-        model.addAttribute("m_Local_Govt_Facilities", m_Local_Govt_FacilitiesRepository.findOne(id));
+        model.addAttribute("m_Local_Govt_Facilities", m_Local_Govt_FacilitiesRepository.findById(id).orElse(null));
 
         model.addAttribute("form_title", "Mother Local Govt Facilities Edit");
             model.addAttribute("localPersons", localContactPersionRepository.findAll());
@@ -94,9 +94,9 @@ public class M_Local_Govt_FacilitiesController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Local_Govt_Facilities m_Local_Govt_Facilities,RedirectAttributes redirectAttrs) {
-      m_Local_Govt_Facilities = m_Local_Govt_FacilitiesRepository.findOne(id);
+      m_Local_Govt_Facilities = m_Local_Govt_FacilitiesRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Local_Govt_Facilities.motherMasterCode.getId());
-        m_Local_Govt_FacilitiesRepository.delete(id);
+        m_Local_Govt_FacilitiesRepository.deleteById(id);
        return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

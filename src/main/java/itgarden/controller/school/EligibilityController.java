@@ -9,7 +9,8 @@ import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.school.EligibilityStudent;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.school.EligibilityStudentRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,24 +55,25 @@ public class EligibilityController {
     public String save(Model model, @PathVariable Long c_id, @Valid EligibilityStudent eligibilityStudent, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            
+
             M_Child_info m_Child_info = m_Child_infoRepository.getOne(c_id);
 
             eligibilityStudent.setChildMasterCode(m_Child_info);
 
             return "school/addeligibility";
         }
-        
+
         eligibilityStudentRepository.save(eligibilityStudent);
 
         return "redirect:/eligibility/eligibility";
     }
-    
+
     @RequestMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable Long id, EligibilityStudent eligibilityStudent, RedirectAttributes redirectAttrs) {
-        eligibilityStudent = eligibilityStudentRepository.findOne(id);
+    public String delete(Model model, @PathVariable Long id, RedirectAttributes redirectAttrs) {
+        Optional<EligibilityStudent> optionaleligibilityStudent = eligibilityStudentRepository.findById(id);
+        EligibilityStudent eligibilityStudent = optionaleligibilityStudent.orElse(null);
         redirectAttrs.addAttribute("id", eligibilityStudent.getChildMasterCode().getId());
-        eligibilityStudentRepository.delete(id);
+        eligibilityStudentRepository.deleteById(id);
         return "redirect:/eligibility/eligibility";
     }
 

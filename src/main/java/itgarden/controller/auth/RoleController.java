@@ -8,7 +8,7 @@ package itgarden.controller.auth;
 import itgarden.model.auth.Privilege;
 import itgarden.model.auth.Role;
 import itgarden.repository.auth.RoleRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class RoleController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Role role, Model model) {
-        model.addAttribute("role", roleRepository.findOne(id));
+        model.addAttribute("role", roleRepository.findById(id).orElse(null));
         model.addAttribute("list", roleRepository.findAll());
          model.addAttribute("privilege", Privilege.values());
         model.addAttribute("table_name", "Role");
@@ -60,7 +60,7 @@ public class RoleController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Role role) {
-        roleRepository.delete(id);
+        roleRepository.deleteById(id);
         return "redirect:/role/index";
     }
 

@@ -1,32 +1,45 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Home Visit
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#"> New Children Insert</a></li>
+                                <li class="breadcrumb-item active">
+                                    <a href="#">    Children list</a></li>
+                                <li class="breadcrumb-item active">
+                                    Insert Children Information</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Insert Children Information </h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Insert Children Information </h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/childrendetails/index/{id}(id=${m_Child_info.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/childrendetails/index/{id}(id=${m_Child_info.motherMasterCode.id})}"  type="button" class="btn  btn-light text-red btn-xs">Close</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/childrendetails/save/{id}(id=${m_Child_info.motherMasterCode.id})}"  th:object="${m_Child_info}"  method="post" class="form-horizontal">
-                            <div class="box-body">
+                            <div class="card-body">
 
                                 <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -36,7 +49,7 @@
                                     </ul>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <input type="hidden"    class="form-control " th:field="*{id}" /> 
                                         <input type="hidden"  class="form-control  "  id="bookName"   th:field="*{motherMasterCode}"   />                
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
@@ -44,14 +57,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">Mother's Name<span class="text-red"> * </span></label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"  th:field="*{motherName}" name="motherName"  />                
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherName')}" th:errors="*{motherName}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Father's Name<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"  th:field="*{fathersName}" name="fathersName"  />                
@@ -63,14 +76,14 @@
                                 <div class="row">
 
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">  Prime Family Member Name  <span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"  th:field="*{primeFamilyMemberName}" name="primeFamilyMemberName"  />                
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('primeFamilyMemberName')}" th:errors="*{primeFamilyMemberName}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Children ID<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"   th:field="*{childMasterCode}"   />                
@@ -81,7 +94,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">Children Name  <span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"  th:field="*{name}" name="name"  />                
@@ -89,7 +102,7 @@
                                         </div>                            
                                     </div> 
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Date of Birth<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">   
                                             <div class="input-group date" >
@@ -105,7 +118,7 @@
 
 
                                 <div class="row"> 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Gender<span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{gender}" name="gender" >
@@ -119,7 +132,7 @@
                                         </div>   
                                     </div>
 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Work<span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{work}" name="work" >
@@ -133,14 +146,14 @@
                                         </div>   
                                     </div>
 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label">Religion<span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{religion}" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" religion :${religion}"
                                                         th:value=" ${religion.id}" 
-                                                        th:text="${religion.NAME}"> Select one</option>
+                                                        th:text="${religion.name}"> Select one</option>
                                             </select>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('religion')}" th:errors="*{religion}">First Name Error</span>
@@ -152,7 +165,7 @@
                                 <div class="row">
 
 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Ethnic Identity<span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{ethnicIdentity}" name="ethnicIdentity" >
@@ -169,27 +182,27 @@
                                     </div>
 
 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Education Level <span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{educationLevel}" name="educationLevel" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" educationLevel :${educationLevel}"
                                                         th:value=" ${educationLevel.id}" 
-                                                        th:text="${educationLevel.NAME}"> Select one</option>
+                                                        th:text="${educationLevel.name}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('educationLevel')}" th:errors="*{educationLevel}">First Name Error</span>
                                         </div>     
 
                                     </div>                                 
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Education Type <span class="text-red"> * </span> </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{educationType}" name="educationType" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" educationType :${educationType}"
                                                         th:value=" ${educationType.id}" 
-                                                        th:text="${educationType.NAME}"> Select one</option>
+                                                        th:text="${educationType.name}"> Select one</option>
 
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('educationType')}" th:errors="*{educationType}">First Name Error</span>
@@ -199,7 +212,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Interested Skill Area<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">   
                                             <textarea cols="6" rows="5"  th:field="*{interstedSkillArea}" class="form-control"  id = ""  maxlength="3950" > </textarea>
@@ -207,7 +220,7 @@
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('interstedSkillArea')}" th:errors="*{interstedSkillArea}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Behavior Emotion<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
 
@@ -217,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Physical Status<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">   
                                             <textarea cols="6" rows="5"  th:field="*{physicalStatus}" class="form-control"  id = ""  maxlength="3950" > </textarea>
@@ -225,7 +238,7 @@
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('physicalStatus')}" th:errors="*{physicalStatus}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Immunization <span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
 
@@ -239,14 +252,14 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="form-group  col-sm-6">
+                                    <div class="form-group  col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> Major Findings </label>
                                         <div class="col-sm-9">                   
                                             <textarea cols="15" rows="15"  th:field="*{majorFindings}" class="form-control"  id = ""  maxlength="3950" onKeyUp="count_it()"> </textarea>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('majorFindings')}" th:errors="*{majorFindings}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> Other Remarks </label>
                                         <div class="col-sm-9">                   
                                             <textarea cols="15" rows="15"  th:field="*{otherRemarks}" class="form-control"  id = ""  maxlength="3950" onKeyUp="count_it()"> </textarea>
@@ -254,10 +267,10 @@
                                         </div>                            
                                     </div>
                                 </div>
-                                    <div class="row">
-                                    <div class="form-group">
-                                        <label for="name" class="col-sm-3 control-label"> Investigator recommendation <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-2">          
+                                <div class="row">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-8 control-label"> Investigator recommendation <span class="text-red"> * </span> </label>
+                                        <div class="col-sm-4">          
                                             <select class="form-control  "  id="bookName"  th:field="*{eligibility}" name="eligibility" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" eligibility :${eligibility}"
@@ -268,25 +281,17 @@
                                         </div>                            
                                     </div>
                                 </div>
-                                
+
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                     <button type="submit" class="btn btn-info btn-sm">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
-                            <div class="btn-group">
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-body -->
+            
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

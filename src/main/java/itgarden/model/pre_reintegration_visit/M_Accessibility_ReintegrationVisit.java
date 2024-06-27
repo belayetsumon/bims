@@ -7,98 +7,98 @@ package itgarden.model.pre_reintegration_visit;
 
 import itgarden.model.homevisit.*;
 import itgarden.model.auth.Users;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Md Belayet Hossin
  */
-
 @Entity
 @Table(name = "Re_M_ACCESSIBILITY")
 public class M_Accessibility_ReintegrationVisit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne(optional = false)
-     @JoinColumn(nullable =false)
+    @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
-    
+
     @ManyToOne(optional = true)
-    public Road_Type  roadType;
-    
+    public Road_Type roadType;
+
     @ManyToOne(optional = true)
-    public Transport_Type  transportType;
+    public Transport_Type transportType;
 
-    public String   distanceToMainRoad;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  primarySchool;
+    public String distanceToMainRoad;
 
-    public String  primarySchoolDistance;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  secondarySchool;
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No primarySchool;
 
-    public String  secondarySchoolDistance;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  hospital;
+    public String primarySchoolDistance;
 
-    public String  hospitalDistance;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  marketPlace;
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No secondarySchool;
 
-    public String  marketPlaceDistance;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  bank;
+    public String secondarySchoolDistance;
 
-    public String  bankDistance;
-    
-@Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No hospital;
+
+    public String hospitalDistance;
+
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No marketPlace;
+
+    public String marketPlaceDistance;
+
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No bank;
+
+    public String bankDistance;
+
+    @Enumerated(EnumType.ORDINAL)
     public Yes_No ngo;
 
-    public String  ngoDistance;
-    
-@Enumerated(EnumType.ORDINAL)
-    public Yes_No  wellfareInstitutions;
+    public String ngoDistance;
 
-    public int  wellfareInstitutionsDistance;
-    
-@Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.ORDINAL)
+    public Yes_No wellfareInstitutions;
+
+    public int wellfareInstitutionsDistance;
+
+    @Enumerated(EnumType.ORDINAL)
     public Yes_No technicalInstiute;
 
     public String technicalInstiuteDistance;
-    
-@Lob
+
+    @Lob
     public String REMARKS;
 
-    /*********** Audit *******************************/
-    
+    /**
+     * ********* Audit ******************************
+     */
     @Column(insertable = true, updatable = false)
-    public LocalDate created =  LocalDate.now();
+    public LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = true)
-    
+
     public Users createdBy;
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -106,7 +106,7 @@ public class M_Accessibility_ReintegrationVisit {
     public Date updated = new Date();
 
     @ManyToOne(optional = true)
- 
+
     public Users updatedBy;
 
     public M_Accessibility_ReintegrationVisit() {
@@ -347,5 +347,4 @@ public class M_Accessibility_ReintegrationVisit {
         this.updatedBy = updatedBy;
     }
 
-  
 }

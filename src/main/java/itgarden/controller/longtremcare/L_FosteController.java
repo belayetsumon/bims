@@ -11,7 +11,7 @@ import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.model.longtermcare.L_Foste;
 import itgarden.repository.longtermcare.L_FollowUpRepository;
 import itgarden.repository.longtermcare.L_FosteRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +54,7 @@ public class L_FosteController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, L_Foste l_Foste) {
 
-        model.addAttribute("l_Foste", l_FosteRepository.findOne(id));
+        model.addAttribute("l_Foste", l_FosteRepository.findById(id));
         model.addAttribute("form_title", "Foster");
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
@@ -81,11 +81,11 @@ public class L_FosteController {
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, L_Foste l_Foste, RedirectAttributes redirectAttrs) {
 
-        l_Foste = l_FosteRepository.findOne(id);
+        l_Foste = l_FosteRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("cid", l_Foste.childMasterCode.getId());
 
-        l_FosteRepository.delete(id);
+        l_FosteRepository.deleteById(id);
 
         return "redirect:/longtremcare/index/{cid}";
     }
@@ -105,7 +105,7 @@ public class L_FosteController {
     @RequestMapping("/fosterfollowupedit/{id}")
     public String fosterfollowupedit(Model model, @PathVariable Long id, L_FollowUp l_FollowUp) {
 
-        model.addAttribute("l_FollowUp", l_FollowUpRepository.findOne(id));
+        model.addAttribute("l_FollowUp", l_FollowUpRepository.findById(id).orElse(null));
 
         model.addAttribute("form_title", "Foster Follow Up Edit");
 
@@ -148,11 +148,11 @@ public class L_FosteController {
     @RequestMapping("/fosterfllowupdelete/{id}")
     public String fosterfollowupdelete(Model model, @PathVariable Long id, L_FollowUp l_FollowUp, RedirectAttributes redirectAttrs) {
 
-        l_FollowUp = l_FollowUpRepository.findOne(id);
+        l_FollowUp = l_FollowUpRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("cid", l_FollowUp.childMasterCode.getId());
 
-        l_FollowUpRepository.delete(id);
+        l_FollowUpRepository.deleteById(id);
 
         return "redirect:/longtremcare/index/{cid}";
     }

@@ -12,7 +12,8 @@ import itgarden.model.pre_reintegration_visit.M_House_Information_ReintegrationV
 import itgarden.repository.homevisit.House_TypeRepository;
 import itgarden.repository.homevisit.Ownershif_typeRepository;
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_House_InformationRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -102,7 +103,7 @@ public class M_House_Information_Pre_reintegration_visitController {
 
         model.addAttribute("form_title", "Mother House Information Edit");
 
-        model.addAttribute("m_House_Information_ReintegrationVisit", pre_reintegration_visit_M_House_InformationRepository.findOne(id));
+        model.addAttribute("m_House_Information_ReintegrationVisit", pre_reintegration_visit_M_House_InformationRepository.findById(id));
 
         model.addAttribute("houseType", house_TypeRepository.findAll());
 
@@ -116,11 +117,14 @@ public class M_House_Information_Pre_reintegration_visitController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_House_Information_ReintegrationVisit m_House_Information_ReintegrationVisit, RedirectAttributes redirectAttrs) {
 
-        m_House_Information_ReintegrationVisit = pre_reintegration_visit_M_House_InformationRepository.findOne(id);
+        Optional<M_House_Information_ReintegrationVisit> optionalhir = pre_reintegration_visit_M_House_InformationRepository.findById(id);
+       m_House_Information_ReintegrationVisit = optionalhir.orElse(null);
+        
+ 
 
         redirectAttrs.addAttribute("m_id", m_House_Information_ReintegrationVisit.motherMasterCode.getId());
 
-        pre_reintegration_visit_M_House_InformationRepository.delete(id);
+        pre_reintegration_visit_M_House_InformationRepository.deleteById(id);
 
          return "redirect:/pre_reintegration_visit//details/{m_id}";
     }

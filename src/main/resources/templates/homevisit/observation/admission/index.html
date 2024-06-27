@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
+
             <section class="content-header">
-                <h1>
-                    Observation
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">Admitted Mother and Child </li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Mother Admission </h3>
-                                <a   th:href="@{/admission/create/{id}(id=${minfo})}" type="button" class="btn  btn-warning pull-right"> Add</a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Mother Admission </h3>
+                                <div class="card-tools pull-right">
+                                <a   th:href="@{/admission/create/{id}(id=${minfo})}" type="button" class="btn  btn-light text-info btn-sm pull-right"> Add</a>
+                            </div>      </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <!-- 
                                 <img  class="img-responsive" th:src="@{/files/amenakatun.jpg}"   />
                                 <img  class="img-responsive" th:src="@{/images/google-ads.png}"/>
@@ -51,19 +66,21 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Child Admission </h3>
-                                <a   th:href="@{/childadmission/create/{m_id}(m_id=${minfo})}" type="button" class="btn  btn-warning pull-right"> Add</a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                
+                                <h3 class="card-title">Child Admission </h3>
+                                <div class="card-tools pull-right">
+                                <a   th:href="@{/childadmission/create/{m_id}(m_id=${minfo})}" type="button" class="btn  btn-light text-info btn-sm pull-right"> Add</a>
+                            </div>    </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <!-- 
                                 <img  class="img-responsive" th:src="@{/files/amenakatun.jpg}"   />
                                 <img  class="img-responsive" th:src="@{/images/google-ads.png}"/>
@@ -95,8 +112,8 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
@@ -108,13 +125,13 @@
                 <!--                <div class="row">
                 
                                     <div class="col-sm-12">
-                                        <div class="box box-primary">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title">Child Images </h3>
+                                        <div class="card card-primary">
+                                            <div class="card-header with-border">
+                                                <h3 class="card-title">Child Images </h3>
                                                 <a   th:href="@{/admission/create/{id}(id=${minfo})}"  type="button" class="btn  btn-warning pull-right"> Add Child Image</a>
                                             </div>
-                                             /.box-header 
-                                            <div class="box-body">
+                                             /.card-header 
+                                            <div class="card-body">
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <th style="width: 10px">#</th>  
@@ -141,12 +158,12 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                             /.box-body 
-                                            <div class="box-footer clearfix">
+                                             /.card-body 
+                                            <div class="card-footer clearfix">
                 
                                             </div>
                                         </div>
-                                         /.box 
+                                         /.card 
                                     </div>
                                      /.col 
                                      /.col 

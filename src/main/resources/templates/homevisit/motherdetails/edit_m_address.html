@@ -1,84 +1,94 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Home Visit
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"> <a href="#">Mother Details</a></li>
+                                <li class="breadcrumb-item active"> Edit Mother Address </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Mother Address <span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Mother Address <span th:text='${form_title}'>Add </span></h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
                                 <a  th:href="@{/motherdetails/motherdetails/{id}(id=${m_Address.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/m_address/update/{id}(id=${m_Address.motherMasterCode.id})}"  th:object="${m_Address}"  method="post" class="form-horizontal">
-                           
+
                             <input type="hidden"    class="form-control " th:field="*{id}"  />    
-                            
+
                             <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode"  name="motherMasterCode"  th:value="motherMasterCode"/>     
-                            
+
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
-                            
-                            <div class="box-body">
+
+                            <div class="card-body">
 
                                 <div class="row">
-                                    
-                                    <div class="form-group col-sm-6">
-                                        
-                                        <label for="name" class="col-sm-3 control-label"> Address Type<span class="text-red"> * </span> :</label>
-                                        
+
+                                    <div class="form-group col-sm-6 row">
+
+                                        <label for="name" class="col-sm-3 control-label"> Address Type<span class="text-red"> * </span> </label>
+
                                         <div class="col-sm-6">   
-                                            
+
                                             <select class="form-control  "  id="bookName"  th:field="*{addressType}" name="addressType" >
-                                                
+
                                                 <option value=" "> Select one</option>
-                                                
+
                                                 <option th:each =" addressType :${addressType}"
-                                                        
+
                                                         th:value=" ${addressType}" 
-                                                        
+
                                                         th:text="${addressType}"> Select one</option>
-                                                
+
                                             </select>
-                                            
+
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('addressType')}" th:errors="*{addressType}">First Name Error</span>
-                                     
+
                                         </div>    
-                                        
+
                                     </div>
-                                    
-                                    <div class="form-group col-sm-6">
+
+                                    <div class="form-group col-sm-6 row">
 
                                         <label for="co" class="col-sm-3 control-label">  C/O  :<span class="text-red">  </span> </label>
-                                        
+
                                         <div class="col-sm-6">       
-                                            
+
                                             <input type="text"  class="form-control  "  id="co"  th:field="*{co}" name="co"  />            
-                                            
+
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('co')}" th:errors="*{co}">First Name Error</span>
-                                            
+
                                         </div>     
-                                        
+
                                     </div>
-                                    
+
                                 </div>
-                                
+
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="vill" class="col-sm-3 control-label">Vill/House<span class="text-red"></span> :</label>
                                         <div class="col-sm-8">  
                                             <div class="input-group" >
@@ -89,7 +99,7 @@
                                         </div>               
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> P.O<span class="text-red">  </span>: </label>
                                         <div class="col-sm-8">                   
                                             <input type="text"  class="form-control  "  id="bookName"   name="po" th:value="${m_Address.po}" />                
@@ -99,7 +109,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> District<span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{district}" name="district" >
@@ -112,7 +122,7 @@
                                         </div>                            
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label">Thana <span class="text-red"> * </span>: </label>
                                         <div class="col-sm-6">                   
                                             <select class="form-control  "  id="bookName"  th:field="*{thana}" name="thana" >
@@ -128,21 +138,21 @@
 
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info btn-sm">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

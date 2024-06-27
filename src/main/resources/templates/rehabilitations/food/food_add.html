@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-3">
+                            <h1>CMC Support</h1>
+                        </div>
+                        <div class="col-sm-9">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">CMC Support</a></li>
+                                <li class="breadcrumb-item active">Add Food </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">
+                            Food Information Add </h3>
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/}"  type="button" class="btn btn-block btn-light  btn-sm  text-red">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form  th:action="@{/food/save}"  th:object="${r_Food}"  method="post" class="form-horizontal">
+
+                            <input type="hidden"    class="form-control " th:field="*{id}"  />   
+                            
+                            
+                                       <div class="form-group col-sm-6 row">
+                                        <label for="co" class="col-sm-4 control-label">  Date  :<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-8">    
+                                            <div class="input-group date" >
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
+
+                                                <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{todaydate}" id="startDate"/>    
+                                            </div>
+                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('todaydate')}" th:errors="*{todaydate}">First Name Error</span>
+                                        </div>     
+                                    </div>
+                            
+                            
+                            
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-4 control-label"> House Name<span class="text-red"> * </span> :</label>
+
+                                <div class="col-sm-6">   
+                                    <select class="form-control  "   th:field="*{foodByHouse}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" foodByHousess :${foodByHouses}"
+                                                th:value=" ${foodByHousess}" 
+                                                th:text="${foodByHousess}"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('foodByHouse')}" th:errors="*{foodByHouse}">First Name Error</span>
+                                </div>    
+                            </div> 
+
+
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">Total <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{totalPersons}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('totalPersons')}" th:errors="*{totalPersons}">First Name Error</span>
+                                </div>
+
+                            </div> 
+
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">Sick <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{sick}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('sick')}" th:errors="*{sick}">First Name Error</span>
+                                </div>
+
+                            </div> 
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">On Leave <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{onLeave}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onLeave')}" th:errors="*{onLeave}">First Name Error</span>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">Under Observation <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{underObservation}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('underObservation')}" th:errors="*{underObservation}">First Name Error</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">On Job <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{onJob}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onJob')}" th:errors="*{onJob}">First Name Error</span>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label">Others <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <input type="number"  min="1"class="form-control  "   th:field="*{others}" required="true"/>    
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onJob')}" th:errors="*{others}">First Name Error</span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info">Save</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

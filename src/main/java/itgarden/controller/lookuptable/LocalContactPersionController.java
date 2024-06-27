@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.LocalContactPersion;
 import itgarden.repository.homevisit.LocalContactPersionRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +53,7 @@ public class LocalContactPersionController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, LocalContactPersion localContactPersion, Model model) {
-        model.addAttribute("localContactPersion", localContactPersionRepository.findOne(id));
+        model.addAttribute("localContactPersion", localContactPersionRepository.findById(id));
         model.addAttribute("list", localContactPersionRepository.findAll());
         model.addAttribute("table_name", " Local Contact Persion");
         return "/homevisit/lookup/localcontactpersion";
@@ -62,7 +62,7 @@ public class LocalContactPersionController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, LocalContactPersion localContactPersion) {
 
-        localContactPersionRepository.delete(id);
+        localContactPersionRepository.deleteById(id);
         return "redirect:/localcontactpersion/index";
     }
 

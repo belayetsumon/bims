@@ -25,6 +25,7 @@ import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.rehabilitations.R_PsychologyChildRepository;
 import itgarden.repository.rehabilitations.R_PsychologyMotherRepository;
+import java.util.Optional;
 
 /**
  *
@@ -68,8 +69,8 @@ public class R_PsychologyChildController {
         model.addAttribute("iq", IqEnum.values());
 
         model.addAttribute("presencetrauma", Presence_traumaEnum.values());
-        
-         model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
+
+        model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
 
         return "/rehabilitations/psychology/addchild";
     }
@@ -115,7 +116,7 @@ public class R_PsychologyChildController {
             model.addAttribute("iq", IqEnum.values());
 
             model.addAttribute("presencetrauma", Presence_traumaEnum.values());
-             model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
+            model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
 
             return "/rehabilitations/psychology/addchild";
         }
@@ -129,7 +130,9 @@ public class R_PsychologyChildController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_PsychologyChild r_PsychologyChild) {
 
-        r_PsychologyChild = r_PsychologyChildRepository.findOne(id);
+        Optional<R_PsychologyChild> optionalR_PsychologyChild = r_PsychologyChildRepository.findById(id);
+
+        r_PsychologyChild = optionalR_PsychologyChild.orElse(null);
 
         model.addAttribute("r_PsychologyChild", r_PsychologyChild);
 
@@ -146,13 +149,13 @@ public class R_PsychologyChildController {
         model.addAttribute("YesNo", Yes_No.values());
 
         model.addAttribute("copingstrategy", CopingStrategyEnum.values());
-        
+
         model.addAttribute("familyrelationship", Family_Relationship_Enum.values());
-        
+
         model.addAttribute("iq", IqEnum.values());
-        
+
         model.addAttribute("presencetrauma", Presence_traumaEnum.values());
-         model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
+        model.addAttribute("emotionStatusenum", EmotionStatusEnum.values());
 
         return "/rehabilitations/psychology/addchild";
     }
@@ -160,11 +163,13 @@ public class R_PsychologyChildController {
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_PsychologyChild r_PsychologyChild, RedirectAttributes redirectAttrs) {
 
-        r_PsychologyChild = r_PsychologyChildRepository.findOne(id);
+        Optional<R_PsychologyChild> optionalR_PsychologyChild = r_PsychologyChildRepository.findById(id);
+
+        r_PsychologyChild = optionalR_PsychologyChild.orElse(null);
 
         redirectAttrs.addAttribute("m_id", r_PsychologyChild.motherMasterCode.getId());
 
-        r_PsychologyChildRepository.delete(id);
+        r_PsychologyChildRepository.deleteById(id);
 
         return "redirect:/psychologychild/childlist/{m_id}";
     }

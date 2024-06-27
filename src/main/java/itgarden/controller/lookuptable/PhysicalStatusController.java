@@ -6,7 +6,7 @@
 package itgarden.controller.lookuptable;
 import itgarden.model.homevisit.PhysicalStatus;
 import itgarden.repository.homevisit.PhysicalStatusRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class PhysicalStatusController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, PhysicalStatus physicalStatus, Model model) {
-        model.addAttribute("physicalStatus", physicalStatusRepository.findOne(id));
+        model.addAttribute("physicalStatus", physicalStatusRepository.findById(id));
         model.addAttribute("list", physicalStatusRepository.findAll());
         model.addAttribute("table_name", "Physical Status");
         return "/homevisit/lookup/physicalstatus";
@@ -59,7 +59,7 @@ public class PhysicalStatusController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, PhysicalStatus physicalStatus) {
-        physicalStatusRepository.delete(id);
+        physicalStatusRepository.deleteById(id);
         return "redirect:/physicalstatus/index";
     }
 

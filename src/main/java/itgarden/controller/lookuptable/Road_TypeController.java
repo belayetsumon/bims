@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Road_Type;
 import itgarden.repository.homevisit.Road_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +52,7 @@ public class Road_TypeController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Road_Type road_Type, Model model) {
-        model.addAttribute("road_Type", road_TypeRepository.findOne(id));
+        model.addAttribute("road_Type", road_TypeRepository.findById(id));
         model.addAttribute("list", road_TypeRepository.findAll());
         model.addAttribute("table_name", " Road Type ");
         return "/homevisit/lookup/road_type";
@@ -60,7 +60,7 @@ public class Road_TypeController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Road_Type road_Type) {
-        road_TypeRepository.delete(id);
+        road_TypeRepository.deleteById(id);
         return "redirect:/road_type/index";
     }
 

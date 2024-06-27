@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Personal_Habits;
 import itgarden.repository.homevisit.Personal_HabitsRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class Personal_HabitsController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Personal_Habits personal_Habits, Model model) {
-       model.addAttribute("personal_Habits",   personal_HabitsRepository.findOne(id));
+       model.addAttribute("personal_Habits",   personal_HabitsRepository.findById(id));
         model.addAttribute("list",  personal_HabitsRepository.findAll());
              model.addAttribute("table_name","Personal Habit" );
          return "/homevisit/lookup/personal_habits";
@@ -64,7 +64,7 @@ public class Personal_HabitsController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Personal_Habits personal_Habits) {        
-     personal_HabitsRepository.delete(id);
+     personal_HabitsRepository.deleteById(id);
           return "redirect:/personal_habits/index";
     }    
     

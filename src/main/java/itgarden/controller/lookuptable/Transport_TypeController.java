@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Transport_Type;
 import itgarden.repository.homevisit.Transport_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +49,7 @@ public class Transport_TypeController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Transport_Type transport_Type, Model model) {
-       model.addAttribute("transport_Type",   transport_TypeRepository.findOne(id));
+       model.addAttribute("transport_Type",   transport_TypeRepository.findById(id));
         model.addAttribute("list",  transport_TypeRepository.findAll());
          return "/homevisit/lookup/transport_type";
     }
@@ -57,7 +57,7 @@ public class Transport_TypeController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Transport_Type transport_Type) {        
-     transport_TypeRepository.delete(id);
+     transport_TypeRepository.deleteById(id);
           return "redirect:/transport_type/index";
     }    
     

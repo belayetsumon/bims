@@ -33,7 +33,7 @@ import itgarden.repository.homevisit.ReasonsRepository;
 import itgarden.repository.homevisit.RelationsRepository;
 import itgarden.repository.homevisit.ReligionRepository;
 import itgarden.repository.homevisit.ThanaRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -171,7 +171,7 @@ public class M_ApprovalController {
 
     public String edit(@PathVariable Long id, M_Approval m_Approval, Model model) {
 
-        model.addAttribute("m_Approval", m_ApprovalRepository.findOne(id));
+        model.addAttribute("m_Approval", m_ApprovalRepository.findById(id).orElse(null));
 
         model.addAttribute("decission", Decision.values());
 
@@ -182,11 +182,11 @@ public class M_ApprovalController {
 
     public String delete(@PathVariable Long id, M_Approval m_Approval, RedirectAttributes redirectAttrs) {
 
-        m_Approval = m_ApprovalRepository.findOne(id);
+        m_Approval = m_ApprovalRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", m_Approval.motherMasterCode.getId());
 
-        m_ApprovalRepository.delete(id);
+        m_ApprovalRepository.deleteById(id);
 
         return "redirect:/m_approval/motherdetails/{m_id}";
     }
@@ -198,7 +198,7 @@ public class M_ApprovalController {
 
         motherMasterData.setId(mother_id);
 
-        model.addAttribute("m_info", motherMasterDataRepository.findOne(mother_id));
+        model.addAttribute("m_info", motherMasterDataRepository.findById(mother_id).orElse(null));
 
         model.addAttribute("accessibility", m_AccessibilityRepository.findBymotherMasterCode(motherMasterData));
 

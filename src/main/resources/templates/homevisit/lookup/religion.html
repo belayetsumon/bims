@@ -1,114 +1,142 @@
+
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Home Visit Look Up Data
-                
-                    <small></small>
-                </h1>
 
+
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Home Visit </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit Settings</a></li>
+                                <li class="breadcrumb-item active">Reasons</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
 
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><span th:text="${table_name}"> ..</span> </h3>
-                        <div class="box-tools pull-right">
-                            <div class="btn-group">
-                                <a th:href="@{/lookupdashboards/homevisit}" type="button" class="btn  btn-warning btn-xs">Close</a>
-                            </div>
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Reasons</h3>
+
+                        <div class="card-tools">
+
+                            <a th:href="@{/lookupdashboards/homevisit}" type="button" class="btn  btn-light btn-sm text-red"> Close <i class="fas fa-times"></i></a>
+
                         </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
 
-                        <div class="col-sm-6">
+                        <div class="row">
 
-                            <!-- Default box -->
-                            <div class="box box-warning">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Add/Edit <span th:text="${table_name}"> ..</span>  </h3>
+                            <div class="col-sm-6">
 
-                                    <div class="box-tools pull-right">
-                                        <div class="btn-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title text-info">Add/Edit <span th:text="${table_name}"> ..</span>  </h3>
 
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool text-info" data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-tool text-info" data-card-widget="remove" title="Remove">
+                                                <i class="fas fa-times"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="box-body">
-                                    <form action="#" th:action="@{/religion/save}" th:object="${religion}" method="post">
-                                        <input type="hidden" class="form-control"  id="bookName"  name="id"	th:value="${religion.id}" />   
-                                         <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
-                                        <input type="text" class="form-contro col-sm-6l"  id="bookName"   name="NAME" th:value="${religion.NAME}" />
+                                    <div class="card-body">
 
-                                        <span  class="help-block text-red" th:if="${#fields.hasErrors('NAME')}" th:errors="*{NAME}">First Name Error</span>
-                                        <div class="text-right">
-                                            <div class="box-tools pull-right">
+
+
+                                        <form action="#"  class="form-horizontal" th:action="@{/religion/save}" th:object="${religion}" method="post">
+
+                                            <div class="form-group">
+                                                <input type="hidden" class="form-control" 	th:field="*{id}"  />   
+                                                <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
+                                                <input type="text" class="form-control "   th:field="*{name}"  />
+
+                                                <span  class="help-block text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
+                                            </div>
+                                            <div class="form-group">
+
                                                 <div class="btn-group text-center">
-                                                    <button type="submit" class="btn  btn-primary btn-xs">Save</button>
+                                                    <button type="submit" class="btn btn-block btn-info">Save</button>
+
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.card-body -->
 
-                                <!-- /.box-body -->
-                                <div class="box-footer">
-                                    <div class="box-tools pull-right">
-                                        <div class="btn-group">
+                                </div>    <!-- /.card -->             
+                            </div>
+
+                            <div class="col-sm-6">  
+
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title text-info"><span th:text="${table_name}"> ..</span> List</h3> </h3>
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool text-info" data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-tool text-info" data-card-widget="remove" title="Remove">
+                                                <i class="fas fa-times"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /.box-footer-->
-                            </div>
-                            <!-- /.box -->              
-                        </div>
 
-                        <div class="col-sm-6">    
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"><span th:text="${table_name}"> ..</span> List</h3>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Name</th>
-                                            <th>Edit</th>
-                                            <th style="width: 40px">Delete</th>
-                                        </tr>
-                                        <tr th:each="list,status:${list}">
-                                            <td th:text="${status.count}">2.</td>
-                                            <td th:text="${list.NAME}">Chakma</td>
-                                            <td>
-                                                <a th:href="@{/religion/edit/{id} (id=${list.id})}" > Edit</a>
-                                            </td>
-                                            <td> <a th:href="@{/religion/delete/{id} (id=${list.id})}" > Delete </a></td>
-                                        </tr>                                
-                                    </table>
-                                </div>
-                                <!-- /.box-body -->
 
-                            </div>                      
-                        </div>             
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                                    <div class="card-body">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Name</th>
+                                                <th>Edit</th>
+                                                <th style="width: 40px">Delete</th>
+                                            </tr>
+                                            <tr th:each="list,status:${list}">
+                                                <td th:text="${status.count}">2.</td>
+                                                <td th:text="${list.name}">Chakma</td>
+                                                <td>
+                                                    <a th:href="@{/religion/edit/{id} (id=${list.id})}" > Edit</a>
+                                                </td>
+                                                <td> <a th:href="@{/religion/delete/{id} (id=${list.id})}" > Delete </a></td>
+                                            </tr>                               
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                </div> <!-- /.card -->                      
+                            </div>  
 
                         </div>
+
                     </div>
-                    <!-- /.box-footer-->
-                </div>
+                    <!-- /.card-body -->
+                    <!--                    <div class="card-footer">
+                    
+                                        </div>-->
+                    <!-- /.card-footer-->
+                </div>  
                 <!-- /.box -->
 
             </section>

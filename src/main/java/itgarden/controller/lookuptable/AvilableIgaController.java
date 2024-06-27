@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.AvilableIga;
 import itgarden.repository.homevisit.AvilableIgaRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +51,7 @@ public class AvilableIgaController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, AvilableIga avilableIga, Model model) {
-        model.addAttribute("avilableIga", avilableIgaRepository.findOne(id));
+        model.addAttribute("avilableIga", avilableIgaRepository.findById(id));
         model.addAttribute("list", avilableIgaRepository.findAll());
         model.addAttribute("table_name", " Avilable IGA");
         return "/homevisit/lookup/avilableiga";
@@ -59,7 +59,7 @@ public class AvilableIgaController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, AvilableIga avilableIga) {
-        avilableIgaRepository.delete(id);
+        avilableIgaRepository.deleteById(id);
         return "redirect:/avilableiga/index";
     }
 

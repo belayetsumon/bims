@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.VisitsOfficersName;
 import itgarden.repository.homevisit.VisitsOfficersNameRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +54,7 @@ public class VisitsOfficersNameController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, VisitsOfficersName visitsOfficersName, Model model) {
-       model.addAttribute("visitsOfficersName",   visitsOfficersNameRepository.findOne(id));
+       model.addAttribute("visitsOfficersName",   visitsOfficersNameRepository.findById(id));
         model.addAttribute("list",  visitsOfficersNameRepository.findAll());
          return "/homevisit/lookup/visitsOfficersName";
     }
@@ -62,7 +62,7 @@ public class VisitsOfficersNameController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, VisitsOfficersName visitsOfficersName) {        
-     visitsOfficersNameRepository.delete(id);
+     visitsOfficersNameRepository.deleteById(id);
           return "redirect:/visitsOfficersName/index";
     }    
     

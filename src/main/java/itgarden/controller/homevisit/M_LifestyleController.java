@@ -15,7 +15,7 @@ import itgarden.repository.homevisit.M_LifestyleRepository;
 import itgarden.repository.homevisit.Personal_HabitsRepository;
 import itgarden.repository.homevisit.Toilet_TypeRepository;
 import itgarden.repository.homevisit.Water_SourceRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -106,7 +106,7 @@ public class M_LifestyleController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Lifestyle m_Lifestyle, Model model) {
-        model.addAttribute("m_Lifestyle", m_LifestyleRepository.findOne(id));
+        model.addAttribute("m_Lifestyle", m_LifestyleRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother Life Style Edit");
         model.addAttribute("waterSource", water_SourceRepository.findAll());
         model.addAttribute("drinkingWaterSource", drinking_Water_SourceRepository.findAll());
@@ -120,9 +120,9 @@ public class M_LifestyleController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Lifestyle m_Lifestyl, RedirectAttributes redirectAttrs) {
-        m_Lifestyl = m_LifestyleRepository.findOne(id);
+        m_Lifestyl = m_LifestyleRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Lifestyl.motherMasterCode.getId());
-        m_LifestyleRepository.delete(id);
+        m_LifestyleRepository.deleteById(id);
         return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

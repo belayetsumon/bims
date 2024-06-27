@@ -8,7 +8,7 @@ package itgarden.repository.homevisit;
 import itgarden.model.homevisit.Decision;
 import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
-import itgarden.model.homevisit.Yes_No;
+import itgarden.repository.homevisit.projection.AllMotherInterface;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,75 +19,74 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface MotherMasterDataRepository extends JpaRepository<MotherMasterData, Long> {
 
+    long count();
+
     List<MotherMasterData> findAllBycreated(LocalDate date);
 
     List<MotherMasterData> findByHomeVisitDateBetween(LocalDate fromdate, LocalDate todate);
 
-    MotherMasterData findById(Long id);
+    // List<MotherMasterData> findAllByOrderByIdDesc();
+    List<AllMotherInterface> findAllByOrderByIdDesc();
 
-    List<MotherMasterData> findAllByOrderByIdDesc();
+    Long countByeligibility(Eligibility eligibility);
 
-    List<MotherMasterData> findAllByeligibilityOrderByIdDesc(Eligibility eligibility);
+    List<AllMotherInterface> findAllByeligibilityOrderByIdDesc(Eligibility eligibility);
 
-    List<MotherMasterData> findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility eligibility);
+    // List<AllMotherInterface> findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility eligibility);
+    List<MotherMasterData> findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility eligibility);
+    List<AllMotherInterface> findAllByMaddressIsNotNullAndMaccessibilityIsNotNullAndMcommunityInformationIsNotNullAndMcurrentHelpIsNotNullAndMfamilynformationIsNotNullAndMhouseInformationIsNotNullAndMincomeInformationIsNotNullAndMlocalGovtFacilitiesIsNotNullAndMnutritionIsNotNullAndMpropertyIsNotNullAndMapprovalIsNullOrderByIdDesc();
 
-    List<MotherMasterData> findAllByMAddressIsNotNullAndMAccessibilityIsNotNullAndMCommunityInformationIsNotNullAndMCurrentHelpIsNotNullAndMFamilynformationIsNotNullAndMHouseInformationIsNotNullAndMIncomeInformationIsNotNullAndMLocalGovtFacilitiesIsNotNullAndMNutritionIsNotNullAndMPropertyIsNotNullAndMApprovalIsNullOrderByIdDesc();
-
-    List<MotherMasterData> findAllByMAddressIsNotNullAndMAccessibilityIsNullOrderByIdDesc();
-
+    List<AllMotherInterface> findAllByMaddressIsNotNullAndMaccessibilityIsNullOrderByIdDesc();
+    
     //List<MotherMasterData> findAllByMAddressIsNullOrMAccessibilityIsNullOrMCommunityInformationIsNullOrMCurrentHelpIsNullOrMFamilynformationIsNullOrMHouseInformationIsNullOrMIncomeInformationIsNullOrMLocalGovtFacilitiesIsNullOrMNutritionIsNullOrMPropertyIsNullOrderByIdDesc();
-    List<MotherMasterData> findAllByMAddressIsNotNullOrderByIdDesc();
+    List<AllMotherInterface> findAllByMaddressIsNotNullOrderByIdDesc();
 
     // Mother global Search
     List<MotherMasterData> findByMotherNameContaining(String motherName);
 
     // All childrean 
     //List<MotherMasterData> findAllByMChildinfoIsNotNullAndMApprovalDecissionOrderByIdDesc(Decision decission);
-    List<MotherMasterData> findByMChildinfoIsNotNullOrderByIdDesc();
-
+    List<MotherMasterData> findByMchildinfoIsNotNullOrderByIdDesc();
     // new childrean 
-    List<MotherMasterData> findAllByMChildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMApprovalDecissionOrderByIdDesc(int numberOfEligibleChildren, Decision decission);
-
+     List<MotherMasterData> findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(int numberOfEligibleChildren, Decision decission);
     /// Induction
-    List<MotherMasterData> findByOInductionIsNullAndMApprovalDecissionOrderByIdDesc(Decision decission);
-
-    List<MotherMasterData> findByOInductionIsNotNullAndAddmissionIsNullOrderByIdDesc();
+     List<MotherMasterData> findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision decission);
+    Long countByoinductionIsNotNullAndAddmissionIsNullOrderByIdDesc();
 
     // new mother health conditions check
-    //  List<MotherMasterData> findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
-    List<MotherMasterData> findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
-
+      List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc();
+    //List<MotherMasterData> findByoInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
     // new  professional observations
-    List<MotherMasterData> findByOInductionIsNotNullAndOInductionOProfessionalObserbationsMotherIsNullOrderByIdDesc();
-
+    List<MotherMasterData> findByOinductionIsNotNullAndOprofessionalObserbationsMotherIsNullOrderByIdDesc();
     ///  New admission
-    List<MotherMasterData> findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNotNullAndOInductionOProfessionalObserbationsMotherIsNotNullAndAddmissionIsNullOrderByIdDesc();
-
+     List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNotNullAndAddmissionIsNullOrderByIdDesc();
     //Psychology 
-    List<MotherMasterData> findByAddmissionIsNotNullAndRPsychologyMotherIsNullAndReleaseMotherIsNullOrderByIdDesc();
+    List<MotherMasterData> findByAddmissionIsNotNullAndRpsychologyMotherIsNullAndReleaseMotherIsNullOrderByIdDesc();
+//
+//    // C_NutritionalStatus
+    Long countByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc();
+//
+//    // Pree re itrigration Visit
+//    List<MotherMasterData> findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc();
+//
 
-    // C_NutritionalStatus
-    List<MotherMasterData> findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc();
+    Long countByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc();
+//
+//    // Re Intirigrations check list
+//    List<MotherMasterData> findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc();
+//
+//    List<MotherMasterData> findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No Reintegration);
+//
+//    // Realease 
+//    List<MotherMasterData> findByReleaseMotherIsNotNullOrderByIdDesc();
+//
+//    // Follow up
 
-    // Pree re itrigration Visit
-    List<MotherMasterData> findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc();
-
-    List<MotherMasterData> findByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc();
-
-    // Re Intirigrations check list
-    List<MotherMasterData> findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc();
-
-    List<MotherMasterData> findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No Reintegration);
-
-    // Realease 
-    List<MotherMasterData> findByReleaseMotherIsNotNullOrderByIdDesc();
-
-    // Follow up
-    List<MotherMasterData> findByFollowUpMotherIsNotNullOrderByIdDesc();
-
-    // Custom report
-    List<MotherMasterData> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
-
-    List<MotherMasterData> findByEligibilityAndCreatedBetween(Eligibility eligibility, LocalDate fromdate, LocalDate todate);
+    Long countByFollowUpMotherIsNotNullOrderByIdDesc();
+//
+//    // Custom report
+//    List<MotherMasterData> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
+//
+//    List<MotherMasterData> findByEligibilityAndCreatedBetween(Eligibility eligibility, LocalDate fromdate, LocalDate todate);
 
 }

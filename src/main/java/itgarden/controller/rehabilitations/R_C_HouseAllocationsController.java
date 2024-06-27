@@ -10,7 +10,8 @@ import itgarden.model.rehabilitations.R_C_HouseAllocations;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.rehabilitations.HouseNameRepository;
 import itgarden.repository.rehabilitations.R_C_HouseAllocationsRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,7 @@ public class R_C_HouseAllocationsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_C_HouseAllocations r_C_HouseAllocations) {
-        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findOne(id));
+        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findById(id));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
         model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
@@ -80,9 +81,14 @@ public class R_C_HouseAllocationsController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_C_HouseAllocations r_C_HouseAllocations, RedirectAttributes redirectAttrs) {
-        r_C_HouseAllocations = r_C_HouseAllocationsRepository.findOne(id);
+       
+        Optional<R_C_HouseAllocations>  optionalR_C_HouseAllocations = r_C_HouseAllocationsRepository.findById(id);
+        
+        r_C_HouseAllocations = optionalR_C_HouseAllocations.orElse(null);
+        
         redirectAttrs.addAttribute("m_id", r_C_HouseAllocations.motherMasterCode.getId());
-        r_C_HouseAllocationsRepository.delete(id);
+       
+        r_C_HouseAllocationsRepository.findById(id);
         return "redirect:/houseworkallocation/index/{m_id}";
     }
 

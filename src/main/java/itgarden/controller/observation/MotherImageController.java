@@ -15,10 +15,10 @@ import itgarden.repository.observation.MotherImageRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.services.StorageProperties;
+import jakarta.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,75 +37,77 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/image")
 public class MotherImageController {
-
+    
     @Autowired
     StorageProperties properties;
-
+    
     @Autowired
     MotherMasterDataRepository motherMasterDataRepository;
-
+    
     @Autowired
     O_MAddmissionRepository o_MAddmissionRepository;
-
+    
     @Autowired
     M_ApprovalRepository m_ApprovalRepository;
-
+    
     @Autowired
     O_InductionRepository o_InductionRepository;
-
+    
     @Autowired
     MotherImageRepository motherImageRepository;
-
+    
     @Autowired
     Child_imageRepository child_imageRepository;
-
+    
     @RequestMapping("/newmother")
     public String newmother(Model model) {
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
         model.addAttribute("list", o_MAddmissionRepository.findBymotherImageIsNullOrderByIdDesc());
         return "homevisit/observation/imageupload/newmother";
     }
-
+    
+    
+    
     @RequestMapping("/motherlist")
     public String page(Model model) {
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
         model.addAttribute("list", motherImageRepository.findAll());
         return "homevisit/observation/imageupload/mothersearch";
     }
-
+    
     @RequestMapping("/index/{m_id}")
     public String index(Model model, @PathVariable Long m_id) {
-
+        
         model.addAttribute("minfo", m_id);
-
+        
         MotherMasterData motherMasterData = new MotherMasterData();
-
+        
         motherMasterData.setId(m_id);
-
+        
         model.addAttribute("mimage", motherImageRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("cimage", child_imageRepository.findBymotherMasterCode(motherMasterData));
         return "homevisit/observation/imageupload/index";
     }
-
+    
     @RequestMapping("/create/{m_id}")
     public String mAdd(Model model, @PathVariable Long m_id, MotherImage motherImage) {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
         motherImage.setMotherMasterCode(motherMasterData);
-
+        
         O_MAddmission oMAddmission = o_MAddmissionRepository.findByMotherMasterCode(motherMasterData);
         oMAddmission.setId(oMAddmission.getId());
         motherImage.setAddmission(oMAddmission);
-
+        
         return "homevisit/observation/imageupload/addmotherimg";
     }
-
+    
     @RequestMapping("/edit/{id}")
     public String mEdit(Model model, @PathVariable Long id, MotherImage motherImage) {
-        model.addAttribute("o_MAddmission", motherImageRepository.findOne(id));
+        model.addAttribute("o_MAddmission", motherImageRepository.findById(id).orElse(null));
         return "homevisit/observation/admission/addmotherimg";
     }
-
+    
     @RequestMapping("/save/{m_id}")
     public String mSave(Model model, @PathVariable Long m_id, @Valid MotherImage motherImage,
             BindingResult bindingResult, @RequestParam("picName") MultipartFile filee, RedirectAttributes redirectAttributes) {
@@ -113,19 +115,19 @@ public class MotherImageController {
             MotherMasterData motherMasterData = new MotherMasterData();
             motherMasterData.setId(m_id);
             motherImage.setMotherMasterCode(motherMasterData);
-
+            
             O_MAddmission oMAddmission = o_MAddmissionRepository.findByMotherMasterCode(motherMasterData);
             oMAddmission.setId(oMAddmission.getId());
             motherImage.setAddmission(oMAddmission);
-
+            
             return "homevisit/observation/imageupload/addmotherimg";
         }
-
+        
         if (filee.isEmpty()) {
             model.addAttribute("message", "Please select a file to upload");
             return "homevisit/observation/imageupload/addmotherimg";
         }
-
+        
         if (filee.getSize() > 150000) {
             model.addAttribute("message", "File size is learge. Please upload 150X150 px.file");
             return "homevisit/observation/imageupload/addmotherimg";
@@ -162,32 +164,32 @@ public class MotherImageController {
                 // model.addAttribute("o_MAddmission", motherMasterDataRepository.findOne(m_id));
                 motherImage.setImageName(filee.getOriginalFilename());
                 motherImageRepository.save(motherImage);
-
+                
                 redirectAttributes.addFlashAttribute("message", "Sucess");
-
+                
                 return "redirect:/image/index/{m_id}";
             } catch (Exception e) {
                 redirectAttributes.addFlashAttribute("message", filee.getOriginalFilename() + " => " + e.getMessage());
                 return "redirect:/image/index/{m_id}";
-
+                
             }
         } else {
             redirectAttributes.addFlashAttribute("message", "File empty");
             return "redirect:/image/index/{m_id}";
         }
-
+        
     }
-
+    
     @Transactional
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, MotherImage motherImage, RedirectAttributes redirectAttrs) {
-
-        motherImage = motherImageRepository.findOne(id);
-
+        
+        motherImage = motherImageRepository.findById(id).orElse(null);
+        
         File file = new File(properties.getRootPath() + File.separator + "bims_repo" + File.separator + motherImage.getImageName());
         file.delete();
         //redirectAttrs.addAttribute("m_id", motherImage.motherMasterCode.getId());
-        motherImageRepository.delete(id);
+        motherImageRepository.deleteById(id);
         redirectAttrs.addAttribute("m_id", motherImage.motherMasterCode.getId());
         return "redirect:/image/index/{m_id}";
     }

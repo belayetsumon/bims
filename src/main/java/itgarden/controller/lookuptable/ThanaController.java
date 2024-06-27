@@ -8,8 +8,8 @@ package itgarden.controller.lookuptable;
 import itgarden.model.homevisit.District;
 import itgarden.model.homevisit.Thana;
 import itgarden.repository.homevisit.ThanaRepository;
+import jakarta.validation.Valid;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,13 +52,10 @@ public class ThanaController {
         thanaRepository.save(thana);
 
         return "redirect:/thana/index";
-    }  
-    
-    
-    
+    }      
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Thana thana, Model model) {
-       model.addAttribute("thana",   thanaRepository.findOne(id));
+       model.addAttribute("thana",   thanaRepository.findById(id));
         model.addAttribute("list",  thanaRepository.findAll());
         model.addAttribute("district",District.values() );
          return "/homevisit/lookup/thana";
@@ -67,7 +64,7 @@ public class ThanaController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Thana thana) {        
-     thanaRepository.delete(id);
+     thanaRepository.deleteById(id);
           return "redirect:/thana/index";
     } 
     

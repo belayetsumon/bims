@@ -80,7 +80,7 @@ public class LongtremcareController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(3l);
         //List<M_Child_info> childlist = m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull();
-        model.addAttribute("lchildlist",  m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull());
+       // model.addAttribute("lchildlist",  m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull());
        // model.addAttribute("list", l_FosteRepository.findAll());
         return "longtermcare/alllongtermcarechild";
     }

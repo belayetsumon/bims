@@ -16,7 +16,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Md Belayet Hossin
  */
 public interface M_Child_infoRepository extends JpaRepository<M_Child_info, Long> {
-    
 
     List<M_Child_info> findBymotherMasterCode(MotherMasterData motherMasterData);
 
@@ -24,27 +23,23 @@ public interface M_Child_infoRepository extends JpaRepository<M_Child_info, Long
     List<M_Child_info> findByChildAdmissionIsNotNullAndEligibilityStudentIsNullAndRegularAdmissionClassIsNullAndReleaseChildIsNull();
 
     List<M_Child_info> findByMotherMasterCodeAndLfosteIsNullAndReleaseChildIsNull(MotherMasterData motherMasterData);
-    
-    List<M_Child_info> findByLfosteIsNotNullAndReleaseChildIsNull();
-    
-    List<M_Child_info> findByHigherStudyIsNotNullAndReleaseChildIsNull();
-    
-    List<M_Child_info> findByJobIsNotNullAndReleaseChildIsNull();
-    
-    List<M_Child_info> findByMarriageIsNotNullAndReleaseChildIsNull();
-    
+
+    Long countByLfosteIsNotNullAndReleaseChildIsNull();
+
+    Long countByHigherStudyIsNotNullAndReleaseChildIsNull();
+
+    Long countByJobIsNotNullAndReleaseChildIsNull();
+
+    Long countByMarriageIsNotNullAndReleaseChildIsNull();
+
     // total Child now spp
-    
-    List<M_Child_info> findByChildAdmissionIsNotNullAndReleaseChildIsNull();
-    
+    Long countByChildAdmissionIsNotNullAndReleaseChildIsNull();
+
     // new discontinue 
-    
     List<M_Child_info> findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull();
-    
-    List<M_Child_info> findByFollowUpChildrenIsNotNull();
-    
-    
+
+    Long countByFollowUpChildrenIsNotNull();
+
     List<M_Child_info> findByCreatedBetween(LocalDate fromdate, LocalDate todate);
-    
-    
+
 }

@@ -52,11 +52,9 @@ public class DashboardsController {
 
     @Autowired
     O_MAddmissionRepository o_MAddmissionRepository;
-    
-    
+
     @Autowired
-    O_InductionRepository  o_InductionRepository;
-    
+    O_InductionRepository o_InductionRepository;
 
     @Autowired
     O_ChildAdmissionRepository o_ChildAdmissionRepository;
@@ -84,8 +82,8 @@ public class DashboardsController {
 
     @Autowired
     ReleaseChildRepository releaseChildRepository;
-    
-     @Autowired
+
+    @Autowired
     FollowUpMotherRepsitory followUpMotherRepsitory;
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
@@ -95,45 +93,45 @@ public class DashboardsController {
 
         model.addAttribute("userinfo", users);
 
-        model.addAttribute("totalHomeVisit", motherMasterDataRepository.findAll().size());
+        model.addAttribute("totalHomeVisit", motherMasterDataRepository.count());
 
-        model.addAttribute("eligible", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible).size());
+        model.addAttribute("eligible", motherMasterDataRepository.countByeligibility(Eligibility.Eligible));
 
-        model.addAttribute("noteligible", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Not_Eligible).size());
+        model.addAttribute("noteligible", motherMasterDataRepository.countByeligibility(Eligibility.Not_Eligible));
 
-        model.addAttribute("approve", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve).size());
+        model.addAttribute("approve", m_ApprovalRepository.countByDecission(Decision.Approve));
 
-        model.addAttribute("notapprove", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Not_Approve).size());
+        model.addAttribute("notapprove", m_ApprovalRepository.countByDecission(Decision.Not_Approve));
 
-        model.addAttribute("eligiblechild", m_Child_infoRepository.findAll().size());
+        model.addAttribute("eligiblechild", m_Child_infoRepository.count());
 
-        model.addAttribute("totalobservationmother", motherMasterDataRepository.findByOInductionIsNotNullAndAddmissionIsNullOrderByIdDesc().size());
+        model.addAttribute("totalobservationmother", motherMasterDataRepository.countByoinductionIsNotNullAndAddmissionIsNullOrderByIdDesc());
 
-        model.addAttribute("totalmotheradmission", o_MAddmissionRepository.findAll().size());
+        model.addAttribute("totalmotheradmission", o_MAddmissionRepository.count());
 
-        model.addAttribute("totalmothernow", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc().size());
+        model.addAttribute("totalmothernow", motherMasterDataRepository.countByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc());
 
-        model.addAttribute("totalchildadmission", o_ChildAdmissionRepository.findAll().size());
+        model.addAttribute("totalchildadmission", o_ChildAdmissionRepository.count());
 
-        model.addAttribute("totalchildnow", m_Child_infoRepository.findByChildAdmissionIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("totalchildnow", m_Child_infoRepository.countByChildAdmissionIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("longtermcarechildlist", m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("longtermcarechildlist", m_Child_infoRepository.countByLfosteIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("totalhigherstudy", m_Child_infoRepository.findByHigherStudyIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("totalhigherstudy", m_Child_infoRepository.countByHigherStudyIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("totaljob", m_Child_infoRepository.findByJobIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("totaljob", m_Child_infoRepository.countByJobIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("totalmarrage", m_Child_infoRepository.findByMarriageIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("totalmarrage", m_Child_infoRepository.countByMarriageIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("preReintegrationNow", motherMasterDataRepository.findByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc().size());
+        model.addAttribute("preReintegrationNow", motherMasterDataRepository.countByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc());
 
-        model.addAttribute("totalreintegrationmother", releaseMotherRepository.findAll().size());
+        model.addAttribute("totalreintegrationmother", releaseMotherRepository.count());
 
-        model.addAttribute("totalreintegrationchild", releaseChildRepository.findAll().size());
+        model.addAttribute("totalreintegrationchild", releaseChildRepository.count());
 
-        model.addAttribute("totalmotherfollowup", motherMasterDataRepository.findByFollowUpMotherIsNotNullOrderByIdDesc().size());
+        model.addAttribute("totalmotherfollowup", motherMasterDataRepository.countByFollowUpMotherIsNotNullOrderByIdDesc());
 
-        model.addAttribute("totalchildfollowup", m_Child_infoRepository.findByFollowUpChildrenIsNotNull().size());
+        model.addAttribute("totalchildfollowup", m_Child_infoRepository.countByFollowUpChildrenIsNotNull());
 
         return "dashboards/index";
     }
@@ -157,15 +155,12 @@ public class DashboardsController {
         model.addAttribute("ffdate", fdate);
         model.addAttribute("ttdate", tdate);
 
-        model.addAttribute("totalHomeVisit", motherMasterDataRepository.findByCreatedBetween(fromdate, todate).size());
+        //  model.addAttribute("totalHomeVisit", motherMasterDataRepository.findByCreatedBetween(fromdate, todate).size());
+        //  model.addAttribute("eligible", motherMasterDataRepository.findByEligibilityAndCreatedBetween(Eligibility.Eligible, fromdate, todate).size());
+        //  model.addAttribute("noteligible", motherMasterDataRepository.findByEligibilityAndCreatedBetween(Eligibility.Not_Eligible, fromdate, todate).size());
+        model.addAttribute("approve", m_ApprovalRepository.findByDecissionAndCreatedBetweenOrderByIdDesc(Decision.Approve, fromdate, todate).size());
 
-        model.addAttribute("eligible", motherMasterDataRepository.findByEligibilityAndCreatedBetween(Eligibility.Eligible,fromdate, todate).size());
-
-        model.addAttribute("noteligible", motherMasterDataRepository.findByEligibilityAndCreatedBetween(Eligibility.Not_Eligible,fromdate, todate).size());
-
-        model.addAttribute("approve", m_ApprovalRepository.findByDecissionAndCreatedBetweenOrderByIdDesc(Decision.Approve,fromdate, todate).size());
-
-        model.addAttribute("notapprove", m_ApprovalRepository.findByDecissionAndCreatedBetweenOrderByIdDesc(Decision.Not_Approve,fromdate, todate).size());
+        model.addAttribute("notapprove", m_ApprovalRepository.findByDecissionAndCreatedBetweenOrderByIdDesc(Decision.Not_Approve, fromdate, todate).size());
 
         model.addAttribute("eligiblechild", m_Child_infoRepository.findByCreatedBetween(fromdate, todate).size());
 
@@ -173,13 +168,12 @@ public class DashboardsController {
 
         model.addAttribute("totalmotheradmission", o_MAddmissionRepository.findByCreatedBetween(fromdate, todate).size());
 
-        model.addAttribute("totalmothernow", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc().size());
-
+        //  model.addAttribute("totalmothernow", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc().size());
         model.addAttribute("totalchildadmission", o_ChildAdmissionRepository.findByCreatedBetween(fromdate, todate).size());
 
-        model.addAttribute("totalchildnow", m_Child_infoRepository.findByChildAdmissionIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("totalchildnow", m_Child_infoRepository.countByChildAdmissionIsNotNullAndReleaseChildIsNull());
 
-        model.addAttribute("longtermcarechildlist", m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull().size());
+        model.addAttribute("longtermcarechildlist", m_Child_infoRepository.countByLfosteIsNotNullAndReleaseChildIsNull());
 
         model.addAttribute("totalhigherstudy", l_HigherStudyRepository.findByCreatedBetween(fromdate, todate).size());
 
@@ -187,21 +181,17 @@ public class DashboardsController {
 
         model.addAttribute("totalmarrage", l_MarriageRepository.findByCreatedBetween(fromdate, todate).size());
 
-        model.addAttribute("preReintegrationNow", motherMasterDataRepository.findByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc().size());
-
+        // model.addAttribute("preReintegrationNow", motherMasterDataRepository.findByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc().size());
         model.addAttribute("totalreintegrationmother", releaseMotherRepository.findByCreatedBetween(fromdate, todate).size());
 
         model.addAttribute("totalreintegrationchild", releaseChildRepository.findByCreatedBetween(fromdate, todate).size());
 
         model.addAttribute("totalmotherfollowup", followUpMotherRepsitory.findByCreatedBetween(fromdate, todate).size());
 
-        model.addAttribute("totalchildfollowup", m_Child_infoRepository.findByFollowUpChildrenIsNotNull().size());
+        model.addAttribute("totalchildfollowup", m_Child_infoRepository.countByFollowUpChildrenIsNotNull());
 
         return "dashboards/customdashboards";
     }
-    
-    
-    
 
     @RequestMapping(value = {"/age"}, method = RequestMethod.GET)
     @ResponseBody

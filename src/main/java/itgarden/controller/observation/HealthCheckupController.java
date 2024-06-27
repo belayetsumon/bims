@@ -38,7 +38,7 @@ public class HealthCheckupController {
 
     @RequestMapping("/newmother")
     public String newmother(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc());
         return "homevisit/observation/healthcheckup/newmother";
     }
 

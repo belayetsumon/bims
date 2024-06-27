@@ -15,7 +15,7 @@ import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_Fam
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_House_InformationRepository;
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_LifestyleRepository;
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_Repository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +59,7 @@ public class Pre_reintegration_visit_Controller {
 
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-     model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
+    // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
         return "pre_reintegration_visit/mothersearch";
     }
 
@@ -93,7 +93,7 @@ public class Pre_reintegration_visit_Controller {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, PreReintegrationVisit preReintegrationVisit, Model model) {
-        model.addAttribute("preReintegrationVisit", pre_reintegration_visit_Repository.findOne(id));
+        model.addAttribute("preReintegrationVisit", pre_reintegration_visit_Repository.findById(id).orElse(null));
         return "pre_reintegration_visit/pre_reintegration_visit";
     }
 
@@ -111,9 +111,9 @@ public class Pre_reintegration_visit_Controller {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, PreReintegrationVisit preReintegrationVisit, RedirectAttributes redirectAttrs) {
-        preReintegrationVisit = pre_reintegration_visit_Repository.findOne(id);
+        preReintegrationVisit = pre_reintegration_visit_Repository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", preReintegrationVisit.motherMasterCode.getId());
-        pre_reintegration_visit_Repository.delete(id);
+        pre_reintegration_visit_Repository.deleteById(id);
         return "redirect:/pre_reintegration_visit/index";
     }
 

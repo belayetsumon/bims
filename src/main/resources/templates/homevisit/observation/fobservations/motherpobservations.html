@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Observation
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>Psychological and Therapy Support</h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support</a></li>
+                                <li class="breadcrumb-item active">Mother List For Professional Observations </li>
+                                <li class="breadcrumb-item active">P. Observations by Mother </li>
+                                <li class="breadcrumb-item active">Add Mother P. Observations</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"> <span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Add Mother Professional Observations</h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/professionalobserbations/index/{id}(id=${o_Professional_Obserbations_Mother.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/professionalobserbations/index/{id}(id=${o_Professional_Obserbations_Mother.motherMasterCode.id})}"  type="button" class="btn  btn-light text-red btn-sm">Close</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/mprofessionalobserbations/save/{id}(id=${o_Professional_Obserbations_Mother.motherMasterCode.id})}"  th:object="${o_Professional_Obserbations_Mother}"  method="post" class="form-horizontal">
 
                             <input type="hidden"    class="form-control " th:field="*{id}"  />    
@@ -35,23 +47,21 @@
 
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
 
-                            <div class="box-body">
+                            <div class="card-body">
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="co" class="col-sm-4 control-label"> Induction Start Date  :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">       
+                                    <div class="form-group col-sm-6 row">
+                                        <label for="co" class="col-sm-5 control-label"> Induction Start Date  :<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-5">       
                                             <input type="text"  class="form-control  "   th:field="*{inductionStartDate}" />            
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('inductionStartDate')}" th:errors="*{inductionStartDate}">First Name Error</span>
                                         </div>     
                                     </div>                                   
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> OB Start Date   <span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
+                                       
                                                 <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{obStartDate}"  id="referral_date"   />                
                                             </div>  
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('obStartDate')}" th:errors="*{obStartDate}">First Name Error</span>
@@ -60,7 +70,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Physical Disability<span class="text-red">  </span> :</label>
 
                                         <div class="col-sm-6">   
@@ -74,7 +84,7 @@
                                         </div>    
                                     </div>
 
-                                    <div class="form-group col-sm-8">
+                                    <div class="form-group col-sm-8 row">
                                         <label for="name" class="col-sm-4 control-label"> Physical Disability Note <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{physicalDisabilityNote}" > </textarea>         
@@ -83,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Therapy<span class="text-red">  </span> :</label>
 
                                         <div class="col-sm-6">   
@@ -97,7 +107,7 @@
                                         </div>    
                                     </div>
 
-                                    <div class="form-group col-sm-8">
+                                    <div class="form-group col-sm-8 row">
                                         <label for="name" class="col-sm-4 control-label"> Therapy Note <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{therapyNote}" > </textarea>         
@@ -106,7 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> ADL Performance<span class="text-red">  </span> :</label>
 
                                         <div class="col-sm-6">   
@@ -120,7 +130,7 @@
                                         </div>    
                                     </div>
 
-                                    <div class="form-group col-sm-8">
+                                    <div class="form-group col-sm-8 row">
                                         <label for="name" class="col-sm-4 control-label"> ADL Performance Note<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{adlPerformanceNote}" > </textarea>         
@@ -129,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Psychological assessment  Needs<span class="text-red">  </span> :</label>
 
                                         <div class="col-sm-6">   
@@ -143,7 +153,7 @@
                                         </div>    
                                     </div>
 
-                                    <div class="form-group col-sm-8">
+                                    <div class="form-group col-sm-8 row">
                                         <label for="name" class="col-sm-4 control-label"> Psychological assessment  Note<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{psychocialAssesmentNeedsNote}" > </textarea>         
@@ -152,7 +162,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-12">
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
@@ -162,21 +172,21 @@
                                 </div>                 
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

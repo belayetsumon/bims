@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Home Visit
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">  All Inserted Children List. </a></li>
+                                <li class="breadcrumb-item active">
+                                    Children List by Mother  </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Children Basic Information </h3>
-                                   <div class="box-tools pull-right">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Children Basic Information </h3>
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
-                                        <a  th:href="@{/childrendetails/index/{c_id}(c_id=${child_info.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                        <a  th:href="@{/childrendetails/index/{c_id}(c_id=${child_info.motherMasterCode.id})}"  type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
-                                    <th> Mother master code</th><td th:text="${child_info.motherMasterCode.motherMasterCode}"></td><th>Child master code</th><td th:text="${child_info.childMasterCode}"></td>
+                                        <th> Mother master code</th><td th:text="${child_info.motherMasterCode.motherMasterCode}"></td><th>Child master code</th><td th:text="${child_info.childMasterCode}"></td>
                                     </tr><tr>
                                         <th>Mother's Name</th><td th:text="${child_info.motherName}"></td><th>Father's Name</th><td th:text="${child_info.fathersName}"></td>
                                     </tr><tr>
@@ -36,64 +50,67 @@
                                     </tr><tr>
                                         <th>Date Of Birth </th><td th:text="${child_info.dateOfBirth}"></td><th>Gender  </th><td th:text="${child_info.gender}"></td>
                                     </tr>
-                </table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-            </div>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Children Address </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">      
+                                        <a   th:href="@{/childaddress/create/{id} (id=${child_info.id})}" type="button" class="btn  btn-light text-info btn-sm pull-right"> Add </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                        <th>Address Type </th>
+
+                                        <th>C/O</th>
+                                        <th>Vill/House</th>
+                                        <th>P.O</th>
+                                        <th>District</th>
+                                        <th>Thana</th>
+
+                                    </tr>
+                                    <tr th:each="addres,status:${c_addres}">        
+                                        <td> <a   th:href="@{/childaddress/edit/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
+                                        <td> <a   th:href="@{/childaddress/delete/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
+                                        <td th:text="${addres.childMasterCode.childMasterCode}">  </td>
+                                        <td th:text="${addres.addressType}">  </td>
+                                        <td th:text="${addres.co}"> cccz </td>
+                                        <td th:text="${addres.vill}">    </td>
+                                        <td th:text="${addres.po}">   </td>
+                                        <td th:text="${addres.district}">  </td>
+                                        <td th:text="${addres.thana.name}">   </td>     
+
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.box -->
-        <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title"> Children Address </h3>
-                <a   th:href="@{/childaddress/create/{id} (id=${child_info.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Edit </th>
-                        <th>Delete</th>
-                        <th>Address Type </th>
-
-                        <th>C/O</th>
-                        <th>Vill/House</th>
-                        <th>P.O</th>
-                        <th>District</th>
-                        <th>Thana</th>
-
-                    </tr>
-                    <tr th:each="addres,status:${c_addres}">        
-                        <td> <a   th:href="@{/childaddress/edit/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
-                        <td> <a   th:href="@{/childaddress/delete/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
-                        <td th:text="${addres.childMasterCode.childMasterCode}">  </td>
-                        <td th:text="${addres.addressType}">  </td>
-                        <td th:text="${addres.co}"> cccz </td>
-                        <td th:text="${addres.vill}">    </td>
-                        <td th:text="${addres.po}">   </td>
-                        <td th:text="${addres.district}">  </td>
-                        <td th:text="${addres.thana.name}">   </td>     
-
-
-                    </tr>
-                </table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-
-            </div>
-        </div>
-
-        
     </div>
-    <!-- /.col -->
-
-    <!-- /.col -->
-</div>
-
-</section>
-<!-- /.content -->
-</div>
-</div>
 </div>

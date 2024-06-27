@@ -6,9 +6,8 @@
 package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.Mucsuloskeletal;
-import itgarden.repository.rehabilitations.JointMobilityRepository;
 import itgarden.repository.rehabilitations.MucsuloskeletalRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 /**
  *
  * @author Md Belayet Hossin
@@ -52,7 +50,7 @@ public class MucsuloskeletalController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Mucsuloskeletal  mucsuloskeletal, Model model) {
-        model.addAttribute("mucsuloskeletal", mucsuloskeletalRepository.findOne(id));
+        model.addAttribute("mucsuloskeletal", mucsuloskeletalRepository.findById(id));
         model.addAttribute("list", mucsuloskeletalRepository.findAll());
         model.addAttribute("table_name", "Mucsuloskeletal");
         return "rehabilitations/lookup/mucsuloskeletal";
@@ -60,7 +58,7 @@ public class MucsuloskeletalController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Mucsuloskeletal  mucsuloskeletal) {
-        mucsuloskeletalRepository.delete(id);
+        mucsuloskeletalRepository.deleteById(id);
         return "redirect:/mucsuloskeletal/index";
     }
 

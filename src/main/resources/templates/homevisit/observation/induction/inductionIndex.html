@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Observation 
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">Induction Mother List </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Induction Mother List </h3>
-                                <a   th:href="@{/induction/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Induction </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Induction Mother List </h3>
+
+                                <div class="card-tools">
+                                    <!-- Buttons, labels, and many other things can be placed here! -->
+                                    <!-- Here is a label for example -->
+                                    <a   th:href="@{/induction/create/{id}(id=${m_id})}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info"> Add Induction </a>
+
+                                </div>
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
@@ -31,9 +49,9 @@
                                         <th>Induction Start Date </th>
                                         <th> Induction End Date</th>
                                         <th> Immediate Support On</th>
-                                         <th> Challenges of Beneficiary</th>
-                                          <th> Possible length of staying at SPP </th>
-                                         <th>Remark</th>
+                                        <th> Challenges of Beneficiary</th>
+                                        <th> Possible length of staying at SPP </th>
+                                        <th>Remark</th>
                                     </tr>                          
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
@@ -49,27 +67,31 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
 
                     <!-- /.col -->
                 </div>
-                     <div class="row">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> In House Induction Mother List </h3>
-                                <a   th:href="@{/inhouseinductionmother/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add In House Induction Mother </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> In House Induction Mother List </h3>
+                                <div class="card-tools">
+                                    <!-- Buttons, labels, and many other things can be placed here! -->
+                                    <!-- Here is a label for example -->
+                                    <a   th:href="@{/inhouseinductionmother/create/{id}(id=${m_id})}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info"> Add In House Induction Mother </a>
+                                </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
@@ -93,60 +115,65 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
 
                     <!-- /.col -->
                 </div>
-                  <div class="row">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> In House Induction Children List </h3>
-                                <a   th:href="@{/inhouseinductionchild/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add In House Induction Children </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> In House Induction Children List </h3>
+                                <div class="card-tools">
+                                    <!-- Buttons, labels, and many other things can be placed here! -->
+                                    <!-- Here is a label for example -->
+                                    <a   th:href="@{/inhouseinductionchild/create/{id}(id=${m_id})}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info"> Add In House Induction Children </a>
+                                </div>
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
                                         <th>Delete</th>
-                                         <th>Mother Master Code</th>
-                                         <th>Child Master Code</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Child Master Code</th>
                                         <th>Overall Behavior</th>
                                         <th> Advocate Feedback</th>
                                         <th> Beneficiary Opinion </th>
                                         <th>Remark</th>
-                                       
+
                                     </tr>                          
                                     <tr th:each="list3,status:${o_Inhouse_Inductions_child}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/inhouseinductionchild/edit/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
                                         <td> <a   th:href="@{/inhouseinductionchild/delete/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${list3.motherMasterCode.motherMasterCode}">Chakma</td>
-                                          <td th:text="${list3.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${list3.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${list3.overallBehavior}">Chakma</td>
                                         <td th:text="${list3.advocateFeedback}">Chakma</td>
                                         <td th:text="${list3.beneficiaryOpinion}">Chakma</td>
-                          
+
                                         <td th:text="${list3.remarks}">Chakma</td>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

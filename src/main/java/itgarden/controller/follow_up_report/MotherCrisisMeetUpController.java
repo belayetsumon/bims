@@ -5,11 +5,10 @@
  */
 package itgarden.controller.follow_up_report;
 
-import itgarden.model.follow_up_report.FollowUpChildren;
 import itgarden.model.follow_up_report.MotherCrisisMeetUp;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.follow_up_report.MotherCrisisMeetUpRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,7 +56,7 @@ public class MotherCrisisMeetUpController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, MotherCrisisMeetUp motherCrisisMeetUp) {
-        model.addAttribute("motherCrisisMeetUp", motherCrisisMeetUpRepository.findOne(id));
+        model.addAttribute("motherCrisisMeetUp", motherCrisisMeetUpRepository.findById(id).orElse(null));
 
         // model.addAttribute("childList", releaseChildRepository.findAll());
         return "follow_up_report/mothercrisismeetup";
@@ -65,9 +64,9 @@ public class MotherCrisisMeetUpController {
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Model model, MotherCrisisMeetUp motherCrisisMeetUp, RedirectAttributes redirectAttrs) {
-        motherCrisisMeetUp = motherCrisisMeetUpRepository.findOne(id);
+        motherCrisisMeetUp = motherCrisisMeetUpRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", motherCrisisMeetUp.motherMasterCode.getId());
-        motherCrisisMeetUpRepository.delete(id);
+        motherCrisisMeetUpRepository.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
     }
 

@@ -11,7 +11,7 @@ import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.M_AccessibilityRepository;
 import itgarden.repository.homevisit.Road_TypeRepository;
 import itgarden.repository.homevisit.Transport_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +88,7 @@ public class M_AccessibilityController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(Model model, @PathVariable Long id, M_Accessibility m_Accessibility) {
-        model.addAttribute("m_Accessibility", m_AccessibilityRepository.findOne(id));
+        model.addAttribute("m_Accessibility", m_AccessibilityRepository.findById(id).orElse(null));
         model.addAttribute("road", road_TypeRepository.findAll());
         model.addAttribute("transport", transport_TypeRepository.findAll());
         model.addAttribute("primary_school", Yes_No.values());
@@ -105,10 +105,10 @@ public class M_AccessibilityController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Accessibility m_Accessibility, RedirectAttributes redirectAttrs) {
 
-        m_Accessibility = m_AccessibilityRepository.findOne(id);
+        m_Accessibility = m_AccessibilityRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Accessibility.motherMasterCode.getId());
 
-        m_AccessibilityRepository.delete(id);
+        m_AccessibilityRepository.deleteById(id);
         return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

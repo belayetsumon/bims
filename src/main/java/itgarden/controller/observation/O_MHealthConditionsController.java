@@ -11,7 +11,7 @@ import itgarden.model.observation.O_Induction;
 import itgarden.model.observation.O_MHealthConditions;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +60,7 @@ public class O_MHealthConditionsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, O_MHealthConditions o_MHealthConditions) {
-        model.addAttribute("o_MHealthConditions", o_MHealthConditionsRepository.findOne(id));
+        model.addAttribute("o_MHealthConditions", o_MHealthConditionsRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother Health Conditions Edit");
         model.addAttribute("bloodPressure", Yes_No.values());
         model.addAttribute("eyeProblem", Yes_No.values());
@@ -104,15 +104,15 @@ public class O_MHealthConditionsController {
         }
 
         o_MHealthConditionsRepository.save(o_MHealthConditions);
-        return "redirect:/healthcheckup//index/{m_id}";
+        return "redirect:/healthcheckup/index/{m_id}";
     }
 
     @RequestMapping("/delete/{id}")
 
     public String delete(Model model, @PathVariable Long id, O_MHealthConditions o_MHealthConditions, RedirectAttributes redirectAttrs) {
-        o_MHealthConditions = o_MHealthConditionsRepository.findOne(id);
+        o_MHealthConditions = o_MHealthConditionsRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", o_MHealthConditions.motherMasterCode.getId());
-        o_MHealthConditionsRepository.delete(id);
+        o_MHealthConditionsRepository.deleteById(id);
         return "redirect:/healthcheckup/index/{m_id}";
     }
 

@@ -9,7 +9,7 @@ import itgarden.model.homevisit.M_Current_Help;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.Aid_TypeRepository;
 import itgarden.repository.homevisit.M_Current_HelpRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +71,7 @@ public class M_Current_HelpController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(Model model, @PathVariable Long id, M_Current_Help m_Current_Help) {
-        model.addAttribute("m_Current_Help", m_Current_HelpRepository.findOne(id));
+        model.addAttribute("m_Current_Help", m_Current_HelpRepository.findById(id).orElse(null));
         model.addAttribute("aidType", aid_TypeRepository.findAll());
            model.addAttribute("form_title", "Mother Current Aid/ Help edit");
         return "/homevisit/motherdetails/m_current_help";
@@ -80,10 +80,10 @@ public class M_Current_HelpController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Current_Help m_Current_Help, RedirectAttributes redirectAttrs) {
 
-        m_Current_Help = m_Current_HelpRepository.findOne(id);
+        m_Current_Help = m_Current_HelpRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Current_Help.motherMasterCode.getId());
         
-        m_Current_HelpRepository.delete(id);
+        m_Current_HelpRepository.deleteById(id);
         
          redirectAttrs.addFlashAttribute("delete_message"," Current help data delete successfully."+ m_Current_Help.getId());
          

@@ -8,7 +8,7 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_Release;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ReleaseRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +56,7 @@ public class C_ReleaseController {
     @RequestMapping("/edit/{id}")
 
     public String edit(Model model, @PathVariable Long id, C_Release c_Release) {
-        model.addAttribute("c_Release", c_ReleaseRepository.findOne(id));
+        model.addAttribute("c_Release", c_ReleaseRepository.findById(id).orElse(null));
         MotherMasterData motherMasterData = new MotherMasterData();
 
         motherMasterData.setId(id);
@@ -92,11 +92,11 @@ public class C_ReleaseController {
     @GetMapping(value = "/delete/{id}")
     public String delete(Model model, @PathVariable Long id, C_Release c_Release, RedirectAttributes redirectAttrs) {
 
-        c_Release = c_ReleaseRepository.findOne(id);
+        c_Release = c_ReleaseRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("id", c_Release.motherMasterCode.getId());
 
-        c_ReleaseRepository.delete(id);
+        c_ReleaseRepository.deleteById(id);
 
         return "redirect:/crelease/index";
     }

@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Toilet_Type;
 import itgarden.repository.homevisit.Toilet_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class Toilet_TypeController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Toilet_Type toilet_Type, Model model) {
-       model.addAttribute("toilet_Type",   toilet_TypeRepository.findOne(id));
+       model.addAttribute("toilet_Type",   toilet_TypeRepository.findById(id));
         model.addAttribute("list",  toilet_TypeRepository.findAll());
            model.addAttribute("table_name", " Toilet Type ");
          return "/homevisit/lookup/toilet_type";
@@ -64,7 +64,7 @@ public class Toilet_TypeController {
     
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Toilet_Type toilet_Type) {        
-     toilet_TypeRepository.delete(id);
+     toilet_TypeRepository.deleteById(id);
           return "redirect:/toilet_type/index";
     }    
     

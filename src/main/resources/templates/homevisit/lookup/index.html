@@ -1,225 +1,299 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" >
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Lookup Data Dashboards Home Visit 
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Home Visit </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item active">Lookup Data</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>     
 
-                </h1>
 
-            </section>
+
 
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
 
                 <div class="row">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Insert Mother</h3>
 
-
-
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Insert Mother</h3>
-
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">
-                                        <a  th:href="@{/reasons/index}" type="button" class="btn btn-block btn-danger"> Reasons </a>
-                                        <a  th:href="@{/religion/index}" type="button" class="btn btn-block btn-danger"> Religion </a>
-                                        <a  th:href="@{/maritalstatus/index}" type="button" class="btn btn-block btn-danger">Marital Status</a>
-                                        <a  th:href="@{/husbandsstatus/index}" type="button" class="btn btn-block btn-danger">Husband's Status</a>
-                                        <a  th:href="@{/relations/index}" type="button" class="btn btn-block btn-danger">Relations</a>
-                                        <a  th:href="@{/ethnicIdentity/index}" type="button" class="btn btn-block btn-danger"> Ethnic Identity</a>
-                                        <a  th:href="@{/educationlavel/index}" type="button" class="btn btn-block btn-danger">Education Level</a>
-                                        <a  th:href="@{/educationtype/index}"  type="button" class="btn btn-block btn-danger">Education Type</a>
-                                        <a  th:href="@{/occupation/index}" type="button" class="btn btn-block btn-danger">Occupation</a>
-
-                                    </div>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <a  th:href="@{/reasons/index}" type="button" class="btn btn-block btn-danger"> Reasons </a>
+                                <a  th:href="@{/religion/index}" type="button" class="btn btn-block btn-danger"> Religion </a>
+                                <a  th:href="@{/maritalstatus/index}" type="button" class="btn btn-block btn-danger">Marital Status</a>
+                                <a  th:href="@{/husbandsstatus/index}" type="button" class="btn btn-block btn-danger">Husband's Status</a>
+                                <a  th:href="@{/relations/index}" type="button" class="btn btn-block btn-danger">Relations</a>
+                                <a  th:href="@{/ethnicIdentity/index}" type="button" class="btn btn-block btn-danger"> Ethnic Identity</a>
+                                <a  th:href="@{/educationlavel/index}" type="button" class="btn btn-block btn-danger">Education Level</a>
+                                <a  th:href="@{/educationtype/index}"  type="button" class="btn btn-block btn-danger">Education Type</a>
+                                <a  th:href="@{/occupation/index}" type="button" class="btn btn-block btn-danger">Occupation</a>
 
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Mother Address </h3>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
 
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/thana/index}" type="button" class="btn btn-block btn-danger">Thana</a>
-                                    </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Mother Addres</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <a  th:href="@{/thana/index}" type="button" class="btn btn-block btn-danger">Thana</a>
 
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Mother House Information </h3>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
 
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/house_type/index}" type="button" class="btn btn-block btn-danger">  Type of House   </a>
-                                        <a  th:href="@{/ownershif_type/index}" type="button" class="btn btn-block btn-danger">Ownership of House</a>   
-                                    </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Mother House Information </h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Per Capita Income  </h3>
-
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/income_generating/index}" type="button" class="btn btn-block btn-danger">   Income Generating  </a>
-                                        <a  href="" type="button" class="btn btn-block btn-danger">     </a>
-                                        <a  href="" type="button" class="btn btn-block btn-danger">     </a>
-                                        <a  href="" type="button" class="btn btn-block btn-danger">     </a>
-                                    </div>
-                                </div>
+                            <div class="card-body">
+                                <a  th:href="@{/house_type/index}" type="button" class="btn btn-block btn-danger">  Type of House   </a>
+                                <a  th:href="@{/ownershif_type/index}" type="button" class="btn btn-block btn-danger">Ownership of House</a>   
                             </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
 
-
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Current Support  </h3>
-
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/aid_type/index}" type="button" class="btn btn-block btn-danger">  Type of Help/Aid   </a>
-                                    </div>
-                                </div>
-                            </div>  
-
-
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Community Information </h3>
-
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/economic_type/index}" type="button" class="btn btn-block btn-danger">   Economy Type  </a>
-                                        <a  th:href="@{/avilableiga/index}" type="button" class="btn btn-block btn-danger">  Available IGA   </a>  
-                                        <a  th:href="@{/prospectiveiga/index}" type="button" class="btn btn-block btn-danger">   Prospective IGA  </a>
-                                    </div>
-                                </div>
                             </div>
+                            <!-- /.card-footer-->
+                        </div>    
 
 
-                            <div class="col-sm-3">
-                                <div class="box box-primary ">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title"> Accessibility </h3>
-
-                                        <div class="box-tools pull-right">
-                                            <div class="btn-group">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">     
-                                        <a  th:href="@{/road_type/index}" type="button" class="btn btn-block btn-danger">  Road Type   </a>
-                                        <a  th:href="@{/transport_type/index}" type="button" class="btn btn-block btn-danger">Transport Type</a>                         
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="box box-primary ">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"> Lifestyle </h3>
-
-                                    <div class="box-tools pull-right">
-                                        <div class="btn-group">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box-body">     
-                                    <a  th:href="@{/water_source/index}" type="button" class="btn btn-block btn-danger">   Water Source  </a>
-                                    <a  th:href="@{/drinking_water_source/index}" type="button" class="btn btn-block btn-danger">     Source of Drinking Water</a>
-                                    <a  th:href="@{/toilet_type/index}" type="button" class="btn btn-block btn-danger">     Toilet Type</a>
-                                    <a  th:href="@{/cooking_fuel_type/index}" type="button" class="btn btn-block btn-danger">  Cooking Fuel   </a>
-                                    <a  th:href="@{/light_source_type/index}" type="button" class="btn btn-block btn-danger">   Light Source  </a>
-                                    <a  th:href="@{/leisure_facilities/index}" type="button" class="btn btn-block btn-danger">    Leisure Facilities </a>
-                                    <a  th:href="@{/personal_habits/index}" type="button" class="btn btn-block btn-danger">  Personal Habits   </a>  
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-sm-3">
-                            <div class="box box-primary ">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title"> Local Govt Facilities </h3>
-
-                                    <div class="box-tools pull-right">
-                                        <div class="btn-group">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="box-body">     
-                                    <a  th:href="@{/localcontactpersion/index}" type="button" class="btn btn-block btn-danger">   Local Govt. Contact Person  </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-body col-sm-3">         
-                            <a  th:href="@{/work/index}" type="button" class="btn btn-block btn-danger">  Work   </a>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            <div class="box-tools pull-right">
-                                <div class="btn-group">
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-footer-->
                     </div>
 
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Per Capita Income</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/income_generating/index}" type="button" class="btn btn-block btn-danger">   Income Generating  </a>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Current Support</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/aid_type/index}" type="button" class="btn btn-block btn-danger">  Type of Help/Aid   </a>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Community Information </h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/economic_type/index}" type="button" class="btn btn-block btn-danger">   Economy Type  </a>
+                                <a  th:href="@{/avilableiga/index}" type="button" class="btn btn-block btn-danger">  Available IGA   </a>  
+                                <a  th:href="@{/prospectiveiga/index}" type="button" class="btn btn-block btn-danger">   Prospective IGA  </a>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Accessibility </h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/road_type/index}" type="button" class="btn btn-block btn-danger">  Road Type   </a>
+                                <a  th:href="@{/transport_type/index}" type="button" class="btn btn-block btn-danger">Transport Type</a>                         
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Lifestyle</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/water_source/index}" type="button" class="btn btn-block btn-danger">   Water Source  </a>
+                                <a  th:href="@{/drinking_water_source/index}" type="button" class="btn btn-block btn-danger">     Source of Drinking Water</a>
+                                <a  th:href="@{/toilet_type/index}" type="button" class="btn btn-block btn-danger">     Toilet Type</a>
+                                <a  th:href="@{/cooking_fuel_type/index}" type="button" class="btn btn-block btn-danger">  Cooking Fuel   </a>
+                                <a  th:href="@{/light_source_type/index}" type="button" class="btn btn-block btn-danger">   Light Source  </a>
+                                <a  th:href="@{/leisure_facilities/index}" type="button" class="btn btn-block btn-danger">    Leisure Facilities </a>
+                                <a  th:href="@{/personal_habits/index}" type="button" class="btn btn-block btn-danger">  Personal Habits   </a>  
+
+
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Local Govt Facilities</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <a  th:href="@{/localcontactpersion/index}" type="button" class="btn btn-block btn-danger">   Local Govt. Contact Person  </a>
+                                <a  th:href="@{/work/index}" type="button" class="btn btn-block btn-danger">  Work   </a>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>    
+
+
+                    </div>
                 </div>
+
             </section>
             <!-- /.content -->
         </div>

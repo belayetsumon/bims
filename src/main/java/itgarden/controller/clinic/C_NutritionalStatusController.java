@@ -6,17 +6,11 @@
 package itgarden.controller.clinic;
 
 import itgarden.model.clinic.C_NutritionalStatus;
-import itgarden.model.homevisit.M_House_Information;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ChildNutritionalStatusRepository;
 import itgarden.repository.clinic.C_NutritionalStatusRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +39,7 @@ public class C_NutritionalStatusController {
 
 	@RequestMapping("/mothersearch")
 	public String mothersearch(Model model) {
-		model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc());
+	//	model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc());
 		return "/clinic/nutritionalstatus/mothersearch";
 	}
 
@@ -70,7 +64,7 @@ public class C_NutritionalStatusController {
 
 		MotherMasterData motherMasterData = new MotherMasterData();
 
-		motherMasterData = motherMasterDataRepository.findById(m_id);
+		motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
 		c_NutritionalStatus.setMotherMasterCode(motherMasterData);
 
@@ -92,7 +86,7 @@ public class C_NutritionalStatusController {
 
 			MotherMasterData motherMasterData = new MotherMasterData();
 
-			motherMasterData = motherMasterDataRepository.findById(m_id);
+			motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
 			c_NutritionalStatus.setMotherMasterCode(motherMasterData);
 
@@ -112,12 +106,12 @@ public class C_NutritionalStatusController {
 	@RequestMapping("/motheredit/{id}")
 	public String motheredit(Model model, @PathVariable Long id, C_NutritionalStatus c_NutritionalStatus) {
 
-		c_NutritionalStatus = c_NutritionalStatusRepository.findOne(id);
+		c_NutritionalStatus = c_NutritionalStatusRepository.findById(id).orElse(null);
 
 		model.addAttribute("c_NutritionalStatus", c_NutritionalStatus);
 
 		MotherMasterData motherMasterData = new MotherMasterData();
-		motherMasterData = motherMasterDataRepository.findById(c_NutritionalStatus.motherMasterCode.getId());
+		motherMasterData = motherMasterDataRepository.findById(c_NutritionalStatus.motherMasterCode.getId()).orElse(null);
 
 		c_NutritionalStatus.setMotherMasterCode(motherMasterData);
 
@@ -132,9 +126,9 @@ public class C_NutritionalStatusController {
 	@RequestMapping("/motheredelete/{id}")
 	public String motherdelete(Model model, @PathVariable Long id, C_NutritionalStatus c_NutritionalStatus,
 			RedirectAttributes redirectAttrs) {
-		c_NutritionalStatus = c_NutritionalStatusRepository.findOne(id);
+		c_NutritionalStatus = c_NutritionalStatusRepository.findById(id).orElse(null);
 		redirectAttrs.addAttribute("m_id", c_NutritionalStatus.motherMasterCode.getId());
-		c_NutritionalStatusRepository.delete(id);
+		c_NutritionalStatusRepository.deleteById(id);
 		return "redirect:/nutritionalstatus/index/{m_id}";
 	}
 

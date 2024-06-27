@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
@@ -45,16 +45,12 @@
                                         <td th:text="${list.Address}" >Chakma</td>
 
                                         <td th:text="${list.postDischargeVisitDate}">Chakma</td>
-
                                         <td>
-
                                             <a   th:href="@{/reintegration/childindex/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Children release</a>
                                         </td>
-
                                         <td> 
                                             <a   th:href="@{/reintegration/mother_edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a>
                                         </td>
-
                                         <td> 
                                             <a   th:href="@{/reintegration/mother_delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
                                         </td>

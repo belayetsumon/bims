@@ -6,7 +6,7 @@
 
 $(document).ready(function () {
 
-
+//alert("hello")
 
     $(function () {
         $("#referral_date").datepicker({

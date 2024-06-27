@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
@@ -19,7 +19,7 @@
                             <div class="box-header with-border">
                                 <h3 class="box-title"> Mother List</h3>
                                 <a   th:href="@{/mothermasterdata/create}" type="button" class="btn  btn-warning pull-right"> Insert Mother </a>
-                           
+
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body" style="overflow-x: scroll">
@@ -28,13 +28,13 @@
                                         <th style="width: 10px">#</th>
                                         <th>Edit</th>
                                         <th> Delete</th>
-                                            <th>  Id</th>
+                                        <th>  Id</th>
                                         <th>Visit Officers Name </th>
                                         <th> Referral Date</th>
                                         <th> Referral From</th>
                                         <th>Reasons </th>
                                         <th>Home Visit Date</th>
-                                    
+
                                         <th> Mother Name</th>
                                         <th>Date of Birth</th>
                                         <th> Mothers Mother Name</th>
@@ -58,48 +58,48 @@
                                         <th>Other Remarks</th>
                                         <th>Eligibility</th>
                                         <th> Created Date </th>
-      
-                                  </tr>                          
-                                     <tr th:each="list,status:${list}">                                
-                                      <td th:text="${status.count}">2.</td>      
-                                      <td><a   th:href="@{/mothermasterdata/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                      <td><a   th:href="@{/mothermasterdata/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>
+
+                                    </tr>                          
+                                    <tr th:each="list,status:${list}">                                
+                                        <td th:text="${status.count}">2.</td>      
+                                        <td><a   th:href="@{/mothermasterdata/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+                                        <td><a   th:href="@{/mothermasterdata/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>
                                         <td th:text="${list.motherMasterCode}">Chakma</td>
-                                      <td th:text="${list.visitOfficersName}">Chakma</td>
-                                      <td th:text="${#dates.format(list.dateReferral, 'dd-MMM-yyyy')}">Chakma</td>
-                                      <td th:text="${list.referredFrom}">Chakma</td>
-                                      <td th:text="${list.resons.NAME}">Chakma</td>
-                                      <td th:text="${#dates.format(list.homeVisitDate, 'dd-MMM-yyyy') }">Chakma</td>                                 
-                                      <td th:text="${list.motherName}">Chakma</td>
-                                     <td th:text="${list.dateOfBirth}">Chakma</td>
-                                     <td th:text="${list.mMothersName}">Chakma</td>
-                                      <td th:text="${list.fathersName}">Chakma</td>
-                                      <td th:text="${list.religion.NAME}">Chakma</td>
-                                      <td th:text="${list.maritalStatus.NAME}">Chakma</td>
-                                      <td th:text="${list.husbandsName}">Chakma</td>
-                                      <td th:text="${list.husbandsStatus.NAME}">Chakma</td>
-                                      <td th:text="${list.primeFamilyMemberName}">Chakma</td>
-                                      <td th:text="${list.relationWithPfm.NAME}">Chakma</td>
-                                      <td th:text="${list.ethnicIdentity.name}">Chakma</td>
-                                      <td th:text="${list.educationLevel.NAME}">Chakma</td>
-                                      <td th:text="${list.educationType.NAME}">Chakma</td>
-                                      <td th:text="${list.occupation.NAME}">Chakma</td>
-                                      <td th:text="${list.physicalStatus}">Chakma</td>
-                                      <td th:text="${list.immunization}">Chakma</td>
-                                      <td th:text="${list.numberOfSons}">Chakma</td>
-                                      <td th:text="${list.numberOfDaughters}">Chakma</td>
-                                      <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
-                                      <td th:text="${list.majorFindings}">Chakma</td>
-                                      <td th:text="${list.otherRemarks}">Chakma</td>
-                                      <td th:text="${list.eligibility}">Chakma</td>
-                                      <td th:text="${list.created}">Chakma</td>
-<!--                                       <td th:text="${#dates.format(list.created)}">Chakma</td>-->
+                                        <td th:text="${list.visitOfficersName}">Chakma</td>
+                                        <td th:text="${#dates.format(list.dateReferral, 'dd-MMM-yyyy')}">Chakma</td>
+                                        <td th:text="${list.referredFrom}">Chakma</td>
+                                        <td th:text="${list.resons.NAME}">Chakma</td>
+                                        <td th:text="${#dates.format(list.homeVisitDate, 'dd-MMM-yyyy') }">Chakma</td>                                 
+                                        <td th:text="${list.motherName}">Chakma</td>
+                                        <td th:text="${list.dateOfBirth}">Chakma</td>
+                                        <td th:text="${list.mMothersName}">Chakma</td>
+                                        <td th:text="${list.fathersName}">Chakma</td>
+                                        <td th:text="${list.religion.NAME}">Chakma</td>
+                                        <td th:text="${list.maritalStatus.NAME}">Chakma</td>
+                                        <td th:text="${list.husbandsName}">Chakma</td>
+                                        <td th:text="${list.husbandsStatus.NAME}">Chakma</td>
+                                        <td th:text="${list.primeFamilyMemberName}">Chakma</td>
+                                        <td th:text="${list.relationWithPfm.NAME}">Chakma</td>
+                                        <td th:text="${list.ethnicIdentity.name}">Chakma</td>
+                                        <td th:text="${list.educationLevel.NAME}">Chakma</td>
+                                        <td th:text="${list.educationType.NAME}">Chakma</td>
+                                        <td th:text="${list.occupation.NAME}">Chakma</td>
+                                        <td th:text="${list.physicalStatus}">Chakma</td>
+                                        <td th:text="${list.immunization}">Chakma</td>
+                                        <td th:text="${list.numberOfSons}">Chakma</td>
+                                        <td th:text="${list.numberOfDaughters}">Chakma</td>
+                                        <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
+                                        <td th:text="${list.majorFindings}">Chakma</td>
+                                        <td th:text="${list.otherRemarks}">Chakma</td>
+                                        <td th:text="${list.eligibility}">Chakma</td>
+                                        <td th:text="${list.created}">Chakma</td>
+                                        <!--                                       <td th:text="${#dates.format(list.created)}">Chakma</td>-->
                                     </tr>
                                 </table>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer clearfix">
-                
+
                             </div>
                         </div>
                         <!-- /.box -->

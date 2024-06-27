@@ -11,7 +11,7 @@ import itgarden.repository.homevisit.AvilableIgaRepository;
 import itgarden.repository.homevisit.Economic_TypeRepository;
 import itgarden.repository.homevisit.M_Community_InformationRepository;
 import itgarden.repository.homevisit.ProspectiveIgaRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,7 +93,7 @@ public class M_Community_InformationController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Community_Information m_Community_Information, Model model) {
-        model.addAttribute("m_Community_Information", m_Community_InformationRepository.findOne(id));
+        model.addAttribute("m_Community_Information", m_Community_InformationRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother Community Information Add");
         model.addAttribute("economyType", economic_TypeRepository.findAll());
         model.addAttribute("avilableIga", avilableIgaRepository.findAll());
@@ -104,9 +104,9 @@ public class M_Community_InformationController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Community_Information m_Community_Information, RedirectAttributes redirectAttrs) {
 
-        m_Community_Information = m_Community_InformationRepository.findOne(id);
+        m_Community_Information = m_Community_InformationRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Community_Information.motherMasterCode.getId());
-        m_Community_InformationRepository.delete(id);
+        m_Community_InformationRepository.deleteById(id);
       return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 

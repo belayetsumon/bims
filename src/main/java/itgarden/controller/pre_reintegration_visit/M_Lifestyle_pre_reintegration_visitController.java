@@ -16,7 +16,7 @@ import itgarden.repository.homevisit.Personal_HabitsRepository;
 import itgarden.repository.homevisit.Toilet_TypeRepository;
 import itgarden.repository.homevisit.Water_SourceRepository;
 import itgarden.repository.pre_reintegration_visit.Pre_reintegration_visit_M_LifestyleRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,26 +105,32 @@ public class M_Lifestyle_pre_reintegration_visitController {
         return "redirect:/pre_reintegration_visit/details/{m_id}";
     }
 
-    @GetMapping(value = "/edit/{id}")
+    
+    
+    
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, M_Lifestyle_ReintegrationVisit m_Lifestyle_ReintegrationVisit, Model model) {
-        model.addAttribute("m_Lifestyle_ReintegrationVisit", pre_reintegration_visit_M_LifestyleRepository.findOne(id));
-        model.addAttribute("form_title", "Mother Life Style Edit");
+        model.addAttribute("m_Lifestyle_ReintegrationVisit", pre_reintegration_visit_M_LifestyleRepository.findById(id).orElse(null));
+       model.addAttribute("form_title", "Mother Life Style Edit");
         model.addAttribute("waterSource", water_SourceRepository.findAll());
         model.addAttribute("drinkingWaterSource", drinking_Water_SourceRepository.findAll());
         model.addAttribute("toilet_type", toilet_TypeRepository.findAll());
         model.addAttribute("cookingFuel", cooking_Fuel_TypeRepository.findAll());
-        model.addAttribute("lightSource", light_Source_typeRepository.findAll());
+       model.addAttribute("lightSource", light_Source_typeRepository.findAll());
         model.addAttribute("leisurFacilities", leisure_facilitiesRepository.findAll());
         model.addAttribute("personalHabits", Personal_HabitsRepository.findAll());
         return "pre_reintegration_visit/m_lifestylel";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, M_Lifestyle_ReintegrationVisit m_Lifestyle_ReintegrationVisit, RedirectAttributes redirectAttrs) {
-        m_Lifestyle_ReintegrationVisit = pre_reintegration_visit_M_LifestyleRepository.findOne(id);
-        redirectAttrs.addAttribute("m_id", m_Lifestyle_ReintegrationVisit.motherMasterCode.getId());
-        pre_reintegration_visit_M_LifestyleRepository.delete(id);
+        m_Lifestyle_ReintegrationVisit = pre_reintegration_visit_M_LifestyleRepository.findById(id).orElse(null);
+        if (m_Lifestyle_ReintegrationVisit != null) {
+            redirectAttrs.addAttribute("m_id", m_Lifestyle_ReintegrationVisit.getMotherMasterCode().getId());
+            pre_reintegration_visit_M_LifestyleRepository.deleteById(id);
+        }
         return "redirect:/pre_reintegration_visit/details/{m_id}";
     }
+    
 
 }

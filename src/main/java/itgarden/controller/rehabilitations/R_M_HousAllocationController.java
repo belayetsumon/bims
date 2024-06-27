@@ -9,7 +9,8 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.rehabilitations.R_M_HousAllocation;
 import itgarden.repository.rehabilitations.HouseNameRepository;
 import itgarden.repository.rehabilitations.R_M_HousAllocationRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,63 +26,68 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/rmhousallocation")
 public class R_M_HousAllocationController {
-
+    
     @Autowired
     R_M_HousAllocationRepository r_M_HousAllocationRepository;
-
+    
     @Autowired
     HouseNameRepository houseNameRepository;
-
+    
     @RequestMapping("/create/{mid}")
     public String create(Model model, @PathVariable Long mid, R_M_HousAllocation r_M_HousAllocation) {
         
-          MotherMasterData motherMasterData = new MotherMasterData();
-          
+        MotherMasterData motherMasterData = new MotherMasterData();
+        
         motherMasterData.setId(mid);
         
         r_M_HousAllocation.setMotherMasterCode(motherMasterData);
         
         model.addAttribute("form_title", "Mother House Allocation");
-
+        
         model.addAttribute("houseName", houseNameRepository.findAll());
-
+        
         return "rehabilitations/allocations/mhouseallocations";
     }
-
+    
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_M_HousAllocation r_M_HousAllocation) {
-        model.addAttribute("r_M_HousAllocation", r_M_HousAllocationRepository.findOne(id));
+        model.addAttribute("r_M_HousAllocation", r_M_HousAllocationRepository.findById(id));
         model.addAttribute("form_title", "Mother House Allocation Edit");
         model.addAttribute("houseName", houseNameRepository.findAll());
-       
-            return "rehabilitations/allocations/mhouseallocations";
+        
+        return "rehabilitations/allocations/mhouseallocations";
     }
-
+    
     @RequestMapping("/save/{mid}")
     public String save(Model model, @PathVariable Long mid, @Valid R_M_HousAllocation r_M_HousAllocation, BindingResult bindingResult) {
-
+        
         if (bindingResult.hasErrors()) {
-                  MotherMasterData motherMasterData = new MotherMasterData();
-        motherMasterData.setId(mid);
-        r_M_HousAllocation.setMotherMasterCode(motherMasterData);
+            MotherMasterData motherMasterData = new MotherMasterData();
+            motherMasterData.setId(mid);
+            r_M_HousAllocation.setMotherMasterCode(motherMasterData);
             model.addAttribute("form_title", "Mother House Allocation save/update");
-
+            
             model.addAttribute("houseName", houseNameRepository.findAll());
-
+            
             return "rehabilitations/allocations/mhouseallocations";
-
+            
         }
         r_M_HousAllocationRepository.save(r_M_HousAllocation);
-         return "redirect:/houseworkallocation/index/{mid}";
+        return "redirect:/houseworkallocation/index/{mid}";
     }
-    
     
     @RequestMapping("/delete/{id}")
-     public String delete(Model model, @PathVariable Long id, R_M_HousAllocation r_M_HousAllocation, RedirectAttributes redirectAttrs) {
-        r_M_HousAllocation = r_M_HousAllocationRepository.findOne(id);
+    public String delete(Model model, @PathVariable Long id, R_M_HousAllocation r_M_HousAllocation, RedirectAttributes redirectAttrs) {
+        
+        Optional<R_M_HousAllocation> optionalr_M_HousAllocation = r_M_HousAllocationRepository.findById(id);
+        
+        r_M_HousAllocation = optionalr_M_HousAllocation.orElse(null);
+        
         redirectAttrs.addAttribute("mid", r_M_HousAllocation.motherMasterCode.getId());
-        r_M_HousAllocationRepository.delete(id);
-     return "redirect:/houseworkallocation/index/{mid}";
+        
+        r_M_HousAllocationRepository.deleteById(id);
+        
+        return "redirect:/houseworkallocation/index/{mid}";
     }
-
+    
 }

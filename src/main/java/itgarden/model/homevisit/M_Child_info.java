@@ -25,28 +25,29 @@ import itgarden.model.reintegration_release.ReleaseChild;
 import itgarden.model.school.Discontinuity;
 import itgarden.model.school.EligibilityStudent;
 import itgarden.model.school.S_RegularAdmissionClass;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  *
@@ -56,11 +57,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class M_Child_info {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Mother master code field cannot be blank.")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
@@ -81,7 +82,7 @@ public class M_Child_info {
     String name;
 
     @NotEmpty(message = "Date of birth field cannot be blank.")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
     public String dateOfBirth;
 
     public String age;
@@ -136,14 +137,15 @@ public class M_Child_info {
     @Enumerated(EnumType.ORDINAL)
     public Eligibility eligibility;
 
-    // @Temporal(TemporalType.DATE)
-    // @DateTimeFormat(pattern = "dd-MM-yyyy")
+     @Temporal(TemporalType.DATE)
+     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = true)
     // @Column(insertable = true,updatable = false)
     public Users createdBy;
+    
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
@@ -221,7 +223,7 @@ public class M_Child_info {
     @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public List<FollowUpChildren> followUpChildren = new ArrayList<>();
 
-    ;
+   
 
     public M_Child_info() {
     }

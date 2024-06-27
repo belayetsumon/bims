@@ -8,10 +8,13 @@ package itgarden.repository.auth;
 import itgarden.model.auth.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
+
 /**
  *
  * @author Md Belayet Hossin
  */
+
 public interface RoleRepository extends JpaRepository<Role, Long> {
     
 }

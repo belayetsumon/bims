@@ -6,26 +6,23 @@
 package itgarden.model.observation;
 
 import itgarden.model.auth.Users;
-import itgarden.model.homevisit.M_Accessibility;
 import itgarden.model.homevisit.MotherMasterData;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -36,7 +33,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class O_Induction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(optional = false)
@@ -68,10 +65,9 @@ public class O_Induction {
      */
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
-
     @ManyToOne(optional = true)
-
     public Users createdBy;
+   
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
@@ -94,7 +90,7 @@ public class O_Induction {
     public O_Induction() {
     }
 
-    public O_Induction(Long id, MotherMasterData motherMasterCode, String startDate, String endDate, String immediateSupportOn, String challagesOfCandidare, int possibleLength, String remark, Users createdBy, Users updatedBy) {
+    public O_Induction(Long id, MotherMasterData motherMasterCode, String startDate, String endDate, String immediateSupportOn, String challagesOfCandidare, int possibleLength, String remark, Users createdBy, Users updatedBy, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oProfessionalObserbationsMother) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.startDate = startDate;
@@ -105,6 +101,8 @@ public class O_Induction {
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
+        this.omHealthConditions = omHealthConditions;
+        this.oProfessionalObserbationsMother = oProfessionalObserbationsMother;
     }
 
     public Long getId() {
@@ -202,5 +200,22 @@ public class O_Induction {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-   
+
+    public O_MHealthConditions getOmHealthConditions() {
+        return omHealthConditions;
+    }
+
+    public void setOmHealthConditions(O_MHealthConditions omHealthConditions) {
+        this.omHealthConditions = omHealthConditions;
+    }
+
+    public O_Professional_Obserbations_Mother getoProfessionalObserbationsMother() {
+        return oProfessionalObserbationsMother;
+    }
+
+    public void setoProfessionalObserbationsMother(O_Professional_Obserbations_Mother oProfessionalObserbationsMother) {
+        this.oProfessionalObserbationsMother = oProfessionalObserbationsMother;
+    }
+
+    
 }

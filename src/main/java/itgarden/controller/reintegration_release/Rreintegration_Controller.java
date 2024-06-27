@@ -6,13 +6,13 @@
 package itgarden.controller.reintegration_release;
 
 import itgarden.model.homevisit.MotherMasterData;
-import itgarden.model.homevisit.Yes_No;
 import itgarden.model.reintegration_release.ReleaseChild;
 import itgarden.model.reintegration_release.ReleaseMother;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.reintegration_release.ReleaseMotherRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +41,7 @@ public class Rreintegration_Controller {
 
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
+     //   model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
         return "reintegration/mothersearch";
     }
 
@@ -69,7 +69,7 @@ public class Rreintegration_Controller {
 
     @GetMapping(value = "/mother_edit/{id}")
     public String edit(@PathVariable Long id, ReleaseMother releaseMother, Model model) {
-        model.addAttribute("releaseMother", releaseMotherRepository.findOne(id));
+        model.addAttribute("releaseMother", releaseMotherRepository.findById(id));
 
         return "reintegration/reintegration_mother";
     }
@@ -87,7 +87,7 @@ public class Rreintegration_Controller {
     public String delete(@PathVariable Long id, ReleaseMother releaseMother, RedirectAttributes redirectAttrs) {
         releaseMother = releaseMotherRepository.getOne(id);
         redirectAttrs.addAttribute("m_id", releaseMother.getMotherMasterCode().getId());
-        releaseMotherRepository.delete(id);
+        releaseMotherRepository.deleteById(id);
         return "redirect:/reintegration/index";
     }
 
@@ -159,17 +159,23 @@ public class Rreintegration_Controller {
     
     @GetMapping(value = "/child_delete/{id}")
     public String delete(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
-        releaseChild = releaseChildRepository.findOne(id);
+     
+        Optional<ReleaseChild>  optionalreleaseChild = releaseChildRepository.findById(id);
+       
+        releaseChild = optionalreleaseChild.orElse(null);
+        
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
-        releaseChildRepository.delete(id);
+        releaseChildRepository.deleteById(id);
         return "redirect:/reintegration/childindex/{m_id}";
     }
     
     @GetMapping(value = "/child_delete2/{id}")
     public String delete2(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
-        releaseChild = releaseChildRepository.findOne(id);
+       Optional<ReleaseChild>  optionalreleaseChild = releaseChildRepository.findById(id);
+       
+        releaseChild = optionalreleaseChild.orElse(null);;
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
-        releaseChildRepository.delete(id);
+        releaseChildRepository.deleteById(id);
         return "redirect:/reintegration/allreintegrationchild";
     }
     

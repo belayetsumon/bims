@@ -9,7 +9,7 @@ import itgarden.model.homevisit.M_Income_Information;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.Income_GeneratingRepository;
 import itgarden.repository.homevisit.M_Income_InformationRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,7 +73,7 @@ public class M_Income_InformationController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Income_Information m_Income_Information, Model model) {
 
-        model.addAttribute("m_Income_Information", m_Income_InformationRepository.findOne(id));
+        model.addAttribute("m_Income_Information", m_Income_InformationRepository.findById(id).orElse(null));
 
         model.addAttribute("income_activity", income_GeneratingRepository.findAll());
 
@@ -85,11 +85,11 @@ public class M_Income_InformationController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, M_Income_Information m_Income_Information, RedirectAttributes redirectAttrs) {
 
-        m_Income_Information = m_Income_InformationRepository.findOne(id);
+        m_Income_Information = m_Income_InformationRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", m_Income_Information.motherMasterCode.getId());
 
-        m_Income_InformationRepository.delete(id);
+        m_Income_InformationRepository.deleteById(id);
 
         return "redirect:/motherdetails/motherdetails/{m_id}";
     }

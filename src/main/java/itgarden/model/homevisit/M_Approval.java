@@ -6,40 +6,77 @@
 package itgarden.model.homevisit;
 
 import itgarden.model.auth.Users;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedSubgraph;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Md Belayet Hossin
  */
+
+
+//
+//@NamedEntityGraph(
+//        name = "approve_mother",
+//        attributeNodes = {
+//                @NamedAttributeNode("approveDate"),
+//                @NamedAttributeNode("approveBy"),
+//                @NamedAttributeNode("decission"),
+//        }
+//)
+
+
+@NamedEntityGraph(
+  name = "approve_mother",
+        
+  attributeNodes = {
+    @NamedAttributeNode("approveDate"),
+    @NamedAttributeNode("approveBy"),
+    
+    @NamedAttributeNode(value = "motherMasterCode", subgraph = "motherMasterCode"),
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "motherMasterCode-name",
+      attributeNodes = {
+        @NamedAttributeNode("motherName")
+      }
+    )
+  }
+)
+
+
 @Entity
 @Table(name = "M_APPROVAL")
 public class M_Approval {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
-     @JoinColumn(nullable =false)
+    @OneToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(nullable =false)
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
@@ -70,7 +107,6 @@ public class M_Approval {
     public Date updated = new Date();
 
     @ManyToOne(optional = true)
- 
     public Users updatedBy;
 
 

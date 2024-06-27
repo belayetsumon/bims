@@ -16,7 +16,7 @@ import itgarden.repository.homevisit.EthinicIdentityRepository;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.homevisit.ReligionRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,7 +78,7 @@ public class ChildrenDetailsController {
     public String add(Model model, @PathVariable Long m_id, M_Child_info m_Child_info) {
 
         MotherMasterData motherMasterData = new MotherMasterData();
-        motherMasterData = motherMasterDataRepository.findOne(m_id);
+        motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
 //       int totalChild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
 //
@@ -127,7 +127,7 @@ public class ChildrenDetailsController {
 
         int totalChild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
 
-        motherMasterData = motherMasterDataRepository.findOne(m_id);
+        motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
         int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
 
         if (totalChild >= eligiblechildren && m_Child_info.getId() == null) {
@@ -136,7 +136,7 @@ public class ChildrenDetailsController {
         } else {
             if (bindingResult.hasErrors()) {
 
-                motherMasterData = motherMasterDataRepository.findOne(m_id);
+                motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
 
                 /**
                  * Mother Default value**
@@ -180,7 +180,7 @@ public class ChildrenDetailsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, M_Child_info m_Child_info) {
-        model.addAttribute("m_Child_info", m_Child_infoRepository.findOne(id));
+        model.addAttribute("m_Child_info", m_Child_infoRepository.findById(id).orElse(null));
 
         model.addAttribute("ethnicIdentity", ethinicIdentityRepository.findAll());
 
@@ -201,11 +201,11 @@ public class ChildrenDetailsController {
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Model model, M_Child_info m_Child_info, RedirectAttributes redirectAttrs) {
 
-        m_Child_info = m_Child_infoRepository.findOne(id);
+        m_Child_info = m_Child_infoRepository.findById(id).orElse(null);
 
         redirectAttrs.addAttribute("m_id", m_Child_info.motherMasterCode.getId());
 
-        m_Child_infoRepository.delete(id);
+        m_Child_infoRepository.deleteById(id);
 
         return "redirect:/childrendetails/index/{m_id}";
     }
@@ -213,7 +213,7 @@ public class ChildrenDetailsController {
     @GetMapping(value = "/cdetails/{c_id}")
     public String details(@PathVariable Long c_id, Model model, M_Child_info m_Child_info, RedirectAttributes redirectAttrs) {
 
-        m_Child_info = m_Child_infoRepository.findOne(c_id);
+        m_Child_info = m_Child_infoRepository.findById(c_id).orElse(null);
 
         model.addAttribute("cinfo", m_Child_info);
 

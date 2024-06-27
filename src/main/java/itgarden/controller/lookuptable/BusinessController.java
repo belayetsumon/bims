@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Business;
 import itgarden.repository.homevisit.BusinessRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +56,7 @@ public class BusinessController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Business business, Model model) {
-       model.addAttribute("business",   businessRepository.findOne(id));
+       model.addAttribute("business",   businessRepository.findById(id));
         model.addAttribute("list",  businessRepository.findAll());
          model.addAttribute("table_name"," Community Type l" );
          return "/homevisit/lookup/business";
@@ -66,7 +66,7 @@ public class BusinessController {
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Business business) {        
 
-     businessRepository.delete(id);
+     businessRepository.deleteById(id);
           return "redirect:/business/index";
     }    
     

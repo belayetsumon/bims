@@ -5,10 +5,9 @@
  */
 package itgarden.controller.rehabilitations;
 
-import itgarden.model.rehabilitations.Diagonosis;
 import itgarden.model.rehabilitations.TrainingName;
 import itgarden.repository.rehabilitations.TrainingNameRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +50,7 @@ public class TrainingNameController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, TrainingName trainingName, Model model) {
-        model.addAttribute("trainingName", trainingNameRepository.findOne(id));
+        model.addAttribute("trainingName", trainingNameRepository.findById(id));
         model.addAttribute("list", trainingNameRepository.findAll());
              model.addAttribute("table_name", "Diagonosis");
          return "rehabilitations/lookup/trainingname";
@@ -59,7 +58,7 @@ public class TrainingNameController {
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, TrainingName  trainingName) {
-        trainingNameRepository.delete(id);
+        trainingNameRepository.deleteById(id);
         return "redirect:/trainingname/index";
     }
 

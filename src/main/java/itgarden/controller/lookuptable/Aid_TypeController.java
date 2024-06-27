@@ -7,7 +7,7 @@ package itgarden.controller.lookuptable;
 
 import itgarden.model.homevisit.Aid_Type;
 import itgarden.repository.homevisit.Aid_TypeRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class Aid_TypeController {
     
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Aid_Type aid_Type, Model model) {
-       model.addAttribute("aid_Type",   aid_TypeRepository.findOne(id));
+       model.addAttribute("aid_Type",   aid_TypeRepository.findById(id));
         model.addAttribute("list",  aid_TypeRepository.findAll());
           model.addAttribute("table_name"," Aid Types" );
          return "/homevisit/lookup/aid_type";
@@ -65,7 +65,7 @@ public class Aid_TypeController {
     @GetMapping(value = "/delete/{id}")    
     public String delete (@PathVariable Long id, Aid_Type aid_Type) {        
 
-     aid_TypeRepository.delete(id);
+     aid_TypeRepository.deleteById(id);
           return "redirect:/aid_type/index";
     }    
     

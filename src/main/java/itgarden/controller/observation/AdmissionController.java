@@ -5,7 +5,6 @@
  */
 package itgarden.controller.observation;
 
-import itgarden.model.homevisit.Decision;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.observation.O_Induction;
 import itgarden.model.observation.O_MAddmission;
@@ -15,7 +14,8 @@ import itgarden.repository.observation.O_ChildAdmissionRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.services.StorageProperties;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,15 +53,15 @@ public class AdmissionController {
 
     @RequestMapping("/motherlist")
     public String page(Model model) {
-        
+
         model.addAttribute("list", o_MAddmissionRepository.findAll());
         return "homevisit/observation/admission/mothersearch";
     }
-    
+
     @RequestMapping("/newadmission")
     public String newadmission(Model model) {
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-        model.addAttribute("list",  motherMasterDataRepository.findByOInductionIsNotNullAndOInductionOmHealthConditionsIsNotNullAndOInductionOProfessionalObserbationsMotherIsNotNullAndAddmissionIsNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNotNullAndAddmissionIsNullOrderByIdDesc());
         return "homevisit/observation/admission/newadmission";
     }
 
@@ -74,6 +74,8 @@ public class AdmissionController {
         model.addAttribute("o_ChildAddmission", o_ChildAdmissionRepository.findBymotherMasterCode(motherMasterData));
         return "homevisit/observation/admission/index";
     }
+    
+    
 
     @RequestMapping("/create/{id}")
     public String mAdd(Model model, @PathVariable Long id, O_MAddmission o_MAddmission) {
@@ -88,7 +90,7 @@ public class AdmissionController {
 
     @RequestMapping("/edit/{id}")
     public String mEdit(Model model, @PathVariable Long id, O_MAddmission o_MAddmission) {
-        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findOne(id));
+        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findById(id));
         return "homevisit/observation/admission/addmotherimg";
     }
 
@@ -105,7 +107,7 @@ public class AdmissionController {
 
         model.addAttribute("message", "You successfully uploaded");
 
-        model.addAttribute("o_MAddmission", motherMasterDataRepository.findOne(id));
+        model.addAttribute("o_MAddmission", motherMasterDataRepository.findById(id));
         o_MAddmissionRepository.save(o_MAddmission);
 
         redirectAttributes.addFlashAttribute("message", "Sucess");
@@ -117,9 +119,13 @@ public class AdmissionController {
     @Transactional
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, O_MAddmission o_MAddmission, RedirectAttributes redirectAttrs) {
-        o_MAddmission = o_MAddmissionRepository.findOne(id);
+
+        Optional<O_MAddmission> optionalo_MAddmission = o_MAddmissionRepository.findById(id);
+
+        o_MAddmission = optionalo_MAddmission.orElse(null);
+
         redirectAttrs.addAttribute("id", o_MAddmission.motherMasterCode.getId());
-        o_MAddmissionRepository.delete(id);
+        o_MAddmissionRepository.deleteById(id);
         return "redirect:/admission/index/{id}";
     }
 }

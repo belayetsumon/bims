@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
@@ -59,8 +59,8 @@
                                          </td>
                                         <td th:text="${list.gender}">Chakma</td>
 
-                                        <td th:text="${list.educationLevel.NAME}">Chakma</td>
-                                        <td th:text="${list.educationType.NAME}">Chakma</td>
+                                        <td th:text="${list.educationLevel.name}">Chakma</td>
+                                        <td th:text="${list.educationType.name}">Chakma</td>
 
                                         <td th:text="${list.interstedSkillArea}">Chakma</td>
 

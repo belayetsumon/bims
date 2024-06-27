@@ -7,52 +7,46 @@ package itgarden.model.discharge;
 
 import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
  * @author Md Belayet Hossin
  */
-
-
-
 public class D_Community {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public D_AddressType  addressType;
+    public D_AddressType addressType;
 
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
-    
-      @NotNull(message = "This field cannot be blank.")
+
+    @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 11, message = "This field must between 1 and 200 characters")
     public String dDate;
-      
-        @NotNull(message = "This field cannot be blank.")
+
+    @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 500, message = "This field must between 1 and 200 characters")
     public String dAddress;
-        
-        
-        
-         /**
+
+    /**
      * ********* Audit ******************************
      */
     @Column(insertable = true, updatable = false)
@@ -154,6 +148,4 @@ public class D_Community {
         this.updatedBy = updatedBy;
     }
 
-    
-    
 }

@@ -7,7 +7,7 @@ package itgarden.controller.rehabilitations;
 
 import itgarden.model.rehabilitations.Diagonosis;
 import itgarden.repository.rehabilitations.DiagonosisRepository;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +30,7 @@ public class DiagonosisController {
      @RequestMapping("/index")
     public String index(Model model, Diagonosis  diagonosis) {
         model.addAttribute("list", diagonosisRepository.findAll());
-        model.addAttribute("table_name", "  Diseases ");
+        model.addAttribute("table_name", "  Therapeutic   Diagnosis  ");
         return "rehabilitations/lookup/diagonosis";
     }
 
@@ -40,7 +40,7 @@ public class DiagonosisController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("list", diagonosisRepository.findAll());
-            model.addAttribute("table_name", "DDiseases");
+            model.addAttribute("table_name", "Therapeutic   Diagnosis ");
              return "rehabilitations/lookup/diagonosis";
         }
 
@@ -51,15 +51,15 @@ public class DiagonosisController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, Diagonosis diagonosis, Model model) {
-        model.addAttribute("diagonosis", diagonosisRepository.findOne(id));
+        model.addAttribute("diagonosis", diagonosisRepository.findById(id));
         model.addAttribute("list", diagonosisRepository.findAll());
-             model.addAttribute("table_name", "Diagonosis");
+             model.addAttribute("table_name", "Therapeutic   Diagnosis ");
          return "rehabilitations/lookup/diagonosis";
     }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, Diagonosis  diagonosis) {
-        diagonosisRepository.delete(id);
+        diagonosisRepository.deleteById(id);
         return "redirect:/diagonosis/index";
     }
 

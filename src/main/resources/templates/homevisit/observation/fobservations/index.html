@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorator="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Observation 
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>Psychological and Therapy Support</h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support</a></li>
+                                <li class="breadcrumb-item active">Mother List For Professional Observations </li>
+                                <li class="breadcrumb-item active">Professional Observations by Mother </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Professional Observation Mother </h3>
-                                <a   th:href="@{/mprofessionalobserbations/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Professional Observation Mother  </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table">
+                        <div class="card card-info" >
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Professional Observation Mother </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/mprofessionalobserbations/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Professional Observation Mother  </a>
+                                </div>   </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table class="table table-bordered table-striped">
 
                                     <tr th:each="o_ProfessionalObserbationsMother,status:${o_ProfessionalObserbationsMother}">
                                         <td>
@@ -33,7 +46,7 @@
                                                 <tr><th>Mother Master Code</th> <td th:text="${o_ProfessionalObserbationsMother.motherMasterCode.motherMasterCode}">Chakma</td>
                                                     <th> </th> <td ></td>
                                                 </tr>
-                                                       <tr><th>Induction Start Date</th> <td th:text="${o_ProfessionalObserbationsMother.inductionStartDate}">Chakma</td>
+                                                <tr><th>Induction Start Date</th> <td th:text="${o_ProfessionalObserbationsMother.inductionStartDate}">Chakma</td>
                                                     <th>Observation Start Date </th> <td th:text="${o_ProfessionalObserbationsMother.obStartDate}">Chakma</td>
                                                 </tr>
                                                 <tr>
@@ -61,12 +74,12 @@
                                         </td> </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
@@ -75,14 +88,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Professional Observation Children </h3>
-                               <a   th:href="@{/opobserbationschild/create/{m_id}(m_id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Professional Observation Children  </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
+                        <div class="card card-info" >
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Professional Observation Children </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/opobserbationschild/create/{m_id}(m_id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Professional Observation Children  </a>
+                                </div>     </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table  class="table table-bordered table-striped">
                                     <tr>
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
@@ -90,59 +104,59 @@
                                         <th>Mother Master Code</th>
                                         <th>Child Master Code</th>
                                         <th>Observation Start Date</th>
-                                        
+
                                         <th> Physical Disability</th>
                                         <th> Note</th>
-                                        
+
                                         <th> Previously Pt Taken</th>
                                         <th> Note </th>
-                                        
+
                                         <th> ADL Performance </th>
                                         <th> Notes </th>
-                                        
+
                                         <th> Psychological Assessment Needs </th>
                                         <th> Notes </th>
-                                        
+
                                         <th> Remarks </th>
                                     </tr>                                                    
                                     <tr th:each="o_ProfessionalObserbationsChild,status:${o_ProfessionalObserbationsChild}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/opobserbationschild/edit/{id} (id=${o_ProfessionalObserbationsChild.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        
+
                                         <td> <a   th:href="@{/opobserbationschild/delete/{id} (id=${o_ProfessionalObserbationsChild.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.childMasterCode.childMasterCode}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.obStartDate}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.physicalDisability}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.physicalDisabilityNote}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.therapy}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.therapyNote}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.adlPerformance}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.adlPerformanceNote}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.psychocialAssesmentNeeds}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.psychocialAssesmentNeedsNote}">Chakma</td>
-                                        
+
                                         <td th:text="${o_ProfessionalObserbationsChild.remarks}">Chakma</td>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
