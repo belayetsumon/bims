@@ -5,6 +5,7 @@
  */
 package itgarden.controller.homevisit;
 
+import itgarden.homevisit.servicess.MotherMasterDataService;
 import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.EducationLevelRepository;
@@ -64,10 +65,14 @@ public class MotherMasterDataController {
     @Autowired
     ImmunizationRepository immunizationRepository;
 
-    @RequestMapping("/index")
+    @Autowired
+    MotherMasterDataService motherMasterDataService;
 
+    @RequestMapping("/index")
     public String index(Model model, MotherMasterData motherMasterData) {
-        model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
+
+        //model.addAttribute("list", motherMasterDataService.allInsertedMotherList());
+         model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
         return "homevisit/insertmother/index";
     }
 
@@ -187,7 +192,6 @@ public class MotherMasterDataController {
              */
             return "homevisit/insertmother/create";
         }
-
 
 //motherMasterData.getCREATED_BY().setId(1L);
         motherMasterDataRepository.save(motherMasterData);

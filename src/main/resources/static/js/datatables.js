@@ -3,6 +3,7 @@ $(function () {
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
+        "scrollX": true,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "lengthMenu": [
         [10, 25, 50, -1],

@@ -5,23 +5,36 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Reintegration Child List
-                </h1>
+                <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>          Reintegration/Release </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Reintegration/Release </a></li>
+                                <li class="breadcrumb-item active">   Reintegration/Release Child List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Reintegration Child List ( Total: <span th:text="${list.size()}"></span>) </h3>
-                                <a   th:href="@{/reintegration/child_entry/{m_id} (m_id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Child </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Reintegration/Release Child List ( Total: <span th:text="${list.size()}"></span>) </h3>
+                                <div class="card-tools pull-right">
+                            <div class="btn-group"> 
+                                <a   th:href="@{/reintegration/child_entry/{m_id} (m_id=${m_id})}" type="button" class="btn-sm   btn-light text-info"> Add Child </a>
+                            </div> </div> </div> 
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th> Mother  Id</th>
@@ -53,20 +66,20 @@
 
                                        <td th:text="${list.remark}" >Chakma</td>
                                         <td> 
-                                            <a   th:href="@{/reintegration/child_entry/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a>
+                                            <a   th:href="@{/reintegration/child_entry/{c_id} (c_id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Edit</a>
                                         </td>
                                         <td> 
-                                            <a   th:href="@{/reintegration/child_delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
+                                            <a   th:href="@{/reintegration/child_delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Delete</a>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

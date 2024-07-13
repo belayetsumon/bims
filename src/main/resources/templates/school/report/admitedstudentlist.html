@@ -6,90 +6,81 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    School
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>          School </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> School </a></li>
+                                <li class="breadcrumb-item"><a href="#">Report List</a></li>
+                                <li class="breadcrumb-item active">Admitted Student List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Admission Report</h3>
-                                <div class="box-tools pull-right">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Admission Report</h3>
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
-                                        <a  th:href="@{/school/report}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                        <a  th:href="@{/school/report}"  type="button" class="btn btn-light text-red  btn-sm "> Close <i class="fas fa-times"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-sm-12 ">
-
-                                        <!--                                        <form class="form-inline col-sm-offset-3">
-                                                                                    <label class="" for="email">From:</label>
-                                                                                    <div class="form-group input-group date">
-                                                                                        <div class="input-group-addon" > 
-                                                                                            <i class="fa fa-calendar"></i>
-                                                                                        </div>
-                                                                                        <input type="text"  id="referral_date" class="form-control"  name="from"/>
-                                                                                    </div>
-                                                                                    <label class="" for="to">To:</label>
-                                                                                    <div class="form-group input-group date">
-                                        
-                                                                                        <div class="input-group-addon" > 
-                                                                                            <i class="fa fa-calendar"></i>
-                                                                                        </div>
-                                                                                        <input type="text" class="form-control"  id="homeVisitDate" name="to"/>
-                                                                                    </div>
-                                        
-                                                                                    <button type="submit" class="btn btn-default bg-maroon-active">Submit</button>
-                                                                                </form>      -->
-                                        <br/>
-                                    </div>                          
-                                </div>                            
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Mother master code</th>
-                                        <th>Mother Name</th>
-                                        <th>Child master code</th>
-                                        <th>Child Name</th>
-                                        <th> Date Admission</th>
-                                        <th>Admission Session </th>
-                                        <th>Admission Class  </th>
-                                        <th>Last Attended Session</th>
-                                        <th>last Attended Class</th>
-                                        <th>Last Attended Education Type</th>
-                                        <th>Special Need</th>
-                                        <th>Remark</th>
-                                    </tr>                          
-                                    <tr th:each="list,status:${clildlist}">                                
-                                        <td th:text="${status.count}">2.</td>      
-                                        <td th:text="${list.childMasterCode.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.childMasterCode.motherName}">Chakma</td>
-                                        <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
-                                        <td th:text="${list.childMasterCode.name}">Chakma</td>
-                                        <td th:text="${list.dateAdmission}">Chakma</td>
-                                        <td th:text="${list.admissionSession}">Chakma</td>
-                                        <td th:text="${list.admissionClass.NAME}">Chakma</td>
-                                        <td th:text="${list.LastAttendedSession}">Chakma</td>
-                                        <td th:text="${list.lastAttendedClass.NAME}">Chakma</td>
-                                        <td th:text="${list.lastAttendedEducationType.NAME}">Chakma</td>
-                                        <td th:text="${list.specialNeed}">Chakma</td>
-                                        <td th:text="${list.remark}">Chakma</td>
-                                    </tr>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Mother master code</th>
+                                            <th>Mother Name</th>
+                                            <th>Child master code</th>
+                                            <th>Child Name</th>
+                                            <th> Date Admission</th>
+                                            <th>Admission Session </th>
+                                            <th>Admission Class  </th>
+                                            <th>Last Attended Session</th>
+                                            <th>last Attended Class</th>
+                                            <th>Last Attended Education Type</th>
+                                            <th>Special Need</th>
+                                            <th>Remark</th>
+                                        </tr>     
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${clildlist}">                                
+                                            <td th:text="${status.count}">2.</td>      
+                                            <td th:text="${list.childMasterCode.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.childMasterCode.motherName}">Chakma</td>
+                                            <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.childMasterCode.name}">Chakma</td>
+                                            <td th:text="${list.dateAdmission}">Chakma</td>
+                                            <td th:text="${list.admissionSession}">Chakma</td>
+                                            <td th:text="${list.admissionClass.name}">Chakma</td>
+                                            <td th:text="${list.LastAttendedSession}">Chakma</td>
+                                            <td th:text="${list.lastAttendedClass.name}">Chakma</td>
+                                            <td th:text="${list.lastAttendedEducationType.name}">Chakma</td>
+                                            <td th:text="${list.specialNeed}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

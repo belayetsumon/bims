@@ -5,26 +5,48 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Pre Reintegration 
-                    <a   th:href="@{/pre_reintegration_visit/index }" type="button" class="btn  btn-warning pull-right"> Close </a>
-                </h1>
-                
-                
-            </section>
+        
+
+
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>     Pre Reintegration Visit</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">    Pre Reintegration Visit</a></li>
+                                    <li class="breadcrumb-item active">
+                                        Mother Pre Reintegration Details  </li>
+
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+
+        
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Mother Pre Reintegration Details </h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Mother Pre Reintegration Details </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+
+                                        <a   th:href="@{/pre_reintegration_visit/index }" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close <i class="fas fa-times"></i></a>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th> Mother  Id</th>
@@ -41,14 +63,16 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother Address </h3>
-                                <a   th:href="@{/pre_reintegration_m_address/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother Address </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a   th:href="@{/pre_reintegration_m_address/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -74,18 +98,20 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Mother House Information</h3>
-                                <a   th:href="@{/pre_reintegration_m_house_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother House Information</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a   th:href="@{/pre_reintegration_m_house_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -109,19 +135,21 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Community Information</h3>
-                                <a    th:href="@{/pre_reintegration_m_community_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Community Information</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a    th:href="@{/pre_reintegration_m_community_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div> </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -150,19 +178,21 @@
                                 </table>
                             </div>
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary"  style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Accessibility</h3>
-                                <a   th:href="@{/pre_reintegration_m_accessibility/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info"  style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Accessibility</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a   th:href="@{/pre_reintegration_m_accessibility/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div> </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -195,7 +225,7 @@
                                         <td> <a   th:href="@{/pre_reintegration_m_accessibility/delete/{id} (id=${accessibility.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
                                         <td th:text="${accessibility.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${accessibility.roadType.name}">  </td>
-                                        <td th:text="${accessibility.transportType.NAME}">   </td>
+                                        <td th:text="${accessibility.transportType.name}">   </td>
                                         <td th:text="${accessibility.distanceToMainRoad}">   </td>
                                         <td th:text="${accessibility.primarySchool}">   </td>
                                         <td th:text="${accessibility.primarySchoolDistance}">   </td>
@@ -220,18 +250,20 @@
 
 
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Lifestyle</h3>
-                                <a    th:href="@{/pre_reintegration_m_lifestyle/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info" style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Lifestyle</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a    th:href="@{/pre_reintegration_m_lifestyle/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}" type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div> </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -272,19 +304,21 @@
 
 
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary" >
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Family Information</h3>
-                               <a   th:href="@{/pre_reintegration_m_family_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info" >
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Family Information</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a   th:href="@{/pre_reintegration_m_family_information/create/{m_id} (m_id=${preReintegrationVisit.motherMasterCode.id})}"  type="button" class="btn btn-block btn-light text-info  btn-sm pull-right "> Add </a>
+                                    </div> </div> </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Edit </th>
@@ -305,8 +339,8 @@
                                         <td th:text="${family.name}"> </td>
                                         <td th:text="${family.dateofBirth}"> </td>
                                         <td th:text="${family.sex}"> </td>
-                                        <td th:text="${family.occopation.NAME}"> </td>
-                                        <td th:text="${family.relation.NAME}"> </td>
+                                        <td th:text="${family.occopation.name}"> </td>
+                                        <td th:text="${family.relation.name}"> </td>
                                         <td th:text="${family.cellNo}"> </td>
                                         <td th:text="${family.remarks}"> </td>
 
@@ -316,8 +350,8 @@
 
 
 
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>

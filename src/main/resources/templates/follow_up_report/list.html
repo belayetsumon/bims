@@ -5,67 +5,83 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
             <section class="content-header">
-                <h1>
-                    Follow Up
-                    <small> </small>
-                </h1>
-            </section>
-            <!-- Main content -->
-            <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">  Mother Crisis Meet Up Total : <span th:text="${list.size()}"></span></h3>
-                        <div class="box-tools pull-right">
-                            <div class="btn-group">                 
-                               
-                            </div>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Follow Up </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Follow Up</a></li>
+                                <li class="breadcrumb-item active"> Mother Crisis Meet Up</li>
+                            </ol>
                         </div>
                     </div>
-                    <div class="box-body">
-                   <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Mother Id </th>
-                                        <th>Date</th>
-                                        <th>Location </th>
-                                        <th>Reason</th>
-                                        <th>Challenges</th>
-                                        <th>Action</th>
-                                        <th>Victim Number </th>
-                                        <th>Supports </th>
-                                        <th>Expected Solving Date</th>
-                                        <th>Remarks </th>
-                                    </tr>
+                </div><!-- /.container-fluid -->
+            </section>
 
-                                    <tr th:each="lists,status:${list}">  
-                                        <td> <a   th:href="@{/mothercrisismeetup/edit/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
-                                        <td> <a   th:href="@{/mothercrisismeetup/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
-                                        <td th:text="${lists.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${lists.entrydate}">  </td>
-                                        <td th:text="${lists.location}">  </td>
-                                        <td th:text="${lists.reason}">  </td>
-                                        <td th:text="${lists.challenge}">  </td>
-                                        <td th:text="${lists.action}">  </td>
-                                        <td th:text="${lists.victimnumber}">  </td>
-                                        <td th:text="${lists.supports}">  </td>      
-                                        <td th:text="${lists.expectedsolvingdate}">  </td>      
-                                        <td th:text="${lists.remarks}">  </td>
-                                    </tr>
-                                </table>
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">  Mother Crisis Meet Up Total : <span th:text="${list.size()}"></span></h3>
+                        <div class="card-tools pull-right">
+
+                        </div>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <div class="card-body table-responsive ">
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Edit </th>
+                                    <th>Delete</th>
+                                    <th>Mother Id </th>
+                                    <th>Date</th>
+                                    <th>Location </th>
+                                    <th>Reason</th>
+                                    <th>Challenges</th>
+                                    <th>Action</th>
+                                    <th>Victim Number </th>
+                                    <th>Supports </th>
+                                    <th>Expected Solving Date</th>
+                                    <th>Remarks </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="lists,status:${list}">  
+                                    <td> <a   th:href="@{/mothercrisismeetup/edit/{id} (id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Edit </a> </td>
+                                    <td> <a   th:href="@{/mothercrisismeetup/delete/{id} (id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Delete </a> </td>
+                                    <td th:text="${lists.motherMasterCode.motherMasterCode}">  </td>
+                                    <td th:text="${lists.entrydate}">  </td>
+                                    <td th:text="${lists.location}">  </td>
+                                    <td th:text="${lists.reason}">  </td>
+                                    <td th:text="${lists.challenge}">  </td>
+                                    <td th:text="${lists.action}">  </td>
+                                    <td th:text="${lists.victimnumber}">  </td>
+                                    <td th:text="${lists.supports}">  </td>      
+                                    <td th:text="${lists.expectedsolvingdate}">  </td>      
+                                    <td th:text="${lists.remarks}">  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
             </section>
             <!-- /.content -->
         </div>

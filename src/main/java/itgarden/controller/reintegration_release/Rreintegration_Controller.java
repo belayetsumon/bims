@@ -6,6 +6,7 @@
 package itgarden.controller.reintegration_release;
 
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.homevisit.Yes_No;
 import itgarden.model.reintegration_release.ReleaseChild;
 import itgarden.model.reintegration_release.ReleaseMother;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
@@ -41,7 +42,7 @@ public class Rreintegration_Controller {
 
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-     //   model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
+        model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
         return "reintegration/mothersearch";
     }
 

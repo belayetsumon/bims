@@ -1,30 +1,46 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" llayout:decorate="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
     <div layout:fragment = "main_content">
         <!-- Content Wrapper. Contains page content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+
             <section class="content-header">
-                <h1>
-                    Long Term Care
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-3">
+                            <h1> Long Term Care</h1>
+                        </div>
+                        <div class="col-sm-9">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Long Term Care</a></li>
+                                <li class="breadcrumb-item "> <a href="#"> Abandonment Child  List </a> </li>
+                                <li class="breadcrumb-item "> <a href="#">Abandonment Child  Details </a></li>
+                                <li class="breadcrumb-item active">Add foster</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
+
+
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"> <span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"> Add foster</h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/longtremcare/index/{id}(id=${l_Foste.childMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/longtremcare/index/{id}(id=${l_Foste.childMasterCode.id})}"  type="button" class="btn  btn-light text-red  btn-xs  "> Close </i><i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/foster/save/{id}(id=${l_Foste.childMasterCode.id})}"  th:object="${l_Foste}"  method="post" class="form-horizontal">
                             <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -39,70 +55,70 @@
 
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
 
-                            <div class="box-body">
+                            <div class="card-body">
 
 
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
+                            
+                                    <div class="form-group col-sm-6 row">
                                         <label for="co" class="col-sm-4 control-label"> Admission Date  :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-                                                <div class="input-group-addon" > 
+<!--                                                <div class="input-group-addon" > 
                                                     <i class="fa fa-calendar"></i>
-                                                </div>
+                                                </div>-->
                                                 <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{admissionDate}" id="startDate"/>    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('admissionDate')}" th:errors="*{admissionDate}">First Name Error</span>
                                         </div>     
                                     </div> 
 
-                                    <div class="form-group col-sm-6">
-                                        <label for="name" class="col-sm-3 control-label"> Address<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-9">                   
+                                    <div class="form-group col-sm-6 row">
+                                        <label for="name" class="col-sm-4 control-label"> Address<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{adress}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                </div>
-                                            <div class="form-group col-sm-6">
-                                        <label for="co" class="col-sm-4 control-label"> Fostering   Date  :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">    
-                                            <div class="input-group date" >
-                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <input type="text"  placeholder="dd/mm/yyyy" class="form-control"   th:field="*{fostringDate}" />    
-                                            </div>
-                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('fostringDate')}" th:errors="*{fostringDate}">First Name Error</span>
-                                        </div>     
-                                    </div> 
+                        
+                                <div class="form-group col-sm-6 row">
+                                    <label for="co" class="col-sm-4 control-label"> Fostering   Date  :<span class="text-red"> * </span> </label>
+                                    <div class="col-sm-8">    
+                                        <div class="input-group date" >
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
+                                            <input type="text"  placeholder="dd/mm/yyyy" class="form-control"   th:field="*{fostringDate}" />    
+                                        </div>
+                                        <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('fostringDate')}" th:errors="*{fostringDate}">First Name Error</span>
+                                    </div>     
+                                </div> 
 
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
+                           
+                                    <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                </div>                 
+                                          
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

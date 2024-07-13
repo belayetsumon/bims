@@ -6,22 +6,37 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Long Term Care
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-3">
+                            <h1> Long Term Care</h1>
+                        </div>
+                        <div class="col-sm-9">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Long Term Care</a></li>
+                                <li class="breadcrumb-item "> <a href="#"> Abandonment Child  List </a> </li>
+                                <li class="breadcrumb-item active">Abandonment Child  Details</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Foster</h3>
-                                <a   th:href="@{/foster/create/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Foster </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Foster</h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/foster/create/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Add Foster </a>
+                                </div>   
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -36,8 +51,8 @@
                                     </tr>                          
                                     <tr th:each="foster,status:${foster}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/foster/edit/{id}(id=${foster.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/foster/delete/{id}(id=${foster.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/foster/edit/{id}(id=${foster.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/foster/delete/{id}(id=${foster.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${foster.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${foster.admissionDate}">Chakma</td>
                                         <td th:text="${foster.adress}">Chakma</td>
@@ -47,19 +62,24 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Foster Follow Up</h3>
-                                <a   th:href="@{/foster/fosterfollowupcreate/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Foster Follow up </a>
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Foster Follow Up</h3>
+
+                                <div class="card-tools">
+                                    <a   th:href="@{/foster/fosterfollowupcreate/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> 
+Foster Follow Up </a>
+                                </div>  
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -74,8 +94,8 @@
                                     <tr th:each="foster_follow_up,status:${foster_follow_up}">                                
                                         <td th:text="${status.count}"> 2. </td>      
 
-                                        <td><a th:href="@{/foster/fosterfollowupedit/{id}(id=${foster_follow_up.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/foster/fosterfllowupdelete/{id}(id=${foster_follow_up.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/foster/fosterfollowupedit/{id}(id=${foster_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/foster/fosterfllowupdelete/{id}(id=${foster_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
 
                                         <td th:text="${foster_follow_up.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${foster_follow_up.followUpType}">Chakma</td>
@@ -89,20 +109,21 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Higher Study</h3>
-                                <a   th:href="@{/higherstudy/create/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Higher Study </a>
-
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Higher Study</h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/higherstudy/create/{id}(id=${c_id})}"  type="button" class="btn btn-light  btn-xs  text-info"> Higher Study </a>
+                                </div>  
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -122,32 +143,34 @@
                                     </tr>                           
                                     <tr th:each="higherstudy,status:${higherstudy}">                                
                                         <td th:text="${status.count}">2.</td>      
-                                        <td><a th:href="@{/higherstudy/edit/{id}(id=${higherstudy.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/higherstudy/delete/{id}(id=${higherstudy.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/higherstudy/edit/{id}(id=${higherstudy.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/higherstudy/delete/{id}(id=${higherstudy.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${higherstudy.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${higherstudy.higherStudyDate}">Chakma</td>
                                         <td th:text="${higherstudy.address}">Chakma</td>
                                         <td th:text="${higherstudy.addmissionDate}">Chakma</td>
                                         <td th:text="${higherstudy.endDate}">Chakma</td>
-                                        <td th:text="${higherstudy.educationType.NAME}">Chakma</td>
+                                        <td th:text="${higherstudy.educationType.name}">Chakma</td>
                                         <td th:text="${higherstudy.instituteName}">Chakma</td>
-                                        <td th:text="${higherstudy.educationLavel.NAME}">Chakma</td>
+                                        <td th:text="${higherstudy.educationLavel.name}">Chakma</td>
                                         <td th:text="${higherstudy.result}">Chakma</td>
                                         <td th:text="${higherstudy.remark}">Chakma</td>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Higher Study Follow Up</h3>
-                                <a   th:href="@{/higherstudy/higherstudyfollowupcreate/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Higher Study Follow up </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Higher Study Follow Up</h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/higherstudy/higherstudyfollowupcreate/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Higher Study Follow Up </a>
+                                </div> 
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -161,8 +184,8 @@
                                     </tr>                          
                                     <tr th:each="higherstudy_follow_up,status:${higherstudy_follow_up}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/higherstudy/higherstudyfollowupedit/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/higherstudy/higherstudyfllowupdelete/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/higherstudy/higherstudyfollowupedit/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/higherstudy/higherstudyfllowupdelete/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${higherstudy_follow_up.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${higherstudy_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${higherstudy_follow_up.followUpDate}">Chakma</td>
@@ -171,19 +194,22 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Job</h3>
-                                <a   th:href="@{/ljob/create/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Job </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Job</h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/ljob/create/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Job </a>
+                                </div>
+
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -201,8 +227,8 @@
                                     </tr>                           
                                     <tr th:each="job,status:${job}">
                                         <td th:text="${status.count}">2.</td>      
-                                        <td><a th:href="@{/ljob/edit/{id}(id=${job.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td><a th:href="@{/ljob/delete/{id}(id=${job.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/ljob/edit/{id}(id=${job.id})}" type="button" class="btn btn-sm  btn-info">Edit</a></td>
+                                        <td><a th:href="@{/ljob/delete/{id}(id=${job.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${job.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${job.jobDate}">Chakma</td>
                                         <td th:text="${job.jobType}">Chakma</td>
@@ -215,18 +241,20 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Job Follow Up</h3>
-                                <a   th:href="@{/ljob/jobfollowupcreate/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Job Follow up </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Job Follow Up</h3>
+                                <div class="card-tools">
+                                    <a    th:href="@{/ljob/jobfollowupcreate/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Job Follow Up </a>
+                                </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -240,8 +268,8 @@
                                     </tr>                          
                                     <tr th:each="job_follow_up,status:${job_follow_up}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/ljob/jobfollowupedit/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/ljob/jobfllowupdelete/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/ljob/jobfollowupedit/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/ljob/jobfllowupdelete/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${job_follow_up.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${job_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${job_follow_up.followUpDate}">Chakma</td>
@@ -250,17 +278,18 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Marriage</h3>
-                                <a   th:href="@{/marriage/create/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Marriage </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Marriage</h3>
+                                  <div class="card-tools">
+                                <a   th:href="@{/marriage/create/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Marriage </a>
+                            </div></div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -274,8 +303,8 @@
                                     </tr>                           
                                     <tr th:each="marriage,status:${marriage}">                                
                                         <td th:text="${status.count}">2.</td>      
-                                        <td><a th:href="@{/marriage/edit/{id}(id=${marriage.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td><a th:href="@{/marriage/delete/{id}(id=${marriage.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>
+                                        <td><a th:href="@{/marriage/edit/{id}(id=${marriage.id})}" type="button" class="btn btn-sm  btn-info">Edit</a></td>
+                                        <td><a th:href="@{/marriage/delete/{id}(id=${marriage.id})}" type="button" class="btn btn-sm  btn-info">Delete</a></td>
                                         <td th:text="${marriage.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${marriage.marriageDate}">Chakma</td>
                                         <td th:text="${marriage.hasbandName}">Chakma</td>
@@ -284,19 +313,20 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Marriage Follow Up</h3>
-                                <a   th:href="@{/marriage/marriagefollowupcreate/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Marriage Follow up </a>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Marriage Follow Up</h3>
+                                  <div class="card-tools">
+                                <a   th:href="@{/marriage/marriagefollowupcreate/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Add Marriage Follow up </a>
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            </div></div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -310,8 +340,8 @@
                                     </tr>                          
                                     <tr th:each="marriage_follow_up,status:${marriage_follow_up}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/marriage/marriagefollowupedit/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/marriage/marriagefllowupdelete/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/marriage/marriagefollowupedit/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/marriage/marriagefllowupdelete/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${marriage_follow_up.childMasterCode.childMasterCode}">Chakma</td>
                                         <td th:text="${marriage_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${marriage_follow_up.followUpDate}">Chakma</td>
@@ -320,19 +350,69 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
+                        
+                                   <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Child Crisis Meet Up </h3>
+                                  <div class="card-tools">
+                                <a   th:href="@{/childcrisismeetup/create/{mid}(mid=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Add Crisis Meet Up   </a>
+                            </div></div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Edit </th>
+                                        <th>Delete</th>
+                                        <th>Mother Id </th>
+                                        <th>Date</th>
+                                        <th>Location </th>
+                                        <th>Reason </th>
+                                        <th>Challenges</th>
+                                        <th>Action</th>
+                                        <th>Victim Number </th>
+                                        <th>Supports </th>
+                                        <th>Expected Solving Date</th>
+                                        <th>Remarks </th>
+                                    </tr>                      
+                                    <tr th:each="list,status:${childcrisismeet}">                                
 
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Long term care child release </h3>
-                                <a   th:href="@{/longtermcarechildrelase/child_entry/{id}(id=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Release  </a>
+                                        <td> <a   th:href="@{/childcrisismeetup/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Edit </a> </td>
+                                        <td> <a   th:href="@{/childcrisismeetup/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Delete </a> </td>
+                                        <td th:text="${list.childMasterCode.childMasterCode}">  </td>
+                                        <td th:text="${list.entrydate}">  </td>
+                                        <td th:text="${list.location}">  </td>
+                                        <td th:text="${list.reason}">  </td>
+                                        <td th:text="${list.challenge}">  </td>
+                                        <td th:text="${list.action}">  </td>
+                                        <td th:text="${list.victimnumber}">  </td>
+                                        <td th:text="${list.supports}">  </td>      
+                                        <td th:text="${list.expectedsolvingdate}">  </td>      
+                                        <td th:text="${list.remarks}">  </td>
+                                    </tr>
+                                </table>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        
+                        
+                        
+
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Long term care child release </h3>
+                                  <div class="card-tools">
+                                <a   th:href="@{/longtermcarechildrelase/child_entry/{id}(id=${c_id})}" type="button" class="btn btn-light  btn-xs  text-info"> Add Release  </a>
+                            </div></div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -348,75 +428,32 @@
                                     </tr>                      
                                     <tr th:each="releases,status:${release}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/marriage/marriagefollowupedit/{id}(id=${releases.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/marriage/marriagefllowupdelete/{id}(id=${releases.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/marriage/marriagefollowupedit/{id}(id=${releases.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/marriage/marriagefllowupdelete/{id}(id=${releases.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${releases.motherMasterCode.name}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.childMasterCode.name}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.childMasterCode.childMasterCode}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.releaseDate}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.training}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.Address}">Chakma</td>
-                                        
+
                                         <td th:text="${releases.remark}">Chakma</td>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        
-                        
-                                <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Child Crisis Meet Up </h3>
-                                <a   th:href="@{/childcrisismeetup/create/{mid}(mid=${c_id})}" type="button" class="btn  btn-warning pull-right"> Add Crisis Meet Up   </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Edit </th>
-                                        <th>Delete</th>
-                                        <th>Mother Id </th>
-                                        <th>Date</th>
-                                        <th>Location </th>
-                                         <th>Reason </th>
-                                        <th>Challenges</th>
-                                        <th>Action</th>
-                                        <th>Victim Number </th>
-                                        <th>Supports </th>
-                                        <th>Expected Solving Date</th>
-                                        <th>Remarks </th>
-                                    </tr>                      
-                                    <tr th:each="list,status:${childcrisismeet}">                                
-                                      
-                                  <td> <a   th:href="@{/childcrisismeetup/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> </td>
-                                        <td> <a   th:href="@{/childcrisismeetup/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a> </td>
-                                        <td th:text="${list.childMasterCode.childMasterCode}">  </td>
-                                        <td th:text="${list.entrydate}">  </td>
-                                        <td th:text="${list.location}">  </td>
-                                        <td th:text="${list.reason}">  </td>
-                                        <td th:text="${list.challenge}">  </td>
-                                        <td th:text="${list.action}">  </td>
-                                        <td th:text="${list.victimnumber}">  </td>
-                                        <td th:text="${list.supports}">  </td>      
-                                        <td th:text="${list.expectedsolvingdate}">  </td>      
-                                        <td th:text="${list.remarks}">  </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
 
-                            </div>
-                        </div>
+
+             
                     </div>
                     <!-- /.col -->
 

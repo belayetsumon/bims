@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package itgarden.model.homevisit.servicess;
+package itgarden.homevisit.servicess;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

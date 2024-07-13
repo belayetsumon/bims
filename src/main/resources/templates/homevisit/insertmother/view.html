@@ -5,58 +5,71 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Home Visit
-                    <small> </small>
-                </h1>
+                <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">All Inserted Mother List</a></li>
+                                <li class="breadcrumb-item active">View</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+            
+            
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Insert Mother</h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Mother Details View</h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group ">                 
-                                <a  th:href="@{/mothermasterdata/index}"  type="button" class="btn  btn-warning">Close</a>
-                                <a   th:href="@{/mothermasterdata/edit/{id} (id=${motherMasterData.id})}" type="button" class="btn  bg-maroon ">Edit</a>
-                                <a   th:href="@{/mothermasterdata/delete/{id} (id=${motherMasterData.id})}" type="button" class="btn  bg-danger ">Delete</a>
+                                <a  th:href="@{/mothermasterdata/index}"  type="button" class="btn  btn-sm  btn-success">Close</a>
+                                <a   th:href="@{/mothermasterdata/edit/{id} (id=${motherMasterData.id})}" type="button" class="btn btn-sm btn-light text-info ">Edit</a>
+                                <a   th:href="@{/mothermasterdata/delete/{id} (id=${motherMasterData.id})}" type="button" class="btn  btn-sm  bg-danger ">Delete</a>
                             </div>
                         </div>
                     </div>
-                    <div class="box-body">
-                        <div class="form-group col-sm-6">
+                    <div class="card-body row">
+                        <div class="form-group col-sm-6 row">
                             <label for="visitOfficersName" class="col-sm-5 control-label"> <b>Home Visit Officer Name:</b></label>
                             <div class="col-sm-7">    
                                 <span th:inline="text"> [[${motherMasterData.visitOfficersName }]]  </span>
                                 <!--                                            <span th:inline="text"> [[${motherMasterData.id }]]  </span>  -->
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label">  <b>Referral Date :</b></label>
                             <div class="col-sm-8">  
                                 <span th:inline="text"> [[${motherMasterData.dateReferral }]]</span>
                             </div>
                         </div>
                         <div class="row "> &nbsp;  </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b> Referred From : </b></label>
                             <div class="col-sm-8"> 
                                 <span th:inline="text"> [[${motherMasterData.referredFrom }]]</span>
                             </div>                            
                         </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"><b> Reasons:</b> </label>
                             <div class="col-sm-6">  
-                                <span th:inline="text"> [[${motherMasterData.resons.NAME }]]</span>
+                                <span th:inline="text"> [[${motherMasterData.resons.name }]]</span>
                             </div>                            
                         </div>
 
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Home Visit Date :</b></label>
                             <div class="col-sm-8">  
                                 <span th:inline="text"> [[${motherMasterData.homeVisitDate}]]</span>
@@ -64,7 +77,7 @@
                             </div>               
                         </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"><b> ID :</b></label>
                             <div class="col-sm-8">    
                                 <span th:inline="text"> [[${motherMasterData.motherMasterCode}]]</span>
@@ -75,7 +88,7 @@
 
                         <div class="row"> &nbsp;  </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Name:</b></label>
                             <div class="col-sm-8">  
                                 <span th:inline="text"> [[${motherMasterData.motherName}]]</span>
@@ -83,7 +96,7 @@
                             </div>                            
                         </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Date of Birth :</b></label>
                             <div class="col-sm-8"> 
                                 <span th:inline="text"> [[${motherMasterData.dateOfBirth}]]</span>
@@ -93,102 +106,102 @@
 
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Mothers Name :</b></label>
                             <div class="col-sm-8">        
                                 <span th:inline="text"> [[${motherMasterData.mMothersName}]]</span>
 
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Fathers Name :</b></label>
                             <div class="col-sm-8">             
                                 <span th:inline="text"> [[${motherMasterData.fathersName}]]</span>
 
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Religion :</b></label>
                             <div class="col-sm-6">                   
-                                <span th:inline="text"> [[${motherMasterData.religion.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.religion.name}]]</span>
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Marital Status :</b></label>
                             <div class="col-sm-6">                   
-                                <span th:inline="text"> [[${motherMasterData.maritalStatus.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.maritalStatus.name}]]</span>
                             </div>                            
                         </div>
 
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Husband's Name:</b></label>
                             <div class="col-sm-8">   
                                 <span th:inline="text"> [[${motherMasterData.husbandsName}]]</span>
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Husband's Status :</b></label>
                             <div class="col-sm-6">            
-                                <span th:inline="text"> [[${motherMasterData.husbandsStatus.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.husbandsStatus.name}]]</span>
                             </div>                            
                         </div>
 
                         <div class="row "> &nbsp;  </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-6 control-label">  <b>Prime Family Member Name  :</b> </label>
                             <div class="col-sm-6">     
                                 <span th:inline="text"> [[${motherMasterData.primeFamilyMemberName}]]</span>
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Relation:</b></label>
                             <div class="col-sm-6">   
-                                <span th:inline="text"> [[${motherMasterData.relationWithPfm.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.relationWithPfm.name}]]</span>
                             </div>                            
                         </div>
                         <div class="row "> &nbsp;  </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-6 control-label"> <b>Ethnic Identity:</b></label>
                             <div class="col-sm-6">                   
                                 <span th:inline="text"> [[${motherMasterData.ethnicIdentity.name}]]</span>
                             </div>  
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-6 control-label"><b> Education Level  :</b></label>
                             <div class="col-sm-6">                   
 
-                                <span th:inline="text"> [[${motherMasterData.educationLevel.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.educationLevel.name}]]</span>
                             </div>     
 
                         </div>
                         <div class="row "> &nbsp;  </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-6 control-label"><b> Education Type :</b></label>
                             <div class="col-sm-6">                   
-                                <span th:inline="text"> [[${motherMasterData.educationType.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.educationType.name}]]</span>
 
                             </div>    
 
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 row">
                             <label for="name" class="col-sm-6 control-label"><b> Occupation :</b></label>
                             <div class="col-sm-6">            
 
-                                <span th:inline="text"> [[${motherMasterData.occupation.NAME}]]</span>
+                                <span th:inline="text"> [[${motherMasterData.occupation.name}]]</span>
                             </div>                            
                         </div>
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Physical Status :</b></label>
                             <div class="col-sm-12">   
                                 <span th:inline="text"> [[${motherMasterData.physicalStatus}]]</span>
                             </div>                            
                         </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12 row">
                             <label for="name" class="col-sm-4 control-label"> <b>Immunization :</b></label>
                             <div class="col-sm-12">      
                                 <span th:inline="text"> [[${motherMasterData.immunization}]]</span>
@@ -196,21 +209,21 @@
                         </div>
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 row">
                             <label for="name" class="col-sm-5 control-label"> <b>Number of Sons:</b> </label>
                             <div class="col-sm-1">     
                                 <span th:inline="text"> [[${motherMasterData.numberOfSons}]]</span>
 
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 row">
                             <label for="name" class="col-sm-7 control-label"> <b>Number Of Daughters :</b></label>
                             <div class="col-sm-3">           
                                 <span th:inline="text"> [[${motherMasterData.numberOfDaughters}]]</span>
 
                             </div>                            
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-4 row">
                             <label for="name" class="col-sm-9 control-label">  <b>Number Of Eligible Children :</b> </label>
                             <div class="col-sm-3">  
                                 <span th:inline="text"> [[${motherMasterData.numberOfEligibleChildren}]]</span>
@@ -218,14 +231,14 @@
                         </div>
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group  col-sm-12">
+                        <div class="form-group  col-sm-12 row">
                             <label for="name" class="col-sm-3 control-label"><b> Major Findings :</b></label>
                             <div class="col-sm-12">          
                                 <span th:inline="text"> [[${motherMasterData.majorFindings}]]</span>
                             </div>                            
                         </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12 row">
                             <label for="name" class="col-sm-3 control-label"> <b>Other Remarks :</b></label>
                             <div class="col-sm-12">        
                                 <span th:inline="text"> [[${motherMasterData.otherRemarks}]]</span>
@@ -235,7 +248,7 @@
 
                         <div class="row "> &nbsp;  </div>
 
-                        <div class="form-group col-sm-12">
+                        <div class="form-group col-sm-12 row">
                             <label for="name" class="col-sm-3 control-label"><b> Investigator recommendation :</b></label>
                             <div class="col-sm-2">    
                                 <span th:inline="text"> [[${motherMasterData.eligibility}]]</span>
@@ -243,11 +256,11 @@
                             </div>                            
                         </div>
                     </div>
-                    <div class="box-body">
+                    <div class="card-body">
 
 
 
-                        <table class="table table-bordered">
+<!--                        <table class="table table-bordered">
                             <tr class="bg-maroon">
                                 <th> Section Name : Home Visit</th> 
                                 <th> Data Size</th>
@@ -550,25 +563,25 @@
                                 <td> <span th:inline="text"> [[${motherMasterData.motherCrisisMeetUp.size()}]]</span></td>
                             </tr>
 
-                        </table>
+                        </table>-->
 
 
 
 
                     </div>
 
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
 
 
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

@@ -8,6 +8,7 @@ package itgarden.repository.homevisit;
 import itgarden.model.homevisit.Decision;
 import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.projection.AllMotherInterface;
 import java.time.LocalDate;
 import java.util.List;
@@ -25,8 +26,8 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
 
     List<MotherMasterData> findByHomeVisitDateBetween(LocalDate fromdate, LocalDate todate);
 
-    // List<MotherMasterData> findAllByOrderByIdDesc();
-    List<AllMotherInterface> findAllByOrderByIdDesc();
+     List<MotherMasterData> findAllByOrderByIdDesc();
+    //List<AllMotherInterface> findAllByOrderByIdDesc();
 
     Long countByeligibility(Eligibility eligibility);
 
@@ -67,18 +68,18 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
     Long countByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc();
 //
 //    // Pree re itrigration Visit
-//    List<MotherMasterData> findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc();
+    List<MotherMasterData> findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc();
 //
 
     Long countByPreReintegrationVisitIsNullAndReleaseMotherIsNullOrderByIdDesc();
 //
 //    // Re Intirigrations check list
-//    List<MotherMasterData> findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc();
+    List<MotherMasterData> findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc();
 //
-//    List<MotherMasterData> findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No Reintegration);
+    List<MotherMasterData> findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No Reintegration);
 //
 //    // Realease 
-//    List<MotherMasterData> findByReleaseMotherIsNotNullOrderByIdDesc();
+    List<MotherMasterData> findByReleaseMotherIsNotNullOrderByIdDesc();
 //
 //    // Follow up
 

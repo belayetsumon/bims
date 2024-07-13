@@ -95,7 +95,7 @@ public class M_House_Information_Pre_reintegration_visitController {
 
         pre_reintegration_visit_M_House_InformationRepository.save(m_House_Information_ReintegrationVisit);
 
-        return "redirect:/pre_reintegration_visit//details/{m_id}";
+        return "redirect:/pre_reintegration_visit/details/{m_id}";
     }
 
     @GetMapping(value = "/edit/{id}")

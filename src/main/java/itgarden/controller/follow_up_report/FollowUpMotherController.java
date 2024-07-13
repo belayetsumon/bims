@@ -48,7 +48,7 @@ public class FollowUpMotherController {
     @GetMapping("/mothersearch")
     public String motherSearch(Model model) {
 
-    //  model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
+      model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
 
         return "follow_up_report/mothersearch";
     }

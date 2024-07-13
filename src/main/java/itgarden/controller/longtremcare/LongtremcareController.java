@@ -64,10 +64,11 @@ public class LongtremcareController {
         // model.addAttribute("list", m_Child_infoRepository.findAll());
         MotherMasterData motherMasterData = new MotherMasterData();
 
-        motherMasterData.setId(176l);
+       // motherMasterData.setId(176l);
         // id 20200105B0100
 
-        List<M_Child_info> childlist = m_Child_infoRepository.findByMotherMasterCodeAndLfosteIsNullAndReleaseChildIsNull(motherMasterData);
+       // List<M_Child_info> childlist = m_Child_infoRepository.findByMotherMasterCodeAndLfosteIsNullAndReleaseChildIsNull(motherMasterData);
+         List<M_Child_info> childlist = m_Child_infoRepository.findByLfosteIsNullAndReleaseChildIsNull();
 
         model.addAttribute("list", childlist);
 
@@ -79,8 +80,8 @@ public class LongtremcareController {
         // model.addAttribute("list", m_Child_infoRepository.findAll());
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(3l);
-        //List<M_Child_info> childlist = m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull();
-       // model.addAttribute("lchildlist",  m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull());
+       // List<M_Child_info> childlist = m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull();
+        model.addAttribute("lchildlist",  m_Child_infoRepository.findByLfosteIsNotNullAndReleaseChildIsNull());
        // model.addAttribute("list", l_FosteRepository.findAll());
         return "longtermcare/alllongtermcarechild";
     }

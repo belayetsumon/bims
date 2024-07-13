@@ -18,11 +18,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 /**
  *
@@ -361,5 +362,4 @@ public class FollowUpMother {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
 }

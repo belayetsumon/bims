@@ -6,27 +6,44 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Pre Reintegration 
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <h1>     Pre Reintegration Visit</h1>
+                        </div>
+                        <div class="col-sm-8">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">   Pre Reintegration Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">
+                                        Mother Pre Reintegration Details  </a></li>
+                                <li class="breadcrumb-item active">Mother Family Information </li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
+
+
+
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title"><span th:text='${form_title}'>Add </span></h3>
-                        <div class="box-tools pull-right">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"><span th:text='${form_title}'>Add </span></h3>
+                        <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/pre_reintegration_visit/details/{m_id}(m_id=${m_Family_information_ReintegrationVisit.motherMasterCode.id})}"   type="button" class="btn  btn-warning btn-xs">Close</a>
+                                <a  th:href="@{/pre_reintegration_visit/details/{m_id}(m_id=${m_Family_information_ReintegrationVisit.motherMasterCode.id})}"   type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close <i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/pre_reintegration_m_family_information/save/{m_id}(m_id=${m_Family_information_ReintegrationVisit.motherMasterCode.id})}"   th:object="${m_Family_information_ReintegrationVisit}"  method="post" class="form-horizontal">
-                            <div class="box-body">
+                            <div class="card-body">
 
                                 <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -42,7 +59,7 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
                                 </div> 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="co" class="col-sm-6 control-label">  Name  <span class="text-red">*  </span> :</label>
                                         <div class="col-sm-6">                   
                                             <input type="text"  class="form-control  "   th:field="*{name}"   />                
@@ -51,7 +68,7 @@
 
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="co" class="col-sm-6 control-label">  Date of Birth <span class="text-red"> </span> :</label>
                                         <div class="col-sm-6">  
                                             <div class="input-group date" >
@@ -67,7 +84,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="vill" class="col-sm-6 control-label">Gender <span class="text-red">* </span> :</label>
                                         <div class="col-sm-6">  
                                             <select class="form-control  "  id="bookName"  th:field="*{sex}" name="sex" >
@@ -80,14 +97,14 @@
                                         </div>               
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="vill" class="col-sm-6 control-label">Occupation  <span class="text-red">* </span> :</label>
                                         <div class="col-sm-6">  
                                             <select class="form-control  "  id="bookName"  th:field="*{occopation}" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" occopation :${occopation}"
                                                         th:value=" ${occopation.id}" 
-                                                        th:text="${occopation.NAME}"> Select one</option>
+                                                        th:text="${occopation.name}"> Select one</option>
                                             </select>                                                    
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('occopation')}" th:errors="*{occopation}">First Name Error</span>
                                         </div>               
@@ -98,20 +115,20 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="vill" class="col-sm-6 control-label">Relation <span class="text-red">* </span> :</label>
                                         <div class="col-sm-6">  
                                             <select class="form-control  "  id="bookName"  th:field="*{relation}" name="relation" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" relation :${relation}"
                                                         th:value=" ${relation.id}" 
-                                                        th:text="${relation.NAME}"> Select one</option>
+                                                        th:text="${relation.name}"> Select one</option>
                                             </select>                                                    
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('relation')}" th:errors="*{relation}">First Name Error</span>
                                         </div>               
                                     </div>
 
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="co" class="col-sm-6 control-label">  Mobile Number <span class="text-red"> </span> :</label>
                                         <div class="col-sm-6">                   
                                             <input type="text"  class="form-control  "  id="co"  th:field="*{cellNo}" name="cellNo"  />                
@@ -134,23 +151,23 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
 
 
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

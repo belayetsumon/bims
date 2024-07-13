@@ -59,7 +59,7 @@ public class Pre_reintegration_visit_Controller {
 
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-    // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
+     model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
         return "pre_reintegration_visit/mothersearch";
     }
 

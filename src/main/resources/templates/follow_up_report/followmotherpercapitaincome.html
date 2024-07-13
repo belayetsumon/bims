@@ -6,123 +6,130 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Home Visit
-                    <small> </small>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Follow Up </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Follow Up</a></li>
+                                <li class="breadcrumb-item "><a href="#">   Mother Follow Up Details </a></li>
+                                <li class="breadcrumb-item active"> 
+                                    Per capita income  </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Add <span th:text='${form_title}'>Add </span> </h3>
-                        <div class="box-tools pull-right">
-                            <div class="btn-group">                 
-                                <a  th:href="@{/followupmother/details/{m_id}(m_id=${followMotherPerCapitaIncome.motherMasterCode.id})}"  type="button" class="btn  btn-warning btn-xs">Close</a>
-                            </div>
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">Per capita Income </h3>
+                        <div class="card-tools pull-right">
+                            <a  th:href="@{/followupmother/details/{m_id}(m_id=${followMotherPerCapitaIncome.motherMasterCode.id})}"  type="button" class="btn  btn-light btn-sm text-red">Close <i class="fas fa-times"></i></a>
                         </div>
                     </div>
 
-                    <div class="box-body">
+                    <div class="card-body">
                         <form  th:action="@{/followmotherpercapitaincome/save/{m_id}(m_id=${followMotherPerCapitaIncome.motherMasterCode.id})}"   th:object="${followMotherPerCapitaIncome}"  method="post" class="form-horizontal">
-                            <div class="box-body">
-
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <input type="hidden"    class="form-control " th:field="*{id}"  id="motherMasterCode" />
-                                        <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode" />
-                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
-
-                                        <label for="name" class="col-sm-6 control-label"> Income Generating Activates <span class="text-red"> * </span> :</label>
-                                        <div class="col-sm-5">                   
-                                            <select class="form-control  "  id="bookName"  th:field="*{incomeGeneratingActivites}"  >
-                                                <option value=" "> Select one</option>
-                                                <option th:each =" income_activity :${income_activity}"
-                                                        th:value=" ${income_activity.id}" 
-                                                        th:text="${income_activity.name}"> Select One</option>
-                                            </select>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('incomeGeneratingActivites')}" th:errors="*{incomeGeneratingActivites}">First Name Error</span>
-                                        </div>                            
-                                    </div>
+                            <div class="card-body">
 
 
-                                    <div class="form-group col-sm-6">
+                                <div class="form-group col-sm-6 row">
+                                    <input type="hidden"    class="form-control " th:field="*{id}"  id="motherMasterCode" />
+                                    <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode" />
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
 
-                                        <label for="co" class="col-sm-6 control-label">  Monthly Income :<span class="text-red">  </span> </label>
-                                        <div class="col-sm-3">                   
-                                            <input type="number"  min="1" class="form-control  "  id="co"  th:field="*{monthlyIncome}"  />                
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('monthlyIncome')}" th:errors="*{monthlyIncome}">First Name Error</span>
-                                        </div>  <div class="col-sm-1">Taka </div>                           
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="vill" class="col-sm-6 control-label">Other Income Source :</label>
-                                        <div class="col-sm-6">  
-                                            <div class="input-group" >
-
-                                                <input type="text"  id="otherIncomeSource"    class="form-control  "    th:field="*{otherIncomeSource}" />                                                        
-                                            </div>                                                     
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('otherIncomeSource')}" th:errors="*{otherIncomeSource}">First Name Error</span>
-                                        </div>               
-                                    </div>
-
-                                    <div class="form-group col-sm-6">
-                                        <label for="number" class="col-sm-6 control-label"> Other Income Amount <span class="text-red">  </span>: </label>
-                                        <div class="col-sm-3">                   
-                                            <input type="number"  min="0"  class="form-control  "  id="bookName"  th:field="*{otherIncomeAmt}"  />                
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('otherIncomeAmt')}" th:errors="*{otherIncomeAmt}">First Name Error</span>
-                                        </div>  
-                                        <div class="col-sm-1">Taka </div>
-                                    </div>
+                                    <label for="name" class="col-sm-6 control-label"> Income Generating Activates <span class="text-red"> * </span> :</label>
+                                    <div class="col-sm-5">                   
+                                        <select class="form-control  "  id="bookName"  th:field="*{incomeGeneratingActivites}"  >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" income_activity :${income_activity}"
+                                                    th:value=" ${income_activity.id}" 
+                                                    th:text="${income_activity.name}"> Select One</option>
+                                        </select>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('incomeGeneratingActivites')}" th:errors="*{incomeGeneratingActivites}">First Name Error</span>
+                                    </div>                            
                                 </div>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="number" class="col-sm-6 control-label"> Total Household Member<span class="text-red"> * </span> :</label>
-                                        <div class="col-sm-3">                   
-                                            <input type="number"  min="1"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{totalHouseMember}" /> 
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('totalHouseMember')}" th:errors="*{totalHouseMember}">First Name Error</span>
-                                        </div>  <div class="col-sm-1">Persons</div>                              
-                                    </div>
 
-                                    <div class="form-group col-sm-6">
-                                        <label for="number" class="col-sm-6 control-label"> Monthly Expenditure<span class="text-red"> * </span> :</label>
-                                        <div class="col-sm-3">                   
-                                            <input type="number"  min="1"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{monthlyTotalExpence}" /> 
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('monthlyTotalExpence')}" th:errors="*{monthlyTotalExpence}">First Name Error</span>
-                                        </div>  <div class="col-sm-1">Taka</div>                              
-                                    </div>
+                                <div class="form-group col-sm-6 row">
+
+                                    <label for="co" class="col-sm-6 control-label">  Monthly Income :<span class="text-red">  </span> </label>
+                                    <div class="col-sm-3">                   
+                                        <input type="number"  min="1" class="form-control  "  id="co"  th:field="*{monthlyIncome}"  />                
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('monthlyIncome')}" th:errors="*{monthlyIncome}">First Name Error</span>
+                                    </div>  <div class="col-sm-1">Taka </div>                           
+
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <label for="name" class="col-sm-3 control-label"> Remarks<span class="text-red"> </span> :</label>
-                                        <div class="col-sm-8">                   
-                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>
 
-                                        </div>                            
-                                    </div>
-                                </div>   
+                                <div class="form-group col-sm-6 row">
+                                    <label for="vill" class="col-sm-6 control-label">Other Income Source :</label>
+                                    <div class="col-sm-6">  
+                                        <div class="input-group" >
+
+                                            <input type="text"  id="otherIncomeSource"    class="form-control  "    th:field="*{otherIncomeSource}" />                                                        
+                                        </div>                                                     
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('otherIncomeSource')}" th:errors="*{otherIncomeSource}">First Name Error</span>
+                                    </div>               
+                                </div>
+
+                                <div class="form-group col-sm-6 row">
+                                    <label for="number" class="col-sm-6 control-label"> Other Income Amount <span class="text-red">  </span>: </label>
+                                    <div class="col-sm-3">                   
+                                        <input type="number"  min="0"  class="form-control  "  id="bookName"  th:field="*{otherIncomeAmt}"  />                
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('otherIncomeAmt')}" th:errors="*{otherIncomeAmt}">First Name Error</span>
+                                    </div>  
+                                    <div class="col-sm-1">Taka </div>
+                                </div>
+
+                                <div class="form-group col-sm-6 row">
+                                    <label for="number" class="col-sm-6 control-label"> Total Household Member<span class="text-red"> * </span> :</label>
+                                    <div class="col-sm-3">                   
+                                        <input type="number"  min="1"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{totalHouseMember}" /> 
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('totalHouseMember')}" th:errors="*{totalHouseMember}">First Name Error</span>
+                                    </div>  <div class="col-sm-1">Persons</div>                              
+                                </div>
+
+                                <div class="form-group col-sm-6 row">
+                                    <label for="number" class="col-sm-6 control-label"> Monthly Expenditure<span class="text-red"> * </span> :</label>
+                                    <div class="col-sm-3">                   
+                                        <input type="number"  min="1"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{monthlyTotalExpence}" /> 
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('monthlyTotalExpence')}" th:errors="*{monthlyTotalExpence}">First Name Error</span>
+                                    </div>  <div class="col-sm-1">Taka</div>                              
+                                </div>
+
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-3 control-label"> Remarks<span class="text-red"> </span> :</label>
+                                    <div class="col-sm-8">                   
+                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>
+
+                                    </div>                            
+                                </div>
+
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-info">Save</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="box-tools pull-right">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
                             <div class="btn-group">
 
 
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-footer-->
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.box -->
+                <!-- /.card -->
 
             </section>
             <!-- /.content -->

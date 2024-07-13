@@ -24,6 +24,11 @@ public interface M_Child_infoRepository extends JpaRepository<M_Child_info, Long
 
     List<M_Child_info> findByMotherMasterCodeAndLfosteIsNullAndReleaseChildIsNull(MotherMasterData motherMasterData);
 
+    // long tream Care 
+    List<M_Child_info> findByLfosteIsNullAndReleaseChildIsNull();
+
+    List<M_Child_info> findByLfosteIsNotNullAndReleaseChildIsNull();
+
     Long countByLfosteIsNotNullAndReleaseChildIsNull();
 
     Long countByHigherStudyIsNotNullAndReleaseChildIsNull();

@@ -38,7 +38,7 @@ public class RreintegrationCheckList_Controller {
     
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-    //    model.addAttribute("list", motherMasterDataRepository.findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc());
+    model.addAttribute("list", motherMasterDataRepository.findByPreReintegrationVisitIsNotNullAndReintegrationCheckListIsNullOrderByIdDesc());
         return "reintegration_checklist/mothersearch";
     }
     

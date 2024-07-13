@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LongtrmcareController {
     
     @RequestMapping("/report")
-    public String report(Model model) {
-        
-        return "longtermcare/report/reportlist";
+    public String report(Model model) {    
+        return "longtermcare/report/reportlist"; 
     }
     
 }
