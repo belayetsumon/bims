@@ -37,9 +37,12 @@ public class Discontinuity {
     @ManyToOne(optional = false)
     M_Child_info childMasterCode;
 
-    @NotNull(message = "This field cannot be blank.Please enter minimum 2 character!")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String dateDismissal;
+ 
+    
+      @Column(nullable = false)
+    @NotNull(message = " Dismissal date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateDismissal;
    
     
     @NotNull(message = "This field cannot be blank.Please enter minimum 2 character!")
@@ -68,7 +71,7 @@ public class Discontinuity {
     public Discontinuity() {
     }
 
-    public Discontinuity(Long id, M_Child_info childMasterCode, String dateDismissal, String discontinuityReason, String remark, Users createdBy, Users updatedBy) {
+    public Discontinuity(Long id, M_Child_info childMasterCode, LocalDate dateDismissal, String discontinuityReason, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.dateDismissal = dateDismissal;
@@ -94,11 +97,11 @@ public class Discontinuity {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getDateDismissal() {
+    public LocalDate getDateDismissal() {
         return dateDismissal;
     }
 
-    public void setDateDismissal(String dateDismissal) {
+    public void setDateDismissal(LocalDate dateDismissal) {
         this.dateDismissal = dateDismissal;
     }
 
@@ -150,5 +153,4 @@ public class Discontinuity {
         this.updatedBy = updatedBy;
     }
 
-  
 }

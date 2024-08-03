@@ -19,7 +19,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -40,13 +39,15 @@ public class O_Induction {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
-    public String startDate;
+    @Column(nullable = false)
+    @NotNull(message = "Start date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate startDate;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
-    public String endDate;
+    @Column(nullable = false)
+    @NotNull(message = "End date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
 
     @Lob
     public String immediateSupportOn;
@@ -67,7 +68,7 @@ public class O_Induction {
     public LocalDate created = LocalDate.now();
     @ManyToOne(optional = true)
     public Users createdBy;
-   
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
@@ -76,21 +77,17 @@ public class O_Induction {
     @ManyToOne(optional = true)
 
     public Users updatedBy;
-    
-   
+
     @OneToOne(mappedBy = "induction")
     public O_MHealthConditions omHealthConditions;
-    
-    
+
     @OneToOne(mappedBy = "induction")
-    public O_Professional_Obserbations_Mother  oProfessionalObserbationsMother;
-    
-    
+    public O_Professional_Obserbations_Mother oProfessionalObserbationsMother;
 
     public O_Induction() {
     }
 
-    public O_Induction(Long id, MotherMasterData motherMasterCode, String startDate, String endDate, String immediateSupportOn, String challagesOfCandidare, int possibleLength, String remark, Users createdBy, Users updatedBy, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oProfessionalObserbationsMother) {
+    public O_Induction(Long id, MotherMasterData motherMasterCode, LocalDate startDate, LocalDate endDate, String immediateSupportOn, String challagesOfCandidare, int possibleLength, String remark, Users createdBy, Users updatedBy, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oProfessionalObserbationsMother) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.startDate = startDate;
@@ -121,19 +118,19 @@ public class O_Induction {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -217,5 +214,4 @@ public class O_Induction {
         this.oProfessionalObserbationsMother = oProfessionalObserbationsMother;
     }
 
-    
 }

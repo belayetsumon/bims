@@ -35,27 +35,27 @@ public class C_Madical_Camp {
     @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
     public String campType;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-    public String startDate;
+    @Column(nullable = false)
+    @NotNull(message = "Start cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate startDate;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-    public String endDate;
+    @Column(nullable = false)
+    @NotNull(message = "End date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
 
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 2000, message = "This field must between 1 and 200 characters")
     public String organizedBy;
 
     @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, message  = "This field must between 1 and 200 characters")
+    @Size(min = 1, message = "This field must between 1 and 200 characters")
     public String beneficiary;
 
     public String remark;
-    
-    
-    
-      /**
+
+    /**
      * ********* Audit ******************************
      */
     @Column(insertable = true, updatable = false)
@@ -72,7 +72,7 @@ public class C_Madical_Camp {
     public C_Madical_Camp() {
     }
 
-    public C_Madical_Camp(Long id, String campType, String startDate, String endDate, String organizedBy, String beneficiary, String remark, Users createdBy) {
+    public C_Madical_Camp(Long id, String campType, LocalDate startDate, LocalDate endDate, String organizedBy, String beneficiary, String remark, Users createdBy) {
         this.id = id;
         this.campType = campType;
         this.startDate = startDate;
@@ -99,19 +99,19 @@ public class C_Madical_Camp {
         this.campType = campType;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -162,7 +162,5 @@ public class C_Madical_Camp {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
-    
-    
-    
+
 }

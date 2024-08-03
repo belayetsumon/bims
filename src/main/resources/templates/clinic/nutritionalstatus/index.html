@@ -6,25 +6,42 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Nutritional Status <a th:href="@{/nutritionalstatus/mothersearch}"
-                                          type="button" class="btn  btn-warning pull-right"> Close </a>
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Clinic </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Clinic</a></li>
+                                <li class="breadcrumb-item "><a href="#">Nutritional Status New</a></li>
+                                <li class="breadcrumb-item active">Nutritional Status Details</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
+
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Mother Nutritional Status </h3>
-                                <a th:href="@{/nutritionalstatus/motheradd/{id}(id=${m_id})}"
-                                   type="button" class="btn  btn-warning pull-right"> Mother
-                                    Nutritional Add </a>
+                        <div class="card card-info" style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Mother Nutritional Status </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a th:href="@{/nutritionalstatus/motheradd/{id}(id=${m_id})}"
+                                           type="button"class="btn  btn-light  btn-sm  text-info">  Mother
+                                            Nutritional Add </a>
+                                        <a th:href="@{/nutritionalstatus/mothersearch}"
+                                           type="button" class="btn  btn-light text-red  btn-xs  "> Close </i><i class="fas fa-times"></i></a>
+                                    </div>         </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
 
                                 <table class="table table-bordered">
                                     <tr>
@@ -58,18 +75,18 @@
 
                                         <th><a
                                                 th:href="@{/nutritionalstatus/motheredit/{id}(id=${mnutritionalStatus.id})}"
-                                                type="button" class="btn btn-xs bg-maroon ">Edit</a></th>
+                                                type="button" class="btn btn-sm btn-info">Edit</a></th>
                                         <th><a
                                                 th:href="@{/nutritionalstatus/motheredelete/{id}(id=${mnutritionalStatus.id})}"
-                                                type="button" class="btn btn-xs bg-maroon ">Delete</a></th>
+                                                type="button" class="btn btn-sm btn-info">Delete</a></th>
                                     </tr>
                                 </table>
 
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix"></div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix"></div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
@@ -78,14 +95,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary" style="overflow-x: scroll">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Child Nutritional Status</h3>
-                                <a th:href="@{/childsutritionalstatus/childadd/{id}(id=${m_id})}"
-                                   type="button" class="btn  btn-warning pull-right"> Child Nutritional Status Add</a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                        <div class="card card-info" style="overflow-x: scroll">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Child Nutritional Status</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">
+                                        <a th:href="@{/childsutritionalstatus/childadd/{id}(id=${m_id})}"
+                                           type="button" class="btn  btn-light  btn-sm  text-info"> Child Nutritional Status Add</a>
+                                    </div>   </div>   </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Mother Master Code</th>
@@ -122,17 +141,17 @@
                                         <td th:text="${childnutritionalstatus.bmi}">Chakma</td>
                                         <th><a
                                                 th:href="@{/childsutritionalstatus/childedit/{id}(id=${childnutritionalstatus.id})}"
-                                                type="button" class="btn btn-xs bg-maroon ">Edit</a></th>
+                                                type="button" class="btn btn-sm btn-info">Edit</a></th>
                                         <th><a
                                                 th:href="@{/childsutritionalstatus/delete/{id}(id=${childnutritionalstatus.id})}"
-                                                type="button" class="btn btn-xs bg-maroon ">Delete</a></th>
+                                                type="button" class="btn btn-sm btn-info">Delete</a></th>
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix"></div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix"></div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

@@ -8,6 +8,7 @@ package itgarden.controller.school;
 import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.school.Discontinuity;
 import itgarden.repository.homevisit.M_Child_infoRepository;
+import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.school.DiscontinuityRepository;
 import itgarden.repository.school.S_RegularAdmissionClassRepository;
 import jakarta.validation.Valid;
@@ -25,7 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Md Belayet Hossin
  */
 @Controller
-@RequestMapping("/discontinuity")
+@RequestMapping("/releasedfromedu")
+//@RequestMapping("/discontinuity")
 public class DiscontinuityController {
 
     @Autowired
@@ -36,17 +38,20 @@ public class DiscontinuityController {
 
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
+    
+     @Autowired
+    ReleaseChildRepository releaseChildRepository;
 
-    @RequestMapping("/admissionstudentlistl")
+    @RequestMapping("/releasedchildlist")
     public String page(Model model) {
-        model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
+        model.addAttribute("clildlist", releaseChildRepository.findAll());
         return "school/admissionstudentlist";
     }
 
     @RequestMapping("/index")
     public String index(Model model) {
         model.addAttribute("clildlist", discontinuityRepository.findAll());
-        return "school/discontinuitylist";
+        return "school/releasedchildlist";
     }
 
     @RequestMapping("/create/{id}")
@@ -55,7 +60,7 @@ public class DiscontinuityController {
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
         discontinuity.setChildMasterCode(m_Child_info);
-        return "school/discontinuity";
+        return "school/releasedfromedu";
     }
 
     @RequestMapping("/edit/{id}")
@@ -66,7 +71,7 @@ public class DiscontinuityController {
 //        m_Child_info.setId(id);
 //
 //        discontinuity.setChildMasterCode(m_Child_info);
-        return "school/discontinuity";
+        return "school/releasedfromedu";
     }
 
     @RequestMapping("/save")
@@ -79,10 +84,10 @@ public class DiscontinuityController {
 //        m_Child_info.setId(id);
 //
 //        discontinuity.setChildMasterCode(m_Child_info);
-            return "school/discontinuity";
+            return "school/releasedfromedu";
         }
         discontinuityRepository.save(discontinuity);
-        return "redirect:/discontinuity/index";
+        return "redirect:/releasedfromedu/index";
     }
 
     @RequestMapping("/delete/{id}")
@@ -94,7 +99,7 @@ public class DiscontinuityController {
         
         redirectAttrs.addAttribute("id", discontinuity.getChildMasterCode().getId());
         discontinuityRepository.deleteById(id);
-        return "redirect:/discontinuity/index";
+        return "redirect:/releasedfromedu/index";
     }
 
 }

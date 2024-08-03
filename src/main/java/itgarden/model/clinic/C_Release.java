@@ -37,15 +37,15 @@ public class C_Release {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-     @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
-    public String releaseDate;
+    @Column(nullable = false)
+    @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate releaseDate;
 
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
     public String releaseBy;
 
-    
     public String nextFollowUpDate;
 
     public String remarks;
@@ -67,7 +67,7 @@ public class C_Release {
     public C_Release() {
     }
 
-    public C_Release(Long id, MotherMasterData motherMasterCode, String releaseDate, String releaseBy, String nextFollowUpDate, String remarks, Users createdBy) {
+    public C_Release(Long id, MotherMasterData motherMasterCode, LocalDate releaseDate, String releaseBy, String nextFollowUpDate, String remarks, Users createdBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.releaseDate = releaseDate;
@@ -93,11 +93,11 @@ public class C_Release {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -148,7 +148,6 @@ public class C_Release {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
-    
-    
 
+    
 }

@@ -48,7 +48,6 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 /**
  *
  * @author Md Belayet Hossin
@@ -61,7 +60,7 @@ public class M_Child_info {
     private Long id;
 
     @NotNull(message = "Mother master code field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
@@ -81,9 +80,10 @@ public class M_Child_info {
     @NotEmpty(message = "Name field cannot be blank.")
     String name;
 
-    @NotEmpty(message = "Date of birth field cannot be blank.")
-//    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    public String dateOfBirth;
+    @Column(nullable = false)
+    @NotNull(message = " Date of birth cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate dateOfBirth;
 
     public String age;
 
@@ -137,15 +137,15 @@ public class M_Child_info {
     @Enumerated(EnumType.ORDINAL)
     public Eligibility eligibility;
 
-     @Temporal(TemporalType.DATE)
-     @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = true)
     // @Column(insertable = true,updatable = false)
     public Users createdBy;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(insertable = false, updatable = true)
@@ -223,12 +223,10 @@ public class M_Child_info {
     @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public List<FollowUpChildren> followUpChildren = new ArrayList<>();
 
-   
-
     public M_Child_info() {
     }
 
-    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, String dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild) {
+    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, LocalDate dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -316,11 +314,11 @@ public class M_Child_info {
         this.name = name;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -628,4 +626,5 @@ public class M_Child_info {
         this.followUpChildren = followUpChildren;
     }
 
+    
 }

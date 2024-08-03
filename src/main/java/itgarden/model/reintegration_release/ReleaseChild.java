@@ -42,9 +42,11 @@ public class ReleaseChild {
     @NotNull(message = "This field cannot be blank.")
     @ManyToOne(optional = false)
     public M_Child_info childMasterCode;
-
-    @NotEmpty(message = "This field cannot be blank.")
-    private String releaseDate;
+    
+    @Column(nullable = false)
+    @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate releaseDate;
 
     private String name;
 
@@ -75,7 +77,7 @@ public class ReleaseChild {
     public ReleaseChild() {
     }
 
-    public ReleaseChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String releaseDate, String name, String training, String Address, String remark, Users createdBy, Users updatedBy) {
+    public ReleaseChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate releaseDate, String name, String training, String Address, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -112,11 +114,11 @@ public class ReleaseChild {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -183,5 +185,7 @@ public class ReleaseChild {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+   
     
 }

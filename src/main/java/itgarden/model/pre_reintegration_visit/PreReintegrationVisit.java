@@ -12,6 +12,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -40,8 +41,14 @@ public class PreReintegrationVisit {
     @NotEmpty(message = "This field cannot be blank.")
     public String visitOfficersName;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String visitDate;
+  
+    
+    
+    @Column(nullable = false)
+    @NotNull(message = "Visit  date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate visitDate;
+    
 
     @Lob
     public String currentSupport;
@@ -84,7 +91,7 @@ public class PreReintegrationVisit {
     public PreReintegrationVisit() {
     }
 
-    public PreReintegrationVisit(Long id, MotherMasterData motherMasterCode, String visitOfficersName, String visitDate, String currentSupport, String challengers, String shortTermPlan, String shortTermPlanResolveDate, String longTermPlan, String longTermPlanResolveDate, String planForFurther, Users createdBy, Users updatedBy) {
+    public PreReintegrationVisit(Long id, MotherMasterData motherMasterCode, String visitOfficersName, LocalDate visitDate, String currentSupport, String challengers, String shortTermPlan, String shortTermPlanResolveDate, String longTermPlan, String longTermPlanResolveDate, String planForFurther, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.visitOfficersName = visitOfficersName;
@@ -99,8 +106,6 @@ public class PreReintegrationVisit {
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
-
-    
 
     public Long getId() {
         return id;
@@ -126,11 +131,11 @@ public class PreReintegrationVisit {
         this.visitOfficersName = visitOfficersName;
     }
 
-    public String getVisitDate() {
+    public LocalDate getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(String visitDate) {
+    public void setVisitDate(LocalDate visitDate) {
         this.visitDate = visitDate;
     }
 
@@ -173,8 +178,6 @@ public class PreReintegrationVisit {
     public void setLongTermPlan(String longTermPlan) {
         this.longTermPlan = longTermPlan;
     }
-
-  
 
     public String getLongTermPlanResolveDate() {
         return longTermPlanResolveDate;
@@ -224,7 +227,5 @@ public class PreReintegrationVisit {
         this.updatedBy = updatedBy;
     }
 
-    
-    
     
 }

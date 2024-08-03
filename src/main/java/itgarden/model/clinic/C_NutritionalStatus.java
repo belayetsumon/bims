@@ -6,6 +6,7 @@
 package itgarden.model.clinic;
 
 import itgarden.model.homevisit.MotherMasterData;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -33,15 +36,23 @@ public class C_NutritionalStatus {
     @NotEmpty(message = "Name cannot be blank.")
     public String name;
     
+
+    
+     @Column(nullable = false)
     @NotNull(message = "Admission cannot be blank.")
-    public String admissionDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate admissionDate;
     
-    @NotEmpty(message = "Date cannot be blank.")
-    public String entryDate;
     
-    @NotEmpty(message = "Date of birth cannot be blank.")
-    public String dob;
-    @NotNull(message = "Height cannot be blank.")
+    @Column(nullable = false)
+    @NotNull(message = "Entry cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate entryDate;
+
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dob;
 
     public Double height;
     @NotNull(message = "Weight cannot be blank.")
@@ -55,90 +66,90 @@ public class C_NutritionalStatus {
 		
 	}
 
-	public C_NutritionalStatus(Long id, MotherMasterData motherMasterCode, String name, String admissionDate,
-			String entryDate, String dob, Double height, Double weight, String bmi) {
-		super();
-		this.id = id;
-		this.motherMasterCode = motherMasterCode;
-		this.name = name;
-		this.admissionDate = admissionDate;
-		this.entryDate = entryDate;
-		this.dob = dob;
-		this.height = height;
-		this.weight = weight;
-		this.bmi = bmi;
-	}
+    public C_NutritionalStatus(Long id, MotherMasterData motherMasterCode, String name, LocalDate admissionDate, LocalDate entryDate, LocalDate dob, Double height, Double weight, String bmi) {
+        this.id = id;
+        this.motherMasterCode = motherMasterCode;
+        this.name = name;
+        this.admissionDate = admissionDate;
+        this.entryDate = entryDate;
+        this.dob = dob;
+        this.height = height;
+        this.weight = weight;
+        this.bmi = bmi;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public MotherMasterData getMotherMasterCode() {
-		return motherMasterCode;
-	}
+    public MotherMasterData getMotherMasterCode() {
+        return motherMasterCode;
+    }
 
-	public void setMotherMasterCode(MotherMasterData motherMasterCode) {
-		this.motherMasterCode = motherMasterCode;
-	}
+    public void setMotherMasterCode(MotherMasterData motherMasterCode) {
+        this.motherMasterCode = motherMasterCode;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getAdmissionDate() {
-		return admissionDate;
-	}
+    public LocalDate getAdmissionDate() {
+        return admissionDate;
+    }
 
-	public void setAdmissionDate(String admissionDate) {
-		this.admissionDate = admissionDate;
-	}
+    public void setAdmissionDate(LocalDate admissionDate) {
+        this.admissionDate = admissionDate;
+    }
 
-	public String getEntryDate() {
-		return entryDate;
-	}
+    public LocalDate getEntryDate() {
+        return entryDate;
+    }
 
-	public void setEntryDate(String entryDate) {
-		this.entryDate = entryDate;
-	}
+    public void setEntryDate(LocalDate entryDate) {
+        this.entryDate = entryDate;
+    }
 
-	public String getDob() {
-		return dob;
-	}
+    public LocalDate getDob() {
+        return dob;
+    }
 
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
 
-	public Double getHeight() {
-		return height;
-	}
+    public Double getHeight() {
+        return height;
+    }
 
-	public void setHeight(Double height) {
-		this.height = height;
-	}
+    public void setHeight(Double height) {
+        this.height = height;
+    }
 
-	public Double getWeight() {
-		return weight;
-	}
+    public Double getWeight() {
+        return weight;
+    }
 
-	public void setWeight(Double weight) {
-		this.weight = weight;
-	}
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
 
-	public String getBmi() {
-		return bmi;
-	}
+    public String getBmi() {
+        return bmi;
+    }
 
-	public void setBmi(String bmi) {
-		this.bmi = bmi;
-	}
+    public void setBmi(String bmi) {
+        this.bmi = bmi;
+    }
+
+	
 }
 	    

@@ -36,11 +36,8 @@ public class R_M_WorkAllocation {
 
     @NotNull(message = "*This field cannot be blank")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "motherMasterData",nullable = false)
+    @JoinColumn(name = "motherMasterData", nullable = false)
     public MotherMasterData motherMasterCode;
-
-   
-    public String allocationDate;
 
     @NotNull(message = "*This field cannot be blank")
     @Size(min = 2, max = 100, message = "This field cannot be blank.")
@@ -50,9 +47,14 @@ public class R_M_WorkAllocation {
     @Size(min = 2, max = 100, message = "This field cannot be blank.")
     public String sectionPlace;
 
-    public String endDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate allocationDate;
 
-    public String extDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate extDate;
 
     @Lob
     public String remark;
@@ -78,12 +80,12 @@ public class R_M_WorkAllocation {
     public R_M_WorkAllocation() {
     }
 
-    public R_M_WorkAllocation(Long id, MotherMasterData motherMasterCode, String allocationDate, String work, String sectionPlace, String endDate, String extDate, String remark, Users createdBy, Users updatedBy) {
+    public R_M_WorkAllocation(Long id, MotherMasterData motherMasterCode, String work, String sectionPlace, LocalDate allocationDate, LocalDate endDate, LocalDate extDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
-        this.allocationDate = allocationDate;
         this.work = work;
         this.sectionPlace = sectionPlace;
+        this.allocationDate = allocationDate;
         this.endDate = endDate;
         this.extDate = extDate;
         this.remark = remark;
@@ -107,14 +109,6 @@ public class R_M_WorkAllocation {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getAllocationDate() {
-        return allocationDate;
-    }
-
-    public void setWorkAllocationDate(String allocationDate) {
-        this.allocationDate = allocationDate;
-    }
-
     public String getWork() {
         return work;
     }
@@ -131,19 +125,27 @@ public class R_M_WorkAllocation {
         this.sectionPlace = sectionPlace;
     }
 
-    public String getEndDate() {
+    public LocalDate getAllocationDate() {
+        return allocationDate;
+    }
+
+    public void setAllocationDate(LocalDate allocationDate) {
+        this.allocationDate = allocationDate;
+    }
+
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public String getExtDate() {
+    public LocalDate getExtDate() {
         return extDate;
     }
 
-    public void setExtDate(String extDate) {
+    public void setExtDate(LocalDate extDate) {
         this.extDate = extDate;
     }
 

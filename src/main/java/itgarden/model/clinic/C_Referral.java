@@ -37,9 +37,12 @@ public class C_Referral {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-    public String referralDate;
+
+    
+    @Column(nullable = false)
+    @NotNull(message = "Referral date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate referralDate;
     
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
@@ -69,7 +72,7 @@ public class C_Referral {
     public C_Referral() {
     }
 
-    public C_Referral(Long id, MotherMasterData motherMasterCode, String referralDate, String reffrredTo, String reasons, String remarks, Users createdBy) {
+    public C_Referral(Long id, MotherMasterData motherMasterCode, LocalDate referralDate, String reffrredTo, String reasons, String remarks, Users createdBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.referralDate = referralDate;
@@ -95,11 +98,11 @@ public class C_Referral {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getReferralDate() {
+    public LocalDate getReferralDate() {
         return referralDate;
     }
 
-    public void setReferralDate(String referralDate) {
+    public void setReferralDate(LocalDate referralDate) {
         this.referralDate = referralDate;
     }
 
@@ -150,6 +153,7 @@ public class C_Referral {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+
     
     
 }

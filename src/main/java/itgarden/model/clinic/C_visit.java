@@ -16,11 +16,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -37,21 +36,26 @@ public class C_visit {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
+//
+//    @NotNull(message = "This field cannot be blank.")
+//    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
+//    public String visitDate;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-    public String visitDate;
-   
-    @NotEmpty(message = "This field cannot be blank.")
+    @Column(nullable = false)
+    @NotNull(message = "Visit date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate visitDate;
+
+    @NotBlank(message = "This problem cannot be blank.")
     public String problem;
-   
-    @NotEmpty(message = "This field cannot be blank.")
+
+    @NotBlank(message = "This field cannot be blank.")
     public String primaryDiagnosis;
-  
-    @NotEmpty(message = "This field cannot be blank.")
+
+    @NotBlank(message = "This medicine cannot be blank.")
     public String medicine;
-    
-    @NotEmpty(message = "This field cannot be blank.")
+
+    @NotBlank(message = "This prescribed by cannot be blank.")
     public String prescribedBy;
 
     public String remark;
@@ -72,7 +76,7 @@ public class C_visit {
     public C_visit() {
     }
 
-    public C_visit(Long id, MotherMasterData motherMasterCode, String visitDate, String problem, String primaryDiagnosis, String medicine, String prescribedBy, String remark, Users createdBy) {
+    public C_visit(Long id, MotherMasterData motherMasterCode, LocalDate visitDate, String problem, String primaryDiagnosis, String medicine, String prescribedBy, String remark, Users createdBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.visitDate = visitDate;
@@ -83,8 +87,6 @@ public class C_visit {
         this.remark = remark;
         this.createdBy = createdBy;
     }
-
-   
 
     public Long getId() {
         return id;
@@ -102,20 +104,12 @@ public class C_visit {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getVisitDate() {
+    public LocalDate getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(String visitDate) {
+    public void setVisitDate(LocalDate visitDate) {
         this.visitDate = visitDate;
-    }
-
-    public String getPrescribedBy() {
-        return prescribedBy;
-    }
-
-    public void setPrescribedBy(String prescribedBy) {
-        this.prescribedBy = prescribedBy;
     }
 
     public String getProblem() {
@@ -142,6 +136,22 @@ public class C_visit {
         this.medicine = medicine;
     }
 
+    public String getPrescribedBy() {
+        return prescribedBy;
+    }
+
+    public void setPrescribedBy(String prescribedBy) {
+        this.prescribedBy = prescribedBy;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -164,14 +174,6 @@ public class C_visit {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
 }

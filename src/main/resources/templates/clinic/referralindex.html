@@ -15,15 +15,15 @@
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Referral List</h3>
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Referral List</h3>
 <!--                                <a   th:href="@{/cvisit/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Daily Visit </a>-->
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                            
-                                     <table class="table table-bordered">
+                            <!-- /.card-header -->
+                         <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th> Edit </th>      
@@ -34,25 +34,28 @@
                                         <th>Reasons</th>
                                         <th>Remark</th>
                                         <th>Admission To Clinic</th>
-                                    </tr>                          
+                                    </tr>   
+                                          </thead>
+                                    <tbody>
                                     <tr th:each="referral,status:${referral}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/referral/edit/{id}(id=${referral.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/referral/delete/{id}(id=${referral.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/referral/edit/{id}(id=${referral.id})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/referral/delete/{id}(id=${referral.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                         <td th:text="${referral.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${referral.referralDate}">Chakma</td>
                                         <td th:text="${referral.reffrredTo}">Chakma</td>
                                         <td th:text="${referral.reasons}">Chakma</td>
                                         <td th:text="${referral.remarks}">Chakma</td>
-                                       <td><a th:href="@{/cadmission/create/{id}(id=${referral.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon"> Admission To Clinic</a></td>
+                                       <td><a th:href="@{/cadmission/create/{id}(id=${referral.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info"> Admission To Clinic</a></td>
                                     </tr>
+                                        </tbody>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
                     </div>
                     <!-- /.col -->
 

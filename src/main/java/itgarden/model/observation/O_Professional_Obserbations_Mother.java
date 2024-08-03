@@ -19,6 +19,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -43,10 +44,15 @@ public class O_Professional_Obserbations_Mother {
     @JoinColumn(nullable = false)
     public O_Induction induction;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String obStartDate;
-    @NotEmpty(message = "This field cannot be blank.")
-    public String inductionStartDate;
+      @Column(nullable = false)
+    @NotNull(message = "OB start  date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate obStartDate;
+
+    @Column(nullable = false)
+    @NotNull(message = "Induction start  date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate inductionStartDate;
 
     public Yes_No physicalDisability;
 
@@ -92,7 +98,7 @@ public class O_Professional_Obserbations_Mother {
     public O_Professional_Obserbations_Mother() {
     }
 
-    public O_Professional_Obserbations_Mother(Long id, MotherMasterData motherMasterCode, O_Induction induction, String obStartDate, String inductionStartDate, Yes_No physicalDisability, String physicalDisabilityNote, Yes_No therapy, String therapyNote, Yes_No adlPerformance, String adlPerformanceNote, Yes_No psychocialAssesmentNeeds, String psychocialAssesmentNeedsNote, String remarks, Users createdBy, Users updatedBy) {
+    public O_Professional_Obserbations_Mother(Long id, MotherMasterData motherMasterCode, O_Induction induction, LocalDate obStartDate, LocalDate inductionStartDate, Yes_No physicalDisability, String physicalDisabilityNote, Yes_No therapy, String therapyNote, Yes_No adlPerformance, String adlPerformanceNote, Yes_No psychocialAssesmentNeeds, String psychocialAssesmentNeedsNote, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.induction = induction;
@@ -135,19 +141,19 @@ public class O_Professional_Obserbations_Mother {
         this.induction = induction;
     }
 
-    public String getObStartDate() {
+    public LocalDate getObStartDate() {
         return obStartDate;
     }
 
-    public void setObStartDate(String obStartDate) {
+    public void setObStartDate(LocalDate obStartDate) {
         this.obStartDate = obStartDate;
     }
 
-    public String getInductionStartDate() {
+    public LocalDate getInductionStartDate() {
         return inductionStartDate;
     }
 
-    public void setInductionStartDate(String inductionStartDate) {
+    public void setInductionStartDate(LocalDate inductionStartDate) {
         this.inductionStartDate = inductionStartDate;
     }
 
@@ -254,6 +260,4 @@ public class O_Professional_Obserbations_Mother {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-    
 }

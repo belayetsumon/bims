@@ -37,17 +37,15 @@ public class L_Marriage {
     @ManyToOne(optional = false)
     public M_Child_info childMasterCode;
 
-    
-   @NotNull(message = "This field cannot be blank.")
-    
-    public String marriageDate;
+    @NotNull(message = "This field cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate marriageDate;
 
-   @NotNull(message = "This field cannot be blank.")
-   
+    @NotNull(message = "This field cannot be blank.")
     public String hasbandName;
 
-   @NotBlank(message = "This field cannot be blank.")
-   
+    @NotBlank(message = "This field cannot be blank.")
+
     @Lob
     public String address;
 
@@ -69,7 +67,10 @@ public class L_Marriage {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public L_Marriage(Long id, M_Child_info childMasterCode, String marriageDate, String hasbandName, String address, String remark, Users createdBy, Users updatedBy) {
+    public L_Marriage() {
+    }
+
+    public L_Marriage(Long id, M_Child_info childMasterCode, LocalDate marriageDate, String hasbandName, String address, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.marriageDate = marriageDate;
@@ -78,9 +79,6 @@ public class L_Marriage {
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public L_Marriage() {
     }
 
     public Long getId() {
@@ -99,11 +97,11 @@ public class L_Marriage {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getMarriageDate() {
+    public LocalDate getMarriageDate() {
         return marriageDate;
     }
 
-    public void setMarriageDate(String marriageDate) {
+    public void setMarriageDate(LocalDate marriageDate) {
         this.marriageDate = marriageDate;
     }
 
@@ -163,4 +161,5 @@ public class L_Marriage {
         this.updatedBy = updatedBy;
     }
 
+   
 }

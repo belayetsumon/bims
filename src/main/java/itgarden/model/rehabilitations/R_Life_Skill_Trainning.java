@@ -47,13 +47,16 @@ public class R_Life_Skill_Trainning {
 
     public String location;
 
-    @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String startDate;
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate startDate;
 
-    public String endDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
 
-    public String extentionDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate extentionDate;
 
     public String conductedBy;
 
@@ -75,7 +78,7 @@ public class R_Life_Skill_Trainning {
     public R_Life_Skill_Trainning() {
     }
 
-    public R_Life_Skill_Trainning(Long id, MotherMasterData motherMasterCode, String name, TrainingName trainingName, String prerequisiteSkill, String location, String startDate, String endDate, String extentionDate, String conductedBy, Users createdBy, Users updatedBy) {
+    public R_Life_Skill_Trainning(Long id, MotherMasterData motherMasterCode, String name, TrainingName trainingName, String prerequisiteSkill, String location, LocalDate startDate, LocalDate endDate, LocalDate extentionDate, String conductedBy, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.name = name;
@@ -138,27 +141,27 @@ public class R_Life_Skill_Trainning {
         this.location = location;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public String getExtentionDate() {
+    public LocalDate getExtentionDate() {
         return extentionDate;
     }
 
-    public void setExtentionDate(String extentionDate) {
+    public void setExtentionDate(LocalDate extentionDate) {
         this.extentionDate = extentionDate;
     }
 
@@ -203,5 +206,4 @@ public class R_Life_Skill_Trainning {
     }
 
     
-
 }

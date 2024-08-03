@@ -38,20 +38,26 @@ public class L_Foste {
     @ManyToOne(optional = false)
     public M_Child_info childMasterCode;
 
-   @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 11, message = "Name must between 1 and 200 characters")
-    public String admissionDate;
+  
+    @Column(nullable = false)
+    @NotNull(message = "Admission  date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate admissionDate;
 
     @NotBlank(message = "This field cannot be blank.")
-   
     @Lob
     public String adress;
 
-   @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 11, message = "Name must between 1 and 200 characters")
-    public String fostringDate;
+    @Column(nullable = false)
+    @NotNull(message = "Fostring   date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate fostringDate;
 
-    public String endDate;
+    
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
+    
+    
     public String remark;
     
     
@@ -75,7 +81,7 @@ public class L_Foste {
     public L_Foste() {
     }
 
-    public L_Foste(Long id, M_Child_info childMasterCode, String admissionDate, String adress, String fostringDate, String endDate, String remark, Users createdBy, Users updatedBy) {
+    public L_Foste(Long id, M_Child_info childMasterCode, LocalDate admissionDate, String adress, LocalDate fostringDate, LocalDate endDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.admissionDate = admissionDate;
@@ -86,16 +92,6 @@ public class L_Foste {
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    
 
     public Long getId() {
         return id;
@@ -113,11 +109,11 @@ public class L_Foste {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getAdmissionDate() {
+    public LocalDate getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(LocalDate admissionDate) {
         this.admissionDate = admissionDate;
     }
 
@@ -129,20 +125,28 @@ public class L_Foste {
         this.adress = adress;
     }
 
-    public String getFostringDate() {
+    public LocalDate getFostringDate() {
         return fostringDate;
     }
 
-    public void setFostringDate(String fostringDate) {
+    public void setFostringDate(LocalDate fostringDate) {
         this.fostringDate = fostringDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public LocalDate getCreated() {
@@ -176,5 +180,6 @@ public class L_Foste {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
     
 }

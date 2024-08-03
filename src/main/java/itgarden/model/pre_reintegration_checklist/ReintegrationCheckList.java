@@ -41,11 +41,15 @@ public class ReintegrationCheckList {
     @JoinColumn(nullable = false)
     private MotherMasterData motherMasterCode;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    private String date;
-
-    @NotEmpty(message = "This field cannot be blank.")
-    private String tentativeDate;
+    @Column(nullable = false)
+    @NotNull(message = "Admission date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate date;
+      
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate tentativeDate;
 
     @Lob
     private String reintegrationEmployment;
@@ -145,7 +149,7 @@ public class ReintegrationCheckList {
     public ReintegrationCheckList() {
     }
 
-    public ReintegrationCheckList(Long id, MotherMasterData motherMasterCode, String date, String tentativeDate, String reintegrationEmployment, String addresss, Complete_incomplete individualRehabilitationPlanning, String individualRehabilitationPlanningNote, String talkOverMother, String savingAmoun, String savingUsed, String sppOtherSupport, Yes_No financialTrainingReceived, String financialTrainingReceivedNote, Yes_No financialPlanningDone, String financialPlanningDoneNote, Yes_No bankAccountOened, String bankAccountOenedNote, Yes_No incomeGeneratingTrainingReceived, String incomeGeneratingTrainingReceivedNote, Yes_No allNecessarySkillTrainingReceived, String allNecessarySkillTrainingReceivedNote, Yes_No receivedMedicalDocuments, String receivedMedicalDocumentsNote, Yes_No preReintegrationHomeVisit, String preReintegrationHomeVisitNote, Yes_No workSiteAssessment, String workSiteAssessmentNote, Yes_No healthOnDischarge, String healthOnDischargeNote, Yes_No reintegration, Users createdBy, Users updatedBy) {
+    public ReintegrationCheckList(Long id, MotherMasterData motherMasterCode, LocalDate date, LocalDate tentativeDate, String reintegrationEmployment, String addresss, Complete_incomplete individualRehabilitationPlanning, String individualRehabilitationPlanningNote, String talkOverMother, String savingAmoun, String savingUsed, String sppOtherSupport, Yes_No financialTrainingReceived, String financialTrainingReceivedNote, Yes_No financialPlanningDone, String financialPlanningDoneNote, Yes_No bankAccountOened, String bankAccountOenedNote, Yes_No incomeGeneratingTrainingReceived, String incomeGeneratingTrainingReceivedNote, Yes_No allNecessarySkillTrainingReceived, String allNecessarySkillTrainingReceivedNote, Yes_No receivedMedicalDocuments, String receivedMedicalDocumentsNote, Yes_No preReintegrationHomeVisit, String preReintegrationHomeVisitNote, Yes_No workSiteAssessment, String workSiteAssessmentNote, Yes_No healthOnDischarge, String healthOnDischargeNote, Yes_No reintegration, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.date = date;
@@ -197,19 +201,19 @@ public class ReintegrationCheckList {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public String getTentativeDate() {
+    public LocalDate getTentativeDate() {
         return tentativeDate;
     }
 
-    public void setTentativeDate(String tentativeDate) {
+    public void setTentativeDate(LocalDate tentativeDate) {
         this.tentativeDate = tentativeDate;
     }
 

@@ -74,7 +74,7 @@ public class ChildCrisisMeetUpController {
     @RequestMapping("/list")
     public String list(Model model) {
         model.addAttribute("list", childCrisisMeetUpRepository.findAll());
-        return "longtermcare/list";
+        return "longtermcare/childcrisismeetup_list";
 
     }
 

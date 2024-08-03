@@ -16,7 +16,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">     School </a></li>
                                 <li class="breadcrumb-item active">
-                                    Children List For Discontinuity
+                                Released Child List From SPP
                                 </li>
                             </ol>
                         </div>
@@ -30,12 +30,53 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Children List For Discontinuity</h3>
+                                <h3 class="card-title"> Released Child List From SPP</h3>
 
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                                <table id="tablesdata" class="table table-bordered table-striped">
+                                            <table class="table table-bordered">
+                                      <tr>
+                                        <th> Mother  Id</th>
+                                        <th> Mother Name</th>
+                                        <th> Child Name</th>
+                                        <th> Child Id</th>
+                                        <th>Release Date</th>
+                                        <th>Training</th>
+                                        <th>Address</th>
+                                        <th> Remark </th>
+                                        <th>New Released from Edu</th>
+<!--                                        <th>Delete</th>-->
+
+                                    </tr>  
+                                    
+                                    
+                                        <tr th:each="list,status:${clildlist}">
+
+                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+
+                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+
+                                        <td th:text="${list.childMasterCode.name}">Chakma</td>
+
+                                        <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
+
+                                        <td th:text="${list.releaseDate}" >Chakma</td>
+                                        <td th:text="${list.training}" >Chakma</td>
+
+                                        <td th:text="${list.Address}" >Chakma</td>
+
+                                       <td th:text="${list.remark}" >Chakma</td>
+                                        <td> <a th:href="@{/releasedfromedu/create/{id}(id=${list.childMasterCode.id})}" type="button" class="btn btn-sm btn-info"> New Released from Edu</a>
+<!--                                            <a   th:href="@{/reintegration/child_entry/{c_id} (c_id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Edit</a>-->
+                                        </td>
+                                        <!--                                        <td> 
+                                                                                    <a   th:href="@{/reintegration/child_delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Delete</a>
+                                                                                </td>-->
+                                    </tr>
+                   
+                                </table>
+<!--                                <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
@@ -73,7 +114,7 @@
 
                                         </tr>
                                         </tbody>
-                                </table>
+                                </table>-->
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">

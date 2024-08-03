@@ -43,9 +43,10 @@ public class R_OtChild {
     @JoinColumn(nullable = false)
     public M_Child_info childMasterCode;
 
-    @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String therapeuticSessionDate;
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate therapeuticSessionDate;
 
     @NotNull(message = "*This field cannot be blank")
     @ManyToOne(optional = false)
@@ -78,7 +79,10 @@ public class R_OtChild {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public R_OtChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String therapeuticSessionDate, SessionType sessionType, Diagonosis diagonosis, String treatment, String conductedBy, String remarks, Users createdBy, Users updatedBy) {
+    public R_OtChild() {
+    }
+
+    public R_OtChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate therapeuticSessionDate, SessionType sessionType, Diagonosis diagonosis, String treatment, String conductedBy, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -90,9 +94,6 @@ public class R_OtChild {
         this.remarks = remarks;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public R_OtChild() {
     }
 
     public Long getId() {
@@ -119,11 +120,11 @@ public class R_OtChild {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getTherapeuticSessionDate() {
+    public LocalDate getTherapeuticSessionDate() {
         return therapeuticSessionDate;
     }
 
-    public void setTherapeuticSessionDate(String therapeuticSessionDate) {
+    public void setTherapeuticSessionDate(LocalDate therapeuticSessionDate) {
         this.therapeuticSessionDate = therapeuticSessionDate;
     }
 
@@ -198,7 +199,5 @@ public class R_OtChild {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-    
 
 }

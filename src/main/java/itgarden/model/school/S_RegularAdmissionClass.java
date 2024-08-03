@@ -40,9 +40,11 @@ public class S_RegularAdmissionClass {
     @OneToOne(optional = false)
     M_Child_info childMasterCode;
 
-    @NotNull(message = "This field cannot be blank.Please enter minimum 2 character!")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String dateAdmission;
+     @Column(nullable = false)
+    @NotNull(message = "Date admission date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateAdmission;
+    
 
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 2, max = 100, message = "This field cannot be blank.")
@@ -88,7 +90,7 @@ public class S_RegularAdmissionClass {
     public S_RegularAdmissionClass() {
     }
 
-    public S_RegularAdmissionClass(Long id, M_Child_info childMasterCode, String dateAdmission, String admissionSession, EducationLevel admissionClass, String LastAttendedSession, EducationLevel lastAttendedClass, EducationType lastAttendedEducationType, String specialNeed, String remark, Users createdBy, Users updatedBy) {
+    public S_RegularAdmissionClass(Long id, M_Child_info childMasterCode, LocalDate dateAdmission, String admissionSession, EducationLevel admissionClass, String LastAttendedSession, EducationLevel lastAttendedClass, EducationType lastAttendedEducationType, String specialNeed, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.dateAdmission = dateAdmission;
@@ -119,11 +121,11 @@ public class S_RegularAdmissionClass {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getDateAdmission() {
+    public LocalDate getDateAdmission() {
         return dateAdmission;
     }
 
-    public void setDateAdmission(String dateAdmission) {
+    public void setDateAdmission(LocalDate dateAdmission) {
         this.dateAdmission = dateAdmission;
     }
 
@@ -215,5 +217,4 @@ public class S_RegularAdmissionClass {
         this.updatedBy = updatedBy;
     }
 
-    
 }

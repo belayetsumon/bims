@@ -33,7 +33,7 @@
                         <div class="card-tools">
                             <!-- Buttons, labels, and many other things can be placed here! -->
                             <!-- Here is a label for example -->
-                            <a   th:href="@{/mothermasterdata/create}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info"> Insert Mother </a>
+                            <a   th:href="@{/mothermasterdata/create}" type="button" class="btn btn-light  btn-sm text-info"> Insert Mother </a>
 
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                                 <tr th:each="list,status:${list}">                                
                                     <td th:text="${status.count}">2.</td>      
 
-                                    <td><a   th:href="@{/mothermasterdata/view/{id} (id=${list.id})}" type="button" class="btn  bg-green ">View</a></td>
+                                    <td><a   th:href="@{/mothermasterdata/view/{id} (id=${list.id})}" type="button" class="btn btn-sm btn-info">View</a></td>
                                     <td th:text="${list.eligibility}">Chakma</td>
                                     <td th:text="${list.motherMasterCode}">Chakma</td>
                                     <td th:text="${list.mobileNumber}">Chakma</td>

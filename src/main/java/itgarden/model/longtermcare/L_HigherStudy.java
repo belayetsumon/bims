@@ -40,26 +40,28 @@ public class L_HigherStudy {
     public M_Child_info childMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
-  
-    public String higherStudyDate;
 
     @NotBlank(message = "This field cannot be blank.")
-    
+
     @Lob
     public String address;
-
     @NotNull(message = "This field cannot be blank.")
-   
-    public String addmissionDate;
 
-    public String endDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate higherStudyDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate addmissionDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
 
     @NotNull(message = "This field cannot be blank.")
     @ManyToOne(optional = false)
     public EducationType educationType;
 
     @NotNull(message = "This field cannot be blank.")
-   
+
     public String instituteName;
 
     @NotNull(message = "This field cannot be blank.")
@@ -68,7 +70,6 @@ public class L_HigherStudy {
 
     public String result;
 
-  
     @Lob
     public String remark;
 
@@ -88,11 +89,14 @@ public class L_HigherStudy {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public L_HigherStudy(Long id, M_Child_info childMasterCode, String higherStudyDate, String address, String addmissionDate, String endDate, EducationType educationType, String instituteName, EducationLevel educationLavel, String result, String remark, Users createdBy, Users updatedBy) {
+    public L_HigherStudy() {
+    }
+
+    public L_HigherStudy(Long id, M_Child_info childMasterCode, String address, LocalDate higherStudyDate, LocalDate addmissionDate, LocalDate endDate, EducationType educationType, String instituteName, EducationLevel educationLavel, String result, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
-        this.higherStudyDate = higherStudyDate;
         this.address = address;
+        this.higherStudyDate = higherStudyDate;
         this.addmissionDate = addmissionDate;
         this.endDate = endDate;
         this.educationType = educationType;
@@ -102,9 +106,6 @@ public class L_HigherStudy {
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public L_HigherStudy() {
     }
 
     public Long getId() {
@@ -123,14 +124,6 @@ public class L_HigherStudy {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getHigherStudyDate() {
-        return higherStudyDate;
-    }
-
-    public void setHigherStudyDate(String higherStudyDate) {
-        this.higherStudyDate = higherStudyDate;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -139,19 +132,27 @@ public class L_HigherStudy {
         this.address = address;
     }
 
-    public String getAddmissionDate() {
+    public LocalDate getHigherStudyDate() {
+        return higherStudyDate;
+    }
+
+    public void setHigherStudyDate(LocalDate higherStudyDate) {
+        this.higherStudyDate = higherStudyDate;
+    }
+
+    public LocalDate getAddmissionDate() {
         return addmissionDate;
     }
 
-    public void setAddmissionDate(String addmissionDate) {
+    public void setAddmissionDate(LocalDate addmissionDate) {
         this.addmissionDate = addmissionDate;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

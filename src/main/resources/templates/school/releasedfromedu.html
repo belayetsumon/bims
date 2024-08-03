@@ -16,10 +16,10 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">     School </a></li>
                                 <li class="breadcrumb-item active">
-                                   <a href="#">  Children List For Discontinuity</a>
+                                   <a href="#">  Released From Edu.</a>
                                 </li>
                                      <li class="breadcrumb-item ">
-                                   Add Discontinuity
+                                   Released From Edu.
                                 </li>
                             </ol>
                         </div>
@@ -34,16 +34,16 @@
                 <!-- Default card -->
                 <div class="card card-info">
                     <div class="card-header with-border">
-                        <h3 class="card-title">  Add Discontinuity</h3>
+                        <h3 class="card-title">  Released From Edu</h3>
                         <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a   th:href="@{/sregularadmission/index}" type="button" class="btn btn-light text-red  btn-sm "> Close <i class="fas fa-times"></i></a>
+                                <a   th:href="@{/releasedfromedu/index}" type="button" class="btn btn-light text-red  btn-sm "> Close <i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        <form  th:action="@{/discontinuity/save}"  th:object="${discontinuity}"  method="post" class="form-horizontal">
+                        <form  th:action="@{/releasedfromedu/save}"  th:object="${discontinuity}"  method="post" class="form-horizontal">
 
                             <input type="hidden"    class="form-control " th:field="*{id}"  />    
 
@@ -55,7 +55,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
-                                        <label for="co" class="col-sm-4 control-label">  Dismissal Date :<span class="text-red"> * </span> </label>
+                                        <label for="co" class="col-sm-4 control-label">  Released Date :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
                                                 <!--                                                <div class="input-group-addon" > 
@@ -71,7 +71,7 @@
                  
                                 <div class="row">
                                     <div class="form-group col-sm-12 row">
-                                        <label for="name" class="col-sm-2 control-label"> Discontinuity Reason<span class="text-red">  </span> </label>
+                                        <label for="name" class="col-sm-2 control-label"> Released Reason<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{discontinuityReason}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('discontinuityReason')}" th:errors="*{discontinuityReason}">First Name Error</span>

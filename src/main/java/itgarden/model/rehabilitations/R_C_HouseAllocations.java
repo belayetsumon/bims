@@ -19,7 +19,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -43,18 +42,23 @@ public class R_C_HouseAllocations {
     @JoinColumn(nullable = false)
     public M_Child_info childMasterCode;
 
-    @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String allocationDate;
+   
 
     @NotNull(message = "*This field cannot be blank")
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     public HouseName houseName;
 
-    public String endDate;
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate allocationDate;
 
-    public String extDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate extDate;
 
     @Lob
     public String remark;
@@ -77,7 +81,7 @@ public class R_C_HouseAllocations {
     public R_C_HouseAllocations() {
     }
 
-    public R_C_HouseAllocations(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String allocationDate, HouseName houseName, String endDate, String extDate, String remark, Users createdBy, Users updatedBy) {
+    public R_C_HouseAllocations(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate allocationDate, HouseName houseName, LocalDate endDate, LocalDate extDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -114,11 +118,11 @@ public class R_C_HouseAllocations {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getAllocationDate() {
+    public LocalDate getAllocationDate() {
         return allocationDate;
     }
 
-    public void setAllocationDate(String allocationDate) {
+    public void setAllocationDate(LocalDate allocationDate) {
         this.allocationDate = allocationDate;
     }
 
@@ -130,19 +134,19 @@ public class R_C_HouseAllocations {
         this.houseName = houseName;
     }
 
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public String getExtDate() {
+    public LocalDate getExtDate() {
         return extDate;
     }
 
-    public void setExtDate(String extDate) {
+    public void setExtDate(LocalDate extDate) {
         this.extDate = extDate;
     }
 

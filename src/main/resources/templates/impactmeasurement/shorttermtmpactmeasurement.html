@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>          Impact Measurement </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Impact Measurement </a></li>
+                                <li class="breadcrumb-item active"> New Short-term Impact on released families</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"> New Short-term Impact on released families</h3>
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">                 
+                                <a  th:href="@{/shorttermtmpactmeasurement/list}"   type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close <i class="fas fa-times"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form  th:action="@{/reintegration/mother_save}"  th:object="${shortTermImpactMeasurement}"  method="post" class="form-horizontal">
+
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
+                            <div class="row">
+                                <input type="hidden"    class="form-control " th:field="*{id}" />
+                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">First Name Error</span>
+                                <input type="test"    class="form-control " th:field="*{releaseMotherId}"   />   
+                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
+                            </div> 
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label"> IGA start <span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{igsstart}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" impactMeasurementYesNos :${impactMeasurementYesNo}"
+                                                th:value=" ${impactMeasurementYesNos }" 
+                                                th:text="${impactMeasurementYesNos }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('igsstart')}" th:errors="*{igsstart}">First Name Error</span>
+                                </div>                            
+                            </div>
+                            
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label"> Children's school admission <span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{childrenSchoolAdmission}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" impactMeasurementYesNos :${impactMeasurementYesNo}"
+                                                th:value=" ${impactMeasurementYesNos }" 
+                                                th:text="${impactMeasurementYesNos }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childrenSchoolAdmission')}" th:errors="*{childrenSchoolAdmission}">First Name Error</span>
+                                </div>                            
+                            </div>
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label"> Safe accommodation & Living environment<span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{safeAccommodationLivingEnvironmen}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" impactMeasurementIndicators :${impactMeasurementIndicator}"
+                                                th:value=" ${impactMeasurementIndicators }" 
+                                                th:text="${impactMeasurementIndicators }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('safeAccommodationLivingEnvironmen')}" th:errors="*{safeAccommodationLivingEnvironmen}">First Name Error</span>
+                                </div>                            
+                            </div>
+
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label">Community acceptance<span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{communityAcceptance}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" impactMeasurementIndicators :${impactMeasurementIndicator}"
+                                                th:value=" ${impactMeasurementIndicators }" 
+                                                th:text="${impactMeasurementIndicators }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('communityAcceptance')}" th:errors="*{communityAcceptance}">First Name Error</span>
+                                </div>                            
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

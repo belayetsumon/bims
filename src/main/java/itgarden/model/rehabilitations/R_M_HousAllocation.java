@@ -40,17 +40,20 @@ public class R_M_HousAllocation {
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String allocationDate;
-
-    @NotNull(message = "*This field cannot be blank")
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     public HouseName houseName;
 
-    public String endDate;
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate allocationDate;
 
-    public String extDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate extDate;
 
     @Lob
     public String remark;
@@ -73,19 +76,16 @@ public class R_M_HousAllocation {
 
     public Users updatedBy;
 
-    public R_M_HousAllocation(Long id, MotherMasterData motherMasterCode, String allocationDate, HouseName houseName, String endDate, String extDate, String remark, Users createdBy, Users updatedBy) {
+    public R_M_HousAllocation(Long id, MotherMasterData motherMasterCode, HouseName houseName, LocalDate allocationDate, LocalDate endDate, LocalDate extDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
-        this.allocationDate = allocationDate;
         this.houseName = houseName;
+        this.allocationDate = allocationDate;
         this.endDate = endDate;
         this.extDate = extDate;
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public R_M_HousAllocation() {
     }
 
     public Long getId() {
@@ -104,14 +104,6 @@ public class R_M_HousAllocation {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getAllocationDate() {
-        return allocationDate;
-    }
-
-    public void setAllocationDate(String allocationDate) {
-        this.allocationDate = allocationDate;
-    }
-
     public HouseName getHouseName() {
         return houseName;
     }
@@ -120,19 +112,27 @@ public class R_M_HousAllocation {
         this.houseName = houseName;
     }
 
-    public String getEndDate() {
+    public LocalDate getAllocationDate() {
+        return allocationDate;
+    }
+
+    public void setAllocationDate(LocalDate allocationDate) {
+        this.allocationDate = allocationDate;
+    }
+
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public String getExtDate() {
+    public LocalDate getExtDate() {
         return extDate;
     }
 
-    public void setExtDate(String extDate) {
+    public void setExtDate(LocalDate extDate) {
         this.extDate = extDate;
     }
 
@@ -176,4 +176,5 @@ public class R_M_HousAllocation {
         this.updatedBy = updatedBy;
     }
 
+    
 }

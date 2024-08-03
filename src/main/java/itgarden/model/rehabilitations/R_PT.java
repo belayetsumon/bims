@@ -39,9 +39,11 @@ public class R_PT {
     @JoinColumn(name = "motherMasterData",nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String therapeuticSessionDate;
+    
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate therapeuticSessionDate;
 
     @NotNull(message = "This field cannot be blank.")
     @Enumerated(EnumType.ORDINAL)
@@ -98,7 +100,10 @@ public class R_PT {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public R_PT(Long id, MotherMasterData motherMasterCode, String therapeuticSessionDate, Yes_No pain, String painNote, Tenderness Tenderness, Yes_No physicalDisability, String PhysicalDisabilityNote, JointMobility jointMobility, Mucsuloskeletal musculoskeletal, DegenerativeDiseases degenerativeDiseases, Yes_No previouslyTherapyTaken, String previouslyTherapyTakenNote, String remark, Users createdBy, Users updatedBy) {
+    public R_PT() {
+    }
+
+    public R_PT(Long id, MotherMasterData motherMasterCode, LocalDate therapeuticSessionDate, Yes_No pain, String painNote, Tenderness Tenderness, Yes_No PhysicalDisability, String physicalDisabilityNote, JointMobility jointMobility, Mucsuloskeletal musculoskeletal, DegenerativeDiseases degenerativeDiseases, Yes_No previouslyTherapyTaken, String previouslyTherapyTakenNote, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.therapeuticSessionDate = therapeuticSessionDate;
@@ -117,9 +122,6 @@ public class R_PT {
         this.updatedBy = updatedBy;
     }
 
-    public R_PT() {
-    }
-
     public Long getId() {
         return id;
     }
@@ -136,11 +138,11 @@ public class R_PT {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getTherapeuticSessionDate() {
+    public LocalDate getTherapeuticSessionDate() {
         return therapeuticSessionDate;
     }
 
-    public void setTherapeuticSessionDate(String therapeuticSessionDate) {
+    public void setTherapeuticSessionDate(LocalDate therapeuticSessionDate) {
         this.therapeuticSessionDate = therapeuticSessionDate;
     }
 
@@ -264,7 +266,4 @@ public class R_PT {
         this.updatedBy = updatedBy;
     }
 
-    
-
-    
-    }
+}

@@ -17,9 +17,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedAttributeNode;
-import jakarta.persistence.NamedEntityGraph;
-import jakarta.persistence.NamedSubgraph;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -34,39 +31,6 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Md Belayet Hossin
  */
-
-
-//
-//@NamedEntityGraph(
-//        name = "approve_mother",
-//        attributeNodes = {
-//                @NamedAttributeNode("approveDate"),
-//                @NamedAttributeNode("approveBy"),
-//                @NamedAttributeNode("decission"),
-//        }
-//)
-
-
-@NamedEntityGraph(
-  name = "approve_mother",
-        
-  attributeNodes = {
-    @NamedAttributeNode("approveDate"),
-    @NamedAttributeNode("approveBy"),
-    
-    @NamedAttributeNode(value = "motherMasterCode", subgraph = "motherMasterCode"),
-  },
-  subgraphs = {
-    @NamedSubgraph(
-      name = "motherMasterCode-name",
-      attributeNodes = {
-        @NamedAttributeNode("motherName")
-      }
-    )
-  }
-)
-
-
 @Entity
 @Table(name = "M_APPROVAL")
 public class M_Approval {
@@ -75,17 +39,18 @@ public class M_Approval {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false,fetch = FetchType.LAZY)
-    @JoinColumn(nullable =false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "This field cannot be blank.")
-     @Size(min = 1, max = 13, message = "Please select date.")
-    public String  approveDate;
+    @Column(nullable = false)
+    @NotNull(message = " Approve  date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate approveDate;
 
-      @NotNull(message = "This field cannot be blank.")      
-    public String  approveBy;
-    
+    @NotNull(message = "This field cannot be blank.")
+    public String approveBy;
+
     @NotNull(message = "This field cannot be blank.")
     @Enumerated(EnumType.ORDINAL)
     public Decision decission;
@@ -93,13 +58,14 @@ public class M_Approval {
     @Lob
     public String REMARKS;
 
-    /*********** Audit *******************************/
-    
+    /**
+     * ********* Audit ******************************
+     */
     @Column(insertable = true, updatable = false)
-    public LocalDate created =  LocalDate.now();
+    public LocalDate created = LocalDate.now();
 
     @ManyToOne(optional = true)
-    
+
     public Users createdBy;
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -109,13 +75,13 @@ public class M_Approval {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-
-    /** audit end**********************/
-
+    /**
+     * audit end*********************
+     */
     public M_Approval() {
     }
 
-    public M_Approval(Long id, MotherMasterData motherMasterCode, String approveDate, String approveBy, Decision decission, String REMARKS, Users createdBy, Users updatedBy) {
+    public M_Approval(Long id, MotherMasterData motherMasterCode, LocalDate approveDate, String approveBy, Decision decission, String REMARKS, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.approveDate = approveDate;
@@ -142,11 +108,11 @@ public class M_Approval {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getApproveDate() {
+    public LocalDate getApproveDate() {
         return approveDate;
     }
 
-    public void setApproveDate(String approveDate) {
+    public void setApproveDate(LocalDate approveDate) {
         this.approveDate = approveDate;
     }
 
@@ -205,7 +171,5 @@ public class M_Approval {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-    
-    
-    
+
 }

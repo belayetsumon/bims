@@ -6,23 +6,37 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Clinic
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Clinic </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Clinic</a></li>
+                                <li class="breadcrumb-item "><a href="#">Mother List For Daily Visit</a></li>
+                                <li class="breadcrumb-item active">Mother List For Daily Visit</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Daily Visit</h3>
-                                <a   th:href="@{/cvisit/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Daily Visit </a>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Daily Visit</h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/cvisit/create/{id}(id=${m_id})}"  type="button" class="btn  btn-light  btn-sm  text-info"> Add Daily Visit </a>
+                                </div>    </div>
+                            <!-- /.card-header -->
+                             <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th> Edit </th>      
@@ -34,28 +48,31 @@
                                         <th>Medicine</th>
                                         <th>Prescribed By </th>
                                         <th>Remark</th>
-                                          <th>Refer To</th>
-                                    </tr>                          
+                                        <th>Refer To</th>
+                                    </tr>  
+                                          </thead>
+                                    <tbody>
                                     <tr th:each="cvisit,status:${cvisit}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/cvisit/edit/{id}(id=${cvisit.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a></td>
-                                        <td><a th:href="@{/cvisit/delete/{id}(id=${cvisit.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a></td>
+                                        <td><a th:href="@{/cvisit/edit/{id}(id=${cvisit.id})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/cvisit/delete/{id}(id=${cvisit.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                         <td th:text="${cvisit.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${cvisit.visitDate}">Chakma</td>
                                         <td th:text="${cvisit.problem}">Chakma</td>
                                         <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
                                         <td th:text="${cvisit.medicine}">Chakma</td>
-                                         <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
+                                        <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
                                         <td th:text="${cvisit.remark}">Chakma</td>
-                                        <td><a th:href="@{/referral/create/{id}(id=${cvisit.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon "> Refer To</a></td>
+                                        <td><a th:href="@{/referral/create/{id}(id=${cvisit.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info"> Refer To</a></td>
                                     </tr>
+                                        </tbody>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
                     </div>
                     <!-- /.col -->
 

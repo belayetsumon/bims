@@ -39,7 +39,7 @@ public class C_NutritionalStatusController {
 
 	@RequestMapping("/mothersearch")
 	public String mothersearch(Model model) {
-	//	model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc());
+		model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndReleaseMotherIsNullOrderByIdDesc());
 		return "/clinic/nutritionalstatus/mothersearch";
 	}
 

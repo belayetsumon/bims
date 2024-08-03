@@ -36,16 +36,18 @@ public class L_Job {
     @ManyToOne(optional = false)
     public M_Child_info childMasterCode;
 
-    @NotNull(message = "This field cannot be blank.")
-   
-    public String jobDate;
+     
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate jobDate;
     
     @NotBlank(message = "This field cannot be blank.")
-   
     @Lob
     public String address;
     
-    public String startDate;
+ 
+    
+   @DateTimeFormat(pattern = "dd-MM-yyyy")
+   private LocalDate startDate;
     
    
     
@@ -56,7 +58,9 @@ public class L_Job {
     public String position;
     
     public String organizationsName;
-     public String endDate;
+    
+   @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate endDate;
 
     @Lob
     public String remark;
@@ -77,22 +81,19 @@ public class L_Job {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public L_Job(Long id, M_Child_info childMasterCode, String jobDate, String address, String startDate, String endDate, String jobType, String position, String organizationsName, String remark, Users createdBy, Users updatedBy) {
+    public L_Job(Long id, M_Child_info childMasterCode, LocalDate jobDate, String address, LocalDate startDate, String jobType, String position, String organizationsName, LocalDate endDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.jobDate = jobDate;
         this.address = address;
         this.startDate = startDate;
-        this.endDate = endDate;
         this.jobType = jobType;
         this.position = position;
         this.organizationsName = organizationsName;
+        this.endDate = endDate;
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public L_Job() {
     }
 
     public Long getId() {
@@ -111,11 +112,11 @@ public class L_Job {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getJobDate() {
+    public LocalDate getJobDate() {
         return jobDate;
     }
 
-    public void setJobDate(String jobDate) {
+    public void setJobDate(LocalDate jobDate) {
         this.jobDate = jobDate;
     }
 
@@ -127,20 +128,12 @@ public class L_Job {
         this.address = address;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public String getJobType() {
@@ -165,6 +158,14 @@ public class L_Job {
 
     public void setOrganizationsName(String organizationsName) {
         this.organizationsName = organizationsName;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getRemark() {
@@ -206,5 +207,5 @@ public class L_Job {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-    
+
 }

@@ -190,8 +190,8 @@
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/rtraining/mothersearch}"><i class="far fa-circle nav-icon"></i>6.1 New Training </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/rtraining/mothersearch}"><i class="far fa-circle nav-icon"></i>6.2 Training </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/rtraining/mothersearch}"><i class="far fa-circle nav-icon"></i>6.3 Life Skill/Universal Training   </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/swimming/childlist}"><i class="far fa-circle nav-icon"></i> 6.4.New Swim Safe Lessons  </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/swimming/index}"><i class="far fa-circle nav-icon"></i> 6.5.	Complete Swim Safe Lessons  </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/swimming/childlist}"><i class="far fa-circle nav-icon"></i> 6.4 Swim Safe Lessons  </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/swimming/index}"><i class="far fa-circle nav-icon"></i> 6.5.	Completed children List of <br> Swim Safe Lessons  </a></li>
 
                         </ul>
                     </li>
@@ -208,7 +208,7 @@
                         </a>
                         <ul class="nav nav-treeview">
 
-                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" ><i class="far fa-circle nav-icon"></i>7.1	Insert Leave  </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/leave/index}"><i class="far fa-circle nav-icon"></i>7.1	Insert Leave  </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" ><i class="far fa-circle nav-icon"></i>7.2 Authorized Leave   </a></li>
 
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" ><i class="far fa-circle nav-icon"></i>7.3.	Unauthorized Leave   </a></li>
@@ -251,7 +251,7 @@
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/clinic/index}"><i class="far fa-circle nav-icon"></i> 9.3.	Immunization </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/clinic/index}"><i class="far fa-circle nav-icon"></i>9.4.Vitamin- A </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/nutritionalstatus/mothersearch}"><i class="far fa-circle nav-icon"></i> Nutritional Status New </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/clinic/index}"><i class="far fa-circle nav-icon"></i> Nutritional status </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/nutritionalstatus/mothersearch}"><i class="far fa-circle nav-icon"></i> Nutritional status </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/clinic/index}"><i class="far fa-circle nav-icon"></i>Daily Visit </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/referral/index}"><i class="far fa-circle nav-icon"></i>Referral </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('CLINIC')" ><a class="nav-link" th:href="@{/referral/index}"><i class="far fa-circle nav-icon"></i>Special Care  </a></li>
@@ -278,11 +278,9 @@
                             <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" ><a class="nav-link" th:href="@{/sregularadmission/allChild}"><i class="far fa-circle nav-icon"></i> New Regular Admission</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" ><a class="nav-link" th:href="@{/sregularadmission/index}"><i class="far fa-circle nav-icon"></i> Regular Admission List</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" ><a class="nav-link" th:href="@{/eligibility/eligibility}"><i class="far fa-circle nav-icon"></i> Not Eligibility List</a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" ><a class="nav-link" th:href="@{/discontinuity/admissionstudentlistl}"><i class="far fa-circle nav-icon"></i>  New Discontinuity </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')"  ><a class="nav-link" th:href="@{/discontinuity/index}"><i class="far fa-circle nav-icon"></i> Discontinuity  List</a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" > <a class="nav-link" ><i class="far fa-circle nav-icon"></i> New Released from Edu. Prog. (Data will come from child released page) </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" > <a class="nav-link" ><i class="far fa-circle nav-icon"></i> 10.5.	All Released from Edu. Prog. </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" > <a class="nav-link" th:href="@{/school/report}"><i class="far fa-circle nav-icon"></i> Report </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" ><a class="nav-link" th:href="@{/releasedfromedu/releasedchildlist}"><i class="far fa-circle nav-icon"></i>  New Released from Edu. Prog.</a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')"  ><a class="nav-link" th:href="@{/releasedfromedu/index}"><i class="far fa-circle nav-icon"></i> All Released from Edu. Prog.</a></li>
+                           <li class="nav-item" sec:authorize="hasAuthority('SCHOOL')" > <a class="nav-link" th:href="@{/school/report}"><i class="far fa-circle nav-icon"></i> Report </a></li>
                         </ul>
                     </li>
 
@@ -375,8 +373,8 @@
                             </p>
                         </a>                       
                         <ul class="nav nav-treeview">
-                            <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/followupmother/mothersearch}"><i class="far fa-circle nav-icon"></i> 16.1.	New Short-term Impact on released families </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/mothercrisismeetup/list}"><i class="far fa-circle nav-icon"></i>16.1.1.	All New Short-term Impact on released families</a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/shorttermtmpactmeasurement/add}"><i class="far fa-circle nav-icon"></i> 16.1.	New Short-term Impact on released families </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/shorttermtmpactmeasurement/list}"><i class="far fa-circle nav-icon"></i>16.1.1.	All New Short-term Impact on released families</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/followupmother/mothersearch}"><i class="far fa-circle nav-icon"></i>16.2.	New Mid-term Impact Measurement  </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/mothercrisismeetup/list}"><i class="far fa-circle nav-icon"></i>16.1.1.	16.2.1.	All Mid-term Impact Measurement</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/followupmother/mothersearch}"><i class="far fa-circle nav-icon"></i>16.3.	New Long-term Impact Measurement   </a></li>

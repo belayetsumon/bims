@@ -28,16 +28,18 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class R_OT {
-  @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "motherMasterData",nullable = false)
+    @JoinColumn(name = "motherMasterData", nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "*This field cannot be blank")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String therapeuticSessionDate;
+    @Column(nullable = false)
+    @NotNull(message = "Date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate therapeuticSessionDate;
 
     @NotNull(message = "*This field cannot be blank")
     @ManyToOne(optional = false)
@@ -50,13 +52,11 @@ public class R_OT {
     public Diagonosis diagonosis;
 
     public String treatment;
-    
-    public String conductedBy ;
-    
-    public String remarks ;
-    
-    
-    
+
+    public String conductedBy;
+
+    public String remarks;
+
     /**
      * ********* Audit ******************************
      */
@@ -72,7 +72,10 @@ public class R_OT {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
-    public R_OT(Long id, MotherMasterData motherMasterCode, String therapeuticSessionDate, SessionType sessionType, Diagonosis diagonosis, String treatment, String conductedBy, String remarks, Users createdBy, Users updatedBy) {
+    public R_OT() {
+    }
+
+    public R_OT(Long id, MotherMasterData motherMasterCode, LocalDate therapeuticSessionDate, SessionType sessionType, Diagonosis diagonosis, String treatment, String conductedBy, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.therapeuticSessionDate = therapeuticSessionDate;
@@ -83,9 +86,6 @@ public class R_OT {
         this.remarks = remarks;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public R_OT() {
     }
 
     public Long getId() {
@@ -104,11 +104,11 @@ public class R_OT {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getTherapeuticSessionDate() {
+    public LocalDate getTherapeuticSessionDate() {
         return therapeuticSessionDate;
     }
 
-    public void setTherapeuticSessionDate(String therapeuticSessionDate) {
+    public void setTherapeuticSessionDate(LocalDate therapeuticSessionDate) {
         this.therapeuticSessionDate = therapeuticSessionDate;
     }
 
@@ -183,9 +183,6 @@ public class R_OT {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-    
-    
-    
-    
 
+    
 }

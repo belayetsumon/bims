@@ -65,8 +65,6 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Md Belayet Hossin
  */
-
-
 @Entity
 @Table(name = "motherMasterData")
 public class MotherMasterData {
@@ -78,18 +76,22 @@ public class MotherMasterData {
     @NotEmpty(message = "This field cannot be blank.")
     public String visitOfficersName;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateReferral;
+    @Column(nullable = false)
+    @NotNull(message = " Referral date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateReferral;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String referredFrom;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public Reasons resons;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String homeVisitDate;
+    @Column(nullable = false)
+    @NotNull(message = " Home Visit date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate homeVisitDate;
 
     @NotEmpty(message = "This field cannot be blank.")
     @Column(unique = true)
@@ -98,8 +100,11 @@ public class MotherMasterData {
     @NotEmpty(message = "This field cannot be blank.")
     public String motherName;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateOfBirth;
+ 
+    @Column(nullable = false)
+    @NotNull(message = " Date of birth cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate dateOfBirth;
 
     public String age;
 
@@ -112,37 +117,37 @@ public class MotherMasterData {
     public String mobileNumber;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public Religion religion;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public MaritalStatus maritalStatus;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String husbandsName;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public HusbandsStatus husbandsStatus;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String primeFamilyMemberName;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public Relations relationWithPfm;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EthinicIdentity ethnicIdentity;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EducationLevel educationLevel;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EducationType educationType;
 
     @NotNull(message = "This field cannot be blank.")
@@ -182,7 +187,7 @@ public class MotherMasterData {
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
-    @ManyToOne(optional = true,fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     public Users createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -190,7 +195,7 @@ public class MotherMasterData {
     @Column(insertable = false, updatable = true)
     public Date updated = new Date();
 
-    @ManyToOne(optional = true,fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     public Users updatedBy;
 
     /*      Relations ship  Start */
@@ -248,8 +253,6 @@ public class MotherMasterData {
     public M_Property mproperty;
 
     // objerbations
-    
-    
     //@LazyCollection(LazyCollectionOption.FALSE)
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public O_Induction oinduction;
@@ -282,7 +285,7 @@ public class MotherMasterData {
 
     //@LazyCollection(LazyCollectionOption.TRUE)
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
-   public List<R_M_HousAllocation> rmHousAllocation;
+    public List<R_M_HousAllocation> rmHousAllocation;
 
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_M_WorkAllocation> rmWorkAllocation = new ArrayList<>();
@@ -303,8 +306,6 @@ public class MotherMasterData {
     public List<R_PsychologyMother> rpsychologyMother = new ArrayList<>();
 
     //clinic  C_NutritionalStatus
-    
-    
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_NutritionalStatus> cnutritionalStatus = new ArrayList<>();
 
@@ -313,54 +314,50 @@ public class MotherMasterData {
 
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_Admission> cadmission = new ArrayList<>();
-    
-     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_Referral> creferral = new ArrayList<>();
-     
+
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_Release> crelease = new ArrayList<>();
 
     //   pree RE intrigations
-    
-    
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public PreReintegrationVisit preReintegrationVisit;
-    
-     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Accessibility_ReintegrationVisit> maccessibilityReintegrationVisit = new ArrayList<>();
-     
-     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Address_ReintegrationVisit> maddressReintegrationVisit = new ArrayList<>();
-     
+
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Community_Information_ReintegrationVisit> mcommunityInformationReintegrationVisit = new ArrayList<>();
-    
-     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Family_information_ReintegrationVisit> mfamilyinformationReintegrationVisit = new ArrayList<>();
-     
+
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_House_Information_ReintegrationVisit> mhouseInformationReintegrationVisit = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Lifestyle_ReintegrationVisit> mlifestyleReintegrationVisit = new ArrayList<>();
 
-    
     // re intrigration check list
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public ReintegrationCheckList reintegrationCheckList;
-    
-    // relase
 
+    // relase
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public ReleaseMother releaseMother;
-    
-    // fllow up
 
+    // fllow up
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<FollowUpMother> followUpMother = new ArrayList<>();
-    
-      @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
-    public List<FollowMotherPerCapitaIncome> followMotherPerCapitaIncome = new ArrayList<>();;
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<FollowMotherPerCapitaIncome> followMotherPerCapitaIncome = new ArrayList<>();
+    ;
     
     
     
@@ -375,7 +372,7 @@ public class MotherMasterData {
     public MotherMasterData() {
     }
 
-    public MotherMasterData(Long id, String visitOfficersName, String dateReferral, String referredFrom, Reasons resons, String homeVisitDate, String motherMasterCode, String motherName, String dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
+    public MotherMasterData(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -448,11 +445,11 @@ public class MotherMasterData {
         this.visitOfficersName = visitOfficersName;
     }
 
-    public String getDateReferral() {
+    public LocalDate getDateReferral() {
         return dateReferral;
     }
 
-    public void setDateReferral(String dateReferral) {
+    public void setDateReferral(LocalDate dateReferral) {
         this.dateReferral = dateReferral;
     }
 
@@ -472,11 +469,11 @@ public class MotherMasterData {
         this.resons = resons;
     }
 
-    public String getHomeVisitDate() {
+    public LocalDate getHomeVisitDate() {
         return homeVisitDate;
     }
 
-    public void setHomeVisitDate(String homeVisitDate) {
+    public void setHomeVisitDate(LocalDate homeVisitDate) {
         this.homeVisitDate = homeVisitDate;
     }
 
@@ -496,11 +493,11 @@ public class MotherMasterData {
         this.motherName = motherName;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -1071,5 +1068,6 @@ public class MotherMasterData {
     public void setMotherCrisisMeetUp(List<MotherCrisisMeetUp> motherCrisisMeetUp) {
         this.motherCrisisMeetUp = motherCrisisMeetUp;
     }
-  
+
+    
 }

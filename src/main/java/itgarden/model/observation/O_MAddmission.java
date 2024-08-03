@@ -17,9 +17,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -42,11 +42,15 @@ public class O_MAddmission {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateArrival;
+    @Column(nullable = false)
+    @NotNull(message = "Arrival date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateArrival;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateAdmission;
+    @Column(nullable = false)
+    @NotNull(message = "Admission date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate dateAdmission;
 
     public String remarks;
 
@@ -74,7 +78,7 @@ public class O_MAddmission {
     public O_MAddmission() {
     }
 
-    public O_MAddmission(Long id, MotherMasterData motherMasterCode, String dateArrival, String dateAdmission, String remarks, MotherImage motherImage, Users createdBy, Users updatedBy) {
+    public O_MAddmission(Long id, MotherMasterData motherMasterCode, LocalDate dateArrival, LocalDate dateAdmission, String remarks, MotherImage motherImage, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.dateArrival = dateArrival;
@@ -101,19 +105,19 @@ public class O_MAddmission {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getDateArrival() {
+    public LocalDate getDateArrival() {
         return dateArrival;
     }
 
-    public void setDateArrival(String dateArrival) {
+    public void setDateArrival(LocalDate dateArrival) {
         this.dateArrival = dateArrival;
     }
 
-    public String getDateAdmission() {
+    public LocalDate getDateAdmission() {
         return dateAdmission;
     }
 
-    public void setDateAdmission(String dateAdmission) {
+    public void setDateAdmission(LocalDate dateAdmission) {
         this.dateAdmission = dateAdmission;
     }
 

@@ -43,11 +43,17 @@ public class O_ChildAdmission {
     @OneToOne(optional = false)
     public M_Child_info childMasterCode;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateArrival;
+ 
+    
+    @Column(nullable = false)
+    @NotNull(message = "Arrival date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate dateArrival;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    public String dateAdmission;
+    @Column(nullable = false)
+    @NotNull(message = "Admission date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate dateAdmission;
 
     public String remarks;
 
@@ -66,10 +72,12 @@ public class O_ChildAdmission {
     public Date updated = new Date();
 
     @ManyToOne(optional = true)
-
     public Users updatedBy;
 
-    public O_ChildAdmission(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String dateArrival, String dateAdmission, String remarks, Users createdBy, Users updatedBy) {
+    public O_ChildAdmission() {
+    }
+
+    public O_ChildAdmission(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate dateArrival, LocalDate dateAdmission, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -78,9 +86,6 @@ public class O_ChildAdmission {
         this.remarks = remarks;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public O_ChildAdmission() {
     }
 
     public Long getId() {
@@ -107,19 +112,19 @@ public class O_ChildAdmission {
         this.childMasterCode = childMasterCode;
     }
 
-    public String getDateArrival() {
+    public LocalDate getDateArrival() {
         return dateArrival;
     }
 
-    public void setDateArrival(String dateArrival) {
+    public void setDateArrival(LocalDate dateArrival) {
         this.dateArrival = dateArrival;
     }
 
-    public String getDateAdmission() {
+    public LocalDate getDateAdmission() {
         return dateAdmission;
     }
 
-    public void setDateAdmission(String dateAdmission) {
+    public void setDateAdmission(LocalDate dateAdmission) {
         this.dateAdmission = dateAdmission;
     }
 
@@ -162,5 +167,4 @@ public class O_ChildAdmission {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
 }

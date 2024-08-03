@@ -6,19 +6,28 @@
 package itgarden.model.reintegration_release;
 
 import itgarden.model.auth.Users;
+import itgarden.model.homevisit.M_Current_Help;
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.impactmeasurement.LongTermImpactMeasurement;
+import itgarden.model.impactmeasurement.MidTermImpactMeasurement;
+import itgarden.model.impactmeasurement.ShortTermImpactMeasurement;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -37,17 +46,18 @@ public class ReleaseMother {
     @JoinColumn(nullable = false)
     private MotherMasterData motherMasterCode;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    private String releaseDate;
+    @Column(nullable = false)
+    @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate releaseDate;
 
-    
     @Lob
     private String Address;
 
     @NotEmpty(message = "This field cannot be blank.")
     private String postDischargeVisitDate;
-    
-     @Lob
+
+    @Lob
     private String remark;
 
     /**
@@ -65,7 +75,20 @@ public class ReleaseMother {
     @ManyToOne(optional = true)
     private Users updatedBy;
 
-    public ReleaseMother(Long id, MotherMasterData motherMasterCode, String releaseDate, String Address, String postDischargeVisitDate, String remark, Users createdBy, Users updatedBy) {
+    @OneToMany(mappedBy = "releaseMotherId", fetch = FetchType.LAZY)
+    public List<ShortTermImpactMeasurement> shortTermImpactMeasurement = new ArrayList<>();
+
+    @OneToMany(mappedBy = "releaseMotherId", fetch = FetchType.LAZY)
+    public List<MidTermImpactMeasurement> midTermImpactMeasurement = new ArrayList<>();
+    
+     @OneToMany(mappedBy = "releaseMotherId", fetch = FetchType.LAZY)
+    public List<LongTermImpactMeasurement> longTermImpactMeasurement = new ArrayList<>();
+    
+
+    public ReleaseMother() {
+    }
+
+    public ReleaseMother(Long id, MotherMasterData motherMasterCode, LocalDate releaseDate, String Address, String postDischargeVisitDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.releaseDate = releaseDate;
@@ -74,9 +97,6 @@ public class ReleaseMother {
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public ReleaseMother() {
     }
 
     public Long getId() {
@@ -95,11 +115,11 @@ public class ReleaseMother {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -158,6 +178,30 @@ public class ReleaseMother {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-    
-    
+
+    public List<ShortTermImpactMeasurement> getShortTermImpactMeasurement() {
+        return shortTermImpactMeasurement;
+    }
+
+    public void setShortTermImpactMeasurement(List<ShortTermImpactMeasurement> shortTermImpactMeasurement) {
+        this.shortTermImpactMeasurement = shortTermImpactMeasurement;
+    }
+
+    public List<MidTermImpactMeasurement> getMidTermImpactMeasurement() {
+        return midTermImpactMeasurement;
+    }
+
+    public void setMidTermImpactMeasurement(List<MidTermImpactMeasurement> midTermImpactMeasurement) {
+        this.midTermImpactMeasurement = midTermImpactMeasurement;
+    }
+
+    public List<LongTermImpactMeasurement> getLongTermImpactMeasurement() {
+        return longTermImpactMeasurement;
+    }
+
+    public void setLongTermImpactMeasurement(List<LongTermImpactMeasurement> longTermImpactMeasurement) {
+        this.longTermImpactMeasurement = longTermImpactMeasurement;
+    }
+
+   
 }

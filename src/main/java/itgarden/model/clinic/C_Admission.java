@@ -36,9 +36,10 @@ public class C_Admission {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-    public String admissionDate;
+    @Column(nullable = false)
+    @NotNull(message = "Admission date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate admissionDate;
 
     @NotNull(message = "This field cannot be blank.")
     @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
@@ -67,16 +68,17 @@ public class C_Admission {
 
 //    @ManyToOne(optional = true)
 //    public Users updatedBy;
-    public C_Admission(Long id, MotherMasterData motherMasterCode, String admissionDate, String admittedTo, String reason, String remark) {
+
+    public C_Admission() {
+    }
+
+    public C_Admission(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, String admittedTo, String reason, String remark) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
         this.admittedTo = admittedTo;
         this.reason = reason;
         this.remark = remark;
-    }
-
-    public C_Admission() {
     }
 
     public Long getId() {
@@ -95,11 +97,11 @@ public class C_Admission {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getAdmissionDate() {
+    public LocalDate getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(String admissionDate) {
+    public void setAdmissionDate(LocalDate admissionDate) {
         this.admissionDate = admissionDate;
     }
 
@@ -142,4 +144,6 @@ public class C_Admission {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+ 
+    
 }
