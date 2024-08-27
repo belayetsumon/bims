@@ -8,12 +8,15 @@ import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
@@ -32,7 +35,7 @@ public class LiteracyDigitalLiteracy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(nullable = false)
     private MotherMasterData motherMasterCode;
 
@@ -40,6 +43,17 @@ public class LiteracyDigitalLiteracy {
     @NotNull(message = "Admission date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate admissionDate;
+    
+    
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
+    
+    @Enumerated(EnumType.STRING)
+    public ResultEnum result;
+
+ 
+    
+    
 
     /**
      * ********* Audit ******************************
@@ -58,15 +72,17 @@ public class LiteracyDigitalLiteracy {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     public Users updatedBy;
 
-    public LiteracyDigitalLiteracy(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, Users createdBy, Users updatedBy) {
+    public LiteracyDigitalLiteracy() {
+    }
+
+    public LiteracyDigitalLiteracy(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, LocalDate endDate, ResultEnum result, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
+        this.endDate = endDate;
+        this.result = result;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-    }
-
-    public LiteracyDigitalLiteracy() {
     }
 
     public Long getId() {
@@ -91,6 +107,22 @@ public class LiteracyDigitalLiteracy {
 
     public void setAdmissionDate(LocalDate admissionDate) {
         this.admissionDate = admissionDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public ResultEnum getResult() {
+        return result;
+    }
+
+    public void setResult(ResultEnum result) {
+        this.result = result;
     }
 
     public LocalDate getCreated() {
@@ -124,4 +156,6 @@ public class LiteracyDigitalLiteracy {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+   
 }

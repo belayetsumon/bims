@@ -214,8 +214,98 @@
                                                 </div>                            
                                             </div>
                                         </div>
-                                        <div class="row">
-                                        </div>
+                                           <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced with social violence before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"    name="socialviolence"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                           
+                                        </div>                            
+                                    </div>
+                                        
+                                                 <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Were her children faced with social violence before they arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  name="childrenFacedSocialViolence"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            
+                                        </div>                            
+                                    </div>  
+                                                      <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced rape or sexual abuse before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName" name="sexualAbuse"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            
+                                        </div>                            
+                                    </div>
+                                        
+                                                  <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Were her children faced rape or sexual abuse before they arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  name="childrenSexualAbuse"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                           
+                                        </div>                            
+                                    </div>
+                                        
+                                                       <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she a victim of early marriage?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  name="earlyMarriage"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            
+                                        </div>                            
+                                    </div>
+                                        
+                                                   <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she a victim of pregnancy after being raped?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  name="pregnancyAfterBeingRaped"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                           
+                                        </div>                            
+                                    </div>
+                                        
+                                                         <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced dowry abuse before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  name="facedDowryAbuse"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                           
+                                        </div>                            
+                                    </div>
+                                        
+                                        
+                                        
                                         <div class="row">
                                             <div class="form-group col-sm-12 row">
                                                 <label for="name" class="col-sm-5 control-label"> Investigator recommendation <span class="text-red">  </span> </label>

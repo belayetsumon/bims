@@ -17,12 +17,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
+import jakarta.persistence.NamedSubgraph;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,6 +33,25 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Md Belayet Hossin
  */
+
+@NamedEntityGraph(
+  name = "approve_mother",
+        
+  attributeNodes = {
+    @NamedAttributeNode("approveDate"),
+    @NamedAttributeNode("approveBy"),
+    
+    @NamedAttributeNode(value = "motherMasterCode", subgraph = "motherMasterCode"),
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "motherMasterCode-name",
+      attributeNodes = {
+        @NamedAttributeNode("motherName")
+      }
+    )
+  }
+)
 @Entity
 @Table(name = "M_APPROVAL")
 public class M_Approval {

@@ -1,6 +1,8 @@
 package itgarden;
 
-import itgarden.repository.homevisit.MotherMasterDataRepository;
+import itgarden.services.homevisit.MotherMasterDataServices;
+import itgarden.services.literacy.LiteracyNumeracyService;
+import itgarden.services.observation.O_MAddmissionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,16 +12,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ItgardenbaseApplicationTests {
 
     @Autowired
-    MotherMasterDataRepository motherMasterDataRepository;
+    LiteracyNumeracyService literacyNumeracyService;
+
+    @Autowired
+    MotherMasterDataServices motherMasterDataServices;
+
+    @Autowired
+    O_MAddmissionService addmissionService;
 
     @Test
     public void contextLoads() {
-        
-        
-     // motherMasterDataRepository.
-      //        findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible);
-    
-    
+
+        //System.out.println("" + addmissionService.addmissionMotherIdList().size());
+        System.out.println(" Id for digital literacy Service " + literacyNumeracyService.getMotherMasterDataDTOs().size());
+        //System.out.println("Mother Id List" + motherMasterDataServices.motherMasterDataIdList().size());
+
     }
 
 }

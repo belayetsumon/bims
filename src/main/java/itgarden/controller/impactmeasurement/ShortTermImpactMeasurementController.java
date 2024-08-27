@@ -3,11 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/springframework/Controller.java to edit this template
  */
 package itgarden.controller.impactmeasurement;
-
 import itgarden.model.impactmeasurement.ImpactMeasurementIndicator;
 import itgarden.model.impactmeasurement.ImpactMeasurementYesNo;
 import itgarden.model.impactmeasurement.ShortTermImpactMeasurement;
 import itgarden.repository.impactmeasurement.ShortTermImpactMeasurementRepository;
+import itgarden.services.impactmeasurement.ShortTermImpactMeasurementService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,27 +28,36 @@ public class ShortTermImpactMeasurementController {
     @Autowired
     ShortTermImpactMeasurementRepository shortTermImpactMeasurementRepository;
 
+    @Autowired
+    ShortTermImpactMeasurementService shortTermImpactMeasurementService;
+
     @RequestMapping("/add")
     public String index(Model model, ShortTermImpactMeasurement shortTermImpactMeasurement) {
+
+        model.addAttribute("releaseMotherid", shortTermImpactMeasurementService.newListReleaseMotherIdforShortTermImpactMeasurement());
+
         model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
-        
+
         model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
-        
+
         return "impactmeasurement/shorttermtmpactmeasurement";
     }
 
     @RequestMapping("/list")
     public String list(Model model) {
         model.addAttribute("attribute", "value");
+        model.addAttribute("list", shortTermImpactMeasurementRepository.findAll());
         return "impactmeasurement/shorttermtmpactmeasurementlist";
     }
 
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, ShortTermImpactMeasurement shortTermImpactMeasurement, Model model) {
-        model.addAttribute("preReintegrationVisit", shortTermImpactMeasurementRepository.findById(id).orElse(null));
+        model.addAttribute("releaseMotherid", shortTermImpactMeasurementService.newListReleaseMotherIdforShortTermImpactMeasurement());
+
+        model.addAttribute("shortTermImpactMeasurement", shortTermImpactMeasurementRepository.findById(id).orElse(null));
 
         model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
-        
+
         model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
 
         return "impactmeasurement/shorttermtmpactmeasurement";
@@ -59,6 +68,7 @@ public class ShortTermImpactMeasurementController {
 
         if (bindingResult.hasErrors()) {
 
+            model.addAttribute("releaseMotherid", shortTermImpactMeasurementService.newListReleaseMotherIdforShortTermImpactMeasurement());
             model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
             model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
 
@@ -66,7 +76,7 @@ public class ShortTermImpactMeasurementController {
         }
         shortTermImpactMeasurementRepository.save(shortTermImpactMeasurement);
 
-        return "redirect:/shorttermtmpactmeasurement/index";
+        return "redirect:/shorttermtmpactmeasurement/list";
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -74,6 +84,6 @@ public class ShortTermImpactMeasurementController {
         shortTermImpactMeasurement = shortTermImpactMeasurementRepository.findById(id).orElse(null);
 //        redirectAttrs.addAttribute("m_id", shortTermImpactMeasurement.motherMasterCode.getId());
         shortTermImpactMeasurementRepository.deleteById(id);
-        return "redirect:/shorttermtmpactmeasurement/index";
+        return "redirect:/shorttermtmpactmeasurement/list";
     }
 }

@@ -9,6 +9,8 @@ import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,11 +33,13 @@ public class MotherImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    
+
     @OneToOne(optional = false)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
+
+    @Enumerated(EnumType.STRING)
+    public ImageTypeEnum imagetype;
 
     @OneToOne(optional = false)
     @JoinColumn(nullable = false)
@@ -64,9 +68,10 @@ public class MotherImage {
     public MotherImage() {
     }
 
-    public MotherImage(Long id, MotherMasterData motherMasterCode, O_MAddmission addmission, String imageName, String remarks, Users createdBy, Users updatedBy) {
+    public MotherImage(Long id, MotherMasterData motherMasterCode, ImageTypeEnum imagetype, O_MAddmission addmission, String imageName, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
+        this.imagetype = imagetype;
         this.addmission = addmission;
         this.imageName = imageName;
         this.remarks = remarks;
@@ -88,6 +93,14 @@ public class MotherImage {
 
     public void setMotherMasterCode(MotherMasterData motherMasterCode) {
         this.motherMasterCode = motherMasterCode;
+    }
+
+    public ImageTypeEnum getImagetype() {
+        return imagetype;
+    }
+
+    public void setImagetype(ImageTypeEnum imagetype) {
+        this.imagetype = imagetype;
     }
 
     public O_MAddmission getAddmission() {
@@ -145,6 +158,4 @@ public class MotherImage {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-    
 }

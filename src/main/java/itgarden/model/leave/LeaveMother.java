@@ -31,13 +31,13 @@ public class LeaveMother implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
-    private MotherMasterData motherMasterCode;
+    public MotherMasterData motherMasterCode;
 
-    private String sectionName;
+    public String sectionName;
 
     @Column(nullable = false)
     @NotNull(message = " Leave from field cannot be blank.")
@@ -50,20 +50,23 @@ public class LeaveMother implements Serializable {
     public LocalDate leaveTo;
 
     @NotEmpty(message = "Care of cannot be blank.")
-    private String careof;
+    public String careof;
 
     @NotEmpty(message = "Contact number cannot be blank.")
-    private String contactNumber;
+    public String contactNumber;
 
     @Lob
     @NotEmpty(message = "Address cannot be blank.")
-    private String address;
+    public String address;
 
     @Column(nullable = false)
-    @NotNull(message = "Admission date cannot be blank.")
+    @NotNull(message = "Joinning date date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate joinningDate;
     
+    @Lob
+    @NotEmpty(message = "Address cannot be blank.")
+    private String remark;
     
 /**
      * ********* Audit ******************************
@@ -84,8 +87,8 @@ public class LeaveMother implements Serializable {
 
     public LeaveMother() {
     }
-    
-    public LeaveMother(Long id, MotherMasterData motherMasterCode, String sectionName, LocalDate leaveFrom, LocalDate leaveTo, String careof, String contactNumber, String address, LocalDate joinningDate, Users createdBy, Users updatedBy) {
+
+    public LeaveMother(Long id, MotherMasterData motherMasterCode, String sectionName, LocalDate leaveFrom, LocalDate leaveTo, String careof, String contactNumber, String address, LocalDate joinningDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.sectionName = sectionName;
@@ -95,6 +98,7 @@ public class LeaveMother implements Serializable {
         this.contactNumber = contactNumber;
         this.address = address;
         this.joinningDate = joinningDate;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
@@ -171,6 +175,14 @@ public class LeaveMother implements Serializable {
         this.joinningDate = joinningDate;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -202,5 +214,4 @@ public class LeaveMother implements Serializable {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-   
 }

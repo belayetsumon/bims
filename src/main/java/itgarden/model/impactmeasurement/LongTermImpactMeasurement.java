@@ -38,23 +38,23 @@ public class LongTermImpactMeasurement {
     private ReleaseMother releaseMotherId;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Present income source field cannot be blank.")
     public PresentIncomeSource presentIncomeSource;
 
-    @NotEmpty(message = "This field cannot be blank.")
+    @NotEmpty(message = "Monthly expenditure amount field cannot be blank.")
     public String monthlyIncomeAmount;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String monthlyExpenditureAmount;
 
-    @NotEmpty(message = "This field cannot be blank.")
+    @NotEmpty(message = "Savings amount field cannot be blank.")
     public String savingsAmount;
 
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Shelter status field cannot be blank.")
     @ManyToOne(optional = false)
     public Ownershif_type shelterStatus;
 
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "House type field cannot be blank.")
     @ManyToOne(optional = false)
     public House_Type housetype;
 
@@ -71,19 +71,19 @@ public class LongTermImpactMeasurement {
     public ContinueNotContinueEnum childFourEducation;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Relationship with neighbors field cannot be blank.")
     public ImpactMeasurementIndicator relationshipWithNeighbors;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Attends social sctivities field cannot be blank.")
     public ImpactMeasurementYesNo attendsSocialActivities;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Attends social gatherings field cannot be blank.")
     public ImpactMeasurementYesNo attendsSocialGatherings;
     
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "AccessSocial safetynet program field cannot be blank.")
     public ImpactMeasurementYesNo accessSocialSafetynetProgram;
     
     

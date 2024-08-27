@@ -29,19 +29,19 @@ public interface AllMotherInterface {
 
     public String getVisitOfficersName();
 
-    public String getDateReferral();
+    public LocalDate getDateReferral();
 
     public String getReferredFrom();
 
     public Reasons getResons();
 
-    public String getHomeVisitDate();
+    public LocalDate getHomeVisitDate();
 
     public String getMotherMasterCode();
 
     public String getMotherName();
 
-    public String getDateOfBirth();
+    public LocalDate getDateOfBirth();
 
     public String getAge();
 

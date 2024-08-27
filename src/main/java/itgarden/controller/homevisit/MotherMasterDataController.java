@@ -8,6 +8,7 @@ package itgarden.controller.homevisit;
 import itgarden.homevisit.servicess.MotherMasterDataService;
 import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
 import itgarden.repository.homevisit.EthinicIdentityRepository;
@@ -103,6 +104,9 @@ public class MotherMasterDataController {
         model.addAttribute("immunization", immunizationRepository.findAll());
 
         model.addAttribute("eligibility", Eligibility.values());
+        model.addAttribute("yesNo", Yes_No.values());
+        
+        
         /**
          * ************* Mother Id Create
          * *********************************************
@@ -161,6 +165,7 @@ public class MotherMasterDataController {
 
             model.addAttribute("immunization", immunizationRepository.findAll());
             model.addAttribute("eligibility", Eligibility.values());
+              model.addAttribute("yesNo", Yes_No.values());
 
             /**
              * ************* Mother Id Create
@@ -221,6 +226,7 @@ public class MotherMasterDataController {
 
         model.addAttribute("immunization", immunizationRepository.findAll());
         model.addAttribute("eligibility", Eligibility.values());
+        model.addAttribute("yesNo", Yes_No.values());
 
         return "homevisit/insertmother/create";
     }

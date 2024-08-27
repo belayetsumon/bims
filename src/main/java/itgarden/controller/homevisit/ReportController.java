@@ -7,6 +7,7 @@ package itgarden.controller.homevisit;
 
 import itgarden.model.homevisit.Decision;
 import itgarden.model.homevisit.Eligibility;
+import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
 import itgarden.repository.homevisit.EthinicIdentityRepository;
@@ -119,6 +120,8 @@ public class ReportController {
         model.addAttribute("eligibility", Eligibility.values());
 
         model.addAttribute("list", motherMasterDataRepository.findAll());
+        
+            model.addAttribute("yesNo", Yes_No.values());
 
         return "homevisit/report/homevisitreportsearch";
 
@@ -128,16 +131,10 @@ public class ReportController {
     public String homeVisitReportSearchResult(
             Model model,
            @RequestParam(name = "name", required = false) String name,
-      
-                
-            
-            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
-            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate
-            
+           @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+           @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate
             ) {
-
         model.addAttribute("list", motherMasterDataRepository.findAll());
-
         return "homevisit/report/homevisitreportsearchresult";
 
     }

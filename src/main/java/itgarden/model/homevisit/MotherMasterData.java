@@ -14,6 +14,11 @@ import itgarden.model.clinic.C_visit;
 import itgarden.model.follow_up_report.FollowMotherPerCapitaIncome;
 import itgarden.model.follow_up_report.FollowUpMother;
 import itgarden.model.follow_up_report.MotherCrisisMeetUp;
+import itgarden.model.leave.LeaveMother;
+import itgarden.model.literacy.LiteracyDigitalLiteracy;
+import itgarden.model.literacy.LiteracyHigherEducationAdmission;
+import itgarden.model.literacy.LiteracyNumeracy;
+import itgarden.model.literacy.LiteracyTalkingScience;
 import itgarden.model.observation.MotherImage;
 import itgarden.model.observation.O_ChildAdmission;
 import itgarden.model.observation.O_Induction;
@@ -71,7 +76,7 @@ public class MotherMasterData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String visitOfficersName;
@@ -79,7 +84,7 @@ public class MotherMasterData {
     @Column(nullable = false)
     @NotNull(message = " Referral date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate dateReferral;
+    public LocalDate dateReferral;
 
     @NotEmpty(message = "This field cannot be blank.")
     public String referredFrom;
@@ -91,7 +96,7 @@ public class MotherMasterData {
     @Column(nullable = false)
     @NotNull(message = " Home Visit date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate homeVisitDate;
+    public LocalDate homeVisitDate;
 
     @NotEmpty(message = "This field cannot be blank.")
     @Column(unique = true)
@@ -100,7 +105,6 @@ public class MotherMasterData {
     @NotEmpty(message = "This field cannot be blank.")
     public String motherName;
 
- 
     @Column(nullable = false)
     @NotNull(message = " Date of birth cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -173,6 +177,30 @@ public class MotherMasterData {
 
     @Lob
     public String majorFindings;
+    //  New version aded  
+
+    @Enumerated(EnumType.STRING)
+    public Yes_No socialviolence;
+
+    @Enumerated(EnumType.STRING)
+    public Yes_No childrenFacedSocialViolence;
+
+    @Enumerated(EnumType.STRING)
+    public Yes_No sexualAbuse;
+
+    @Enumerated(EnumType.STRING)
+    public Yes_No childrenSexualAbuse;
+
+    @Enumerated(EnumType.STRING)
+    public Yes_No earlyMarriage;
+    
+     @Enumerated(EnumType.STRING)
+    public Yes_No pregnancyAfterBeingRaped;
+     
+    @Enumerated(EnumType.STRING)
+    public Yes_No  facedDowryAbuse; 
+    
+    // End new version property
 
     @Lob
     public String otherRemarks;
@@ -296,6 +324,10 @@ public class MotherMasterData {
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_Life_Skill_Trainning> rlifeSkillTrainning = new ArrayList<>();
 
+    // Leave 
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public List<LeaveMother> LeaveMother = new ArrayList<>();
+
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_OT> rOT = new ArrayList<>();
 
@@ -320,6 +352,19 @@ public class MotherMasterData {
 
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<C_Release> crelease = new ArrayList<>();
+
+    // Literacy
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public LiteracyDigitalLiteracy literacyDigitalLiteracy;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public LiteracyHigherEducationAdmission literacyHigherEducationAdmission;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public LiteracyNumeracy literacyRegularAdmission;
+
+    @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+    public LiteracyTalkingScience literacyTalkingScience;
 
     //   pree RE intrigations
     @OneToOne(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
@@ -357,11 +402,8 @@ public class MotherMasterData {
 
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<FollowMotherPerCapitaIncome> followMotherPerCapitaIncome = new ArrayList<>();
-    ;
-    
-    
-    
-     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<MotherCrisisMeetUp> motherCrisisMeetUp = new ArrayList<>();
 
 
@@ -372,7 +414,7 @@ public class MotherMasterData {
     public MotherMasterData() {
     }
 
-    public MotherMasterData(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
+    public MotherMasterData(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, LiteracyDigitalLiteracy literacyDigitalLiteracy, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, LiteracyNumeracy literacyRegularAdmission, LiteracyTalkingScience literacyTalkingScience, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -402,6 +444,13 @@ public class MotherMasterData {
         this.numberOfDaughters = numberOfDaughters;
         this.numberOfEligibleChildren = numberOfEligibleChildren;
         this.majorFindings = majorFindings;
+        this.socialviolence = socialviolence;
+        this.childrenFacedSocialViolence = childrenFacedSocialViolence;
+        this.sexualAbuse = sexualAbuse;
+        this.childrenSexualAbuse = childrenSexualAbuse;
+        this.earlyMarriage = earlyMarriage;
+        this.pregnancyAfterBeingRaped = pregnancyAfterBeingRaped;
+        this.facedDowryAbuse = facedDowryAbuse;
         this.otherRemarks = otherRemarks;
         this.eligibility = eligibility;
         this.createdBy = createdBy;
@@ -424,6 +473,10 @@ public class MotherMasterData {
         this.mimage = mimage;
         this.rcHouseAllocations = rcHouseAllocations;
         this.rmHousAllocation = rmHousAllocation;
+        this.literacyDigitalLiteracy = literacyDigitalLiteracy;
+        this.literacyHigherEducationAdmission = literacyHigherEducationAdmission;
+        this.literacyRegularAdmission = literacyRegularAdmission;
+        this.literacyTalkingScience = literacyTalkingScience;
         this.preReintegrationVisit = preReintegrationVisit;
         this.reintegrationCheckList = reintegrationCheckList;
         this.releaseMother = releaseMother;
@@ -659,6 +712,62 @@ public class MotherMasterData {
 
     public void setMajorFindings(String majorFindings) {
         this.majorFindings = majorFindings;
+    }
+
+    public Yes_No getSocialviolence() {
+        return socialviolence;
+    }
+
+    public void setSocialviolence(Yes_No socialviolence) {
+        this.socialviolence = socialviolence;
+    }
+
+    public Yes_No getChildrenFacedSocialViolence() {
+        return childrenFacedSocialViolence;
+    }
+
+    public void setChildrenFacedSocialViolence(Yes_No childrenFacedSocialViolence) {
+        this.childrenFacedSocialViolence = childrenFacedSocialViolence;
+    }
+
+    public Yes_No getSexualAbuse() {
+        return sexualAbuse;
+    }
+
+    public void setSexualAbuse(Yes_No sexualAbuse) {
+        this.sexualAbuse = sexualAbuse;
+    }
+
+    public Yes_No getChildrenSexualAbuse() {
+        return childrenSexualAbuse;
+    }
+
+    public void setChildrenSexualAbuse(Yes_No childrenSexualAbuse) {
+        this.childrenSexualAbuse = childrenSexualAbuse;
+    }
+
+    public Yes_No getEarlyMarriage() {
+        return earlyMarriage;
+    }
+
+    public void setEarlyMarriage(Yes_No earlyMarriage) {
+        this.earlyMarriage = earlyMarriage;
+    }
+
+    public Yes_No getPregnancyAfterBeingRaped() {
+        return pregnancyAfterBeingRaped;
+    }
+
+    public void setPregnancyAfterBeingRaped(Yes_No pregnancyAfterBeingRaped) {
+        this.pregnancyAfterBeingRaped = pregnancyAfterBeingRaped;
+    }
+
+    public Yes_No getFacedDowryAbuse() {
+        return facedDowryAbuse;
+    }
+
+    public void setFacedDowryAbuse(Yes_No facedDowryAbuse) {
+        this.facedDowryAbuse = facedDowryAbuse;
     }
 
     public String getOtherRemarks() {
@@ -909,6 +1018,14 @@ public class MotherMasterData {
         this.rlifeSkillTrainning = rlifeSkillTrainning;
     }
 
+    public List<LeaveMother> getLeaveMother() {
+        return LeaveMother;
+    }
+
+    public void setLeaveMother(List<LeaveMother> LeaveMother) {
+        this.LeaveMother = LeaveMother;
+    }
+
     public List<R_OT> getrOT() {
         return rOT;
     }
@@ -971,6 +1088,38 @@ public class MotherMasterData {
 
     public void setCrelease(List<C_Release> crelease) {
         this.crelease = crelease;
+    }
+
+    public LiteracyDigitalLiteracy getLiteracyDigitalLiteracy() {
+        return literacyDigitalLiteracy;
+    }
+
+    public void setLiteracyDigitalLiteracy(LiteracyDigitalLiteracy literacyDigitalLiteracy) {
+        this.literacyDigitalLiteracy = literacyDigitalLiteracy;
+    }
+
+    public LiteracyHigherEducationAdmission getLiteracyHigherEducationAdmission() {
+        return literacyHigherEducationAdmission;
+    }
+
+    public void setLiteracyHigherEducationAdmission(LiteracyHigherEducationAdmission literacyHigherEducationAdmission) {
+        this.literacyHigherEducationAdmission = literacyHigherEducationAdmission;
+    }
+
+    public LiteracyNumeracy getLiteracyRegularAdmission() {
+        return literacyRegularAdmission;
+    }
+
+    public void setLiteracyRegularAdmission(LiteracyNumeracy literacyRegularAdmission) {
+        this.literacyRegularAdmission = literacyRegularAdmission;
+    }
+
+    public LiteracyTalkingScience getLiteracyTalkingScience() {
+        return literacyTalkingScience;
+    }
+
+    public void setLiteracyTalkingScience(LiteracyTalkingScience literacyTalkingScience) {
+        this.literacyTalkingScience = literacyTalkingScience;
     }
 
     public PreReintegrationVisit getPreReintegrationVisit() {
@@ -1069,5 +1218,4 @@ public class MotherMasterData {
         this.motherCrisisMeetUp = motherCrisisMeetUp;
     }
 
-    
 }

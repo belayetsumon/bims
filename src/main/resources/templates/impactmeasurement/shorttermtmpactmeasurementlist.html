@@ -39,38 +39,35 @@
                                     <thead>
                                         <tr>
                                             <th> Mother  Id</th>
-                                            <th> Mother Name</th>
-                                            <th>Release Date</th>
-                                            <th>Address</th>
-                                            <th>Post discharge (1st) visit date:</th>
-                                            <th> Children Release  </th>
+                                            <th> IGA start</th>
+                                            <th>Children's school admission </th>
+                                            <th>Safe accommodation & Living environment</th>
+                                            <th>Community acceptance</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
 
                                         </tr>  
                                     </thead>
                                     <tbody>
-                                        <!--                                        <tr th:each="list,status:${list}">
+                                                                        <tr th:each="list,status:${list}">
                                         
-                                                                                    <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                                                    <td th:text="${list.releaseMotherId.motherMasterCode.motherMasterCode}">Chakma</td>
                                         
-                                                                                    <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                                                                    <td th:text="${list.igsstart}">Chakma</td>
                                         
-                                                                                    <td th:text="${list.releaseDate}" >Chakma</td>
+                                                                                    <td th:text="${list.childrenSchoolAdmission}" >Chakma</td>
                                         
-                                                                                    <td th:text="${list.Address}" >Chakma</td>
+                                                                                    <td th:text="${list.safeAccommodationLivingEnvironmen}" >Chakma</td>
                                         
-                                                                                    <td th:text="${list.postDischargeVisitDate}">Chakma</td>
-                                                                                    <td>
-                                                                                        <a   th:href="@{/reintegration/childindex/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info  ">Children release</a>
+                                                                                    <td th:text="${list.communityAcceptance}">Chakma</td>
+                                                                      
+                                                                                    <td> 
+                                                                                        <a   th:href="@{/shorttermtmpactmeasurement/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
                                                                                     </td>
                                                                                     <td> 
-                                                                                        <a   th:href="@{/reintegration/mother_edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
+                                                                                        <a   th:href="@{/shorttermtmpactmeasurement/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
                                                                                     </td>
-                                                                                    <td> 
-                                                                                        <a   th:href="@{/reintegration/mother_delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
-                                                                                    </td>
-                                                                                </tr>-->
+                                                                                </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -4,13 +4,13 @@
  */
 package itgarden.repository.literacy;
 
-import itgarden.model.literacy.LiteracyRegularAdmission;
+import itgarden.model.literacy.LiteracyNumeracy;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author libertyerp_local
  */
-public interface LiteracyRegularAdmissionRepository extends JpaRepository<LiteracyRegularAdmission, Long> {
+public interface LiteracyNumeracyRepository extends JpaRepository<LiteracyNumeracy, Long> {
     
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>       Impact Measurement  </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Impact Measurement </a></li>
+                                <li class="breadcrumb-item active"> All Mid-term Impact on released families</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mid-term Impact on released families List 
+                                    <!--                                    ( Total: <span th:text="${list.size()}"></span>) -->
+                                </h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Mother  Id</th>
+                                            <th>Present income source</th>
+                                            <th>Monthly Income- Amount</th>
+                                            <th>Monthly expenditure- Amount</th>
+                                            <th>Savings (if any) - Amount</th>
+                                            <th>Shelter Status </th>
+                                            <th>House type </th>
+                                            <th>Child-1 </th>
+                                            <th>Child-2 </th>
+<!--                                            <th>Child-3  </th>
+                                            <th>Child-4 </th>-->
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">
+
+                                            <td th:text="${list.releaseMotherId.motherMasterCode.motherMasterCode}">Chakma</td>
+
+                                            <td th:text="${list.presentIncomeSource}">Chakma</td>
+
+                                            <td th:text="${list.monthlyIncomeAmount}" >Chakma</td>
+                                            <td th:text="${list.monthlyExpenditureAmount}" >Chakma</td>
+                                            <td th:text="${list.savingsAmount}" >Chakma</td>
+                                            <td th:text="${list.shelterStatus.name}" >Chakma</td>
+
+                                            <td th:text="${list.housetype.name}" >Chakma</td>
+
+                                            <td th:text="${list.childOneEducation}">Chakma</td>
+                                            <td th:text="${list.childTwoEducation}">Chakma</td>
+<!--                                            <td th:text="${list.childThreeEducation}">Chakma</td>
+                                            <td th:text="${list.childFourEducation}">Chakma</td>-->
+
+                                            <td> 
+                                                <a   th:href="@{/midtermimpactmeasurement/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
+                                            </td>
+                                            <td> 
+                                                <a   th:href="@{/midtermimpactmeasurement/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

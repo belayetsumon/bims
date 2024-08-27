@@ -380,6 +380,98 @@
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('majorFindings')}" th:errors="*{majorFindings}">First Name Error</span>
                                         </div>                            
                                     </div>
+
+                                    <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced with social violence before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{socialviolence}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('socialviolence')}" th:errors="*{socialviolence}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+
+                                    <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Were her children faced with social violence before they arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{childrenFacedSocialViolence}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childrenFacedSocialViolence')}" th:errors="*{childrenFacedSocialViolence}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                    <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced rape or sexual abuse before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{sexualAbuse}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('sexualAbuse')}" th:errors="*{sexualAbuse}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                    
+                                    <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Were her children faced rape or sexual abuse before they arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{childrenSexualAbuse}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childrenSexualAbuse')}" th:errors="*{childrenSexualAbuse}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                    
+                                           <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she a victim of early marriage?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{earlyMarriage}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('earlyMarriage')}" th:errors="*{earlyMarriage}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                    
+                                        <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she a victim of pregnancy after being raped?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{pregnancyAfterBeingRaped}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('pregnancyAfterBeingRaped')}" th:errors="*{pregnancyAfterBeingRaped}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+
+                                        <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-7 control-label"> Was she faced dowry abuse before she arrived at SPP?<span class="text-red"> * </span> </label>
+                                        <div class="col-sm-2">          
+                                            <select class="form-control  "  id="bookName"  th:field="*{facedDowryAbuse}"  required="true" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" yesNo :${yesNo}"
+                                                        th:value=" ${yesNo}" 
+                                                        th:text="${yesNo}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('facedDowryAbuse')}" th:errors="*{facedDowryAbuse}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+
+
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> Other Remarks </label>
                                         <div class="col-sm-9">                   
@@ -410,7 +502,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        The footer of the card
+                 
                     </div>
                     <!-- /.card-footer -->
                 </div>

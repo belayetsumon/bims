@@ -46,8 +46,8 @@
                                     <th style="width: 10px">#</th>  
 
                                     <th>Home Visit Date</th>
-                                    <th>  Id</th>
-                                    <th> Mother Name</th>
+                                    <th>Id</th>
+                                    <th>Mother Name</th>
                                     <th>Date of Birth</th>
                                     <th>Number of Eligible Children</th>
                                     <th>Status</th>
@@ -56,17 +56,16 @@
                                 </tr>  
                             </thead>
                             <tbody>                         
-                                <tr th:each="list,status:${list}">
+                                <tr th:each="lists,status:${list}">
                                     <td th:text="${status.count}">2.</td>
-
-                                    <td th:text="${list.homeVisitDate}">Chakma</td>
-                                    <td th:text="${list.motherMasterCode}">Chakma</td>
-                                    <td th:text="${list.motherName}">Chakma</td>
-                                    <td th:text="${list.dateOfBirth}">Chakma</td> 
-                                    <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
-                                    <td th:text="${list.eligibility}">Chakma</td>
+                                    <td th:text="${lists.homeVisitDate}">Chakma</td>
+                                    <td th:text="${lists.motherMasterCode}">Chakma</td>
+                                    <td th:text="${lists.motherName}">Chakma</td>
+                                    <td th:text="${lists.dateOfBirth}">Chakma</td> 
+                                    <td th:text="${lists.numberOfEligibleChildren}">Chakma</td>
+                                    <td th:text="${lists.eligibility}">Chakma</td>
                                     <td> 
-                                        <a   th:href="@{/motherdetails/motherdetails/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Details  </a>
+                                        <a   th:href="@{/motherdetails/motherdetails/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon ">Add Details  </a>
                                     </td>
                                 </tr>
                             </tbody>

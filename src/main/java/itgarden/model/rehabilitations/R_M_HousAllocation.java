@@ -76,6 +76,9 @@ public class R_M_HousAllocation {
 
     public Users updatedBy;
 
+    public R_M_HousAllocation() {
+    }
+
     public R_M_HousAllocation(Long id, MotherMasterData motherMasterCode, HouseName houseName, LocalDate allocationDate, LocalDate endDate, LocalDate extDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;

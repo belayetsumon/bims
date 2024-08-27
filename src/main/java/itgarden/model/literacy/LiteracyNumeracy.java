@@ -9,12 +9,15 @@ import itgarden.model.homevisit.EducationLevel;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
@@ -27,13 +30,13 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author libertyerp_local
  */
 @Entity
-public class LiteracyRegularAdmission {
+public class LiteracyNumeracy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(nullable = false)
     private MotherMasterData motherMasterCode;
 
@@ -49,6 +52,12 @@ public class LiteracyRegularAdmission {
     @NotNull(message = "Admission levelcannot be blank.")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EducationLevel admissionLevel;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    public LocalDate endDate;
+
+    @Enumerated(EnumType.STRING)
+    public ResultEnum result;
 
     /**
      * ********* Audit ******************************
@@ -67,15 +76,17 @@ public class LiteracyRegularAdmission {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     public Users updatedBy;
 
-    public LiteracyRegularAdmission() {
+    public LiteracyNumeracy() {
     }
 
-    public LiteracyRegularAdmission(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, EducationLevel presentliteracylevel, EducationLevel admissionLevel, Users createdBy, Users updatedBy) {
+    public LiteracyNumeracy(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, EducationLevel presentliteracylevel, EducationLevel admissionLevel, LocalDate endDate, ResultEnum result, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
         this.presentliteracylevel = presentliteracylevel;
         this.admissionLevel = admissionLevel;
+        this.endDate = endDate;
+        this.result = result;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
@@ -120,6 +131,22 @@ public class LiteracyRegularAdmission {
         this.admissionLevel = admissionLevel;
     }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public ResultEnum getResult() {
+        return result;
+    }
+
+    public void setResult(ResultEnum result) {
+        this.result = result;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -151,4 +178,5 @@ public class LiteracyRegularAdmission {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
 }

@@ -1,21 +1,80 @@
 package itgarden.controller.literacy;
 
+import itgarden.model.literacy.LiteracyHigherEducationAdmission;
+import itgarden.model.literacy.ResultEnum;
+import itgarden.repository.homevisit.EducationLevelRepository;
+import itgarden.repository.literacy.LiteracyHigherEducationAdmissionRepository;
+import itgarden.services.literacy.LiteracyHigherEducationAdmissionService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
  * @author libertyerp_local
  */
 @Controller
- @RequestMapping("/literacyhighereducationadmission")
+@RequestMapping("/literacyhighereducationadmission")
 public class LiteracyHigherEducationAdmissionController {
-    
-    @RequestMapping("/url")
-    public String page(Model model) {
-        model.addAttribute("attribute", "value");
-        return "view.name";
+
+    @Autowired
+    LiteracyHigherEducationAdmissionRepository literacyHigherEducationAdmissionRepository;
+
+    @Autowired
+    LiteracyHigherEducationAdmissionService literacyHigherEducationAdmissionService;
+
+    @Autowired
+    EducationLevelRepository educationLevelRepository;
+
+    @RequestMapping("/add")
+    public String index(Model model, LiteracyHigherEducationAdmission literacyHigherEducationAdmission) {
+        model.addAttribute("educationLavel", educationLevelRepository.findAll());
+        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+        model.addAttribute("status", ResultEnum.values());
+        return "literacy/add_literacyhighereducation";
     }
-    
+
+    @RequestMapping("/save")
+    public String save(Model model, @Valid LiteracyHigherEducationAdmission literacyHigherEducationAdmission, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("educationLavel", educationLevelRepository.findAll());
+            model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+            model.addAttribute("status", ResultEnum.values());
+
+            return "literacy/add_literacyhighereducation";
+        }
+        literacyHigherEducationAdmissionRepository.save(literacyHigherEducationAdmission);
+
+        return "redirect:/literacyhighereducationadmission/list";
+    }
+
+    @RequestMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("list", literacyHigherEducationAdmissionRepository.findAll());
+        return "literacy/literacyhighereducation_list";
+    }
+
+    @RequestMapping(value = "/edit/{id}")
+    public String edit(@PathVariable Long id, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, Model model) {
+        model.addAttribute("educationLavel", educationLevelRepository.findAll());
+        model.addAttribute("literacyHigherEducationAdmission", literacyHigherEducationAdmissionRepository.findById(id).orElse(null));
+        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+        model.addAttribute("status", ResultEnum.values());
+        return "literacy/add_literacyhighereducation";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, RedirectAttributes redirectAttrs) {
+        literacyHigherEducationAdmission = literacyHigherEducationAdmissionRepository.findById(id).orElse(null);
+//        redirectAttrs.addAttribute("m_id", shortTermImpactMeasurement.motherMasterCode.getId());
+        literacyHigherEducationAdmissionRepository.deleteById(id);
+        return "redirect:/literacyhighereducationadmission/list";
+    }
+
 }

@@ -1,6 +1,8 @@
 package itgarden.model.homevisit.DTO;
 
 import itgarden.model.homevisit.Reasons;
+import itgarden.model.homevisit.Yes_No;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,19 +14,19 @@ public class MotherMasterDataDTO {
 
     public String visitOfficersName;
 
-    public String dateReferral;
+    public LocalDate dateReferral;
 
     public String referredFrom;
 
     public Reasons resons;
 
-    public String homeVisitDate;
+    public LocalDate homeVisitDate;
 
     public String motherMasterCode;
 
     public String motherName;
 
-    public String dateOfBirth;
+    public LocalDate dateOfBirth;
 
     public String age;
 
@@ -81,6 +83,32 @@ public class MotherMasterDataDTO {
     public int numberOfEligibleChildren;
 
     public String majorFindings;
+    
+     //  New version aded  
+
+
+    public Yes_No socialviolence;
+
+
+    public Yes_No childrenFacedSocialViolence;
+
+
+    public Yes_No sexualAbuse;
+
+
+    public Yes_No childrenSexualAbuse;
+
+ 
+    public Yes_No earlyMarriage;
+    
+
+    public Yes_No pregnancyAfterBeingRaped;
+     
+
+    public Yes_No  facedDowryAbuse; 
+    
+    // End new version property
+    
 
     public String otherRemarks;
 
@@ -89,7 +117,7 @@ public class MotherMasterDataDTO {
     public MotherMasterDataDTO() {
     }
 
-    public MotherMasterDataDTO(Long id, String visitOfficersName, String dateReferral, String referredFrom, Reasons resons, String homeVisitDate, String motherMasterCode, String motherName, String dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, String religion, Long religionId, String maritalStatus, Long maritalStatusId, String husbandsName, String husbandsStatus, Long husbandsStatusId, String primeFamilyMemberName, String relationWithPfm, Long relationWithPfmId, String ethnicIdentity, Long ethnicIdentityId, String educationLevel, Long educationLevelId, String educationType, Long educationTypeId, String occupation, Long occupationId, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, String otherRemarks, String eligibility) {
+    public MotherMasterDataDTO(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, String religion, Long religionId, String maritalStatus, Long maritalStatusId, String husbandsName, String husbandsStatus, Long husbandsStatusId, String primeFamilyMemberName, String relationWithPfm, Long relationWithPfmId, String ethnicIdentity, Long ethnicIdentityId, String educationLevel, Long educationLevelId, String educationType, Long educationTypeId, String occupation, Long occupationId, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, String eligibility) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -127,6 +155,13 @@ public class MotherMasterDataDTO {
         this.numberOfDaughters = numberOfDaughters;
         this.numberOfEligibleChildren = numberOfEligibleChildren;
         this.majorFindings = majorFindings;
+        this.socialviolence = socialviolence;
+        this.childrenFacedSocialViolence = childrenFacedSocialViolence;
+        this.sexualAbuse = sexualAbuse;
+        this.childrenSexualAbuse = childrenSexualAbuse;
+        this.earlyMarriage = earlyMarriage;
+        this.pregnancyAfterBeingRaped = pregnancyAfterBeingRaped;
+        this.facedDowryAbuse = facedDowryAbuse;
         this.otherRemarks = otherRemarks;
         this.eligibility = eligibility;
     }
@@ -147,11 +182,11 @@ public class MotherMasterDataDTO {
         this.visitOfficersName = visitOfficersName;
     }
 
-    public String getDateReferral() {
+    public LocalDate getDateReferral() {
         return dateReferral;
     }
 
-    public void setDateReferral(String dateReferral) {
+    public void setDateReferral(LocalDate dateReferral) {
         this.dateReferral = dateReferral;
     }
 
@@ -171,11 +206,11 @@ public class MotherMasterDataDTO {
         this.resons = resons;
     }
 
-    public String getHomeVisitDate() {
+    public LocalDate getHomeVisitDate() {
         return homeVisitDate;
     }
 
-    public void setHomeVisitDate(String homeVisitDate) {
+    public void setHomeVisitDate(LocalDate homeVisitDate) {
         this.homeVisitDate = homeVisitDate;
     }
 
@@ -195,11 +230,11 @@ public class MotherMasterDataDTO {
         this.motherName = motherName;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -427,6 +462,62 @@ public class MotherMasterDataDTO {
         this.majorFindings = majorFindings;
     }
 
+    public Yes_No getSocialviolence() {
+        return socialviolence;
+    }
+
+    public void setSocialviolence(Yes_No socialviolence) {
+        this.socialviolence = socialviolence;
+    }
+
+    public Yes_No getChildrenFacedSocialViolence() {
+        return childrenFacedSocialViolence;
+    }
+
+    public void setChildrenFacedSocialViolence(Yes_No childrenFacedSocialViolence) {
+        this.childrenFacedSocialViolence = childrenFacedSocialViolence;
+    }
+
+    public Yes_No getSexualAbuse() {
+        return sexualAbuse;
+    }
+
+    public void setSexualAbuse(Yes_No sexualAbuse) {
+        this.sexualAbuse = sexualAbuse;
+    }
+
+    public Yes_No getChildrenSexualAbuse() {
+        return childrenSexualAbuse;
+    }
+
+    public void setChildrenSexualAbuse(Yes_No childrenSexualAbuse) {
+        this.childrenSexualAbuse = childrenSexualAbuse;
+    }
+
+    public Yes_No getEarlyMarriage() {
+        return earlyMarriage;
+    }
+
+    public void setEarlyMarriage(Yes_No earlyMarriage) {
+        this.earlyMarriage = earlyMarriage;
+    }
+
+    public Yes_No getPregnancyAfterBeingRaped() {
+        return pregnancyAfterBeingRaped;
+    }
+
+    public void setPregnancyAfterBeingRaped(Yes_No pregnancyAfterBeingRaped) {
+        this.pregnancyAfterBeingRaped = pregnancyAfterBeingRaped;
+    }
+
+    public Yes_No getFacedDowryAbuse() {
+        return facedDowryAbuse;
+    }
+
+    public void setFacedDowryAbuse(Yes_No facedDowryAbuse) {
+        this.facedDowryAbuse = facedDowryAbuse;
+    }
+
     public String getOtherRemarks() {
         return otherRemarks;
     }
@@ -443,4 +534,5 @@ public class MotherMasterDataDTO {
         this.eligibility = eligibility;
     }
 
+    
 }

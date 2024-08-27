@@ -138,7 +138,8 @@ public class MotherDetailsController {
     @RequestMapping("/allmotherdetails")
     public String allmotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
+         // model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
+       model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
 
         return "homevisit/motherdetails/allmotherdetails";
     }
