@@ -8,6 +8,8 @@ package itgarden.controller.observation;
 import itgarden.repository.homevisit.M_ApprovalRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_CHealthConditionsRepository;
+import itgarden.repository.observation.O_InductionRepository;
+import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
 import itgarden.repository.observation.O_Professional_Obserbations_ChildRepository;
 import itgarden.repository.observation.O_Professional_Obserbations_MotherRepository;
@@ -42,9 +44,32 @@ public class ObservationReportController {
     @Autowired
     O_Professional_Obserbations_MotherRepository o_Professional_Obserbations_MotherRepository;
 
+    @Autowired
+    O_MAddmissionRepository o_MAddmissionRepository;
+
+    @Autowired
+    O_InductionRepository o_InductionRepository;
+
+    @RequestMapping("/observation")
+    public String observation(Model model) {
+        return "homevisit/observation/report/index";
+    }
+
+    @RequestMapping("/admissionlist")
+    public String admissionlist(Model model) {
+        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findAll());
+        return "homevisit/report/admissionlist";
+    }
+
+    @RequestMapping("/inductionlist")
+    public String inductionlist(Model model) {
+        model.addAttribute("o_Induction", o_InductionRepository.findAll());
+        return "homevisit/report/inductionlist";
+    }
+
     @RequestMapping("/healthcheckupmother")
     public String healthcheckupmother(Model model) {
-       model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findAll());
+        model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findAll());
         return "homevisit/observation/report/motherhealthcheckuplist";
     }
 
@@ -56,15 +81,14 @@ public class ObservationReportController {
 
     @RequestMapping("/professionalobservationsmother")
     public String professionalobservationsmother(Model model) {
-         model.addAttribute("o_ProfessionalObserbationsMother", o_Professional_Obserbations_MotherRepository.findAll());
+        model.addAttribute("o_ProfessionalObserbationsMother", o_Professional_Obserbations_MotherRepository.findAll());
         return "homevisit/observation/report/professionalobservationmotherlist";
     }
 
     @RequestMapping("/professionalobservationschild")
     public String professionalobservationschild(Model model) {
-       
-         model.addAttribute("o_ProfessionalObserbationsChild", o_Professional_Obserbations_ChildRepository.findAll());
-       return "homevisit/observation/report/professionalobservationchildren";
+        model.addAttribute("o_ProfessionalObserbationsChild", o_Professional_Obserbations_ChildRepository.findAll());
+        return "homevisit/observation/report/professionalobservationchildren";
     }
 
     @RequestMapping("/psychosocialassessmentneededbeneficiarieslist")
@@ -78,8 +102,8 @@ public class ObservationReportController {
         model.addAttribute("attribute", "value");
         return "view.name";
     }
-    
-     @RequestMapping("/dropoutbeneficiarieslist")
+
+    @RequestMapping("/dropoutbeneficiarieslist")
     public String dropoutbeneficiarieslist(Model model) {
         model.addAttribute("attribute", "value");
         return "view.name";

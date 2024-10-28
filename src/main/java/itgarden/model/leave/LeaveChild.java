@@ -59,9 +59,9 @@ public class LeaveChild {
     @NotEmpty(message = "Address cannot be blank.")
     private String address;
 
-    @Column(nullable = false)
-    @NotNull(message = "Admission date cannot be blank.")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @Column(nullable = false)
+//    @NotNull(message = "Admission date cannot be blank.")
+//    @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate joinningDate;
 
     /**

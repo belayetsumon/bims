@@ -59,9 +59,8 @@ public class LeaveMother implements Serializable {
     @NotEmpty(message = "Address cannot be blank.")
     public String address;
 
-    @Column(nullable = false)
-    @NotNull(message = "Joinning date date cannot be blank.")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+//    @Column(nullable = false)
+//    @NotNull(message = "Joinning date date cannot be blank.")
     public LocalDate joinningDate;
     
     @Lob

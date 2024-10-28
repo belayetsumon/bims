@@ -52,15 +52,15 @@
                                         <tr th:each="list,status:${list}">
                                             <td th:text="${status.count}">2.</td>
 
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
-                                            <td th:text="${list.motherMasterCode.mobileNumber}">Chakma</td>
-                                            <td th:text="${list.addmission.dateAdmission}" >Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>
+                                            <td th:text="${list.mobileNumber}">Chakma</td>
+                                            <td th:text="${list.dateAdmission}" >Chakma</td>
                                             <td> 
                                                 <img   class="img-responsive" th:src="@{/files/}+${list.imageName}" width="80px" height="80px" /> </td>
 
                                             <td> 
-                                                <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a>
+                                                <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Edit</a>
                                             </td>
                                         </tr>
                                     </tbody>

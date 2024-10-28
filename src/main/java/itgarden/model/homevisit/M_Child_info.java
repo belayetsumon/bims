@@ -61,7 +61,7 @@ public class M_Child_info {
 
     @NotNull(message = "Mother master code field cannot be blank.")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "mother_master_code_id",nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotEmpty(message = "Child master code field cannot be blank.")

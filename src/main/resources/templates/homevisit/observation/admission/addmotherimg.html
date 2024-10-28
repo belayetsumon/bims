@@ -31,12 +31,14 @@
                         <h3 class="card-title"> Mother Admission</h3>
                         <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/admission/index/{id}(id=${o_MAddmission.motherMasterCode.id})}"  type="button" class="btn  btn-light btn-sm text-red">Close</a>
+                               <a  th:href="@{/admission/index/{id}(id=${o_MAddmission.motherMasterCode.id})}"  type="button" class="btn  btn-light btn-sm text-red">Close</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form  th:action="@{/admission/save/{id}(id=${o_MAddmission.motherMasterCode.id})}"   enctype="multipart/form-data" th:object="${o_MAddmission}"  method="post" class="form-horizontal">
+                        <form  th:action="@{/admission/save/{id}(id=${o_MAddmission.motherMasterCode.id})}"
+
+                            enctype="multipart/form-data" th:object="${o_MAddmission}"  method="post" class="form-horizontal">
                             <div class="row">
                                 <input type="hidden"    class="form-control " th:field="*{id}"  />    
                                 <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode"  name="motherMasterCode"  th:value="motherMasterCode"/>     

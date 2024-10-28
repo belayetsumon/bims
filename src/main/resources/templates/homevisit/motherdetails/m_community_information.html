@@ -111,9 +111,16 @@
                                     <div class="form-group col-sm-12 row">
                                         <label for="vill" class="col-sm-3 control-label">Unemployment Session<span class="text-red"></span> :</label>
                                         <div class="col-sm-6">  
-                                            <div class="input-group" >
+<!--                                            <div class="input-group" >
                                                 <input type="text"     class="form-control  "    th:field="*{unemploymentSession}"  />                                                        
-                                            </div>                                                     
+                                            </div>  -->
+                                            
+                                                   <select class="form-control "   th:field="*{unemploymentSession}" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" unemploymentsessions :${unemploymentsession}"
+                                                        th:value=" ${unemploymentsessions}" 
+                                                        th:text="${unemploymentsessions}"> Select one</option>
+                                            </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('unemploymentSession')}" th:errors="*{unemploymentSession}">First Name Error</span>
                                             <span  class="help-block has-error" >  Summer, Monsoon, Autumn, Late Autumn, Winter and Spring.</span>
                                         </div>               

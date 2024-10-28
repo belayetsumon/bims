@@ -21,6 +21,7 @@ import itgarden.repository.homevisit.PhysicalStatusRepository;
 import itgarden.repository.homevisit.ReasonsRepository;
 import itgarden.repository.homevisit.RelationsRepository;
 import itgarden.repository.homevisit.ReligionRepository;
+import itgarden.services.homevisit.MotherMasterDataServices;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -67,13 +68,14 @@ public class MotherMasterDataController {
     ImmunizationRepository immunizationRepository;
 
     @Autowired
-    MotherMasterDataService motherMasterDataService;
+    MotherMasterDataServices motherMasterDataServices;
 
     @RequestMapping("/index")
     public String index(Model model, MotherMasterData motherMasterData) {
 
         //model.addAttribute("list", motherMasterDataService.allInsertedMotherList());
-         model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
+        // model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
+        model.addAttribute("list",motherMasterDataServices.findAllByOrderByIdDesc());
         return "homevisit/insertmother/index";
     }
 
@@ -206,7 +208,7 @@ public class MotherMasterDataController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, MotherMasterData motherMasterData, Model model) {
         model.addAttribute("motherMasterData", motherMasterDataRepository.findById(id).orElse(null));
-        model.addAttribute("list", motherMasterDataRepository.findAll());
+      //  model.addAttribute("list", motherMasterDataRepository.findAll());
         model.addAttribute("resons", reasonsRepository.findAll());
         model.addAttribute("religion", religionRepository.findAll());
         model.addAttribute("maritalStatus", maritalStatusRepository.findAll());
@@ -241,10 +243,15 @@ public class MotherMasterDataController {
     public String view(@PathVariable Long id, MotherMasterData motherMasterData, Model model) {
 
         model.addAttribute("motherMasterData", motherMasterDataRepository.findById(id).orElse(null));
-        model.addAttribute("list", motherMasterDataRepository.findAll());
+        
+       // model.addAttribute("list", motherMasterDataRepository.findAll());
+        
         model.addAttribute("resons", reasonsRepository.findAll());
+        
         model.addAttribute("religion", religionRepository.findAll());
+        
         model.addAttribute("maritalStatus", maritalStatusRepository.findAll());
+        
         model.addAttribute("husbandsStatus", husbandsStatusRepository.findAll());
 
         model.addAttribute("relationWithPfm", relationsRepository.findAll());
@@ -260,6 +267,7 @@ public class MotherMasterDataController {
         model.addAttribute("physicalStatus", physicalStatusRepository.findAll());
 
         model.addAttribute("immunization", immunizationRepository.findAll());
+        
         model.addAttribute("eligibility", Eligibility.values());
 
         return "homevisit/insertmother/view";

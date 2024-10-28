@@ -55,7 +55,7 @@
                                     </tr>                          
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/induction/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+                                        <td><a   th:href="@{/induction/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info">Edit</a></td>
                                         <td> <a   th:href="@{/induction/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list.startDate}">Chakma</td>
@@ -105,7 +105,7 @@
                                     </tr>                          
                                     <tr th:each="list2,status:${o_Inhouse_Inductions_Mother}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/inhouseinductionmother/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+                                        <td><a   th:href="@{/inhouseinductionmother/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/inhouseinductionmother/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list2.overallBehavior}">Chakma</td>
@@ -156,7 +156,7 @@
                                     </tr>                          
                                     <tr th:each="list3,status:${o_Inhouse_Inductions_child}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/inhouseinductionchild/edit/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+                                        <td><a   th:href="@{/inhouseinductionchild/edit/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/inhouseinductionchild/delete/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${list3.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list3.childMasterCode.childMasterCode}">Chakma</td>

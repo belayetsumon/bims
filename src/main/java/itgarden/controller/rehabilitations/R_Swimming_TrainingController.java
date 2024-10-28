@@ -73,7 +73,7 @@ public class R_Swimming_TrainingController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_Swimming r_Swimming) {
-        model.addAttribute("r_Swimming", r_SwimmingRepository.findById(id));
+        model.addAttribute("r_Swimming", r_SwimmingRepository.findById(id).orElse(null));
         model.addAttribute("graduateStatusList", GraduateStatus.values());
         return "rehabilitations/training/add_swim";
     }

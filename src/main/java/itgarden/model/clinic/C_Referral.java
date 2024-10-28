@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -37,23 +38,25 @@ public class C_Referral {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-
-    
     @Column(nullable = false)
     @NotNull(message = "Referral date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate referralDate;
-    
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
+
+    @NotNull(message = "Reffrred to field cannot be blank.")
+//    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
+    @Lob
+    @Column(columnDefinition = "TEXT")
     public String reffrredTo;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
+    @NotNull(message = "Reasons field cannot be blank.")
+//    @Size(min = 1, message = "This field must between 1 and 200 characters")
+    @Column(columnDefinition = "TEXT")
     public String reasons;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
+//    @NotNull(message = "This field cannot be blank.")
+//    @Size(min = 1, message = "This field must between 1 and 200 characters")
+    @Column(columnDefinition = "TEXT")
     public String remarks;
 
     /**
@@ -154,6 +157,4 @@ public class C_Referral {
         this.updated = updated;
     }
 
-    
-    
 }

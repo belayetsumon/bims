@@ -34,6 +34,7 @@ import itgarden.repository.homevisit.ReasonsRepository;
 import itgarden.repository.homevisit.RelationsRepository;
 import itgarden.repository.homevisit.ReligionRepository;
 import itgarden.repository.homevisit.ThanaRepository;
+import itgarden.services.homevisit.MotherMasterDataServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -126,11 +127,15 @@ public class MotherDetailsController {
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
 
+    @Autowired
+    MotherMasterDataServices motherMasterDataServices;
+
     @RequestMapping("/mothersearch")
     public String motherSearch(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        
-        model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
+
+        // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
+        model.addAttribute("list", motherMasterDataServices.findAllByEligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
 
         return "homevisit/motherdetails/mothersearch";
     }
@@ -138,8 +143,8 @@ public class MotherDetailsController {
     @RequestMapping("/allmotherdetails")
     public String allmotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-         // model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
-       model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
+        // model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
 
         return "homevisit/motherdetails/allmotherdetails";
     }
@@ -190,24 +195,25 @@ public class MotherDetailsController {
     @RequestMapping("/newchildren")
     public String newchildren(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(0, Decision.Approve));
+     //   model.addAttribute("list", motherMasterDataRepository.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(0, Decision.Approve));
+       
+       model.addAttribute("list",    motherMasterDataServices.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc());
         return "homevisit/motherdetails/newchildren";
     }
 
     @RequestMapping("/msearchchildinfo")
     public String msearchchildinfo(Model model) {
-  
-       model.addAttribute("list", motherMasterDataRepository.findByMchildinfoIsNotNullOrderByIdDesc());
-       
+
+        // model.addAttribute("list", motherMasterDataRepository.findByMchildinfoIsNotNullOrderByIdDesc());
+        model.addAttribute("list", motherMasterDataServices.findByMchildinfoIsNotNullOrderByIdDesc());
+
         return "homevisit/motherdetails/msearchforchildinfo";
     }
-    
-    
 
     @RequestMapping("/motherapproval")
     public String motherApproval(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-     // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+        // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
         model.addAttribute("list", m_ApprovalRepository.findAllProjectedBydecissionOrderByIdDesc(Decision.Approve));
         return "homevisit/motherdetails/approval";
     }

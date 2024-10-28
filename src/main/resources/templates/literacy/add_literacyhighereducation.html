@@ -55,7 +55,7 @@
                                         <option value=" "> Select one</option>
                                         <option th:each =" motherIds :${motherId}"
                                                 th:value=" ${motherIds.id }" 
-                                                th:text="${motherIds.motherMasterCode }"> Select one</option>
+                                              th:text="${motherIds.motherMasterCode} +'-'+ ${motherIds.motherName}"> Select one</option>
                                     </select>
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
                                 </div>                            

@@ -72,7 +72,6 @@ public class O_MAddmission {
     public Date updated = new Date();
 
     @ManyToOne(optional = true)
-
     public Users updatedBy;
 
     public O_MAddmission() {

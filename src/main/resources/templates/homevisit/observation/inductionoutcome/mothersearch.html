@@ -51,15 +51,15 @@
                                         <tr th:each="list,status:${o_Induction}">
                                             <td th:text="${status.count}">2.</td>
                                             <td> 
-                                                <a   th:href="@{/inductionoutcome/index/{id} (id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Induction Outcome Details</a>
+                                                <a   th:href="@{/inductionoutcome/index/{id} (id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">Induction Outcome Details</a>
                                             </td>
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.startDate}">Chakma</td>
-                                            <td th:text="${list.endDate}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.inductionStartDate}">Chakma</td>
+                                            <td th:text="${list.inductionEndDate}">Chakma</td>
                                             <td th:text="${list.immediateSupportOn}">Chakma</td>
-                                            <td th:text="${list.challagesOfCandidare}">Chakma</td>                                 
-                                            <td th:text="${list.possibleLength}">Chakma</td>
-                                            <td th:text="${list.remark}">Chakma</td>
+                                            <td th:text="${list.challagesOfCandidare}">Chakma</td>  
+                                            <td th:text="${list.inductionPossibleLength}">Chakma</td>
+                                            <td th:text="${list.inductionRemark}">Chakma</td>
 
                                         </tr>
                                     </tbody>

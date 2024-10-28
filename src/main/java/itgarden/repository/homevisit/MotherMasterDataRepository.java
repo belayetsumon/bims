@@ -31,7 +31,7 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
 
     Long countByeligibility(Eligibility eligibility);
 
-    List<AllMotherInterface> findAllByeligibilityOrderByIdDesc(Eligibility eligibility);
+    List<AllMotherInterface> findAllByeligibilityOrderByIdDesc(Eligibility eligibility);// criteria api created
 
     // List<AllMotherInterface> findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility eligibility);
     List<MotherMasterData> findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility eligibility);
@@ -48,18 +48,18 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
 
     // All childrean 
     //List<MotherMasterData> findAllByMChildinfoIsNotNullAndMApprovalDecissionOrderByIdDesc(Decision decission);
-    List<MotherMasterData> findByMchildinfoIsNotNullOrderByIdDesc();
+    List<MotherMasterData> findByMchildinfoIsNotNullOrderByIdDesc(); // criteria api created
 
     // new childrean 
     List<MotherMasterData> findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(int numberOfEligibleChildren, Decision decission);
 
     /// Induction
-    List<MotherMasterData> findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision decission);
+    List<MotherMasterData> findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision decission);// criteria api created
 
     Long countByoinductionIsNotNullAndAddmissionIsNullOrderByIdDesc();
 
     // new mother health conditions check
-    List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc();
+    List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc();// criteria api created
 
     //List<MotherMasterData> findByoInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
     // new  professional observations

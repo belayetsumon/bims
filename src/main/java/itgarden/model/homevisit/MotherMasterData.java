@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package itgarden.model.homevisit;
-
 import itgarden.model.auth.Users;
 import itgarden.model.clinic.C_Admission;
 import itgarden.model.clinic.C_NutritionalStatus;
@@ -226,8 +225,9 @@ public class MotherMasterData {
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     public Users updatedBy;
 
-    /*      Relations ship  Start */
- /*      Home Visit */
+ /* Relations ship  Start */
+ /* Home Visit */
+    
     //@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<M_Address> maddress = new ArrayList<>();
@@ -1219,3 +1219,4 @@ public class MotherMasterData {
     }
 
 }
+

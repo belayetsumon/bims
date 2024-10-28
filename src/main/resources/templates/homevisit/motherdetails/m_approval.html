@@ -56,10 +56,10 @@
 
                                         <label for="co" class="col-sm-6 control-label"> Approve Date  :<span class="text-red">  *</span> </label>
                                         <div class="col-sm-6 input-group date">     
-                                            <div class="input-group-addon" > 
+<!--                                            <div class="input-group-addon" > 
                                                     <i class="fa fa-calendar"></i>
-                                                    </div>
-                                            <input type="text"  id="referral_date" class="form-control  "  th:field="*{approveDate}"   />                
+                                                    </div>-->
+<input type="text"  id="referral_date" class="form-control  "  th:field="*{approveDate}"   placeholder="dd-mm-yyyy"/>                
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('approveDate')}" th:errors="*{approveDate}">First Name Error</span>
                                         </div>                            
 

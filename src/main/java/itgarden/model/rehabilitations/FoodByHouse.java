@@ -9,5 +9,5 @@ package itgarden.model.rehabilitations;
  * @author libertyerp_local
  */
 public enum FoodByHouse {
-    BH,TH,MBH,MGH,BGH,SK,Outside,Mother
+    BH,TH,MBH,MGH,BGH,SC,Outside,Mother
 }

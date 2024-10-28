@@ -13,6 +13,8 @@ import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_Inhouse_Inductions_MotherRepository;
 import itgarden.repository.observation.O_Inhouse_Inductions_childRepository;
+import itgarden.services.homevisit.MotherMasterDataServices;
+import itgarden.services.observation.M_ApprovalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,19 +47,25 @@ public class InductionController {
     @Autowired
     M_ApprovalRepository m_ApprovalRepository;
 
-    
+    @Autowired
+    MotherMasterDataServices motherMasterDataServices;
+
+    @Autowired
+    M_ApprovalService m_ApprovalService;
+
     @RequestMapping("/newmother")
     public String newmother(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-      model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision.Approve));
+        //model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNullAndMapprovalDecissionOrderByIdDesc(Decision.Approve));
+        model.addAttribute("list", motherMasterDataServices.findMotherDataWithApprovalAndInductionNull());
         return "homevisit/observation/induction/newmother";
     }
-    
-    
+
     @RequestMapping("/motherlist")
-    public String page(Model model) {
+    public String motherlist(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-        model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+        // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+        model.addAttribute("list", m_ApprovalService.findAllBydecissionOrderByIdDesc(Decision.Approve));
         return "homevisit/observation/induction/mothersearch";
     }
 
@@ -77,7 +85,6 @@ public class InductionController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
         o_Induction.setMotherMasterCode(motherMasterData);
-
         return "homevisit/observation/induction/inductionCreate";
     }
 

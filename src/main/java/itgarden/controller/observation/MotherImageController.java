@@ -16,6 +16,8 @@ import itgarden.repository.observation.MotherImageRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.services.StorageProperties;
+import itgarden.services.observation.MotherImageService;
+import itgarden.services.observation.O_MAddmissionService;
 import jakarta.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -60,18 +62,26 @@ public class MotherImageController {
     @Autowired
     Child_imageRepository child_imageRepository;
 
+    @Autowired
+    MotherImageService motherImageService;
+
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
+
     @RequestMapping("/newmother")
     public String newmother(Model model) {
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-        model.addAttribute("list", o_MAddmissionRepository.findBymotherImageIsNullOrderByIdDesc());
+      //  model.addAttribute("list", o_MAddmissionRepository.findBymotherImageIsNullOrderByIdDesc());
 
+        model.addAttribute("list", o_MAddmissionService.findMotherImageNull());
         return "homevisit/observation/imageupload/newmother";
     }
 
     @RequestMapping("/motherlist")
     public String page(Model model) {
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
-        model.addAttribute("list", motherImageRepository.findAll());
+        // model.addAttribute("list", motherImageRepository.findAll());
+        model.addAttribute("list", motherImageService.allMotherImages());
         return "homevisit/observation/imageupload/mothersearch";
     }
 
@@ -79,11 +89,8 @@ public class MotherImageController {
     public String index(Model model, @PathVariable Long m_id) {
 
         model.addAttribute("minfo", m_id);
-
         MotherMasterData motherMasterData = new MotherMasterData();
-
         motherMasterData.setId(m_id);
-
         model.addAttribute("mimage", motherImageRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("cimage", child_imageRepository.findBymotherMasterCode(motherMasterData));
         return "homevisit/observation/imageupload/index";
@@ -98,7 +105,6 @@ public class MotherImageController {
         O_MAddmission oMAddmission = o_MAddmissionRepository.findByMotherMasterCode(motherMasterData);
         oMAddmission.setId(oMAddmission.getId());
         motherImage.setAddmission(oMAddmission);
-
         model.addAttribute("imageType", ImageTypeEnum.values());
         return "homevisit/observation/imageupload/addmotherimg";
     }

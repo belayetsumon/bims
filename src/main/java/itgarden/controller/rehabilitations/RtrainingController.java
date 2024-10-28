@@ -61,4 +61,25 @@ public class RtrainingController {
         return "rehabilitations/training/index";
     }
 
+    @RequestMapping("/lifeskilltraininglist")
+
+    public String lifeSkill(Model model) {
+//        model.addAttribute("m_id", id);
+//        MotherMasterData motherMasterData = new MotherMasterData();
+//
+//        motherMasterData.setId(id);
+        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findAll());
+        return "rehabilitations/training/lifeskilltraininglist";
+    }
+
+    @RequestMapping("/igatraininglist")
+    public String iga(Model model) {
+//        model.addAttribute("m_id", id);
+//        MotherMasterData motherMasterData = new MotherMasterData();
+//
+//        motherMasterData.setId(id);
+        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findAll());
+        return "rehabilitations/training/igatraininglist";
+    }
+
 }

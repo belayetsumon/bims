@@ -60,6 +60,7 @@ public class LiteracyDigitalLiteracyController {
 
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, LiteracyDigitalLiteracy literacyDigitalLiteracy, Model model) {
+       
         model.addAttribute("literacyDigitalLiteracy", literacyDigitalLiteracyRepository.findById(id).orElse(null));
         model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataDTOs());
         model.addAttribute("status", ResultEnum.values());

@@ -14,6 +14,7 @@ import itgarden.repository.observation.O_ChildAdmissionRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.services.StorageProperties;
+import itgarden.services.observation.O_MAddmissionService;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,10 +52,14 @@ public class AdmissionController {
     @Autowired
     O_ChildAdmissionRepository o_ChildAdmissionRepository;
 
-    @RequestMapping("/motherlist")
-    public String page(Model model) {
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
 
-        model.addAttribute("list", o_MAddmissionRepository.findAll());
+    @RequestMapping("/motherlist")
+    public String index(Model model) {
+
+        //model.addAttribute("list", o_MAddmissionRepository.findAll());
+        model.addAttribute("list", o_MAddmissionService.allAdmitedMotherList());
         return "homevisit/observation/admission/mothersearch";
     }
 
@@ -74,8 +79,6 @@ public class AdmissionController {
         model.addAttribute("o_ChildAddmission", o_ChildAdmissionRepository.findBymotherMasterCode(motherMasterData));
         return "homevisit/observation/admission/index";
     }
-    
-    
 
     @RequestMapping("/create/{id}")
     public String mAdd(Model model, @PathVariable Long id, O_MAddmission o_MAddmission) {
@@ -90,12 +93,13 @@ public class AdmissionController {
 
     @RequestMapping("/edit/{id}")
     public String mEdit(Model model, @PathVariable Long id, O_MAddmission o_MAddmission) {
-        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findById(id));
+
+        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findById(id).orElse(null));
+
         return "homevisit/observation/admission/addmotherimg";
     }
 
     @RequestMapping("/save/{id}")
-
     public String mSave(Model model, @PathVariable Long id, @Valid O_MAddmission o_MAddmission,
             BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -104,8 +108,6 @@ public class AdmissionController {
             o_MAddmission.setMotherMasterCode(motherMasterData);
             return "homevisit/observation/admission/addmotherimg";
         }
-
-        model.addAttribute("message", "You successfully uploaded");
 
         model.addAttribute("o_MAddmission", motherMasterDataRepository.findById(id));
         o_MAddmissionRepository.save(o_MAddmission);

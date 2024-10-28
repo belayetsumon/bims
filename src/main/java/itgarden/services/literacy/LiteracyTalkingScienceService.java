@@ -47,7 +47,8 @@ public class LiteracyTalkingScienceService {
         // Select fields from MotherMasterData and related entities
         cq.multiselect(
                 root.get("id"),
-                root.get("motherMasterCode")
+                root.get("motherMasterCode"),
+                root.get("motherName")
         // Converting Enum to String
         );
 
@@ -68,6 +69,7 @@ public class LiteracyTalkingScienceService {
             MotherMasterDataDTO dto = new MotherMasterDataDTO();
             dto.setId(tuple.get(0, Long.class));
             dto.setMotherMasterCode(tuple.get(1, String.class));
+           dto.setMotherName(tuple.get(2, String.class));
 
             // Enum converted to String
             return dto;

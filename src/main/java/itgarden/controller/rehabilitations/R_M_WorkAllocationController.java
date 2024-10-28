@@ -25,10 +25,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/rmworkallocation")
 public class R_M_WorkAllocationController {
-
+    
     @Autowired
     R_M_WorkAllocationRepository r_M_WorkAllocationRepository;
-
+    
     @RequestMapping("/create/{mid}")
     public String create(Model model, @PathVariable Long mid, R_M_WorkAllocation r_M_WorkAllocation) {
         MotherMasterData motherMasterData = new MotherMasterData();
@@ -37,17 +37,17 @@ public class R_M_WorkAllocationController {
         model.addAttribute("form_title", " Rehab Mother Work Allocation");
         return "rehabilitations/allocations/mworkallocations";
     }
-
+    
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_M_WorkAllocation r_M_WorkAllocation) {
-        model.addAttribute("r_M_WorkAllocation", r_M_WorkAllocationRepository.findById(id));
+        model.addAttribute("r_M_WorkAllocation", r_M_WorkAllocationRepository.findById(id).orElse(null));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
         r_M_WorkAllocation.setMotherMasterCode(motherMasterData);
         model.addAttribute("form_title", " Rehab Mother Work Allocation Edit");
         return "rehabilitations/allocations/mworkallocations";
     }
-
+    
     @RequestMapping("/save/{mid}")
     public String save(Model model, @PathVariable Long mid, @Valid R_M_WorkAllocation r_M_WorkAllocation, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -60,10 +60,10 @@ public class R_M_WorkAllocationController {
         r_M_WorkAllocationRepository.save(r_M_WorkAllocation);
         return "redirect:/houseworkallocation/index/{mid}";
     }
-
-   @RequestMapping("/delete/{id}")
+    
+    @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_M_WorkAllocation r_M_WorkAllocation, RedirectAttributes redirectAttrs) {
-      
+        
         Optional<R_M_WorkAllocation> optionalr_M_WorkAllocation = r_M_WorkAllocationRepository.findById(id);
         
         r_M_WorkAllocation = optionalr_M_WorkAllocation.orElse(null);

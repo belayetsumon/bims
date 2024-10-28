@@ -1,5 +1,6 @@
 package itgarden.model.homevisit.DTO;
 
+import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.Reasons;
 import itgarden.model.homevisit.Yes_No;
 import java.time.LocalDate;
@@ -83,41 +84,33 @@ public class MotherMasterDataDTO {
     public int numberOfEligibleChildren;
 
     public String majorFindings;
-    
-     //  New version aded  
 
-
+    //  New version aded  
     public Yes_No socialviolence;
-
 
     public Yes_No childrenFacedSocialViolence;
 
-
     public Yes_No sexualAbuse;
-
 
     public Yes_No childrenSexualAbuse;
 
- 
     public Yes_No earlyMarriage;
-    
 
     public Yes_No pregnancyAfterBeingRaped;
-     
 
-    public Yes_No  facedDowryAbuse; 
-    
+    public Yes_No facedDowryAbuse;
+
     // End new version property
-    
-
     public String otherRemarks;
 
-    public String eligibility;
+    public Eligibility eligibility;
+
+    public LocalDate created;
 
     public MotherMasterDataDTO() {
     }
 
-    public MotherMasterDataDTO(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, String religion, Long religionId, String maritalStatus, Long maritalStatusId, String husbandsName, String husbandsStatus, Long husbandsStatusId, String primeFamilyMemberName, String relationWithPfm, Long relationWithPfmId, String ethnicIdentity, Long ethnicIdentityId, String educationLevel, Long educationLevelId, String educationType, Long educationTypeId, String occupation, Long occupationId, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, String eligibility) {
+    public MotherMasterDataDTO(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, String religion, Long religionId, String maritalStatus, Long maritalStatusId, String husbandsName, String husbandsStatus, Long husbandsStatusId, String primeFamilyMemberName, String relationWithPfm, Long relationWithPfmId, String ethnicIdentity, Long ethnicIdentityId, String educationLevel, Long educationLevelId, String educationType, Long educationTypeId, String occupation, Long occupationId, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, Eligibility eligibility, LocalDate created) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -164,6 +157,7 @@ public class MotherMasterDataDTO {
         this.facedDowryAbuse = facedDowryAbuse;
         this.otherRemarks = otherRemarks;
         this.eligibility = eligibility;
+        this.created = created;
     }
 
     public Long getId() {
@@ -526,12 +520,20 @@ public class MotherMasterDataDTO {
         this.otherRemarks = otherRemarks;
     }
 
-    public String getEligibility() {
+    public Eligibility getEligibility() {
         return eligibility;
     }
 
-    public void setEligibility(String eligibility) {
+    public void setEligibility(Eligibility eligibility) {
         this.eligibility = eligibility;
+    }
+
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
     }
 
     

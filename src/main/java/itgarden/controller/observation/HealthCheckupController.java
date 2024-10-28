@@ -10,6 +10,8 @@ import itgarden.repository.homevisit.M_ApprovalRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_CHealthConditionsRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
+import itgarden.services.homevisit.MotherMasterDataServices;
+import itgarden.services.observation.O_MHealthConditionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,15 +38,28 @@ public class HealthCheckupController {
     @Autowired
     M_ApprovalRepository m_ApprovalRepository;
 
+    @Autowired
+    MotherMasterDataServices motherMasterDataServices;
+
+    @Autowired
+    O_MHealthConditionsService o_MHealthConditionsService;
+
     @RequestMapping("/newmother")
     public String newmother(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc());
+        //   model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc());
+
+        model.addAttribute("list", motherMasterDataServices.findMotherMasterDataWithInductionNotNullAndHealthConditionsNull());
+
         return "homevisit/observation/healthcheckup/newmother";
     }
 
     @RequestMapping("/mothersearch")
     public String motherSearch(Model model) {
-        model.addAttribute("list", o_MHealthConditionsRepository.findAll());
+       // model.addAttribute("list", o_MHealthConditionsRepository.findAll());
+       
+        model.addAttribute("list", o_MHealthConditionsService.findAllmHealthConditions());
+
+
         return "homevisit/observation/healthcheckup/mothersearch";
     }
 

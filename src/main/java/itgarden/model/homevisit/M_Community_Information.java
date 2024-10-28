@@ -9,6 +9,8 @@ import itgarden.model.auth.Users;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,7 +40,7 @@ public class M_Community_Information {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false,fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
@@ -57,7 +59,8 @@ public class M_Community_Information {
 
     public String prospectiveIgaNote;
 
-    public String unemploymentSession;
+    @Enumerated(EnumType.STRING)
+    public UnemploymentSessionEnum unemploymentSession;
 
     @Lob
     public String REMARKS;
@@ -86,7 +89,7 @@ public class M_Community_Information {
     public M_Community_Information() {
     }
 
-    public M_Community_Information(Long id, MotherMasterData motherMasterCode, Economic_Type economyType, List<String> avilableIga, String avilableIgaNote, List<String> prospectiveIga, String prospectiveIgaNote, String unemploymentSession, String REMARKS, Users createdBy, Users updatedBy) {
+    public M_Community_Information(Long id, MotherMasterData motherMasterCode, Economic_Type economyType, List<String> avilableIga, String avilableIgaNote, List<String> prospectiveIga, String prospectiveIgaNote, UnemploymentSessionEnum unemploymentSession, String REMARKS, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.economyType = economyType;
@@ -156,11 +159,11 @@ public class M_Community_Information {
         this.prospectiveIgaNote = prospectiveIgaNote;
     }
 
-    public String getUnemploymentSession() {
+    public UnemploymentSessionEnum getUnemploymentSession() {
         return unemploymentSession;
     }
 
-    public void setUnemploymentSession(String unemploymentSession) {
+    public void setUnemploymentSession(UnemploymentSessionEnum unemploymentSession) {
         this.unemploymentSession = unemploymentSession;
     }
 

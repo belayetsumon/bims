@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Mother House</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title"> Mother House [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                        </div>    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive ">
+
+                        <form class="row  justify-content-center mb-5 " th:action="@{/homevisitreport/house}"   method="get" >
+                            <div class="col-auto">
+                                <label for="name" class="control-label"> House Type :</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control  "  id="bookName"  name="houseType" >
+                                    <option value=" "> Select one</option>
+                                    <option th:each =" housetypes :${housetype}"
+                                            th:value=" ${housetypes.id}" 
+
+                                            th:text="${housetypes.name}"> Select one</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="name" class=" control-label"> Ownershif Type:</label>
+                            </div>
+                            <div class="col-auto"> 
+                                <select class="form-control  "    name="ownership" >
+                                    <option value=" "> Select one</option>
+                                    <option th:each ="ownershiftypes :${ownershiftype}"
+                                            th:value=" ${ownershiftypes.id}" 
+                                            th:text="${ownershiftypes.name}"> Select one</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <div class=" col-auto text-center">
+                                <button type="submit" class="btn btn-info btn-sm">Search</button>
+                            </div>
+
+                        </form>
+ <hr>
+                        <table id="tablesdata"   class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="mt-5">
+                                    <th>#</th>
+                                    <th>Mother Code </th>
+                                    <th>Mother name </th>
+                                    <th>Mother mobile </th>
+                                    <th>House Type </th>
+                                    <th>Owner Ship</th>
+                                    <th>Value Title</th>
+                                    <th>Value</th>
+                                    <th>Remarks</th>
+                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tuple,status:${list}">        
+                                    <td th:text="${tuple.get('id')}">  </td>
+                                    <td th:text="${tuple.get('motherMasterCode')}">  </td>
+                                    <td th:text="${tuple.get('motherName')}">  </td>
+                                    <td th:text="${tuple.get('mobileNumber')}">  </td>
+                                    <td th:text="${tuple.get('houseType')}"> cccz </td>
+                                    <td th:text="${tuple.get('ownership')}"> cccz </td>
+                                    <td th:text="${tuple.get('valueTitle')}">    </td>
+                                    <td th:text="${tuple.get('value')}">   </td>
+                                    <td th:text="${tuple.get('remarks')}">  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                    </div>
+                </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

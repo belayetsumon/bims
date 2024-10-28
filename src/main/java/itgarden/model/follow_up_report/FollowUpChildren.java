@@ -52,11 +52,13 @@ public class FollowUpChildren {
     @NotBlank(message = "Visited Staff name field cannot be blank.")
     public String visitedStaffName;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    private String releaseDate;
+    @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate releaseDate;
 
-    @NotEmpty(message = "This field cannot be blank.")
-    private String visitDate;
+    @NotNull(message = "Visit date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate visitDate;
 
     @NotNull(message = "This field cannot be blank.")
     @Enumerated(EnumType.STRING)
@@ -68,8 +70,8 @@ public class FollowUpChildren {
 
     @Lob
     private String remarks;
-      
-       /**
+
+    /**
      * ********* Audit ******************************
      */
     @Column(insertable = true, updatable = false)
@@ -87,7 +89,7 @@ public class FollowUpChildren {
     public FollowUpChildren() {
     }
 
-    public FollowUpChildren(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String visitedStaffName, String releaseDate, String visitDate, Yes_No involvedWork, String workNote, String childClass, String remarks, Users createdBy, Users updatedBy) {
+    public FollowUpChildren(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, String visitedStaffName, LocalDate releaseDate, LocalDate visitDate, Yes_No involvedWork, String workNote, String childClass, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -134,19 +136,19 @@ public class FollowUpChildren {
         this.visitedStaffName = visitedStaffName;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public String getVisitDate() {
+    public LocalDate getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(String visitDate) {
+    public void setVisitDate(LocalDate visitDate) {
         this.visitDate = visitDate;
     }
 
@@ -213,6 +215,4 @@ public class FollowUpChildren {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-   
 }

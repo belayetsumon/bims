@@ -29,7 +29,6 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title">New Mother List For  Health Checkup <b>Total :</b> <span th:text="${list.size()}"> </span></h3>
-
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
@@ -54,8 +53,8 @@
                                             <td th:text="${list.homeVisitDate}" >Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>
                                             <td th:text="${list.mobileNumber}">Chakma</td>
-                                            <td th:text="${list.oinduction.startDate}" >Chakma</td>
-                                            <td th:text="${list.oinduction.endDate}" >Chakma</td>
+                                            <td th:text="${list.startDate}" >Chakma</td>
+                                            <td th:text="${list.endDate}" >Chakma</td>
 
                                             <td> 
                                                 <a   th:href="@{/healthcheckup/index/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Health Checkup</a>

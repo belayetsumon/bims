@@ -9,7 +9,7 @@
 
         $.ajax({
             type: "GET",
-            url: "/bims/thana/thana/" + district,
+            url: "/thana/thana/" + district,
             dataType: 'json',
             success: function (data) {
                 var slctSubcat=$('#thana'), option="Select One";
@@ -41,17 +41,17 @@ $(document).ready(function () {
 
 
 
-// pagination controll
-$(document).ready(function () {
-
-    $.jqPaginator('#pagination-demo', {
-        totalPages: 50,
-        totalCounts: 50,
-        pageSize: 0,
-        currentPage: 1,
-        visiblePages: 7
-    });
-});
+//// pagination controll
+//$(document).ready(function () {
+//
+//    $.jqPaginator('#pagination-demo', {
+//        totalPages: 50,
+//        totalCounts: 50,
+//        pageSize: 0,
+//        currentPage: 1,
+//        visiblePages: 7
+//    });
+//});
 
 
 

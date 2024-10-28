@@ -6,6 +6,7 @@ package itgarden.services.observation;
 
 import itgarden.model.homevisit.DTO.MotherMasterDataDTO;
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.observation.MotherImage;
 import itgarden.model.observation.O_MAddmission;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -13,10 +14,14 @@ import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,7 +45,8 @@ public class O_MAddmissionService {
         // Select fields from MotherMasterData and related entities
         cq.multiselect(
                 root.get("id"),
-                root.get("motherMasterCode")
+                root.get("motherMasterCode"),
+                root.get("motherName")
         // Converting Enum to String
         );
         List<Predicate> predicates = new ArrayList<Predicate>();
@@ -57,6 +63,7 @@ public class O_MAddmissionService {
             MotherMasterDataDTO dto = new MotherMasterDataDTO();
             dto.setId(tuple.get(0, Long.class));
             dto.setMotherMasterCode(tuple.get(1, String.class));
+            dto.setMotherName(tuple.get(2, String.class));
 
             // Enum converted to String
             return dto;
@@ -91,6 +98,83 @@ public class O_MAddmissionService {
             idList.add(id);
         }
         return idList;
+    }
+
+    public List<Map<String, Object>> allAdmitedMotherList() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<O_MAddmission> root = cq.from(O_MAddmission.class);
+
+        // Joining related entity (MotherMasterData)
+//    Join<O_MAddmission, MotherMasterData> motherJoin = root.join("motherMasterCode");
+        // Selecting multiple fields with aliases
+        cq.multiselect(
+                root.get("id").alias("admissionId"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' exists in MotherMasterData
+                root.get("dateArrival").alias("arrivalDate"),
+                root.get("dateAdmission").alias("admissionDate"),
+                root.get("remarks").alias("remarks")
+        );
+        // Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        // Transform the result into a list of maps using aliases
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple result : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("admissionId", result.get("admissionId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
+            resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("arrivalDate", result.get("arrivalDate"));
+            resultMap.put("admissionDate", result.get("admissionDate"));
+            resultMap.put("remarks", result.get("remarks"));
+            resultMaps.add(resultMap);
+        }
+        return resultMaps;
+    }
+
+// mother Image null
+    public List<Map<String, Object>> findMotherImageNull() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<O_MAddmission> root = cq.from(O_MAddmission.class);
+
+        // Left join with MotherImage
+        Join<O_MAddmission, MotherImage> motherImageJoin = root.join("motherImage", JoinType.LEFT);
+
+        // Adding a condition to filter where motherImage is null
+        Predicate condition = cb.isNull(motherImageJoin);
+
+        // Selecting multiple fields with aliases
+        cq.multiselect(
+                root.get("id").alias("admissionId"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("mMothersName").alias("mMothersName"),
+                root.get("motherMasterCode").get("mobileNumber").alias("mobileNumber"),
+                root.get("dateAdmission").alias("dateAdmission")
+        ).where(condition);  // Applying the condition
+
+        // Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        // Transform the result into a list of maps using aliases
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple result : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("admissionId", result.get("admissionId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
+            resultMap.put("mMothersName", result.get("mMothersName"));
+            resultMap.put("mobileNumber", result.get("mobileNumber"));
+            resultMap.put("dateAdmission", result.get("dateAdmission"));
+
+            resultMaps.add(resultMap);
+        }
+        return resultMaps;
     }
 
 }

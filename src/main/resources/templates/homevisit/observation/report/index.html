@@ -5,82 +5,49 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-        Observations
-
-                </h1>
-
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-8">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observations Report List</a> </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
+                <!-- Default card -->
                 <div class="col-sm-6"> 
-                    <div class="box box-primary col-sm-6">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Observations  Report List</h3>
+                    <div class="card card-info">
+                        <div class="card-header ">
+                            <h3 class="card-title">Observations  Report List</h3>
 
-                            <div class="box-tools pull-right">
+                            <div class="card-tools pull-right">
                                 <div class="btn-group">
 
                                 </div>
                             </div>
                         </div>
-                        <div class="box-body">
-                             <a  th:href="@{/homevisitreport/inductionlist}" type="button" class="btn btn-block btn-danger"> Induction List</a>
-                            <a  th:href="@{/homevisitreport/admissionlist}" type="button" class="btn btn-block btn-danger"> Admission List</a>
-                             <a  th:href="@{/observationreport/healthcheckupmother}" type="button" class="btn btn-block btn-danger">  Health Checkup List Mother</a>
-                            <a  th:href="@{/observationreport/healthcheckupchild}" type="button" class="btn btn-block btn-danger">  Health Checkup List Child</a>
-                             <a  th:href="@{/observationreport/professionalobservationsmother}" type="button" class="btn btn-block btn-danger"> Professional Observations List Mother</a>
-                            <a  th:href="@{/observationreport/professionalobservationschild}" type="button" class="btn btn-block btn-danger"> Professional Observations List Children </a>
-                              <a  th:href="@{/homevisitreport/inductionlist}" type="button" class="btn btn-block btn-danger"> Psychosocial assessment needed beneficiaries list</a>
-                            <a  th:href="@{/homevisitreport/admissionlist}" type="button" class="btn btn-block btn-danger"> Therapy needed beneficiary’s number list </a>
+                        <div class="card-body">
+                            <a  th:href="@{/observationreport/inductionlist}" type="button" class="btn btn-block btn-info"> Induction List</a>
+                            <a  th:href="@{/observationreport/admissionlist}" type="button" class="btn btn-block btn-info"> Admission List</a>
+                            <a  th:href="@{/observationreport/healthcheckupmother}" type="button" class="btn btn-block btn-info">  Health Checkup List Mother</a>
+                            <a  th:href="@{/observationreport/healthcheckupchild}" type="button" class="btn btn-block btn-info">  Health Checkup List Child</a>
+                            <a  th:href="@{/observationreport/professionalobservationsmother}" type="button" class="btn btn-block btn-info"> Professional Observations List Mother</a>
+                            <a  th:href="@{/observationreport/professionalobservationschild}" type="button" class="btn btn-block btn-info"> Professional Observations List Children </a>
+                            <a  th:href="@{/homevisitreport/inductionlist}" type="button" class="btn btn-block btn-info"> Psychosocial assessment needed beneficiaries list</a>
+                            <a  th:href="@{/homevisitreport/admissionlist}" type="button" class="btn btn-block btn-info"> Therapy needed beneficiary’s number list </a>
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-
-
-
-                            <div class="box-tools pull-right">
-                                <div class="btn-group">
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-footer-->
+                        <!-- /.card-body -->
                     </div>
-
-
                 </div>
-                <div class="col-sm-6"> 
-<!--                    <div class="box box-primary col-sm-6">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">#</h3>
-
-                            <div class="box-tools pull-right">
-                                <div class="btn-group">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-body">
-
-
-                        </div>
-                         /.box-body 
-                        <div class="box-footer">
-                            <div class="box-tools pull-right">
-                                <div class="btn-group">
-
-                                </div>
-                            </div>
-                        </div>
-                         /.box-footer
-                    </div>-->
-
-
-                </div>
-
             </section>
             <!-- /.content -->
         </div>

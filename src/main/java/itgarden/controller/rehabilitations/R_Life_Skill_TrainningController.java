@@ -58,7 +58,7 @@ public class R_Life_Skill_TrainningController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_Life_Skill_Trainning r_Life_Skill_Trainning) {
         
-        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findById(id));
+        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findById(id).orElse(null));
 
         MotherMasterData motherMasterData = new MotherMasterData();
 

@@ -39,23 +39,20 @@
                                         <th> Mother  Id</th>
                                         <th> Mother Name</th>
                                         <th> Mother Mobile Number</th>
-
-
                                         <th>Admission Date</th>
-
                                         <th>Add Image</th>
                                     </tr> 
                                 </thead>
                                 <tbody>
                                     <tr th:each="list,status:${list}">
                                         <td th:text="${status.count}">2.</td>
-                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
-                                        <td th:text="${list.motherMasterCode.mobileNumber}">Chakma</td>
+                                        <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.mMothersName}">Chakma</td>
+                                        <td th:text="${list.mobileNumber}">Chakma</td>
                                         <td th:text="${list.dateAdmission}" >Chakma</td>
 
                                         <td> 
-                                            <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-info ">Add Image</a>
+                                            <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Add Image</a>
                                         </td>
                                     </tr>
                                 </tbody>

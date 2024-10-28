@@ -57,7 +57,7 @@ public class M_Local_Govt_Facilities {
     public Yes_No votingParticipation;
 
     @NotEmpty(message = "Please provide beneficiary  NID number.")
-    @Size(min = 13, max = 17, message = " Please provide value minimum 13 digit maximum 17 digit")
+    @Size(min = 10, max = 17, message = " Please provide value minimum 10 digit maximum 17 digit")
     @Column(unique = true)
     public String boNID;
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Mother By District </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title"> Mother By District [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                        </div>    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive ">
+
+                        <form class="row  justify-content-center mb-5 " th:action="@{/homevisitreport/motherbydistrict}"   method="get" >
+                            <div class="col-auto">
+                                <label for="name" class="control-label"> Address Type :</label>
+                            </div>
+                            <div class="col-auto">
+                                <select class="form-control  "  id="bookName"  name="addressType" >
+                                    <option value=" "> Select one</option>
+                                    <option th:each =" addressType :${addresstypes}"
+                                            th:value=" ${addressType}" 
+
+                                            th:text="${addressType}"> Select one</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <label for="name" class=" control-label"> District:</label>
+                            </div>
+                            <div class="col-auto"> 
+                                <select class="form-control  "    name="district" >
+                                    <option value=" "> Select one</option>
+                                    <option th:each ="district :${districtlist}"
+                                            th:value=" ${district}" 
+                                            th:text="${district}"> Select one</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <div class=" col-auto text-center">
+                                <button type="submit" class="btn btn-info btn-sm">Search</button>
+                            </div>
+
+                        </form>
+ <hr>
+                        <table id="tablesdata"   class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="mt-5">
+                                    <th>#</th>
+                                    <th>Mother Code </th>
+                                    <th>Mother name </th>
+                                    <th>Mother mobile </th>
+                                    <th>Address Type </th>
+                                    <th>C/O</th>
+                                    <th>Vill/House</th>
+                                    <th>P.O</th>
+                                    <th>District</th>
+                                    <th>Thana</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tuple,status:${list}">        
+                                    <td th:text="${tuple.get('addressId')}">  </td>
+                                    <td th:text="${tuple.get('motherMasterCode')}">  </td>
+                                    <td th:text="${tuple.get('motherName')}">  </td>
+                                    <td th:text="${tuple.get('mobileNumber')}">  </td>
+                                    <td th:text="${tuple.get('addressType')}"> cccz </td>
+                                    <td th:text="${tuple.get('careOf')}"> cccz </td>
+                                    <td th:text="${tuple.get('village')}">    </td>
+                                    <td th:text="${tuple.get('postOffice')}">   </td>
+                                    <td th:text="${tuple.get('district')}">  </td>
+                                  <td th:text="${tuple.get('thana')}">  </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                    </div>
+                </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

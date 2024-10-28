@@ -7,6 +7,7 @@ package itgarden.controller.homevisit;
 
 import itgarden.model.homevisit.M_Community_Information;
 import itgarden.model.homevisit.MotherMasterData;
+import itgarden.model.homevisit.UnemploymentSessionEnum;
 import itgarden.repository.homevisit.AvilableIgaRepository;
 import itgarden.repository.homevisit.Economic_TypeRepository;
 import itgarden.repository.homevisit.M_Community_InformationRepository;
@@ -45,6 +46,7 @@ public class M_Community_InformationController {
 
     public String index(Model model, M_Community_Information m_Community_Information) {
         model.addAttribute("list", m_Community_InformationRepository.findAll());
+        model.addAttribute("unemploymentsession", UnemploymentSessionEnum.values());
 
         return "homevisit/lookup/m_community_information";
     }
@@ -64,6 +66,7 @@ public class M_Community_InformationController {
         model.addAttribute("avilableIga", avilableIgaRepository.findAll());
 
         model.addAttribute("prospectiveIga", prospectiveIgaRepository.findAll());
+        model.addAttribute("unemploymentsession", UnemploymentSessionEnum.values());
 
         return "homevisit/motherdetails/m_community_information";
     }
@@ -83,6 +86,7 @@ public class M_Community_InformationController {
             model.addAttribute("avilableIga", avilableIgaRepository.findAll());
 
             model.addAttribute("prospectiveIga", prospectiveIgaRepository.findAll());
+            model.addAttribute("unemploymentsession", UnemploymentSessionEnum.values());
             return "homevisit/motherdetails/m_community_information";
         }
 
@@ -98,6 +102,7 @@ public class M_Community_InformationController {
         model.addAttribute("economyType", economic_TypeRepository.findAll());
         model.addAttribute("avilableIga", avilableIgaRepository.findAll());
         model.addAttribute("prospectiveIga", prospectiveIgaRepository.findAll());
+        model.addAttribute("unemploymentsession", UnemploymentSessionEnum.values());
         return "homevisit/motherdetails/m_community_information";
     }
 
@@ -107,7 +112,7 @@ public class M_Community_InformationController {
         m_Community_Information = m_Community_InformationRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("m_id", m_Community_Information.motherMasterCode.getId());
         m_Community_InformationRepository.deleteById(id);
-      return "redirect:/motherdetails/motherdetails/{m_id}";
+        return "redirect:/motherdetails/motherdetails/{m_id}";
     }
 
 }

@@ -51,7 +51,7 @@ public class R_M_HousAllocationController {
     
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_M_HousAllocation r_M_HousAllocation) {
-        model.addAttribute("r_M_HousAllocation", r_M_HousAllocationRepository.findById(id));
+        model.addAttribute("r_M_HousAllocation", r_M_HousAllocationRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother House Allocation Edit");
         model.addAttribute("houseName", houseNameRepository.findAll());
         

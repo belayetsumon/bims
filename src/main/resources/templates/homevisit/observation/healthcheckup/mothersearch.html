@@ -39,27 +39,26 @@
                                             <tr>
                                                 <th style="width: 10px">#</th>  
                                                 <th> Mother  Id</th>
-                                                <th>Home Visit Date</th>
-                                                <th> Mother Name</th>
-                                                <th> Mother Mobile Number </th>
-                                                <th>Induction  Start Date</th>
-                                                <th>Induction  End Date</th>
+
+                                                <th>Mother Name</th>
+                                                <th>Height</th>
+                                                <th>Weight</th>
                                                 <th>Observation Duration/Days</th>
+                                                <th>Note</th>
                                                 <th>Edit</th>
                                             </tr>
                                         </thead>
                                         <tbody>                         
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">2.</td>
-                                                <td th:text="${list.induction.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                <td th:text="${list.induction.motherMasterCode.homeVisitDate}" >Chakma</td>
-                                                <td th:text="${list.induction.motherMasterCode.motherName}">Chakma</td>
-                                                <td th:text="${list.induction.motherMasterCode.mobileNumber}">Chakma</td>
-                                                <td th:text="${list.induction.startDate}" >Chakma</td>
-                                                <td th:text="${list.induction.endDate}" >Chakma</td>
+                                                <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.motherName}">Chakma</td>
+                                                <td th:text="${list.height}">Chakma</td>       
+                                                <td th:text="${list.weight}">Chakma</td>
                                                 <td th:text="${list.observationDuration}" >Chakma</td>
+                                                <td th:text="${list.note}" >Chakma</td>
                                                 <td> 
-                                                    <a   th:href="@{/healthcheckup/index/{id} (id=${list.induction.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">Edit Health Checkup</a>
+                                                    <a   th:href="@{/healthcheckup/index/{id} (id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">Edit Health Checkup</a>
                                                 </td>
 
                                             </tr>

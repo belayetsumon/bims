@@ -54,7 +54,7 @@ public class R_C_HouseAllocationsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_C_HouseAllocations r_C_HouseAllocations) {
-        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findById(id));
+        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findById(id).orElse(null));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
         model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));

@@ -48,7 +48,7 @@
                                                 <label for="name" class="col-sm-3 control-label"> Inserted From <span class="text-red">  </span> </label>
                                                 <div class="col-sm-8"> 
                                                     <div class="input-group ">
-                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"  id="dateFrom"    name="from" />                              
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"  id="dateFrom"    name="startDate" />                              
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,18 +57,16 @@
                                                 <label for="name" class="col-sm-3 control-label"> Inserted To <span class="text-red">  </span> </label>
                                                 <div class="col-sm-8"> 
                                                     <div class="input-group ">
-                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="dateTo"  name="to" />                              
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="dateTo"  name="endDate" />                              
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
                                         <div class="row">
                                             <div class="form-group col-sm-6 row">
                                                 <label for="name" class="col-sm-3 control-label"> Reasons<span class="text-red">  </span> </label>
                                                 <div class="col-sm-6">                   
-                                                    <select class="form-control"  name="resons" >
+                                                    <select class="form-control"  name="resonss" >
                                                         <option value=" "> Select one</option>
                                                         <option th:each =" resons :${resons}"
                                                                 th:value=" ${resons.id}" 
@@ -132,7 +130,7 @@
                                         <div class="row">
 
                                             <div class="form-group col-sm-6 row">
-                                                <label for="name" class="col-sm-3 control-label"> Relation<span class="text-red">  </span></label>
+                                                <label for="name" class="col-sm-3 control-label"> Relation With Pfm<span class="text-red">  </span></label>
                                                 <div class="col-sm-6">                   
                                                     <select class="form-control  "  id="bookName"   name="relationWithPfm" >
                                                         <option value=" "> Select one</option>
@@ -198,19 +196,19 @@
                                             <div class="form-group col-sm-4 row">
                                                 <label for="name" class="col-sm-6 control-label"> Number of Sons<span class="text-red">  </span> </label>
                                                 <div class="col-sm-4">   
-                                                    <input type="number"  min="0" class="form-control  "     name="numberOfSons" />                
+                                                    <input type="number"  min="0" class="form-control"   placeholder="0"  value="" name="numberOfSons" />                
                                                 </div>                            
                                             </div>
                                             <div class="form-group col-sm-4 row">
                                                 <label for="name" class="col-sm-8 control-label"> Number Of Daughters<span class="text-red">  </span> </label>
                                                 <div class="col-sm-4">                   
-                                                    <input type="number"  min="0" class="form-control  "  id="bookName"  name="numberOfDaughters"  />
+                                                    <input type="number"  min="0" class="form-control" placeholder="0" value="" id="bookName"  name="numberOfDaughters"  />
                                                 </div>                            
                                             </div>
                                             <div class="form-group col-sm-4 row">
                                                 <label for="name" class="col-sm-8 control-label">  Number Of Eligible Children <span class="text-red">  </span> </label>
                                                 <div class="col-sm-4">                   
-                                                    <input type="number"   min="0" class="form-control  "  id="bookName"   name="numberOfEligibleChildren"  />                
+                                                    <input type="number"   min="0" class="form-control  "  id="bookName"  value="" placeholder="0" name="numberOfEligibleChildren"  />                
                                                 </div>                            
                                             </div>
                                         </div>

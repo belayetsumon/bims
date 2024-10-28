@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+        <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Income </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"> Per Capita Income  </h3>
+                        <div class="card-tools">
+                            <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        
+                                <form class="row  justify-content-center mb-5 " th:action="@{/homevisitreport/income}"   method="get" >
+                  
+                   
+                            <div class="col-auto">
+                                <label for="name" class=" control-label"> Monthly Income (Less Then):</label>
+                                <input type="number" min="0" name="monthlyincome">
+                            </div>
+                             <div class=" col-auto text-center">
+                                <button type="submit" class="btn btn-info btn-sm">Search</button>
+                            </div>
+
+                        </form> 
+                        <hr>
+                        
+                        <table id="tablesdata"   class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="mt-5">
+                                    <th>#</th>
+                                    <th>Mother Code </th>
+                                    <th>Mother name </th>
+                                    <th>Mother mobile </th>
+                                    <th>Income Generating Activities  </th>
+                                    <th>Monthly Income (Approx)/Taka</th>
+                                    <th>Other Income Source</th>
+                                    <th>Other Income Amount/Taka</th>
+                                    <th>Total Household Members</th>
+                                    <th>Per Capita Income/Taka</th>
+                                    <th>Remark</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr th:each="tuple,status:${list}">     
+                                    <td th:text="${tuple.get('id')}">  </td>
+                                    <td th:text="${tuple.get('motherMasterCode')}">  </td>
+                                    <td th:text="${tuple.get('motherName')}">  </td>
+                                    <td th:text="${tuple.get('mobileNumber')}">  </td>
+                                    <td th:text="${tuple.get('incomeGeneratingActivites')}">  </td>
+                                    <td th:text="${tuple.get('monthlyIncome')}"> </td>
+                                    <td th:text="${tuple.get('otherIncomeSource')}">  </td>
+                                    <td th:text="${tuple.get('otherIncomeAmt')}">  </td>     
+                                    <td th:text="${tuple.get('totalHouseMember')}">  </td>
+                                    <td th:text="${tuple.get('percapita')}">  </td>
+                                    <td th:text="${tuple.get('remarks')}">  </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+
+                    </div>
+                </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

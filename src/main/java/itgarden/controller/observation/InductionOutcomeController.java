@@ -10,6 +10,7 @@ import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
 import itgarden.repository.observation.O_Professional_Obserbations_MotherRepository;
+import itgarden.services.observation.InductionoutcomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,13 +36,18 @@ public class InductionOutcomeController {
 
     @Autowired
     MotherMasterDataRepository motherMasterDataRepository;
+    
+    @Autowired
+    InductionoutcomeService inductionoutcomeService;
 
     @RequestMapping("/mothersearch")
     public String mothersearch(Model model) {
 
        // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityOrderByIdDesc(Eligibility.Eligible));
 
-        model.addAttribute("o_Induction", o_InductionRepository.findAll());
+      //  model.addAttribute("o_Induction", o_InductionRepository.findAll());
+        
+        model.addAttribute("o_Induction", inductionoutcomeService.allinductionData());
 
         return "homevisit/observation/inductionoutcome/mothersearch";
     }
@@ -52,8 +58,9 @@ public class InductionOutcomeController {
         motherMasterData.setId(id);
         model.addAttribute("o_Induction", o_InductionRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findBymotherMasterCode(motherMasterData));
-        model.addAttribute("o_ProfessionalObserbationsMother", o_Professional_Obserbations_MotherRepository.findBymotherMasterCode(motherMasterData));
+      //  model.addAttribute("o_ProfessionalObserbationsMother", o_Professional_Obserbations_MotherRepository.findBymotherMasterCode(motherMasterData));
         return "homevisit/observation/inductionoutcome/inductionoutcomeindex";
     }
+    
 
 }

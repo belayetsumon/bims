@@ -19,11 +19,11 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 /**
  *
@@ -41,18 +41,20 @@ public class FollowUpMother {
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
 
-    @NotBlank(message = "This field cannot be blank.")
-    @Size(min = 1, max = 200, message = "This field must between 1 and 200 characters")
-    public String releaseDate;
+    @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate releaseDate;
 
     @NotBlank(message = "Visited Staff name field cannot be blank.")
     public String visitedStaffName;
 
-    @NotBlank(message = "Follow up date field cannot be blank.")
-    public String FollowUpDate;
+     @NotNull(message = "Follow up date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate FollowUpDate;
 
-    @NotBlank(message = "Last follow up date field cannot be blank.")
-    public String lastFollowUpDate;
+    @NotNull(message = "Last follow date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate lastFollowUpDate;
 
     @NotBlank(message = "Number of follow up  field cannot be blank.")
     public String numberOfFollowUp;
@@ -128,7 +130,7 @@ public class FollowUpMother {
     public FollowUpMother() {
     }
 
-    public FollowUpMother(Long id, MotherMasterData motherMasterCode, String releaseDate, String visitedStaffName, String FollowUpDate, String lastFollowUpDate, String numberOfFollowUp, String durationOfStayCommunity, String addressWithContact, String homeEnvironment, String worksiteEnvironment, String currentProperty, String goNgoSupport, String sppsavingMoney, String presentIga, String presentChallenges, String resolvedChallenges, String expectationsFromSpp, String clinic, String handWash, String recommendation, String remarks, Users createdBy, Users updatedBy) {
+    public FollowUpMother(Long id, MotherMasterData motherMasterCode, LocalDate releaseDate, String visitedStaffName, LocalDate FollowUpDate, LocalDate lastFollowUpDate, String numberOfFollowUp, String durationOfStayCommunity, String addressWithContact, String homeEnvironment, String worksiteEnvironment, String currentProperty, String goNgoSupport, String sppsavingMoney, String presentIga, String presentChallenges, String resolvedChallenges, String expectationsFromSpp, String clinic, String handWash, String recommendation, String remarks, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.releaseDate = releaseDate;
@@ -171,11 +173,11 @@ public class FollowUpMother {
         this.motherMasterCode = motherMasterCode;
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -187,19 +189,19 @@ public class FollowUpMother {
         this.visitedStaffName = visitedStaffName;
     }
 
-    public String getFollowUpDate() {
+    public LocalDate getFollowUpDate() {
         return FollowUpDate;
     }
 
-    public void setFollowUpDate(String FollowUpDate) {
+    public void setFollowUpDate(LocalDate FollowUpDate) {
         this.FollowUpDate = FollowUpDate;
     }
 
-    public String getLastFollowUpDate() {
+    public LocalDate getLastFollowUpDate() {
         return lastFollowUpDate;
     }
 
-    public void setLastFollowUpDate(String lastFollowUpDate) {
+    public void setLastFollowUpDate(LocalDate lastFollowUpDate) {
         this.lastFollowUpDate = lastFollowUpDate;
     }
 
@@ -362,4 +364,6 @@ public class FollowUpMother {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+    
 }
