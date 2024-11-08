@@ -33,11 +33,11 @@
 // District Thana Cascade End
 
 // file validation for pic
-$(document).ready(function () {
-    $.validate({
-        modules: 'file'
-    });
-});
+//$(document).ready(function () {
+//    $.validate({
+//        modules: 'file'
+//    });
+//});
 
 
 

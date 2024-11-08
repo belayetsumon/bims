@@ -12,10 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableAutoConfiguration
 @ComponentScan
 @EnableJpaRepositories(basePackages = {"itgarden.repository"})
+//@EnableAdminServer
 public class ItgardenbaseApplication {
 
     public static void main(String[] args) {
+        
         SpringApplication.run(ItgardenbaseApplication.class, args);
-}
+    }
 
 }

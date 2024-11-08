@@ -6,7 +6,6 @@
 package itgarden.model.reintegration_release;
 
 import itgarden.model.auth.Users;
-import itgarden.model.homevisit.M_Current_Help;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.impactmeasurement.LongTermImpactMeasurement;
 import itgarden.model.impactmeasurement.MidTermImpactMeasurement;

@@ -21,7 +21,6 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -43,8 +42,6 @@ public class O_ChildAdmission {
     @OneToOne(optional = false)
     public M_Child_info childMasterCode;
 
- 
-    
     @Column(nullable = false)
     @NotNull(message = "Arrival date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")

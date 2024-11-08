@@ -3,13 +3,24 @@ package itgarden.services.homevisit;
 import itgarden.model.homevisit.DTO.MotherMasterDataDTO;
 import itgarden.model.homevisit.Decision;
 import itgarden.model.homevisit.Eligibility;
+import itgarden.model.homevisit.M_Accessibility;
 import itgarden.model.homevisit.M_Address;
 import itgarden.model.homevisit.M_Approval;
 import itgarden.model.homevisit.M_Child_info;
+import itgarden.model.homevisit.M_Community_Information;
+import itgarden.model.homevisit.M_Current_Help;
+import itgarden.model.homevisit.M_Family_information;
+import itgarden.model.homevisit.M_House_Information;
+import itgarden.model.homevisit.M_Income_Information;
+import itgarden.model.homevisit.M_Lifestyle;
+import itgarden.model.homevisit.M_Local_Govt_Facilities;
+import itgarden.model.homevisit.M_Nutrition;
+import itgarden.model.homevisit.M_Property;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Reasons;
 import itgarden.model.observation.O_Induction;
 import itgarden.model.observation.O_MHealthConditions;
+import itgarden.model.observation.O_Professional_Obserbations_Mother;
 import itgarden.services.DateConverter;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -66,10 +77,12 @@ public class MotherMasterDataServices {
         List<Tuple> result = em.createQuery(cq).getResultList();
 
         List<Long> idList = new ArrayList<Long>();
+
         for (Tuple t : result) {
             Long id = t.get(0, Long.class);
             idList.add(id);
         }
+
         return idList;
     }
 
@@ -202,8 +215,467 @@ public class MotherMasterDataServices {
 
             motherList.add(motherDTO);
         }
-
         return motherList;
+    }
+
+    // Icomplete Motherdetails List 
+    public List<Map<String, Object>> motherDetailsIncompleteList() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<MotherMasterData> root = cq.from(MotherMasterData.class);
+
+        // Join to ensure address and property relationships
+        Join<MotherMasterData, M_Address> mAddressJoin = root.join("maddress", JoinType.LEFT);
+        Join<MotherMasterData, M_Accessibility> maccessibilityJoin = root.join("maccessibility", JoinType.LEFT);
+        Join<MotherMasterData, M_Community_Information> mcommunityInformationJoin = root.join("mcommunityInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Current_Help> mcurrentHelpJoin = root.join("mcurrentHelp", JoinType.LEFT);
+        Join<MotherMasterData, M_Family_information> mfamilynformationJoin = root.join("mfamilynformation", JoinType.LEFT);
+        Join<MotherMasterData, M_House_Information> mhouseInformationJoin = root.join("mhouseInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Lifestyle> mlifestyleJoin = root.join("mlifestyle", JoinType.LEFT);
+        Join<MotherMasterData, M_Income_Information> mincomeInformationJoin = root.join("mincomeInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Local_Govt_Facilities> mlocalGovtFacilitiesJoin = root.join("mlocalGovtFacilities", JoinType.LEFT);
+        Join<MotherMasterData, M_Property> mPropertyJoin = root.join("mproperty", JoinType.LEFT);
+        Join<MotherMasterData, M_Nutrition> mnutritionJoin = root.join("mnutrition", JoinType.LEFT);
+
+        // Conditions for address or property being null
+        Predicate addressNull = cb.isNull(mAddressJoin);
+        Predicate maccessibilityNull = cb.isNull(maccessibilityJoin);
+        Predicate mcommunityInformationNull = cb.isNull(mcommunityInformationJoin);
+        Predicate mcurrentHelpNull = cb.isNull(mcurrentHelpJoin);
+        Predicate mfamilynformationNull = cb.isNull(mfamilynformationJoin);
+        Predicate mhouseInformationNull = cb.isNull(mhouseInformationJoin);
+        Predicate mlifestyleNull = cb.isNull(mlifestyleJoin);
+        Predicate mincomeInformationNull = cb.isNull(mincomeInformationJoin);
+        Predicate mlocalGovtFacilitiesNull = cb.isNull(mlocalGovtFacilitiesJoin);
+        Predicate propertyNull = cb.isNull(mPropertyJoin);
+        Predicate mnutritionNull = cb.isNull(mnutritionJoin);
+        Predicate eligibilityStatus = cb.equal(root.get("eligibility"), Eligibility.Eligible);
+
+        // Combine predicates with OR condition
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("visitOfficersName").alias("officersName"),
+                root.get("dateReferral").alias("referralDate"),
+                root.get("referredFrom").alias("referredFrom"),
+                root.get("resons").get("name").alias("resons"),
+                root.get("homeVisitDate").alias("homeVisitDate"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherName").alias("motherFullName"),
+                root.get("dateOfBirth").alias("dateOfBirth"),
+                root.get("age").alias("ageYears"),
+                root.get("mMothersName").alias("mmothersName"),
+                root.get("mobileNumber").alias("mobileNumber"),
+                root.get("religion").get("name").alias("religion"),
+                root.get("maritalStatus").get("name").alias("maritalStatus"),
+                root.get("husbandsName").alias("husbandName"),
+                root.get("husbandsStatus").get("name").alias("husbandStatus"),
+                root.get("primeFamilyMemberName").alias("familyMemberName"),
+                root.get("relationWithPfm").alias("relationToPfm"),
+                root.get("ethnicIdentity").get("name").alias("ethnicity"),
+                root.get("educationLevel").get("name").alias("educationLevelDetails"),
+                root.get("educationType").get("name").alias("educationTypeDetails"),
+                root.get("occupation").get("name").alias("occupationDetails"),
+                root.get("physicalStatus").alias("physicalCondition"),
+                root.get("immunization").alias("immunizationStatus"),
+                root.get("numberOfSons").alias("sonsCount"),
+                root.get("numberOfDaughters").alias("daughtersCount"),
+                root.get("numberOfEligibleChildren").alias("eligibleChildrenCount"),
+                root.get("majorFindings").alias("findings"),
+                root.get("socialviolence").alias("socialViolenceStatus"),
+                root.get("childrenFacedSocialViolence").alias("childrenSocialViolenceStatus"),
+                root.get("sexualAbuse").alias("sexualAbuseStatus"),
+                root.get("childrenSexualAbuse").alias("childrenSexualAbuseStatus"),
+                root.get("earlyMarriage").alias("earlyMarriageStatus"),
+                root.get("pregnancyAfterBeingRaped").alias("pregnancyStatus"),
+                root.get("facedDowryAbuse").alias("dowryAbuseStatus"),
+                root.get("otherRemarks").alias("additionalRemarks"),
+                root.get("eligibility").alias("eligibilityStatus"),
+                root.get("created").alias("created")
+        );
+
+        cq.where(cb.and(eligibilityStatus, cb.or(
+                addressNull,
+                maccessibilityNull,
+                mcommunityInformationNull,
+                mcurrentHelpNull,
+                mfamilynformationNull,
+                mhouseInformationNull,
+                mlifestyleNull,
+                mincomeInformationNull,
+                mlocalGovtFacilitiesNull,
+                propertyNull,
+                mnutritionNull
+        )));
+        cq.orderBy(cb.desc(root.get("id")));
+        // Execute the query
+        List<Tuple> results = em.createQuery(cq).getResultList();
+
+        List<Map<String, Object>> mappedResults = new ArrayList<>();
+
+        for (Tuple result : results) {
+
+            Map<String, Object> aliasMap = new HashMap<>();
+
+            aliasMap.put("id", result.get("id"));
+            aliasMap.put("visitOfficersName", result.get("officersName"));
+            aliasMap.put("dateReferral", result.get("referralDate"));
+            aliasMap.put("referredFrom", result.get("referredFrom"));
+            aliasMap.put("resons", result.get("resons"));
+            aliasMap.put("homeVisitDate", result.get("homeVisitDate"));
+            aliasMap.put("motherMasterCode", result.get("motherMasterCode"));
+            aliasMap.put("motherName", result.get("motherFullName"));
+            aliasMap.put("dateOfBirth", result.get("dateOfBirth"));
+            aliasMap.put("age", result.get("ageYears"));
+            aliasMap.put("mMothersName", result.get("mmothersName"));
+            aliasMap.put("mobileNumber", result.get("mobileNumber"));
+            aliasMap.put("religion", result.get("religion"));
+            aliasMap.put("maritalStatus", result.get("maritalStatus"));
+            aliasMap.put("husbandsName", result.get("husbandName"));
+            aliasMap.put("husbandsStatus", result.get("husbandStatus"));
+            aliasMap.put("primeFamilyMemberName", result.get("familyMemberName"));
+            aliasMap.put("relationWithPfm", result.get("relationToPfm"));
+            aliasMap.put("ethnicIdentity", result.get("ethnicity"));
+            aliasMap.put("educationLevel", result.get("educationLevelDetails"));
+            aliasMap.put("educationType", result.get("educationTypeDetails"));
+            aliasMap.put("occupation", result.get("occupationDetails"));
+            aliasMap.put("physicalStatus", result.get("physicalCondition"));
+            aliasMap.put("immunization", result.get("immunizationStatus"));
+            aliasMap.put("numberOfSons", result.get("sonsCount"));
+            aliasMap.put("numberOfDaughters", result.get("daughtersCount"));
+            aliasMap.put("numberOfEligibleChildren", result.get("eligibleChildrenCount"));
+            aliasMap.put("majorFindings", result.get("findings"));
+            aliasMap.put("socialviolence", result.get("socialViolenceStatus"));
+            aliasMap.put("childrenFacedSocialViolence", result.get("childrenSocialViolenceStatus"));
+            aliasMap.put("sexualAbuse", result.get("sexualAbuseStatus"));
+            aliasMap.put("childrenSexualAbuse", result.get("childrenSexualAbuseStatus"));
+            aliasMap.put("earlyMarriage", result.get("earlyMarriageStatus"));
+            aliasMap.put("pregnancyAfterBeingRaped", result.get("pregnancyStatus"));
+            aliasMap.put("facedDowryAbuse", result.get("dowryAbuseStatus"));
+            aliasMap.put("otherRemarks", result.get("additionalRemarks"));
+            aliasMap.put("eligibility", result.get("eligibilityStatus"));
+            aliasMap.put("created", result.get("created"));
+            mappedResults.add(aliasMap);
+        }
+        return mappedResults;
+    }
+
+    // All mothers Detels empty
+    public List<Map<String, Object>> allmothersDetailsEmptyList() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<MotherMasterData> root = cq.from(MotherMasterData.class);
+
+        // Join to ensure address and property relationships
+        Join<MotherMasterData, M_Address> mAddressJoin = root.join("maddress", JoinType.LEFT);
+        Join<MotherMasterData, M_Accessibility> maccessibilityJoin = root.join("maccessibility", JoinType.LEFT);
+        Join<MotherMasterData, M_Community_Information> mcommunityInformationJoin = root.join("mcommunityInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Current_Help> mcurrentHelpJoin = root.join("mcurrentHelp", JoinType.LEFT);
+        Join<MotherMasterData, M_Family_information> mfamilynformationJoin = root.join("mfamilynformation", JoinType.LEFT);
+        Join<MotherMasterData, M_House_Information> mhouseInformationJoin = root.join("mhouseInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Lifestyle> mlifestyleJoin = root.join("mlifestyle", JoinType.LEFT);
+        Join<MotherMasterData, M_Income_Information> mincomeInformationJoin = root.join("mincomeInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Local_Govt_Facilities> mlocalGovtFacilitiesJoin = root.join("mlocalGovtFacilities", JoinType.LEFT);
+        Join<MotherMasterData, M_Property> mPropertyJoin = root.join("mproperty", JoinType.LEFT);
+        Join<MotherMasterData, M_Nutrition> mnutritionJoin = root.join("mnutrition", JoinType.LEFT);
+
+        // Conditions for address or property being null
+        List<Predicate> predicates = new ArrayList<>();
+
+//        Predicate addressNull = cb.isNull(mAddressJoin);
+//        Predicate maccessibilityNull = cb.isNull(maccessibilityJoin);
+//        Predicate mcommunityInformationNull = cb.isNull(mcommunityInformationJoin);
+//        Predicate mcurrentHelpNull = cb.isNull(mcurrentHelpJoin);
+//        Predicate mfamilynformationNull = cb.isNull(mfamilynformationJoin);
+//        Predicate mhouseInformationNull = cb.isNull(mhouseInformationJoin);
+//        Predicate mlifestyleNull = cb.isNull(mlifestyleJoin);
+//        Predicate mincomeInformationNull = cb.isNull(mincomeInformationJoin);
+//        Predicate mlocalGovtFacilitiesNull = cb.isNull(mlocalGovtFacilitiesJoin);
+//        Predicate propertyNull = cb.isNull(mPropertyJoin);
+//        Predicate mnutritionNull = cb.isNull(mnutritionJoin);
+//        Predicate eligibilityStatus = cb.equal( root.get("eligibility"),Eligibility.Eligible);
+        predicates.add(cb.isNull(mAddressJoin));
+        predicates.add(cb.isNull(maccessibilityJoin));
+        predicates.add(cb.isNull(mcommunityInformationJoin));
+        predicates.add(cb.isNull(mcurrentHelpJoin));
+        predicates.add(cb.isNull(mfamilynformationJoin));
+        predicates.add(cb.isNull(mhouseInformationJoin));
+        predicates.add(cb.isNull(mlifestyleJoin));
+        predicates.add(cb.isNull(mincomeInformationJoin));
+        predicates.add(cb.isNull(mlocalGovtFacilitiesJoin));
+        predicates.add(cb.isNull(mPropertyJoin));
+        predicates.add(cb.isNull(mnutritionJoin));
+        predicates.add(cb.equal(root.get("eligibility"), Eligibility.Eligible));
+
+        // Combine predicates with OR condition
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("visitOfficersName").alias("officersName"),
+                root.get("dateReferral").alias("referralDate"),
+                root.get("referredFrom").alias("referredFrom"),
+                root.get("resons").get("name").alias("resons"),
+                root.get("homeVisitDate").alias("homeVisitDate"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherName").alias("motherFullName"),
+                root.get("dateOfBirth").alias("dateOfBirth"),
+                root.get("age").alias("ageYears"),
+                root.get("mMothersName").alias("mmothersName"),
+                root.get("mobileNumber").alias("mobileNumber"),
+                root.get("religion").get("name").alias("religion"),
+                root.get("maritalStatus").get("name").alias("maritalStatus"),
+                root.get("husbandsName").alias("husbandName"),
+                root.get("husbandsStatus").get("name").alias("husbandStatus"),
+                root.get("primeFamilyMemberName").alias("familyMemberName"),
+                root.get("relationWithPfm").alias("relationToPfm"),
+                root.get("ethnicIdentity").get("name").alias("ethnicity"),
+                root.get("educationLevel").get("name").alias("educationLevelDetails"),
+                root.get("educationType").get("name").alias("educationTypeDetails"),
+                root.get("occupation").get("name").alias("occupationDetails"),
+                root.get("physicalStatus").alias("physicalCondition"),
+                root.get("immunization").alias("immunizationStatus"),
+                root.get("numberOfSons").alias("sonsCount"),
+                root.get("numberOfDaughters").alias("daughtersCount"),
+                root.get("numberOfEligibleChildren").alias("eligibleChildrenCount"),
+                root.get("majorFindings").alias("findings"),
+                root.get("socialviolence").alias("socialViolenceStatus"),
+                root.get("childrenFacedSocialViolence").alias("childrenSocialViolenceStatus"),
+                root.get("sexualAbuse").alias("sexualAbuseStatus"),
+                root.get("childrenSexualAbuse").alias("childrenSexualAbuseStatus"),
+                root.get("earlyMarriage").alias("earlyMarriageStatus"),
+                root.get("pregnancyAfterBeingRaped").alias("pregnancyStatus"),
+                root.get("facedDowryAbuse").alias("dowryAbuseStatus"),
+                root.get("otherRemarks").alias("additionalRemarks"),
+                root.get("eligibility").alias("eligibilityStatus"),
+                root.get("created").alias("created")
+        );
+
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
+//        cq.where(cb.and(eligibilityStatus,
+//                addressNull,
+//                maccessibilityNull,
+//                mcommunityInformationNull,
+//                mcurrentHelpNull,
+//                mfamilynformationNull,
+//                mhouseInformationNull,
+//                mlifestyleNull,
+//                mincomeInformationNull,
+//                mlocalGovtFacilitiesNull,
+//                propertyNull,
+//                mnutritionNull
+//        ));
+        cq.orderBy(cb.desc(root.get("id")));
+        // Execute the query
+        List<Tuple> results = em.createQuery(cq).getResultList();
+
+        List<Map<String, Object>> mappedResults = new ArrayList<>();
+
+        for (Tuple result : results) {
+
+            Map<String, Object> aliasMap = new HashMap<>();
+
+            aliasMap.put("id", result.get("id"));
+            aliasMap.put("visitOfficersName", result.get("officersName"));
+            aliasMap.put("dateReferral", result.get("referralDate"));
+            aliasMap.put("referredFrom", result.get("referredFrom"));
+            aliasMap.put("resons", result.get("resons"));
+            aliasMap.put("homeVisitDate", result.get("homeVisitDate"));
+            aliasMap.put("motherMasterCode", result.get("motherMasterCode"));
+            aliasMap.put("motherName", result.get("motherFullName"));
+            aliasMap.put("dateOfBirth", result.get("dateOfBirth"));
+            aliasMap.put("age", result.get("ageYears"));
+            aliasMap.put("mMothersName", result.get("mmothersName"));
+            aliasMap.put("mobileNumber", result.get("mobileNumber"));
+            aliasMap.put("religion", result.get("religion"));
+            aliasMap.put("maritalStatus", result.get("maritalStatus"));
+            aliasMap.put("husbandsName", result.get("husbandName"));
+            aliasMap.put("husbandsStatus", result.get("husbandStatus"));
+            aliasMap.put("primeFamilyMemberName", result.get("familyMemberName"));
+            aliasMap.put("relationWithPfm", result.get("relationToPfm"));
+            aliasMap.put("ethnicIdentity", result.get("ethnicity"));
+            aliasMap.put("educationLevel", result.get("educationLevelDetails"));
+            aliasMap.put("educationType", result.get("educationTypeDetails"));
+            aliasMap.put("occupation", result.get("occupationDetails"));
+            aliasMap.put("physicalStatus", result.get("physicalCondition"));
+            aliasMap.put("immunization", result.get("immunizationStatus"));
+            aliasMap.put("numberOfSons", result.get("sonsCount"));
+            aliasMap.put("numberOfDaughters", result.get("daughtersCount"));
+            aliasMap.put("numberOfEligibleChildren", result.get("eligibleChildrenCount"));
+            aliasMap.put("majorFindings", result.get("findings"));
+            aliasMap.put("socialviolence", result.get("socialViolenceStatus"));
+            aliasMap.put("childrenFacedSocialViolence", result.get("childrenSocialViolenceStatus"));
+            aliasMap.put("sexualAbuse", result.get("sexualAbuseStatus"));
+            aliasMap.put("childrenSexualAbuse", result.get("childrenSexualAbuseStatus"));
+            aliasMap.put("earlyMarriage", result.get("earlyMarriageStatus"));
+            aliasMap.put("pregnancyAfterBeingRaped", result.get("pregnancyStatus"));
+            aliasMap.put("facedDowryAbuse", result.get("dowryAbuseStatus"));
+            aliasMap.put("otherRemarks", result.get("additionalRemarks"));
+            aliasMap.put("eligibility", result.get("eligibilityStatus"));
+            aliasMap.put("created", result.get("created"));
+            mappedResults.add(aliasMap);
+        }
+        return mappedResults;
+    }
+
+    // All informations completed mother details list  
+    public List<Map<String, Object>> motherDetailscompleteList() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<MotherMasterData> root = cq.from(MotherMasterData.class);
+
+        // Join to ensure address and property relationships
+        Join<MotherMasterData, M_Address> mAddressJoin = root.join("maddress", JoinType.LEFT);
+        Join<MotherMasterData, M_Accessibility> maccessibilityJoin = root.join("maccessibility", JoinType.LEFT);
+        Join<MotherMasterData, M_Community_Information> mcommunityInformationJoin = root.join("mcommunityInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Current_Help> mcurrentHelpJoin = root.join("mcurrentHelp", JoinType.LEFT);
+        Join<MotherMasterData, M_Family_information> mfamilynformationJoin = root.join("mfamilynformation", JoinType.LEFT);
+        Join<MotherMasterData, M_House_Information> mhouseInformationJoin = root.join("mhouseInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Lifestyle> mlifestyleJoin = root.join("mlifestyle", JoinType.LEFT);
+        Join<MotherMasterData, M_Income_Information> mincomeInformationJoin = root.join("mincomeInformation", JoinType.LEFT);
+        Join<MotherMasterData, M_Local_Govt_Facilities> mlocalGovtFacilitiesJoin = root.join("mlocalGovtFacilities", JoinType.LEFT);
+        Join<MotherMasterData, M_Property> mPropertyJoin = root.join("mproperty", JoinType.LEFT);
+        Join<MotherMasterData, M_Nutrition> mnutritionJoin = root.join("mnutrition", JoinType.LEFT);
+
+        // Conditions for address or property being null
+//        Predicate address = cb.isNotNull(mAddressJoin);
+//        Predicate maccessibility = cb.isNotNull(maccessibilityJoin);
+//        Predicate mcommunityInformation = cb.isNotNull(mcommunityInformationJoin);
+//        Predicate mcurrentHelp = cb.isNotNull(mcurrentHelpJoin);
+//        Predicate mfamilynformation = cb.isNotNull(mfamilynformationJoin);
+//        Predicate mhouseInformation = cb.isNotNull(mhouseInformationJoin);
+//        Predicate mlifestyle = cb.isNotNull(mlifestyleJoin);
+//        Predicate mincomeInformation = cb.isNotNull(mincomeInformationJoin);
+//        Predicate mlocalGovtFacilities = cb.isNotNull(mlocalGovtFacilitiesJoin);
+//        Predicate property = cb.isNotNull(mPropertyJoin);
+//        Predicate mnutrition = cb.isNotNull(mnutritionJoin);
+//        Predicate eligibilityStatus = cb.equal(root.get("eligibility"), Eligibility.Eligible);
+ 
+List<Predicate> predicates = new ArrayList<>();
+        predicates.add(cb.isNotNull(mAddressJoin));
+        predicates.add(cb.isNotNull(maccessibilityJoin));
+        predicates.add(cb.isNotNull(mcommunityInformationJoin));
+        predicates.add(cb.isNotNull(mcurrentHelpJoin));
+        predicates.add(cb.isNotNull(mfamilynformationJoin));
+        predicates.add(cb.isNotNull(mhouseInformationJoin));
+        predicates.add(cb.isNotNull(mlifestyleJoin));
+        predicates.add(cb.isNotNull(mincomeInformationJoin));
+        predicates.add(cb.isNotNull(mlocalGovtFacilitiesJoin));
+        predicates.add(cb.isNotNull(mPropertyJoin));
+        predicates.add(cb.isNotNull(mnutritionJoin));
+        predicates.add(cb.equal(root.get("eligibility"), Eligibility.Eligible));
+
+        // Combine predicates with OR condition
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("visitOfficersName").alias("officersName"),
+                root.get("dateReferral").alias("referralDate"),
+                root.get("referredFrom").alias("referredFrom"),
+                root.get("resons").get("name").alias("resons"),
+                root.get("homeVisitDate").alias("homeVisitDate"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherName").alias("motherFullName"),
+                root.get("dateOfBirth").alias("dateOfBirth"),
+                root.get("age").alias("ageYears"),
+                root.get("mMothersName").alias("mmothersName"),
+                root.get("mobileNumber").alias("mobileNumber"),
+                root.get("religion").get("name").alias("religion"),
+                root.get("maritalStatus").get("name").alias("maritalStatus"),
+                root.get("husbandsName").alias("husbandName"),
+                root.get("husbandsStatus").get("name").alias("husbandStatus"),
+                root.get("primeFamilyMemberName").alias("familyMemberName"),
+                root.get("relationWithPfm").alias("relationToPfm"),
+                root.get("ethnicIdentity").get("name").alias("ethnicity"),
+                root.get("educationLevel").get("name").alias("educationLevelDetails"),
+                root.get("educationType").get("name").alias("educationTypeDetails"),
+                root.get("occupation").get("name").alias("occupationDetails"),
+                root.get("physicalStatus").alias("physicalCondition"),
+                root.get("immunization").alias("immunizationStatus"),
+                root.get("numberOfSons").alias("sonsCount"),
+                root.get("numberOfDaughters").alias("daughtersCount"),
+                root.get("numberOfEligibleChildren").alias("eligibleChildrenCount"),
+                root.get("majorFindings").alias("findings"),
+                root.get("socialviolence").alias("socialViolenceStatus"),
+                root.get("childrenFacedSocialViolence").alias("childrenSocialViolenceStatus"),
+                root.get("sexualAbuse").alias("sexualAbuseStatus"),
+                root.get("childrenSexualAbuse").alias("childrenSexualAbuseStatus"),
+                root.get("earlyMarriage").alias("earlyMarriageStatus"),
+                root.get("pregnancyAfterBeingRaped").alias("pregnancyStatus"),
+                root.get("facedDowryAbuse").alias("dowryAbuseStatus"),
+                root.get("otherRemarks").alias("additionalRemarks"),
+                root.get("eligibility").alias("eligibilityStatus"),
+                root.get("created").alias("created")
+        );
+ cq.where(cb.and(predicates.toArray(new Predicate[0])));
+ 
+//        cq.where(cb.and(
+//                address,
+//                maccessibility,
+//                mcommunityInformation,
+//                mcurrentHelp,
+//                mfamilynformation,
+//                mhouseInformation,
+//                mlifestyle,
+//                mincomeInformation,
+//                mlocalGovtFacilities,
+//                property,
+//                mnutrition,
+//                eligibilityStatus
+//        ));
+
+        cq.orderBy(cb.desc(root.get("id")));
+
+        // Execute the query
+        List<Tuple> results = em.createQuery(cq).getResultList();
+
+        List<Map<String, Object>> mappedResults = new ArrayList<>();
+
+        for (Tuple result : results) {
+
+            Map<String, Object> aliasMap = new HashMap<>();
+
+            aliasMap.put("id", result.get("id"));
+            aliasMap.put("visitOfficersName", result.get("officersName"));
+            aliasMap.put("dateReferral", result.get("referralDate"));
+            aliasMap.put("referredFrom", result.get("referredFrom"));
+            aliasMap.put("resons", result.get("resons"));
+            aliasMap.put("homeVisitDate", result.get("homeVisitDate"));
+            aliasMap.put("motherMasterCode", result.get("motherMasterCode"));
+            aliasMap.put("motherName", result.get("motherFullName"));
+            aliasMap.put("dateOfBirth", result.get("dateOfBirth"));
+            aliasMap.put("age", result.get("ageYears"));
+            aliasMap.put("mMothersName", result.get("mmothersName"));
+            aliasMap.put("mobileNumber", result.get("mobileNumber"));
+            aliasMap.put("religion", result.get("religion"));
+            aliasMap.put("maritalStatus", result.get("maritalStatus"));
+            aliasMap.put("husbandsName", result.get("husbandName"));
+            aliasMap.put("husbandsStatus", result.get("husbandStatus"));
+            aliasMap.put("primeFamilyMemberName", result.get("familyMemberName"));
+            aliasMap.put("relationWithPfm", result.get("relationToPfm"));
+            aliasMap.put("ethnicIdentity", result.get("ethnicity"));
+            aliasMap.put("educationLevel", result.get("educationLevelDetails"));
+            aliasMap.put("educationType", result.get("educationTypeDetails"));
+            aliasMap.put("occupation", result.get("occupationDetails"));
+            aliasMap.put("physicalStatus", result.get("physicalCondition"));
+            aliasMap.put("immunization", result.get("immunizationStatus"));
+            aliasMap.put("numberOfSons", result.get("sonsCount"));
+            aliasMap.put("numberOfDaughters", result.get("daughtersCount"));
+            aliasMap.put("numberOfEligibleChildren", result.get("eligibleChildrenCount"));
+            aliasMap.put("majorFindings", result.get("findings"));
+            aliasMap.put("socialviolence", result.get("socialViolenceStatus"));
+            aliasMap.put("childrenFacedSocialViolence", result.get("childrenSocialViolenceStatus"));
+            aliasMap.put("sexualAbuse", result.get("sexualAbuseStatus"));
+            aliasMap.put("childrenSexualAbuse", result.get("childrenSexualAbuseStatus"));
+            aliasMap.put("earlyMarriage", result.get("earlyMarriageStatus"));
+            aliasMap.put("pregnancyAfterBeingRaped", result.get("pregnancyStatus"));
+            aliasMap.put("facedDowryAbuse", result.get("dowryAbuseStatus"));
+            aliasMap.put("otherRemarks", result.get("additionalRemarks"));
+            aliasMap.put("eligibility", result.get("eligibilityStatus"));
+            aliasMap.put("created", result.get("created"));
+            mappedResults.add(aliasMap);
+        }
+        return mappedResults;
     }
 
     // new mother child list search
@@ -404,73 +876,6 @@ public class MotherMasterDataServices {
         return mappedResults;
     }
 
-    // Pending Mother List for health chekup
-    public List<Map<String, Object>> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc() { // Field from M_Approval
-
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createTupleQuery();
-        Root<MotherMasterData> root = criteriaQuery.from(MotherMasterData.class);
-
-        // Join with M_Approval and left join O_Induction
-        Join<MotherMasterData, M_Approval> approvalJoin = root.join("mapproval", JoinType.LEFT);
-
-        Join<MotherMasterData, O_Induction> inductionJoin = root.join("oinduction", JoinType.LEFT);
-
-        // Create predicates for each condition
-        List<Predicate> predicates = new ArrayList<>();
-
-        // Condition for M_Approval
-        predicates.add(criteriaBuilder.equal(root.get("mapproval").get("decission"), Decision.Approve)); // Adjust as needed
-
-        // Condition for O_Induction to be null
-        predicates.add(criteriaBuilder.isNull(inductionJoin)); // Check if O_Induction is null
-
-        // Combine all predicates
-        criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
-
-        // Specify the fields to select with aliases
-        criteriaQuery.multiselect(
-                root.get("id").alias("id"),
-                root.get("motherMasterCode").alias("motherMasterCode"),
-                root.get("homeVisitDate").alias("homeVisitDate"),
-                root.get("motherName").alias("motherName"),
-                root.get("mobileNumber").alias("mobileNumber"),
-                root.get("dateOfBirth").alias("dateOfBirth"),
-                root.get("mapproval").get("decission").alias("decission"),
-                root.get("mapproval").get("approveDate").alias("approveDate")
-        );
-
-        // Execute the query
-        List<Tuple> results = em.createQuery(criteriaQuery).getResultList();
-
-        // Convert results to List<Map<String, Object>>
-        List<Map<String, Object>> mappedResults = new ArrayList<>();
-        for (Tuple result : results) {
-
-            Map<String, Object> map = new HashMap<>();
-
-            map.put("id", result.get("id", Long.class));
-
-            map.put("motherMasterCode", result.get("motherMasterCode", String.class));
-
-            map.put("homeVisitDate", dateConverter.convertDateFormat(result.get("homeVisitDate", LocalDate.class)));
-
-            map.put("motherName", result.get("motherName", String.class));
-
-            map.put("mobileNumber", result.get("mobileNumber", String.class));
-
-            map.put("dateOfBirth", dateConverter.convertDateFormat(result.get("dateOfBirth", LocalDate.class)));
-
-            map.put("decission", result.get("decission", Decision.class));
-
-            map.put("approveDate", dateConverter.convertDateFormat(result.get("approveDate", LocalDate.class)));
-
-            mappedResults.add(map);
-        }
-
-        return mappedResults;
-    }
-
 // pending mother List for helthchek up
     public List<Map<String, Object>> findMotherMasterDataWithInductionNotNullAndHealthConditionsNull() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -480,7 +885,7 @@ public class MotherMasterDataServices {
 
         // Join with O_Induction and O_MHealthConditions
 //    Join<MotherMasterData, M_Approval> approvalJoin = root.join("mapproval", JoinType.LEFT);
-        Join<MotherMasterData, O_Induction> inductionJoin = root.join("oinduction",JoinType.LEFT);
+        Join<MotherMasterData, O_Induction> inductionJoin = root.join("oinduction", JoinType.LEFT);
         Join<MotherMasterData, O_MHealthConditions> healthConditionsJoin = root.join("omHealthConditions", JoinType.LEFT);
 
         // Create predicates for the conditions
@@ -512,23 +917,73 @@ public class MotherMasterDataServices {
         List<Map<String, Object>> mappedResults = new ArrayList<>();
         for (Tuple tuple : results) {
             Map<String, Object> map = new HashMap<>();
-            map.put("id", tuple.get("id",Long.class));
-            map.put("motherMasterCode", tuple.get("motherMasterCode",String.class));
+            map.put("id", tuple.get("id", Long.class));
+            map.put("motherMasterCode", tuple.get("motherMasterCode", String.class));
             map.put("homeVisitDate", dateConverter.convertDateFormat(tuple.get("homeVisitDate", LocalDate.class)));
-            map.put("motherName", tuple.get("motherName",String.class));
-            map.put("mobileNumber", tuple.get("mobileNumber",String.class));
-            map.put("startDate",  dateConverter.convertDateFormat(tuple.get("oinductionStartDate",LocalDate.class)));
-            map.put("endDate", tuple.get("oinductionEndDate",LocalDate.class));
+            map.put("motherName", tuple.get("motherName", String.class));
+            map.put("mobileNumber", tuple.get("mobileNumber", String.class));
+            map.put("startDate", dateConverter.convertDateFormat(tuple.get("oinductionStartDate", LocalDate.class)));
+            map.put("endDate", tuple.get("oinductionEndDate", LocalDate.class));
             mappedResults.add(map);
         }
         return mappedResults;
     }
 
-    
-    
-    
-    
-    
+    // pending mother list for profetional observation
+    //pendingMother_List_For_Professional_Observations
+    public List<Map<String, Object>> pending_Mother_List_For_Professional_Observations() {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createTupleQuery();
+
+        Root<MotherMasterData> root = criteriaQuery.from(MotherMasterData.class);
+
+        // Join with O_Induction and O_MHealthConditions
+//    Join<MotherMasterData, M_Approval> approvalJoin = root.join("mapproval", JoinType.LEFT);
+        Join<MotherMasterData, O_Induction> inductionJoin = root.join("oinduction", JoinType.LEFT);
+
+        Join<MotherMasterData, O_Professional_Obserbations_Mother> professionalObserbationsJpin = root.join("oprofessionalObserbationsMother", JoinType.LEFT);
+
+        // Create predicates for the conditions
+        List<Predicate> predicates = new ArrayList<>();
+
+        // predicates.add(criteriaBuilder.equal(root.get("mapproval").get("decission"), Decision.Approve));
+        predicates.add(criteriaBuilder.isNotNull(inductionJoin)); // O_Induction is not null
+
+        predicates.add(criteriaBuilder.isNull(professionalObserbationsJpin)); // O_MHealthConditions is null
+
+        // Combine predicates
+        criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
+
+        // Specify the fields to select with aliases
+        criteriaQuery.multiselect(
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("homeVisitDate").alias("homeVisitDate"),
+                root.get("motherName").alias("motherName"),
+                root.get("mobileNumber").alias("mobileNumber"),
+                root.get("oinduction").get("startDate").alias("oinductionStartDate"),
+                root.get("oinduction").get("endDate").alias("oinductionEndDate")
+        ).orderBy(criteriaBuilder.desc(root.get("id"))); // Order by id descending
+
+        // Execute the query
+        List<Tuple> results = em.createQuery(criteriaQuery).getResultList();
+
+        // Convert results to List<Map<String, Object>>
+        List<Map<String, Object>> mappedResults = new ArrayList<>();
+        for (Tuple tuple : results) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", tuple.get("id", Long.class));
+            map.put("motherMasterCode", tuple.get("motherMasterCode", String.class));
+            map.put("homeVisitDate", dateConverter.convertDateFormat(tuple.get("homeVisitDate", LocalDate.class)));
+            map.put("motherName", tuple.get("motherName", String.class));
+            map.put("mobileNumber", tuple.get("mobileNumber", String.class));
+            map.put("startDate", dateConverter.convertDateFormat(tuple.get("oinductionStartDate", LocalDate.class)));
+            map.put("endDate", tuple.get("oinductionEndDate", LocalDate.class));
+            mappedResults.add(map);
+        }
+        return mappedResults;
+    }
+
 //    public List<MotherMasterDataDTO> findByOinductionIsNullAndMapprovalDecission() {
 //        // Create CriteriaBuilder
 //        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

@@ -16,7 +16,7 @@
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support</a></li>
-                                <li class="breadcrumb-item active">Mother List For Therapeutic Sessions</li>
+                                <li class="breadcrumb-item active"> Pending Mother List For Therapeutic Sessions</li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="col-sm-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title">Mother List For Therapeutic Sessions </h3>
+                                <h3 class="card-title"> Pending Mother List For Therapeutic Sessions .<strong>  Total: [[${list.size()}]] </strong></h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
@@ -41,7 +41,6 @@
                                             <th> Id</th>
                                             <th>Mother Master Code</th>
                                             <th>Mother Name</th>
-                                            <th>Number Eligible Child </th>
                                             <th>Date Arrival</th>
                                             <th>Date Admission</th>
                                             <!--                                        <th>Pic</th>-->
@@ -51,14 +50,13 @@
                                         <tr th:each="o_MAddmission,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td> 
-                                                <a   th:href="@{/therapeuticsessions/index/{id} (id=${o_MAddmission.motherMasterCode.id})}" type="button" class="btn btn-xs bg-info">Therapeutic Sessions Details</a>
+                                                <a   th:href="@{/therapeuticsessions/index/{id} (id=${o_MAddmission.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info">Therapeutic Sessions Details</a>
                                             </td>
-                                            <td th:text="${o_MAddmission.id}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.motherName}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.numberOfEligibleChildren}">Chakma</td>
-                                            <td th:text="${o_MAddmission.dateArrival}">Chakma</td>
-                                            <td th:text="${o_MAddmission.dateAdmission}">Chakma</td>
+                                            <td th:text="${o_MAddmission.admissionId}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherMasterCode}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherName}">Chakma</td>
+                                           <td th:text="${o_MAddmission.arrivalDate}">Chakma</td>
+                                            <td th:text="${o_MAddmission.admissionDate}">Chakma</td>
                                         </tr>
                                     </tbody>
                                 </table>

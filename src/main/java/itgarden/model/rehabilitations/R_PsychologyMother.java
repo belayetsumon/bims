@@ -5,8 +5,10 @@
  */
 package itgarden.model.rehabilitations;
 
+import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Yes_No;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,6 +18,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.time.LocalDate;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -93,11 +100,26 @@ public class R_PsychologyMother {
 
     @Lob
     public String performanceEconomy;
+    
+        /**
+     * ********* Audit ******************************
+     */
+    @Column(insertable = true, updatable = false)
+    public LocalDate created = LocalDate.now();
+
+    @ManyToOne(optional = true)
+    public Users createdBy;
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(insertable = false, updatable = true)
+    public Date updated = new Date();
+    @ManyToOne(optional = true)
+    public Users updatedBy;
 
     public R_PsychologyMother() {
     }
 
-    public R_PsychologyMother(Long id, MotherMasterData motherMasterCode, int anger, int sad, int guilt, int happy, int tensed, int stress, EmotionStatusEnum emotionStatus, Yes_No selfHerm, CopingStrategyEnum copingStrategy, Presence_traumaEnum presenceTrauma, Family_Relationship_Enum familyRelationship, Yes_No hallucination, String hallucinationNote, Yes_No delusion, String delusionNote, Yes_No sleepDisturbance, IqEnum iQ, String fivebBasicNeed, String protection, String performanceWorkingSection, String performanceLiteracy, String performanceEconomy) {
+    public R_PsychologyMother(Long id, MotherMasterData motherMasterCode, int anger, int sad, int guilt, int happy, int tensed, int stress, EmotionStatusEnum emotionStatus, Yes_No selfHerm, CopingStrategyEnum copingStrategy, Presence_traumaEnum presenceTrauma, Family_Relationship_Enum familyRelationship, Yes_No hallucination, String hallucinationNote, Yes_No delusion, String delusionNote, Yes_No sleepDisturbance, IqEnum iQ, String fivebBasicNeed, String protection, String performanceWorkingSection, String performanceLiteracy, String performanceEconomy, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.anger = anger;
@@ -122,6 +144,8 @@ public class R_PsychologyMother {
         this.performanceWorkingSection = performanceWorkingSection;
         this.performanceLiteracy = performanceLiteracy;
         this.performanceEconomy = performanceEconomy;
+        this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
     }
 
     public Long getId() {
@@ -316,4 +340,37 @@ public class R_PsychologyMother {
         this.performanceEconomy = performanceEconomy;
     }
 
+    public LocalDate getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDate created) {
+        this.created = created;
+    }
+
+    public Users getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Users createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
+    public Users getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(Users updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    
 }

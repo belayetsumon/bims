@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-3">
+                            <h1>CMC Support</h1>
+                        </div>
+                        <div class="col-sm-9">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">CMC Support</a></li>
+                                <li class="breadcrumb-item active"> Work Allocated List</li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title"> Work Allocated List</h3>
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">  
+                                <a   th:href="@{/rmhousallocation/create}" type="button" class="btn  btn-light text-info btn-sm pull-right"> Add Mother House </a>
+                                <a  th:href="@{/"  type="button" class="btn btn-block btn-light  btn-sm  text-red">Close</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="width: 10px">#</th>  
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Mother Master Code</th>
+                                <th>House Name </th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Total Days</th>
+                                <th>Ext Date </th>
+                                <th>Total Days </th>
+                                <th>Remark</th>
+                            </tr>  
+
+                            <tr th:each="list,status:${list}">
+                                <td th:text="${status.count}">2.</td>
+                                <td><a   th:href="@{/rmhousallocation/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info">Edit</a></td>
+                                <td> <a   th:href="@{/rmhousallocation/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
+                                <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                <td th:text="${list.houseName.name}">Chakma</td>
+                                <td th:text="${list.allocationDate}">Chakma</td>
+                                <td th:text="${list.endDate}">Chakma</td>
+                                <td th:text="${list.endDate}">Chakma</td>                                 
+                                <td th:text="${list.extDate}">Chakma</td>
+                                <td th:text="${list.extDate}">Chakma</td>
+                                <td th:text="${list.remark}">Chakma</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+
+
+</div>

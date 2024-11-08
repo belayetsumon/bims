@@ -37,70 +37,90 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive ">
 
-<!--                        <form class="row  justify-content-center mb-5 " th:action="@{/homevisitreport/motherbydistrict}"   method="get" >
-                            <div class="col-auto">
-                                <label for="name" class="control-label"> Address Type :</label>
-                            </div>
-                            <div class="col-auto">
-                                <select class="form-control  "  id="bookName"  name="addressType" >
-                                    <option value=" "> Select one</option>
-                                    <option th:each =" addressType :${addresstypes}"
-                                            th:value=" ${addressType}" 
+                        <!--                        <form class="row  justify-content-center mb-5 " th:action="@{/homevisitreport/motherbydistrict}"   method="get" >
+                                                    <div class="col-auto">
+                                                        <label for="name" class="control-label"> Address Type :</label>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <select class="form-control  "  id="bookName"  name="addressType" >
+                                                            <option value=" "> Select one</option>
+                                                            <option th:each =" addressType :${addresstypes}"
+                                                                    th:value=" ${addressType}" 
+                        
+                                                                    th:text="${addressType}"> Select one</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <label for="name" class=" control-label"> District:</label>
+                                                    </div>
+                                                    <div class="col-auto"> 
+                                                        <select class="form-control  "    name="district" >
+                                                            <option value=" "> Select one</option>
+                                                            <option th:each ="district :${districtlist}"
+                                                                    th:value=" ${district}" 
+                                                                    th:text="${district}"> Select one</option>
+                                                        </select>
+                        
+                                                    </div>
+                        
+                        
+                        
+                                                    <div class=" col-auto text-center">
+                                                        <button type="submit" class="btn btn-info btn-sm">Search</button>
+                                                    </div>
+                        
+                                                </form>-->
+                        <hr>
 
-                                            th:text="${addressType}"> Select one</option>
-                                </select>
-                            </div>
-                            <div class="col-auto">
-                                <label for="name" class=" control-label"> District:</label>
-                            </div>
-                            <div class="col-auto"> 
-                                <select class="form-control  "    name="district" >
-                                    <option value=" "> Select one</option>
-                                    <option th:each ="district :${districtlist}"
-                                            th:value=" ${district}" 
-                                            th:text="${district}"> Select one</option>
-                                </select>
 
-                            </div>
+                        <hr>
 
-
-
-                            <div class=" col-auto text-center">
-                                <button type="submit" class="btn btn-info btn-sm">Search</button>
-                            </div>
-
-                        </form>-->
- <hr>
                         <table id="tablesdata"   class="table table-bordered table-striped">
                             <thead>
-                                <tr class="mt-5">
-                                    <th>#</th>
-                                    <th>Mother Code </th>
-                                    <th>Mother name </th>
-                                    <th>Mother mobile </th>
-                                    <th>Address Type </th>
-                                    <th>C/O</th>
-                                    <th>Vill/House</th>
-                                    <th>P.O</th>
-                                    <th>District</th>
-                                    <th>Thana</th>
+                                <tr>
+                                    <th>Mother Id </th>
+                                    <th>Homestead Land Quantity/Decimal</th>
+                                    <th>Homestead Land Value/Taka</th>
+                                    <th>Cultivable Land Quantity/Decimal</th>
+                                    <th>Cultivable Land Value/Taka</th>
+                                    <!--                                <th>Jewelry Quantity/vori</th>-->
+                                    <th>Jewelry Value/Taka</th>  
+                                    <th>Animals Quantity/Numbers</th>   
+                                    <th>Animals Value/Taka</th>  
+                                    <!--                                <th>Investments/Shares Quantity(Numbers)</th> 
+                                                                    <th>Investments/Shares Value(Taka)</th> -->
+                                    <th>Loan (Person) /Quantity</th>
+                                    <th>Loan (Person) Name</th>
+                                    <th>Loan (Organization) Quantity</th> 
+                                    <th>Loan (Organization) Name</th>
+                                    <th>Remark</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-<!--                                <tr th:each="tuple,status:${list}">        
-                                    <td th:text="${tuple.get('addressId')}">  </td>
-                                    <td th:text="${tuple.get('motherMasterCode')}">  </td>
-                                    <td th:text="${tuple.get('motherName')}">  </td>
-                                    <td th:text="${tuple.get('mobileNumber')}">  </td>
-                                    <td th:text="${tuple.get('addressType')}"> cccz </td>
-                                    <td th:text="${tuple.get('careOf')}"> cccz </td>
-                                    <td th:text="${tuple.get('village')}">    </td>
-                                    <td th:text="${tuple.get('postOffice')}">   </td>
-                                    <td th:text="${tuple.get('district')}">  </td>
-                                  <td th:text="${tuple.get('thana')}">  </td> 
-                                </tr>-->
+                                <tr th:each="property,status:${list}">      
+
+                                    <td th:text="${property.get('motherMasterCode')}">  </td>
+                                    <td th:text="${property.get('homelandQuantity')}">  </td>
+                                    <td th:text="${property.get('homeLandValue')}">   </td>
+                                    <td th:text="${property.get('cultivableLandQuantity')}">  </td>
+                                    <td th:text="${property.get('cultivableLandValue')}">   </td>
+                                    <!--                                <td th:text="${property.get('jewelryQuentity')}">   </td>-->
+                                    <td th:text="${property.get('jewelryValue')}">   </td>
+                                    <td th:text="${property.get('animalsQuantity')}">   </td>
+                                    <td th:text="${property.get('animalsValue')}">   </td>
+                                    <!--                                <td th:text="${property.get('investmentsSharesQuentity')}">   </td>
+                                                                      <td th:text="${property.get('investmentsSharesValue')}">   </td>-->
+                                    <td th:text="${property.get('loanPersonQuantity')}">   </td>
+                                    <td th:text="${property.get('loanPersonName')}">   </td>
+                                    <td th:text="${property.get('organizationsLoanQuantity')}">   </td>
+                                    <td th:text="${property.get('organizationName')}">   </td>
+                                    <td th:text="${property.get('remark')}">   </td>
+                                </tr>
                             </tbody>
                         </table>
+
+
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer clearfix">

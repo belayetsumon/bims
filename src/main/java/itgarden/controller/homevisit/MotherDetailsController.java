@@ -135,7 +135,8 @@ public class MotherDetailsController {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
 
         // model.addAttribute("list", motherMasterDataRepository.findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
-        model.addAttribute("list", motherMasterDataServices.findAllByEligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
+       // model.addAttribute("list", motherMasterDataServices.findAllByEligibilityAndMaddressIsNullOrderByIdDesc(Eligibility.Eligible));
+        model.addAttribute("list", motherMasterDataServices.allmothersDetailsEmptyList());
 
         return "homevisit/motherdetails/mothersearch";
     }
@@ -144,7 +145,9 @@ public class MotherDetailsController {
     public String allmotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
         // model.addAttribute("list", motherMasterDataRepository.findAllByOrderByIdDesc());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
+       // model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullOrderByIdDesc());
+       
+      model.addAttribute("list", motherMasterDataServices.motherDetailscompleteList());
 
         return "homevisit/motherdetails/allmotherdetails";
     }
@@ -152,8 +155,9 @@ public class MotherDetailsController {
     @RequestMapping("/incompletemotherdetails")
     public String incompletemotherdetails(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-        model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullAndMaccessibilityIsNullOrderByIdDesc());
-
+  //      model.addAttribute("list", motherMasterDataRepository.findAllByMaddressIsNotNullAndMaccessibilityIsNullOrderByIdDesc());
+      
+        model.addAttribute("list",  motherMasterDataServices.motherDetailsIncompleteList());
         return "homevisit/motherdetails/incompletemotherdetails";
     }
 
@@ -195,9 +199,9 @@ public class MotherDetailsController {
     @RequestMapping("/newchildren")
     public String newchildren(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
-     //   model.addAttribute("list", motherMasterDataRepository.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(0, Decision.Approve));
-       
-       model.addAttribute("list",    motherMasterDataServices.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc());
+        //   model.addAttribute("list", motherMasterDataRepository.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc(0, Decision.Approve));
+
+        model.addAttribute("list", motherMasterDataServices.findAllByMchildinfoIsNullAndNumberOfEligibleChildrenGreaterThanAndMapprovalDecissionOrderByIdDesc());
         return "homevisit/motherdetails/newchildren";
     }
 

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,7 +49,7 @@ public class WebSecurityConfig {
                 .defaultSuccessUrl("/", true)
                 .usernameParameter("username")
                 .passwordParameter("password")
-                //                .failureUrl("/login?error=true")
+                // .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
@@ -58,16 +57,14 @@ public class WebSecurityConfig {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/access-denied");
-
         http.csrf().disable();
-
         return http.build();
 
     }
-
     @Bean
     public WebSecurityCustomizer ignoringCustomizer() {
         return web -> web.ignoring().requestMatchers(
                 "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/webjars/**", "/files/**");
     }
+
 }

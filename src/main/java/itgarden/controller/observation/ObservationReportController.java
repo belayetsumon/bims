@@ -5,6 +5,8 @@
  */
 package itgarden.controller.observation;
 
+import itgarden.model.homevisit.Gender;
+import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.homevisit.M_ApprovalRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_CHealthConditionsRepository;
@@ -13,10 +15,17 @@ import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
 import itgarden.repository.observation.O_Professional_Obserbations_ChildRepository;
 import itgarden.repository.observation.O_Professional_Obserbations_MotherRepository;
+import itgarden.services.observation.O_CHealthConditionsService;
+import itgarden.services.observation.O_ChildAdmissionService;
+import itgarden.services.observation.O_MAddmissionService;
+import itgarden.services.observation.O_MHealthConditionsService;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -39,16 +48,22 @@ public class ObservationReportController {
     M_ApprovalRepository m_ApprovalRepository;
 
     @Autowired
-    O_Professional_Obserbations_ChildRepository o_Professional_Obserbations_ChildRepository;
-
-    @Autowired
-    O_Professional_Obserbations_MotherRepository o_Professional_Obserbations_MotherRepository;
-
-    @Autowired
     O_MAddmissionRepository o_MAddmissionRepository;
 
     @Autowired
     O_InductionRepository o_InductionRepository;
+
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
+
+    @Autowired
+    O_ChildAdmissionService o_ChildAdmissionService;
+
+    @Autowired
+    O_MHealthConditionsService o_MHealthConditionsService;
+
+    @Autowired
+    O_CHealthConditionsService o_CHealthConditionsService;
 
     @RequestMapping("/observation")
     public String observation(Model model) {
@@ -56,9 +71,31 @@ public class ObservationReportController {
     }
 
     @RequestMapping("/admissionlist")
-    public String admissionlist(Model model) {
-        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findAll());
+    public String admissionlist(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        // model.addAttribute("o_MAddmission", o_MAddmissionRepository.findAll());    
+        model.addAttribute("list", o_MAddmissionService.allAdmitedMotherPeriodicReportList(startDate, endDate));
+
         return "homevisit/report/admissionlist";
+    }
+
+    @RequestMapping("/childadmissionlist")
+    public String childadmissionlist(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate,
+            @RequestParam(name = "gender", required = false) Gender gender
+    ) {
+        // model.addAttribute("o_MAddmission", o_MAddmissionRepository.findAll()); 
+        model.addAttribute("genderList", Gender.values());
+        model.addAttribute("list", o_ChildAdmissionService.allAdmitedChildPeriodicReportList(
+                startDate,
+                endDate,
+                gender
+        ));
+
+        return "homevisit/observation/report/child_admissionlist";
     }
 
     @RequestMapping("/inductionlist")
@@ -68,28 +105,58 @@ public class ObservationReportController {
     }
 
     @RequestMapping("/healthcheckupmother")
-    public String healthcheckupmother(Model model) {
-        model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findAll());
+    public String healthcheckupmother(Model model,
+            @RequestParam(name = "bloodPressure", required = false) Yes_No bloodPressure,
+            @RequestParam(name = "eyeProblem", required = false) Yes_No eyeProblem,
+            @RequestParam(name = "earProblem", required = false) Yes_No earProblem,
+            @RequestParam(name = "gynologicalProblem", required = false) Yes_No gynologicalProblem,
+            @RequestParam(name = "tt", required = false) Yes_No tt,
+            @RequestParam(name = "heart_disease", required = false) Yes_No heart_disease,
+            @RequestParam(name = "diabetes", required = false) Yes_No diabetes,
+            @RequestParam(name = "bonyFracture", required = false) Yes_No bonyFracture,
+            @RequestParam(name = "neurologicalDisease", required = false) Yes_No neurologicalDisease,
+            @RequestParam(name = "resporatoryProblem", required = false) Yes_No resporatoryProblem,
+            @RequestParam(name = "uti", required = false) Yes_No uti
+    ) {
+        // model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findAll());
+
+        model.addAttribute("o_MHConditions", o_MHealthConditionsService.motherHelthConditionsReport(
+                bloodPressure,
+                eyeProblem,
+                earProblem,
+                gynologicalProblem,
+                tt,
+                heart_disease,
+                diabetes,
+                bonyFracture,
+                neurologicalDisease,
+                resporatoryProblem,
+                uti
+        ));
+        model.addAttribute("yesno", Yes_No.values());
         return "homevisit/observation/report/motherhealthcheckuplist";
     }
 
     @RequestMapping("/healthcheckupchild")
-    public String healthcheckupchild(Model model) {
-        model.addAttribute("o_CHealthConditions", o_CHealthConditionsRepository.findAll());
+    public String healthcheckupchild(Model model,
+            @RequestParam(name = "bloodPressure", required = false) Yes_No bloodPressure,
+            @RequestParam(name = "eyeProblem", required = false) Yes_No eyeProblem,
+            @RequestParam(name = "earProblem", required = false) Yes_No earProblem,
+            @RequestParam(name = "gynologicalProblem", required = false) Yes_No gynologicalProblem,
+            @RequestParam(name = "tt", required = false) Yes_No tt,
+            @RequestParam(name = "heart_disease", required = false) Yes_No heart_disease,
+            @RequestParam(name = "diabetes", required = false) Yes_No diabetes,
+            @RequestParam(name = "bonyFracture", required = false) Yes_No bonyFracture,
+            @RequestParam(name = "neurologicalDisease", required = false) Yes_No neurologicalDisease,
+            @RequestParam(name = "resporatoryProblem", required = false) Yes_No resporatoryProblem,
+            @RequestParam(name = "uti", required = false) Yes_No uti
+    ) {
+        model.addAttribute("yesno", Yes_No.values());
+        model.addAttribute("o_CHealthConditions", o_CHealthConditionsService.childHelthConditionsReport(bloodPressure, eyeProblem, earProblem, tt, heart_disease, diabetes, bonyFracture, neurologicalDisease, resporatoryProblem, uti));
         return "homevisit/observation/report/childhealthcondition ";
     }
 
-    @RequestMapping("/professionalobservationsmother")
-    public String professionalobservationsmother(Model model) {
-        model.addAttribute("o_ProfessionalObserbationsMother", o_Professional_Obserbations_MotherRepository.findAll());
-        return "homevisit/observation/report/professionalobservationmotherlist";
-    }
-
-    @RequestMapping("/professionalobservationschild")
-    public String professionalobservationschild(Model model) {
-        model.addAttribute("o_ProfessionalObserbationsChild", o_Professional_Obserbations_ChildRepository.findAll());
-        return "homevisit/observation/report/professionalobservationchildren";
-    }
+   
 
     @RequestMapping("/psychosocialassessmentneededbeneficiarieslist")
     public String psychosocialassessmentneededbeneficiarieslist(Model model) {

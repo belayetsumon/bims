@@ -13,6 +13,7 @@ import itgarden.repository.homevisit.projection.AllMotherInterface;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -36,6 +37,8 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
     // List<AllMotherInterface> findAllByeligibilityAndMAddressIsNullOrderByIdDesc(Eligibility eligibility);
     List<MotherMasterData> findAllByeligibilityAndMaddressIsNullOrderByIdDesc(Eligibility eligibility);
 
+    // incomplete mother list
+    
     List<AllMotherInterface> findAllByMaddressIsNotNullAndMaccessibilityIsNotNullAndMcommunityInformationIsNotNullAndMcurrentHelpIsNotNullAndMfamilynformationIsNotNullAndMhouseInformationIsNotNullAndMincomeInformationIsNotNullAndMlocalGovtFacilitiesIsNotNullAndMnutritionIsNotNullAndMpropertyIsNotNullAndMapprovalIsNullOrderByIdDesc();
 
     List<AllMotherInterface> findAllByMaddressIsNotNullAndMaccessibilityIsNullOrderByIdDesc();
@@ -62,8 +65,10 @@ public interface MotherMasterDataRepository extends JpaRepository<MotherMasterDa
     List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc();// criteria api created
 
     //List<MotherMasterData> findByoInductionIsNotNullAndOInductionOmHealthConditionsIsNullOrderByIdDesc();
+   
     // new  professional observations
-    List<MotherMasterData> findByOinductionIsNotNullAndOprofessionalObserbationsMotherIsNullOrderByIdDesc();
+
+     List<MotherMasterData> findByOinductionIsNotNullAndOprofessionalObserbationsMotherIsNullOrderByIdDesc();
 
     ///  New admission
     List<MotherMasterData> findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNotNullAndAddmissionIsNullOrderByIdDesc();

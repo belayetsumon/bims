@@ -81,6 +81,12 @@ public class L_Job {
     @ManyToOne(optional = true)
     public Users updatedBy;
 
+    public L_Job() {
+    }
+
+    
+    
+    
     public L_Job(Long id, M_Child_info childMasterCode, LocalDate jobDate, String address, LocalDate startDate, String jobType, String position, String organizationsName, LocalDate endDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;

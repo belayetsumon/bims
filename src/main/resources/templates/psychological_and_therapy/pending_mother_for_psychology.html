@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment="main_content">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-4">
+                            <h1>Psychological and Therapy Support</h1>
+                        </div>
+                        <div class="col-sm-8">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support</a></li>
+                                <li class="breadcrumb-item active">Pending Mother List For  Psychology Sessions</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Pending Mother List For Psychology Sessions.<strong>  Total: [[${list.size()}]] </strong></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+
+                                            <th>Id</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
+                                            <th>Date Arrival</th>
+                                            <th>Date Admission</th>
+                                            <th>Psychology  Sessions Details</th>
+                                                 </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="lists,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${lists.admissionId}">Chakma</td>
+                                            <td th:text="${lists.motherMasterCode}">Chakma</td>
+                                            <td th:text="${lists.motherName}">Chakma</td>
+       
+                                            <td th:text="${lists.arrivalDate}">Chakma</td>
+                                            <td th:text="${lists.admissionDate}">Chakma</td>
+                                            <td><a
+                                                    th:href="@{/psychologymother/addmother/{m_id} (m_id=${lists.motherMasterCodeId})}"
+                                                    type="button" class="btn btn-xs bg-info ">Psychology 
+                                                    Sessions Details</a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                  
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

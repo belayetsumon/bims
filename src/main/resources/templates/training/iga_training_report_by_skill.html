@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>  Livelihood Training Report</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Livelihood Training</a></li>
+                                <li class="breadcrumb-item "><a href="#"> Report</a> </li>
+                                <li class="breadcrumb-item active"> Livelihood Training Report by Mother </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Livelihood Training Report by Mothert</h3>
+
+                        <div class="card-tools">
+                            <div class="btn-group">
+                                <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body row">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="width: 10px">#</th>  
+
+                                <th>Mother Master Code</th>
+                                <th>Mother Name </th>
+                                <th>Training Name</th>
+                                <th>Prerequisite Skill </th>
+                                <th>Venue</th>
+                                <th> Start Date</th>
+                                <th>End Date</th>
+                                <th> Total Days</th>
+                                <th> Ext Date </th>
+                                <th> Total Days </th>
+                                <th>Conducted By</th>
+                            </tr>                         
+                            <tr th:each="list,status:${r_Life_Skill_Trainning}">
+
+                                <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                <td th:text="${list.name}">Chakma</td>
+                                <td th:text="${list.trainingName.name}">Chakma</td>
+                                <td th:text="${list.prerequisiteSkill}">Chakma</td>
+                                <td th:text="${list.location}">Chakma</td>
+                                <td th:text="${list.startDate}">Chakma</td>
+                                <td th:text="${list.endDate}">Chakma</td>
+                                <td th:text="${list.endDate}">Chakma</td>                                 
+                                <td th:text="${list.extentionDate}">Chakma</td>
+                                <td th:text="${list.extentionDate}">Chakma</td>
+                                <td th:text="${list.conductedBy}">Chakma</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>
