@@ -6,9 +6,21 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    School
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>   Training </h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Training</a></li>
+
+                                <li class="breadcrumb-item active"> Children List For Swim Safe Lesson </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
@@ -22,24 +34,28 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="table-responsive">  
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Mother master code</th>
-                                            <th>Mother Name</th>
-                                            <th>Child master code</th>
-                                            <th>Child Name</th>
-                                            <th>Add</th>  
-                                        </tr>                          
-                                        <tr th:each="list,status:${clildlist}">                                
-                                            <td th:text="${list.admissionId}">2.</td>      
-                                            <td th:text="${list.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherName}">Chakma</td>
-                                            <td th:text="${list.childMasterCode}">Chakma</td>
-                                            <td th:text="${list.name}">Chakma</td>
-                                            <td><a th:href="@{/swimming/create/{id}(id=${list.admissionId})}" type="button" class="btn btn-sm bg-info ">Add</a></td>
+                                    <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                                        <thead> 
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Mother master code</th>
+                                                <th>Mother Name</th>
+                                                <th>Child master code</th>
+                                                <th>Child Name</th>
+                                                <th>Add</th>  
+                                            </tr>  
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="list,status:${clildlist}">                                
+                                                <td th:text="${list.admissionId}">2.</td>      
+                                                <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.motherName}">Chakma</td>
+                                                <td th:text="${list.childMasterCode}">Chakma</td>
+                                                <td th:text="${list.name}">Chakma</td>
+                                                <td><a th:href="@{/swimming/create/{id}(id=${list.childMasterCodeId})}" type="button" class="btn btn-sm bg-info ">Add</a></td>
 
-                                        </tr> 
+                                            </tr> 
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@
                         <h3 class="card-title">Pre Reintegration Visit Mother <span th:text='${form_title}'>Add </span></h3>
                         <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                <a  th:href="@{/pre_reintegration_visit/motherlist/}"   type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close <i class="fas fa-times"></i></a>
+                                <a  th:href="@{/pre_reintegration_visit/motherlist}"   type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close <i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
@@ -62,9 +62,7 @@
                                     <label for="co" class="col-sm-3 control-label"> Visit date <span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
+                                      
 
                                             <input type="text"   class="form-control  "   th:field="*{visitDate}"  />                
                                         </div>
@@ -108,10 +106,7 @@
                                     <label for="co" class="col-sm-3 control-label"> Date to resolve <span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text"   class="form-control  "   th:field="*{shortTermPlanResolveDate}"  />                
+                                        <input type="text"   class="form-control  "   th:field="*{shortTermPlanResolveDate}"  />                
                                         </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('shortTermPlanResolveDate')}" th:errors="*{shortTermPlanResolveDate}">First Name Error</span>
                                     </div>   
@@ -133,10 +128,7 @@
                                     <label for="co" class="col-sm-3 control-label"> Date to resolve <span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input type="text"   class="form-control  "   th:field="*{longTermPlanResolveDate}"  />                
+                                        <input type="text"   class="form-control  "   th:field="*{longTermPlanResolveDate}"  />                
                                         </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('longTermPlanResolveDate')}" th:errors="*{longTermPlanResolveDate}">First Name Error</span>
                                     </div>   
@@ -158,14 +150,6 @@
                             </div>
                         </form>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <div class="card-tools pull-right">
-                            <div class="btn-group">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-footer-->
                 </div>
                 <!-- /.card -->
             </section>

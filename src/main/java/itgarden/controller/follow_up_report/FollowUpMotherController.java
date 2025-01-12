@@ -12,6 +12,7 @@ import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.follow_up_report.FollowUpMotherRepsitory;
 import itgarden.repository.follow_up_report.MotherCrisisMeetUpRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
+import itgarden.services.reintegration_release.ReleaseMotherService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,14 +42,19 @@ public class FollowUpMotherController {
 
     @Autowired
     FollowUpMotherRepsitory followUpMotherRepsitory;
-    
+
     @Autowired
-    MotherCrisisMeetUpRepository  motherCrisisMeetUpRepository;
+    MotherCrisisMeetUpRepository motherCrisisMeetUpRepository;
+
+    @Autowired
+    ReleaseMotherService releaseMotherService;
 
     @GetMapping("/mothersearch")
     public String motherSearch(Model model) {
 
-      model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
+       // model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
+        
+        model.addAttribute("list", releaseMotherService.getReleaseMotherList());
 
         return "follow_up_report/mothersearch";
     }

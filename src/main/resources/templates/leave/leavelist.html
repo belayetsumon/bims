@@ -34,6 +34,33 @@
                             <div class="card-body  ">
 
                                 <div class="card-body table-responsive ">
+
+                                    <form class="row  justify-content-center mb-1" 
+
+                                          th:action="@{/leavemother/list}"   method="get">
+
+                                        <div class="col-auto">
+                                            <label class="" for="to">Leave Type:</label>
+                                        </div>
+                                        <div class="col-auto"> 
+                                            <div class="form-group input-group date">
+
+                                                <select class="form-control"    name="leaveTypeEnum" >
+                                                    <option value=" "> Select one</option>
+                                                    <option th:each ="leavetypes :${leavetype}"
+                                                            th:value=" ${leavetypes}" 
+                                                            th:text="${leavetypes}"> Select one</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class=" col-auto text-center">
+                                            <button type="submit" class="btn btn-info ">Submit</button>
+                                        </div>
+                                    </form>  
+
+
+
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -55,7 +82,7 @@
                                         <tbody>
                                             <tr th:each="list,status:${list}">
 
-                                                <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.motherMasterCode}">Chakma</td>
                                                 <td th:text="${list.sectionName}">Chakma</td>
                                                 <td th:text="${list.leaveFrom}">Chakma</td>
 
@@ -70,10 +97,10 @@
 
 
                                                 <td> 
-                                                    <a   th:href="@{/leavemother/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
+                                                    <a   th:href="@{/leavemother/edit/{id} (id=${list.leaveMotherId})}" type="button" class="btn btn-sm  btn-info">Edit</a>
                                                 </td>
                                                 <td> 
-                                                    <a   th:href="@{/leavemother/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
+                                                    <a   th:href="@{/leavemother/delete/{id} (id=${list.leaveMotherId})}" type="button" class="btn btn-sm  btn-info">Delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>

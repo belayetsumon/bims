@@ -44,7 +44,8 @@
                         <table id="tablesdata" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>  
+                                    <th style="width: 10px">#</th> 
+                                      <th>Mother Id</th>
                                     <th>Approve Date</th>
                                     <th>Approved By</th>
                                     <th>Action</th>
@@ -53,10 +54,10 @@
                             <tbody>                         
                                 <tr th:each="list,status:${list}">
                                     <td th:text="${status.count}">2.</td>
-                                    <td th:text="${list.approveDate}">Chakma</td> 
-                                    <td th:text="${list.approveBy}">Chakma</td>
-                                    <td> 
-                                        <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-maroon ">View</a>
+                                    <td th:text="${list.motherMasterCode}">Chakma</td> 
+                                    <td th:text="${list.approvalDate}">Chakma</td> 
+                                    <td th:text="${list.approver}">Chakma</td>
+                                    <td> <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">View</a>
                                     </td>
                                 </tr>
                             </tbody>

@@ -46,6 +46,7 @@ import jakarta.persistence.Tuple;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,7 +131,33 @@ public class ReportController {
     }
 
     @RequestMapping({"/homevisitreportsearchresult"})
-    public String homeVisitReportSearchResult(@RequestParam(required = false) LocalDate startDate, @RequestParam(required = false) LocalDate endDate, @RequestParam(required = false) Reasons resons, @RequestParam(required = false) String motherMasterCode, @RequestParam(required = false) String motherName, @RequestParam(required = false) LocalDate dateOfBirth, @RequestParam(required = false) String mobileNumber, @RequestParam(required = false) Religion religion, @RequestParam(required = false) MaritalStatus maritalStatus, @RequestParam(required = false) HusbandsStatus husbandsStatus, @RequestParam(required = false) Relations relationWithPfm, @RequestParam(required = false) EthinicIdentity ethnicIdentity, @RequestParam(required = false) EducationLevel educationLevel, @RequestParam(required = false) EducationType educationType, @RequestParam(required = false) Occupation occupation, @RequestParam(required = false) String numberOfSons, @RequestParam(required = false) String numberOfDaughters, @RequestParam(required = false) String numberOfEligibleChildren, @RequestParam(required = false) Yes_No socialviolence, @RequestParam(required = false) Yes_No childrenFacedSocialViolence, @RequestParam(required = false) Yes_No sexualAbuse, @RequestParam(required = false) Yes_No childrenSexualAbuse, @RequestParam(required = false) Yes_No earlyMarriage, @RequestParam(required = false) Yes_No pregnancyAfterBeingRaped, @RequestParam(required = false) Yes_No facedDowryAbuse, @RequestParam(required = false) Eligibility eligibility, Model model) {
+    public String homeVisitReportSearchResult(
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate,
+            @RequestParam(required = false) Reasons resons,
+            @RequestParam(required = false) String motherMasterCode,
+            @RequestParam(required = false) String motherName,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String dateOfBirth,
+            @RequestParam(required = false) String mobileNumber,
+            @RequestParam(required = false) Religion religion,
+            @RequestParam(required = false) MaritalStatus maritalStatus,
+            @RequestParam(required = false) HusbandsStatus husbandsStatus,
+            @RequestParam(required = false) Relations relationWithPfm,
+            @RequestParam(required = false) EthinicIdentity ethnicIdentity,
+            @RequestParam(required = false) EducationLevel educationLevel,
+            @RequestParam(required = false) EducationType educationType,
+            @RequestParam(required = false) Occupation occupation,
+            @RequestParam(required = false) String numberOfSons,
+            @RequestParam(required = false) String numberOfDaughters,
+            @RequestParam(required = false) String numberOfEligibleChildren,
+            @RequestParam(required = false) Yes_No socialviolence,
+            @RequestParam(required = false) Yes_No childrenFacedSocialViolence,
+            @RequestParam(required = false) Yes_No sexualAbuse,
+            @RequestParam(required = false) Yes_No childrenSexualAbuse,
+            @RequestParam(required = false) Yes_No earlyMarriage,
+            @RequestParam(required = false) Yes_No pregnancyAfterBeingRaped,
+            @RequestParam(required = false) Yes_No facedDowryAbuse,
+            @RequestParam(required = false) Eligibility eligibility, Model model) {
         model.addAttribute("list", this.motherMasterDataReportService.matherMasterdataSearchResult(startDate, endDate, resons, motherMasterCode, motherName, dateOfBirth, mobileNumber, religion, maritalStatus, husbandsStatus, relationWithPfm, ethnicIdentity, educationLevel, educationType, occupation, numberOfSons, numberOfDaughters, numberOfEligibleChildren, socialviolence, childrenFacedSocialViolence, sexualAbuse, childrenSexualAbuse, earlyMarriage, pregnancyAfterBeingRaped, facedDowryAbuse, eligibility));
         return "homevisit/report/homevisitreportsearchresult";
     }
@@ -220,11 +247,22 @@ public class ReportController {
     }
 
     @RequestMapping({"/childinfo"})
-    public String childinfo(Model model, @RequestParam(required = false) LocalDate startDate, @RequestParam(required = false) LocalDate endDate, @RequestParam(required = false) String motherMasterCode, @RequestParam(required = false) String childMasterCode, @RequestParam(required = false) String motherName, @RequestParam(required = false) String childName, @RequestParam(required = false) LocalDate dateOfBirth, @RequestParam(required = false) Gender gender, @RequestParam(required = false) EducationLevel educationLevel, @RequestParam(required = false) EducationType educationType, @RequestParam(required = false) Eligibility eligibility) {
+    public String childinfo(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate,
+            @RequestParam(required = false) String motherMasterCode,
+            @RequestParam(required = false) String childMasterCode,
+            @RequestParam(required = false) String motherName,
+            @RequestParam(required = false) String childName,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String dateOfBirth,
+            @RequestParam(required = false) Gender gender,
+            @RequestParam(required = false) EducationLevel educationLevel,
+            @RequestParam(required = false) EducationType educationType,
+            @RequestParam(required = false) Eligibility eligibility) {
         model.addAttribute("educationLevel", this.educationLevelRepository.findAll());
         model.addAttribute("educationType", this.educationTypeRepository.findAll());
         model.addAttribute("eligibility", Eligibility.values());
-          model.addAttribute("genderList", Gender.values());
+        model.addAttribute("genderList", Gender.values());
         model.addAttribute("list", this.m_Child_infoService.childSearchResult(startDate, endDate, motherMasterCode, childMasterCode, motherName, childName, dateOfBirth, gender, educationLevel, educationType, eligibility));
         return "homevisit/report/childinfo";
     }

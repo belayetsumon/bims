@@ -33,31 +33,33 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th> Edit </th>      
-                                        <th> Delete</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Release Date</th>
-                                        <th>Release By  </th>
-                                        <th> Next Follow Up Date </th>
-                                        <th>Remark </th>
+                                <table id="tablesdata" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th> Edit </th>      
+                                            <th> Delete</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Release Date</th>
+                                            <th>Release By  </th>
+                                            <th> Next Follow Up Date </th>
+                                            <th>Remark </th>
 
-                                    </tr>      
+                                        </tr>      
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="release,status:${release}">    
 
-                                    <tr th:each="release,status:${release}">    
-
-                                        <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/crelease/edit/{id}(id=${release.id})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
-                                        <td><a th:href="@{/crelease/delete/{id}(id=${release.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
-                                        <td th:text="${release.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${release.releaseDate}">Chakma</td>
-                                        <td th:text="${release.releaseBy}">Chakma</td>
-                                        <td th:text="${release.nextFollowUpDate}">Chakma</td>
-                                        <td th:text="${release.remarks}">Chakma</td>
-                                    </tr>
-
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td><a th:href="@{/crelease/edit/{id}(id=${release.releaseId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
+                                            <td><a th:href="@{/crelease/delete/{id}(id=${release.releaseId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
+                                            <td th:text="${release.motherMasterCode}">Chakma</td>
+                                            <td th:text="${release.releaseDate}">Chakma</td>
+                                            <td th:text="${release.releaseBy}">Chakma</td>
+                                            <td th:text="${release.nextFollowUpDate}">Chakma</td>
+                                            <td th:text="${release.remarks}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

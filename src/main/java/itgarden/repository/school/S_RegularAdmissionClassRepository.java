@@ -7,7 +7,6 @@ package itgarden.repository.school;
 
 import itgarden.model.school.S_RegularAdmissionClass;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 /**
  *

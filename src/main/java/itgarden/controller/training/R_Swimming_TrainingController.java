@@ -6,6 +6,7 @@
 package itgarden.controller.training;
 
 import itgarden.model.homevisit.M_Child_info;
+import itgarden.model.observation.O_ChildAdmission;
 import itgarden.model.rehabilitations.GraduateStatus;
 import itgarden.model.rehabilitations.R_Swimming;
 import itgarden.repository.homevisit.M_Child_infoRepository;
@@ -14,9 +15,13 @@ import itgarden.repository.rehabilitations.R_IGA_TrainingRepository;
 import itgarden.repository.rehabilitations.R_SwimmingRepository;
 import itgarden.repository.rehabilitations.TrainingNameRepository;
 import itgarden.services.observation.O_ChildAdmissionService;
+import itgarden.services.reintegration_release.ReleaseChildService;
 import itgarden.services.training.R_SwimmingService;
 import jakarta.validation.Valid;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,9 +59,26 @@ public class R_Swimming_TrainingController {
     @Autowired
     R_SwimmingService r_SwimmingService;
 
+    @Autowired
+    ReleaseChildService releaseChildService;
+
     @RequestMapping("/childlist")
     public String index(Model model, R_Swimming r_Swimming) {
-        model.addAttribute("clildlist", o_ChildAdmissionService.allAdmitedChildReportList());
+
+        List<Long> releasedChildList = releaseChildService.allReleasedChildIdList();
+
+        List<Long> swimmingService = r_SwimmingService.swimmingCompletedChildIdList();
+        releasedChildList.addAll(swimmingService);
+
+        List<Map<String, Object>> childAdmissionList = o_ChildAdmissionService.allAdmitedChildReportList()
+                .stream()
+                .filter(childlist -> {
+                    Object admissionIdObj = childlist.get("admissionId");
+                    return admissionIdObj != null && !releasedChildList.contains(Long.valueOf(admissionIdObj.toString()));
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("clildlist", childAdmissionList);
         return "training/radmissionindex";
     }
 

@@ -6,22 +6,21 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
 
-
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>          School </h1>
+                            <h1>School</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">     School </a></li>
+                                <li class="breadcrumb-item"><a href="#">School </a></li>
                                 <li class="breadcrumb-item active"> Admitted Children List </li>
                             </ol>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div> <!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
@@ -30,12 +29,11 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Admitted Children List</h3>
+                                <h3 class="card-title"> Admitted Children List [[${clildlist.size()}]]</h3>
 
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive">
-
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -43,17 +41,13 @@
 
                                             <th> Edit</th>     
                                             <th>Delete</th> 
-
-                                            <th>Mother master code</th>
-                                            <th>Mother Name</th>
-                                            <th>Child master code</th>
-                                            <th>Child Name</th>
-
-
+                                                                                   <th>Mother master code</th>
+                                                                                        <th>Mother Name</th>
+                                                                                        <th>Child master code</th>
+                                                                                       <th>Child Name</th>
                                             <th> Date Admission</th>
                                             <th>Admission Session </th>
                                             <th>Admission Class  </th>
-
                                             <th>Last Attended Session</th>
                                             <th>last Attended Class</th>
                                             <th>Last Attended Education Type</th>
@@ -65,23 +59,27 @@
                                     <tbody>
                                         <tr th:each="list,status:${clildlist}">                                
                                             <td th:text="${status.count}">2.</td>      
-                                            <td><a th:href="@{/sregularadmission/edit/{id}(id=${list.regularAdmissionClass.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
-                                            <td><a th:href="@{/sregularadmission/delete/{id}(id=${list.regularAdmissionClass.id})}"  type="button" class="btn btn-sm  btn-info"> Delete</a></td>
+                                            <td><a th:href="@{/sregularadmission/edit/{id}(id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
+                                            <td><a th:href="@{/sregularadmission/delete/{id}(id=${list.id})}"  type="button" class="btn btn-sm  btn-info"> Delete</a></td>
+<!--<th>Mother master code</th>
+                                                                                        <th>Mother Name</th>
+                                                                                        <th>Child master code</th>
+                                                                                       <th>Child Name</th>-->
 
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
-                                            <td th:text="${list.childMasterCode}">Chakma</td>
-                                            <td th:text="${list.name}">Chakma</td>
+                                                                                     <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                                                        <td th:text="${list.motherName}">Chakma</td>
+                                                                                        <td th:text="${list.childMasterCode}">Chakma</td>
+                                                                                        <td th:text="${list.name}">Chakma</td>
 
-                                            <td th:text="${list.regularAdmissionClass.dateAdmission}">Chakma</td>
+                                            <td th:text="${list.dateAdmission}">Chakma</td>
 
-                                            <td th:text="${list.regularAdmissionClass.admissionSession}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.admissionClass.name}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.LastAttendedSession}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.lastAttendedClass.name}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.lastAttendedEducationType.name}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.specialNeed}">Chakma</td>
-                                            <td th:text="${list.regularAdmissionClass.remark}">Chakma</td>
+                                            <td th:text="${list.admissionSession}">Chakma</td>
+                                            <td th:text="${list.admissionClass}">Chakma</td>
+                                            <td th:text="${list.lastAttendedSession}">Chakma</td>
+                                            <td th:text="${list.lastAttendedClass}">Chakma</td>
+                                            <td th:text="${list.lastAttendedEducationType}">Chakma</td>
+                                            <td th:text="${list.specialNeed}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
 
                                             <!--<td th:text="${#dates.format(list.created)}">Chakma</td>-->
 
@@ -91,7 +89,7 @@
 
                             </div>
                             <!-- /.card-body -->
-                     
+
                         </div>
                         <!-- /.card -->
 

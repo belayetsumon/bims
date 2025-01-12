@@ -6,15 +6,18 @@
 package itgarden.controller.longtremcare;
 
 import itgarden.model.follow_up_report.ChildCrisisMeetUp;
+import itgarden.model.homevisit.Gender;
 import itgarden.model.homevisit.M_Child_info;
 import itgarden.repository.follow_up_report.ChildCrisisMeetUpRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -72,7 +75,10 @@ public class ChildCrisisMeetUpController {
     }
 
     @RequestMapping("/list")
-    public String list(Model model) {
+    public String list(Model model, @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate,
+            @RequestParam(name = "gender", required = false) Gender gender) {
+        model.addAttribute("genderList", Gender.values());
         model.addAttribute("list", childCrisisMeetUpRepository.findAll());
         return "longtermcare/childcrisismeetup_list";
 

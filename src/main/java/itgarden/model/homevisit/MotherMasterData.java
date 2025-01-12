@@ -154,7 +154,7 @@ public class MotherMasterData {
     public EducationType educationType;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,fetch = FetchType.LAZY)
     public Occupation occupation;
 
     @NotEmpty(message = "This field cannot be blank.")

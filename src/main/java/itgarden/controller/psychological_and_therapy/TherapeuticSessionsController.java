@@ -11,6 +11,7 @@ import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.repository.rehabilitations.R_OTRepository;
 import itgarden.repository.rehabilitations.R_OtChildRepository;
 import itgarden.repository.rehabilitations.R_PTRepository;
+import itgarden.repository.rehabilitations.R_PT_ChildRepository;
 import itgarden.services.observation.O_MAddmissionService;
 import itgarden.services.psychology.R_OtMotherService;
 import java.util.ArrayList;
@@ -56,6 +57,9 @@ public class TherapeuticSessionsController {
 
     @Autowired
     R_OtMotherService oTService;
+
+    @Autowired
+    R_PT_ChildRepository r_PT_ChildRepository;
 
     public static List<Map<String, Object>> filterUncommonMothers(
             List<Map<String, Object>> admitedMotherList, List<Long> houseMotherList) {
@@ -148,6 +152,8 @@ public class TherapeuticSessionsController {
         model.addAttribute("r_OtChild", r_OtChildRepository.findBymotherMasterCode(motherMasterData));
 
         model.addAttribute("r_pt", r_PTRepository.findBymotherMasterCode(motherMasterData));
+        
+        model.addAttribute("r_cpt", r_PT_ChildRepository.findBymotherMasterCode(motherMasterData));
 
         return "rehabilitations/therapeuticsessions/index";
 

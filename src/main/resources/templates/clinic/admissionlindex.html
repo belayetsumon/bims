@@ -5,9 +5,9 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-    
-            
-                           <section class="content-header">
+
+
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -17,17 +17,17 @@
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Clinic</a></li>
-                              
+
                                 <li class="breadcrumb-item active">Referral List</li>
-                                 <li class="breadcrumb-item active">Admission Clinic</li>
+                                <li class="breadcrumb-item active">Admission Clinic</li>
                             </ol>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            
-            
-            
+
+
+
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -35,33 +35,37 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Clinic Admission</h3>
-<!--                                <a   th:href="@{/cvisit/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Daily Visit </a>-->
+                                <!--                                <a   th:href="@{/cvisit/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Daily Visit </a>-->
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th> Edit </th>      
-                                        <th> Delete</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Admission Date</th>
-                                        <th>Admission  To  </th>
-                                        <th>Reasons</th>
-                                        <th>Remark</th>
-                                        <th>Release From Clinic</th>
-                                    </tr>                          
-                                    <tr th:each="c_Admission,status:${c_Admission}">                                
-                                        <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/cadmission/edit/{id}(id=${c_Admission.id})}" type="button" class="btn btn-sm btn-info">Edit</a></td>
-                                        <td><a th:href="@{/cadmission/delete/{id}(id=${c_Admission.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
-                                        <td th:text="${c_Admission.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${c_Admission.admissionDate}">Chakma</td>
-                                        <td th:text="${c_Admission.admittedTo}">Chakma</td>
-                                        <td th:text="${c_Admission.reason}">Chakma</td>
-                                        <td th:text="${c_Admission.remark}">Chakma</td>
-                                       <td><a th:href="@{/crelease/create/{id}(id=${c_Admission.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info"> Release From Clinic</a></td>
-                                    </tr>
+                                <table id="tablesdata" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th> Edit </th>      
+                                            <th> Delete</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Admission Date</th>
+                                            <th>Admission  To  </th>
+                                            <th>Reasons</th>
+                                            <th>Remark</th>
+                                            <th>Release From Clinic</th>
+                                        </tr>      
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="c_Admission,status:${c_Admission}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td><a th:href="@{/cadmission/edit/{id}(id=${c_Admission.admissionId})}" type="button" class="btn btn-sm btn-info">Edit</a></td>
+                                            <td><a th:href="@{/cadmission/delete/{id}(id=${c_Admission.admissionId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
+                                            <td th:text="${c_Admission.motherMasterCode}">Chakma</td>
+                                            <td th:text="${c_Admission.admissionDate}">Chakma</td>
+                                            <td th:text="${c_Admission.admittedTo}">Chakma</td>
+                                            <td th:text="${c_Admission.reason}">Chakma</td>
+                                            <td th:text="${c_Admission.remark}">Chakma</td>
+                                            <td><a th:href="@{/crelease/create/{id}(id=${c_Admission.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info"> Release From Clinic</a></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

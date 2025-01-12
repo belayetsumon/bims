@@ -1,7 +1,8 @@
 package itgarden;
 
-import itgarden.services.psychology.R_PsychologyMotherService;
-import itgarden.services.training.R_Life_Skill_TrainningService;
+import itgarden.model.homevisit.MotherMasterData;
+import itgarden.repository.homevisit.M_Child_infoRepository;
+import itgarden.services.cmc.R_FoodService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,14 +12,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ItgardenbaseApplicationTests {
 
     @Autowired
-    R_PsychologyMotherService r_PsychologyMotherService;
+    R_FoodService r_FoodService;
 
     @Autowired
-    R_Life_Skill_TrainningService r_Life_Skill_TrainningService;
+    M_Child_infoRepository m_Child_infoRepository;
 
     @Test
+    // System.out.println("Total..
     public void contextLoads() {
-  // System.out.println("result Total --------------------" + r_Life_Skill_TrainningService.livelihood_training_report_by_mother("20230911B0200"));
+         MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(487l);
+      // System.out.println("Total admited..........." + m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size());//        System.out.println("not elejable Total..........." + eligibilityStudentService.notEligibleChildIdList().size());
+//        System.out.println(" school admited  Total..........." + s_RegularAdmissionClassService.S_regular_AddmitedChildIdList().size());
+//        System.out.println(" Discontitnue Total..........." + discontinuityService.discontinuityChildIdList().size());
+//        System.out.println("Total..........." + m_Child_infoService.findNotSchoolAdmitedChild().size());
+//    
 
     }
 }

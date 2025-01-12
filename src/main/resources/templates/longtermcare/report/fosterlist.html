@@ -6,83 +6,118 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                      Long Term Care
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>    Long Term Care </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">   Long Term Care</a></li>
+                                <li class="breadcrumb-item active">Report </li>
+                                <li class="breadcrumb-item active">Foster Child List </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
-
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Foster Child List</h3>
-                                <div class="box-tools pull-right">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Foster Child List Total : [[${foster.size()}]]</h3>
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
-                                        <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                        <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
+                            <!-- /.card-header -->
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12 ">
 
-                                        <form class="form-inline col-sm-offset-3">
-                                            <label class="" for="email">From:</label>
-                                            <div class="form-group input-group date">
-                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <input type="text"  id="referral_date" class="form-control"  name="from"/>
-                                            </div>
-                                            <label class="" for="to">To:</label>
-                                            <div class="form-group input-group date">
+                                        <form class="row  justify-content-center mb-1" 
+                                              th:action="@{/longtremcare/fosterlist}"   method="get">
 
-                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
+                                            <div class="col-auto">
+
+                                                <label class="" for="email">From:</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
                                                 </div>
-                                                <input type="text" class="form-control"  id="homeVisitDate" name="to"/>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">To:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">Gender:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
+
+                                                    <select class="form-control"    name="gender" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" genderLists :${genderList}"
+                                                                th:value=" ${genderLists}" 
+                                                                th:text="${genderLists}"> Select one</option>
+                                                    </select>
+                                                </div>
                                             </div>
 
-                                            <button type="submit" class="btn btn-default bg-maroon-active">Submit</button>
-                                        </form>      
+                                            <div class=" col-auto text-center">
+                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                            </div>
+                                        </form>         
                                         <br/>
                                     </div>                          
                                 </div>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>
 
-                                        <th>Child Master Code</th>
-                                        <th>Admission Date</th>
-                                        <th>Address </th>
-                                        <th>Fostering Date  </th>
-                                        <th>End Date</th>
-                                        <th>Remark</th>
-                                    </tr>                          
-                                    <tr th:each="foster,status:${foster}">                                
-                                        <td th:text="${status.count}"> 2. </td>      
-                                        <td th:text="${foster.childMasterCode.childMasterCode}">Chakma</td>
-                                        <td th:text="${foster.admissionDate}">Chakma</td>
-                                        <td th:text="${foster.adress}">Chakma</td>
-                                        <td th:text="${foster.fostringDate}">Chakma</td>
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
 
-                                        <td th:text="${foster.endDate}">Chakma</td>
-                                        <td th:text="${foster.remark}">Chakma</td>
-
-
-
-                                    </tr>
+                                            <th>Child Master Code</th>
+                                                 <th>Child Name</th>
+                                            <th>Admission Date</th>
+                                             <th>Gender</th>
+                                            <th>Address </th>
+                                            <th>Fostering Date  </th>
+                                            <th>End Date</th>
+                                            <th>Remark</th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="foster,status:${foster}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td th:text="${foster.childMasterCode}">Chakma</td>
+                                                  <td th:text="${foster.name}">Chakma</td>
+                                            <td th:text="${foster.admissionDate}">Chakma</td>
+                                            <td th:text="${foster.gender}">Chakma</td>
+                                            <td th:text="${foster.adress}">Chakma</td>
+                                            <td th:text="${foster.fostringDate}">Chakma</td>
+                                            <td th:text="${foster.endDate}">Chakma</td>
+                                            <td th:text="${foster.remark}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
-
-                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

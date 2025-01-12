@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package itgarden.controller.clinic;
-
-import itgarden.model.homevisit.Eligibility;
 import itgarden.repository.clinic.C_AdmissionRepository;
 import itgarden.repository.clinic.C_ReferralRepository;
 import itgarden.repository.clinic.C_ReleaseRepository;
 import itgarden.repository.clinic.C_visitRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
+import itgarden.services.observation.O_MAddmissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -45,17 +44,22 @@ public class ClinicController {
     @Autowired
     O_MAddmissionRepository o_MAddmissionRepository;
 
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
+    
+    
+
     @Value("${repo_url}")
     public String repo_url;
 
     @RequestMapping("/index")
     public String index(Model model) {
-
-        model.addAttribute("list", o_MAddmissionRepository.findAll());
+        
+        model.addAttribute("list", o_MAddmissionService.Existing_Admited_Mother_List_Exclude_released_mother());
         
         model.addAttribute("repo_url", repo_url);
         
-        return "clinic/mothersearch";
+        return "clinic/admited_mother_list_exclude_released_mother";
     }
 
     @RequestMapping("/report")

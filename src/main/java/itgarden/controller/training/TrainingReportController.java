@@ -45,14 +45,27 @@ public class TrainingReportController {
     }
 
     @RequestMapping("/iga_training_report_by_skill")
-    public String igaTrainingBySkill(Model model) {
-        model.addAttribute("list", "value");
+    public String igaTrainingBySkill(Model model,
+            @RequestParam(name = "trainingName", required = false) TrainingName trainingName,
+            @RequestParam(name = "motherMasterCode", required = false) String motherMasterCode,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("trainingName", trainingNameRepository.findAll());
+        model.addAttribute("list", r_IGA_TrainingService.iga_training_report_by_skill(motherMasterCode, trainingName, startDate, endDate));
         return "training/iga_training_report_by_skill";
     }
 
     @RequestMapping("/iga_training_report_by_mother")
-    public String iga_training_report_by_mother(Model model) {
-        model.addAttribute("list", "value");
+    public String iga_training_report_by_mother(Model model,
+            @RequestParam(name = "trainingName", required = false) TrainingName trainingName,
+            @RequestParam(name = "motherMasterCode", required = false) String motherMasterCode,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("trainingName", trainingNameRepository.findAll());
+        model.addAttribute("list", r_IGA_TrainingService.iga_training_report_by_mother(motherMasterCode, trainingName, startDate, endDate));
+
         return "training/iga_training_report_by_mother";
     }
 
@@ -87,7 +100,7 @@ public class TrainingReportController {
             @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
             @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
     ) {
-        model.addAttribute("trainingName", trainingNameRepository.findAll());
+        model.addAttribute("graduatestatus", GraduateStatus.values());
         model.addAttribute("list", r_SwimmingService.swimmingCompletedReportList(
                 childMasterCode, graduateStatus, startDate, endDate
         ));

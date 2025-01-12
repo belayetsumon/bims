@@ -14,8 +14,8 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">     School </a></li>
-                                <li class="breadcrumb-item active">Children List For Regular Admission</li>
+                                <li class="breadcrumb-item"><a href="#"> School </a></li>
+                                <li class="breadcrumb-item active"> Pending Children List For Regular Admission</li>
                             </ol>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Children List For Regular Admission</h3>
+                                <h3 class="card-title"> Pending Children List For Regular Admission</h3>
 
                             </div>
                             <!-- /.card-header -->
@@ -37,18 +37,15 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-
-                                            <th> New Admission </th>   
-
-                                            <th> Mother master code</th>
-                                            <th>Child master code</th>
+                                            <th>New Admission </th>   
+                                            <th>Mother master code</th>
+                                           <th>Child master code</th>
                                             <th>Mother's Name</th>
-
-                                            <th> Child Name</th>
+                                            <th>Child Name</th>
                                             <th>Date Of Birth </th>
-                                            <th> Not Eligible </th>
+                                                 <th>Age </th>
+                                            <th>Not Eligible </th>
                                             <th>Gender  </th>
-
                                             <th>Education Level</th>
                                             <th>Education Type</th>
                                             <th>Interested Skill Area</th>
@@ -60,12 +57,13 @@
                                             <td th:text="${status.count}">2.</td>      
 
                                             <td><a th:href="@{/sregularadmission/create/{id}(id=${list.id})}" type="button" class="btn btn-sm btn-info"> New Admission</a></td>
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.childMasterCode}">Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>
 
                                             <td th:text="${list.name}">Chakma</td>
                                             <td th:text="${list.dateOfBirth}">Chakma</td>
+                                            <td th:text="${list.age}">Chakma</td>
 
                                             <td>
                                                 <a th:href="@{/eligibility/add/{c_id}(c_id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Not Eligible</a>
@@ -73,8 +71,8 @@
                                             </td>
                                             <td th:text="${list.gender}">Chakma</td>
 
-                                            <td th:text="${list.educationLevel.name}">Chakma</td>
-                                            <td th:text="${list.educationType.name}">Chakma</td>
+                                            <td th:text="${list.educationLevel}">Chakma</td>
+                                            <td th:text="${list.educationType}">Chakma</td>
 
                                             <td th:text="${list.interstedSkillArea}">Chakma</td>
 

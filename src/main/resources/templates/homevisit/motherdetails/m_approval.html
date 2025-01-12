@@ -5,8 +5,8 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-           
-                    <section class="content-header">
+
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -22,8 +22,8 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            
-            
+
+
             <!-- Main content -->
             <section class="content">
                 <!-- Default card -->
@@ -32,10 +32,10 @@
                         <h3 class="card-title">Mother Approval Add </span></h3>
                         <div class="card-tools pull-right">
                             <div class="btn-group">       
-                                
-                                 <a  th:href="@{/m_approval/motherdetails/{mother_id}(mother_id=${m_Approval.motherMasterCode.id})}"  type="button" 
-                                      class="btn btn-block btn-light text-red  btn-sm pull-right ">Close</a>
-                          
+
+                                <a  th:href="@{/m_approval/motherdetails/{mother_id}(mother_id=${m_Approval.motherMasterCode.id})}"  type="button" 
+                                    class="btn btn-block btn-light text-red  btn-sm pull-right ">Close</a>
+
                             </div>
                         </div>
                     </div>
@@ -56,10 +56,10 @@
 
                                         <label for="co" class="col-sm-6 control-label"> Approve Date  :<span class="text-red">  *</span> </label>
                                         <div class="col-sm-6 input-group date">     
-<!--                                            <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                    </div>-->
-<input type="text"  id="referral_date" class="form-control  "  th:field="*{approveDate}"   placeholder="dd-mm-yyyy"/>                
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
+                                            <input type="text"  id="referral_date" class="form-control  "  th:field="*{approveDate}"   placeholder="dd-mm-yyyy"/>                
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('approveDate')}" th:errors="*{approveDate}">First Name Error</span>
                                         </div>                            
 
@@ -101,7 +101,7 @@
 
 
                                 <div class="text-center">
-                                      <button type="submit" class="btn btn-info btn-sm">Save</button>
+                                    <button type="submit" class="btn btn-info btn-sm">Save</button>
                                 </div>
                             </div>
                         </form>

@@ -8,6 +8,7 @@ import itgarden.model.homevisit.DTO.MotherMasterDataDTO;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.observation.MotherImage;
 import itgarden.model.observation.O_MAddmission;
+import itgarden.services.reintegration_release.ReleaseMotherService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,6 +38,9 @@ public class O_MAddmissionService {
 
     @PersistenceContext
     EntityManager em;
+
+    @Autowired
+    ReleaseMotherService releaseMotherService;
 
     public List<MotherMasterDataDTO> getMotherMasterDataDTOs() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -56,7 +61,6 @@ public class O_MAddmissionService {
         // Define the predicates for the conditions
 
         predicates.add(root.get("id").in(admitedMotherList));
-
         cq.where(predicates.toArray(new Predicate[]{}));
         // Create the query
         TypedQuery<Tuple> query = em.createQuery(cq);
@@ -103,6 +107,33 @@ public class O_MAddmissionService {
         return idList;
     }
 
+    public List<Long> admitedMotherButNotReleasedIdList() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
+
+        Root<O_MAddmission> root = cq.from(O_MAddmission.class);
+
+        cq.multiselect(root.get("motherMasterCode").get("id"));
+
+        List<Predicate> predicates = new ArrayList<Predicate>();
+
+        predicates.add(root.get("motherMasterCode").get("id").in(releaseMotherService.allReleasedMotherIdList()).not());
+
+        cq.where(predicates.toArray(new Predicate[]{}));
+        cq.orderBy(cb.desc(root.get("motherMasterCode").get("id")));
+
+        List<Tuple> result = em.createQuery(cq).getResultList();
+
+        List<Long> idList = new ArrayList<Long>();
+        for (Tuple t : result) {
+            Long id = t.get(0, Long.class);
+            idList.add(id);
+        }
+        return idList;
+    }
+
     public List<Map<String, Object>> allAdmitedMotherPeriodicReportList(
             String startDate,
             String endDate
@@ -110,6 +141,7 @@ public class O_MAddmissionService {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<O_MAddmission> root = cq.from(O_MAddmission.class);
+       
         List<Predicate> predicates = new ArrayList<>();
 
         // Define the date formatter
@@ -165,6 +197,48 @@ public class O_MAddmissionService {
         return resultMaps;
     }
 
+    public List<Map<String, Object>> Existing_Admited_Mother_List_Exclude_released_mother() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<O_MAddmission> root = cq.from(O_MAddmission.class);
+        List<Predicate> predicates = new ArrayList<>();
+        // Selecting multiple fields with aliases
+        cq.multiselect(
+                root.get("id").alias("admissionId"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' exists in MotherMasterData
+                root.get("motherMasterCode").get("mobileNumber").alias("mobileNumber"),
+                root.get("dateArrival").alias("arrivalDate"),
+                root.get("dateAdmission").alias("admissionDate"),
+                root.get("remarks").alias("remarks")
+        );
+       
+        predicates.add(root.get("motherMasterCode").get("id").in(releaseMotherService.allReleasedMotherIdList()).not());
+       
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+        
+        cq.orderBy(cb.desc(root.get("motherMasterCode").get("id")));
+        // Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        // Transform the result into a list of maps using aliases
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple result : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("admissionId", result.get("admissionId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
+            resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("mobileNumber", result.get("mobileNumber"));
+            resultMap.put("arrivalDate", result.get("arrivalDate"));
+            resultMap.put("admissionDate", result.get("admissionDate"));
+            resultMap.put("remarks", result.get("remarks"));
+            resultMaps.add(resultMap);
+        }
+        return resultMaps;
+    }
+
     public List<Map<String, Object>> allAdmitedMotherList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -181,6 +255,7 @@ public class O_MAddmissionService {
                 root.get("dateAdmission").alias("admissionDate"),
                 root.get("remarks").alias("remarks")
         );
+        cq.orderBy(cb.desc(root.get("motherMasterCode").get("id")));
         // Execute the query
         List<Tuple> resultList = em.createQuery(cq).getResultList();
 

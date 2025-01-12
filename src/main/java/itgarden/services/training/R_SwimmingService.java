@@ -37,6 +37,29 @@ public class R_SwimmingService {
 
     @PersistenceContext
     private EntityManager em;
+    
+    public List<Long> swimmingCompletedChildIdList() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<R_Swimming> root = cq.from(R_Swimming.class);
+
+        cq.multiselect(
+                root.get("childMasterCode").get("id").alias("childMasterCodeId")
+        );
+        cq.orderBy(cb.desc(root.get("id")));
+        List<Tuple> result = em.createQuery(cq).getResultList();
+        List<Long> idList = new ArrayList<Long>();
+        for (Tuple t : result) {
+            Long id = t.get("childMasterCodeId", Long.class);
+            idList.add(id);
+        }
+        return idList;
+
+    }
+    
+    
+    
+    
 
     public List<Map<String, Object>> swimmingCompletedList() {
         // Create CriteriaBuilder and CriteriaQuery

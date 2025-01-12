@@ -13,13 +13,11 @@ import itgarden.repository.observation.O_CHealthConditionsRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.repository.observation.O_MHealthConditionsRepository;
-import itgarden.repository.observation.O_Professional_Obserbations_ChildRepository;
-import itgarden.repository.observation.O_Professional_Obserbations_MotherRepository;
 import itgarden.services.observation.O_CHealthConditionsService;
 import itgarden.services.observation.O_ChildAdmissionService;
+import itgarden.services.observation.O_InductionService;
 import itgarden.services.observation.O_MAddmissionService;
 import itgarden.services.observation.O_MHealthConditionsService;
-import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -65,6 +63,9 @@ public class ObservationReportController {
     @Autowired
     O_CHealthConditionsService o_CHealthConditionsService;
 
+    @Autowired
+    O_InductionService o_InductionService;
+
     @RequestMapping("/observation")
     public String observation(Model model) {
         return "homevisit/observation/report/index";
@@ -100,8 +101,10 @@ public class ObservationReportController {
 
     @RequestMapping("/inductionlist")
     public String inductionlist(Model model) {
-        model.addAttribute("o_Induction", o_InductionRepository.findAll());
-        return "homevisit/report/inductionlist";
+
+        model.addAttribute("o_Induction", o_InductionService.getAllInductions());
+        //   model.addAttribute("o_Induction", o_InductionRepository.findAll());
+        return "homevisit/observation/report/inductionlist";
     }
 
     @RequestMapping("/healthcheckupmother")
@@ -155,8 +158,6 @@ public class ObservationReportController {
         model.addAttribute("o_CHealthConditions", o_CHealthConditionsService.childHelthConditionsReport(bloodPressure, eyeProblem, earProblem, tt, heart_disease, diabetes, bonyFracture, neurologicalDisease, resporatoryProblem, uti));
         return "homevisit/observation/report/childhealthcondition ";
     }
-
-   
 
     @RequestMapping("/psychosocialassessmentneededbeneficiarieslist")
     public String psychosocialassessmentneededbeneficiarieslist(Model model) {

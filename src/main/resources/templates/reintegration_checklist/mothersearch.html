@@ -34,7 +34,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                                <table id="tablesdata" class="table table-bordered table-striped">
+<!--                                <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th> Mother  Id</th>
@@ -61,6 +61,35 @@
                                             </td>
                                             <td> 
                                                 <a   th:href="@{/reintegrationcheklist/add/{m_id} (m_id=${list.id})}" type="button" class="btn btn-sm btn-info">Add</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>-->
+                                
+                                   <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th> Mother  Id</th>
+                                            <th> Mother Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Arrival Date</th>
+                                            <th>Admission Date</th>
+                                            <th>Add</th>
+
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${list.motherMasterCodeId}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>   
+                                            <td th:text="${list.mobileNumber}">Chakma</td> 
+                                            <td th:text="${list.arrivalDate}" >Chakma</td>
+                                            <td th:text="${list.admissionDate}">Chakma</td>
+
+                                            <td> 
+                                                <a   th:href="@{/reintegrationcheklist/add/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">Add</a>
                                             </td>
                                         </tr>
                                     </tbody>

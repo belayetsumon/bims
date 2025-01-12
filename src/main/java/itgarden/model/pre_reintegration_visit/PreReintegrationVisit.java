@@ -35,7 +35,7 @@ public class PreReintegrationVisit {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+   @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotEmpty(message = "This field cannot be blank.")

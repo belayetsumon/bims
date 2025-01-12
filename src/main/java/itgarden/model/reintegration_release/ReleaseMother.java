@@ -41,8 +41,8 @@ public class ReleaseMother {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id",nullable = false)
     private MotherMasterData motherMasterCode;
 
     @Column(nullable = false)
@@ -51,10 +51,10 @@ public class ReleaseMother {
     private LocalDate releaseDate;
 
     @Lob
-    private String Address;
+    private String address;
 
     @NotEmpty(message = "This field cannot be blank.")
-    private String postDischargeVisitDate;
+    private LocalDate postDischargeVisitDate;
 
     @Lob
     private String remark;
@@ -87,11 +87,11 @@ public class ReleaseMother {
     public ReleaseMother() {
     }
 
-    public ReleaseMother(Long id, MotherMasterData motherMasterCode, LocalDate releaseDate, String Address, String postDischargeVisitDate, String remark, Users createdBy, Users updatedBy) {
+    public ReleaseMother(Long id, MotherMasterData motherMasterCode, LocalDate releaseDate, String address, LocalDate postDischargeVisitDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.releaseDate = releaseDate;
-        this.Address = Address;
+        this.address = address;
         this.postDischargeVisitDate = postDischargeVisitDate;
         this.remark = remark;
         this.createdBy = createdBy;
@@ -123,18 +123,18 @@ public class ReleaseMother {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPostDischargeVisitDate() {
+    public LocalDate getPostDischargeVisitDate() {
         return postDischargeVisitDate;
     }
 
-    public void setPostDischargeVisitDate(String postDischargeVisitDate) {
+    public void setPostDischargeVisitDate(LocalDate postDischargeVisitDate) {
         this.postDischargeVisitDate = postDischargeVisitDate;
     }
 

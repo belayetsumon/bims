@@ -39,14 +39,14 @@
                                     <tbody>
                                     <tr th:each="referral,status:${referral}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/referral/edit/{id}(id=${referral.id})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
-                                        <td><a th:href="@{/referral/delete/{id}(id=${referral.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
-                                        <td th:text="${referral.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td><a th:href="@{/referral/edit/{id}(id=${referral.referralId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
+                                        <td><a th:href="@{/referral/delete/{id}(id=${referral.referralId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
+                                        <td th:text="${referral.motherMasterCode}">Chakma</td>
                                         <td th:text="${referral.referralDate}">Chakma</td>
                                         <td th:text="${referral.reffrredTo}">Chakma</td>
                                         <td th:text="${referral.reasons}">Chakma</td>
                                         <td th:text="${referral.remarks}">Chakma</td>
-                                       <td><a th:href="@{/cadmission/create/{id}(id=${referral.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info"> Admission To Clinic</a></td>
+                                       <td><a th:href="@{/cadmission/create/{id}(id=${referral.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info"> Admission To Clinic</a></td>
                                     </tr>
                                         </tbody>
                                 </table>

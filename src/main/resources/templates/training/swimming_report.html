@@ -5,10 +5,22 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    School
-                </h1>
+          <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>   Training </h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Training</a></li>
+
+                                <li class="breadcrumb-item active">  Children List Of Completed Swim Safe Lesson </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
@@ -17,7 +29,12 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Children List For Swim Safe Lesson</h3>
+                                <h3 class="card-title"> Children List For Swim Safe Lesson Total [[${list.size()}]]</h3>
+                                        <div class="card-tools">
+                            <div class="btn-group">
+                                <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                            </div>
+                        </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -46,24 +63,24 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-auto">
-                                    <label class="" for="email">Mother Master code:</label>
+                                    <label class="" for="email">Child Master Code:</label>
                                 </div>
                                 <div class="col-auto">
                                     <div class="form-group input-group date">
-                                        <input type="text"   id="motherMasterCode"  class="form-control"  name="motherMasterCode"/>
+                                        <input type="text"   id="childMasterCode"  class="form-control"  name="childMasterCode"/>
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <label class="" for="to">Training Name:</label>
+                                    <label class="" for="to">Graduate Status:</label>
                                 </div>
                                 <div class="col-auto"> 
                                     <div class="form-group input-group date">
 
-                                        <select class="form-control"    name="trainingName" >
+                                        <select class="form-control"    name="graduateStatus" >
                                             <option value=" "> Select one</option>
-                                            <option th:each =" trainingNameList :${trainingName}"
-                                                    th:value=" ${trainingNameList.id}" 
-                                                    th:text="${trainingNameList.name}"> Select one</option>
+                                            <option th:each =" graduatestatuss :${graduatestatus}"
+                                                    th:value=" ${graduatestatuss}" 
+                                                    th:text="${graduatestatuss}"> Select one</option>
                                         </select>
                                     </div>
                                 </div>
@@ -88,7 +105,7 @@
                                             <th>Edit</th>  
                                             <th>Delete</th>  
                                         </tr>                          
-                                        <tr th:each="lists,status:${clildlist}">                                
+                                        <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}">2.</td>      
 
 

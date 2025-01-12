@@ -33,6 +33,7 @@ public class SchoolController {
 
     @RequestMapping("/admitedstudent")
     public String admitedstudent(Model model) {
+        
         model.addAttribute("clildlist", s_RegularAdmissionClassRepository.findAll());
         return "school/report/admitedstudentlist";
     }

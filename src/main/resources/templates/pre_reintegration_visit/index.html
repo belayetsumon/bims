@@ -54,21 +54,21 @@
                                     <tbody>
                                         <tr th:each="list,status:${list}">
 
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>                                      
-                                            <td th:text="${list.visitOfficersName}" >Chakma</td>
-                                            <td th:text="${list.visitDate}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>                                      
+                                            <td th:text="${list.officerName}" >Chakma</td>
+                                            <td th:text="${list.dateOfVisit}">Chakma</td>
 
                                             <td> 
-                                                <a   th:href="@{/pre_reintegration_visit/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a>
+                                                <a   th:href="@{/pre_reintegration_visit/edit/{id} (id=${list.visitId})}" type="button" class="btn btn-xs bg-maroon ">Edit</a>
                                             </td>
                                             <td> 
-                                                <a   th:href="@{/pre_reintegration_visit/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
+                                                <a   th:href="@{/pre_reintegration_visit/delete/{id} (id=${list.visitId})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
 
                                             </td>
 
                                             <td> 
-                                                <a   th:href="@{/pre_reintegration_visit/details/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-xs bg-danger ">Add Details </a>
+                                                <a   th:href="@{/pre_reintegration_visit/details/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-danger ">Add Details </a>
 
                                             </td>
                                         </tr>

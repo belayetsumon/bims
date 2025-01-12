@@ -6,7 +6,6 @@
 package itgarden.controller.homevisit;
 
 import itgarden.model.homevisit.Decision;
-import itgarden.model.homevisit.Eligibility;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
@@ -16,6 +15,7 @@ import itgarden.repository.homevisit.ImmunizationRepository;
 import itgarden.repository.homevisit.M_AccessibilityRepository;
 import itgarden.repository.homevisit.M_AddressRepository;
 import itgarden.repository.homevisit.M_ApprovalRepository;
+
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.homevisit.M_Community_InformationRepository;
 import itgarden.repository.homevisit.M_Current_HelpRepository;
@@ -34,6 +34,7 @@ import itgarden.repository.homevisit.ReasonsRepository;
 import itgarden.repository.homevisit.RelationsRepository;
 import itgarden.repository.homevisit.ReligionRepository;
 import itgarden.repository.homevisit.ThanaRepository;
+import itgarden.services.homevisit.M_ApprovalServices;
 import itgarden.services.homevisit.MotherMasterDataServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -129,6 +130,9 @@ public class MotherDetailsController {
 
     @Autowired
     MotherMasterDataServices motherMasterDataServices;
+  
+    @Autowired
+    M_ApprovalServices approvalService;
 
     @RequestMapping("/mothersearch")
     public String motherSearch(Model model) {
@@ -218,7 +222,16 @@ public class MotherDetailsController {
     public String motherApproval(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());
         // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
-        model.addAttribute("list", m_ApprovalRepository.findAllProjectedBydecissionOrderByIdDesc(Decision.Approve));
+        model.addAttribute("list", approvalService.allApprovalMother(Decision.Approve));
         return "homevisit/motherdetails/approval";
+    }
+    
+    
+    @RequestMapping("/mother_not_approval")
+    public String mother_not_approval(Model model) {
+        //model.addAttribute("list", motherMasterDataRepository.findAll());
+        // model.addAttribute("list", m_ApprovalRepository.findAllBydecissionOrderByIdDesc(Decision.Approve));
+        model.addAttribute("list", approvalService.allApprovalMother(Decision.Not_Approve));
+        return "homevisit/motherdetails/not_approval";
     }
 }

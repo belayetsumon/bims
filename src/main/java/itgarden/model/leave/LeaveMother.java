@@ -33,8 +33,8 @@ public class LeaveMother implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     public String sectionName;
@@ -48,6 +48,9 @@ public class LeaveMother implements Serializable {
     @NotNull(message = "Leave to date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate leaveTo;
+    
+    @NotEmpty(message = "Reason of leave cannot be blank.")
+    public String reasonofleave;
 
     @NotEmpty(message = "Care of cannot be blank.")
     public String careof;
@@ -61,13 +64,13 @@ public class LeaveMother implements Serializable {
 
 //    @Column(nullable = false)
 //    @NotNull(message = "Joinning date date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate joinningDate;
-    
+
     @Lob
-    @NotEmpty(message = "Address cannot be blank.")
     private String remark;
-    
-/**
+
+    /**
      * ********* Audit ******************************
      */
     @Column(insertable = true, updatable = false)
@@ -87,12 +90,13 @@ public class LeaveMother implements Serializable {
     public LeaveMother() {
     }
 
-    public LeaveMother(Long id, MotherMasterData motherMasterCode, String sectionName, LocalDate leaveFrom, LocalDate leaveTo, String careof, String contactNumber, String address, LocalDate joinningDate, String remark, Users createdBy, Users updatedBy) {
+    public LeaveMother(Long id, MotherMasterData motherMasterCode, String sectionName, LocalDate leaveFrom, LocalDate leaveTo, String reasonofleave, String careof, String contactNumber, String address, LocalDate joinningDate, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.sectionName = sectionName;
         this.leaveFrom = leaveFrom;
         this.leaveTo = leaveTo;
+        this.reasonofleave = reasonofleave;
         this.careof = careof;
         this.contactNumber = contactNumber;
         this.address = address;
@@ -140,6 +144,14 @@ public class LeaveMother implements Serializable {
 
     public void setLeaveTo(LocalDate leaveTo) {
         this.leaveTo = leaveTo;
+    }
+
+    public String getReasonofleave() {
+        return reasonofleave;
+    }
+
+    public void setReasonofleave(String reasonofleave) {
+        this.reasonofleave = reasonofleave;
     }
 
     public String getCareof() {
@@ -213,4 +225,5 @@ public class LeaveMother implements Serializable {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
 }

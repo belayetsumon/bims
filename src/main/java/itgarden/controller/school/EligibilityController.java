@@ -9,6 +9,7 @@ import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.school.EligibilityStudent;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.school.EligibilityStudentRepository;
+import itgarden.services.school.EligibilityStudentService;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,15 @@ public class EligibilityController {
 
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
+    
+    @Autowired
+    EligibilityStudentService eligibilityStudentService;
 
     @RequestMapping("/eligibility")
     public String index(Model model) {
 
-        model.addAttribute("clildlist", eligibilityStudentRepository.findAll());
+       // model.addAttribute("clildlist", eligibilityStudentRepository.findAll());
+         model.addAttribute("clildlist", eligibilityStudentService.findEligibilityStudentData());
 
         return "school/eligibilityindex";
     }

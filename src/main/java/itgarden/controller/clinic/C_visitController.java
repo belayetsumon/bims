@@ -8,6 +8,8 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_visit;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_visitRepository;
+import itgarden.services.clinic.C_visitService;
+import itgarden.services.observation.O_MAddmissionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +31,19 @@ public class C_visitController {
     @Autowired
     C_visitRepository c_visitRepository;
 
-    @RequestMapping("/index/{id}")
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
 
+    @Autowired
+    C_visitService c_visitService;
+
+    @RequestMapping("/list")
+    public String list(Model model) {
+        model.addAttribute("cvisit", c_visitService.all_visit_list());
+        return "clinic/c_visit_list";
+    }
+
+    @RequestMapping("/index/{id}")
     public String index(Model model, @PathVariable Long id) {
 
         MotherMasterData motherMasterData = new MotherMasterData();

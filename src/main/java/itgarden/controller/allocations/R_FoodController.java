@@ -7,6 +7,7 @@ package itgarden.controller.allocations;
 import itgarden.model.rehabilitations.FoodByHouse;
 import itgarden.model.rehabilitations.R_Food;
 import itgarden.repository.rehabilitations.R_FoodRepository;
+import itgarden.services.cmc.R_FoodService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,13 @@ public class R_FoodController {
 
     @Autowired
     R_FoodRepository r_FoodRepository;
+    
+    @Autowired
+    R_FoodService r_FoodService;
 
     @RequestMapping("/index")
     public String index(Model model) {
-        model.addAttribute("list", r_FoodRepository.findAll());
+        model.addAttribute("list", r_FoodService.getFoodData());
         return "rehabilitations/food/food_index";
     }
 

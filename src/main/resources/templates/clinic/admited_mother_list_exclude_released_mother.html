@@ -40,7 +40,7 @@
                                             <th> Id</th>
                                             <th>Mother Master Code</th>
                                             <th>Mother Name</th>
-                                            <th>Number Eligible Child </th>
+                                            <th>Mobile </th>
                                             <th>Date Arrival</th>
                                             <th>Date Admission</th>
                                             <!--                                        <th>Pic</th>-->
@@ -51,14 +51,14 @@
                                         <tr th:each="o_MAddmission,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td> 
-                                                <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info">Add Daily Visit</a>
+                                                <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.admissionId})}" type="button" class="btn btn-sm btn-info">Add Daily Visit</a>
                                             </td>
-                                            <td th:text="${o_MAddmission.id}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.motherName}">Chakma</td>
-                                            <td th:text="${o_MAddmission.motherMasterCode.numberOfEligibleChildren}">Chakma</td>
-                                            <td th:text="${o_MAddmission.dateArrival}">Chakma</td>
-                                            <td th:text="${o_MAddmission.dateAdmission}">Chakma</td>
+                                            <td th:text="${o_MAddmission.admissionId}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherMasterCode}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherName}">Chakma</td>
+                                            <td th:text="${o_MAddmission.mobileNumber}">Chakma</td>
+                                            <td th:text="${o_MAddmission.arrivalDate}">Chakma</td>
+                                            <td th:text="${o_MAddmission.admissionDate}">Chakma</td>
                                             <!--                                        <td>
                                                                                         <img  class="img-responsive" th:src="${repo_url}+${o_MAddmission.picName}" width="50px" height="50px"/>
                                                                                     </td> -->

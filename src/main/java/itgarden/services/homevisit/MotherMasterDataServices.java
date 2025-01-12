@@ -19,8 +19,10 @@ import itgarden.model.homevisit.M_Property;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Reasons;
 import itgarden.model.observation.O_Induction;
+import itgarden.model.observation.O_MAddmission;
 import itgarden.model.observation.O_MHealthConditions;
 import itgarden.model.observation.O_Professional_Obserbations_Mother;
+import itgarden.model.pre_reintegration_visit.PreReintegrationVisit;
 import itgarden.services.DateConverter;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -551,8 +553,7 @@ public class MotherMasterDataServices {
 //        Predicate property = cb.isNotNull(mPropertyJoin);
 //        Predicate mnutrition = cb.isNotNull(mnutritionJoin);
 //        Predicate eligibilityStatus = cb.equal(root.get("eligibility"), Eligibility.Eligible);
- 
-List<Predicate> predicates = new ArrayList<>();
+        List<Predicate> predicates = new ArrayList<>();
         predicates.add(cb.isNotNull(mAddressJoin));
         predicates.add(cb.isNotNull(maccessibilityJoin));
         predicates.add(cb.isNotNull(mcommunityInformationJoin));
@@ -607,8 +608,8 @@ List<Predicate> predicates = new ArrayList<>();
                 root.get("eligibility").alias("eligibilityStatus"),
                 root.get("created").alias("created")
         );
- cq.where(cb.and(predicates.toArray(new Predicate[0])));
- 
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
 //        cq.where(cb.and(
 //                address,
 //                maccessibility,
@@ -623,7 +624,6 @@ List<Predicate> predicates = new ArrayList<>();
 //                mnutrition,
 //                eligibilityStatus
 //        ));
-
         cq.orderBy(cb.desc(root.get("id")));
 
         // Execute the query
@@ -983,7 +983,7 @@ List<Predicate> predicates = new ArrayList<>();
         }
         return mappedResults;
     }
-
+    
 //    public List<MotherMasterDataDTO> findByOinductionIsNullAndMapprovalDecission() {
 //        // Create CriteriaBuilder
 //        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

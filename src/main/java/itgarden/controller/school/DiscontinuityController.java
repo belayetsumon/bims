@@ -11,6 +11,7 @@ import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.school.DiscontinuityRepository;
 import itgarden.repository.school.S_RegularAdmissionClassRepository;
+import itgarden.services.reintegration_release.ReleaseChildService;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,21 @@ public class DiscontinuityController {
     
      @Autowired
     ReleaseChildRepository releaseChildRepository;
+     
+    @Autowired
+     ReleaseChildService releaseChildService;
 
     @RequestMapping("/releasedchildlist")
     public String page(Model model) {
-        model.addAttribute("clildlist", releaseChildRepository.findAll());
+        
+         model.addAttribute("clildlist", releaseChildService.getReleaseChildList());
+      //  model.addAttribute("clildlist", releaseChildRepository.findAll());
         return "school/admissionstudentlist";
     }
 
     @RequestMapping("/index")
     public String index(Model model) {
-        model.addAttribute("clildlist", discontinuityRepository.findAll());
+        //model.addAttribute("clildlist", discontinuityRepository.findAll());
         return "school/releasedchildlist";
     }
 

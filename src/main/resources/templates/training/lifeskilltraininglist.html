@@ -9,12 +9,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-5">
-                            <h1>   Livelihood Training List</h1>
+                            <h1>    Training List</h1>
                         </div>
                         <div class="col-sm-7">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Livelihood Training</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Training</a></li>
                                 <li class="breadcrumb-item active">Training List By Mother </li>
                             </ol>
                         </div>
@@ -30,43 +30,45 @@
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Mother Life Skill/Universal Training  </h3>
                                 <div class="card-tools">
-                                <a   th:href="@{/rlifeskilltrainning/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Life Skill Training </a>
-                            </div>  </div>
+<!--                                    <a   th:href="@{/rlifeskilltrainning/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Life Skill Training </a>-->
+                                </div>  </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-                                        <th>Mother Master Code</th>
-                                        <th>Mother Name </th>
-                                        <th>Training Name</th>
-                                        <th>Prerequisite Skill </th>
-                                        <th>Venue</th>
-                                        <th> Start Date</th>
-                                        <th>End Date</th>
-                                        <th> Total Days</th>
-                                        <th> Ext Date </th>
-                                        <th> Total Days </th>
-                                        <th>Conducted By</th>
-                                    </tr>                         
-                                    <tr th:each="list,status:${r_Life_Skill_Trainning}">
-                                        <td th:text="${status.count}">2.</td>
-                                        <td><a   th:href="@{/rlifeskilltrainning/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
-                                        <td> <a   th:href="@{/rlifeskilltrainning/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
-                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.name}">Chakma</td>
-                                        <td th:text="${list.trainingName.name}">Chakma</td>
-                                        <td th:text="${list.prerequisiteSkill}">Chakma</td>
-                                        <td th:text="${list.location}">Chakma</td>
-                                        <td th:text="${list.startDate}">Chakma</td>
-                                        <td th:text="${list.endDate}">Chakma</td>
-                                        <td th:text="${list.endDate}">Chakma</td>                                 
-                                        <td th:text="${list.extentionDate}">Chakma</td>
-                                        <td th:text="${list.extentionDate}">Chakma</td>
-                                        <td th:text="${list.conductedBy}">Chakma</td>
-                                    </tr>
+
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>  
+
+                                            <th>Mother Master Code</th>
+                                            <th>Mother Name </th>
+                                            <th>Training Name</th>
+                                            <th>Prerequisite Skill </th>
+                                            <th>Venue</th>
+                                            <th> Start Date</th>
+                                            <th>End Date</th>
+                                            <th> Total Days</th>
+                                            <th> Ext Date </th>
+                                            <th> Total Days </th>
+                                            <th>Conducted By</th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${r_Life_Skill_Trainning}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
+                                            <td th:text="${list.trainingName}">Chakma</td>
+                                            <td th:text="${list.prerequisiteSkill}">Chakma</td>
+                                            <td th:text="${list.location}">Chakma</td>
+                                            <td th:text="${list.startDate}">Chakma</td>
+                                            <td th:text="${list.endDate}">Chakma</td>
+                                            <td th:text="${list.endDate}">Chakma</td>                                 
+                                            <td th:text="${list.extentionDate}">Chakma</td>
+                                            <td th:text="${list.extentionDate}">Chakma</td>
+                                            <td th:text="${list.conductedBy}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -80,7 +82,7 @@
                     <!-- /.col -->
                     <!-- /.col -->
                 </div>
-             
+
             </section>
             <!-- /.content -->
         </div>

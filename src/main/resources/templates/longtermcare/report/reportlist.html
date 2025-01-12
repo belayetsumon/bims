@@ -5,80 +5,88 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Long Term Care
-
-                </h1>
-
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>    Long Term Care</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">   Long Term Care</a></li>
+                                <li class="breadcrumb-item active">Report </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
-                <!-- Default box -->
+                <!-- Default card -->
                 <div class="col-sm-12"> 
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">  Long Term Care Report List</h3>
+                    <div class="card card-info">
+                        <div class="card-header with-border">
+                            <h3 class="card-title">  Long Term Care Report List</h3>
 
-                            <div class="box-tools pull-right">
+                            <div class="card-tools pull-right">
                                 <div class="btn-group">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6"> 
-                            <div class="box-body">
-                                <a  th:href="@{/longtremcare/fosterlist}" type="button" class="btn btn-block btn-danger"> Foster List</a>
-                                <a  th:href="@{/longtremcare/marriagelist}" type="button" class="btn btn-block btn-danger"> Marriage List </a>
-                                <a  th:href="@{/longtremcare/higherstudylist}" type="button" class="btn btn-block btn-danger"> Higher Study List</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6"> 
-                            <div class="box-body">
-                                <a  th:href="@{/longtremcare/joblist}" type="button" class="btn btn-block btn-danger">  Job List</a>
-                                <a  th:href="@{/longtremcare/follow_uplist}" type="button" class="btn btn-block btn-danger">Follow Up list</a>
+                            <div class="card-body">
+                                <a  th:href="@{/longtremcare/existinglongtremcarechild}" type="button" class="btn btn-block btn-info">Existing Long Term Care Beneficiaries </a>
+                                <a  th:href="@{/longtremcare/releasechild}" type="button" class="btn btn-block btn-info">Released Long Term Care Beneficiaries</a>
+                                <a  th:href="@{/childcrisismeetup/list}" type="button" class="btn btn-block btn-info">Crisis Meet Up</a>
+                                <a  th:href="@{/longtremcare/fosterlist}" type="button" class="btn btn-block btn-info"> Foster List</a>
+                                <a  th:href="@{/longtremcare/marriagelist}" type="button" class="btn btn-block btn-info"> Marriage List </a>
+                                <a  th:href="@{/longtremcare/higherstudylist}" type="button" class="btn btn-block btn-info"> Higher Study List</a>
+                                <a  th:href="@{/longtremcare/joblist}" type="button" class="btn btn-block btn-info">  Job List</a>
+                                <a  th:href="@{/longtremcare/follow_uplist}" type="button" class="btn btn-block btn-info">Follow Up list</a>
 
                             </div>
                         </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
+                        <!-- /.card-body -->
+                        <div class="card-footer">
 
 
 
-                            <div class="box-tools pull-right">
+                            <div class="card-tools pull-right">
                                 <div class="btn-group">
 
                                 </div>
                             </div>
                         </div>
-                        <!-- /.box-footer-->
+                        <!-- /.card-footer-->
                     </div>
 
 
                 </div>
                 <div class="col-sm-6"> 
-                    <!--                    <div class="box box-primary col-sm-6">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title">#</h3>
+                    <!--                    <div class="card card-primary col-sm-6">
+                                            <div class="card-header with-border">
+                                                <h3 class="card-title">#</h3>
                     
-                                                <div class="box-tools pull-right">
+                                                <div class="card-tools pull-right">
                                                     <div class="btn-group">
                     
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="box-body">
+                                            <div class="card-body">
                     
                     
                                             </div>
-                                             /.box-body 
-                                            <div class="box-footer">
-                                                <div class="box-tools pull-right">
+                                             /.card-body 
+                                            <div class="card-footer">
+                                                <div class="card-tools pull-right">
                                                     <div class="btn-group">
                     
                                                     </div>
                                                 </div>
                                             </div>
-                                             /.box-footer
+                                             /.card-footer
                                         </div>-->
 
 

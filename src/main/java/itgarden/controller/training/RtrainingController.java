@@ -12,6 +12,8 @@ import itgarden.repository.rehabilitations.R_IGA_TrainingRepository;
 import itgarden.repository.rehabilitations.R_Life_Skill_TrainningRepository;
 import itgarden.services.observation.O_MAddmissionService;
 import itgarden.services.reintegration_release.ReleaseMotherService;
+import itgarden.services.training.R_IGA_TrainingService;
+import itgarden.services.training.R_Life_Skill_TrainningService;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -46,12 +48,18 @@ public class RtrainingController {
 
     @Autowired
     ReleaseMotherService releaseMotherService;
-   
+
     @Autowired
     O_MAddmissionService o_MAddmissionService;
 
     @Value("${repo_url}")
     public String repo_url;
+
+    @Autowired
+    R_IGA_TrainingService r_IGA_TrainingService;
+
+    @Autowired
+    R_Life_Skill_TrainningService r_Life_Skill_TrainningService;
 
     public static List<Map<String, Object>> filterUncommonMothers(
             List<Map<String, Object>> admitedMotherList, List<Long> releasedMotherList) {
@@ -77,14 +85,13 @@ public class RtrainingController {
 
     @RequestMapping("/mother_list_for_training")
     public String mothersearch(Model model) {
-       
 
         List<Map<String, Object>> admitedMotherList = o_MAddmissionService.allAdmitedMotherList();
         List<Long> releasedMotherList = releaseMotherService.allReleasedMotherIdList();
 
         // Get the uncommon admitted mothers
-        List<Map<String, Object>> uncommonAdmittedMothers = 
-                filterUncommonMothers(admitedMotherList, releasedMotherList);
+        List<Map<String, Object>> uncommonAdmittedMothers
+                = filterUncommonMothers(admitedMotherList, releasedMotherList);
 
         model.addAttribute("list", uncommonAdmittedMothers);
         return "training/mother_list_for_training";
@@ -105,14 +112,13 @@ public class RtrainingController {
     }
 
     @RequestMapping("/lifeskilltraininglist")
-
     public String lifeSkill(Model model) {
 //        model.addAttribute("m_id", id);
 //        MotherMasterData motherMasterData = new MotherMasterData();
 //
 //        motherMasterData.setId(id);
-        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findAll());
-        return "rehabilitations/training/lifeskilltraininglist";
+        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningService.lifeSkillTrainingsList());
+        return "training/lifeskilltraininglist";
     }
 
     @RequestMapping("/igatraininglist")
@@ -121,8 +127,8 @@ public class RtrainingController {
 //        MotherMasterData motherMasterData = new MotherMasterData();
 //
 //        motherMasterData.setId(id);
-        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findAll());
-        return "rehabilitations/training/igatraininglist";
+        model.addAttribute("r_IGA_Training", r_IGA_TrainingService.igaSkillTrainingsList());
+        return "training/igatraininglist";
     }
 
 }

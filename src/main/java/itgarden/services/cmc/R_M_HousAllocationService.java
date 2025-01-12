@@ -146,5 +146,5 @@ public class R_M_HousAllocationService {
 
         return query.getResultList();
     }
-
-}
+    
+  }

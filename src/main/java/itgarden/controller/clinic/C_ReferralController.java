@@ -8,6 +8,7 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_Referral;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ReferralRepository;
+import itgarden.services.clinic.C_ReferralService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,13 @@ public class C_ReferralController {
 
     C_ReferralRepository c_ReferralRepository;
 
+    @Autowired
+    C_ReferralService c_ReferralService;
+
     @RequestMapping("/index")
     public String index(Model model) {
-        model.addAttribute("referral", c_ReferralRepository.findAll());
+        // model.addAttribute("referral", c_ReferralRepository.findAll());
+        model.addAttribute("referral", c_ReferralService.allReferralAll());
         return "clinic/referralindex";
     }
 
@@ -68,13 +73,12 @@ public class C_ReferralController {
         return "redirect:/referral/index";
     }
 
-    
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, C_Referral c_Referral, RedirectAttributes redirectAttrs) {
         c_Referral = c_ReferralRepository.findById(id).orElse(null);
         redirectAttrs.addAttribute("id", c_Referral.motherMasterCode.getId());
         c_ReferralRepository.deleteById(id);
         return "redirect:/referral/index";
-        }
-    
+    }
+
 }

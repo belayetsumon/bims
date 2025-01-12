@@ -21,7 +21,6 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -40,9 +39,6 @@ public class L_HigherStudy {
     public M_Child_info childMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
-
-    @NotBlank(message = "This field cannot be blank.")
-
     @Lob
     public String address;
     @NotNull(message = "This field cannot be blank.")

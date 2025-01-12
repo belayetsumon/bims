@@ -40,6 +40,7 @@
                                             <th> Mother Name</th>
                                             <th> Child Name</th>
                                             <th> Child Id</th>
+                                                 <th>Gender</th>
                                             <th>Release Date</th>
                                             <th>Training</th>
                                             <th>Address</th>
@@ -52,23 +53,24 @@
                                     <tbody>
                                         <tr th:each="list,status:${list}">
 
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
 
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>
 
-                                            <td th:text="${list.childMasterCode.name}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
 
-                                            <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                              <td th:text="${list.gender}">Chakma</td>
 
                                             <td th:text="${list.releaseDate}" >Chakma</td>
                                             <td th:text="${list.training}" >Chakma</td>
 
-                                            <td th:text="${list.Address}" >Chakma</td>
+                                            <td th:text="${list.address}" >Chakma</td>
 
                                             <td th:text="${list.remark}" >Chakma</td>
 
                                             <td> 
-                                                <a   th:href="@{/reintegration/child_delete2/{id} (id=${list.id})}" type="button"  class="btn btn-sm  btn-info ">Delete</a>
+                                                <a   th:href="@{/reintegration/child_delete2/{id} (id=${list.releaseChildId})}" type="button"  class="btn btn-sm  btn-info ">Delete</a>
                                             </td>
                                         </tr>
                                     </tbody>

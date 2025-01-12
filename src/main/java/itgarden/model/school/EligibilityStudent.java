@@ -7,9 +7,11 @@ package itgarden.model.school;
 
 import itgarden.model.homevisit.M_Child_info;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +28,8 @@ public class EligibilityStudent {
     private Long id;
 
     @NotNull(message = "This field cannot be blank.")
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "child_master_code_id", nullable = false)
     M_Child_info childMasterCode;
 
        @Lob

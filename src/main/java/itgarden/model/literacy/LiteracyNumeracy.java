@@ -37,7 +37,7 @@ public class LiteracyNumeracy {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(nullable = false)
+     @JoinColumn(name = "mother_master_code_id", nullable = false)
     private MotherMasterData motherMasterCode;
 
     @Column(nullable = false)

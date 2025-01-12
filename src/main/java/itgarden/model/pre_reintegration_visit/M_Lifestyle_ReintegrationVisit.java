@@ -37,7 +37,7 @@ public class M_Lifestyle_ReintegrationVisit {
 
     @NotNull(message = "This field cannot be blank.")
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+     @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "This field cannot be blank.")

@@ -1,6 +1,7 @@
 
 
 // District Thana Cascade
+//Home visit
    $(document).ready(function () {
     //alert("Hello");
     $('#district').change(function () {
@@ -31,6 +32,15 @@
 });// jquery
 
 // District Thana Cascade End
+
+
+
+
+
+
+ 
+
+
 
 // file validation for pic
 //$(document).ready(function () {
