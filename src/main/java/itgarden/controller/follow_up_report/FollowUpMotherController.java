@@ -12,15 +12,18 @@ import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.follow_up_report.FollowUpMotherRepsitory;
 import itgarden.repository.follow_up_report.MotherCrisisMeetUpRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
+import itgarden.services.FollowUp.FollowUpMotherService;
 import itgarden.services.reintegration_release.ReleaseMotherService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -49,11 +52,13 @@ public class FollowUpMotherController {
     @Autowired
     ReleaseMotherService releaseMotherService;
 
+    @Autowired
+    FollowUpMotherService followUpMotherService;
+
     @GetMapping("/mothersearch")
     public String motherSearch(Model model) {
 
-       // model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
-        
+        // model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
         model.addAttribute("list", releaseMotherService.getReleaseMotherList());
 
         return "follow_up_report/mothersearch";
@@ -119,4 +124,16 @@ public class FollowUpMotherController {
         followUpMotherRepsitory.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
     }
+
+    @RequestMapping(value = "list")
+    public String list(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+
+        model.addAttribute("list", followUpMotherService.find_Follow_Up_Mother_List(startDate, endDate));
+
+        return "follow_up_report/mother_follow_up_list";
+    }
+
 }

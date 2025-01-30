@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -47,6 +48,8 @@ public class Discontinuity {
     @NotNull(message = "This field cannot be blank.Please enter minimum 2 character!")
     @Size(min = 2, max = 100, message = "This field cannot be blank.")
     public String discontinuityReason;
+    
+    @Lob
     public String remark;
 
     /**

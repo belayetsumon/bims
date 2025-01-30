@@ -54,7 +54,7 @@ public class LiteracyalkingScienceController {
 
     @RequestMapping("/list")
     public String list(Model model) {
-        model.addAttribute("list", literacyTalkingScienceRepository.findAll());
+        model.addAttribute("list", literacyTalkingScienceService.getLiteracyTalkingScienceData());
         return "literacy/literacytalkingscience_list";
     }
 

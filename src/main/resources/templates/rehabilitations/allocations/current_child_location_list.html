@@ -62,30 +62,40 @@
                                         <button type="submit" class="btn btn-info ">Submit</button>
                                     </div>
                                 </form>     
-                               <table id="tablesdata" class="table table-bordered table-striped">
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Child Master Code</th>
-                                        <th>Gender</th>
-                                        <th>House Name </th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Ext Date </th>
-                                        <th>Remark</th>
-                                    </tr>                          
-                                    <tr th:each="list,status:${list}">
-                                        <td th:text="${status.count}">2.</td>
-                                        <td th:text="${list.get('motherMasterCode')}">Chakma</td>
-                                        <td th:text="${list.get('motherMasterCode')}">Chakma</td>
-                                        <td th:text="${list.get('childMasterCode')}">Chakma</td>
-                                        <td th:text="${list.get('childMasterCode')}">Chakma</td>
-                                        <td th:text="${list.get('houseName')}">Chakma</td>
-                                        <td th:text="${list.get('allocationDate')}">Chakma</td>
-                                        <td th:text="${list.get('endDate')}">Chakma</td>
-                                        <td th:text="${list.get('extDate')}">Chakma</td>
-                                        <td th:text="${list.get('remark')}">Chakma</td>
-                                    </tr>
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Child Master Code</th>
+                                            <th>Gender</th>
+                                            <th>House Name </th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th> Total Days</th>
+                                            <th> Ext Date </th>
+                                            <th> Total Days </th>
+                                            <th> Grand Total Days </th>
+                                            <th>Remark</th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${list.get('motherMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('motherMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('childMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('childMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('houseName')}">Chakma</td>
+                                            <td th:text="${list.get('allocationDate')}">Chakma</td>
+                                            <td th:text="${list.get('endDate')}">Chakma</td>
+                                            <td th:text="${list.get('totaldays')}">Chakma</td>
+                                            <td th:text="${list.get('extDate')}">Chakma</td>
+                                            <td th:text="${list.get('extentionDays')}">Chakma</td>
+                                            <td th:text="${list.get('grandTotalDay')}">Chakma</td>
+                                            <td th:text="${list.get('remark')}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

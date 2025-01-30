@@ -7,6 +7,7 @@ package itgarden.services.literacy;
 import itgarden.model.homevisit.DTO.MotherMasterDataDTO;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.literacy.LiteracyDigitalLiteracy;
+import itgarden.model.literacy.ResultEnum;
 import itgarden.services.observation.O_MAddmissionService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,10 +15,17 @@ import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +61,7 @@ public class DigitalliteracyService {
         );
         List<Predicate> predicates = new ArrayList<Predicate>();
         // Define the predicates for the conditions
-       
+
         predicates.add(root.get("id").in(admitedMotherList));
 
         if (!digitalliteracyMotherIdList.isEmpty()) {
@@ -103,6 +111,126 @@ public class DigitalliteracyService {
             idList.add(id);
         }
         return idList;
+    }
+
+    public List<Map<String, Object>> getAllLiteracyDigitalLiteracyData() {
+        // Create CriteriaBuilder and CriteriaQuery
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
+
+        // Root for the LiteracyDigitalLiteracy entity
+        Root<LiteracyDigitalLiteracy> literacyRoot = cq.from(LiteracyDigitalLiteracy.class);
+
+        // Alias for columns
+        Join<LiteracyDigitalLiteracy, MotherMasterData> motherMasterDataJoin = literacyRoot.join("motherMasterCode", JoinType.INNER);
+
+        // Selecting multiple fields
+        cq.multiselect(
+                literacyRoot.get("id").alias("id"),
+                literacyRoot.get("admissionDate").alias("admissionDate"),
+                literacyRoot.get("endDate").alias("endDate"),
+                literacyRoot.get("result").alias("result"),
+                literacyRoot.get("remark").alias("remark"),
+                motherMasterDataJoin.get("motherMasterCode").alias("motherMasterCode"),
+                motherMasterDataJoin.get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
+        );
+
+        // Applying where conditions (if needed, e.g., filtering by some condition)
+        // cq.where(cb.equal(literacyRoot.get("someField"), someValue));
+        // Order by id in descending order
+        cq.orderBy(cb.desc(literacyRoot.get("id")));
+
+        // Execute the query
+        TypedQuery<Tuple> query = em.createQuery(cq);
+        List<Tuple> results = query.getResultList();
+
+        // Convert Tuple results into List of Maps
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Tuple tuple : results) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("id", tuple.get("id"));
+            resultMap.put("admissionDate", tuple.get("admissionDate"));
+            resultMap.put("endDate", tuple.get("endDate"));
+            resultMap.put("result", tuple.get("result"));
+            resultMap.put("remark", tuple.get("remark"));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultList.add(resultMap);
+        }
+
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getAllLiteracyDigitalLiteracyDataReport(
+            String startDate,
+            String endDate,
+            ResultEnum result
+    ) {
+        // Create CriteriaBuilder and CriteriaQuery
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
+
+        // Root for the LiteracyDigitalLiteracy entity
+        Root<LiteracyDigitalLiteracy> literacyRoot = cq.from(LiteracyDigitalLiteracy.class);
+
+        // Alias for columns
+        Join<LiteracyDigitalLiteracy, MotherMasterData> motherMasterDataJoin = literacyRoot.join("motherMasterCode", JoinType.INNER);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Parse and apply date range if startDate and endDate are provided
+        if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isNotEmpty(endDate)) {
+            LocalDate start = LocalDate.parse(startDate, formatter);
+            LocalDate end = LocalDate.parse(endDate, formatter);
+            predicates.add(cb.between(literacyRoot.get("admissionDate"), start, end));
+        } else if (ObjectUtils.isNotEmpty(startDate)) {
+            LocalDate start = LocalDate.parse(startDate, formatter);
+            predicates.add(cb.equal(literacyRoot.get("admissionDate"), start));
+        }
+
+        if (ObjectUtils.isNotEmpty(result)) {
+            predicates.add(cb.equal(literacyRoot.get("result"), result));
+        }
+
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
+        // Selecting multiple fields
+        cq.multiselect(
+                literacyRoot.get("id").alias("id"),
+                literacyRoot.get("admissionDate").alias("admissionDate"),
+                literacyRoot.get("endDate").alias("endDate"),
+                literacyRoot.get("result").alias("result"),
+                literacyRoot.get("remark").alias("remark"),
+                motherMasterDataJoin.get("motherMasterCode").alias("motherMasterCode"),
+                motherMasterDataJoin.get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
+        );
+
+        // Applying where conditions (if needed, e.g., filtering by some condition)
+        // cq.where(cb.equal(literacyRoot.get("someField"), someValue));
+        // Order by id in descending order
+        cq.orderBy(cb.desc(literacyRoot.get("id")));
+
+        // Execute the query
+        TypedQuery<Tuple> query = em.createQuery(cq);
+        List<Tuple> results = query.getResultList();
+
+        // Convert Tuple results into List of Maps
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Tuple tuple : results) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("id", tuple.get("id"));
+            resultMap.put("admissionDate", tuple.get("admissionDate"));
+            resultMap.put("endDate", tuple.get("endDate"));
+            resultMap.put("result", tuple.get("result"));
+            resultMap.put("remark", tuple.get("remark"));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultList.add(resultMap);
+        }
+
+        return resultList;
     }
 
 }

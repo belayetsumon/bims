@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package itgarden.controller.allocations;
+package itgarden.controller.cmc;
 
 import itgarden.model.homevisit.Gender;
 import itgarden.model.homevisit.MotherMasterData;
@@ -15,6 +15,7 @@ import itgarden.repository.rehabilitations.R_C_HouseAllocationsRepository;
 import itgarden.repository.rehabilitations.R_M_HousAllocationRepository;
 import itgarden.repository.rehabilitations.R_M_WorkAllocationRepository;
 import itgarden.services.cmc.R_C_HouseAllocationsService;
+import itgarden.services.cmc.R_FoodService;
 import itgarden.services.cmc.R_M_HousAllocationService;
 import itgarden.services.cmc.R_M_WorkAllocationService;
 import itgarden.services.observation.O_MAddmissionService;
@@ -25,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,8 +68,9 @@ public class HouseWorkAllocationController {
 
     @Autowired
     HouseNameRepository houseNameRepository;
-    
-   
+
+    @Autowired
+    R_FoodService r_FoodService;
 
     @Value("${repo_url}")
     public String repo_url;
@@ -218,8 +221,13 @@ public class HouseWorkAllocationController {
         model.addAttribute("m_id", id);
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
-        model.addAttribute("list", r_M_HousAllocationRepository.findBymotherMasterCode(motherMasterData));
-        model.addAttribute("list2", r_C_HouseAllocationsRepository.findBymotherMasterCode(motherMasterData));
+        // model.addAttribute("list", r_M_HousAllocationRepository.findBymotherMasterCode(motherMasterData));
+
+        model.addAttribute("list", r_M_HousAllocationService.all_Mother_House_Allocation_by_id(id));
+
+        // model.addAttribute("list2", r_C_HouseAllocationsRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("list2", r_C_HouseAllocationsService.all_childHouse_Allocation_by_id(id));
+
         return "rehabilitations/allocations/index";
     }
 
@@ -230,7 +238,8 @@ public class HouseWorkAllocationController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
 
-        model.addAttribute("list3", r_M_WorkAllocationRepository.findBymotherMasterCode(motherMasterData));
+        //  model.addAttribute("list3", r_M_WorkAllocationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("list3", r_M_WorkAllocationService.all_Mother_Work_Location_by_id(id));
         return "rehabilitations/allocations/work_allocation_index";
     }
 
@@ -250,14 +259,32 @@ public class HouseWorkAllocationController {
     ) {
         model.addAttribute("houseName", houseNameRepository.findAll());
         model.addAttribute("genderList", Gender.values());
-        model.addAttribute("list", r_C_HouseAllocationsService.currentChildHouseLocation(houseName,gender));
+        model.addAttribute("list", r_C_HouseAllocationsService.currentChildHouseLocation(houseName, gender));
         return "rehabilitations/allocations/current_child_location_list";
     }
 
     @RequestMapping("/mothercurrentworklocation")
     public String mothercurrentworklocation(Model model
-    ) {        model.addAttribute("list", r_M_WorkAllocationService.currentMotherWorkLocation());
+    ) {
+        model.addAttribute("list", r_M_WorkAllocationService.currentMotherWorkLocation());
         return "rehabilitations/allocations/current_mother_work_location_list";
+    }
+
+    @RequestMapping("/food_report")
+    public String foodReport(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+
+        List<Map<String, Object>> allFoodData = r_FoodService.get_All_FoodData_Report_By_filter(startDate, endDate);
+        model.addAttribute("list", allFoodData);
+
+        int totalPresent = allFoodData.stream()
+                .mapToInt(data -> (Integer) data.get("totalPresent")) // Extracting 'present' field as Integer
+                .sum();
+
+         model.addAttribute("totalpresent", totalPresent);
+        return "rehabilitations/food/food_by_date_report";
     }
 
 }

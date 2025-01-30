@@ -2,7 +2,7 @@
 
 // District Thana Cascade
 //Home visit
-   $(document).ready(function () {
+$(document).ready(function () {
     //alert("Hello");
     $('#district').change(function () {
         var district = $('#district').val();
@@ -13,12 +13,12 @@
             url: "/thana/thana/" + district,
             dataType: 'json',
             success: function (data) {
-                var slctSubcat=$('#thana'), option="Select One";
+                var slctSubcat = $('#thana'), option = "Select One";
                 slctSubcat.empty();
-             for(var i=0; i<data.length; i++){
-                option = option + "<option value='"+data[i].id + "'>"+data[i].name + "</option>";
-            }
-            slctSubcat.append(option);
+                for (var i = 0; i < data.length; i++) {
+                    option = option + "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+                }
+                slctSubcat.append(option);
             }, //success
 
             error: function (e) {
@@ -33,12 +33,23 @@
 
 // District Thana Cascade End
 
+$(document).ready(function () {
+    // Initialize Select2 on your select element
+   // alert("hello select 2");
+    $('#select2').select2(
+           {
+   // placeholder: "Select an option",
+    allowClear: true,
+    width: '100%'
+} 
+            
+            );
+});
 
 
 
 
 
- 
 
 
 

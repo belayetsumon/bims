@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Follow Up </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Follow Up</a></li>
+                                <li class="breadcrumb-item active"> Mother Follow Up List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header with-border">
+                        <h3 class="card-title">  Mother Follow Up List. Total : 
+                            <span th:text="${list.size()}"></span>
+                        </h3>
+                        <div class="card-tools pull-right">
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive ">
+
+                        <div class="col-sm-12 ">
+
+                            <form class="row  justify-content-center mb-1" 
+                                  th:action="@{/followupmother/list}"   method="get">
+
+                                <div class="col-auto">
+
+                                    <label class="" for="email">From:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-group input-group date">
+
+                                        <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="" for="to">To:</label>
+                                </div>
+                                <div class="col-auto"> 
+                                    <div class="form-group input-group date">
+
+                                        <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                    </div>
+                                </div>
+                                <!--                                            <div class="col-auto">
+                                                                                <label class="" for="to">Gender:</label>
+                                                                            </div>-->
+                                <!--                                            <div class="col-auto"> 
+                                                                                <div class="form-group input-group date">
+                                
+                                                                                    <select class="form-control"    name="gender" >
+                                                                                        <option value=" "> Select one</option>
+                                                                                        <option th:each =" genderLists :${genderList}"
+                                                                                                th:value=" ${genderLists}" 
+                                                                                                th:text="${genderLists}"> Select one</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>-->
+
+                                <div class=" col-auto text-center">
+                                    <button type="submit" class="btn btn-info ">Submit</button>
+                                </div>
+                            </form>      
+                            <br/>
+                        </div>  
+
+
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>      
+                                <tr>
+
+                                    <th>Mother Id </th>
+                                    <th>Release date </th>
+                                    <th> Visited Staff name</th>
+                                    <th>Follow up date</th>
+                                    <th>Last follow up date   </th>
+                                    <th>umber of follow up</th>
+                                    <th>Duration of stay community</th>
+                                    <th>Address with contact </th>
+                                    <th>Home environment</th>
+                                    <th>Work site environment </th>
+                                    <th>Current Property</th>
+                                    <th>Link with any GO/NGO support </th>
+                                    <th>How to utilized SPP saving money  </th>
+                                    <th>Present carry on IGA </th>
+                                    <th>Present challenges  </th>
+                                    <th>Action taken for resolved these challenges</th>
+                                    <th>Expectations from SPP   </th>
+                                    <th>How many times went to clinic/doctor</th>
+                                    <th>Used to hand wash after toileting  </th>
+                                    <th>Recommendation </th>
+                                    <th>Remarks </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="motherlist,status:${list}">  
+                                    <td th:text="${motherlist.motherMasterCode}">  </td>
+                                    <td th:text="${motherlist.releaseDate}">  </td>
+                                    <td th:text="${motherlist.visitedStaffName}">   </td>
+                                    <td th:text="${motherlist.followUpDate}">   </td>
+                                    <td th:text="${motherlist.lastFollowUpDate}">   </td>
+                                    <td th:text="${motherlist.numberOfFollowUp}">   </td>
+                                    <td th:text="${motherlist.durationOfStayCommunity}">   </td>
+                                    <td th:text="${motherlist.addressWithContact}">   </td>
+                                    <td th:text="${motherlist.homeEnvironment}">   </td>
+                                    <td th:text="${motherlist.worksiteEnvironment}">   </td>
+                                    <td th:text="${motherlist.currentProperty}">   </td>
+                                    <td th:text="${motherlist.goNgoSupport}">   </td>
+                                    <td th:text="${motherlist.sppsavingMoney}">   </td>
+                                    <td th:text="${motherlist.presentIga}">   </td>
+                                    <td th:text="${motherlist.presentChallenges}">   </td>
+                                    <td th:text="${motherlist.resolvedChallenges}">   </td>
+                                    <td th:text="${motherlist.expectationsFromSpp}">   </td>
+                                    <td th:text="${motherlist.clinic}">   </td>
+                                    <td th:text="${motherlist.handWash}">   </td>
+                                    <td th:text="${motherlist.recommendation}">   </td>
+                                    <td th:text="${motherlist.remarks}">   </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -10,12 +10,12 @@ import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
@@ -34,12 +34,13 @@ public class O_ChildAdmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id",nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
-    @OneToOne(optional = false)
+     @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "child_master_code_id",nullable = false)
     public M_Child_info childMasterCode;
 
     @Column(nullable = false)

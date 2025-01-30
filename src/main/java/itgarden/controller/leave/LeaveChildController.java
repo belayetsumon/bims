@@ -42,11 +42,11 @@ public class LeaveChildController {
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, LeaveChild leaveChild, Model model) {
 
-        model.addAttribute("leaveMother", leaveChildRepository.findById(id).orElse(null));
+        model.addAttribute("leaveChild", leaveChildRepository.findById(id).orElse(null));
 
         model.addAttribute("childId", o_ChildAdmissionService.all_Admited_Child_Report_Execlude_Released_ChildList());
 
-        return "leave/add_mother_leave";
+        return "leave/add_child_leave";
     }
 
 //    
@@ -55,10 +55,10 @@ public class LeaveChildController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("childId", o_ChildAdmissionService.all_Admited_Child_Report_Execlude_Released_ChildList());
-            return "leave/add_mother_leave";
+            return "leave/add_child_leave";
         }
 
-        long motherId = o_ChildAdmissionService.getMotherIdByChildId(leaveChild.getId());
+        long motherId = o_ChildAdmissionService.getMotherIdByChildId(leaveChild.getChildMasterCode().getId());
 
         MotherMasterData motherMasterCode = new MotherMasterData();
 
@@ -68,14 +68,14 @@ public class LeaveChildController {
 
         leaveChildRepository.save(leaveChild);
 
-        return "redirect:/leavemother/list";
+        return "redirect:/leavechild/list";
     }
 //    
 
     @RequestMapping(value = "/delete/{id}")
     public String delete(@PathVariable Long id, LeaveChild leaveChild, RedirectAttributes redirectAttrs) {
         leaveChildRepository.deleteById(id);
-        return "redirect:/leavemother/list";
+        return "redirect:/leavechild/list";
     }
     
     
@@ -85,7 +85,7 @@ public class LeaveChildController {
             @RequestParam(name = "leaveTypeEnum", required = false) LeaveTypeEnum leaveTypeEnum
     ) {
         model.addAttribute("leavetype", LeaveTypeEnum.values());
-        model.addAttribute("list", leaveChildService.leaveMothersList(
+        model.addAttribute("list", leaveChildService.leaveChildList(
                 leaveTypeEnum
         ));
         

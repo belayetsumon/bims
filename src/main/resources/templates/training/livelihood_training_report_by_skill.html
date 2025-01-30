@@ -17,7 +17,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">  Training</a></li>
                                 <li class="breadcrumb-item "><a href="#"> Report</a> </li>
-                                <li class="breadcrumb-item active"> Livelihood Training Report by Skill </li>
+                                <li class="breadcrumb-item active">  Training Report by Skill </li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <!-- Default card -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Livelihood Training Report by Skill Total: [[${list.size()}]]</h3>
+                        <h3 class="card-title"> Training Report by Skill Total: [[${list.size()}]]</h3>
                         <div class="card-tools">
                             <div class="btn-group">
                                 <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
@@ -96,8 +96,8 @@
                         </form> 
 
 
-                        <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
-                            <thead>          
+                         <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                            <thead>         
                                 <tr>
                                     <th> # </th>  
                                     <th>Mother Master Code</th>
@@ -108,14 +108,15 @@
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Total Days</th>
-                                    <th>Ext Date </th>
-                                    <!--                                        <th>Total Days </th>-->
+                                      <th> Ext Date </th>
+                                    <th>Extra Date </th>
+                                    <th> Grand Total Days </th>
                                     <th>Conducted By</th>
                                 </tr>  
-                            </thead>
+                             </thead>
                             <tbody>
                                 <tr th:each="lists,status:${list}">
-                                    <td th:text="${lists.id}">Chakma</td>
+                                    <td th:text="${status.count}">Chakma</td>
                                     <td th:text="${lists.motherMasterCode}">Chakma</td>
                                     <td th:text="${lists.name}">Chakma</td>
                                     <td th:text="${lists.trainingName}">Chakma</td>
@@ -123,10 +124,11 @@
                                     <td th:text="${lists.location}">Chakma</td>
                                     <td th:text="${lists.startDate}">Chakma</td>
                                     <td th:text="${lists.endDate}">Chakma</td>
-                                    <td th:text="${lists.endDate}">Chakma</td>                                 
+                                    <td th:text="${lists.totaldays}">Chakma</td>                                 
                                     <td th:text="${lists.extentionDate}">Chakma</td>
-                                    <td></td>
-                                    <td th:text="${lists.conductedBy}">Chakma</td>
+                                       <td th:text="${lists.extentionDays}">Chakma</td>
+                                          <td th:text="${lists.grandTotalDay}">Chakma</td>
+                                   <td th:text="${lists.conductedBy}">Chakma</td>
                                 </tr>
                             </tbody>
                         </table>

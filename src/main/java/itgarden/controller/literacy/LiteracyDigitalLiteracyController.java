@@ -54,7 +54,7 @@ public class LiteracyDigitalLiteracyController {
 
     @RequestMapping("/list")
     public String list(Model model) {
-        model.addAttribute("list", literacyDigitalLiteracyRepository.findAll());
+        model.addAttribute("list", digitalliteracyService.getAllLiteracyDigitalLiteracyData());
         return "literacy/digitalliteracy_list";
     }
 

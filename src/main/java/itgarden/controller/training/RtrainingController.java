@@ -104,11 +104,13 @@ public class RtrainingController {
 
         motherMasterData.setId(id);
 
-        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findBymotherMasterCode(motherMasterData));
+       // model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findBymotherMasterCode(motherMasterData));
+        
+       model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningService.lifeSkillTrainingsList_BY_Mother(id));
 
-        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("r_IGA_Training", r_IGA_TrainingService.igaSkillTrainings_By_Mother(id));
 
-        return "rehabilitations/training/index";
+        return "training/index";
     }
 
     @RequestMapping("/lifeskilltraininglist")

@@ -49,8 +49,8 @@
                                         </tr> 
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${list}">
-                                            <td th:text="${list.motherMasterCodeId}">Chakma</td>
+                                        <tr th:each="list,status :${list}">
+                                            <td th:text="${status.count}">Chakma</td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>   
                                             <td th:text="${list.mobileNumber}">Chakma</td> 

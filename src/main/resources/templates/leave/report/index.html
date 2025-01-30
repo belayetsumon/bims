@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Leave </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Leave</a></li>
+                                <li class="breadcrumb-item active">Leave list of Mother</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Leave list of Mother</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body  ">
+
+                                <div class="col-sm-6"> 
+                                   
+                                    <a  th:href="@{/leavereport/authorized_leave_mother}" type="button" class="btn btn-block btn-info">Authorized Leave  Mother </a>
+                                    
+                                    <a  th:href="@{/leavereport/unauthorized_leave_mother}" type="button" class="btn btn-block btn-info">Unauthorized Leave  Mother </a>
+                                   
+                                    <a  th:href="@{/leavereport/long_leave_mother}" type="button" class="btn btn-block btn-info">Long Leave Mother </a>
+                                   
+                                    <a  th:href="@{/leavereport/authorized_leave_child}" type="button" class="btn btn-block btn-info">Authorized Leave  Child </a>
+                                   
+                                    <a  th:href="@{/leavereport/unauthorized_leave_child}" type="button" class="btn btn-block btn-info">Unauthorized Leave  Child </a>
+                                   
+                                    <a  th:href="@{/leavereport/long_leave_child}" type="button" class="btn btn-block btn-info">Long Leave Child </a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

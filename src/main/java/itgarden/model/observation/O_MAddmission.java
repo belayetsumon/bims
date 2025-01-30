@@ -9,6 +9,7 @@ import itgarden.model.auth.Users;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,8 +39,8 @@ public class O_MAddmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @Column(nullable = false)
@@ -54,7 +55,7 @@ public class O_MAddmission {
 
     public String remarks;
 
-    @OneToOne(mappedBy = "addmission")
+    @OneToOne(mappedBy = "addmission",fetch = FetchType.LAZY)
     public MotherImage motherImage;
 
     /**
@@ -168,5 +169,4 @@ public class O_MAddmission {
         this.updatedBy = updatedBy;
     }
 
-    
 }

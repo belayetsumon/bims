@@ -5,6 +5,7 @@
 package itgarden.services.observation;
 
 import itgarden.model.homevisit.Gender;
+import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.observation.O_ChildAdmission;
 import itgarden.services.reintegration_release.ReleaseChildService;
 import jakarta.persistence.EntityManager;
@@ -13,6 +14,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
@@ -261,22 +263,19 @@ public class O_ChildAdmissionService {
     }
     
 
-  public Long getMotherIdByChildId(Long childId) {
+   public Long getMotherIdByChildId(Long childId) {
     CriteriaBuilder cb = em.getCriteriaBuilder();
     CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-    Root<O_ChildAdmission> root = cq.from(O_ChildAdmission.class);
+    Root<M_Child_info> root = cq.from(M_Child_info.class);
 
-    // Add predicates
-   // childId condition
-
-    // Select only the motherMasterCode ID (assuming motherMasterCode.id is the motherId)
-    cq.select(root.get("motherMasterCode").get("id"));
-
-      List<Predicate> predicates = new ArrayList<>();
+    // Select the ID of the associated motherMasterCode (assuming it is a @ManyToOne relation)
+    
+    Path<Long> motherIds = root.get("motherMasterCode").get("id");
+    
+    cq.select(motherIds);
    
-    predicates.add(cb.equal(root.get("childMasterCode").get("id"), childId));
-    // Apply the where clause with the combined predicates
-    cq.where(cb.and(predicates.toArray(new Predicate[0])));
+    // Apply the where clause with the childId condition
+    cq.where(cb.equal(root.get("id"), childId));
 
     try {
         // Execute the query and get the single result
@@ -284,10 +283,8 @@ public class O_ChildAdmissionService {
         return motherId;
     } catch (NoResultException e) {
         // Handle case when no result is found (return null or appropriate value)
-        return null; // or throw a custom exception or handle as needed
+        return null; // Or you can throw a custom exception here
     }
+
 }
-
-   
-
 }

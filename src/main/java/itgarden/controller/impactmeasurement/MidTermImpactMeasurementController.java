@@ -65,13 +65,16 @@ public class MidTermImpactMeasurementController {
 
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, MidTermImpactMeasurement midTermImpactMeasurement, Model model) {
-        model.addAttribute("releaseMotherid", midTermImpactMeasurementService.newListReleaseMotherIdforMidTermImpactMeasurement());
+       
 
         model.addAttribute("midTermImpactMeasurement", midTermImpactMeasurementRepository.findById(id).orElse(null));
-
+     model.addAttribute("releaseMotherid", midTermImpactMeasurementService.newListReleaseMotherIdforMidTermImpactMeasurement());
         model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
-
         model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
+        model.addAttribute("presentIncomeSource", PresentIncomeSource.values());
+        model.addAttribute("ownershiftype", house_TypeRepository.findAll());
+        model.addAttribute("housetype", ownershif_typeRepository.findAll());
+        model.addAttribute("continueNotContinueEnum", ContinueNotContinueEnum.values());
 
         return "impactmeasurement/midtermimpactmeasurement";
     }
@@ -81,9 +84,13 @@ public class MidTermImpactMeasurementController {
 
         if (bindingResult.hasErrors()) {
 
-            model.addAttribute("releaseMotherid", midTermImpactMeasurementService.newListReleaseMotherIdforMidTermImpactMeasurement());
-            model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
-            model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
+         model.addAttribute("releaseMotherid", midTermImpactMeasurementService.newListReleaseMotherIdforMidTermImpactMeasurement());
+        model.addAttribute("impactMeasurementYesNo", ImpactMeasurementYesNo.values());
+        model.addAttribute("impactMeasurementIndicator", ImpactMeasurementIndicator.values());
+        model.addAttribute("presentIncomeSource", PresentIncomeSource.values());
+        model.addAttribute("ownershiftype", house_TypeRepository.findAll());
+        model.addAttribute("housetype", ownershif_typeRepository.findAll());
+        model.addAttribute("continueNotContinueEnum", ContinueNotContinueEnum.values());
 
             return "impactmeasurement/midtermimpactmeasurement";
         }

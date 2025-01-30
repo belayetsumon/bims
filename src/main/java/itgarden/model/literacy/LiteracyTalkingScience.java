@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -50,6 +51,9 @@ public class LiteracyTalkingScience {
 
     @Enumerated(EnumType.STRING)
     public ResultEnum result;
+    
+    @Lob
+    private String remark;
 
     /**
      * ********* Audit ******************************
@@ -71,12 +75,13 @@ public class LiteracyTalkingScience {
     public LiteracyTalkingScience() {
     }
 
-    public LiteracyTalkingScience(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, LocalDate endDate, ResultEnum result, Users createdBy, Users updatedBy) {
+    public LiteracyTalkingScience(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, LocalDate endDate, ResultEnum result, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
         this.endDate = endDate;
         this.result = result;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
@@ -121,6 +126,14 @@ public class LiteracyTalkingScience {
         this.result = result;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -152,5 +165,6 @@ public class LiteracyTalkingScience {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-   
+
+    
 }

@@ -34,56 +34,64 @@
                                 </div>    </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+
+                                <!--                                       <form class="row  justify-content-center mb-1" 
+                                                                              th:action="@{/houseworkallocation/currentmotherhouselocation}"   method="get">
+                                            
+                                                                           <div class="col-auto">
+                                                                                <label class="" for="to">House Name:</label>
+                                                                            </div>
+                                                                            <div class="col-auto"> 
+                                                                                <div class="form-group input-group date">
                                 
-<!--                                       <form class="row  justify-content-center mb-1" 
-                                              th:action="@{/houseworkallocation/currentmotherhouselocation}"   method="get">
-            
-                                           <div class="col-auto">
-                                                <label class="" for="to">House Name:</label>
-                                            </div>
-                                            <div class="col-auto"> 
-                                                <div class="form-group input-group date">
-
-                                                    <select class="form-control"    name="houseName" >
-                                                        <option value=" "> Select one</option>
-                                                        <option th:each ="houseNameLists :${houseName}"
-                                                                th:value=" ${houseNameLists.id}" 
-                                                                th:text="${houseNameLists.name}"> Select one</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class=" col-auto text-center">
-                                                <button type="submit" class="btn btn-info ">Submit</button>
-                                            </div>
-                                        </form>     -->
+                                                                                    <select class="form-control"    name="houseName" >
+                                                                                        <option value=" "> Select one</option>
+                                                                                        <option th:each ="houseNameLists :${houseName}"
+                                                                                                th:value=" ${houseNameLists.id}" 
+                                                                                                th:text="${houseNameLists.name}"> Select one</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
                                 
-                                
-                               <table id="tablesdata" class="table table-bordered table-striped">
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
+                                                                            <div class=" col-auto text-center">
+                                                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                                                            </div>
+                                                                        </form>     -->
 
-                                        <th>Mother Master Code</th>
-                                        <th>House Name </th>
-                                        <th> Start Date</th>
-                                        <th>End Date</th>
-                            
-                                        <th> Ext Date </th>
-                        
-                                        <th>Remark</th>
-                                    </tr>                          
-                                    <tr th:each="list,status:${list}">
-                                        <td th:text="${status.count}">2.</td>
 
-                                        <td th:text="${list.get('motherMasterCode')}">Chakma</td>
-                                        <td th:text="${list.get('houseName')}">Chakma</td>
-                                        <td th:text="${list.get('allocationDate')}">Chakma</td>
-                                        <td th:text="${list.get('endDate')}">Chakma</td>
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>    <tr>
+                                            <th style="width: 10px">#</th>  
 
-                                        <td th:text="${list.get('extDate')}">Chakma</td>
+                                            <th>Mother Master Code</th>
+                                            <th> Section Place </th>
+                                            <th> Start Date</th>
+                                            <th>End Date</th>
 
-                                        <td th:text="${list.get('remark')}">Chakma</td>
-                                    </tr>
+                                            <th> Total Days</th>
+                                            <th> Ext Date </th>
+                                            <th> Total Days </th>
+                                            <th> Grand Total Days </th>
+
+                                            <th>Remark</th>
+                                        </tr>       </thead>
+                                    <tbody>                      
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+
+                                            <td th:text="${list.get('motherMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('sectionPlace')}">Chakma</td>
+                                            <td th:text="${list.get('allocationDate')}">Chakma</td>
+                                            <td th:text="${list.get('endDate')}">Chakma</td>
+
+                                            <td th:text="${list.get('totaldays')}">Chakma</td>
+                                            <td th:text="${list.get('extDate')}">Chakma</td>
+                                            <td th:text="${list.get('extentionDays')}">Chakma</td>
+                                            <td th:text="${list.get('grandTotalDay')}">Chakma</td>
+
+                                            <td th:text="${list.get('remark')}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

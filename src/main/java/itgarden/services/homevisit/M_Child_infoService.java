@@ -228,7 +228,7 @@ public class M_Child_infoService {
 
         predicates.add(root.get("id").in(o_ChildAdmissionService.addmitedChildIdList()));
         predicates.add(root.get("id").in(eligibilityStudentService.notEligibleChildIdList()).not());
-        predicates.add(root.get("id").in(s_RegularAdmissionClassService.S_regular_AddmitedChildIdList()).not());
+        predicates.add(root.get("id").in(s_RegularAdmissionClassService.s_regular_AddmitedChildIdList()).not());
         predicates.add(root.get("id").in(releaseChildService.allReleasedChildIdList()).not());
         predicates.add(root.get("id").in(discontinuityService.discontinuityChildIdList()).not());
 

@@ -1,32 +1,32 @@
 package itgarden;
 
-import itgarden.model.homevisit.MotherMasterData;
-import itgarden.repository.homevisit.M_Child_infoRepository;
+import itgarden.repository.clinic.C_SpecialCareRepository;
+import itgarden.services.clinic.C_Child_Health_AwarenessService;
 import itgarden.services.cmc.R_FoodService;
+import itgarden.services.leave.LeaveMotherService;
+import itgarden.services.observation.O_ChildAdmissionService;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ui.Model;
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ItgardenbaseApplicationTests {
 
     @Autowired
-    R_FoodService r_FoodService;
-
-    @Autowired
-    M_Child_infoRepository m_Child_infoRepository;
+C_Child_Health_AwarenessService c_Child_Health_AwarenessService;
 
     @Test
     // System.out.println("Total..
     public void contextLoads() {
-         MotherMasterData motherMasterData = new MotherMasterData();
-        motherMasterData.setId(487l);
-      // System.out.println("Total admited..........." + m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size());//        System.out.println("not elejable Total..........." + eligibilityStudentService.notEligibleChildIdList().size());
-//        System.out.println(" school admited  Total..........." + s_RegularAdmissionClassService.S_regular_AddmitedChildIdList().size());
-//        System.out.println(" Discontitnue Total..........." + discontinuityService.discontinuityChildIdList().size());
-//        System.out.println("Total..........." + m_Child_infoService.findNotSchoolAdmitedChild().size());
-//    
 
+    
+
+       // System.out.println(" total 2..........." + c_Child_Health_AwarenessService.getAllChildHealthAwarenessData_report().size());
+        // System.out.println(" unauthorize MotherList ..........." + admitedMotherList.size());
+        
     }
 }

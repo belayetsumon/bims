@@ -197,7 +197,7 @@ public class O_MAddmissionService {
         return resultMaps;
     }
 
-    public List<Map<String, Object>> Existing_Admited_Mother_List_Exclude_released_mother() {
+    public List<Map<String, Object>> existing_Admited_Mother_List_Exclude_released_mother() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<O_MAddmission> root = cq.from(O_MAddmission.class);

@@ -92,7 +92,8 @@
                                 </div>
                             </div>
                         </form> 
-                                    <table class="table table-bordered">
+                                     <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                            <thead> 
                                         <tr>
                                             <th style="width: 10px">#</th>
 
@@ -102,9 +103,10 @@
                                             <th>Result</th>
                                             <th>Start Date</th> 
                                             <th>End Date</th>  
-                                            <th>Edit</th>  
-                                            <th>Delete</th>  
-                                        </tr>                          
+
+                                        </tr>    
+                                            </thead>
+                            <tbody>
                                         <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}">2.</td>      
 
@@ -116,10 +118,8 @@
                                             <td th:text="${lists.status}">Chakma</td>
                                             <td th:text="${lists.startDate}">Chakma</td>
                                             <td th:text="${lists.endDate}">Chakma</td>
-                                            <td><a th:href="@{/swimming/edit/{id}(id=${lists.swimmingId})}" type="button" class="btn btn-sm bg-info ">Edit</a></td>
-                                            <td><a th:href="@{/swimming/delete/{id}(id=${lists.swimmingId})}" type="button" class="btn btn-sm bg-danger ">Delete</a></td>
-
-                                        </tr> 
+                                          </tr> 
+                                              </tbody>
                                     </table>
                                 </div>
                             </div>

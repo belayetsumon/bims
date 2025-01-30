@@ -17,7 +17,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">  Training</a></li>
                                 <li class="breadcrumb-item "><a href="#"> Report</a> </li>
-                                <li class="breadcrumb-item active"> Livelihood Training Report by Mother </li>
+                                <li class="breadcrumb-item active">  Training Report by Mother </li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <!-- Default card -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Livelihood Training Report by Mother Total: [[${list.size()}]]</h3>
+                        <h3 class="card-title"> Training Report by Mother Total: [[${list.size()}]]</h3>
                         <div class="card-tools">
                             <div class="btn-group">
                                 <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
@@ -99,7 +99,7 @@
                         <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
                             <thead>          
                                 <tr>
-                                    <th> # </th>  
+                                    <th> # </th> 
                                     <th>Mother Master Code</th>
                                     <th>Mother Name </th>
                                     <th>Total Recieve Training</th>
@@ -108,8 +108,8 @@
                                 </tr>  
                             </thead>
                             <tbody>
-                                <tr th:each="lists,status:${list}">
-                                    <td th:text="${lists.id}">Chakma</td>
+                                <tr th:each="lists,status :${list}">
+                                    <td th:text="${status.count}">Chakma</td>
                                     <td th:text="${lists.motherMasterCode}">Chakma</td>
                                     <td th:text="${lists.name}">Chakma</td>
                                     <td th:text="${lists.totalTraining}">Chakma</td>

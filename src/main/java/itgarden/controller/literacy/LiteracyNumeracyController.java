@@ -35,6 +35,8 @@ public class LiteracyNumeracyController {
     @Autowired
     EducationLevelRepository educationLevelRepository;
 
+
+
     @RequestMapping("/add")
     public String index(Model model, LiteracyNumeracy literacyNumeracy) {
         model.addAttribute("educationLavel", educationLevelRepository.findAll());
@@ -60,7 +62,7 @@ public class LiteracyNumeracyController {
 
     @RequestMapping("/list")
     public String list(Model model) {
-        model.addAttribute("list", literacyNumeracyRepository.findAll());
+        model.addAttribute("list", literacyNumeracyService.getAllLiteracyNumeracyData());
         return "literacy/literacynumeracy_list";
     }
 

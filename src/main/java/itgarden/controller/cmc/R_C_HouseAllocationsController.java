@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package itgarden.controller.allocations;
+package itgarden.controller.cmc;
 
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.rehabilitations.R_C_HouseAllocations;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.rehabilitations.HouseNameRepository;
 import itgarden.repository.rehabilitations.R_C_HouseAllocationsRepository;
+import itgarden.services.cmc.R_C_HouseAllocationsService;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,11 @@ public class R_C_HouseAllocationsController {
 
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
-    
-    
 
+    @Autowired
+    R_C_HouseAllocationsService r_C_HouseAllocationsService;
 
-     @RequestMapping("/create/{m_id}")
+    @RequestMapping("/create/{m_id}")
     public String create(Model model, @PathVariable Long m_id, R_C_HouseAllocations r_C_HouseAllocations) {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
@@ -48,7 +49,7 @@ public class R_C_HouseAllocationsController {
         model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
         model.addAttribute("form_title", "Child House Allocation");
         model.addAttribute("houseName", houseNameRepository.findAll());
-     return "rehabilitations/allocations/chouseallocations";
+        return "rehabilitations/allocations/chouseallocations";
 
     }
 
@@ -81,15 +82,21 @@ public class R_C_HouseAllocationsController {
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, R_C_HouseAllocations r_C_HouseAllocations, RedirectAttributes redirectAttrs) {
-       
-        Optional<R_C_HouseAllocations>  optionalR_C_HouseAllocations = r_C_HouseAllocationsRepository.findById(id);
-        
+
+        Optional<R_C_HouseAllocations> optionalR_C_HouseAllocations = r_C_HouseAllocationsRepository.findById(id);
+
         r_C_HouseAllocations = optionalR_C_HouseAllocations.orElse(null);
-        
+
         redirectAttrs.addAttribute("m_id", r_C_HouseAllocations.motherMasterCode.getId());
-       
+
         r_C_HouseAllocationsRepository.findById(id);
         return "redirect:/houseworkallocation/index/{m_id}";
+    }
+
+    @RequestMapping("/all_child_house_allocations_list")
+    public String all_mother_house_allocations_list(Model model) {
+        model.addAttribute("list", r_C_HouseAllocationsService.all_childHouse_Allocation_List());
+        return "rehabilitations/allocations/all_child_house_allocations_list";
     }
 
 }

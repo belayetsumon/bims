@@ -4,7 +4,6 @@
  */
 package itgarden.services.cmc;
 
-import itgarden.model.rehabilitations.R_C_HouseAllocations;
 import itgarden.model.rehabilitations.R_M_WorkAllocation;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -12,11 +11,15 @@ import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 
 /**
@@ -72,6 +75,30 @@ public class R_M_WorkAllocationService {
 
         Root<R_M_WorkAllocation> root = cq.from(R_M_WorkAllocation.class);
 
+        Path<LocalDate> startDate = root.get("allocationDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
         cq.multiselect(
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
@@ -80,6 +107,9 @@ public class R_M_WorkAllocationService {
                 root.get("allocationDate").alias("allocationDate"),
                 root.get("endDate").alias("endDate"),
                 root.get("extDate").alias("extDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
                 root.get("remark").alias("remark")
         );
         List<Predicate> predicates = new ArrayList<>();
@@ -112,4 +142,172 @@ public class R_M_WorkAllocationService {
 
         return query.getResultList();
     }
+
+    public List<Map<String, Object>> all_Mother_Work_Location_by_id(
+            Long id
+    ) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+
+        Root<R_M_WorkAllocation> root = cq.from(R_M_WorkAllocation.class);
+
+        Path<LocalDate> startDate = root.get("allocationDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("sectionPlace").alias("sectionPlace"), // Assuming 'name' is a field in HouseName
+                root.get("work").alias("work"),
+                root.get("allocationDate").alias("allocationDate"),
+                root.get("endDate").alias("endDate"),
+                root.get("extDate").alias("extDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
+                root.get("remark").alias("remark")
+        );
+
+        cq.where(cb.equal(root.get("motherMasterCode").get("id"), id));
+
+        cq.orderBy(cb.desc(root.get("id")));
+
+        TypedQuery<Tuple> query = em.createQuery(cq);
+        List<Tuple> resultList = query.getResultList();
+
+        // Initialize the result list that will hold maps
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple tuple : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+
+            // Mapping Tuple values to the resultMap using aliases
+            resultMap.put("id", tuple.get("id"));
+            resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("sectionPlace", tuple.get("sectionPlace"));
+            resultMap.put("work", tuple.get("work"));
+            resultMap.put("allocationDate", tuple.get("allocationDate"));
+            resultMap.put("endDate", tuple.get("endDate"));
+            resultMap.put("extDate", tuple.get("extDate"));
+            resultMap.put("totaldays", tuple.get("totaldays"));
+            resultMap.put("extentionDays", tuple.get("extentionDays"));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay"));
+            resultMap.put("remark", tuple.get("remark"));
+
+            // Add the result map to the list
+            resultMaps.add(resultMap);
+        }
+
+        // Return the list of maps
+        return resultMaps;
+    }
+    
+    
+    
+     public List<Map<String, Object>> all_Mother_Work_Location(
+   
+    ) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+
+        Root<R_M_WorkAllocation> root = cq.from(R_M_WorkAllocation.class);
+
+        Path<LocalDate> startDate = root.get("allocationDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("sectionPlace").alias("sectionPlace"), // Assuming 'name' is a field in HouseName
+                root.get("work").alias("work"),
+                root.get("allocationDate").alias("allocationDate"),
+                root.get("endDate").alias("endDate"),
+                root.get("extDate").alias("extDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
+                root.get("remark").alias("remark")
+        );
+
+        cq.orderBy(cb.desc(root.get("id")));
+
+        TypedQuery<Tuple> query = em.createQuery(cq);
+        List<Tuple> resultList = query.getResultList();
+
+        // Initialize the result list that will hold maps
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple tuple : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+
+            // Mapping Tuple values to the resultMap using aliases
+            resultMap.put("id", tuple.get("id"));
+            resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("sectionPlace", tuple.get("sectionPlace"));
+            resultMap.put("work", tuple.get("work"));
+            resultMap.put("allocationDate", tuple.get("allocationDate"));
+            resultMap.put("endDate", tuple.get("endDate"));
+            resultMap.put("extDate", tuple.get("extDate"));
+            resultMap.put("totaldays", tuple.get("totaldays"));
+            resultMap.put("extentionDays", tuple.get("extentionDays"));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay"));
+            resultMap.put("remark", tuple.get("remark"));
+
+            // Add the result map to the list
+            resultMaps.add(resultMap);
+        }
+
+        // Return the list of maps
+        return resultMaps;
+    }
+
+
 }

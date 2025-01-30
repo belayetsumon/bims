@@ -22,9 +22,6 @@
                 </div><!-- /.container-fluid -->
             </section>
 
-
-
-
             <!-- Main content -->
             <section class="content">
                 <div class="row">
@@ -47,23 +44,27 @@
                                         <th>Work</th>
                                         <th> Section Place</th>
                                         <th> End Date </th>
-                                        <th> Total Days </th>
+                                        <th> Total Days</th>
                                         <th> Ext Date </th>
                                         <th> Total Days </th>
+                                        <th> Grand Total Days </th>
                                         <th>Remark</th>
                                     </tr>                          
                                     <tr th:each="list3,status:${list3}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/rmworkallocation/edit/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/rmworkallocation/delete/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
-                                        <td th:text="${list3.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list3.motherMasterCode}">Chakma</td>
                                         <td th:text="${list3.allocationDate}">Chakma</td>
                                         <td th:text="${list3.work}">Chakma</td>
                                         <td th:text="${list3.sectionPlace}">Chakma</td>
                                         <td th:text="${list3.endDate}">Chakma</td>
-                                        <td th:text="${list3.endDate}">Chakma</td>
+                                        <td th:text="${list3.totaldays}">Chakma</td>                                 
                                         <td th:text="${list3.extDate}">Chakma</td>
-                                        <td th:text="${list3.extDate}">Chakma</td>
+
+                                        <td th:text="${list3.extentionDays}">Chakma</td>
+
+                                        <td th:text="${list3.grandTotalDay}">Chakma</td>
 
                                         <td th:text="${list3.remark}">Chakma</td>
                                     </tr>

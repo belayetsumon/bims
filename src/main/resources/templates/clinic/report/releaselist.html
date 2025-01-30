@@ -5,29 +5,73 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <h1>
-                    Clinic 
-                </h1>
+              <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-2">
+                            <h1>Clinic </h1>
+                        </div>
+                        <div class="col-sm-8">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Clinic</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item "><a href="#">Release Repor</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title"> Referral Report</h3>
-                                <div class="box-tools pull-right">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Release Report</h3>
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
-                                        <a  th:href="@{/clinic/report}"  type="button" class="btn  btn-warning btn-xs">Close</a>
+                                        <a  th:href="@{/clinic/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                                     
-                                <table class="table table-bordered">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <div class="row">
+                                    <div class="col-sm-12 ">
+
+                                        <form class="row  justify-content-center mb-1" 
+                                              th:action="@{/clinic/releaselist}"   method="get">
+
+                                            <div class="col-auto">
+
+                                                <label class="" for="email">From:</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">To:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                                </div>
+                                            </div>
+                                            <div class=" col-auto text-center">
+                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                            </div>
+                                        </form>      
+                                        <br/>
+                                    </div>  
+                                </div>
+                                 <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
 
@@ -37,23 +81,26 @@
                                         <th> Next Follow Up Date </th>
                                         <th>Remark</th>
 
-                                    </tr>                          
+                                    </tr>  
+                                            </thead>
+                                    <tbody>
                                     <tr th:each="release,status:${release}">                                
                                         <td th:text="${status.count}"> 2. </td>      
-                                        <td th:text="${release.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${release.motherMasterCode}">Chakma</td>
                                         <td th:text="${release.releaseDate}">Chakma</td>
                                         <td th:text="${release.releaseBy}">Chakma</td>
                                         <td th:text="${release.nextFollowUpDate}">Chakma</td>
                                         <td th:text="${release.remarks}">Chakma</td>
                                     </tr>
+                                       </tbody>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->

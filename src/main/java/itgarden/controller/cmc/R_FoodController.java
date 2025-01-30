@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/springframework/Controller.java to edit this template
  */
-package itgarden.controller.allocations;
+package itgarden.controller.cmc;
 
 import itgarden.model.rehabilitations.FoodByHouse;
 import itgarden.model.rehabilitations.R_Food;

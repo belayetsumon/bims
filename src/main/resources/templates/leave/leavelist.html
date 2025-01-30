@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title">Leave list of Mother</h3>
+                                <h3 class="card-title">Leave list of Mother. Total : [[${list.size()}]]</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body  ">
@@ -64,6 +64,7 @@
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th> Mother  Id</th>
                                                 <th> Section name</th>
                                                 <th> Leave start date</th>
@@ -72,6 +73,7 @@
                                                 <th>Contact Number</th>
                                                 <th>Address</th>
                                                 <th>Joining Date</th>
+                                                <th>Extra Days</th>
                                                 <th>Remarks</th>
 
                                                 <th>Edit</th>
@@ -80,19 +82,17 @@
                                             </tr>  
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list,status:${list}">
-
+                                            <tr th:each="list,status : ${list}">
+                                                <td th:text="${status.count}">Chakma</td>
                                                 <td th:text="${list.motherMasterCode}">Chakma</td>
                                                 <td th:text="${list.sectionName}">Chakma</td>
                                                 <td th:text="${list.leaveFrom}">Chakma</td>
-
                                                 <td th:text="${list.leaveTo}" >Chakma</td>
                                                 <td th:text="${list.careof}" >Chakma</td>
                                                 <td th:text="${list.contactNumber}" >Chakma</td>
                                                 <td th:text="${list.address}" >Chakma</td>
-
                                                 <td th:text="${list.joinningDate}" >Chakma</td>
-
+                                                <td th:text="${list.extraDay}" >Chakma</td>
                                                 <td th:text="${list.remark}">Chakma</td>
 
 

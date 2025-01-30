@@ -38,40 +38,42 @@
                             <!-- /.card-header -->
                             <div class="card-body">
 
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
-                                        <th>Date</th>
-                                        <th>House Name</th>
-                                        <th>Total Persons</th>
-                                        <th>Sick </th>
-                                        <th>On Leave</th>
-                                        <th> Under Observation</th>
-                                        <th>On Job</th>
-                                        <th> Others </th>  
-                                        <th>Total Present</th>   
-                                        <th>Edit</th>    
-                                        <th>Delete</th> 
-                                    </tr>
-
-                                    <tr th:each="lists,status:${list}">
-                                        <td th:text="${status.count}">2.</td>
-                                        <td th:text="${lists.todaydate}">2.</td>
-                                        <td th:text="${lists.foodByHouse}">2.</td>
-                                        <td th:text="${lists.totalPersons}">2.</td>
-                                        <td th:text="${lists.sick}">2.</td>
-                                        <td th:text="${lists.onLeave}">2.</td>
-                                        <td th:text="${lists.underObservation}">2.</td>
-                                        <td th:text="${lists.onJob}">2.</td>
-                                        <td th:text="${lists.others}">2.</td>
-                                        <td th:text="${lists.totalPresent}">2.</td>
-                                        <td>
-                                            <a   th:href="@{/food/edit/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-info">Edit</a>
-                                        </td>
-                                        <td> 
-                                            <a   th:href="@{/food/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
-                                        </td>
-                                    </tr>
+                                <table  id="tablesdata" class="table table-bordered">
+                                    <thead>  <tr>
+                                            <th style="width: 10px">#</th>  
+                                            <th>Date</th>
+                                            <th>House Name</th>
+                                            <th>Total Persons</th>
+                                            <th>Sick </th>
+                                            <th>On Leave</th>
+                                            <th> Under Observation</th>
+                                            <th>On Job</th>
+                                            <th> Others </th>  
+                                            <th>Total Present</th>   
+                                            <th>Edit</th>    
+                                            <th>Delete</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="lists,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${lists.todaydate}">2.</td>
+                                            <td th:text="${lists.foodByHouse}">2.</td>
+                                            <td th:text="${lists.totalPersons}">2.</td>
+                                            <td th:text="${lists.sick}">2.</td>
+                                            <td th:text="${lists.onLeave}">2.</td>
+                                            <td th:text="${lists.underObservation}">2.</td>
+                                            <td th:text="${lists.onJob}">2.</td>
+                                            <td th:text="${lists.others}">2.</td>
+                                            <td th:text="${lists.totalPresent}">2.</td>
+                                            <td>
+                                                <a   th:href="@{/food/edit/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-info">Edit</a>
+                                            </td>
+                                            <td> 
+                                                <a   th:href="@{/food/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

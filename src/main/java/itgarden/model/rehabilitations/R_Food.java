@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,10 +30,11 @@ public class R_Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-   
+    @NotNull(message = "*Date field cannot be blank")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate todaydate;
 
+     @NotNull(message = "*House field cannot be blank")
     @Enumerated(EnumType.STRING)
     private FoodByHouse foodByHouse;
 

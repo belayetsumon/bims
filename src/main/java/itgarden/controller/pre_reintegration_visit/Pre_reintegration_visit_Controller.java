@@ -83,17 +83,24 @@ public class Pre_reintegration_visit_Controller {
                 .collect(Collectors.toList());
 
         model.addAttribute("list", admitedMotherList);
-       // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
 
+        // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
         // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
         return "pre_reintegration_visit/mothersearch";
     }
 
-    @RequestMapping("/index")
-    public String add(Model model) {
-        model.addAttribute("list", preReintegrationVisitService.getPreReintegrationVisitList());
-            // model.addAttribute("list", pre_reintegration_visit_Repository.findAll());
-        return "pre_reintegration_visit/index";
+    @RequestMapping("/incomplete_visit")
+    public String incomplete_visit(Model model) {
+        model.addAttribute("list", preReintegrationVisitService.get_Incomplete_PreReintegrationVisitList());
+        // model.addAttribute("list", pre_reintegration_visit_Repository.findAll());
+        return "pre_reintegration_visit/incomplete_visit_list";
+    }
+
+    @RequestMapping("/complete_visit")
+    public String complete_visit(Model model) {
+        model.addAttribute("list", preReintegrationVisitService.get_Complete_PreReintegrationVisitList());
+        // model.addAttribute("list", pre_reintegration_visit_Repository.findAll());
+        return "pre_reintegration_visit/complete_visit_list";
     }
 
     @RequestMapping("/details/{m_id}")
@@ -133,7 +140,7 @@ public class Pre_reintegration_visit_Controller {
         }
         pre_reintegration_visit_Repository.save(preReintegrationVisit);
 
-        return "redirect:/pre_reintegration_visit/index";
+        return "redirect:/pre_reintegration_visit/incomplete_visit";
     }
 
     @GetMapping(value = "/delete/{id}")

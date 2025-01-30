@@ -30,7 +30,7 @@
 
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">IGA Training Report by Mothert</h3>
+                        <h3 class="card-title">IGA Training Report by Mother</h3>
 
                         <div class="card-tools">
                             <div class="btn-group">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body row">
+                    <div class="card-body ">
                         
                          <form class=" justify-content-center mb-1" 
                               th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
@@ -95,7 +95,7 @@
                         </form> 
 
                         
-                          <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                           <table id="tablesdata" class="table table-bordered table-striped">
                             <thead> 
                             <tr>
                                 <th style="width: 10px">#</th>  
@@ -107,7 +107,7 @@
                                     </thead>
                             <tbody>
                             <tr th:each="lists,status:${list}">
-                                 <td th:text="${lists.id}">Chakma</td>
+                                <td th:text="${status.count}">Chakma</td>
                                 <td th:text="${lists.motherMasterCode}">Chakma</td>
                                 <td th:text="${lists.name}">Chakma</td>
                                 <td th:text="${lists.totalTraining}">Chakma</td>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package itgarden.controller.allocations;
+package itgarden.controller.cmc;
 
 import itgarden.model.rehabilitations.HouseName;
 import itgarden.repository.rehabilitations.HouseNameRepository;

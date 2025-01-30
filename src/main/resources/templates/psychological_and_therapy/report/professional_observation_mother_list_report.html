@@ -60,7 +60,7 @@
                                                 <input type="text" class="form-control"  id="endDate" name="endDate"/>
                                             </div>
                                         </div>
-                                        <label for="name" class="col-auto control-label">Physical Disability<span class="text-red"> * </span> :</label>
+                                        <label for="name" class="col-auto control-label">Physical Disability<span class="text-red">  </span> :</label>
 
                                         <div class="col-auto">   
                                             <select class="form-control  "  id="bookName"   name="physicalDisability" >
@@ -73,7 +73,7 @@
                                         </div>   </div>
                                         <div class="row mb-4 justify-content-center">  
                                         
-                                        <label for="name" class="col-auto control-label"> Therapy Need<span class="text-red"> * </span> :</label>
+                                        <label for="name" class="col-auto control-label"> Therapy Need<span class="text-red">  </span> :</label>
 
                                         <div class="col-auto">   
                                             <select class="form-control  "  id="bookName" name="therapy">
@@ -111,7 +111,7 @@
                                 <table id="tablesdata"   class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th> Edit</th> 
+                                     
                                             <th>Mother Master Code</th>
                                             <th>Induction Start Date</th> 
                                             <th>Observation Start Date </th>
@@ -129,9 +129,7 @@
 
                                     <tbody>
                                         <tr th:each="list,status:${list}">
-                                            <td> 
-                                                <a   th:href="@{/professionalobserbations/index/{id} (id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Edit</a>
-                                            </td>
+                                      
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.inductionStartDate}">Chakma</td>
                                             <td th:text="${list.obStartDate}">Chakma</td>

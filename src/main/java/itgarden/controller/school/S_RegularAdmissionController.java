@@ -52,7 +52,7 @@ public class S_RegularAdmissionController {
     @RequestMapping("/school_admitted_student_list")
     public String index(Model model) {
         //  model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
-        model.addAttribute("clildlist", s_RegularAdmissionClassService.findWithCriteria());
+        model.addAttribute("clildlist", s_RegularAdmissionClassService.alladmitedchildList_exclude_DiscontinueList());
         return "school/radmissionindex";
     }
 
@@ -104,7 +104,7 @@ public class S_RegularAdmissionController {
         }
 
         s_RegularAdmissionClassRepository.save(s_RegularAdmissionClass);
-        return "redirect:/sregularadmission/index";
+        return "redirect:/sregularadmission/school_admitted_student_list";
     }
 
     @RequestMapping("/delete/{id}")
@@ -114,7 +114,7 @@ public class S_RegularAdmissionController {
         s_RegularAdmissionClass = optionals_RegularAdmissionClass.orElse(null);
         redirectAttrs.addAttribute("id", s_RegularAdmissionClass.getChildMasterCode().getId());
         s_RegularAdmissionClassRepository.deleteById(id);
-        return "redirect:/sregularadmission/index";
+        return "redirect:/sregularadmission/school_admitted_student_list";
     }
 
 }

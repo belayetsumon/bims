@@ -36,6 +36,7 @@ import itgarden.repository.homevisit.ReligionRepository;
 import itgarden.repository.observation.O_InductionRepository;
 import itgarden.repository.observation.O_MAddmissionRepository;
 import itgarden.services.homevisit.M_AddressService;
+import itgarden.services.homevisit.M_ApprovalServices;
 import itgarden.services.homevisit.M_Child_infoService;
 import itgarden.services.homevisit.M_Current_HelpService;
 import itgarden.services.homevisit.M_House_InformationService;
@@ -106,6 +107,9 @@ public class ReportController {
     House_TypeRepository house_TypeRepository;
     @Autowired
     Ownershif_typeRepository ownershif_typeRepository;
+
+    @Autowired
+    M_ApprovalServices approvalService;
 
     @RequestMapping({"/index"})
     public String index(Model model) {
@@ -289,4 +293,14 @@ public class ReportController {
         model.addAttribute("list", motherlist);
         return "homevisit/report/currenthelp";
     }
+
+    @RequestMapping({"/approved_mother_list"})
+    public String approved_mother_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", approvalService.allApprovalMotherReport(Decision.Approve, startDate, endDate));
+        return "homevisit/report/approval_mother_list";
+    }
+
 }

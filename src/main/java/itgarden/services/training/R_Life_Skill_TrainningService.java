@@ -12,6 +12,7 @@ import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
@@ -45,6 +46,32 @@ public class R_Life_Skill_TrainningService {
         Root<R_Life_Skill_Trainning> root = cq.from(R_Life_Skill_Trainning.class);
 
         // Select the fields you want to retrieve and alias them
+        // Retrieve the fields
+        Path<LocalDate> startDate = root.get("startDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extentionDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
+        // Select the fields you want to retrieve and alias them
         cq.multiselect(
                 root.get("id").alias("id"),
                 root.get("name").alias("name"),
@@ -55,6 +82,9 @@ public class R_Life_Skill_TrainningService {
                 root.get("startDate").alias("startDate"),
                 root.get("endDate").alias("endDate"),
                 root.get("extentionDate").alias("extentionDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
                 root.get("conductedBy").alias("conductedBy")
         );
 
@@ -75,11 +105,105 @@ public class R_Life_Skill_TrainningService {
             resultMap.put("startDate", tuple.get("startDate", LocalDate.class));
             resultMap.put("endDate", tuple.get("endDate", LocalDate.class));
             resultMap.put("extentionDate", tuple.get("extentionDate", LocalDate.class));
+            resultMap.put("totaldays", tuple.get("totaldays", Long.class));
+            resultMap.put("extentionDays", tuple.get("extentionDays", Long.class));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay", Long.class));
             resultMap.put("conductedBy", tuple.get("conductedBy", String.class));
             resultMaps.add(resultMap);
         }
         return resultMaps;
     }
+    
+    
+    public List<Map<String, Object>> lifeSkillTrainingsList_BY_Mother(
+    
+    Long id
+    
+    
+    ) {
+        // Create a CriteriaBuilder instance from the EntityManager
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+
+        // Define the root entity of the query
+        Root<R_Life_Skill_Trainning> root = cq.from(R_Life_Skill_Trainning.class);
+
+        // Select the fields you want to retrieve and alias them
+        // Retrieve the fields
+        Path<LocalDate> startDate = root.get("startDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extentionDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
+        // Select the fields you want to retrieve and alias them
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("name").alias("name"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"), // assuming `code` is a property in `MotherMasterData`
+                root.get("trainingName").get("name").alias("trainingName"), // assuming `name` is a property in `TrainingName`
+                root.get("prerequisiteSkill").alias("prerequisiteSkill"),
+                root.get("location").alias("location"),
+                root.get("startDate").alias("startDate"),
+                root.get("endDate").alias("endDate"),
+                root.get("extentionDate").alias("extentionDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
+                root.get("conductedBy").alias("conductedBy")
+        );
+
+        
+           cq.where(cb.equal(root.get("motherMasterCode").get("id"), id));
+        
+        cq.orderBy(cb.desc(root.get("id")));
+
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+
+        for (Tuple tuple : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("id", tuple.get("id", Long.class));
+            resultMap.put("name", tuple.get("name", String.class));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode", String.class)); // Assuming it's a string representation
+            resultMap.put("trainingName", tuple.get("trainingName", String.class)); // Assuming it's a string representation
+            resultMap.put("prerequisiteSkill", tuple.get("prerequisiteSkill", String.class));
+            resultMap.put("location", tuple.get("location", String.class));
+            resultMap.put("startDate", tuple.get("startDate", LocalDate.class));
+            resultMap.put("endDate", tuple.get("endDate", LocalDate.class));
+            resultMap.put("extentionDate", tuple.get("extentionDate", LocalDate.class));
+            resultMap.put("totaldays", tuple.get("totaldays", Long.class));
+            resultMap.put("extentionDays", tuple.get("extentionDays", Long.class));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay", Long.class));
+            resultMap.put("conductedBy", tuple.get("conductedBy", String.class));
+            resultMaps.add(resultMap);
+        }
+        return resultMaps;
+    }
+    
+    
+    
+    
+    
 
     public List<Map<String, Object>> livelihood_training_report_by_skill(
             String motherMasterCode,
@@ -92,6 +216,32 @@ public class R_Life_Skill_TrainningService {
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         // Define the root entity of the query
         Root<R_Life_Skill_Trainning> root = cq.from(R_Life_Skill_Trainning.class);
+
+        // Select the fields you want to retrieve and alias them
+        // Retrieve the fields
+        Path<LocalDate> startDates = root.get("startDate");
+        Path<LocalDate> endDates = root.get("endDate");
+        Path<LocalDate> extentionDates = root.get("extentionDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDates, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDates, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDates, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDates, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
 
         List<Predicate> predicates = new ArrayList<>();
         // Define the date formatter
@@ -108,7 +258,7 @@ public class R_Life_Skill_TrainningService {
         }
 
         if (StringUtils.isNoneEmpty(motherMasterCode)) {
-            predicates.add(cb.equal(root.get("motherMasterCode"), motherMasterCode));
+            predicates.add(cb.equal(root.get("motherMasterCode").get("motherMasterCode"), motherMasterCode));
         }
 
         if (ObjectUtils.isNotEmpty(trainingName)) {
@@ -126,6 +276,9 @@ public class R_Life_Skill_TrainningService {
                 root.get("startDate").alias("startDate"),
                 root.get("endDate").alias("endDate"),
                 root.get("extentionDate").alias("extentionDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
                 root.get("conductedBy").alias("conductedBy")
         );
 
@@ -148,6 +301,9 @@ public class R_Life_Skill_TrainningService {
             resultMap.put("startDate", tuple.get("startDate", LocalDate.class));
             resultMap.put("endDate", tuple.get("endDate", LocalDate.class));
             resultMap.put("extentionDate", tuple.get("extentionDate", LocalDate.class));
+            resultMap.put("totaldays", tuple.get("totaldays", Long.class));
+            resultMap.put("extentionDays", tuple.get("extentionDays", Long.class));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay", Long.class));
             resultMap.put("conductedBy", tuple.get("conductedBy", String.class));
             resultMaps.add(resultMap);
         }
@@ -188,20 +344,21 @@ public class R_Life_Skill_TrainningService {
             predicates.add(cb.equal(root.get("trainingName"), trainingName));
         }
 
-        Expression<Long> totalTraining = cb.count(root.get("motherMasterCode").get("id"));
+        Expression<Long> totalTraining = cb.count(root.get("motherMasterCode"));
 
         // Select the fields you want to retrieve and alias them
         cq.multiselect(
-                root.get("id").alias("id"),
                 root.get("name").alias("name"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"), // assuming `code` is a property in `MotherMasterData`
-                root.get("trainingName").get("name").alias("trainingName"),
                 totalTraining.alias("totalTraining")
         );
 
         cq.where(cb.and(predicates.toArray(new Predicate[0])));
 
-        cq.groupBy(root.get("motherMasterCode").get("id"));
+        cq.groupBy(
+                root.get("motherMasterCode"),
+                root.get("name")
+        );
 
         cq.orderBy(cb.desc(root.get("id")));
 
@@ -211,7 +368,7 @@ public class R_Life_Skill_TrainningService {
 
         for (Tuple tuple : resultList) {
             Map<String, Object> resultMap = new HashMap<>();
-            resultMap.put("id", tuple.get("id", Long.class));
+//            resultMap.put("id", tuple.get("id", Long.class));
             resultMap.put("name", tuple.get("name", String.class));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode", String.class)); // Assuming it's a string representation
             resultMap.put("totalTraining", tuple.get("totalTraining", Long.class));

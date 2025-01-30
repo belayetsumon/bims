@@ -18,7 +18,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">    Pre Reintegration Visit</a></li>
                                 <li class="breadcrumb-item active">
-                                    Pre Reintegration Mother List   </li>
+                                   Pre Reintegration Visit complete Mother List   </li>
 
                             </ol>
                         </div>
@@ -32,7 +32,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title">Mother Pre Reintegration List ( Total: <span th:text="${list.size()}"></span>) </h3>
+                                <h3 class="card-title"> Pre Reintegration Visit complete Mother List  ( Total: <span th:text="${list.size()}"></span>) </h3>
 
                             </div>
                             <!-- /.card-header -->
@@ -40,7 +40,8 @@
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th> Mother  Id</th>
+                                            <th>#</th>
+                                            <th> Mother   Master Code</th>
                                             <th> Mother Name</th>
 
                                             <th>Staff name</th>
@@ -52,8 +53,8 @@
                                         </tr>  
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${list}">
-
+                                        <tr th:each="list, status :${list}">
+                                            <td th:text="${status.count}">Chakma</td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>                                      
                                             <td th:text="${list.officerName}" >Chakma</td>

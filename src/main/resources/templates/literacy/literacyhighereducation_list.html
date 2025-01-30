@@ -37,13 +37,14 @@
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th> Mother  Id</th>
-                                                <th>Present literacy level</th>
+                                                <th>Last Education level</th>
                                                 <th>Admission Level</th>
                                                 <th> Admission   Date</th>
                                                 <th> End   Date</th>
                                                 <th>Status</th>
-
+                                                <th>Remark</th>
 
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -51,16 +52,15 @@
                                             </tr>  
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list,status:${list}">
-
-                                                <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                <td th:text="${list.lastEducationleve.name}">Chakma</td>
-                                                <td th:text="${list.admissionClass.name}">Chakma</td>
+                                            <tr th:each="list,status :${list}">
+                                                <td th:text="${status.count}">Chakma</td>
+                                                <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.lastEducationLevelId}">Chakma</td>
+                                                <td th:text="${list.admissionClassId}">Chakma</td>
                                                 <td th:text="${list.admissionDate}">Chakma</td>
                                                 <td th:text="${list.endDate}">Chakma</td>
-
                                                 <td th:text="${list.result}" >Chakma</td>
-
+                                                <td th:text="${list.remark}" >Chakma</td>
 
                                                 <td> 
                                                     <a   th:href="@{/literacyhighereducationadmission/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>

@@ -55,13 +55,13 @@ public class RreintegrationCheckList_Controller {
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
 
-        List<Long> preReintegrationVisitList = preReintegrationVisitService.allPreReintegrationVisitIdList();
+        List<Long> preReintegrationVisitList = preReintegrationVisitService.all_Pre_Reintegration_Visit_Complete_mother_Id_List();
 
         List<Long> allReintegrationCheckListList = reintegrationCheckListService.allReintegrationCheckListList();
 
         List<Map<String, Object>> admitedMotherList = o_MAddmissionService.allAdmitedMotherList()
                 .stream()
-                .filter(preReintegrationVisitList::contains)
+                .filter(e -> preReintegrationVisitList.contains(e.get("motherMasterCodeId")))
                 .filter(e -> !allReintegrationCheckListList.contains(e.get("motherMasterCodeId")))
                 .collect(Collectors.toList());
         model.addAttribute("list", admitedMotherList);

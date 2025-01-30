@@ -53,7 +53,8 @@ public class ReleaseMother {
     @Lob
     private String address;
 
-    @NotEmpty(message = "This field cannot be blank.")
+   @NotNull(message = "Release date cannot be blank.")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate postDischargeVisitDate;
 
     @Lob

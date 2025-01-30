@@ -10,6 +10,7 @@ import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,15 +35,15 @@ public class ReleaseChild {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "child_master_code_id", nullable = false)
     public M_Child_info childMasterCode;
-    
+
     @Column(nullable = false)
     @NotNull(message = "Release date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -185,5 +186,5 @@ public class ReleaseChild {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
- 
+
 }
