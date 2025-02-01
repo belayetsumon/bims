@@ -10,6 +10,7 @@ import itgarden.model.homevisit.M_Child_info;
 import itgarden.model.homevisit.MotherMasterData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +22,6 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -35,14 +35,15 @@ public class ReleaseChild {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "child_master_code_id", nullable = false)
     public M_Child_info childMasterCode;
-    
+
     @Column(nullable = false)
     @NotNull(message = "Release date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
@@ -54,7 +55,7 @@ public class ReleaseChild {
     private String training;
 
     @Lob
-    private String Address;
+    private String address;
 
     @Lob
     private String remark;
@@ -77,14 +78,14 @@ public class ReleaseChild {
     public ReleaseChild() {
     }
 
-    public ReleaseChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate releaseDate, String name, String training, String Address, String remark, Users createdBy, Users updatedBy) {
+    public ReleaseChild(Long id, MotherMasterData motherMasterCode, M_Child_info childMasterCode, LocalDate releaseDate, String name, String training, String address, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
         this.releaseDate = releaseDate;
         this.name = name;
         this.training = training;
-        this.Address = Address;
+        this.address = address;
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
@@ -139,11 +140,11 @@ public class ReleaseChild {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getRemark() {
@@ -186,6 +187,4 @@ public class ReleaseChild {
         this.updatedBy = updatedBy;
     }
 
-   
-    
 }

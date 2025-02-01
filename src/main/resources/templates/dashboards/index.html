@@ -1,972 +1,364 @@
 <!DOCTYPE html>
-<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+<div xmlns:th="http://www.thymeleaf.org"  layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h3>  Welcome BIMS Dashboards Mr.<span  class=" text-success " th:text="${userinfo.name}"></span></h3>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
+                <h1>
+                    Welcome Shishu Polli Plus  BIMS     Dashboards <span  class=" text-success " th:text="${userinfo.name}"></span>
+                    <small>  </small>
+                </h1>         
             </section>
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-sm-12 ">
-                        <div class="card card-info">
-                            <div class="card-body">
-                                <form class="form-inline "  th:action="@{/dashboards/report}">
-                                    <div class="form-group col-sm-4">
-                                        <label class="mr-2">From:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" min="2018-01-01"  max="2025-01-01"  name="fdate"  required="true" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
 
+<!--                        <form class="form-inline col-sm-offset-3"  th:action="@{/dashboards/report}">
 
-                                    <div class="form-group col-sm-4">
-                                        <label class="mr-2">To:</label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" min="2018-01-01"  max="2025-01-01"  name="tdate"  required="true" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                            <label class="" for="email">From:</label>
+                            <div class="form-group input-group date">
+                                <div class="input-group-addon" > 
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date"  min="2018-01-01"  max="2025-01-01"   required="true"  class="form-control"  name="fdate" />
+                            </div>
+                            <label class="" for="to">To:</label>
+                            <div class="form-group input-group date">
 
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="input-group-addon" > 
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date"  min="2018-01-01"  max="2025-01-01" required="true" class="form-control"   name="tdate" />
+                            </div>
 
-                                    <div class="form-group col-sm-4">
-                                        <button type="submit" class="btn btn-info ">Submit</button>
-                                    </div>
-                                </form>
-                            </div>  </div>      
-
+                            <button type="submit" class="btn btn-default bg-maroon-active">Submit</button>
+                        </form>      -->
                         <br/>
                     </div>  
 
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box " style="background-color: #800080;color: #fff">
+                                    <div class="inner">
+                                        <h3 th:text="${totalHomeVisit}">53</h3>
+                                        <p>  Total Home Visit</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
 
-                            <div class="info-box-content">
-
-                                <span class="info-box-text">1.1. Total Home Visit</span>
-                                <span class="info-box-number" th:text="${totalHomeVisit}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.2.Total Eligible Mother</span>
-                                <span class="info-box-number" th:text="${eligible}">00</span>
-
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.3.Total Eligible Child </span>
-                                <span class="info-box-number" th:text="${eligiblechild}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.4.	Total Not Eligible Mother</span>
-                                <span class="info-box-number" th:text="${noteligible}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.5.	Total Not Eligible Child</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.6.	Total Approved Mother</span>
-                                <span class="info-box-number"  th:text="${approve}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.7.	Total Not Approved Mother</span>
-                                <span class="info-box-number" th:text="${notapprove}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.8.	Total Approved Child</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-info">
-                            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.9.Total Not Approved Child </span>
-                                <span class="info-box-number">00</span>
-
-
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-success">
-                            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.10.Total Observation Mother</span>
-                                <span class="info-box-number" th:text="${totalobservationmother}">00</span>
-
-
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-warning">
-                            <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.11.Total Observation Child</span>
-                                <span class="info-box-number">00</span>
-
-
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-danger">
-                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.12.	Total Drop-out Mother</span>
-                                <span class="info-box-number">00</span>
-
-
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.13.	Total Drop-out Child</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.10.	All Admitted Mother</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.11.	Total In-house Mother </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.12.	All Admitted Child</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.13.	Total In-house Child </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.14.	Total In-house Beneficiaries </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.15.	Total Long Term Care Children & Mother on Higher Study </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.16.	Mothers on Job Placement</span>
-                                <span class="info-box-number" th:text="${totaljob}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-                    <!-- /.row -->
-
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-info">
-                            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.17.Long Term Care Child on Job Placement</span>
-                                <span class="info-box-number">00</span>
-
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
                                 </div>
-                                <span class="progress-description">
-
-                                </span>
                             </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-success">
-                            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.18.	Total Long-term Care </span>
-                                <span class="info-box-number">00</span>
+                            <div class="col-lg-3 col-xs-6">
 
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${eligible}">53</h3>
+                                        <p> Total Eligible Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
                                 </div>
-                                <span class="progress-description">
-
-                                </span>
                             </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-warning">
-                            <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.19.	Halfway House & Community Based Mother</span>
-                                <span class="info-box-number">00</span>
+                            <div class="col-lg-3 col-xs-6">
 
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
+                                <div class="small-box  bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${eligiblechild}">53</h3>
+
+                                        <p> Total Eligible Child </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
                                 </div>
-                                <span class="progress-description">
-
-                                </span>
                             </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-danger">
-                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.20.	Halfway House & Community Based Child</span>
-                                <span class="info-box-number">00</span>
+                            <div class="col-lg-3 col-xs-6">
 
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${noteligible}">53</h3>
+                                        <p> Total Not Eligible Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+
                                 </div>
-                                <span class="progress-description">
-
-                                </span>
                             </div>
-                            <!-- /.info-box-content -->
+
+
+
                         </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
+
+                        <div class="row">
 
 
+                            <div class="col-lg-3 col-xs-6">
 
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box bg-danger">
-                            <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${approve}">53</h3>
+                                        <p> Total Approved Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.21.	Total Existing Beneficiaries </span>
-                                <span class="info-box-number">00</span>
-
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 70%"></div>
                                 </div>
-                                <span class="progress-description">
-
-                                </span>
                             </div>
-                            <!-- /.info-box-content -->
+
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${notapprove}">53</h3>
+                                        <p> Total Not Approved Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalobservationmother}">53</h3>
+                                        <p> Total Observation Mother</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmotheradmission}">53</h3>
+                                        <p>Total Mother Admission</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
-                        <!-- /.info-box -->
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmothernow}">53</h3>
+                                        <p> Total Mother In SPP Now </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${totalchildadmission}">53</h3>
+                                        <p>Total Child Admission</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${totalchildnow}">53</h3>
+                                        <p>Total Child in SPP Now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box " style="background-color: #38bc1c;color: #fff">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmothernow + totalchildnow}">53</h3>
+                                        <p> Total Beneficiary  Living in SPP</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalhigherstudy}">53</h3>
+                                        <p> Total Mother on Higher Study at SPP now</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totaljob}">53</h3>
+                                        <p> Mothers On Job Placement  </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-lg-3 col-xs-6">
+                                <div class="small-box" style="background-color: #38bc1c;color: #fff">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmothernow + totalchildnow+totaljob}">53</h3>
+                                        <p> Total Beneficiaries  </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${preReintegrationNow}">53</h3>
+                                        <p> Families In Community House and Local Community </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3 th:text="${totalreintegrationmother}">53</h3>
+                                        <p>Total Reintegration Mother </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3 th:text="${totalreintegrationchild}">53</h3>
+                                        <p>Total Reintegration Child</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3 th:text="${totalreintegrationmother+totalreintegrationchild}">53</h3>
+                                        <p>Total Reintegration</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-pie-graph"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3 th:text="${totalmotherfollowup}">53</h3>
+                                        <p>Total Follow Up Families</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+
+                                <div class="small-box bg-red" >
+
+                                    <div class="inner">
+
+                                        <h3 th:text="${longtermcarechildlist}">53</h3>
+
+                                        <p>Total Long Term Care </p>
+
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                     <!-- /.col -->
 
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.22.	Total Reintegration Mother </span>
-                                <span class="info-box-number" th:text="${totalreintegrationmother}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
                     <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.23.	Total Reintegration Child</span>
-                                <span class="info-box-number" th:text="${totalreintegrationchild}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.24.	Total Reintegration </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.25.	Total Beneficiaries </span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.26.	Total Follow up families</span>
-                                <span class="info-box-number" th:text="${totalmotherfollowup}">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.27.	Literacy — Number of mothers currently in literacy programs.</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.28.	School — Number of children currently in School.</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-4 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">1.29.	Clinic- Number of admitted patient in clinic.</span>
-                                <span class="info-box-number">00</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <!-- =========================================================== -->
-                    <!--                    <h5 class="mt-4 mb-2">Info Box With <code>bg-*</code></h5>-->
-                    <!--                    <div class="row">
-                                            <div class="col-md-4 col-sm-6 col-12">
-                                                <div class="info-box bg-info">
-                                                    <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-                    
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">1.30.	Total Mother in Leave </span>
-                                                        <span class="info-box-number">00</span>
-                    
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 70%"></div>
-                                                        </div>
-                                                        <span class="progress-description">
-                    
-                                                        </span>
-                                                    </div>
-                                                     /.info-box-content 
-                                                </div>
-                                                 /.info-box 
-                                            </div>
-                                             /.col 
-                                            <div class="col-md-4 col-sm-6 col-12">
-                                                <div class="info-box bg-success">
-                                                    <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
-                    
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">1.31.	Total Child in Leave   </span>
-                                                        <span class="info-box-number">00</span>
-                    
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 70%"></div>
-                                                        </div>
-                                                        <span class="progress-description">
-                    
-                                                        </span>
-                                                    </div>
-                                                     /.info-box-content 
-                                                </div>
-                                                 /.info-box 
-                                            </div>
-                                             /.col 
-                                            <div class="col-md-4 col-sm-6 col-12">
-                                                <div class="info-box bg-warning">
-                                                    <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
-                    
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text">1.32.	Impact measurement — Number of family which has completes Impact data.</span>
-                                                        <span class="info-box-number">00</span>
-                    
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 70%"></div>
-                                                        </div>
-                                                        <span class="progress-description">
-                    
-                                                        </span>
-                                                    </div>
-                                                     /.info-box-content 
-                                                </div>
-                                                 /.info-box 
-                                            </div>
-                                             /.col 
-                                            <div class="col-md-4 col-sm-6 col-12">
-                                                <div class="info-box bg-danger">
-                                                    <span class="info-box-icon"><i class="fas fa-comments"></i></span>
-                    
-                                                    <div class="info-box-content">
-                                                        <span class="info-box-text"></span>
-                                                        <span class="info-box-number">00</span>
-                    
-                                                        <div class="progress">
-                                                            <div class="progress-bar" style="width: 70%"></div>
-                                                        </div>
-                                                        <span class="progress-description">
-                    
-                                                        </span>
-                                                    </div>
-                                                     /.info-box-content 
-                                                </div>
-                                                 /.info-box 
-                                            </div>
-                                             /.col 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-xs-6">
-                                                        <div class="small-box " style="background-color: #800080;color: #fff">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalHomeVisit}">53</h3>
-                                                                <p>  Total Home Visit</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${eligible}">53</h3>
-                                                                <p> Total Eligible Mother</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box  bg-aqua">
-                                                            <div class="inner">
-                                                                <h3 th:text="${eligiblechild}">53</h3>
-                    
-                                                                <p> Total Eligible Child </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${noteligible}">53</h3>
-                                                                <p> Total Not Eligible Mother</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-person-add"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                    
-                    
-                                                </div>
-                    
-                                                <div class="row">
-                    
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${approve}">53</h3>
-                                                                <p> Total Approved Mother</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${notapprove}">53</h3>
-                                                                <p> Total Not Approved Mother</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalobservationmother}">53</h3>
-                                                                <p> Total Observation Mother</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-person-add"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalmotheradmission}">53</h3>
-                                                                <p>Total Mother Admission</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-xs-6">
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalmothernow}">53</h3>
-                                                                <p> Total Mother In SPP Now </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-person-add"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-aqua">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalchildadmission}">53</h3>
-                                                                <p>Total Child Admission</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-aqua">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalchildnow}">53</h3>
-                                                                <p>Total Child in SPP Now</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box " style="background-color: #38bc1c;color: #fff">
-                                                            <div class="inner">
-                                                                                                        <h3 th:text="${totalmothernow + totalchildnow}">53</h3>
-                                                                <p> Total Beneficiary  Living in SPP</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalhigherstudy}">53</h3>
-                                                                <p> Total Mother on Higher Study at SPP now</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totaljob}">53</h3>
-                                                                <p> Mothers On Job Placement  </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                    
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                                                        <div class="small-box" style="background-color: #38bc1c;color: #fff">
-                                                            <div class="inner">
-                                                                                                        <h3 th:text="${totalmothernow + totalchildnow+totaljob}">53</h3>
-                                                                <p> Total Beneficiaries  </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-yellow">
-                                                            <div class="inner">
-                                                                <h3 th:text="${preReintegrationNow}">53</h3>
-                                                                <p> Families Halfway House and Local Community </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                </div>
-                                                <div class="row">
-                    
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-green">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalreintegrationmother}">53</h3>
-                                                                <p>Total Reintegration Mother </p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-person-add"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-aqua">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalreintegrationchild}">53</h3>
-                                                                <p>Total Reintegration Child</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-yellow">
-                                                            <div class="inner">
-                                                                                                        <h3 th:text="${totalreintegrationmother+totalreintegrationchild}">53</h3>
-                                                                <p>Total Reintegration</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-pie-graph"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-red">
-                                                            <div class="inner">
-                                                                <h3 th:text="${totalmotherfollowup}">53</h3>
-                                                                <p>Total Follow Up Families</p>
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                    
-                                                    <div class="col-lg-3 col-xs-6">
-                    
-                                                        <div class="small-box bg-red" >
-                    
-                                                            <div class="inner">
-                    
-                                                                <h3 th:text="${longtermcarechildlist}">53</h3>
-                    
-                                                                <p>Total Long Term Care </p>
-                    
-                                                            </div>
-                                                            <div class="icon">
-                                                                <i class="ion ion-stats-bars"></i>
-                                                            </div>
-                    
-                                                        </div>
-                                                    </div>
-                                                </div>
-                    
-                    
-                                            </div>
-                                             /.col 
-                    
-                                             /.col 
-                                        </div>-->
+                </div>
 
             </section>
             <!-- /.content -->

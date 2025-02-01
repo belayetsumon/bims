@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -71,6 +72,12 @@ public class LongTermImpactMeasurement {
     public ContinueNotContinueEnum childFourEducation;
 
     @Enumerated(EnumType.STRING)
+    public ContinueNotContinueEnum childFiveEducation;
+
+    @Enumerated(EnumType.STRING)
+    public ContinueNotContinueEnum childSixEducation;
+
+    @Enumerated(EnumType.STRING)
     @NotNull(message = "Relationship with neighbors field cannot be blank.")
     public ImpactMeasurementIndicator relationshipWithNeighbors;
 
@@ -81,12 +88,13 @@ public class LongTermImpactMeasurement {
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Attends social gatherings field cannot be blank.")
     public ImpactMeasurementYesNo attendsSocialGatherings;
-    
+
     @Enumerated(EnumType.STRING)
     @NotNull(message = "AccessSocial safetynet program field cannot be blank.")
     public ImpactMeasurementYesNo accessSocialSafetynetProgram;
-    
-    
+
+    @Lob
+    private String remark;
 
     /**
      * ********* Audit ******************************
@@ -108,7 +116,7 @@ public class LongTermImpactMeasurement {
     public LongTermImpactMeasurement() {
     }
 
-    public LongTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, PresentIncomeSource presentIncomeSource, String monthlyIncomeAmount, String monthlyExpenditureAmount, String savingsAmount, Ownershif_type shelterStatus, House_Type housetype, ContinueNotContinueEnum childOneEducation, ContinueNotContinueEnum childTwoEducation, ContinueNotContinueEnum childThreeEducation, ContinueNotContinueEnum childFourEducation, ImpactMeasurementIndicator relationshipWithNeighbors, ImpactMeasurementYesNo attendsSocialActivities, ImpactMeasurementYesNo attendsSocialGatherings, ImpactMeasurementYesNo accessSocialSafetynetProgram, Users createdBy, Users updatedBy) {
+    public LongTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, PresentIncomeSource presentIncomeSource, String monthlyIncomeAmount, String monthlyExpenditureAmount, String savingsAmount, Ownershif_type shelterStatus, House_Type housetype, ContinueNotContinueEnum childOneEducation, ContinueNotContinueEnum childTwoEducation, ContinueNotContinueEnum childThreeEducation, ContinueNotContinueEnum childFourEducation, ContinueNotContinueEnum childFiveEducation, ContinueNotContinueEnum childSixEducation, ImpactMeasurementIndicator relationshipWithNeighbors, ImpactMeasurementYesNo attendsSocialActivities, ImpactMeasurementYesNo attendsSocialGatherings, ImpactMeasurementYesNo accessSocialSafetynetProgram, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.releaseMotherId = releaseMotherId;
         this.presentIncomeSource = presentIncomeSource;
@@ -121,13 +129,18 @@ public class LongTermImpactMeasurement {
         this.childTwoEducation = childTwoEducation;
         this.childThreeEducation = childThreeEducation;
         this.childFourEducation = childFourEducation;
+        this.childFiveEducation = childFiveEducation;
+        this.childSixEducation = childSixEducation;
         this.relationshipWithNeighbors = relationshipWithNeighbors;
         this.attendsSocialActivities = attendsSocialActivities;
         this.attendsSocialGatherings = attendsSocialGatherings;
         this.accessSocialSafetynetProgram = accessSocialSafetynetProgram;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -225,6 +238,22 @@ public class LongTermImpactMeasurement {
         this.childFourEducation = childFourEducation;
     }
 
+    public ContinueNotContinueEnum getChildFiveEducation() {
+        return childFiveEducation;
+    }
+
+    public void setChildFiveEducation(ContinueNotContinueEnum childFiveEducation) {
+        this.childFiveEducation = childFiveEducation;
+    }
+
+    public ContinueNotContinueEnum getChildSixEducation() {
+        return childSixEducation;
+    }
+
+    public void setChildSixEducation(ContinueNotContinueEnum childSixEducation) {
+        this.childSixEducation = childSixEducation;
+    }
+
     public ImpactMeasurementIndicator getRelationshipWithNeighbors() {
         return relationshipWithNeighbors;
     }
@@ -255,6 +284,14 @@ public class LongTermImpactMeasurement {
 
     public void setAccessSocialSafetynetProgram(ImpactMeasurementYesNo accessSocialSafetynetProgram) {
         this.accessSocialSafetynetProgram = accessSocialSafetynetProgram;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public LocalDate getCreated() {
@@ -289,5 +326,4 @@ public class LongTermImpactMeasurement {
         this.updatedBy = updatedBy;
     }
 
-   
 }

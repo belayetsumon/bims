@@ -39,28 +39,28 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive "> 
-                            <form  th:action="@{/homevisitreport/childinfo}"   method="get" >
+                                <form  th:action="@{/homevisitreport/childinfo}"   method="get" >
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="form-group col-sm-6 row">
                                                 <label for="name" class="col-sm-3 control-label"> Inserted From <span class="text-red">  </span> </label>
                                                 <div class="col-sm-8"> 
                                                     <div class="input-group ">
-                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"  id="dateFrom"    name="startDate" />                              
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"  id="startDate"    name="startDate" />                              
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group col-sm-6 row">
                                                 <label for="name" class="col-sm-3 control-label"> Inserted To <span class="text-red">  </span> </label>
                                                 <div class="col-sm-8"> 
                                                     <div class="input-group ">
-                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="dateTo"  name="endDate" />                              
+                                                        <input type="text"  placeholder="DD/MM/YYYY"  data-date-format="dd/mm/yyyy" class="form-control"   id="endDate"  name="endDate" />                              
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="form-group col-sm-6 row">
                                                 <label for="name" class="col-sm-3 control-label"> Mother Master Code<span class="text-red">  </span> </label>
@@ -93,14 +93,14 @@
                                         </div>
 
                                         <div class="row">  
-                                                   <div class="form-group col-sm-4 row">
+                                            <div class="form-group col-sm-4 row">
                                                 <label for="name" class="col-sm-6 control-label"> Gender <span class="text-red">  </span> </label>
                                                 <div class="col-sm-6">                   
                                                     <select class="form-control  "  id="bookName"  name="gender" >
                                                         <option value=" "> Select one</option>
-                                                        <option th:each =" educationType :${educationType}"
-                                                                th:value=" ${educationType.id}" 
-                                                                th:text="${educationType.name}"> Select one</option>
+                                                        <option th:each =" genderLists :${genderList}"
+                                                                th:value=" ${genderLists}" 
+                                                                th:text="${genderLists}"> Select one</option>
                                                     </select>
                                                 </div>    
                                             </div>

@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class ReleaseMotherDTO {
     private Long id;
     private String motherMasterCode;
+    private String motherName;
     private Long motherMastrCodeID;
     private LocalDate releaseDate;
     private String Address;
@@ -25,9 +26,10 @@ public class ReleaseMotherDTO {
         
     }
 
-    public ReleaseMotherDTO(Long id, String motherMasterCode, Long motherMastrCodeID, LocalDate releaseDate, String Address, String postDischargeVisitDate, String remark) {
+    public ReleaseMotherDTO(Long id, String motherMasterCode, String motherName, Long motherMastrCodeID, LocalDate releaseDate, String Address, String postDischargeVisitDate, String remark) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
+        this.motherName = motherName;
         this.motherMastrCodeID = motherMastrCodeID;
         this.releaseDate = releaseDate;
         this.Address = Address;
@@ -49,6 +51,14 @@ public class ReleaseMotherDTO {
 
     public void setMotherMasterCode(String motherMasterCode) {
         this.motherMasterCode = motherMasterCode;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
     }
 
     public Long getMotherMastrCodeID() {

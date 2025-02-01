@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Psychological and Therapy Support Report</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Psychological and Therapy Support Report</a></li>
+                                <li class="breadcrumb-item active">Index </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="col-sm-12"> 
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Report List</h3>
+
+                            <div class="card-tools pull-right">
+                                <div class="btn-group">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body row">
+                            <div class="col-sm-6">
+                                <a  th:href="@{/sychological_and_therapy_report/professionalObserbationsCompletedMotherListReport}" type="button" class="btn btn-block btn-info"> Professional Observations  Mother Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/professionalObserbationsCompletedChildListReport}" type="button" class="btn btn-block btn-info"> Professional Observations  Children Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/mother_occupational_therapy_session_report}" type="button" class="btn btn-block btn-info"> Mother Occupational Therapy Session Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/child_occupational_therapy_session_report}" type="button" class="btn btn-block btn-info"> Child Occupational Therapy Session Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/mother_physical_therapy_session_report}" type="button" class="btn btn-block btn-info"> Mother Physical Therapy Session Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/mother_psychology_session_report}" type="button" class="btn btn-block btn-info"> Mother Psychology Session Report</a>
+                                <a  th:href="@{/sychological_and_therapy_report/child_psychology_session_report}" type="button" class="btn btn-block btn-info"> Child Psychology Session Report</a>
+                            </div>
+                        </div>
+                        </section>
+                        <!-- /.content -->
+                    </div>
+                    <!-- /.content-wrapper -->
+                </div>
+        </div>

@@ -50,23 +50,25 @@
                                     <tbody>
                                         <tr th:each="list,status:${list}">
 
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+<!--                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>-->
+                                            
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
 
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                           <td th:text="${list.motherName}">Chakma</td>
 
                                             <td th:text="${list.releaseDate}" >Chakma</td>
 
-                                            <td th:text="${list.Address}" >Chakma</td>
+                                            <td th:text="${list.address}" >Chakma</td>
 
                                             <td th:text="${list.postDischargeVisitDate}">Chakma</td>
                                             <td>
-                                                <a   th:href="@{/reintegration/childindex/{m_id} (m_id=${list.motherMasterCode.id})}" type="button" class="btn btn-sm btn-info  ">Children release</a>
+                                                <a   th:href="@{/reintegration/childindex/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info  ">Children release</a>
                                             </td>
                                             <td> 
-                                                <a   th:href="@{/reintegration/mother_edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
+                                                <a   th:href="@{/reintegration/mother_edit/{id} (id=${list.releaseMotherId})}" type="button" class="btn btn-sm  btn-info">Edit</a>
                                             </td>
                                             <td> 
-                                                <a   th:href="@{/reintegration/mother_delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
+                                                <a   th:href="@{/reintegration/mother_delete/{id} (id=${list.releaseMotherId})}" type="button" class="btn btn-sm  btn-info">Delete</a>
                                             </td>
                                         </tr>
                                     </tbody>

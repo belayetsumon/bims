@@ -11,16 +11,16 @@ $(document).ready(function () {
     $(function () {
         $("#referral_date").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#dateReferral").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
@@ -31,24 +31,24 @@ $(document).ready(function () {
     $(function () {
         $("#referral_date").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#dateReferral").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#homeVisitDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
             dateFormat: 'dd-mm-yy',
             yearRange: "1940:+nn",
             changeYear: true
-           
+
         });
     });
 
@@ -66,31 +66,54 @@ $(document).ready(function () {
             dateFormat: 'dd-mm-yy',
             yearRange: "1940:+nn",
             changeYear: true
-           
+
         });
     });
 
     $(function () {
         $("#startDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
+             
         $("#endDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
+
+
+    $(function () {
+      
+        $("#postVisitstartDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+            yearRange: "1940:+nn",
+            changeYear: true
+        });
+    });
+
+    $(function () {
+        $("#postVisitendDate").datepicker({
+            dateFormat: 'dd-mm-yy',
+            yearRange: "1940:+nn",
+            changeYear: true
+        });
+    });
+
+
+
+
 
     $(function () {
         $("#extDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
@@ -98,32 +121,32 @@ $(document).ready(function () {
     $(function () {
         $("#fostringDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#visitDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#shortTermPlanResolveDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#longTermPlanResolveDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
@@ -131,76 +154,76 @@ $(document).ready(function () {
     $(function () {
         $("#date").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#tentativeDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#preReintegrationHomeVisitNote").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 
     $(function () {
         $("#releaseDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
-    
-        $(function () {
+
+    $(function () {
         $("#postDischargeVisitDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
-    
-    
+
+
     $(function () {
         $("#FollowUpDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
-    
-    
-       $(function () {
+
+
+    $(function () {
         $("#lastFollowUpDate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
-    
-    
-         $(function () {
+
+
+    $(function () {
         $("#entrydate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
-    
-    
-          $(function () {
+
+
+    $(function () {
         $("#expectedsolvingdate").datepicker({
             dateFormat: 'dd-mm-yy',
-             yearRange: "1940:+nn",
-             changeYear: true
+            yearRange: "1940:+nn",
+            changeYear: true
         });
     });
 

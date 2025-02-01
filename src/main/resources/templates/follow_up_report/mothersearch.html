@@ -31,7 +31,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title">Mother List For Follow Up( Total: <span th:text="${list.size()}"></span>) </h3>
+                                <h3 class="card-title">Released Mother List For Follow Up( Total: <span th:text="${list.size()}"></span>) </h3>
 
                             </div>
                             <!-- /.card-header -->
@@ -40,39 +40,26 @@
                                     <thead>
                                         <tr>
                                             <th> Mother  Id</th>
+                                            <th> Mother  Code</th>
                                             <th> Mother Name</th>
-                                            <th>Date of Birth</th>
-                                            <th>Number of Eligible Children</th>
-                                            <th>Admission Date</th>
                                             <th>Release Date</th>
                                             <th>Follow Up Details</th>
                                         </tr>   
                                     </thead>
                                     <tbody>
                                         <tr th:each="list,status:${list}">
-                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCodeId}">Chakma</td>
+                                             <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>                                      
-                                            <td th:text="${list.dateOfBirth}" >Chakma</td>
-                                            <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
                                             <td> 
-                                                <span th:each="listad:${list.addmission}"> 
-                                                    <span th:text="${listad.dateAdmission}"> ff</span>
-                                                </span>                                           
+                                                <span th:text="${list.releaseDate}"> ff</span>
                                             </td>
                                             <td> 
-                                                <span th:each="listad:${list.releaseMother}"> 
-                                                    <span th:text="${listad.releaseDate}"> ff</span>
-                                                </span>                                           
-                                            </td>
-                                            <td> 
-                                                <a   th:href="@{/followupmother/details/{m_id} (m_id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Add</a>
+                                                <a   th:href="@{/followupmother/details/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-sm  btn-info ">Add</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer clearfix">
                             </div>
                         </div>
                         <!-- /.card -->

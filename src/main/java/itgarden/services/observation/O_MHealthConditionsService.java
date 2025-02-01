@@ -4,17 +4,20 @@
  */
 package itgarden.services.observation;
 
+import itgarden.model.homevisit.Yes_No;
 import itgarden.model.observation.O_MHealthConditions;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -76,9 +79,9 @@ public class O_MHealthConditionsService {
             Map<String, Object> resultMap = new HashMap<>();
 
             resultMap.put("healthConditionId", result.get("healthConditionId"));
-             resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", result.get("motherMasterCode"));
-               resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("motherName", result.get("motherName"));
 
             resultMap.put("observationDuration", result.get("observationDuration"));
 //            resultMap.put("previousDisease", result.get("previousDisease"));
@@ -110,6 +113,134 @@ public class O_MHealthConditionsService {
 
         }
 
+        return resultMaps;
+    }
+
+    public List<Map<String, Object>> motherHelthConditionsReport(
+            Yes_No bloodPressure,
+            Yes_No eyeProblem,
+            Yes_No earProblem,
+            Yes_No gynologicalProblem,
+            Yes_No tt,
+            Yes_No heart_disease,
+            Yes_No diabetes,
+            Yes_No bonyFracture,
+            Yes_No neurologicalDisease,
+            Yes_No resporatoryProblem,
+            Yes_No uti
+    ) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<O_MHealthConditions> root = cq.from(O_MHealthConditions.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        if (ObjectUtils.isNotEmpty(bloodPressure)) {
+            predicates.add(cb.equal(root.get("bloodPressure"), bloodPressure));
+        }
+        if (ObjectUtils.isNotEmpty(eyeProblem)) {
+            predicates.add(cb.equal(root.get("eyeProblem"), eyeProblem));
+        }
+        if (ObjectUtils.isNotEmpty(earProblem)) {
+            predicates.add(cb.equal(root.get("earProblem"), earProblem));
+        }
+        if (ObjectUtils.isNotEmpty(gynologicalProblem)) {
+            predicates.add(cb.equal(root.get("gynologicalProblem"), gynologicalProblem));
+        }
+        if (ObjectUtils.isNotEmpty(tt)) {
+            predicates.add(cb.equal(root.get("tt"), tt));
+        }
+        if (ObjectUtils.isNotEmpty(heart_disease)) {
+            predicates.add(cb.equal(root.get("heart_disease"), heart_disease));
+        }
+        if (ObjectUtils.isNotEmpty(diabetes)) {
+            predicates.add(cb.equal(root.get("diabetes"), diabetes));
+        }
+        if (ObjectUtils.isNotEmpty(bonyFracture)) {
+            predicates.add(cb.equal(root.get("bonyFracture"), bonyFracture));
+        }
+        if (ObjectUtils.isNotEmpty(neurologicalDisease)) {
+            predicates.add(cb.equal(root.get("neurologicalDisease"), neurologicalDisease));
+        }
+        if (ObjectUtils.isNotEmpty(resporatoryProblem)) {
+            predicates.add(cb.equal(root.get("resporatoryProblem"), resporatoryProblem));
+        }
+        if (ObjectUtils.isNotEmpty(uti)) {
+            predicates.add(cb.equal(root.get("uti"), uti));
+        }
+
+        cq.multiselect(
+                root.get("id").alias("healthConditionId"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("observationDuration").alias("observationDuration"),
+                root.get("previousDisease").alias("previousDisease"),
+                root.get("previousTreatment").alias("previousTreatment"),
+                root.get("preasentHealtsStatus").alias("presentHealthStatus"),
+                root.get("nutritionStatus").alias("nutritionStatus"),
+                root.get("height").alias("height"),
+                root.get("weight").alias("weight"),
+                root.get("bloodPressure").alias("bloodPressure"),
+                root.get("eyeProblem").alias("eyeProblem"),
+                root.get("earProblem").alias("earProblem"),
+                root.get("gynologicalProblem").alias("gynologicalProblem"),
+                root.get("tt").alias("tt"),
+                root.get("heart_disease").alias("heartDisease"),
+                root.get("diabetes").alias("diabetes"),
+                root.get("bonyFracture").alias("bonyFracture"),
+                root.get("note").alias("note"),
+                root.get("neurologicalDisease").alias("neurologicalDisease"),
+                root.get("resporatoryProblem").alias("respiratoryProblem"),
+                root.get("uti").alias("uti"),
+                root.get("previousReport").alias("previousReport"),
+                root.get("planForFurtherAction").alias("planForFurtherAction"),
+                root.get("otherImportantFindings").alias("otherImportantFindings")
+        );
+        // Apply 'OR' condition if both predicates are present
+        if (!predicates.isEmpty()) {
+            cq.where(cb.or(predicates.toArray(new Predicate[0])));
+        }
+        cq.orderBy(cb.desc(root.get("id")));
+        // Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        // Transform the result into a list of maps using aliases
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+
+        for (Tuple result : resultList) {
+
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("healthConditionId", result.get("healthConditionId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
+            resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("observationDuration", result.get("observationDuration"));
+            resultMap.put("previousDisease", result.get("previousDisease"));
+            resultMap.put("previousTreatment", result.get("previousTreatment"));
+            resultMap.put("presentHealthStatus", result.get("presentHealthStatus"));
+            resultMap.put("nutritionStatus", result.get("nutritionStatus"));
+            resultMap.put("height", result.get("height"));
+            resultMap.put("weight", result.get("weight"));
+            resultMap.put("bloodPressure", result.get("bloodPressure"));
+            resultMap.put("eyeProblem", result.get("eyeProblem"));
+            resultMap.put("earProblem", result.get("earProblem"));
+            resultMap.put("gynologicalProblem", result.get("gynologicalProblem"));
+            resultMap.put("tt", result.get("tt"));
+            resultMap.put("heartDisease", result.get("heartDisease"));
+            resultMap.put("diabetes", result.get("diabetes"));
+            resultMap.put("bonyFracture", result.get("bonyFracture"));
+            resultMap.put("note", result.get("note"));
+            resultMap.put("neurologicalDisease", result.get("neurologicalDisease"));
+            resultMap.put("respiratoryProblem", result.get("respiratoryProblem"));
+            resultMap.put("uti", result.get("uti"));
+            resultMap.put("previousReport", result.get("previousReport"));
+            resultMap.put("planForFurtherAction", result.get("planForFurtherAction"));
+            resultMap.put("otherImportantFindings", result.get("otherImportantFindings"));
+
+            resultMaps.add(resultMap);
+
+        }
         return resultMaps;
     }
 

@@ -10,13 +10,16 @@ import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Yes_No;
 import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
+import itgarden.services.FollowUp.FollowUpChildrenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -32,6 +35,8 @@ public class FollowUpChildrenController {
 
     @Autowired
     FollowUpChildrenRepository followUpChildrenRepository;
+    @Autowired
+    FollowUpChildrenService followUpChildrenService;
 
     @RequestMapping("/add/{m_id}")
     public String add(Model model, @PathVariable Long m_id, FollowUpChildren followUpChildren) {
@@ -87,5 +92,14 @@ public class FollowUpChildrenController {
         redirectAttrs.addAttribute("m_id", followUpChildren.motherMasterCode.getId());
         followUpChildrenRepository.deleteById(id);
         return "redirect:/followupmother/details/{m_id}";
+    }
+
+    @RequestMapping(value = "/list")
+    public String list(Model model,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", followUpChildrenService.find_All_Child_follow_up(startDate, endDate));
+        return "follow_up_report/child_follow_up_list";
     }
 }

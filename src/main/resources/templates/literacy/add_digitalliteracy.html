@@ -2,7 +2,6 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
     <div layout:fragment = "main_content">
-
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -51,11 +50,11 @@
                             <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-4 control-label"> Mother Id <span class="text-red">  </span> :</label>
                                 <div class="col-sm-6">                   
-                                    <select class="form-control  "  id="bookName"  th:field="*{motherMasterCode}"  >
+                                    <select class="form-control  "   id="select2"  th:field="*{motherMasterCode}"  >
                                         <option value=" "> Select one</option>
                                         <option th:each =" motherIds :${motherId}"
                                                 th:value=" ${motherIds.id }" 
-                                               th:text="${motherIds.motherMasterCode} +'-'+ ${motherIds.motherName}"> Select one</option>
+                                                th:text="${motherIds.motherMasterCode} +'-'+ ${motherIds.motherName}"> Select one</option>
                                     </select>
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
                                 </div>                            
@@ -102,7 +101,13 @@
                                 </div>                            
                             </div>
 
-
+                            <div class="form-group col-sm-12 row">
+                                <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                <div class="col-sm-8">                   
+                                    <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                </div>                            
+                            </div>
 
 
                             <div class="text-center">

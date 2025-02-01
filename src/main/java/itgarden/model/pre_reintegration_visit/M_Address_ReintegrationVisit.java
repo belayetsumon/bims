@@ -41,7 +41,7 @@ public class M_Address_ReintegrationVisit {
 
     @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+   @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     public String co;

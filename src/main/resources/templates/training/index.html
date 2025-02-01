@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>    Training </h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Training</a></li>
+                                <li class="breadcrumb-item active">Training List By Mother </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother Life Skill/Universal Training  </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/rlifeskilltrainning/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add Life Skill Training </a>
+                                </div>  </div>
+                            <!-- /.card-header -->
+                            <div class="card-body ">
+                                
+                                <table class="table table-bordered table-responsive">
+                                    <tr>
+                                        <th style="width: 10px">#</th>  
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Mother Name </th>
+                                        <th>Training Name</th>
+                                        <th>Prerequisite Skill </th>
+                                        <th>Venue</th>
+                                        <th> Start Date</th>
+                                        <th>End Date</th>
+                                            <th> Total Days</th>
+                                        <th> Ext Date </th>
+                                        <th> Extra Days </th>
+                                        <th> Grand Total Days </th>
+                                        <th>Conducted By</th>
+                                    </tr>                         
+                                    <tr th:each="list,status:${r_Life_Skill_Trainning}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td><a   th:href="@{/rlifeskilltrainning/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                        <td> <a   th:href="@{/rlifeskilltrainning/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
+                                        <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.name}">Chakma</td>-->
+                                        <td th:text="${list.trainingName}">Chakma</td>
+                                        <td th:text="${list.prerequisiteSkill}">Chakma</td>
+                                        <td th:text="${list.location}">Chakma</td>
+                                        <td th:text="${list.startDate}">Chakma</td>
+                                        <td th:text="${list.endDate}">Chakma</td>
+                                        <td th:text="${list.totaldays}">Chakma</td>                                 
+                                        <td th:text="${list.extentionDate}">Chakma</td>
+                                        <td th:text="${list.extentionDays}">Chakma</td>
+                                        <td th:text="${list.grandTotalDay}">Chakma</td>
+                                        <td th:text="${list.conductedBy}">Chakma</td>
+                                    </tr>
+                                </table>
+                                
+                                
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Mother IGA Training </h3>
+                                <div class="card-tools">
+                                    <a   th:href="@{/rigatraining/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info pull-right"> Add  IGA Training </a>
+                                </div>     </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <table class="table table-bordered table-responsive">
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Mother Master Code</th>
+                                        <th>Mother Name </th>
+                                        <th>Training Name</th>
+                                        <th>Prerequisite Skill </th>
+                                        <th>Venue</th>
+                                        <th> Start Date</th>
+                                        <th>End Date</th>
+                                        <th> Total Days</th>
+                                        <th> Ext Date </th>
+                                        <th> Extra Days </th>
+                                        <th> Grand Total Days </th>
+                                        <th>Conducted By</th>
+                                    </tr>
+                                    <tr th:each="list2,status:${r_IGA_Training}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td><a   th:href="@{/rigatraining/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                        <td> <a   th:href="@{/rigatraining/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
+                                        <td th:text="${list2.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list2.name}">Chakma</td>
+                                        <td th:text="${list2.trainingName}">Chakma</td>
+                                        <td th:text="${list2.prerequisiteSkill}">Chakma</td>
+                                        <td th:text="${list2.location}">Chakma</td>
+                                        <td th:text="${list2.startDate}">Chakma</td>
+                                        <td th:text="${list2.endDate}">Chakma</td>
+                                        <td th:text="${list2.totaldays}">Chakma</td>                                 
+                                        <td th:text="${list2.extentionDate}">Chakma</td>
+                                        <td th:text="${list2.extentionDays}">Chakma</td>
+                                        <td th:text="${list2.grandTotalDay}">Chakma</td>
+                                        <td th:text="${list2.conductedBy}">Chakma</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

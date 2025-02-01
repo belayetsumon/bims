@@ -51,6 +51,8 @@ public class MotherImageService {
                 root.get("imageName").alias("imageName"),
                 root.get("remarks").alias("remarks")
         );
+        
+         cq.orderBy(cb.desc(root.get("id")));
 
         // Execute the query
         List<Tuple> resultList = em.createQuery(cq).getResultList();

@@ -8,6 +8,7 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_Admission;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_AdmissionRepository;
+import itgarden.services.clinic.C_AdmissionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +29,13 @@ public class C_AdmissionController {
 
     @Autowired
     C_AdmissionRepository c_AdmissionRepository;
+    
+     @Autowired
+    C_AdmissionService c_AdmissionService;
 
     @RequestMapping("/index")
-    public String page(Model model) {
-        model.addAttribute("c_Admission", c_AdmissionRepository.findAll());
+    public String list(Model model) {
+        model.addAttribute("c_Admission", c_AdmissionService.findAdmissionDetails());
         return "clinic/admissionlindex";
     }
 

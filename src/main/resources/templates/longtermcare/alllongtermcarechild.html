@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> All Abandonment Child  In  Long Term Care of  Shisu Polli Plus</h3>
+                                <h3 class="card-title"> All Abandonment Child  In  Long Term Care of  Shisu Polli Plus Total : [[${lchildlist.size()}]]</h3>
 
                             </div>
                             <!-- /.card-header -->
@@ -38,7 +38,7 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Add Details</th>                                   
-                                            <th>Mother master code</th>
+<!--                                            <th>Mother master code</th>-->
                                             <th>Mother Name</th>
                                             <th>Child master code</th>
                                             <th>Name</th>
@@ -51,7 +51,7 @@
                                         <tr th:each="list,status:${lchildlist}">                                
                                             <td th:text="${status.count}">2.</td>      
                                             <td><a th:href="@{/longtremcare/index/{id}(id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Add Details</a></td>
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+<!--                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>-->
                                             <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
                                             <td th:text="${list.childMasterCode}">Chakma</td>
                                             <td th:text="${list.name}">Chakma</td>

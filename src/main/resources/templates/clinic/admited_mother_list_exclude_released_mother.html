@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Clinic </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Clinic</a></li>
+                                <li class="breadcrumb-item active">Mother List For Daily Visit</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Mother List For Daily Visit </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th> 
+                                            <th>Details</th>
+                                            <th> Id</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
+                                            <th>Mobile </th>
+                                            <th>Date Arrival</th>
+                                            <th>Date Admission</th>
+                                            <!--                                        <th>Pic</th>-->
+
+                                        </tr>   
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="o_MAddmission,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td> 
+                                                <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.admissionId})}" type="button" class="btn btn-sm btn-info">Add Daily Visit</a>
+                                            </td>
+                                            <td th:text="${o_MAddmission.admissionId}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherMasterCode}">Chakma</td>
+                                            <td th:text="${o_MAddmission.motherName}">Chakma</td>
+                                            <td th:text="${o_MAddmission.mobileNumber}">Chakma</td>
+                                            <td th:text="${o_MAddmission.arrivalDate}">Chakma</td>
+                                            <td th:text="${o_MAddmission.admissionDate}">Chakma</td>
+                                            <!--                                        <td>
+                                                                                        <img  class="img-responsive" th:src="${repo_url}+${o_MAddmission.picName}" width="50px" height="50px"/>
+                                                                                    </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>    
+
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

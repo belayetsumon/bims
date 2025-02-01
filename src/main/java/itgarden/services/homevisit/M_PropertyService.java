@@ -29,39 +29,93 @@ public class M_PropertyService {
     @PersistenceContext
     EntityManager em;
 
-    public List<Tuple> motherproperty(District district, Address_Type addressType) {
+    public List<Tuple> motherproperty(
+            String motherMasterCode,
+            Float minSavingMoney,
+            Float minHomelandQuantity,
+            Float minCultivableLandQuantity,
+            Float minJewelryQuantity,
+            Float minAnimalsQuantity,
+            Float minInvestmentsSharesQuantity,
+            Float minLoanPersonQuantity,
+            Float minOrganizationsLoanQuantity
+    ) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<M_Property> root = cq.from(M_Property.class);
         // Define multiselect with aliases     
+        // Define multiselect with aliases for each field
         cq.multiselect(
-                root.get("id").alias("property"),
-                root.get("addressType").alias("addressType"),
-                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("id").alias("id"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
-                root.get("motherMasterCode").get("motherName").alias("motherName"),
-                root.get("motherMasterCode").get("mobileNumber").alias("mobileNumber"),
-                root.get("co").alias("careOf"),
-                root.get("vill").alias("village"),
-                root.get("po").alias("postOffice"),
-                root.get("district").alias("district"),
-                root.get("thana").get("name").alias("thana")
+                root.get("bankAccount").alias("bankAccount"),
+                root.get("savingMoney").alias("savingMoney"),
+                root.get("homelandQuantity").alias("homelandQuantity"),
+                root.get("homeLandValue").alias("homeLandValue"),
+                root.get("cultivableLandQuantity").alias("cultivableLandQuantity"),
+                root.get("cultivableLandValue").alias("cultivableLandValue"),
+//                root.get("jewelryQuentity").alias("jewelryQuentity"),
+                root.get("jewelryValue").alias("jewelryValue"),
+                root.get("animalsQuantity").alias("animalsQuantity"),
+                root.get("animalsValue").alias("animalsValue"),
+//                root.get("investmentsSharesQuantity").alias("investmentsSharesQuantity"),
+                root.get("investmentsSharesValue").alias("investmentsSharesValue"),
+                root.get("loanPersonQuantity").alias("loanPersonQuantity"),
+                root.get("loanPersonName").alias("loanPersonName"),
+                root.get("organizationsLoanQuantity").alias("organizationsLoanQuantity"),
+                root.get("organizationName").alias("organizationName"),
+                root.get("remark").alias("remark")
         );
 
+        // Build dynamic predicates based on filter values
         List<Predicate> predicates = new ArrayList<>();
 
-        // Add conditions only if parameters are not null
-        if (ObjectUtils.isNotEmpty(district)) {
-            predicates.add(cb.equal(root.get("district"), district));
+        // Add filters based on method arguments
+        if (minSavingMoney != null && minSavingMoney == 1) {
+            predicates.add(cb.greaterThan(root.get("savingMoney"), 0));
         }
-        if (ObjectUtils.isNotEmpty(addressType)) {
-            predicates.add(cb.equal(root.get("addressType"), addressType));
+
+        if (minHomelandQuantity != null && minHomelandQuantity == 1) {
+            predicates.add(cb.greaterThan(root.get("homelandQuantity"), 0));
+        }
+
+        if (minCultivableLandQuantity != null && minCultivableLandQuantity == 1) {
+            predicates.add(cb.greaterThan(root.get("cultivableLandQuantity"), 0));
+        }
+//
+//        if (minJewelryQuantity != null) {
+//            if (minJewelryQuantity == 1) {
+//                predicates.add(cb.greaterThan(root.get("jewelryQuentity"), 0));
+//            } else if (minJewelryQuantity > 1) {
+//                predicates.add(cb.greaterThanOrEqualTo(root.get("jewelryQuentity"), minJewelryQuantity));
+//            }
+//        }
+
+        if (minAnimalsQuantity != null && minAnimalsQuantity == 1) {
+            predicates.add(cb.greaterThan(root.get("animalsQuantity"), 0));
+        }
+
+//        if (minInvestmentsSharesQuantity != null && minInvestmentsSharesQuantity == 1) {
+//            predicates.add(cb.greaterThan(root.get("investmentsSharesQuantity"), 0));
+//        }
+
+        if (minLoanPersonQuantity != null && minLoanPersonQuantity == 1) {
+            predicates.add(cb.greaterThan(root.get("loanPersonQuantity"), 0));
+        }
+
+        if (minOrganizationsLoanQuantity != null) {
+            if (minOrganizationsLoanQuantity == 1) {
+                predicates.add(cb.greaterThan(root.get("organizationsLoanQuantity"), 0));
+            } else if (minOrganizationsLoanQuantity > 1) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("organizationsLoanQuantity"), minOrganizationsLoanQuantity));
+            }
         }
 
         // Apply 'OR' condition if both predicates are present
         if (!predicates.isEmpty()) {
             cq.where(cb.or(predicates.toArray(new Predicate[0])));
         }
+
         cq.orderBy(cb.desc(root.get("id")));
         return em.createQuery(cq).getResultList();
     }

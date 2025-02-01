@@ -30,7 +30,7 @@
 
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">All Mother details List</h3>
+                        <h3 class="card-title">All Mother details List. Total [[${list.size()}]]</h3>
                         <div class="card-tools">
                             <!-- Buttons, labels, and many other things can be placed here! -->
                             <!-- Here is a label for example -->
@@ -65,7 +65,7 @@
                                     <td th:text="${lists.numberOfEligibleChildren}">Chakma</td>
                                     <td th:text="${lists.eligibility}">Chakma</td>
                                     <td> 
-                                        <a   th:href="@{/motherdetails/motherdetails/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon ">Add Details  </a>
+                                        <a   th:href="@{/motherdetails/motherdetails/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-maroon ">Edit  </a>
                                     </td>
                                 </tr>
                             </tbody>

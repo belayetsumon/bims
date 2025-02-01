@@ -17,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -73,12 +74,19 @@ public class MidTermImpactMeasurement {
 
     @Enumerated(EnumType.STRING)
     public ContinueNotContinueEnum childFourEducation;
-     
-    
-     /**
+
+    @Enumerated(EnumType.STRING)
+    public ContinueNotContinueEnum childFiveEducation;
+
+    @Enumerated(EnumType.STRING)
+    public ContinueNotContinueEnum childSixEducation;
+    @Lob
+    private String remark;
+
+   
+    /**
      * ********* Audit ******************************
      */
-    
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
@@ -96,7 +104,7 @@ public class MidTermImpactMeasurement {
     public MidTermImpactMeasurement() {
     }
 
-    public MidTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, PresentIncomeSource presentIncomeSource, String monthlyIncomeAmount, String monthlyExpenditureAmount, String savingsAmount, Ownershif_type shelterStatus, House_Type housetype, ContinueNotContinueEnum childOneEducation, ContinueNotContinueEnum childTwoEducation, ContinueNotContinueEnum childThreeEducation, ContinueNotContinueEnum childFourEducation, Users createdBy, Users updatedBy) {
+ public MidTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, PresentIncomeSource presentIncomeSource, String monthlyIncomeAmount, String monthlyExpenditureAmount, String savingsAmount, Ownershif_type shelterStatus, House_Type housetype, ContinueNotContinueEnum childOneEducation, ContinueNotContinueEnum childTwoEducation, ContinueNotContinueEnum childThreeEducation, ContinueNotContinueEnum childFourEducation, ContinueNotContinueEnum childFiveEducation, ContinueNotContinueEnum childSixEducation, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.releaseMotherId = releaseMotherId;
         this.presentIncomeSource = presentIncomeSource;
@@ -109,9 +117,13 @@ public class MidTermImpactMeasurement {
         this.childTwoEducation = childTwoEducation;
         this.childThreeEducation = childThreeEducation;
         this.childFourEducation = childFourEducation;
+        this.childFiveEducation = childFiveEducation;
+        this.childSixEducation = childSixEducation;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
+
 
     public Long getId() {
         return id;
@@ -209,6 +221,22 @@ public class MidTermImpactMeasurement {
         this.childFourEducation = childFourEducation;
     }
 
+    public ContinueNotContinueEnum getChildFiveEducation() {
+        return childFiveEducation;
+    }
+
+    public void setChildFiveEducation(ContinueNotContinueEnum childFiveEducation) {
+        this.childFiveEducation = childFiveEducation;
+    }
+
+    public ContinueNotContinueEnum getChildSixEducation() {
+        return childSixEducation;
+    }
+
+    public void setChildSixEducation(ContinueNotContinueEnum childSixEducation) {
+        this.childSixEducation = childSixEducation;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -240,4 +268,13 @@ public class MidTermImpactMeasurement {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
 }

@@ -11,6 +11,8 @@ import itgarden.repository.homevisit.EducationLevelRepository;
 import itgarden.repository.homevisit.EducationTypeRepository;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.school.S_RegularAdmissionClassRepository;
+import itgarden.services.homevisit.M_Child_infoService;
+import itgarden.services.school.S_RegularAdmissionClassService;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +43,24 @@ public class S_RegularAdmissionController {
     @Autowired
     S_RegularAdmissionClassRepository s_RegularAdmissionClassRepository;
 
-    @RequestMapping("/index")
+    @Autowired
+    M_Child_infoService m_Child_infoService;
+
+    @Autowired
+    S_RegularAdmissionClassService s_RegularAdmissionClassService;
+
+    @RequestMapping("/school_admitted_student_list")
     public String index(Model model) {
-        model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
+        //  model.addAttribute("clildlist", m_Child_infoRepository.findByRegularAdmissionClassIsNotNullAndDiscontinuityIsNull());
+        model.addAttribute("clildlist", s_RegularAdmissionClassService.alladmitedchildList_exclude_DiscontinueList());
         return "school/radmissionindex";
     }
 
-    @RequestMapping("/allChild")
+    @RequestMapping("/pendding_for_regular_admission")
     public String allchild(Model model) {
-        model.addAttribute("clildlist", m_Child_infoRepository.findByChildAdmissionIsNotNullAndEligibilityStudentIsNullAndRegularAdmissionClassIsNullAndReleaseChildIsNull());
-        return "school/childindex";
+        //model.addAttribute("clildlist", m_Child_infoRepository.findByChildAdmissionIsNotNullAndEligibilityStudentIsNullAndRegularAdmissionClassIsNullAndReleaseChildIsNull());
+        model.addAttribute("clildlist", m_Child_infoService.findNotSchoolAdmitedChild());
+        return "school/pendding_for_regular_admission";
 
     }
 
@@ -71,7 +81,7 @@ public class S_RegularAdmissionController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, S_RegularAdmissionClass s_RegularAdmissionClass) {
 
-        model.addAttribute("s_RegularAdmissionClass", s_RegularAdmissionClassRepository.findById(id));
+        model.addAttribute("s_RegularAdmissionClass", s_RegularAdmissionClassRepository.findById(id).orElse(null));
 
         model.addAttribute("admissionClass", educationLevelRepository.findAll());
 
@@ -94,18 +104,17 @@ public class S_RegularAdmissionController {
         }
 
         s_RegularAdmissionClassRepository.save(s_RegularAdmissionClass);
-        return "redirect:/sregularadmission/index";
+        return "redirect:/sregularadmission/school_admitted_student_list";
     }
 
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id, S_RegularAdmissionClass s_RegularAdmissionClass, RedirectAttributes redirectAttrs) {
-      
-        
+
         Optional<S_RegularAdmissionClass> optionals_RegularAdmissionClass = s_RegularAdmissionClassRepository.findById(id);
-       s_RegularAdmissionClass = optionals_RegularAdmissionClass.orElse(null);
+        s_RegularAdmissionClass = optionals_RegularAdmissionClass.orElse(null);
         redirectAttrs.addAttribute("id", s_RegularAdmissionClass.getChildMasterCode().getId());
         s_RegularAdmissionClassRepository.deleteById(id);
-        return "redirect:/sregularadmission/index";
+        return "redirect:/sregularadmission/school_admitted_student_list";
     }
 
 }

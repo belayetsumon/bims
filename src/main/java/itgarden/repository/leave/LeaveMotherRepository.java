@@ -12,5 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author libertyerp_local
  */
 public interface LeaveMotherRepository extends JpaRepository<LeaveMother, Long> {
-    
+
+    Long findTopByOrderByIdDesc();
+
 }

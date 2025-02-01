@@ -18,7 +18,6 @@
                                 <li class="breadcrumb-item "><a href="#">
                                         Mother Pre Reintegration Details  </a></li>
                                 <li class="breadcrumb-item active">Pre Reintegration Visit</li>
-
                             </ol>
                         </div>
                     </div>
@@ -116,7 +115,7 @@
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> District<span class="text-red"> * </span> :</label>
                                         <div class="col-sm-6">                   
-                                            <select class="form-control  "  id="bookName"  th:field="*{district}" name="district" >
+                                            <select class="form-control  "  id="district"  th:field="*{district}" name="district" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each ="district :${district}"
                                                         th:value=" ${district}" 
@@ -129,7 +128,7 @@
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label">Thana <span class="text-red"> * </span>: </label>
                                         <div class="col-sm-6">                   
-                                            <select class="form-control  "  id="bookName"  th:field="*{thana}" name="thana" >
+                                            <select class="form-control  "  id="thana"  th:field="*{thana}" name="thana" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each ="thana:${thana}"
                                                         th:value=" ${thana.id}" 

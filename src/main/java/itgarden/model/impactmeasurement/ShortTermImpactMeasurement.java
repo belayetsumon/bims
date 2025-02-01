@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -53,13 +54,13 @@ public class ShortTermImpactMeasurement {
     @Enumerated(EnumType.STRING)
     @NotNull(message = "This field cannot be blank.")
     ImpactMeasurementIndicator communityAcceptance;
-    
-    
-    
-     /**
+
+    @Lob
+    private String remark;
+
+    /**
      * ********* Audit ******************************
      */
-    
     @Column(insertable = true, updatable = false)
     public LocalDate created = LocalDate.now();
 
@@ -77,17 +78,27 @@ public class ShortTermImpactMeasurement {
     public ShortTermImpactMeasurement() {
     }
 
-    public ShortTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, ImpactMeasurementYesNo igsstart, ImpactMeasurementYesNo childrenSchoolAdmission, ImpactMeasurementIndicator safeAccommodationLivingEnvironmen, ImpactMeasurementIndicator communityAcceptance, Users createdBy, Users updatedBy) {
+    public ShortTermImpactMeasurement(Long id, ReleaseMother releaseMotherId, ImpactMeasurementYesNo igsstart, ImpactMeasurementYesNo childrenSchoolAdmission, ImpactMeasurementIndicator safeAccommodationLivingEnvironmen, ImpactMeasurementIndicator communityAcceptance, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.releaseMotherId = releaseMotherId;
         this.igsstart = igsstart;
         this.childrenSchoolAdmission = childrenSchoolAdmission;
         this.safeAccommodationLivingEnvironmen = safeAccommodationLivingEnvironmen;
         this.communityAcceptance = communityAcceptance;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    
     public Long getId() {
         return id;
     }

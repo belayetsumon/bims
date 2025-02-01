@@ -24,6 +24,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +44,12 @@ public class MotherMasterDataReportService {
     EntityManager em;
 
     public List<Map<String, Object>> matherMasterdataSearchResult(
-            LocalDate startDate,
-            LocalDate endDate,
+            String startDate,
+            String endDate,
             Reasons resons,
             String motherMasterCode,
             String motherName,
-            LocalDate dateOfBirth,
+            String dateOfBirth,
             String mobileNumber,
             Religion religion,
             MaritalStatus maritalStatus,
@@ -78,12 +79,16 @@ public class MotherMasterDataReportService {
 
         List<Predicate> predicates = new ArrayList<>();
 
-        if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isNotEmpty(endDate)) {
-            predicates.add(cb.between(root.get("created"), startDate, endDate));
-        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isEmpty(endDate)) {
-            predicates.add(cb.equal(root.get("created"), startDate));
+        // Parse and apply date range if startDate and endDate are provided
+        if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isNotEmpty(endDate)) {
+            LocalDate start = LocalDate.parse(startDate, formatter);
+            LocalDate end = LocalDate.parse(endDate, formatter);
+            predicates.add(cb.between(root.get("created"), start, end));
+        } else if (ObjectUtils.isNotEmpty(startDate)) {
+            LocalDate start = LocalDate.parse(startDate, formatter);
+            predicates.add(cb.equal(root.get("created"), start));
         }
 
         if (ObjectUtils.isNotEmpty(resons)) {
@@ -97,7 +102,8 @@ public class MotherMasterDataReportService {
             predicates.add(cb.equal(root.get("motherName"), motherName));
         }
         if (ObjectUtils.isNotEmpty(dateOfBirth)) {
-            predicates.add(cb.equal(root.get("dateOfBirth"), dateOfBirth));
+          LocalDate dob = LocalDate.parse(dateOfBirth, formatter);
+            predicates.add(cb.equal(root.get("dateOfBirth"), dob));
         }
 
         if (StringUtils.isNoneEmpty(mobileNumber)) {
@@ -137,7 +143,7 @@ public class MotherMasterDataReportService {
             predicates.add(cb.equal(root.get("numberOfDaughters"), numberOfDaughters));
         }
 
-         if (ObjectUtils.isNotEmpty(numberOfEligibleChildren)) {
+        if (ObjectUtils.isNotEmpty(numberOfEligibleChildren)) {
             predicates.add(cb.equal(root.get("numberOfEligibleChildren"), numberOfEligibleChildren));
         }
 

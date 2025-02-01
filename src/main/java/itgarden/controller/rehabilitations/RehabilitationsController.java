@@ -62,24 +62,8 @@ public class RehabilitationsController {
         return "rehabilitations/lookup/lookup";
     }
 
-    @RequestMapping("/motherhouseallocations")
-    public String motherhouseallocations(Model model) {
-        model.addAttribute("list", r_M_HousAllocationRepository.findAll());
-        return "rehabilitations/report/motherhouseallocations";
-    }
-
-    @RequestMapping("/childhouseallocation")
-    public String childhouseallocation(Model model) {
-        model.addAttribute("list2", r_C_HouseAllocationsRepository.findAll());
-        return "rehabilitations/report/childhouseallocation";
-    }
-
-    @RequestMapping("/motherworkallocations")
-    public String motherworkallocations(Model model) {
-        model.addAttribute("list3", r_M_WorkAllocationRepository.findAll());
-        return "rehabilitations/report/motherworkallocations";
-    }
-
+    
+   
     @RequestMapping("/lifeskilltraining")
     public String lifeskilltraining(Model model) {
         model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findAll());

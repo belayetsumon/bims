@@ -36,10 +36,7 @@ public class C_visit {
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
-//
-//    @NotNull(message = "This field cannot be blank.")
-//    @Size(min = 1, max = 13, message = "This field must between 1 and 200 characters")
-//    public String visitDate;
+
 
     @Column(nullable = false)
     @NotNull(message = "Visit date cannot be blank.")

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>          Reintegration/Release </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">         Reintegration/Release </a></li>
+                                <li class="breadcrumb-item active">   Reintegration/Release Child List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Reintegration Child List ( Total: <span th:text="${list.size()}"></span>) </h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">           
+                                        <a  th:href="@{/reintegrationreport/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive ">
+
+                                <form class="row  justify-content-center mb-1" 
+                                      th:action="@{/reintegrationreport/childreport}"   method="get">
+
+                                    <div class="col-auto">
+
+                                        <label class="" for="email">From:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
+
+                                            <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">To:</label>
+                                    </div>
+                                    <div class="col-auto"> 
+                                        <div class="form-group input-group date">
+
+                                            <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">Gender:</label>
+                                    </div>
+                                    <div class="col-auto"> 
+                                        <div class="form-group input-group date">
+
+                                            <select class="form-control"    name="gender" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" genderLists :${genderList}"
+                                                        th:value=" ${genderLists}" 
+                                                        th:text="${genderLists}"> Select one</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-auto text-center">
+                                        <button type="submit" class="btn btn-info ">Submit</button>
+                                    </div>
+                                </form>  
+
+
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th> Mother  Id</th>
+                                            <th> Mother Name</th>
+                                            <th> Child Name</th>
+                                            <th> Child Id</th>
+                                            <th>Gender</th>
+                                            <th>Release Date</th>
+                                            <th>Training</th>
+                                            <th>Address</th>
+                                            <th> Remark </th>
+
+
+
+                                        </tr>  
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${status.count}">Chakma</td>
+
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+
+                                            <td th:text="${list.motherName}">Chakma</td>
+
+                                            <td th:text="${list.name}">Chakma</td>
+
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.gender}">Chakma</td>
+
+                                            <td th:text="${list.releaseDate}" >Chakma</td>
+                                            <td th:text="${list.training}" >Chakma</td>
+
+                                            <td th:text="${list.address}" >Chakma</td>
+
+                                            <td th:text="${list.remark}" >Chakma</td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

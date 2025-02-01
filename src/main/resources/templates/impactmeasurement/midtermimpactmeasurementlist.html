@@ -47,8 +47,11 @@
                                             <th>House type </th>
                                             <th>Child-1 </th>
                                             <th>Child-2 </th>
-<!--                                            <th>Child-3  </th>
-                                            <th>Child-4 </th>-->
+                                            <th>Child-3 </th>
+                                            <th>Child-4 </th>
+                                            <th>Child-5 </th>
+                                            <th>Child-6 </th>
+                                            <th>Remark</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
 
@@ -70,9 +73,11 @@
 
                                             <td th:text="${list.childOneEducation}">Chakma</td>
                                             <td th:text="${list.childTwoEducation}">Chakma</td>
-<!--                                            <td th:text="${list.childThreeEducation}">Chakma</td>
-                                            <td th:text="${list.childFourEducation}">Chakma</td>-->
-
+                                            <td th:text="${list.childThreeEducation}">Chakma</td>
+                                            <td th:text="${list.childFourEducation}">Chakma</td>
+                                            <td th:text="${list.childFiveEducation}">Chakma</td>
+                                            <td th:text="${list.childSixEducation}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
                                             <td> 
                                                 <a   th:href="@{/midtermimpactmeasurement/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
                                             </td>

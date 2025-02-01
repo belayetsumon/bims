@@ -43,31 +43,33 @@
                                             <th>Children's school admission </th>
                                             <th>Safe accommodation & Living environment</th>
                                             <th>Community acceptance</th>
+                                            <th>Remark</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
 
                                         </tr>  
                                     </thead>
                                     <tbody>
-                                                                        <tr th:each="list,status:${list}">
-                                        
-                                                                                    <td th:text="${list.releaseMotherId.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        
-                                                                                    <td th:text="${list.igsstart}">Chakma</td>
-                                        
-                                                                                    <td th:text="${list.childrenSchoolAdmission}" >Chakma</td>
-                                        
-                                                                                    <td th:text="${list.safeAccommodationLivingEnvironmen}" >Chakma</td>
-                                        
-                                                                                    <td th:text="${list.communityAcceptance}">Chakma</td>
-                                                                      
-                                                                                    <td> 
-                                                                                        <a   th:href="@{/shorttermtmpactmeasurement/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
-                                                                                    </td>
-                                                                                    <td> 
-                                                                                        <a   th:href="@{/shorttermtmpactmeasurement/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
-                                                                                    </td>
-                                                                                </tr>
+                                        <tr th:each="list,status:${list}">
+
+                                            <td th:text="${list.releaseMotherId.motherMasterCode.motherMasterCode}">Chakma</td>
+
+                                            <td th:text="${list.igsstart}">Chakma</td>
+
+                                            <td th:text="${list.childrenSchoolAdmission}" >Chakma</td>
+
+                                            <td th:text="${list.safeAccommodationLivingEnvironmen}" >Chakma</td>
+
+                                            <td th:text="${list.communityAcceptance}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
+
+                                            <td> 
+                                                <a   th:href="@{/shorttermtmpactmeasurement/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Edit</a>
+                                            </td>
+                                            <td> 
+                                                <a   th:href="@{/shorttermtmpactmeasurement/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info">Delete</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

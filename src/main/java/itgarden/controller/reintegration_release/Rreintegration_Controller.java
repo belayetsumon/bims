@@ -6,14 +6,21 @@
 package itgarden.controller.reintegration_release;
 
 import itgarden.model.homevisit.MotherMasterData;
-import itgarden.model.homevisit.Yes_No;
 import itgarden.model.reintegration_release.ReleaseChild;
 import itgarden.model.reintegration_release.ReleaseMother;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.reintegration_release.ReleaseMotherRepository;
+import itgarden.services.observation.O_MAddmissionService;
+import itgarden.services.pre_reintegration_visit.PreReintegrationVisitService;
+import itgarden.services.reintegration_checklist.ReintegrationCheckListService;
+import itgarden.services.reintegration_release.ReleaseChildService;
+import itgarden.services.reintegration_release.ReleaseMotherService;
 import jakarta.validation.Valid;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,15 +47,43 @@ public class Rreintegration_Controller {
     @Autowired
     ReleaseChildRepository releaseChildRepository;
 
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
+
+    @Autowired
+    PreReintegrationVisitService preReintegrationVisitService;
+
+    @Autowired
+    ReintegrationCheckListService reintegrationCheckListService;
+
+    @Autowired
+    ReleaseMotherService releaseMotherService;
+    
+    @Autowired
+    ReleaseChildService releaseChildService;
+
     @RequestMapping("/motherlist")
     public String motherlist(Model model) {
-        model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
+
+        List<Long> preReintegrationVisitList = preReintegrationVisitService.allPreReintegrationVisitIdList();
+        List<Long> allReintegrationCheckListList = reintegrationCheckListService.allReintegrationCheckListListYes();
+        List<Long> allreleaseMother = releaseMotherService.allReleasedMotherIdList();
+
+        List<Map<String, Object>> admitedMotherList = o_MAddmissionService.allAdmitedMotherList()
+                .stream()
+                .filter(e -> preReintegrationVisitList.contains(e.get("motherMasterCodeId"))) // check in preReintegrationVisitList
+                .filter(e -> allReintegrationCheckListList.contains(e.get("motherMasterCodeId"))) // check in allReintegrationCheckListList
+                .filter(e -> !allreleaseMother.contains(e.get("motherMasterCodeId"))) // exclude from allreleaseMother
+                .collect(Collectors.toList());
+        model.addAttribute("list", admitedMotherList);
+
+        // model.addAttribute("list", motherMasterDataRepository.findByReintegrationCheckListReintegrationAndReleaseMotherIsNullOrderByIdDesc(Yes_No.Yes));
         return "reintegration/mothersearch";
     }
 
     @RequestMapping("/index")
     public String add(Model model) {
-        model.addAttribute("list", releaseMotherRepository.findAll());
+        model.addAttribute("list", releaseMotherService.getReleaseMotherList());
         return "reintegration/index";
     }
 
@@ -93,16 +128,12 @@ public class Rreintegration_Controller {
     }
 
     //// Chaild relase
-    
-    
-    
-        @RequestMapping("/allreintegrationchild")
+    @RequestMapping("/allreintegrationchild")
     public String AllchildIndex(Model model, ReleaseChild releaseChild) {
-             model.addAttribute("list", releaseChildRepository.findAll());
+        model.addAttribute("list", releaseChildService.getReleaseChildList());
         return "reintegration/allreintegrationchild";
     }
-    
-    
+
     @RequestMapping("/childindex/{m_id}")
     public String childIndex(Model model, @PathVariable Long m_id, ReleaseChild releaseChild) {
         MotherMasterData motherMasterData = new MotherMasterData();
@@ -122,7 +153,6 @@ public class Rreintegration_Controller {
         model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("motherid", motherMasterDataRepository.findById(m_id));
         model.addAttribute("childList", releaseChildRepository.findAll());
-
         return "reintegration/motherlist_child_entry";
     }
 
@@ -157,27 +187,26 @@ public class Rreintegration_Controller {
         return "reintegration/motherlist_child_entry";
     }
 
-    
     @GetMapping(value = "/child_delete/{id}")
     public String delete(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
-     
-        Optional<ReleaseChild>  optionalreleaseChild = releaseChildRepository.findById(id);
-       
+
+        Optional<ReleaseChild> optionalreleaseChild = releaseChildRepository.findById(id);
+
         releaseChild = optionalreleaseChild.orElse(null);
-        
+
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
         releaseChildRepository.deleteById(id);
         return "redirect:/reintegration/childindex/{m_id}";
     }
-    
+
     @GetMapping(value = "/child_delete2/{id}")
     public String delete2(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
-       Optional<ReleaseChild>  optionalreleaseChild = releaseChildRepository.findById(id);
-       
+        Optional<ReleaseChild> optionalreleaseChild = releaseChildRepository.findById(id);
+
         releaseChild = optionalreleaseChild.orElse(null);;
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
         releaseChildRepository.deleteById(id);
         return "redirect:/reintegration/allreintegrationchild";
     }
-    
+
 }

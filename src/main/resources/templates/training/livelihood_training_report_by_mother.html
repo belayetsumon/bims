@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>   Training Report</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">  Training</a></li>
+                                <li class="breadcrumb-item "><a href="#"> Report</a> </li>
+                                <li class="breadcrumb-item active">  Training Report by Mother </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default card -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title"> Training Report by Mother Total: [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <div class="btn-group">
+                                <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive">
+
+                        <form class=" justify-content-center mb-1" 
+                              th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
+
+                            <div class="row justify-content-center">
+                                <div class="col-auto">
+                                    <label class="" for="email">From:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-group input-group date">
+                                        <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="" for="to">To:</label>
+                                </div>
+                                <div class="col-auto"> 
+                                    <div class="form-group input-group date">
+
+                                        <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-auto">
+                                    <label class="" for="email">Mother Master code:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="form-group input-group date">
+                                        <input type="text"   id="motherMasterCode"  class="form-control"  name="motherMasterCode"/>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="" for="to">Training Name:</label>
+                                </div>
+                                <div class="col-auto"> 
+                                    <div class="form-group input-group date">
+
+                                        <select class="form-control"    name="trainingName" >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" trainingNameList :${trainingName}"
+                                                    th:value=" ${trainingNameList.id}" 
+                                                    th:text="${trainingNameList.name}"> Select one</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="form-group text-center m-3">
+
+                                    <button type="submit" class="btn btn-info ">Submit</button>
+                                </div>
+                            </div>
+
+
+                        </form> 
+
+
+                        <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                            <thead>          
+                                <tr>
+                                    <th> # </th> 
+                                    <th>Mother Master Code</th>
+                                    <th>Mother Name </th>
+                                    <th>Total Recieve Training</th>
+
+
+                                </tr>  
+                            </thead>
+                            <tbody>
+                                <tr th:each="lists,status :${list}">
+                                    <td th:text="${status.count}">Chakma</td>
+                                    <td th:text="${lists.motherMasterCode}">Chakma</td>
+                                    <td th:text="${lists.name}">Chakma</td>
+                                    <td th:text="${lists.totalTraining}">Chakma</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

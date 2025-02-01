@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>CMC Support</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">CMC Support</a></li>
+                                <li class="breadcrumb-item"><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Food Report By Day</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Food Report By Day</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">              
+                                        <a   th:href="@{/houseworkallocation/report}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info"> Close </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+
+                                        <form class="row  justify-content-center mb-1" 
+                                              th:action="@{/houseworkallocation/food_report}"   method="get">
+
+                                            <div class="col-auto">
+
+                                                <label class="" for="email">From:</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">To:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
+
+                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                                </div>
+                                            </div>
+                                            <!--                                            <div class="col-auto">
+                                                                                            <label class="" for="to">Gender:</label>
+                                                                                        </div>-->
+                                            <!--                                            <div class="col-auto"> 
+                                                                                            <div class="form-group input-group date">
+                                            
+                                                                                                <select class="form-control"    name="gender" >
+                                                                                                    <option value=" "> Select one</option>
+                                                                                                    <option th:each =" genderLists :${genderList}"
+                                                                                                            th:value=" ${genderLists}" 
+                                                                                                            th:text="${genderLists}"> Select one</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>-->
+
+                                            <div class=" col-auto text-center">
+                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                            </div>
+                                        </form>      
+                                        <br/>
+                                    </div>  
+
+                                </div>
+                                <hr>
+                                <table  id="tablesdata" class="table table-bordered">
+                                    <thead>  <tr>
+                                            <th style="width: 10px">#</th>  
+                                            <th>Date</th>
+                                            <th>House Name</th>
+                                            <th>Total Persons</th>
+                                            <th>Sick </th>
+                                            <th> On Leave</th>
+                                            <th> Under Observation</th>
+                                            <th> On Job</th>
+                                            <th> Others </th>  
+                                            <th>Total Present</th>   
+
+                                        </tr>
+                                    </thead>
+                                    <!--                                    <tbody>-->
+                                    <tr th:each="lists,status:${list}">
+                                        <td th:text="${status.count}">2.</td>
+                                        <td th:text="${lists.todaydate}">2.</td>
+                                        <td th:text="${lists.foodByHouse}">2.</td>
+                                        <td th:text="${lists.totalPersons}">2.</td>
+                                        <td th:text="${lists.sick}">2.</td>
+                                        <td th:text="${lists.onLeave}">2.</td>
+                                        <td th:text="${lists.underObservation}">2.</td>
+                                        <td th:text="${lists.onJob}">2.</td>
+                                        <td th:text="${lists.others}">2.</td>
+                                        <td th:text="${lists.totalPresent}">2.</td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>  <tr>
+                                            <th ></th>  
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th>  </th>  
+                                            <th>[[${totalpresent}]]</th>   
+
+                                        </tr>
+                                   </tfoot>
+                                </table>                                
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

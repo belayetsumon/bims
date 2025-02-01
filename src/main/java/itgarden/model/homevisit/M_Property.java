@@ -28,7 +28,6 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Md Belayet Hossin
  */
-
 @Entity
 @Table(name = "M_PROPERTY")
 public class M_Property {
@@ -36,47 +35,47 @@ public class M_Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-     @NotNull(message = "This field cannot be blank.")
-    @OneToOne(optional = false,fetch = FetchType.LAZY)
+
+    @NotNull(message = "This field cannot be blank.")
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     public MotherMasterData motherMasterCode;
-     
-    public String  bankAccount;
-    
-    public String  savingMoney;
-    
-    public String  homelandQuantity;
 
-    public String  homeLandValue;
+    public String bankAccount;
 
-    public String  cultivableLandQuantity;
+    public float savingMoney;
 
-    public String  cultivableLandValue;
+    public float homelandQuantity;
 
-    public String  jewelryQuentity;
-    
-    public String jewelryValue;
-    
-    public String  animalsQuantity;
-    
-    public String  animalsValue;
-    
-    public String  investmentsSharesQuentity;
-    
-    public String  investmentsSharesValue;
-    
-    public String  loanPersonQuantity;
-    
-    public String  loanPersonName;
-    
-    public String  organizationsLoanQuantity;
-    
-    public String  organizationName ;
-    
-@Lob
-   String remark;
-/**
+    public float homeLandValue;
+
+    public float cultivableLandQuantity;
+
+    public float cultivableLandValue;
+
+    public float jewelryQuentity;
+
+    public float jewelryValue;
+
+    public float animalsQuantity;
+
+    public float animalsValue;
+
+    public float investmentsSharesQuentity;
+
+    public float investmentsSharesValue;
+
+    public float loanPersonQuantity;
+
+    public String loanPersonName;
+
+    public float organizationsLoanQuantity;
+
+    public String organizationName;
+
+    @Lob
+    String remark;
+    /**
      * ********* Audit ******************************
      */
     @Column(insertable = true, updatable = false)
@@ -96,7 +95,7 @@ public class M_Property {
     public M_Property() {
     }
 
-    public M_Property(Long id, MotherMasterData motherMasterCode, String bankAccount, String savingMoney, String homelandQuantity, String homeLandValue, String cultivableLandQuantity, String cultivableLandValue, String jewelryQuentity, String jewelryValue, String animalsQuantity, String animalsValue, String investmentsSharesQuentity, String investmentsSharesValue, String loanPersonQuantity, String loanPersonName, String organizationsLoanQuantity, String organizationName, String remark, Users createdBy, Users updatedBy) {
+    public M_Property(Long id, MotherMasterData motherMasterCode, String bankAccount, float savingMoney, float homelandQuantity, float homeLandValue, float cultivableLandQuantity, float cultivableLandValue, float jewelryQuentity, float jewelryValue, float animalsQuantity, float animalsValue, float investmentsSharesQuentity, float investmentsSharesValue, float loanPersonQuantity, String loanPersonName, float organizationsLoanQuantity, String organizationName, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.bankAccount = bankAccount;
@@ -119,8 +118,6 @@ public class M_Property {
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
-
-  
 
     public Long getId() {
         return id;
@@ -146,99 +143,99 @@ public class M_Property {
         this.bankAccount = bankAccount;
     }
 
-    public String getSavingMoney() {
+    public float getSavingMoney() {
         return savingMoney;
     }
 
-    public void setSavingMoney(String savingMoney) {
+    public void setSavingMoney(float savingMoney) {
         this.savingMoney = savingMoney;
     }
 
-    public String getHomelandQuantity() {
+    public float getHomelandQuantity() {
         return homelandQuantity;
     }
 
-    public void setHomelandQuantity(String homelandQuantity) {
+    public void setHomelandQuantity(float homelandQuantity) {
         this.homelandQuantity = homelandQuantity;
     }
 
-    public String getHomeLandValue() {
+    public float getHomeLandValue() {
         return homeLandValue;
     }
 
-    public void setHomeLandValue(String homeLandValue) {
+    public void setHomeLandValue(float homeLandValue) {
         this.homeLandValue = homeLandValue;
     }
 
-    public String getCultivableLandQuantity() {
+    public float getCultivableLandQuantity() {
         return cultivableLandQuantity;
     }
 
-    public void setCultivableLandQuantity(String cultivableLandQuantity) {
+    public void setCultivableLandQuantity(float cultivableLandQuantity) {
         this.cultivableLandQuantity = cultivableLandQuantity;
     }
 
-    public String getCultivableLandValue() {
+    public float getCultivableLandValue() {
         return cultivableLandValue;
     }
 
-    public void setCultivableLandValue(String cultivableLandValue) {
+    public void setCultivableLandValue(float cultivableLandValue) {
         this.cultivableLandValue = cultivableLandValue;
     }
 
-    public String getJewelryQuentity() {
+    public float getJewelryQuentity() {
         return jewelryQuentity;
     }
 
-    public void setJewelryQuentity(String jewelryQuentity) {
+    public void setJewelryQuentity(float jewelryQuentity) {
         this.jewelryQuentity = jewelryQuentity;
     }
 
-    public String getJewelryValue() {
+    public float getJewelryValue() {
         return jewelryValue;
     }
 
-    public void setJewelryValue(String jewelryValue) {
+    public void setJewelryValue(float jewelryValue) {
         this.jewelryValue = jewelryValue;
     }
 
-    public String getAnimalsQuantity() {
+    public float getAnimalsQuantity() {
         return animalsQuantity;
     }
 
-    public void setAnimalsQuantity(String animalsQuantity) {
+    public void setAnimalsQuantity(float animalsQuantity) {
         this.animalsQuantity = animalsQuantity;
     }
 
-    public String getAnimalsValue() {
+    public float getAnimalsValue() {
         return animalsValue;
     }
 
-    public void setAnimalsValue(String animalsValue) {
+    public void setAnimalsValue(float animalsValue) {
         this.animalsValue = animalsValue;
     }
 
-    public String getInvestmentsSharesQuentity() {
+    public float getInvestmentsSharesQuentity() {
         return investmentsSharesQuentity;
     }
 
-    public void setInvestmentsSharesQuentity(String investmentsSharesQuentity) {
+    public void setInvestmentsSharesQuentity(float investmentsSharesQuentity) {
         this.investmentsSharesQuentity = investmentsSharesQuentity;
     }
 
-    public String getInvestmentsSharesValue() {
+    public float getInvestmentsSharesValue() {
         return investmentsSharesValue;
     }
 
-    public void setInvestmentsSharesValue(String investmentsSharesValue) {
+    public void setInvestmentsSharesValue(float investmentsSharesValue) {
         this.investmentsSharesValue = investmentsSharesValue;
     }
 
-    public String getLoanPersonQuantity() {
+    public float getLoanPersonQuantity() {
         return loanPersonQuantity;
     }
 
-    public void setLoanPersonQuantity(String loanPersonQuantity) {
+    public void setLoanPersonQuantity(float loanPersonQuantity) {
         this.loanPersonQuantity = loanPersonQuantity;
     }
 
@@ -250,11 +247,11 @@ public class M_Property {
         this.loanPersonName = loanPersonName;
     }
 
-    public String getOrganizationsLoanQuantity() {
+    public float getOrganizationsLoanQuantity() {
         return organizationsLoanQuantity;
     }
 
-    public void setOrganizationsLoanQuantity(String organizationsLoanQuantity) {
+    public void setOrganizationsLoanQuantity(float organizationsLoanQuantity) {
         this.organizationsLoanQuantity = organizationsLoanQuantity;
     }
 
@@ -305,9 +302,6 @@ public class M_Property {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-    /**
-     * audit end*********************
-     */
-    
-    
+
+   
 }

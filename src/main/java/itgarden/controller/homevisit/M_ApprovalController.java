@@ -129,7 +129,6 @@ public class M_ApprovalController {
 
     public String index(Model model, M_Approval m_Approval) {
         model.addAttribute("list", m_ApprovalRepository.findAll());
-
         return "homevisit/lookup/m_approval";
     }
 

@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -29,7 +30,6 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author Md Belayet Hossin
  */
 @Entity
-
 public class S_RegularAdmissionClass {
 
     @Id
@@ -38,6 +38,7 @@ public class S_RegularAdmissionClass {
 
     @NotNull(message = "This field cannot be blank.")
     @OneToOne(optional = false)
+    @JoinColumn(name = "child_master_code_id", nullable = false)
     M_Child_info childMasterCode;
 
      @Column(nullable = false)
@@ -56,7 +57,7 @@ public class S_RegularAdmissionClass {
 
      @NotNull(message = "This field cannot be blank.")
     @Size(min = 2, max = 100, message = "This field cannot be blank.")
-    public String LastAttendedSession;
+    public String lastAttendedSession;
 
     @NotNull(message = "This field cannot be blank.")
     @ManyToOne(optional = false)
@@ -90,13 +91,13 @@ public class S_RegularAdmissionClass {
     public S_RegularAdmissionClass() {
     }
 
-    public S_RegularAdmissionClass(Long id, M_Child_info childMasterCode, LocalDate dateAdmission, String admissionSession, EducationLevel admissionClass, String LastAttendedSession, EducationLevel lastAttendedClass, EducationType lastAttendedEducationType, String specialNeed, String remark, Users createdBy, Users updatedBy) {
+    public S_RegularAdmissionClass(Long id, M_Child_info childMasterCode, LocalDate dateAdmission, String admissionSession, EducationLevel admissionClass, String lastAttendedSession, EducationLevel lastAttendedClass, EducationType lastAttendedEducationType, String specialNeed, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.dateAdmission = dateAdmission;
         this.admissionSession = admissionSession;
         this.admissionClass = admissionClass;
-        this.LastAttendedSession = LastAttendedSession;
+        this.lastAttendedSession = lastAttendedSession;
         this.lastAttendedClass = lastAttendedClass;
         this.lastAttendedEducationType = lastAttendedEducationType;
         this.specialNeed = specialNeed;
@@ -146,11 +147,11 @@ public class S_RegularAdmissionClass {
     }
 
     public String getLastAttendedSession() {
-        return LastAttendedSession;
+        return lastAttendedSession;
     }
 
-    public void setLastAttendedSession(String LastAttendedSession) {
-        this.LastAttendedSession = LastAttendedSession;
+    public void setLastAttendedSession(String lastAttendedSession) {
+        this.lastAttendedSession = lastAttendedSession;
     }
 
     public EducationLevel getLastAttendedClass() {
@@ -216,5 +217,4 @@ public class S_RegularAdmissionClass {
     public void setUpdatedBy(Users updatedBy) {
         this.updatedBy = updatedBy;
     }
-
 }

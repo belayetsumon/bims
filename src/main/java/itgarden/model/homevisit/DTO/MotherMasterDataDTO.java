@@ -536,5 +536,10 @@ public class MotherMasterDataDTO {
         this.created = created;
     }
 
+    @Override
+    public String toString() {
+        return "MotherMasterDataDTO{" + "id=" + id + ", visitOfficersName=" + visitOfficersName + ", dateReferral=" + dateReferral + ", referredFrom=" + referredFrom + ", resons=" + resons + ", homeVisitDate=" + homeVisitDate + ", motherMasterCode=" + motherMasterCode + ", motherName=" + motherName + ", dateOfBirth=" + dateOfBirth + ", age=" + age + ", mMothersName=" + mMothersName + ", fathersName=" + fathersName + ", mobileNumber=" + mobileNumber + ", religion=" + religion + ", religionId=" + religionId + ", maritalStatus=" + maritalStatus + ", maritalStatusId=" + maritalStatusId + ", husbandsName=" + husbandsName + ", husbandsStatus=" + husbandsStatus + ", husbandsStatusId=" + husbandsStatusId + ", primeFamilyMemberName=" + primeFamilyMemberName + ", relationWithPfm=" + relationWithPfm + ", relationWithPfmId=" + relationWithPfmId + ", ethnicIdentity=" + ethnicIdentity + ", ethnicIdentityId=" + ethnicIdentityId + ", educationLevel=" + educationLevel + ", educationLevelId=" + educationLevelId + ", educationType=" + educationType + ", educationTypeId=" + educationTypeId + ", occupation=" + occupation + ", occupationId=" + occupationId + ", physicalStatus=" + physicalStatus + ", immunization=" + immunization + ", numberOfSons=" + numberOfSons + ", numberOfDaughters=" + numberOfDaughters + ", numberOfEligibleChildren=" + numberOfEligibleChildren + ", majorFindings=" + majorFindings + ", socialviolence=" + socialviolence + ", childrenFacedSocialViolence=" + childrenFacedSocialViolence + ", sexualAbuse=" + sexualAbuse + ", childrenSexualAbuse=" + childrenSexualAbuse + ", earlyMarriage=" + earlyMarriage + ", pregnancyAfterBeingRaped=" + pregnancyAfterBeingRaped + ", facedDowryAbuse=" + facedDowryAbuse + ", otherRemarks=" + otherRemarks + ", eligibility=" + eligibility + ", created=" + created + '}';
+    }
+
     
 }

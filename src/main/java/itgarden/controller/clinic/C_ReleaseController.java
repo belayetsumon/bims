@@ -8,6 +8,8 @@ package itgarden.controller.clinic;
 import itgarden.model.clinic.C_Release;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.repository.clinic.C_ReleaseRepository;
+import itgarden.services.clinic.C_ReferralService;
+import itgarden.services.clinic.C_ReleaseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,11 +31,15 @@ public class C_ReleaseController {
     @Autowired
     C_ReleaseRepository c_ReleaseRepository;
 
+    @Autowired
+    C_ReleaseService c_ReleaseService;
+
     @RequestMapping("/index")
 
     public String index(Model model) {
 
-        model.addAttribute("release", c_ReleaseRepository.findAll());
+        // model.addAttribute("release", c_ReleaseRepository.findAll());
+        model.addAttribute("release", c_ReleaseService.findReleaseDetails());
 
         return "clinic/releaseIndex";
     }

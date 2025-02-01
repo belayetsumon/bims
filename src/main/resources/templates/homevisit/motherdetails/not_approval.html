@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->          
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item active">
+                                    All not Approve Mothers List  </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">All Not Approve Mother List Total. [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <!-- Buttons, labels, and many other things can be placed here! -->
+                            <!-- Here is a label for example -->
+                            <a  th:href="@{/}" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
+
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive ">
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th> 
+                                      <th>Mother Id</th>
+                                    <th>Decision  Date</th>
+                                    <th>Decision By</th>
+                                    <th>Action</th>
+                                </tr> 
+                            </thead>
+                            <tbody>                         
+                                <tr th:each="list,status:${list}">
+                                    <td th:text="${status.count}">2.</td>
+                                    <td th:text="${list.motherMasterCode}">Chakma</td> 
+                                    <td th:text="${list.approvalDate}">Chakma</td> 
+                                    <td th:text="${list.approver}">Chakma</td>
+                                    <td> <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">View</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div> 
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>
+

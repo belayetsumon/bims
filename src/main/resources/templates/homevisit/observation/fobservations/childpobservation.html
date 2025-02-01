@@ -50,7 +50,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-4 row">
-                                        <label for="name" class="col-sm-6 control-label"> Children Id<span class="text-red">  </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> Children Id<span class="text-red">  </span> </label>
 
                                         <div class="col-sm-6">   
                                             <select class="form-control  "   th:field="*{childMasterCode}"  >
@@ -67,20 +67,17 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
-                                        <label for="co" class="col-sm-4 control-label"> Induction Start Date  :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">       
+                                        <label for="co" class="col-sm-5 control-label"> Induction Start Date  <span class="text-red"> * </span> </label>
+                                        <div class="col-sm-5">       
                                             <input type="text"  class="form-control  "   th:field="*{inductionStartDate}" />            
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('inductionStartDate')}" th:errors="*{inductionStartDate}">First Name Error</span>
                                         </div>     
                                     </div>    
 
                                     <div class="form-group col-sm-6 row">
-                                        <label for="name" class="col-sm-3 control-label"> OB Start Date :  <span class="text-red"> * </span> </label>
+                                        <label for="name" class="col-sm-4 control-label"> OB Start Date   <span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
                                                 <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{obStartDate}"  id="referral_date"   />                
                                             </div>  
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('obStartDate')}" th:errors="*{obStartDate}">First Name Error</span>
@@ -90,7 +87,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-sm-4 row">
-                                        <label for="name" class="col-sm-6 control-label"> Physical Disability<span class="text-red"> * </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> Physical Disability<span class="text-red"> * </span> </label>
 
                                         <div class="col-sm-6">   
                                             <select class="form-control  "   th:field="*{physicalDisability}"  >
@@ -104,7 +101,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-8 row">
-                                        <label for="name" class="col-sm-4 control-label"> Physical Disability Note: <span class="text-red">  </span> </label>
+                                        <label for="name" class="col-sm-4 control-label"> Physical Disability Note <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{physicalDisabilityNote}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('physicalDisabilityNote')}" th:errors="*{physicalDisabilityNote}">First Name Error</span>
@@ -113,7 +110,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-4 row">
-                                        <label for="name" class="col-sm-6 control-label"> Therapy<span class="text-red"> * </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> Therapy<span class="text-red"> * </span> </label>
 
                                         <div class="col-sm-6">   
                                             <select class="form-control  "   th:field="*{therapy}"  >
@@ -136,7 +133,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-4 row">
-                                        <label for="name" class="col-sm-6 control-label"> ADL Performance<span class="text-red"> * </span> :</label>
+                                        <label for="name" class="col-sm-6 control-label"> ADL Performance<span class="text-red"> * </span> </label>
 
                                         <div class="col-sm-6">   
                                             <select class="form-control  "   th:field="*{adlPerformance}"  >
@@ -158,10 +155,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-4 row">
-                                        <label for="name" class="col-sm-6 control-label"> Psychological assessment  Needs<span class="text-red"> * </span> :</label>
+                                    <div class="form-group col-sm-7 row">
+                                        <label for="name" class="col-sm-6 control-label"> Psychological assessment  Needs<span class="text-red"> * </span> </label>
 
-                                        <div class="col-sm-6">   
+                                        <div class="col-sm-3">   
                                             <select class="form-control  "   th:field="*{psychocialAssesmentNeeds}"  >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" psychocialAssesmentNeeds :${psychocialAssesmentNeeds}"
@@ -172,14 +169,20 @@
                                         </div>    
                                     </div>
 
-                                    <div class="form-group col-sm-8 row">
-                                        <label for="name" class="col-sm-4 control-label"> Psychological assessment  Note<span class="text-red">  </span> </label>
-                                        <div class="col-sm-8">                   
+                                </div>
+
+                                <div class="row">
+
+
+                                    <div class="form-group col-sm-12 row">
+                                        <label for="name" class="col-sm-3 control-label"> Psychological assessment  Note<span class="text-red">  </span> </label>
+                                        <div class="col-sm-6">                   
                                             <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{psychocialAssesmentNeedsNote}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('psychocialAssesmentNeedsNote')}" th:errors="*{psychocialAssesmentNeedsNote}">First Name Error</span>
                                         </div>                            
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                     <div class="form-group col-sm-12 row">
                                         <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>   Training </h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#"> Training</a></li>
+
+                                <li class="breadcrumb-item active">  Children List Of Completed Swim Safe Lesson [[${clildlist.size()}]]</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Children List Of Completed Swim Safe Lesson Total .[[${clildlist.size()}]]</h3>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="table-responsive">  
+
+                                    <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                                        <thead> 
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Child master code</th>
+                                                <th>Child Name</th>
+                                                <th>Result</th>
+                                                <th>Start Date</th> 
+                                                <th>End Date</th>  
+                                                <th>Edit</th>  
+                                                <th>Delete</th>  
+                                            </tr>     
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lists,status:${clildlist}">                                
+                                                <td th:text="${status.count}">2.</td>      
+
+
+                                                <!--                                            <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                                                            <td th:text="${lists.motherMasterCode.motherName}">Chakma</td>-->
+                                                <td th:text="${lists.childMasterCode}">Chakma</td>
+                                                <td th:text="${lists.swimmingName}">Chakma</td>
+                                                <td th:text="${lists.status}">Chakma</td>
+                                                <td th:text="${lists.startDate}">Chakma</td>
+                                                <td th:text="${lists.endDate}">Chakma</td>
+                                                <td><a th:href="@{/swimming/edit/{id}(id=${lists.swimmingId})}" type="button" class="btn btn-sm bg-info ">Edit</a></td>
+                                                <td><a th:href="@{/swimming/delete/{id}(id=${lists.swimmingId})}" type="button" class="btn btn-sm bg-danger ">Delete</a></td>
+
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

@@ -56,7 +56,7 @@ public class LiteracyHigherEducationAdmissionController {
 
     @RequestMapping("/list")
     public String list(Model model) {
-        model.addAttribute("list", literacyHigherEducationAdmissionRepository.findAll());
+        model.addAttribute("list", literacyHigherEducationAdmissionService.getAllHigherEducationAdmissionData());
         return "literacy/literacyhighereducation_list";
     }
 

@@ -11,6 +11,7 @@ import itgarden.model.longtermcare.L_FollowUp;
 import itgarden.model.longtermcare.L_Foste;
 import itgarden.repository.longtermcare.L_FollowUpRepository;
 import itgarden.repository.longtermcare.L_FosteRepository;
+import itgarden.services.longtremcare.L_FollowUpService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class L_FosteController {
 
     @Autowired
     L_FollowUpRepository l_FollowUpRepository;
+    
+    @Autowired
+    L_FollowUpService l_FollowUpService;
 
     @RequestMapping("/index")
     public String index(Model model) {

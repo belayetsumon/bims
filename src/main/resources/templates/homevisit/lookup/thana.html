@@ -121,12 +121,14 @@
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th style="width: 10px">#</th>
-                                                <th>Name</th>
+                                                <th> District Name</th>
+                                                <th> Thana Name</th>
                                                 <th>Edit</th>
                                                 <th style="width: 40px">Delete</th>
                                             </tr>
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">2.</td>
+                                                <td th:text="${list.district}">Chakma</td>
                                                 <td th:text="${list.name}">Chakma</td>
                                                 <td>
                                                     <a th:href="@{/thana/edit/{id} (id=${list.id})}" > Edit</a>

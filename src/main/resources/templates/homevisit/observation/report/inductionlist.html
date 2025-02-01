@@ -6,37 +6,55 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>
-                    Observation  hh
-                </h1>
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item"><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">Induction Mother List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Induction Mother List </h3>
-                              
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Induction Mother List [[${o_Induction.size()}]]</h3>
+                                     <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/observationreport/observation}"  type="button" class="btn  btn-light btn-xs text-danger">Close</a>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <table class="table table-bordered">
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="tablesdata" class="table table-bordered">
+                                        <thead>
                                     <tr>
+                                        
                                         <th style="width: 10px">#</th>  
-                                 
                                         <th>Mother Master Code</th>
                                         <th>Induction Start Date </th>
                                         <th> Induction End Date</th>
                                         <th> Immediate Support On</th>
-                                         <th> Challenges of Beneficiary</th>
-                                          <th> Possible length of staying at SPP </th>
-                                         <th>Remark</th>
-                                    </tr>                          
+                                        <th> Challenges of Beneficiary</th>
+                                        <th> Possible length of staying at SPP </th>
+                                        <th>Remark</th>
+                                    </tr>   
+                                           </thead>
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
-                                       <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherMasterCode}">Chakma</td>
                                         <td th:text="${list.startDate}">Chakma</td>
                                         <td th:text="${list.endDate}">Chakma</td>
                                         <td th:text="${list.immediateSupportOn}">Chakma</td>
@@ -46,20 +64,20 @@
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
-                            <div class="box-footer clearfix">
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
                             </div>
                         </div>
-                        <!-- /.box -->
+                        <!-- /.card -->
 
                     </div>
                     <!-- /.col -->
 
                     <!-- /.col -->
                 </div>
-                   
-             
+
+
 
             </section>
             <!-- /.content -->

@@ -39,7 +39,8 @@ public List<ReleaseMotherDTO> newListReleaseMotherIdforMidTermImpactMeasurement(
 
         cq.multiselect(
                 rootSm.get("id").alias("id"),
-                rootSm.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode")
+                rootSm.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                rootSm.get("motherMasterCode").get("motherName").alias("motherName")
         );
 
         List<Predicate> predicates = new ArrayList<Predicate>();
@@ -61,7 +62,7 @@ public List<ReleaseMotherDTO> newListReleaseMotherIdforMidTermImpactMeasurement(
 
             releaseMother.setId(tuplereleaseMother.get("id", Long.class));
 
-            releaseMother.setMotherMasterCode(tuplereleaseMother.get("motherMasterCode", String.class));
+           releaseMother.setMotherMasterCode(tuplereleaseMother.get("motherMasterCode", String.class)+" - "+tuplereleaseMother.get("motherName", String.class));
 
             releaseMotherDTOList.add(releaseMother);
         }

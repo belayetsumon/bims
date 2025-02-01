@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -36,24 +37,22 @@ public class LiteracyDigitalLiteracy {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "mother_master_code_id", nullable = false)
     private MotherMasterData motherMasterCode;
 
     @Column(nullable = false)
     @NotNull(message = "Admission date cannot be blank.")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate admissionDate;
-    
-    
+
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     public LocalDate endDate;
-    
+
     @Enumerated(EnumType.STRING)
     public ResultEnum result;
 
- 
-    
-    
+    @Lob
+    private String remark;
 
     /**
      * ********* Audit ******************************
@@ -75,12 +74,13 @@ public class LiteracyDigitalLiteracy {
     public LiteracyDigitalLiteracy() {
     }
 
-    public LiteracyDigitalLiteracy(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, LocalDate endDate, ResultEnum result, Users createdBy, Users updatedBy) {
+    public LiteracyDigitalLiteracy(Long id, MotherMasterData motherMasterCode, LocalDate admissionDate, LocalDate endDate, ResultEnum result, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.admissionDate = admissionDate;
         this.endDate = endDate;
         this.result = result;
+        this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
@@ -125,6 +125,14 @@ public class LiteracyDigitalLiteracy {
         this.result = result;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public LocalDate getCreated() {
         return created;
     }
@@ -157,5 +165,4 @@ public class LiteracyDigitalLiteracy {
         this.updatedBy = updatedBy;
     }
 
-   
 }

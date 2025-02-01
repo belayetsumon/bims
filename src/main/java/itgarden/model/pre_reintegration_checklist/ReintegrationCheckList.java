@@ -18,7 +18,6 @@ import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /*
@@ -38,7 +37,7 @@ public class ReintegrationCheckList {
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
+     @JoinColumn(name = "mother_master_code_id", nullable = false)
     private MotherMasterData motherMasterCode;
 
     @Column(nullable = false)

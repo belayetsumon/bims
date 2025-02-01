@@ -54,8 +54,6 @@
                                         </div>     
                                     </div>
                             
-                            
-                            
 
                             <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-4 control-label"> House Name<span class="text-red"> * </span> :</label>
@@ -86,18 +84,18 @@
 
 
                             <div class="form-group col-sm-6 row">
-                                <label for="co" class="col-sm-4 control-label">Sick <span class="text-red"> * </span> </label>
+                                <label for="co" class="col-sm-4 control-label">Sick <span class="text-red">  </span> </label>
                                 <div class="col-sm-8">    
-                                    <input type="number"  min="1"class="form-control  "   th:field="*{sick}" required="true"/>    
+                                    <input type="number"  min="0"class="form-control  "   th:field="*{sick}" required="true"/>    
                                     <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('sick')}" th:errors="*{sick}">First Name Error</span>
                                 </div>
 
                             </div> 
 
                             <div class="form-group col-sm-6 row">
-                                <label for="co" class="col-sm-4 control-label">On Leave <span class="text-red"> * </span> </label>
+                                <label for="co" class="col-sm-4 control-label">On Leave <span class="text-red">  </span> </label>
                                 <div class="col-sm-8">    
-                                    <input type="number"  min="1"class="form-control  "   th:field="*{onLeave}" required="true"/>    
+                                    <input type="number"  min="0"class="form-control  "   th:field="*{onLeave}" required="true"/>    
                                     <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onLeave')}" th:errors="*{onLeave}">First Name Error</span>
                                 </div>
 
@@ -106,9 +104,9 @@
 
 
                             <div class="form-group col-sm-6 row">
-                                <label for="co" class="col-sm-4 control-label">Under Observation <span class="text-red"> * </span> </label>
+                                <label for="co" class="col-sm-4 control-label">Under Observation <span class="text-red">  </span> </label>
                                 <div class="col-sm-8">    
-                                    <input type="number"  min="1"class="form-control  "   th:field="*{underObservation}" required="true"/>    
+                                    <input type="number"  min="0"class="form-control  "   th:field="*{underObservation}" required="true"/>    
                                     <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('underObservation')}" th:errors="*{underObservation}">First Name Error</span>
                                 </div>
 
@@ -116,18 +114,18 @@
 
 
                             <div class="form-group col-sm-6 row">
-                                <label for="co" class="col-sm-4 control-label">On Job <span class="text-red"> * </span> </label>
+                                <label for="co" class="col-sm-4 control-label">On Job <span class="text-red">  </span> </label>
                                 <div class="col-sm-8">    
-                                    <input type="number"  min="1"class="form-control  "   th:field="*{onJob}" required="true"/>    
+                                    <input type="number"  min="0"class="form-control  "   th:field="*{onJob}" required="true"/>    
                                     <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onJob')}" th:errors="*{onJob}">First Name Error</span>
                                 </div>
 
                             </div>
 
                             <div class="form-group col-sm-6 row">
-                                <label for="co" class="col-sm-4 control-label">Others <span class="text-red"> * </span> </label>
+                                <label for="co" class="col-sm-4 control-label">Others <span class="text-red">  </span> </label>
                                 <div class="col-sm-8">    
-                                    <input type="number"  min="1"class="form-control  "   th:field="*{others}" required="true"/>    
+                                    <input type="number"  min="0"class="form-control  "   th:field="*{others}" required="true"/>    
                                     <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('onJob')}" th:errors="*{others}">First Name Error</span>
                                 </div>
                             </div>

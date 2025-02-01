@@ -57,7 +57,7 @@
                             <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-6 control-label"> Release Mother Id <span class="text-red">  </span> :</label>
                                 <div class="col-sm-6">                   
-                                    <select class="form-control  "  id="bookName"  th:field="*{releaseMotherId}"  >
+                                    <select class="form-control  "   id="select2"  th:field="*{releaseMotherId}"  >
                                         <option value=" "> Select one</option>
                                         <option th:each =" releaseMotherids :${releaseMotherid}"
                                                 th:value=" ${releaseMotherids.id }" 
@@ -112,7 +112,7 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{shelterStatus}"  >
                                         <option value=" "> Select one</option>
-                                             <option th:each =" housetypes :${housetype}"
+                                        <option th:each =" housetypes :${housetype}"
                                                 th:value=" ${housetypes.id }" 
                                                 th:text="${housetypes.name }"> Select one</option>
                                         <option th:each =" ownershiftypes :${ownershiftype}"
@@ -128,7 +128,7 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{housetype}"  >
                                         <option value=" "> Select one</option>
-                                       <option th:each =" ownershiftypes :${ownershiftype}"
+                                        <option th:each =" ownershiftypes :${ownershiftype}"
                                                 th:value=" ${ownershiftypes.id }" 
                                                 th:text="${ownershiftypes.name }"> Select one</option>
                                     </select>
@@ -154,7 +154,7 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{childTwoEducation}"  >
                                         <option value=" "> Select one</option>
-                                          <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
+                                        <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
                                                 th:value=" ${continueNotContinueEnum }" 
                                                 th:text="${continueNotContinueEnum }"> Select one</option>
                                     </select>
@@ -167,7 +167,7 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{childThreeEducation}"  >
                                         <option value=" "> Select one</option>
-                                          <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
+                                        <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
                                                 th:value=" ${continueNotContinueEnum }" 
                                                 th:text="${continueNotContinueEnum }"> Select one</option>
                                     </select>
@@ -180,14 +180,48 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{childFourEducation}"  >
                                         <option value=" "> Select one</option>
-                                         <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
+                                        <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
                                                 th:value=" ${continueNotContinueEnum }" 
                                                 th:text="${continueNotContinueEnum }"> Select one</option>
                                     </select>
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childFourEducation')}" th:errors="*{childFourEducation}">First Name Error</span>
                                 </div>                            
                             </div>
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label"> Child-5<span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{childFiveEducation}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
+                                                th:value=" ${continueNotContinueEnum }" 
+                                                th:text="${continueNotContinueEnum }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childFiveEducation')}" th:errors="*{childFiveEducation}">First Name Error</span>
+                                </div>                            
+                            </div>
 
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-6 control-label"> Child-6<span class="text-red">  </span> :</label>
+                                <div class="col-sm-6">                   
+                                    <select class="form-control  "  id="bookName"  th:field="*{childSixEducation}"  >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" continueNotContinueEnum :${continueNotContinueEnum}"
+                                                th:value=" ${continueNotContinueEnum }" 
+                                                th:text="${continueNotContinueEnum }"> Select one</option>
+                                    </select>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childSixEducation')}" th:errors="*{childSixEducation}">First Name Error</span>
+                                </div>                            
+                            </div>
+
+
+                            <div class="form-group col-sm-12 row">
+                                <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                <div class="col-sm-8">                   
+                                    <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                </div>                            
+                            </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info">Save</button>

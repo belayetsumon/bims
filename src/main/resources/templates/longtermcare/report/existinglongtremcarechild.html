@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>    Long Term Care </h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">   Long Term Care</a></li>
+                                <li class="breadcrumb-item active">Report </li>
+                                <li class="breadcrumb-item active">Existing Long Term Care Beneficiaries  </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title"> Existing Long Term Care Beneficiaries List. Total : [[${list.size()}]]</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 ">
+
+                                        <form class="row  justify-content-center mb-1" 
+                                              th:action="@{/longtremcare/existinglongtremcarechild}"   method="get">
+
+                                         
+                                      
+                                      
+                                      
+                                            <div class="col-auto">
+                                                <label class="" for="to">Gender:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
+
+                                                    <select class="form-control"    name="gender" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" genderLists :${genderList}"
+                                                                th:value=" ${genderLists}" 
+                                                                th:text="${genderLists}"> Select one</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class=" col-auto text-center">
+                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                            </div>
+                                        </form>         
+                                        <br/>
+                                    </div>                          
+                                </div>
+
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+
+                                            <th>Child Master Code</th>
+
+                                             <th>Gender</th>
+                               
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="lists,status:${list}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td th:text="${lists.childMasterCode}">Chakma</td>
+                                
+                                            <td th:text="${lists.gender}">Chakma</td>
+                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

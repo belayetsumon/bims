@@ -11,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,8 +35,8 @@ public class MotherImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @OneToOne(optional = false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "mother_master_code_id", nullable = false)
     public MotherMasterData motherMasterCode;
 
     @Enumerated(EnumType.STRING)

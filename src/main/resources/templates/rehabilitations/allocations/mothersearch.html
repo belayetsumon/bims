@@ -13,7 +13,7 @@
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">CMC Support</a></li>
-                                <li class="breadcrumb-item active">House and Work House And Work Allocation </li>
+                                <li class="breadcrumb-item active">House Allocation </li>
                             </ol>
                         </div>
                     </div>
@@ -29,63 +29,44 @@
                     <div class="col-sm-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> New Mother List For House and Work
-                                    Allocations</h3>
+                                <h3 class="card-title"> New Mother List For House 
+                                    Allocations list [[${list.size()}]]</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="card-body table-responsive ">
+
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th style="width: 10px">#</th>
-                                                <th>Allocations Details</th>
-                                                <th>Id</th>
-                                                <th>Mother Master Code</th>
-                                                <th>Mother Name</th>
-                                                <th>Image</th>
-                                                <th>Date Arrival</th>
-                                                <th>Date Admission</th>
-                                                <!--                                        <th>Pic</th>-->
-
-                                            </tr>
+                                                <th style="width: 10px">#</th>  
+                                              
+                                                <th> Mother Master Code</th>
+                                                <th> Mother Name</th>
+                                                <th> Arrival Date</th>
+                                                <th>Admission Date</th>
+                                                <th>Remarks</th>
+                                                  <th>New Allocation</th>
+                                            </tr>  
                                         </thead>
-                                        <tbody>
-                                            <tr th:each="o_MAddmission,status:${list}">
+
+                                        <tbody> 
+                                            <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">2.</td>
-                                                <td><a
-                                                        th:href="@{/houseworkallocation/index/{id} (id=${o_MAddmission.motherMasterCode.id})}"
-                                                        type="button" class="btn btn-xs bg-info ">Allocations
-                                                        Details </a></td>
-                                                <td th:text="${o_MAddmission.id}">Chakma</td>
-                                                <td
-                                                    th:text="${o_MAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                <td th:text="${o_MAddmission.motherMasterCode.motherName}">Chakma</td>
-                                                <td>
-
-                                                    <span th:if="${ not #lists.isEmpty(o_MAddmission.motherMasterCode.mimage)}">
-
-                                                        <img class="img-responsive"
-                                                             th:src="@{/files/}+${o_MAddmission.motherMasterCode.mimage.imageName}" width="150px"
-                                                             height="150px" />
-                                                    </span>
-
-                                                    <span th:if="${#lists.isEmpty(o_MAddmission.motherMasterCode.mimage)}">
-                                                        <img class="profile-user-img img-responsive" th:src="@{/images/profile.png}" alt="User profile picture"/>
-                                                    </span>
-                                                </td>
-
-                                                <td th:text="${o_MAddmission.dateArrival}">Chakma</td>
-                                                <td th:text="${o_MAddmission.dateAdmission}">Chakma</td>
-                                                <td>
-                                                    <!--                                            <img  class="img-responsive" th:src="${repo_url}+${o_MAddmission.picName}" width="50px" height="50px"/>-->
+                               
+                                                <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.motherName}">Chakma</td>
+                                                <td th:text="${list.arrivalDate}">Chakma</td>
+                                                <td th:text="${list.admissionDate}" >Chakma</td>
+                                                <td th:text="${list.remarks}" >Chakma</td>
+                                                                 <td>
+                                                    <a th:href="@{/houseworkallocation/index/{id} (id=${list.motherMasterCodeId})}"
+                                                        type="button" class="btn btn-xs bg-info ">Add New </a>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer clearfix"></div>
                             </div>
                             <!-- /.card -->
 

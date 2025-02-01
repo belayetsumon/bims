@@ -63,7 +63,7 @@ public class InHouseInductionController {
         
         o_Inhouse_Inductions_MotherRepository.deleteById(id);
         
-         return "redirect:/induction//index/{id}";
+         return "redirect:/induction/index/{id}";
     }
 
 }

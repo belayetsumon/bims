@@ -10,7 +10,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>     Pre Reintegration Visit</h1>
+                            <h1> Pre Reintegration Visit</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -38,30 +38,27 @@
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th> Mother  Id</th>
                                             <th> Mother Name</th>
-
-                                            <th>Date of Birth</th>
-                                            <th>Number of Eligible Children</th>
+                                            <th>Mobile Number</th>
+                                            <th>Arrival Date</th>
                                             <th>Admission Date</th>
                                             <th>Add</th>
 
                                         </tr> 
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${list}">
-
+                                        <tr th:each="list,status :${list}">
+                                            <td th:text="${status.count}">Chakma</td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherName}">Chakma</td>                                      
-                                            <td th:text="${list.dateOfBirth}" >Chakma</td>
-                                            <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>   
+                                            <td th:text="${list.mobileNumber}">Chakma</td> 
+                                            <td th:text="${list.arrivalDate}" >Chakma</td>
+                                            <td th:text="${list.admissionDate}">Chakma</td>
+
                                             <td> 
-                                                <span th:each="listad:${list.addmission}"> 
-                                                    <span th:text="${listad.dateAdmission}"> ff</span>
-                                                </span>                                           
-                                            </td>
-                                            <td> 
-                                                <a   th:href="@{/pre_reintegration_visit/add/{m_id} (m_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add</a>
+                                                <a   th:href="@{/pre_reintegration_visit/add/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">Add</a>
                                             </td>
                                         </tr>
                                     </tbody>
