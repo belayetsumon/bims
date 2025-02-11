@@ -58,7 +58,7 @@ public class OtChildController {
         
         r_OtChild.setMotherMasterCode(motherMasterData);
         
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         
         model.addAttribute("form_title", "  ");
         
@@ -82,7 +82,7 @@ public class OtChildController {
         motherMasterData.setId(r_OtChild.getMotherMasterCode().getId());
         
         r_OtChild.setMotherMasterCode(motherMasterData);
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         
         model.addAttribute("sessionType", sessionTypeRepository.findAll());
         
@@ -101,7 +101,7 @@ public class OtChildController {
             motherMasterData.setId(mid);
             
             r_OtChild.setMotherMasterCode(motherMasterData);
-            model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             model.addAttribute("sessionType", sessionTypeRepository.findAll());
             
             model.addAttribute("diagonosis", diagonosisRepository.findAll());

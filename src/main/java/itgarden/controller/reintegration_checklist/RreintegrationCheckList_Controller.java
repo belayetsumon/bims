@@ -100,7 +100,7 @@ public class RreintegrationCheckList_Controller {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, ReintegrationCheckList reintegrationCheckList, Model model) {
-        model.addAttribute("reintegrationCheckList", reintegrationCheckListRepository.findById(id));
+        model.addAttribute("reintegrationCheckList", reintegrationCheckListRepository.findById(id).orElse(null));
         model.addAttribute("yes_no", Yes_No.values());
         model.addAttribute("complete_incomplete", Complete_incomplete.values());
         return "reintegration_checklist/reintegrationcheklist";

@@ -54,7 +54,7 @@ public class OtController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_OT r_OT) {
 
-        model.addAttribute("r_OT", r_OTRepository.findById(id));
+        model.addAttribute("r_OT", r_OTRepository.findById(id).orElse(null));
 
         model.addAttribute("form_title", "  Mother OT Edit");
 

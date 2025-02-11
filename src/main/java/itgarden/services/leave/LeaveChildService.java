@@ -94,14 +94,13 @@ public class LeaveChildService {
 
                 predicates.add(joinningDateNull);
                 predicates.add(leaveToDateNotNull);
-
                 Predicate dateDiffLessThan90 = cb.greaterThan(totalDayDiff, 90L);
                 predicates.add(dateDiffLessThan90);
 
             }
 
         }
-
+        predicates.add(cb.isNull(root.get("joinningDate")));
         criteriaQuery.where(cb.and(predicates.toArray(new Predicate[0])));
 
         // Create the select clause with aliasing

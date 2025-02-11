@@ -11,6 +11,7 @@ import itgarden.model.reintegration_release.ReleaseMother;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.repository.reintegration_release.ReleaseChildRepository;
 import itgarden.repository.reintegration_release.ReleaseMotherRepository;
+import itgarden.services.observation.O_ChildAdmissionService;
 import itgarden.services.observation.O_MAddmissionService;
 import itgarden.services.pre_reintegration_visit.PreReintegrationVisitService;
 import itgarden.services.reintegration_checklist.ReintegrationCheckListService;
@@ -51,6 +52,9 @@ public class Rreintegration_Controller {
     O_MAddmissionService o_MAddmissionService;
 
     @Autowired
+    O_ChildAdmissionService o_ChildAdmissionService;
+
+    @Autowired
     PreReintegrationVisitService preReintegrationVisitService;
 
     @Autowired
@@ -58,7 +62,7 @@ public class Rreintegration_Controller {
 
     @Autowired
     ReleaseMotherService releaseMotherService;
-    
+
     @Autowired
     ReleaseChildService releaseChildService;
 
@@ -83,7 +87,7 @@ public class Rreintegration_Controller {
 
     @RequestMapping("/index")
     public String add(Model model) {
-        model.addAttribute("list", releaseMotherService.getReleaseMotherList());
+        model.addAttribute("list", releaseMotherService.all_Release_MotherList());
         return "reintegration/index";
     }
 
@@ -152,7 +156,8 @@ public class Rreintegration_Controller {
         releaseChild.setMotherMasterCode(motherMasterData);
         model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("motherid", motherMasterDataRepository.findById(m_id));
-        model.addAttribute("childList", releaseChildRepository.findAll());
+        model.addAttribute("childList", o_ChildAdmissionService.admited_Child_By_Mother(m_id));
+
         return "reintegration/motherlist_child_entry";
     }
 
@@ -164,7 +169,7 @@ public class Rreintegration_Controller {
             releaseChild.setMotherMasterCode(motherMasterData);
             model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
             model.addAttribute("motherid", motherMasterDataRepository.findById(m_id));
-            model.addAttribute("childList", releaseChildRepository.findAll());
+            model.addAttribute("childList", o_ChildAdmissionService.admited_Child_By_Mother(m_id));
 
             return "reintegration/motherlist_child_entry";
         }
@@ -175,14 +180,19 @@ public class Rreintegration_Controller {
     @RequestMapping("/child_edit/{c_id}")
     public String child_edit(Model model, @PathVariable Long c_id, ReleaseChild releaseChild) {
 
-        model.addAttribute("releaseChild", releaseChildRepository.getOne(c_id));
+        Optional<ReleaseChild> optionalreleaseChild = releaseChildRepository.findById(c_id);
+        releaseChild = optionalreleaseChild.orElse(null);
+        model.addAttribute("releaseChild", releaseChild);
+
         MotherMasterData motherMasterData = new MotherMasterData();
-        releaseChild = releaseChildRepository.getOne(c_id);
+
         motherMasterData.setId(releaseChild.getMotherMasterCode().getId());
-        releaseChild.setMotherMasterCode(motherMasterData);
-        model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
+
+//        releaseChild.setMotherMasterCode(motherMasterData);
+
         model.addAttribute("motherid", motherMasterDataRepository.findById(releaseChild.getMotherMasterCode().getId()));
-        model.addAttribute("childList", releaseChildRepository.findAll());
+
+        model.addAttribute("childList", o_ChildAdmissionService.admited_Child_By_Mother(motherMasterData.getId()));
 
         return "reintegration/motherlist_child_entry";
     }
@@ -203,7 +213,7 @@ public class Rreintegration_Controller {
     public String delete2(@PathVariable Long id, ReleaseChild releaseChild, RedirectAttributes redirectAttrs) {
         Optional<ReleaseChild> optionalreleaseChild = releaseChildRepository.findById(id);
 
-        releaseChild = optionalreleaseChild.orElse(null);;
+        releaseChild = optionalreleaseChild.orElse(null);
         redirectAttrs.addAttribute("m_id", releaseChild.getMotherMasterCode().getId());
         releaseChildRepository.deleteById(id);
         return "redirect:/reintegration/allreintegrationchild";

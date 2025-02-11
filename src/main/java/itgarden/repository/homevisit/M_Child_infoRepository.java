@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface M_Child_infoRepository extends JpaRepository<M_Child_info, Long> {
 
-    List<M_Child_info> findBymotherMasterCode(MotherMasterData motherMasterData);
+    List<M_Child_info> findByMotherMasterCode(MotherMasterData motherMasterData);
     
  
 //   List<M_Child_info> findDistinctByMotherMasterCodeOrderByIdDesc();

@@ -73,10 +73,11 @@ public class R_PsychologyMotherController {
     }
 
     public static List<Map<String, Object>> filterCommonMothers(
-            List<Map<String, Object>> admitedMotherList, List<Long> houseMotherList) {
+            
+            List<Map<String, Object>> admitedMotherList, List<Long> psychologyMother) {
 
         // Convert houseMotherList to a Set for efficient lookups
-        Set<Long> houseMotherSet = new HashSet<>(houseMotherList);
+        Set<Long> psychologyMotherset = new HashSet<>(psychologyMother);
 
         // Initialize the result list for common admitted mothers
         List<Map<String, Object>> commonAdmittedMothers = new ArrayList<>();
@@ -86,7 +87,7 @@ public class R_PsychologyMotherController {
             Long motherId = (Long) motherMap.get("motherMasterCodeId"); // Ensure this matches the field name in your map
 
             // Check if motherId is in houseMotherSet
-            if (motherId != null && houseMotherSet.contains(motherId)) {
+            if (motherId != null && psychologyMotherset.contains(motherId)) {
                 commonAdmittedMothers.add(motherMap);
             }
         }
@@ -98,7 +99,9 @@ public class R_PsychologyMotherController {
     public String mothersearch(Model model) {
 
         List<Map<String, Object>> admitedMotherList = o_MAddmissionService.allAdmitedMotherList();
+       
         List<Long> otList = psychologyMotherService.motherOtCompletedList();
+        
         // Get the uncommon admitted mothers
         List<Map<String, Object>> uncommonAdmittedMothers = filterUncommonMothers(admitedMotherList,otList);
         model.addAttribute("list", uncommonAdmittedMothers);

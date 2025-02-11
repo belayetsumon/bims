@@ -11,6 +11,7 @@ import itgarden.model.observation.O_CHealthConditions;
 import itgarden.repository.homevisit.M_Child_infoRepository;
 import itgarden.repository.observation.O_CHealthConditionsRepository;
 import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class O_CHealthConditionsController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
         o_CHealthConditions.setMotherMasterCode(motherMasterData);
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("bloodPressure", Yes_No.values());
         model.addAttribute("eyeProblem", Yes_No.values());
         model.addAttribute("earProblem", Yes_No.values());
@@ -55,10 +56,17 @@ public class O_CHealthConditionsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, O_CHealthConditions o_CHealthConditions) {
+
+        Optional<O_CHealthConditions> o_CHealthConditionsopt = o_CHealthConditionsRepository.findById(id);
+
+        o_CHealthConditions = o_CHealthConditionsopt.orElse(null);
+
+        model.addAttribute("o_CHealthConditions", o_CHealthConditions);
+
         MotherMasterData motherMasterData = new MotherMasterData();
-        motherMasterData.setId(id);
-        model.addAttribute("o_CHealthConditions", o_CHealthConditionsRepository.findById(id).orElse(null));
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        motherMasterData.setId(o_CHealthConditions.getMotherMasterCode().getId());
+
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("bloodPressure", Yes_No.values());
         model.addAttribute("eyeProblem", Yes_No.values());
         model.addAttribute("earProblem", Yes_No.values());
@@ -80,7 +88,7 @@ public class O_CHealthConditionsController {
             MotherMasterData motherMasterData = new MotherMasterData();
             motherMasterData.setId(m_id);
             o_CHealthConditions.setMotherMasterCode(motherMasterData);
-            model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             model.addAttribute("bloodPressure", Yes_No.values());
             model.addAttribute("eyeProblem", Yes_No.values());
             model.addAttribute("earProblem", Yes_No.values());

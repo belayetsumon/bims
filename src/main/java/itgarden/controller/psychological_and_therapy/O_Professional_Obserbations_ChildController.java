@@ -50,7 +50,7 @@ public class O_Professional_Obserbations_ChildController {
         o_Professional_Obserbations_Child.setMotherMasterCode(motherMasterData);
         O_Induction o_Induction = o_InductionRepository.findByMotherMasterCode(motherMasterData);
         o_Professional_Obserbations_Child.setInductionStartDate(o_Induction.getStartDate());
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("physicalDisability", Yes_No.values());
         model.addAttribute("therapy", Yes_No.values());
         model.addAttribute("adlPerformance", Yes_No.values());
@@ -64,7 +64,7 @@ public class O_Professional_Obserbations_ChildController {
         model.addAttribute("o_Professional_Obserbations_Child", o_Professional_Obserbations_ChildRepository.findById(id).orElse(null));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         
         model.addAttribute("physicalDisability", Yes_No.values());
         
@@ -86,7 +86,7 @@ public class O_Professional_Obserbations_ChildController {
             o_Professional_Obserbations_Child.setMotherMasterCode(motherMasterData);
             O_Induction o_Induction = o_InductionRepository.findByMotherMasterCode(motherMasterData);
             o_Professional_Obserbations_Child.setInductionStartDate(o_Induction.getStartDate());
-            model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             model.addAttribute("physicalDisability", Yes_No.values());
             model.addAttribute("therapy", Yes_No.values());
             model.addAttribute("adlPerformance", Yes_No.values());

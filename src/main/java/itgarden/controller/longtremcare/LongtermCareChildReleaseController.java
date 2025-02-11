@@ -109,7 +109,7 @@ public class LongtermCareChildReleaseController {
         
         releaseChild.setChildMasterCode(m_Child_info);
 
-        model.addAttribute("motherid", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("motherid", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         //model.addAttribute("childList", releaseChildRepository.findAll());
         return "longtermcare/reintegration_child";
@@ -129,7 +129,7 @@ public class LongtermCareChildReleaseController {
         releaseChild.setMotherMasterCode(motherMasterData);
         releaseChild.setId(c_id);
 
-        model.addAttribute("motherid", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("motherid", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             //model.addAttribute("childList", releaseChildRepository.findAll());
             return "longtermcare/reintegration_child";
         }
@@ -150,7 +150,7 @@ public class LongtermCareChildReleaseController {
         
      
         
-       model.addAttribute("motherid", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+       model.addAttribute("motherid", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
        
         model.addAttribute("childList", releaseChildRepository.findAll());
 

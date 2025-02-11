@@ -69,7 +69,7 @@ public class ChildrenDetailsController {
 
         motherMasterData.setId(m_id);
 
-        model.addAttribute("list", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("list", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         return "homevisit/motherdetails/childindex";
     }
@@ -97,7 +97,7 @@ public class ChildrenDetailsController {
          * Child Id create**
          */
         String mcode = motherMasterData.motherMasterCode;
-        int totalchild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
+        int totalchild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
         System.out.println(" total child" + totalchild);
         StringBuilder c_id = new StringBuilder("");
         c_id.append(mcode.substring(0, mcode.length() - 1));
@@ -125,7 +125,7 @@ public class ChildrenDetailsController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
 
-        int totalChild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
+        int totalChild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
 
         motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
         int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
@@ -150,7 +150,7 @@ public class ChildrenDetailsController {
                  * Child Id create**
                  */
                 String mcode = motherMasterData.motherMasterCode;
-                int totalchild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
+                int totalchild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
                 System.out.println(" total child" + totalchild);
                 StringBuilder c_id = new StringBuilder("");
                 c_id.append(mcode.substring(0, mcode.length() - 1));

@@ -59,7 +59,7 @@ public class FollowUpMotherController {
     public String motherSearch(Model model) {
 
         // model.addAttribute("list", motherMasterDataRepository.findByReleaseMotherIsNotNullOrderByIdDesc());
-        model.addAttribute("list", releaseMotherService.getReleaseMotherList());
+        model.addAttribute("list", releaseMotherService.all_Release_MotherList());
 
         return "follow_up_report/mothersearch";
     }

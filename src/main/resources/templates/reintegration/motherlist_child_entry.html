@@ -32,21 +32,6 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
-                                <div class="col-sm-6">
-                                    <table class="table table-bordered ">
-
-                                        <tr>
-                                            <th> Mother  Id</th>
-                                            <td th:text="${mother.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        </tr> <tr>
-                                            <th> Mother Name</th>
-                                            <td th:text="${mother.motherMasterCode.motherName}">Chakma</td>  
-                                        </tr> 
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-body">
                                 <form  th:action="@{/reintegration/child_save/{m_id}(m_id=${releaseChild.motherMasterCode.id})}"  th:object="${releaseChild}"  method="post" class="form-horizontal">
                                     <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -66,9 +51,9 @@
                                             <label for="co" class="col-sm-3 control-label"> Reintegration date: <span class="text-red"> *</span> :</label>
                                             <div class="  col-sm-6">  
                                                 <div class=" input-group date ">  
-                                                    <div class="input-group-addon"> 
+<!--                                                    <div class="input-group-addon"> 
                                                         <i class="fa fa-calendar"></i>
-                                                    </div>
+                                                    </div>-->
                                                     <input type="text"   class="form-control  "  th:required="required" th:field="*{releaseDate}"  />                
                                                 </div>
                                                 <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('releaseDate')}" th:errors="*{releaseDate}">First Name Error</span>
@@ -82,9 +67,9 @@
                                                <div class="col-sm-6">   
                                                     <select class="form-control  "   th:field="*{childMasterCode}"  >
                                                         <option value=" "> Select one</option>
-<!--                                                        <option th:each =" childlist :${motherid.childAdmission}"
-                                                                th:value=" ${childlist.childMasterCode.id}" 
-                                                                th:text="${childlist.childMasterCode.childMasterCode}"> Select one</option>-->
+                                                        <option th:each =" childlists :${childList}"
+                                                                th:value=" ${childlists.childMasterCodeId}" 
+                                                                th:text="${childlists.childMasterCode}"> Select one</option>
                                                     </select>
                                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
                                                 </div>    

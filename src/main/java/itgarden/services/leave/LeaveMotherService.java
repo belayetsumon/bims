@@ -98,6 +98,8 @@ public class LeaveMotherService {
             }
 
         }
+        
+         predicates.add(cb.isNull( root.get("joinningDate")));
 
         // Create the select clause with aliasing
         criteriaQuery.multiselect(

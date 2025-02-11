@@ -5,6 +5,7 @@
 package itgarden.services.observation;
 
 import itgarden.model.homevisit.Yes_No;
+import itgarden.model.observation.O_MAddmission;
 import itgarden.model.observation.O_MHealthConditions;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -29,6 +30,34 @@ public class O_MHealthConditionsService {
 
     @PersistenceContext
     EntityManager em;
+
+    public List<Long> mother_Health_Conditions_Check_Id_List() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
+
+        Root<O_MHealthConditions> root = cq.from(O_MHealthConditions.class);
+
+        cq.multiselect(root.get("motherMasterCode").get("id").alias("motherMasterCodeId"));
+
+//        List<Predicate> predicates = new ArrayList<Predicate>();
+//
+//      
+//        predicates.add(cb.between(rootSm.get("starttime"), thirtyMinutesAgo, currentTime));
+//
+//        cq.where(predicates.toArray(new Predicate[]{}));
+        cq.orderBy(cb.desc(root.get("motherMasterCode").get("id")));
+
+        List<Tuple> result = em.createQuery(cq).getResultList();
+
+        List<Long> idList = new ArrayList<Long>();
+        for (Tuple t : result) {
+            Long id = t.get("motherMasterCodeId", Long.class);
+            idList.add(id);
+        }
+        return idList;
+    }
 
     public List<Map<String, Object>> findAllmHealthConditions() {
         CriteriaBuilder cb = em.getCriteriaBuilder();

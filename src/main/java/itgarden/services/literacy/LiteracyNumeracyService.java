@@ -42,7 +42,7 @@ public class LiteracyNumeracyService {
     @Autowired
     O_MAddmissionService addmissionService;
 
-    public List<MotherMasterDataDTO> getMotherMasterDataDTOs() {
+    public List<Map<String, Object>> getMotherList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
 
@@ -54,9 +54,9 @@ public class LiteracyNumeracyService {
 
         // Select fields from MotherMasterData and related entities
         cq.multiselect(
-                root.get("id"),
-                root.get("motherMasterCode"),
-                root.get("motherName")
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherName").alias("motherName")
         // Converting Enum to String
         );
         List<Predicate> predicates = new ArrayList<Predicate>();
@@ -68,20 +68,19 @@ public class LiteracyNumeracyService {
             predicates.add(cb.not(root.get("id").in(literacyNumeracyMotherIdList)));
         }
         cq.where(predicates.toArray(new Predicate[]{}));
-        TypedQuery<Tuple> query = em.createQuery(cq);
+
+        List<Tuple> tuples = em.createQuery(cq).getResultList();
 
         // Execute the query and map results to DTO
-        List<MotherMasterDataDTO> result = query.getResultList().stream().map(tuple -> {
-            MotherMasterDataDTO dto = new MotherMasterDataDTO();
-            dto.setId(tuple.get(0, Long.class));
-            dto.setMotherMasterCode(tuple.get(1, String.class));
-            dto.setMotherName(tuple.get(2, String.class));
-
-            // Enum converted to String
-            return dto;
-        }).toList();
-
-        return result;
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Tuple tuple : tuples) {
+            Map<String, Object> rowMap = new HashMap<>();
+            rowMap.put("id", tuple.get("id"));
+            rowMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            rowMap.put("motherName", tuple.get("motherName"));
+            resultList.add(rowMap);
+        }
+        return resultList;
     }
 
     public List<Long> literacyNumeracyMotherIdList() {

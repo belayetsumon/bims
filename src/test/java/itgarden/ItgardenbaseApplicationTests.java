@@ -1,32 +1,28 @@
 package itgarden;
 
-import itgarden.repository.clinic.C_SpecialCareRepository;
-import itgarden.services.clinic.C_Child_Health_AwarenessService;
-import itgarden.services.cmc.R_FoodService;
-import itgarden.services.leave.LeaveMotherService;
-import itgarden.services.observation.O_ChildAdmissionService;
-import java.util.List;
-import java.util.Map;
+import itgarden.model.homevisit.MotherMasterData;
+import itgarden.repository.homevisit.M_Child_infoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.ui.Model;
 
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ItgardenbaseApplicationTests {
 
     @Autowired
-C_Child_Health_AwarenessService c_Child_Health_AwarenessService;
+    M_Child_infoRepository m_Child_infoRepository;
 
     @Test
     // System.out.println("Total..
     public void contextLoads() {
 
-    
+        MotherMasterData motherMasterData = new MotherMasterData();
 
-       // System.out.println(" total 2..........." + c_Child_Health_AwarenessService.getAllChildHealthAwarenessData_report().size());
-        // System.out.println(" unauthorize MotherList ..........." + admitedMotherList.size());
-        
+        motherMasterData.setId(480l);
+
+        System.out.println(" total ..........." + m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size());
+        //System.out.println(" total..........." + o_ChildAdmissionService.admited_Child_By_Mother(20l).size());
+
     }
 }

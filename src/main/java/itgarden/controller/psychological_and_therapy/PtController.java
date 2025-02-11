@@ -74,7 +74,7 @@ public class PtController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_PT r_PT) {
         
-        model.addAttribute("r_PT", r_PTRepository.findById(id));
+        model.addAttribute("r_PT", r_PTRepository.findById(id).orElse(null));
         
         model.addAttribute("form_title", "  Mother PT");
         model.addAttribute("tenderness", tendernessRepository.findAll());

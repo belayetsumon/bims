@@ -19,11 +19,11 @@ import itgarden.model.homevisit.M_Property;
 import itgarden.model.homevisit.MotherMasterData;
 import itgarden.model.homevisit.Reasons;
 import itgarden.model.observation.O_Induction;
-import itgarden.model.observation.O_MAddmission;
 import itgarden.model.observation.O_MHealthConditions;
 import itgarden.model.observation.O_Professional_Obserbations_Mother;
-import itgarden.model.pre_reintegration_visit.PreReintegrationVisit;
 import itgarden.services.DateConverter;
+import itgarden.services.observation.O_InductionService;
+import itgarden.services.observation.O_MHealthConditionsService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -48,6 +49,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MotherMasterDataServices {
+    
+    @Autowired
+    O_InductionService o_InductionService;
+    
+     @Autowired
+    O_MHealthConditionsService o_MHealthConditionsService;
 
     @PersistenceContext
     EntityManager em;
@@ -877,7 +884,7 @@ public class MotherMasterDataServices {
     }
 
 // pending mother List for helthchek up
-    public List<Map<String, Object>> findMotherMasterDataWithInductionNotNullAndHealthConditionsNull() {
+    public List<Map<String, Object>> pending_Mother_for_healthcheckup() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> criteriaQuery = criteriaBuilder.createTupleQuery();
 
@@ -892,9 +899,9 @@ public class MotherMasterDataServices {
         List<Predicate> predicates = new ArrayList<>();
 
         // predicates.add(criteriaBuilder.equal(root.get("mapproval").get("decission"), Decision.Approve));
-        predicates.add(criteriaBuilder.isNotNull(inductionJoin)); // O_Induction is not null
+        predicates.add(root.get("id").in(o_InductionService.induction_complete_mother_Id_List())); // O_Induction is not null
 
-        predicates.add(criteriaBuilder.isNull(healthConditionsJoin)); // O_MHealthConditions is null
+        predicates.add(root.get("id").in(o_MHealthConditionsService.mother_Health_Conditions_Check_Id_List()).not()); // O_MHealthConditions is null
 
         // Combine predicates
         criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));

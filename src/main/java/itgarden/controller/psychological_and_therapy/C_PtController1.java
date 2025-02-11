@@ -59,7 +59,7 @@ public class C_PtController1 {
 
         r_PT_Child.setMotherMasterCode(motherMasterData);
 
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         model.addAttribute("form_title", "  Mother PT");
 
@@ -97,7 +97,7 @@ public class C_PtController1 {
 
         r_PT_Child.setMotherMasterCode(motherMasterData);
 
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         model.addAttribute("form_title", "  Mother PT");
         model.addAttribute("tenderness", tendernessRepository.findAll());
@@ -127,7 +127,7 @@ public class C_PtController1 {
 
             r_PT_Child.setMotherMasterCode(motherMasterData);
 
-            model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
             model.addAttribute("form_title", "  Mother PT");
 

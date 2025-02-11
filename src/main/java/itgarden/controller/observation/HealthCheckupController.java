@@ -48,7 +48,7 @@ public class HealthCheckupController {
     public String newmother(Model model) {
         //   model.addAttribute("list", motherMasterDataRepository.findByOinductionIsNotNullAndOinductionOmHealthConditionsIsNullOrderByIdDesc());
 
-        model.addAttribute("list", motherMasterDataServices.findMotherMasterDataWithInductionNotNullAndHealthConditionsNull());
+        model.addAttribute("list", motherMasterDataServices.pending_Mother_for_healthcheckup());
 
         return "homevisit/observation/healthcheckup/newmother";
     }
