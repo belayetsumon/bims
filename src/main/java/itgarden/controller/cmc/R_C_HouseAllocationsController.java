@@ -46,7 +46,7 @@ public class R_C_HouseAllocationsController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
         r_C_HouseAllocations.setMotherMasterCode(motherMasterData);
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("form_title", "Child House Allocation");
         model.addAttribute("houseName", houseNameRepository.findAll());
         return "rehabilitations/allocations/chouseallocations";
@@ -58,7 +58,7 @@ public class R_C_HouseAllocationsController {
         model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findById(id).orElse(null));
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(id);
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("form_title", "Child House Allocation Edit");
         model.addAttribute("houseName", houseNameRepository.findAll());
         return "rehabilitations/allocations/chouseallocations";
@@ -72,7 +72,7 @@ public class R_C_HouseAllocationsController {
             motherMasterData.setId(m_id);
             r_C_HouseAllocations.setMotherMasterCode(motherMasterData);
             model.addAttribute("form_title", " Child House Allocation save/update");
-            model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             model.addAttribute("houseName", houseNameRepository.findAll());
             return "rehabilitations/allocations/chouseallocations";
         }

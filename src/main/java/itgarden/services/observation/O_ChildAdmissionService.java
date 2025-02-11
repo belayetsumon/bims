@@ -39,9 +39,8 @@ public class O_ChildAdmissionService {
 
     @Autowired
     ReleaseChildService releaseChildService;
-    
-    
-      public List<Long> addmitedChildIdList() {
+
+    public List<Long> addmitedChildIdList() {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
 
@@ -62,10 +61,6 @@ public class O_ChildAdmissionService {
         }
         return idList;
     }
-    
-    
-    
-    
 
     public List<Map<String, Object>> allAdmitedChildPeriodicReportList(
             String startDate,
@@ -211,6 +206,82 @@ public class O_ChildAdmissionService {
         return resultMaps;
     }
 
+    public List<Map<String, Object>> admited_Child_By_Mother( //            String startDate,
+            Long id
+    ) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<O_ChildAdmission> root = cq.from(O_ChildAdmission.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // Define the date formatter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // Parse and apply date range if startDate and endDate are provided
+//        if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isNotEmpty(endDate)) {
+//            LocalDate start = LocalDate.parse(startDate, formatter);
+//            LocalDate end = LocalDate.parse(endDate, formatter);
+//            predicates.add(cb.between(root.get("dateAdmission"), start, end));
+//        } else if (ObjectUtils.isNotEmpty(startDate)) {
+//            LocalDate start = LocalDate.parse(startDate, formatter);
+//            predicates.add(cb.equal(root.get("dateAdmission"), start));
+//        }
+        // Apply gender condition if gender is not null
+//        if (gender != null) {
+//            predicates.add(cb.equal(root.get("childMasterCode").get("gender"), gender));
+//        }
+//         if (ObjectUtils.isNotEmpty(gender)) {
+//         predicates.add(cb.equal(root.get("childMasterCode").get("gender"), gender));
+//         }
+        // Define the fields to select in the query
+        
+        predicates.add(cb.equal(root.get("motherMasterCode").get("id"), id));
+
+        cq.multiselect(
+                root.get("id").alias("admissionId"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("id").alias("childMasterCodeId"),
+                root.get("childMasterCode").get("name").alias("name"),
+                root.get("childMasterCode").get("gender").alias("gender"),
+                root.get("dateArrival").alias("arrivalDate"),
+                root.get("dateAdmission").alias("admissionDate"),
+                root.get("remarks").alias("remarks")
+        );
+
+        // Apply the where clause with the combined predicates
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
+        // Sort the results by ID in descending order
+        cq.orderBy(cb.desc(root.get("id")));
+
+        // Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        // Transform the results into a list of maps using aliases
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+        for (Tuple result : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+            resultMap.put("admissionId", result.get("admissionId"));
+            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
+            resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("childMasterCode", result.get("childMasterCode"));
+            resultMap.put("childMasterCodeId", result.get("childMasterCodeId"));
+            resultMap.put("name", result.get("name"));
+            resultMap.put("gender", result.get("gender"));
+            resultMap.put("arrivalDate", result.get("arrivalDate"));
+            resultMap.put("admissionDate", result.get("admissionDate"));
+            resultMap.put("remarks", result.get("remarks"));
+            resultMaps.add(resultMap);
+        }
+
+        return resultMaps;
+    }
+
     public List<Map<String, Object>> all_Admited_Child_Report_Execlude_Released_ChildList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
@@ -261,30 +332,28 @@ public class O_ChildAdmissionService {
         }
         return resultMaps;
     }
-    
 
-   public Long getMotherIdByChildId(Long childId) {
-    CriteriaBuilder cb = em.getCriteriaBuilder();
-    CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-    Root<M_Child_info> root = cq.from(M_Child_info.class);
+    public Long getMotherIdByChildId(Long childId) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<M_Child_info> root = cq.from(M_Child_info.class);
 
-    // Select the ID of the associated motherMasterCode (assuming it is a @ManyToOne relation)
-    
-    Path<Long> motherIds = root.get("motherMasterCode").get("id");
-    
-    cq.select(motherIds);
-   
-    // Apply the where clause with the childId condition
-    cq.where(cb.equal(root.get("id"), childId));
+        // Select the ID of the associated motherMasterCode (assuming it is a @ManyToOne relation)
+        Path<Long> motherIds = root.get("motherMasterCode").get("id");
 
-    try {
-        // Execute the query and get the single result
-        Long motherId = em.createQuery(cq).getSingleResult();
-        return motherId;
-    } catch (NoResultException e) {
-        // Handle case when no result is found (return null or appropriate value)
-        return null; // Or you can throw a custom exception here
+        cq.select(motherIds);
+
+        // Apply the where clause with the childId condition
+        cq.where(cb.equal(root.get("id"), childId));
+
+        try {
+            // Execute the query and get the single result
+            Long motherId = em.createQuery(cq).getSingleResult();
+            return motherId;
+        } catch (NoResultException e) {
+            // Handle case when no result is found (return null or appropriate value)
+            return null; // Or you can throw a custom exception here
+        }
+
     }
-
-}
 }

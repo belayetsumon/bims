@@ -56,7 +56,7 @@ public class R_PsychologyChildController {
 
         r_PsychologyChild.setMotherMasterCode(motherMasterData);
 
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         model.addAttribute("pchildlist", r_PsychologyChildRepository.findBymotherMasterCode(motherMasterData));
 
@@ -103,7 +103,7 @@ public class R_PsychologyChildController {
 
             r_PsychologyChild.setMotherMasterCode(motherMasterData);
 
-            model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
             model.addAttribute("pchildlist", r_PsychologyChildRepository.findBymotherMasterCode(motherMasterData));
 
@@ -142,7 +142,7 @@ public class R_PsychologyChildController {
 
         r_PsychologyChild.setMotherMasterCode(motherMasterData);
 
-        model.addAttribute("childlist", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         model.addAttribute("pchildlist", r_PsychologyChildRepository.findBymotherMasterCode(motherMasterData));
 

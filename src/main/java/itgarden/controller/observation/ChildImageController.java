@@ -55,7 +55,7 @@ public class ChildImageController {
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(m_id);
         child_image.setMotherMasterCode(motherMasterData);
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         return "homevisit/observation/imageupload/addchildimg";
     }
 
@@ -72,7 +72,7 @@ public class ChildImageController {
             MotherMasterData motherMasterData = new MotherMasterData();
             motherMasterData.setId(m_id);
             child_image.setMotherMasterCode(motherMasterData);
-            model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
             return "homevisit/observation/imageupload/addchildimg";
         }
 

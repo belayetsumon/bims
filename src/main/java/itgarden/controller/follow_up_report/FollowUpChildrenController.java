@@ -12,6 +12,7 @@ import itgarden.repository.follow_up_report.FollowUpChildrenRepository;
 import itgarden.repository.homevisit.MotherMasterDataRepository;
 import itgarden.services.FollowUp.FollowUpChildrenService;
 import jakarta.validation.Valid;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -57,14 +58,14 @@ public class FollowUpChildrenController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, FollowUpChildren followUpChildren) {
-        model.addAttribute("followUpChildren", followUpChildrenRepository.findById(id).orElse(null));
+                Optional<FollowUpChildren> followUpChildrenopt = followUpChildrenRepository.findById(id);
 
-        MotherMasterData motherMasterData = new MotherMasterData();
-
-        followUpChildren = followUpChildrenRepository.findById(id).orElse(null);
-
+        followUpChildren = followUpChildrenopt.orElse(null);
+        
+        model.addAttribute("followUpChildren", followUpChildren);
+        
         //model.addAttribute("mother", releaseMotherRepository.findByMotherMasterCode(motherMasterData));
-        model.addAttribute("motherid", motherMasterDataRepository.findById(followUpChildren.getMotherMasterCode().getId()));
+        model.addAttribute("motherid", motherMasterDataRepository.findById(followUpChildren.getMotherMasterCode().getId()).orElse(null));
         model.addAttribute("yes_no", Yes_No.values());
 
         // model.addAttribute("childList", releaseChildRepository.findAll());

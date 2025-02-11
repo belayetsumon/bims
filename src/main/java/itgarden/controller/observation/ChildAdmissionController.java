@@ -62,7 +62,7 @@ public class ChildAdmissionController {
 
         o_ChildAdmission.setDateArrival(o_Induction.getStartDate());
 
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
         model.addAttribute("inductiondate", o_Induction.getStartDate());
 
@@ -82,7 +82,7 @@ public class ChildAdmissionController {
 
         O_Induction o_Induction = o_InductionRepository.findByMotherMasterCode(motherMasterData);
         o_ChildAdmission.setDateArrival(o_Induction.getStartDate());
-        model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("inductiondate", o_Induction.getStartDate());
 
         return "homevisit/observation/admission/addchild";
@@ -103,7 +103,7 @@ public class ChildAdmissionController {
 
             o_ChildAdmission.setDateArrival(o_Induction.getStartDate());
 
-            model.addAttribute("childList", m_Child_infoRepository.findBymotherMasterCode(motherMasterData));
+            model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
 
             model.addAttribute("inductiondate", o_Induction.getStartDate());
 
