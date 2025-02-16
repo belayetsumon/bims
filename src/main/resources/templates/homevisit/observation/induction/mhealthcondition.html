@@ -26,57 +26,57 @@
 
                     <div class="box-body">
                         <form  th:action="@{/m_address/save/{id}(id=${motherMasterCode})}"  th:object="${m_Address}"  method="post" class="form-horizontal">
-                           
+
                             <input type="hidden"    class="form-control " th:field="*{id}"  />    
-                            
+
                             <input type="hidden"    class="form-control " th:field="*{motherMasterCode}"  id="motherMasterCode"  name="motherMasterCode"  th:value="motherMasterCode"/>     
-                            
+
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
-                            
+
                             <div class="box-body">
 
                                 <div class="row">
-                                    
+
                                     <div class="form-group col-sm-6">
-                                        
+
                                         <label for="name" class="col-sm-3 control-label"> Address Type<span class="text-red"> * </span> :</label>
-                                        
+
                                         <div class="col-sm-6">   
-                                            
+
                                             <select class="form-control  "  id="bookName"  th:field="*{addressType}" name="addressType" >
-                                                
+
                                                 <option value=" "> Select one</option>
-                                                
+
                                                 <option th:each =" addressType :${addressType}"
-                                                        
+
                                                         th:value=" ${addressType}" 
-                                                        
+
                                                         th:text="${addressType}"> Select one</option>
-                                                
+
                                             </select>
-                                            
+
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('addressType')}" th:errors="*{addressType}">First Name Error</span>
-                                     
+
                                         </div>    
-                                        
+
                                     </div>
-                                    
+
                                     <div class="form-group col-sm-6">
 
                                         <label for="co" class="col-sm-3 control-label">  C/O  :<span class="text-red">  </span> </label>
-                                        
+
                                         <div class="col-sm-6">       
-                                            
+
                                             <input type="text"  class="form-control  "  id="co"  th:field="*{co}" name="co"  />            
-                                            
+
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('co')}" th:errors="*{co}">First Name Error</span>
-                                            
+
                                         </div>     
-                                        
+
                                     </div>
-                                    
+
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="form-group col-sm-6">
                                         <label for="vill" class="col-sm-3 control-label">Vill/House<span class="text-red"></span> :</label>

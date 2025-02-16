@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-               <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -30,16 +30,16 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title">Mother Health Condition </h3>
-                                 <div class="card-tools">
-                                <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Mother Health Condition </a>
-                            </div>        </div>
+                                <div class="card-tools">
+                                    <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Mother Health Condition </a>
+                                </div>        </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                
+
                                 <table class="table">
                                     <tr th:each="o_MHConditions,status:${o_MHConditions}">
                                         <td>
-                                       
+
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <th><a th:href="@{/mhealthconditions/edit/{id}(id=${o_MHConditions.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></th> <th></th>
@@ -110,17 +110,17 @@
                         <div class="card card-info" style="overflow-x: scroll">
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Child Health Condition </h3>
-                                
-                                        <div class="card-tools">
 
-                           
-                                         <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Child Health Condition </a>
-                                        </div> 
-                               
+                                <div class="card-tools">
+
+
+                                    <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Child Health Condition </a>
+                                </div> 
+
                             </div>
                             <!-- /.card-header -->
-                          <div class="card-body table-responsive ">
-                        <table class="table table-bordered table-striped">
+                            <div class="card-body table-responsive ">
+                                <table class="table table-bordered table-striped">
                                     <tr>
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>

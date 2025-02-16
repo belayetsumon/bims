@@ -282,8 +282,8 @@
                                 <span th:inline="text"> [[${motherMasterData.pregnancyAfterBeingRaped}]]</span>
                             </div>                            
                         </div>
-                        
-                             <div class="form-group  col-sm-12 row">
+
+                        <div class="form-group  col-sm-12 row">
                             <label for="name" class="col-sm-7 control-label"><b> Was she faced dowry abuse before she arrived at SPP? :</b></label>
                             <div class="col-sm-2">          
                                 <span th:inline="text"> [[${motherMasterData.facedDowryAbuse}]]</span>
@@ -310,310 +310,310 @@
                         </div>
                     </div>
                     <div class="card-body">
-                                             <table class="table table-bordered">
-                                                    <tr class="bg-info">
-                                                        <th> Section Name : Home Visit</th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 1.Mother Address </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.maddress.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 2.Mother House Information </td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mhouseInformation)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mhouseInformation)}" > 0 </span>
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 3.Per Capita Income </td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mincomeInformation)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mincomeInformation)}" > 0 </span>
-                        
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>4.Property </td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mproperty)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mproperty)}" > 0 </span>
-                        
-                        
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>5.Current Support </td> 
-                                                        <td>
-                                                            <span th:inline="text"> [[${motherMasterData.mcurrentHelp.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 6.Community Information</td> 
-                                                        <td> 
-                        
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mcommunityInformation)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mcommunityInformation)}" > 0 </span>
-                        
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>7.Accessibility</td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.maccessibility)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.maccessibility)}" > 0 </span>
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>8. Lifestyle</td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.mlifestyle)}" > 1 </span>
-                                                            <span th:if="${#strings.isEmpty(motherMasterData.mlifestyle)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>9.Nutrition</td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mnutrition)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mnutrition)}" > 0 </span>
-                                                        </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 10.Local Govt Facilities</td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mlocalGovtFacilities)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mlocalGovtFacilities)}" > 0 </span> 
-                        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>11.Family Information</td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mfamilynformation.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 12.Approval </td> 
-                                                        <td> 
-                                                            <span   th:if="${ not #strings.isEmpty(motherMasterData.mapproval)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mapproval)}" > 0 </span> 
-                        
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 13 Children </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mchildinfo.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name : Observation</th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>14.Induction</td> 
-                                                        <td>  <span   th:if="${ not #strings.isEmpty(motherMasterData.oinduction)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.oinduction)}" > 0 </span> </td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>15. Mother Health Condition </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.omHealthConditions)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.omHealthConditions)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>16. Professional Observation Mother  </td> 
-                                                        <td><span   th:if="${ not #strings.isEmpty(motherMasterData.oprofessionalObserbationsMother)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.oprofessionalObserbationsMother)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td>17. In House induction </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.oinhouseInductionsMother)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.oinhouseInductionsMother)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 18. Mother  Admission</td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.addmission)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.addmission)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 19. Mother  Image</td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.mimage)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.mimage)}" > 0 </span></td>
-                                                    </tr>
-                        
-                        
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name Rehabilitations </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 20. Mother House Allocations </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.rmHousAllocation)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.rmHousAllocation)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 21. Mother Work Allocations </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.rmWorkAllocation.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 22. Mother Occupational Therapy Session  </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.rOT.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 23. Mother Physical Therapy Session   </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.rPT.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 24. Psychology   </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.rpsychologyMother.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 25. Mother Life Skill/Universal Training   </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.rlifeSkillTrainning.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 26. Mother IGA Training    </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.riGATraining.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name : Clinic </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 27. Daily Visit    </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.cvisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 28. Referral    </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.creferral.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 29. Clinic Admission   </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.cadmission.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 30. Clinic Release  </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.crelease.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name : Mother Pre-Reintegration </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 31. Pre-Reintegration </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.preReintegrationVisit)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.preReintegrationVisit)}" > 0 </span></td>
-                                                    </tr>
-                        
-                        
-                        
-                                                    <tr>
-                                                        <td> 32. Mother Address  </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.maddressReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 33. Mother House Information  </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mhouseInformationReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 34. Community Information  </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mcommunityInformationReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 35. Accessibility </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.maccessibilityReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 36. Lifestyle </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mlifestyleReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 37. Family Information </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.mfamilyinformationReintegrationVisit.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name: Reintegration Check List  </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 38. Reintegration Check List </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.reintegrationCheckList)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.reintegrationCheckList)}" > 0 </span></td>
-                                                    </tr>
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name: Reintegration   </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 39. Reintegration </td> 
-                                                        <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.releaseMother)}" > 1 </span>
-                                                            <span   th:if="${#strings.isEmpty(motherMasterData.releaseMother)}" > 0 </span></td>
-                                                    </tr>
-                        
-                        
-                                                    <tr class="bg-info">
-                                                        <th> Section Name:  Follow Up  </th> 
-                                                        <th> Data Size</th>
-                        
-                                                    </tr>
-                        
-                        
-                                                    <tr>
-                                                        <td> 40. Follow Up </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.followUpMother.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 41. Mother Crisis Meet Up </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.followMotherPerCapitaIncome.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                    <tr>
-                                                        <td> 42. Mother Crisis Meet Up </td> 
-                                                        <td> <span th:inline="text"> [[${motherMasterData.motherCrisisMeetUp.size()}]]</span></td>
-                                                    </tr>
-                        
-                                                </table>
+                        <table class="table table-bordered">
+                            <tr class="bg-info">
+                                <th> Section Name : Home Visit</th> 
+                                <th> Data Size</th>
+
+                            </tr>
+                            <tr>
+                                <td> 1.Mother Address </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.maddress.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 2.Mother House Information </td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mhouseInformation)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mhouseInformation)}" > 0 </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> 3.Per Capita Income </td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mincomeInformation)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mincomeInformation)}" > 0 </span>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>4.Property </td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mproperty)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mproperty)}" > 0 </span>
+
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>5.Current Support </td> 
+                                <td>
+                                    <span th:inline="text"> [[${motherMasterData.mcurrentHelp.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 6.Community Information</td> 
+                                <td> 
+
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mcommunityInformation)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mcommunityInformation)}" > 0 </span>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>7.Accessibility</td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.maccessibility)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.maccessibility)}" > 0 </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>8. Lifestyle</td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.mlifestyle)}" > 1 </span>
+                                    <span th:if="${#strings.isEmpty(motherMasterData.mlifestyle)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td>9.Nutrition</td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mnutrition)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mnutrition)}" > 0 </span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> 10.Local Govt Facilities</td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mlocalGovtFacilities)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mlocalGovtFacilities)}" > 0 </span> 
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11.Family Information</td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mfamilynformation.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 12.Approval </td> 
+                                <td> 
+                                    <span   th:if="${ not #strings.isEmpty(motherMasterData.mapproval)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mapproval)}" > 0 </span> 
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> 13 Children </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mchildinfo.size()}]]</span></td>
+                            </tr>
+
+                            <tr class="bg-info">
+                                <th> Section Name : Observation</th> 
+                                <th> Data Size</th>
+
+                            </tr>
+                            <tr>
+                                <td>14.Induction</td> 
+                                <td>  <span   th:if="${ not #strings.isEmpty(motherMasterData.oinduction)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.oinduction)}" > 0 </span> </td>
+                            </tr>
+
+                            <tr>
+                                <td>15. Mother Health Condition </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.omHealthConditions)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.omHealthConditions)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td>16. Professional Observation Mother  </td> 
+                                <td><span   th:if="${ not #strings.isEmpty(motherMasterData.oprofessionalObserbationsMother)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.oprofessionalObserbationsMother)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td>17. In House induction </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.oinhouseInductionsMother)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.oinhouseInductionsMother)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 18. Mother  Admission</td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.addmission)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.addmission)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 19. Mother  Image</td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.mimage)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.mimage)}" > 0 </span></td>
+                            </tr>
+
+
+
+                            <tr class="bg-info">
+                                <th> Section Name Rehabilitations </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+
+                            <tr>
+                                <td> 20. Mother House Allocations </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.rmHousAllocation)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.rmHousAllocation)}" > 0 </span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 21. Mother Work Allocations </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.rmWorkAllocation.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 22. Mother Occupational Therapy Session  </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.rOT.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 23. Mother Physical Therapy Session   </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.rPT.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 24. Psychology   </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.rpsychologyMother.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 25. Mother Life Skill/Universal Training   </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.rlifeSkillTrainning.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 26. Mother IGA Training    </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.riGATraining.size()}]]</span></td>
+                            </tr>
+
+                            <tr class="bg-info">
+                                <th> Section Name : Clinic </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+
+                            <tr>
+                                <td> 27. Daily Visit    </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.cvisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 28. Referral    </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.creferral.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 29. Clinic Admission   </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.cadmission.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 30. Clinic Release  </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.crelease.size()}]]</span></td>
+                            </tr>
+
+                            <tr class="bg-info">
+                                <th> Section Name : Mother Pre-Reintegration </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+                            <tr>
+                                <td> 31. Pre-Reintegration </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.preReintegrationVisit)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.preReintegrationVisit)}" > 0 </span></td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td> 32. Mother Address  </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.maddressReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 33. Mother House Information  </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mhouseInformationReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 34. Community Information  </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mcommunityInformationReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 35. Accessibility </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.maccessibilityReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 36. Lifestyle </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mlifestyleReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 37. Family Information </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.mfamilyinformationReintegrationVisit.size()}]]</span></td>
+                            </tr>
+
+                            <tr class="bg-info">
+                                <th> Section Name: Reintegration Check List  </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+
+                            <tr>
+                                <td> 38. Reintegration Check List </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.reintegrationCheckList)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.reintegrationCheckList)}" > 0 </span></td>
+                            </tr>
+
+                            <tr class="bg-info">
+                                <th> Section Name: Reintegration   </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+
+                            <tr>
+                                <td> 39. Reintegration </td> 
+                                <td> <span   th:if="${ not #strings.isEmpty(motherMasterData.releaseMother)}" > 1 </span>
+                                    <span   th:if="${#strings.isEmpty(motherMasterData.releaseMother)}" > 0 </span></td>
+                            </tr>
+
+
+                            <tr class="bg-info">
+                                <th> Section Name:  Follow Up  </th> 
+                                <th> Data Size</th>
+
+                            </tr>
+
+
+                            <tr>
+                                <td> 40. Follow Up </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.followUpMother.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 41. Mother Crisis Meet Up </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.followMotherPerCapitaIncome.size()}]]</span></td>
+                            </tr>
+
+                            <tr>
+                                <td> 42. Mother Crisis Meet Up </td> 
+                                <td> <span th:inline="text"> [[${motherMasterData.motherCrisisMeetUp.size()}]]</span></td>
+                            </tr>
+
+                        </table>
 
 
 

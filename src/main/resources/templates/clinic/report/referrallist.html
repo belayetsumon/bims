@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-              <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-2">
@@ -38,8 +38,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                                  
-                                 <div class="row">
+
+                                <div class="row">
                                     <div class="col-sm-12 ">
 
                                         <form class="row  justify-content-center mb-1" 
@@ -71,31 +71,31 @@
                                         <br/>
                                     </div>  
                                 </div>
-                                 <table id="tablesdata" class="table table-bordered table-striped">
+                                <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
 
-                                        <th>Mother Master Code</th>
-                                        <th>Referral Date</th>
-                                        <th>Referred  To  </th>
-                                        <th>Reasons</th>
-                                        <th>Remark</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Referral Date</th>
+                                            <th>Referred  To  </th>
+                                            <th>Reasons</th>
+                                            <th>Remark</th>
 
-                                    </tr>  
-                                            </thead>
+                                        </tr>  
+                                    </thead>
                                     <tbody>
-                                    <tr th:each="referral,status:${referral}">                                
-                                        <td th:text="${status.count}"> 2. </td>      
+                                        <tr th:each="referral,status:${referral}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
 
-                                        <td th:text="${referral.motherMasterCode}">Chakma</td>
-                                        <td th:text="${referral.referralDate}">Chakma</td>
-                                        <td th:text="${referral.reffrredTo}">Chakma</td>
-                                        <td th:text="${referral.reasons}">Chakma</td>
-                                        <td th:text="${referral.remarks}">Chakma</td>
+                                            <td th:text="${referral.motherMasterCode}">Chakma</td>
+                                            <td th:text="${referral.referralDate}">Chakma</td>
+                                            <td th:text="${referral.reffrredTo}">Chakma</td>
+                                            <td th:text="${referral.reasons}">Chakma</td>
+                                            <td th:text="${referral.remarks}">Chakma</td>
 
-                                    </tr>
-                                       </tbody>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

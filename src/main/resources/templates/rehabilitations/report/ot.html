@@ -7,7 +7,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                   Rehabilitations
+                    Rehabilitations
                 </h1>
             </section>
 
@@ -18,7 +18,7 @@
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title"> Mother OT Report</h3>
-          <div class="box-tools pull-right">
+                                <div class="box-tools pull-right">
                                     <div class="btn-group">                 
                                         <a  th:href="@{/rehabilitations/report}"  type="button" class="btn  btn-warning btn-xs">Close</a>
                                     </div>
@@ -26,11 +26,11 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                        
-                             <table class="table table-bordered">
+
+                                <table class="table table-bordered">
                                     <tr>
                                         <th style="width: 10px">#</th>  
-                                   
+
                                         <th>Mother Master Code</th>
                                         <th>Therapeutic Session Date </th>
                                         <th> Session Type</th>
@@ -41,7 +41,7 @@
                                     </tr>
                                     <tr th:each="list,status:${r_ot}">
                                         <td th:text="${status.count}">2.</td>
-                                       <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${list.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list.sessionType.name}">Chakma</td>
                                         <td th:text="${list.diagonosis.name}">Chakma</td>

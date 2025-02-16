@@ -45,20 +45,20 @@
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
 
                             <div class="card-body">
-                                
-                                           <div class="form-group col-sm-6 row">
-                                        <label for="name" class="col-sm-4 control-label">Children Id<span class="text-red"> * </span> :</label>
 
-                                        <div class="col-sm-6">   
-                                            <select class="form-control  "   th:field="*{childMasterCode}"  >
-                                                <option value=" "> Select one</option>
-                                                <option th:each =" childlist :${childlist}"
-                                                        th:value=" ${childlist.id}" 
-                                                        th:text="${childlist.childMasterCode}"> Select one</option>
-                                            </select>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
-                                        </div>    
-                                    </div>
+                                <div class="form-group col-sm-6 row">
+                                    <label for="name" class="col-sm-4 control-label">Children Id<span class="text-red"> * </span> :</label>
+
+                                    <div class="col-sm-6">   
+                                        <select class="form-control  "   th:field="*{childMasterCode}"  >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" childlist :${childlist}"
+                                                    th:value=" ${childlist.id}" 
+                                                    th:text="${childlist.childMasterCode}"> Select one</option>
+                                        </select>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
+                                    </div>    
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-sm-8 row">
                                         <label for="co" class="col-sm-4 control-label"> Therapeutic Session Date :<span class="text-red"> * </span> </label>

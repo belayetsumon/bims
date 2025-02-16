@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-          <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-5">
@@ -30,96 +30,96 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Children List For Swim Safe Lesson Total [[${list.size()}]]</h3>
-                                        <div class="card-tools">
-                            <div class="btn-group">
-                                <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
-                            </div>
-                        </div>
+                                <div class="card-tools">
+                                    <div class="btn-group">
+                                        <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="table-responsive">  
-                                          <form class=" justify-content-center mb-1" 
-                              th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
+                                    <form class=" justify-content-center mb-1" 
+                                          th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
 
-                            <div class="row justify-content-center">
-                                <div class="col-auto">
-                                    <label class="" for="email">From:</label>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-group input-group date">
-                                        <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <label class="" for="to">To:</label>
-                                </div>
-                                <div class="col-auto"> 
-                                    <div class="form-group input-group date">
+                                        <div class="row justify-content-center">
+                                            <div class="col-auto">
+                                                <label class="" for="email">From:</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-group input-group date">
+                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">To:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
 
-                                        <input type="text" class="form-control"  id="endDate" name="endDate"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-auto">
-                                    <label class="" for="email">Child Master Code:</label>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="form-group input-group date">
-                                        <input type="text"   id="childMasterCode"  class="form-control"  name="childMasterCode"/>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <label class="" for="to">Graduate Status:</label>
-                                </div>
-                                <div class="col-auto"> 
-                                    <div class="form-group input-group date">
+                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="col-auto">
+                                                <label class="" for="email">Child Master Code:</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-group input-group date">
+                                                    <input type="text"   id="childMasterCode"  class="form-control"  name="childMasterCode"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="" for="to">Graduate Status:</label>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <div class="form-group input-group date">
 
-                                        <select class="form-control"    name="graduateStatus" >
-                                            <option value=" "> Select one</option>
-                                            <option th:each =" graduatestatuss :${graduatestatus}"
-                                                    th:value=" ${graduatestatuss}" 
-                                                    th:text="${graduatestatuss}"> Select one</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="form-group text-center m-3">
+                                                    <select class="form-control"    name="graduateStatus" >
+                                                        <option value=" "> Select one</option>
+                                                        <option th:each =" graduatestatuss :${graduatestatus}"
+                                                                th:value=" ${graduatestatuss}" 
+                                                                th:text="${graduatestatuss}"> Select one</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center">
+                                            <div class="form-group text-center m-3">
 
-                                    <button type="submit" class="btn btn-info ">Submit</button>
-                                </div>
-                            </div>
-                        </form> 
-                                     <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
-                            <thead> 
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-
-
-                                            <th>Child master code</th>
-                                            <th>Child Name</th>
-                                            <th>Result</th>
-                                            <th>Start Date</th> 
-                                            <th>End Date</th>  
-
-                                        </tr>    
-                                            </thead>
-                            <tbody>
-                                        <tr th:each="lists,status:${list}">                                
-                                            <td th:text="${status.count}">2.</td>      
+                                                <button type="submit" class="btn btn-info ">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                    <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                                        <thead> 
+                                            <tr>
+                                                <th style="width: 10px">#</th>
 
 
-                                            <!--                                            <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                                                        <td th:text="${lists.motherMasterCode.motherName}">Chakma</td>-->
-                                            <td th:text="${lists.childMasterCode}">Chakma</td>
-                                            <td th:text="${lists.swimmingName}">Chakma</td>
-                                            <td th:text="${lists.status}">Chakma</td>
-                                            <td th:text="${lists.startDate}">Chakma</td>
-                                            <td th:text="${lists.endDate}">Chakma</td>
-                                          </tr> 
-                                              </tbody>
+                                                <th>Child master code</th>
+                                                <th>Child Name</th>
+                                                <th>Result</th>
+                                                <th>Start Date</th> 
+                                                <th>End Date</th>  
+
+                                            </tr>    
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="lists,status:${list}">                                
+                                                <td th:text="${status.count}">2.</td>      
+
+
+                                                <!--                                            <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                                                            <td th:text="${lists.motherMasterCode.motherName}">Chakma</td>-->
+                                                <td th:text="${lists.childMasterCode}">Chakma</td>
+                                                <td th:text="${lists.swimmingName}">Chakma</td>
+                                                <td th:text="${lists.status}">Chakma</td>
+                                                <td th:text="${lists.startDate}">Chakma</td>
+                                                <td th:text="${lists.endDate}">Chakma</td>
+                                            </tr> 
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

@@ -49,10 +49,10 @@
                                         <th> Total Days</th>
                                         <th> Ext Date </th>
                                         <th> Total Days </th>
-                                         <th> Grand Total Days </th>
+                                        <th> Grand Total Days </th>
                                         <th>Remark</th>
                                     </tr> 
-                                    
+
                                     <tr th:each="list,status:${list}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/rmhousallocation/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info">Edit</a></td>
@@ -101,10 +101,10 @@
                                         <th>House Name </th>
                                         <th> Start Date</th>
                                         <th>End Date</th>
-                                         <th> Total Days</th>
+                                        <th> Total Days</th>
                                         <th> Ext Date </th>
                                         <th> Total Days </th>
-                                         <th> Grand Total Days </th>
+                                        <th> Grand Total Days </th>
                                         <th>Remark</th>
                                     </tr>                           
                                     <tr th:each="list2,status:${list2}">
@@ -116,14 +116,14 @@
                                         <td th:text="${list2.houseName}">Chakma</td>
                                         <td th:text="${list2.allocationDate}">Chakma</td>
                                         <td th:text="${list2.endDate}">Chakma</td>
-                                        
+
                                         <td th:text="${list2.totaldays}">Chakma</td>                                 
                                         <td th:text="${list2.extDate}">Chakma</td>
-                                        
+
                                         <td th:text="${list2.extentionDays}">Chakma</td>
-                                        
+
                                         <td th:text="${list2.grandTotalDay}">Chakma</td>
-                                        
+
                                         <td th:text="${list2.remark}">Chakma</td>
                                     </tr>
                                 </table>
@@ -140,7 +140,7 @@
 
                     <!-- /.col -->
                 </div>
-           
+
 
             </section>
             <!-- /.content -->

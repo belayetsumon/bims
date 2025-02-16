@@ -30,7 +30,7 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title">Induction Mother List [[${o_Induction.size()}]]</h3>
-                                     <div class="card-tools pull-right">
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
                                         <a  th:href="@{/observationreport/observation}"  type="button" class="btn  btn-light btn-xs text-danger">Close</a>
                                     </div>
@@ -39,19 +39,19 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="tablesdata" class="table table-bordered">
-                                        <thead>
-                                    <tr>
-                                        
-                                        <th style="width: 10px">#</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Induction Start Date </th>
-                                        <th> Induction End Date</th>
-                                        <th> Immediate Support On</th>
-                                        <th> Challenges of Beneficiary</th>
-                                        <th> Possible length of staying at SPP </th>
-                                        <th>Remark</th>
-                                    </tr>   
-                                           </thead>
+                                    <thead>
+                                        <tr>
+
+                                            <th style="width: 10px">#</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Induction Start Date </th>
+                                            <th> Induction End Date</th>
+                                            <th> Immediate Support On</th>
+                                            <th> Challenges of Beneficiary</th>
+                                            <th> Possible length of staying at SPP </th>
+                                            <th>Remark</th>
+                                        </tr>   
+                                    </thead>
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
                                         <td th:text="${list.motherMasterCode}">Chakma</td>

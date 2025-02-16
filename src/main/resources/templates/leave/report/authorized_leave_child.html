@@ -77,7 +77,7 @@
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                             <th> #</th>
+                                                <th> #</th>
                                                 <th> Mother  Id</th>
                                                 <th> Section name</th>
                                                 <th> Leave start date</th>
@@ -92,7 +92,7 @@
                                         </thead>
                                         <tbody>
                                             <tr th:each="list,status:${list}">
-                                                    <td th:text="${status.count}">Chakma</td>
+                                                <td th:text="${status.count}">Chakma</td>
 
                                                 <td th:text="${list.motherMasterCode}">Chakma</td>
                                                 <td th:text="${list.sectionName}">Chakma</td>
@@ -106,7 +106,7 @@
                                                 <td th:text="${list.joinningDate}" >Chakma</td>
                                                 <td th:text="${list.extraDay}" >Chakma</td>
                                                 <td th:text="${list.remark}">Chakma</td>
-                             
+
                                             </tr>
                                         </tbody>
                                     </table>

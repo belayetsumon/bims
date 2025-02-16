@@ -27,46 +27,46 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <form class="row  justify-content-center mb-1" 
-                                              th:action="@{/longtremcare/follow_uplist}"   method="get">
+                                      th:action="@{/longtremcare/follow_uplist}"   method="get">
 
-                                            <div class="col-auto">
+                                    <div class="col-auto">
 
-                                                <label class="" for="email">From:</label>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-group input-group date">
+                                        <label class="" for="email">From:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
 
-                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <label class="" for="to">To:</label>
-                                            </div>
-                                            <div class="col-auto"> 
-                                                <div class="form-group input-group date">
+                                            <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">To:</label>
+                                    </div>
+                                    <div class="col-auto"> 
+                                        <div class="form-group input-group date">
 
-                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <label class="" for="to">Gender:</label>
-                                            </div>
-                                            <div class="col-auto"> 
-                                                <div class="form-group input-group date">
+                                            <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">Gender:</label>
+                                    </div>
+                                    <div class="col-auto"> 
+                                        <div class="form-group input-group date">
 
-                                                    <select class="form-control"    name="gender" >
-                                                        <option value=" "> Select one</option>
-                                                        <option th:each =" genderLists :${genderList}"
-                                                                th:value=" ${genderLists}" 
-                                                                th:text="${genderLists}"> Select one</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            <select class="form-control"    name="gender" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each =" genderLists :${genderList}"
+                                                        th:value=" ${genderLists}" 
+                                                        th:text="${genderLists}"> Select one</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                            <div class=" col-auto text-center">
-                                                <button type="submit" class="btn btn-info ">Submit</button>
-                                            </div>
-                                        </form>      
+                                    <div class=" col-auto text-center">
+                                        <button type="submit" class="btn btn-info ">Submit</button>
+                                    </div>
+                                </form>      
                                 <br/>
 
                                 <table id="tablesdata" class="table table-bordered table-striped">
@@ -75,8 +75,8 @@
                                             <th style="width: 10px">#</th>
 
                                             <th>Child Master Code</th>
-                                                <th>Child Name</th>
-                                               <th>Gender</th>
+                                            <th>Child Name</th>
+                                            <th>Gender</th>
                                             <th>Follow Up Type</th>
                                             <th>Follow Up Date </th>
                                             <th>Follow Up By </th>
@@ -87,7 +87,7 @@
                                         <tr th:each="foster_follow_up,status:${follow_up}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${foster_follow_up.childMasterCode}">Chakma</td>
-                                                 <td th:text="${foster_follow_up.childname}">Chakma</td>
+                                            <td th:text="${foster_follow_up.childname}">Chakma</td>
                                             <td th:text="${foster_follow_up.gender}">Chakma</td>
                                             <td th:text="${foster_follow_up.followUpType}">Chakma</td>
                                             <td th:text="${foster_follow_up.followUpDate}">Chakma</td>

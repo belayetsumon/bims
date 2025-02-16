@@ -35,15 +35,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     // Initialize Select2 on your select element
-   // alert("hello select 2");
+    // alert("hello select 2");
     $('#select2').select2(
-           {
-   // placeholder: "Select an option",
-    allowClear: true,
-    width: '100%'
-} 
-            
-            );
+            {
+                // placeholder: "Select an option",
+                allowClear: true,
+                width: '100%'
+            }
+
+    );
 });
 
 

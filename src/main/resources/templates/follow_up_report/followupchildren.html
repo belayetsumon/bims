@@ -33,10 +33,10 @@
                     <div class="card-header with-border">
                         <h3 class="card-title">Follow Up Children <span th:text='${form_title}'>Add </span></h3>
                         <div class="card-tools pull-right">
-                                   
-                             <a  th:href="@{/followupmother/details/{m_id}(m_id=${followUpChildren.motherMasterCode.id})}"  type="button" class="btn  btn-light btn-sm text-red">Close <i class="fas fa-times"></i></a>
-                                
-                         
+
+                            <a  th:href="@{/followupmother/details/{m_id}(m_id=${followUpChildren.motherMasterCode.id})}"  type="button" class="btn  btn-light btn-sm text-red">Close <i class="fas fa-times"></i></a>
+
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -79,9 +79,9 @@
                                     <label for="co" class="col-sm-3 control-label"> Release date: <span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
 
                                             <input type="text"   class="form-control  "  th:required="required" th:field="*{releaseDate}"   placeholder="dd-MM-yyyy" />                
                                         </div>
@@ -94,9 +94,9 @@
                                     <label for="co" class="col-sm-3 control-label"> Visit date:<span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
 
                                             <input type="text"   class="form-control  "  th:required="required" th:field="*{visitDate}"   placeholder="dd-MM-yyyy" />                
                                         </div>

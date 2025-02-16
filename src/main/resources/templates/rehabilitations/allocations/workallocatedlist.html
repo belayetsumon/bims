@@ -30,7 +30,7 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Work Allocated Mother  List <Strong> Total: [[${list.size()}]] </strong>
-                                    </h3>
+                                </h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -40,20 +40,20 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>  
-                       
+
                                                 <th> Mother Master Code</th>
                                                 <th> Mother Name</th>
                                                 <th> Arrival Date</th>
                                                 <th>Admission Date</th>
                                                 <th>Remarks</th>
-                                                 <th>Details</th>
+                                                <th>Details</th>
                                             </tr>  
                                         </thead>
 
                                         <tbody> 
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">2.</td>
-                                    
+
                                                 <td th:text="${list.motherMasterCode}">Chakma</td>
                                                 <td th:text="${list.motherName}">Chakma</td>
                                                 <td th:text="${list.arrivalDate}">Chakma</td>
@@ -61,7 +61,7 @@
                                                 <td th:text="${list.remarks}" >Chakma</td>
                                                 <td>
                                                     <a th:href="@{/houseworkallocation/workindex/{id} (id=${list.motherMasterCodeId})}"
-                                                        type="button" class="btn btn-xs bg-info ">Details </a>
+                                                       type="button" class="btn btn-xs bg-info ">Details </a>
                                                 </td>
                                             </tr>
                                         </tbody>

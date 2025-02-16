@@ -36,8 +36,8 @@
                             <div class="box-body">
 
                                 <div class="row">
-                                    
-                                             <div class="form-group col-sm-4">
+
+                                    <div class="form-group col-sm-4">
                                         <label for="name" class="col-sm-6 control-label"> Children Id<span class="text-red">  </span> :</label>
 
                                         <div class="col-sm-6">   
@@ -68,7 +68,7 @@
                                         </div>                            
                                     </div>
                                 </div>
-               <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="name" class="col-sm-2 control-label"> Previous Treatment <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
@@ -87,7 +87,7 @@
                                         </div>                            
                                     </div>
                                 </div>
-                     
+
                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="name" class="col-sm-2 control-label"> Nutrition Status <span class="text-red">  </span>: </label>
@@ -127,18 +127,18 @@
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bloodPressure')}" th:errors="*{bloodPressure}">First Name Error</span>
                                         </div>    
                                     </div>
-                                   <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4">
                                         <label for="name" class="col-sm-5 control-label"> Ear Problem<span class="text-red"> * </span> :</label>
-                                        
-                                                                                <div class="col-sm-6">   
-                                                                                    <select class="form-control  "    th:field="*{earProblem}" >
-                                                                                        <option value=" "> Select one</option>
-                                                                                        <option th:each ="earProblem :${earProblem}"
-                                                                                                th:value=" ${earProblem}" 
-                                                                                                th:text="${earProblem}"> Select one</option>
-                                                                                    </select>
-                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('earProblem')}" th:errors="*{earProblem}">First Name Error</span>
-    </div>    
+
+                                        <div class="col-sm-6">   
+                                            <select class="form-control  "    th:field="*{earProblem}" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="earProblem :${earProblem}"
+                                                        th:value=" ${earProblem}" 
+                                                        th:text="${earProblem}"> Select one</option>
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('earProblem')}" th:errors="*{earProblem}">First Name Error</span>
+                                        </div>    
                                     </div>
 
                                     <div class="form-group col-sm-4">
@@ -199,7 +199,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                        <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-4">
                                         <label for="name" class="col-sm-5 control-label">Bony Fracture <span class="text-red">  *</span> :</label>
 
                                         <div class="col-sm-6">   
@@ -212,17 +212,17 @@
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('bonyFracture')}" th:errors="*{bonyFracture}">First Name Error</span>
                                         </div>    
                                     </div>
-                                     
-                                    
-                                        <div class="form-group col-sm-8">
-                                            <label for="name" class="col-sm-2 control-label"> Note <span class="text-red">  </span>: </label>
-                                            <div class="col-sm-8">                   
-                                                <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{note}" > </textarea>         
-                                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('note')}" th:errors="*{note}">First Name Error</span>
-                                            </div>                            
-                                        </div>
-                         </div>
-                                      <div class="row">
+
+
+                                    <div class="form-group col-sm-8">
+                                        <label for="name" class="col-sm-2 control-label"> Note <span class="text-red">  </span>: </label>
+                                        <div class="col-sm-8">                   
+                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{note}" > </textarea>         
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('note')}" th:errors="*{note}">First Name Error</span>
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-sm-4">
                                         <label for="name" class="col-sm-4 control-label"> Neurological Disease<span class="text-red">  *</span> :</label>
 
@@ -265,7 +265,7 @@
                                         </div>    
                                     </div>
                                 </div>
-                                           <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="name" class="col-sm-2 control-label"> Previous Report<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
@@ -274,7 +274,7 @@
                                         </div>                            
                                     </div>
                                 </div>
-                                           <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="name" class="col-sm-2 control-label"> Plan For Further Action <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
@@ -283,7 +283,7 @@
                                         </div>                            
                                     </div>
                                 </div>
-                          <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label for="name" class="col-sm-2 control-label"> Other Important Findings <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   

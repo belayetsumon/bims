@@ -6,7 +6,7 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
 
-                    <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-3">
@@ -23,10 +23,10 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </section>
-            
-            
-            
-            
+
+
+
+
             <!-- Main content -->
             <section class="content">
                 <!-- Default card -->
@@ -35,7 +35,7 @@
                         <h3 class="card-title"> Child Crisis Meet Up</h3>
                         <div class="card-tools pull-right">
                             <div class="btn-group">                 
-                                 <a  th:href="@{/longtremcare/index/{id}(id=${childCrisisMeetUp.childMasterCode.id})}"   type="button" class="btn  btn-light text-red  btn-xs  "> Close </i><i class="fas fa-times"></i></a>
+                                <a  th:href="@{/longtremcare/index/{id}(id=${childCrisisMeetUp.childMasterCode.id})}"   type="button" class="btn  btn-light text-red  btn-xs  "> Close </i><i class="fas fa-times"></i></a>
                             </div>
                         </div>
                     </div>
@@ -60,46 +60,46 @@
                                     <label for="co" class="col-sm-3 control-label">Date <span class="text-red"> *</span> :</label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
                                             <input type="text"   class="form-control  "  th:required="required" th:field="*{entrydate}"  />                
                                         </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('entrydate')}" th:errors="*{entrydate}">First Name Error</span>
                                     </div>   
                                 </div>
 
-                             
-                                    <div class="form-group col-sm-12 row">
-                                        <label for="name" class="col-sm-3 control-label">Location<span class="text-red"> </span> :</label>
-                                        <div class="col-sm-4">                   
-                                            <input type="text"   class="form-control  "  th:field="*{location}" />          
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">First Name Error</span>
-                                        </div>                            
-                              
+
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-3 control-label">Location<span class="text-red"> </span> :</label>
+                                    <div class="col-sm-4">                   
+                                        <input type="text"   class="form-control  "  th:field="*{location}" />          
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">First Name Error</span>
+                                    </div>                            
+
                                 </div>
-                                
-                                    <div class="form-group col-sm-12 row">
-                                        <label for="co" class="col-sm-3 control-label">Reason<span class="text-red"> </span> :</label>
-                                        <div class="  col-sm-4">  
-                                            <div class=" input-group ">  
-                                                <input type="text"   class="form-control  "   th:field="*{reason}"  />                
-                                            </div>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">First Name Error</span>
-                                        </div>   
-                                    </div>
 
-                                    <div class="form-group col-sm-12 row">
-                                        <label for="co" class="col-sm-3 control-label">Challenge <span class="text-red"> </span> :</label>
-                                        <div class="  col-sm-4">  
-                                            <div class=" input-group">  
+                                <div class="form-group col-sm-12 row">
+                                    <label for="co" class="col-sm-3 control-label">Reason<span class="text-red"> </span> :</label>
+                                    <div class="  col-sm-4">  
+                                        <div class=" input-group ">  
+                                            <input type="text"   class="form-control  "   th:field="*{reason}"  />                
+                                        </div>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}">First Name Error</span>
+                                    </div>   
+                                </div>
 
-                                                <input type="text"   class="form-control  "   th:field="*{challenge}"  />                
-                                            </div>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('challenge')}" th:errors="*{challenge}">First Name Error</span>
-                                        </div>   
-                                    </div>
-                             
+                                <div class="form-group col-sm-12 row">
+                                    <label for="co" class="col-sm-3 control-label">Challenge <span class="text-red"> </span> :</label>
+                                    <div class="  col-sm-4">  
+                                        <div class=" input-group">  
+
+                                            <input type="text"   class="form-control  "   th:field="*{challenge}"  />                
+                                        </div>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('challenge')}" th:errors="*{challenge}">First Name Error</span>
+                                    </div>   
+                                </div>
+
                                 <div class="form-group col-sm-12 row">
                                     <label for="co" class="col-sm-3 control-label">Action<span class="text-red"> </span> :</label>
                                     <div class="  col-sm-4">  
@@ -137,23 +137,23 @@
                                     <label for="name" class="col-sm-3 control-label">Expected Solving Date <span class="text-red">   </span>: </label>
                                     <div class="  col-sm-4">  
                                         <div class=" input-group date ">  
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
                                             <input type="text"   class="form-control  "  th:required="required" th:field="*{expectedsolvingdate}"  />                
                                         </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('expectedsolvingdate')}" th:errors="*{expectedsolvingdate}">First Name Error</span>
                                     </div>   
                                 </div>
                             </div>
-                            
-                                       <div class="form-group col-sm-12 row">
-                                    <label for="name" class="col-sm-3 control-label"> Remark <span class="text-red">  </span> </label>
-                                    <div class="col-sm-8">                   
-                                        <textarea type="textarea" cols="60" rows="8"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
-                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
-                                    </div>                            
-                                </div>
+
+                            <div class="form-group col-sm-12 row">
+                                <label for="name" class="col-sm-3 control-label"> Remark <span class="text-red">  </span> </label>
+                                <div class="col-sm-8">                   
+                                    <textarea type="textarea" cols="60" rows="8"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
+                                </div>                            
+                            </div>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info">Save</button>

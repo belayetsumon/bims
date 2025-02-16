@@ -41,7 +41,7 @@
                                             <th>Release Date</th>
                                             <th>Address</th>
                                             <th> Eligible Children</th>
-                                             <th> Admitted Children</th>
+                                            <th> Admitted Children</th>
                                             <th>Post discharge (1st) visit date:</th>
                                             <th> Children Release  </th>
                                             <th>Edit</th>
@@ -62,7 +62,7 @@
 
                                             <td th:text="${list.address}" >Chakma</td>
                                             <td th:text="${list.numberOfEligibleChildren}" >Chakma</td>
-                                                <td th:text="${list.totalAdmitedChild}" >Chakma</td>
+                                            <td th:text="${list.totalAdmitedChild}" >Chakma</td>
                                             <td th:text="${list.postDischargeVisitDate}">Chakma</td>
                                             <td>
                                                 <a   th:href="@{/reintegration/childindex/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info  ">Children release</a>

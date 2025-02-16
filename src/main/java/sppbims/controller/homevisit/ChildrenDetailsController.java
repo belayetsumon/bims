@@ -1,0 +1,223 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sppbims.controller.homevisit;
+
+import sppbims.model.homevisit.Eligibility;
+import sppbims.model.homevisit.Gender;
+import sppbims.model.homevisit.M_Child_info;
+import sppbims.model.homevisit.MotherMasterData;
+import sppbims.model.homevisit.Yes_No;
+import sppbims.repository.homevisit.EducationLevelRepository;
+import sppbims.repository.homevisit.EducationTypeRepository;
+import sppbims.repository.homevisit.EthinicIdentityRepository;
+import sppbims.repository.homevisit.M_Child_infoRepository;
+import sppbims.repository.homevisit.MotherMasterDataRepository;
+import sppbims.repository.homevisit.ReligionRepository;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+/**
+ *
+ * @author Md Belayet Hossin
+ */
+@Controller
+
+@RequestMapping("/childrendetails")
+public class ChildrenDetailsController {
+
+    @Autowired
+    MotherMasterDataRepository motherMasterDataRepository;
+
+    @Autowired
+    M_Child_infoRepository m_Child_infoRepository;
+
+    @Autowired
+    ReligionRepository religionRepository;
+
+    @Autowired
+    EthinicIdentityRepository ethinicIdentityRepository;
+
+    @Autowired
+    EducationLevelRepository educationLevelRepository;
+
+    @Autowired
+    EducationTypeRepository educationTypeRepository;
+
+    @RequestMapping("/mothersearch")
+    public String motherSearch(Model model) {
+        model.addAttribute("list", motherMasterDataRepository.findAll());
+        return "homevisit/childrendetails/mothersearch";
+    }
+
+    @RequestMapping("/index/{m_id}")
+
+    public String index(Model model, @PathVariable Long m_id, M_Child_info m_Child_info) {
+
+        model.addAttribute("mInfo", m_id);
+
+        MotherMasterData motherMasterData = new MotherMasterData();
+
+        motherMasterData.setId(m_id);
+
+        model.addAttribute("list", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
+
+        return "homevisit/motherdetails/childindex";
+    }
+
+    @RequestMapping("/create/{m_id}")
+    public String add(Model model, @PathVariable Long m_id, M_Child_info m_Child_info) {
+
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
+
+//       int totalChild = m_Child_infoRepository.findBymotherMasterCode(motherMasterData).size();
+//
+//        motherMasterData = motherMasterDataRepository.findOne(m_id);
+//        int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
+//        System.out.println(" Total child   "+totalChild +"Eligible child"+eligiblechildren);
+        /**
+         * Mother Default value**
+         */
+        m_Child_info.setMotherMasterCode(motherMasterData);
+        m_Child_info.setMotherName(motherMasterData.motherName);
+        m_Child_info.setFathersName(motherMasterData.husbandsName);
+        m_Child_info.setPrimeFamilyMemberName(motherMasterData.primeFamilyMemberName);
+
+        /**
+         * Child Id create**
+         */
+        String mcode = motherMasterData.motherMasterCode;
+        int totalchild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
+        System.out.println(" total child" + totalchild);
+        StringBuilder c_id = new StringBuilder("");
+        c_id.append(mcode.substring(0, mcode.length() - 1));
+        c_id.append(totalchild + 1);
+        m_Child_info.setChildMasterCode(String.valueOf(c_id));
+
+        model.addAttribute("ethnicIdentity", ethinicIdentityRepository.findAll());
+
+        model.addAttribute("educationLevel", educationLevelRepository.findAll());
+
+        model.addAttribute("educationType", educationTypeRepository.findAll());
+
+        model.addAttribute("religion", religionRepository.findAll());
+
+        model.addAttribute("gender", Gender.values());
+        model.addAttribute("work", Yes_No.values());
+
+        model.addAttribute("eligibility", Eligibility.values());
+
+        return "homevisit/motherdetails/createchild";
+    }
+
+    @RequestMapping("/save/{m_id}")
+    public String save(Model model, @PathVariable Long m_id, @Valid M_Child_info m_Child_info, BindingResult bindingResult, RedirectAttributes redirectAttrs) {
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(m_id);
+
+        int totalChild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
+
+        motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
+        int eligiblechildren = motherMasterData.getNumberOfEligibleChildren();
+
+        if (totalChild >= eligiblechildren && m_Child_info.getId() == null) {
+            redirectAttrs.addFlashAttribute("error", "Already All Eligible Childen Inserted");
+            return "redirect:/childrendetails/index/{m_id}";
+        } else {
+            if (bindingResult.hasErrors()) {
+
+                motherMasterData = motherMasterDataRepository.findById(m_id).orElse(null);
+
+                /**
+                 * Mother Default value**
+                 */
+                m_Child_info.setMotherMasterCode(motherMasterData);
+                m_Child_info.setMotherName(motherMasterData.motherName);
+                m_Child_info.setFathersName(motherMasterData.fathersName);
+                m_Child_info.setPrimeFamilyMemberName(motherMasterData.primeFamilyMemberName);
+
+                /**
+                 * Child Id create**
+                 */
+                String mcode = motherMasterData.motherMasterCode;
+                int totalchild = m_Child_infoRepository.findByMotherMasterCode(motherMasterData).size();
+                System.out.println(" total child" + totalchild);
+                StringBuilder c_id = new StringBuilder("");
+                c_id.append(mcode.substring(0, mcode.length() - 1));
+                c_id.append(totalchild + 1);
+                m_Child_info.setChildMasterCode(String.valueOf(c_id));
+
+                model.addAttribute("ethnicIdentity", ethinicIdentityRepository.findAll());
+
+                model.addAttribute("educationLevel", educationLevelRepository.findAll());
+
+                model.addAttribute("educationType", educationTypeRepository.findAll());
+
+                model.addAttribute("religion", religionRepository.findAll());
+
+                model.addAttribute("gender", Gender.values());
+                model.addAttribute("work", Yes_No.values());
+
+                model.addAttribute("eligibility", Eligibility.values());
+
+                return "homevisit/motherdetails/createchild";
+
+            }
+            m_Child_infoRepository.save(m_Child_info);
+            return "redirect:/childrendetails/index/{m_id}";
+        }
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable Long id, M_Child_info m_Child_info) {
+        model.addAttribute("m_Child_info", m_Child_infoRepository.findById(id).orElse(null));
+
+        model.addAttribute("ethnicIdentity", ethinicIdentityRepository.findAll());
+
+        model.addAttribute("educationLevel", educationLevelRepository.findAll());
+
+        model.addAttribute("educationType", educationTypeRepository.findAll());
+
+        model.addAttribute("religion", religionRepository.findAll());
+
+        model.addAttribute("gender", Gender.values());
+        model.addAttribute("work", Yes_No.values());
+
+        model.addAttribute("eligibility", Eligibility.values());
+
+        return "homevisit/motherdetails/createchild";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id, Model model, M_Child_info m_Child_info, RedirectAttributes redirectAttrs) {
+
+        m_Child_info = m_Child_infoRepository.findById(id).orElse(null);
+
+        redirectAttrs.addAttribute("m_id", m_Child_info.motherMasterCode.getId());
+
+        m_Child_infoRepository.deleteById(id);
+
+        return "redirect:/childrendetails/index/{m_id}";
+    }
+
+    @GetMapping(value = "/cdetails/{c_id}")
+    public String details(@PathVariable Long c_id, Model model, M_Child_info m_Child_info, RedirectAttributes redirectAttrs) {
+
+        m_Child_info = m_Child_infoRepository.findById(c_id).orElse(null);
+
+        model.addAttribute("cinfo", m_Child_info);
+
+        return "homevisit/motherdetails/c_detailsview";
+    }
+
+}

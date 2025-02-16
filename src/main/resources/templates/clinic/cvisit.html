@@ -5,7 +5,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-                <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-2">
@@ -17,7 +17,7 @@
                                 <li class="breadcrumb-item"><a href="#">Clinic</a></li>
                                 <li class="breadcrumb-item "><a href="#">Mother List For Daily Visit</a></li>
                                 <li class="breadcrumb-item "><a href="#">Mother List For Daily Visit</a></li>
-                                  <li class="breadcrumb-item active">Add visit info</li>
+                                <li class="breadcrumb-item active">Add visit info</li>
                             </ol>
                         </div>
                     </div>
@@ -46,14 +46,14 @@
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
 
                             <div class="card-body">
-                               <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="co" class="col-sm-4 control-label"> Visit Date :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text"  placeholder="dd-mm-yyyy" class="form-control  "   th:field="*{visitDate}" id="startDate"/>    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('visitDate')}" th:errors="*{visitDate}">First Name Error</span>

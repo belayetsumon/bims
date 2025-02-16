@@ -34,32 +34,32 @@
         <link href="/webjars/AdminLTE/3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" rel="stylesheet">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-      <div class="wrapper">
+        <div class="wrapper">
             <div th:replace="~{admin-nav-top}">
-              
+
             </div>
 
             <div th:replace="~{admin-nav-left}">
-             
+
             </div>
-            
+
             <div layout:fragment="main_content">
                 <div th:replace="~{admin_content}">
-                
+
                     <div class="preloader flex-column justify-content-center align-items-center">
                         <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
                     </div>
                 </div> 
             </div>
-            
+
             <div th:replace="~{admin-footer}">
-                 
+
             </div>
 
-            
+
             <div class="control-sidebar-bg"></div>
         </div>
-        
+
         <!-- jQuery -->
         <script src="/webjars/AdminLTE/3.2.0/plugins/jquery/jquery.min.js"></script>
         <!-- jQuery UI -->

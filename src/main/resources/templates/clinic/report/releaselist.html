@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-              <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-2">
@@ -38,7 +38,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                            <div class="row">
+                                <div class="row">
                                     <div class="col-sm-12 ">
 
                                         <form class="row  justify-content-center mb-1" 
@@ -70,29 +70,29 @@
                                         <br/>
                                     </div>  
                                 </div>
-                                 <table id="tablesdata" class="table table-bordered table-striped">
+                                <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
 
-                                        <th>Mother Master Code</th>
-                                        <th>Release Date</th>
-                                        <th>Release By  </th>
-                                        <th> Next Follow Up Date </th>
-                                        <th>Remark</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Release Date</th>
+                                            <th>Release By  </th>
+                                            <th> Next Follow Up Date </th>
+                                            <th>Remark</th>
 
-                                    </tr>  
-                                            </thead>
+                                        </tr>  
+                                    </thead>
                                     <tbody>
-                                    <tr th:each="release,status:${release}">                                
-                                        <td th:text="${status.count}"> 2. </td>      
-                                        <td th:text="${release.motherMasterCode}">Chakma</td>
-                                        <td th:text="${release.releaseDate}">Chakma</td>
-                                        <td th:text="${release.releaseBy}">Chakma</td>
-                                        <td th:text="${release.nextFollowUpDate}">Chakma</td>
-                                        <td th:text="${release.remarks}">Chakma</td>
-                                    </tr>
-                                       </tbody>
+                                        <tr th:each="release,status:${release}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td th:text="${release.motherMasterCode}">Chakma</td>
+                                            <td th:text="${release.releaseDate}">Chakma</td>
+                                            <td th:text="${release.releaseBy}">Chakma</td>
+                                            <td th:text="${release.nextFollowUpDate}">Chakma</td>
+                                            <td th:text="${release.remarks}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

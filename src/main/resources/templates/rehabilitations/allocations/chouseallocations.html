@@ -94,9 +94,9 @@
                                         <label for="name" class="col-sm-4 control-label"> End Date   <span class="text-red">  </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{endDate}"  id="endDate"   />                
                                             </div>  
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">First Name Error</span>
@@ -106,9 +106,9 @@
                                         <label for="co" class="col-sm-4 control-label"> Ext Date  :<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text" placeholder="dd/mm/yyyy"  class="form-control  "   th:field="*{extDate}" />    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('extDate')}" th:errors="*{extDate}">First Name Error</span>

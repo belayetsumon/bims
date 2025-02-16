@@ -43,10 +43,10 @@
                                         <form class="row  justify-content-center mb-1" 
                                               th:action="@{/longtremcare/existinglongtremcarechild}"   method="get">
 
-                                         
-                                      
-                                      
-                                      
+
+
+
+
                                             <div class="col-auto">
                                                 <label class="" for="to">Gender:</label>
                                             </div>
@@ -77,17 +77,17 @@
 
                                             <th>Child Master Code</th>
 
-                                             <th>Gender</th>
-                               
+                                            <th>Gender</th>
+
                                         </tr> 
                                     </thead>
                                     <tbody>
                                         <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${lists.childMasterCode}">Chakma</td>
-                                
+
                                             <td th:text="${lists.gender}">Chakma</td>
-                                
+
                                         </tr>
                                     </tbody>
                                 </table>

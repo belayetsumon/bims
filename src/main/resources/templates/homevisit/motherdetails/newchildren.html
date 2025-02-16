@@ -43,40 +43,40 @@
                     <div class="card-body table-responsive ">
                         <table id="tablesdata" class="table table-bordered">
                             <thead>
-                                      <tr>
-                                        <th style="width: 10px">#</th>  
+                                <tr>
+                                    <th style="width: 10px">#</th>  
 
-                                        <th>Home Visit Date</th>
-                                        <th>Mother  Id</th>
-                                        <th> Mother Name</th>
-                                        <th> Mother Mobile Number</th>
-                                        <th>Approve Date</th>
-                                        <th>Number of Eligible Children</th>
-                                        <th>Approved By</th>
-                                        <th>Action</th>
-                                    </tr>  
+                                    <th>Home Visit Date</th>
+                                    <th>Mother  Id</th>
+                                    <th> Mother Name</th>
+                                    <th> Mother Mobile Number</th>
+                                    <th>Approve Date</th>
+                                    <th>Number of Eligible Children</th>
+                                    <th>Approved By</th>
+                                    <th>Action</th>
+                                </tr>  
                             </thead>
                             <tbody>                         
-                          <tr th:each="list,status:${list}">
+                                <tr th:each="list,status:${list}">
 
-                                        <td th:text="${status.count}">2.</td>
+                                    <td th:text="${status.count}">2.</td>
 
-                                        <td th:text="${list.homeVisitDate}">Chakma</td>
+                                    <td th:text="${list.homeVisitDate}">Chakma</td>
 
-                                        <td th:text="${list.motherMasterCode}">Chakma</td>
+                                    <td th:text="${list.motherMasterCode}">Chakma</td>
 
-                                        <td th:text="${list.motherName}">Chakma</td>
-                                        <td th:text="${list.mobileNumber}">Chakma</td>
-                                        <td th:text="${list.dateOfBirth}">Chakma</td> 
+                                    <td th:text="${list.motherName}">Chakma</td>
+                                    <td th:text="${list.mobileNumber}">Chakma</td>
+                                    <td th:text="${list.dateOfBirth}">Chakma</td> 
 
-                                        <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
+                                    <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
 
-                                        <td th:text="${list.educationLevel}">Chakma</td>
+                                    <td th:text="${list.educationLevel}">Chakma</td>
 
-                                        <td> 
-                                            <a   th:href="@{/childrendetails/index/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Child</a>
-                                        </td>
-                                    </tr>
+                                    <td> 
+                                        <a   th:href="@{/childrendetails/index/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Child</a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

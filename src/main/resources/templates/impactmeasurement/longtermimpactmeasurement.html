@@ -184,8 +184,8 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childFourEducation')}" th:errors="*{childFourEducation}">First Name Error</span>
                                 </div>                            
                             </div>
-                            
-                                  <div class="form-group col-sm-6 row">
+
+                            <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-6 control-label"> Child-5<span class="text-red">  </span> :</label>
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{childFiveEducation}"  >
@@ -197,9 +197,9 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childFiveEducation')}" th:errors="*{childFiveEducation}">First Name Error</span>
                                 </div>                            
                             </div>
-                            
-                            
-                                        <div class="form-group col-sm-6 row">
+
+
+                            <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-6 control-label"> Child-6<span class="text-red">  </span> :</label>
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{childSixEducation}"  >
@@ -245,20 +245,20 @@
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{attendsSocialGatherings}"  >
                                         <option value=" "> Select one</option>
-                                       <option th:each =" impactMeasurementYesNo :${impactMeasurementYesNo}"
+                                        <option th:each =" impactMeasurementYesNo :${impactMeasurementYesNo}"
                                                 th:value=" ${impactMeasurementYesNo }" 
                                                 th:text="${impactMeasurementYesNo }"> Select one</option>
                                     </select>
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('attendsSocialGatherings')}" th:errors="*{attendsSocialGatherings}">First Name Error</span>
                                 </div>                            
                             </div>
-                            
-                                     <div class="form-group col-sm-6 row">
+
+                            <div class="form-group col-sm-6 row">
                                 <label for="name" class="col-sm-6 control-label"> Access the social Safety-net program<span class="text-red">  </span> :</label>
                                 <div class="col-sm-6">                   
                                     <select class="form-control  "  id="bookName"  th:field="*{accessSocialSafetynetProgram}"  >
                                         <option value=" "> Select one</option>
-                                       <option th:each =" impactMeasurementYesNo :${impactMeasurementYesNo}"
+                                        <option th:each =" impactMeasurementYesNo :${impactMeasurementYesNo}"
                                                 th:value=" ${impactMeasurementYesNo }" 
                                                 th:text="${impactMeasurementYesNo }"> Select one</option>
                                     </select>
@@ -273,8 +273,8 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
                                 </div>                            
                             </div>
-                            
-                            
+
+
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info">Save</button>

@@ -29,14 +29,14 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Mother Special Care List Report  [[${list.size()}]] </h3>
-                                  <div class="card-tools pull-right">
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">                 
                                         <a  th:href="@{/clinic/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
                                     </div>
                                 </div>   </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                                  <div class="row">
+                                <div class="row">
                                     <div class="col-sm-12 ">
 
                                         <form class="row  justify-content-center mb-1" 
@@ -72,7 +72,7 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                           
+
                                             <th>Mother Code</th>
                                             <th>Date</th>
                                             <th>Remark</th>
@@ -81,7 +81,7 @@
                                     <tbody>
                                         <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}"> 2. </td>      
-                                          
+
                                             <td th:text="${lists.motherMasterCode}">Chakma</td>
                                             <td th:text="${lists.careDate}">Chakma</td>
                                             <td th:text="${lists.remark}">Chakma</td>

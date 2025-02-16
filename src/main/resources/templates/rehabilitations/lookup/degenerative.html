@@ -8,7 +8,7 @@
             <section class="content-header">
                 <h1>
                     Home Visit Look Up Data
-                
+
                     <small></small>
                 </h1>
 
@@ -46,7 +46,7 @@
                                 <div class="box-body">
                                     <form action="#" th:action="@{/degenerative/save}" th:object="${degenerativeDiseases}" method="post">
                                         <input type="hidden" class="form-control"  th:field="*{id}" />   
-                                         <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
+                                        <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
                                         <input type="text" class="form-contro col-sm-6l"  th:field="*{name}" />
 
                                         <span  class="help-block text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>

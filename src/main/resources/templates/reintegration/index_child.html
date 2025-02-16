@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-                <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -30,9 +30,9 @@
                             <div class="card-header with-border">
                                 <h3 class="card-title">Reintegration/Release Child List ( Total: <span th:text="${list.size()}"></span>) </h3>
                                 <div class="card-tools pull-right">
-                            <div class="btn-group"> 
-                                <a   th:href="@{/reintegration/child_entry/{m_id} (m_id=${m_id})}" type="button" class="btn-sm   btn-light text-info"> Add Child </a>
-                            </div> </div> </div> 
+                                    <div class="btn-group"> 
+                                        <a   th:href="@{/reintegration/child_entry/{m_id} (m_id=${m_id})}" type="button" class="btn-sm   btn-light text-info"> Add Child </a>
+                                    </div> </div> </div> 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table class="table table-bordered">
@@ -64,7 +64,7 @@
 
                                         <td th:text="${list.Address}" >Chakma</td>
 
-                                       <td th:text="${list.remark}" >Chakma</td>
+                                        <td th:text="${list.remark}" >Chakma</td>
                                         <td> 
                                             <a   th:href="@{/reintegration/child_edit/{c_id} (c_id=${list.id})}" type="button" class="btn btn-sm  btn-info ">Edit</a>
                                         </td>

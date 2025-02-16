@@ -1,0 +1,154 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sppbims.controller.pre_reintegration_visit;
+
+import sppbims.model.homevisit.MotherMasterData;
+import sppbims.model.pre_reintegration_visit.PreReintegrationVisit;
+import sppbims.repository.homevisit.MotherMasterDataRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_AccessibilityRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_AddressRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_Community_InformationRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_Family_informationRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_House_InformationRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_M_LifestyleRepository;
+import sppbims.repository.pre_reintegration_visit.Pre_reintegration_visit_Repository;
+import sppbims.services.observation.O_MAddmissionService;
+import sppbims.services.pre_reintegration_visit.PreReintegrationVisitService;
+import sppbims.services.reintegration_checklist.ReintegrationCheckListService;
+import jakarta.validation.Valid;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+/**
+ *
+ * @author User
+ */
+@Controller
+@RequestMapping("/pre_reintegration_visit")
+public class Pre_reintegration_visit_Controller {
+
+    @Autowired
+    MotherMasterDataRepository motherMasterDataRepository;
+
+    @Autowired
+    Pre_reintegration_visit_Repository pre_reintegration_visit_Repository;
+
+    @Autowired
+    Pre_reintegration_visit_M_AccessibilityRepository pre_reintegration_visit_M_AccessibilityRepository;
+
+    @Autowired
+    Pre_reintegration_visit_M_AddressRepository pre_reintegration_visit_M_AddressRepository;
+
+    @Autowired
+    Pre_reintegration_visit_M_House_InformationRepository pre_reintegration_visit_M_House_InformationRepository;
+
+    @Autowired
+    Pre_reintegration_visit_M_Community_InformationRepository pre_reintegration_visit_M_Community_InformationRepository;
+
+    @Autowired
+    Pre_reintegration_visit_M_LifestyleRepository pre_reintegration_visit_M_LifestyleRepository;
+
+    @Autowired
+    Pre_reintegration_visit_M_Family_informationRepository pre_reintegration_visit_M_Family_informationRepository;
+
+    @Autowired
+    O_MAddmissionService o_MAddmissionService;
+
+    @Autowired
+    PreReintegrationVisitService preReintegrationVisitService;
+
+    @Autowired
+    ReintegrationCheckListService reintegrationCheckListService;
+
+    @RequestMapping("/motherlist")
+    public String motherlist(Model model) {
+
+        List<Long> preReintegrationVisitList = preReintegrationVisitService.allPreReintegrationVisitIdList();
+
+        List<Map<String, Object>> admitedMotherList = o_MAddmissionService.allAdmitedMotherList()
+                .stream()
+                .filter(e -> !preReintegrationVisitList.contains(e.get("motherMasterCodeId")))
+                .collect(Collectors.toList());
+
+        model.addAttribute("list", admitedMotherList);
+
+        // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
+        // model.addAttribute("list", motherMasterDataRepository.findByAddmissionIsNotNullAndPreReintegrationVisitIsNullOrderByIdDesc());
+        return "pre_reintegration_visit/mothersearch";
+    }
+
+    @RequestMapping("/incomplete_visit")
+    public String incomplete_visit(Model model) {
+        model.addAttribute("list", preReintegrationVisitService.get_Incomplete_PreReintegrationVisitList());
+        // model.addAttribute("list", pre_reintegration_visit_Repository.findAll());
+        return "pre_reintegration_visit/incomplete_visit_list";
+    }
+
+    @RequestMapping("/complete_visit")
+    public String complete_visit(Model model) {
+        model.addAttribute("list", preReintegrationVisitService.get_Complete_PreReintegrationVisitList());
+        // model.addAttribute("list", pre_reintegration_visit_Repository.findAll());
+        return "pre_reintegration_visit/complete_visit_list";
+    }
+
+    @RequestMapping("/details/{m_id}")
+    public String details(Model model, @PathVariable Long m_id, PreReintegrationVisit preReintegrationVisit) {
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(m_id);
+        model.addAttribute("preReintegrationVisit", pre_reintegration_visit_Repository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("accessibility", pre_reintegration_visit_M_AccessibilityRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("m_address", pre_reintegration_visit_M_AddressRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("house", pre_reintegration_visit_M_House_InformationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("community", pre_reintegration_visit_M_Community_InformationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("lifestyle", pre_reintegration_visit_M_LifestyleRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("family", pre_reintegration_visit_M_Family_informationRepository.findBymotherMasterCode(motherMasterData));
+        return "pre_reintegration_visit/details";
+    }
+
+    @RequestMapping("/add/{m_id}")
+    public String add(Model model, @PathVariable Long m_id, PreReintegrationVisit preReintegrationVisit) {
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(m_id);
+        preReintegrationVisit.setMotherMasterCode(motherMasterData);
+        return "pre_reintegration_visit/pre_reintegration_visit";
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String edit(@PathVariable Long id, PreReintegrationVisit preReintegrationVisit, Model model) {
+        model.addAttribute("preReintegrationVisit", pre_reintegration_visit_Repository.findById(id).orElse(null));
+        return "pre_reintegration_visit/pre_reintegration_visit";
+    }
+
+    @RequestMapping("/save")
+    public String save(Model model, @Valid PreReintegrationVisit preReintegrationVisit, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+
+            return "pre_reintegration_visit/pre_reintegration_visit";
+        }
+        pre_reintegration_visit_Repository.save(preReintegrationVisit);
+
+        return "redirect:/pre_reintegration_visit/incomplete_visit";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable Long id, PreReintegrationVisit preReintegrationVisit, RedirectAttributes redirectAttrs) {
+        preReintegrationVisit = pre_reintegration_visit_Repository.findById(id).orElse(null);
+        redirectAttrs.addAttribute("m_id", preReintegrationVisit.motherMasterCode.getId());
+        pre_reintegration_visit_Repository.deleteById(id);
+        return "redirect:/pre_reintegration_visit/index";
+    }
+
+}

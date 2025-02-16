@@ -41,11 +41,11 @@
 
                                             <th> Edit</th>     
                                             <th>Delete</th> 
-                                            
-                                                                                   <th>Mother master code</th>
-                                                                                        <th>Mother Name</th>
-                                                                                        <th>Child master code</th>
-                                                                                       <th>Child Name</th>
+
+                                            <th>Mother master code</th>
+                                            <th>Mother Name</th>
+                                            <th>Child master code</th>
+                                            <th>Child Name</th>
                                             <th> Date Admission</th>
                                             <th>Admission Session </th>
                                             <th>Admission Class  </th>
@@ -62,16 +62,16 @@
                                             <td th:text="${status.count}">2.</td>      
                                             <td><a th:href="@{/sregularadmission/edit/{id}(id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                             <td><a th:href="@{/sregularadmission/delete/{id}(id=${list.id})}"  type="button" class="btn btn-sm  btn-info"> Delete</a></td>
-                                             
-<!--<th>Mother master code</th>
-                                                                                        <th>Mother Name</th>
-                                                                                        <th>Child master code</th>
-                                                                                       <th>Child Name</th>-->
 
-                                                                                     <td th:text="${list.motherMasterCode}">Chakma</td>
-                                                                                        <td th:text="${list.motherName}">Chakma</td>
-                                                                                        <td th:text="${list.childMasterCode}">Chakma</td>
-                                                                                        <td th:text="${list.name}">Chakma</td>
+                                            <!--<th>Mother master code</th>
+                                                                                                                                    <th>Mother Name</th>
+                                                                                                                                    <th>Child master code</th>
+                                                                                                                                   <th>Child Name</th>-->
+
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
 
                                             <td th:text="${list.dateAdmission}">Chakma</td>
 

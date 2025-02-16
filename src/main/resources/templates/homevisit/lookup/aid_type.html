@@ -60,20 +60,20 @@
                                     </div>
 
                                     <div class="card-body">
-                                     <form action="#" th:action="@{/aid_type/save}" th:object="${aid_Type}" method="post">
-                                        <input type="hidden" class="form-control"  id="bookName"  name="id"	th:value="${aid_Type.id}" />   
-                                         <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
-                                        <input type="text" class="form-contro col-sm-6l"  id="bookName"   name="name" th:value="${aid_Type.name}" />
+                                        <form action="#" th:action="@{/aid_type/save}" th:object="${aid_Type}" method="post">
+                                            <input type="hidden" class="form-control"  id="bookName"  name="id"	th:value="${aid_Type.id}" />   
+                                            <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
+                                            <input type="text" class="form-contro col-sm-6l"  id="bookName"   name="name" th:value="${aid_Type.name}" />
 
-                                        <span  class="help-block text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
-                                      <div class="text-right">
+                                            <span  class="help-block text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
+                                            <div class="text-right">
                                                 <div class="box-tools pull-right">
                                                     <div class="btn-group text-center">
                                                         <button type="submit" class="btn btn-block btn-info">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </form>
+                                        </form>
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
@@ -103,21 +103,21 @@
 
                                     <div class="card-body">
                                         <table class="table table-bordered">
-                                        <tr>
-                                            <th style="width: 10px">#</th>
-                                            <th>Name</th>
-                                            <th>Edit</th>
-                                            <th style="width: 40px">Delete</th>
-                                        </tr>
-                                        <tr th:each="list,status:${list}">
-                                            <td th:text="${status.count}">2.</td>
-                                            <td th:text="${list.name}">Chakma</td>
-                                            <td>
-                                                <a th:href="@{/aid_type/edit/{id} (id=${list.id})}" > Edit</a>
-                                            </td>
-                                            <td> <a th:href="@{/aid_type/delete/{id} (id=${list.id})}" > Delete </a></td>
-                                        </tr>                                
-                                    </table>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Name</th>
+                                                <th>Edit</th>
+                                                <th style="width: 40px">Delete</th>
+                                            </tr>
+                                            <tr th:each="list,status:${list}">
+                                                <td th:text="${status.count}">2.</td>
+                                                <td th:text="${list.name}">Chakma</td>
+                                                <td>
+                                                    <a th:href="@{/aid_type/edit/{id} (id=${list.id})}" > Edit</a>
+                                                </td>
+                                                <td> <a th:href="@{/aid_type/delete/{id} (id=${list.id})}" > Delete </a></td>
+                                            </tr>                                
+                                        </table>
                                     </div>
                                     <!-- /.card-body -->
                                     <div class="card-footer">
@@ -161,7 +161,7 @@
             <section class="content-header">
                 <h1>
                     Home Visit Look Up Data
-                
+
                     <small></small>
                 </h1>
 
@@ -197,7 +197,7 @@
                                 </div>
 
                                 <div class="box-body">
-                                
+
                                 </div>
 
                                 <!-- /.box-body -->

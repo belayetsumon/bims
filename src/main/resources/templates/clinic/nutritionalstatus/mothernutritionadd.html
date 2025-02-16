@@ -79,11 +79,11 @@
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control  "
                                                th:field="*{admissionDate}"  placeholder="dd-mm-yyyy" id="startDate"/> 
-                                        
+
                                         <span
-                                               class="help-block has-error text-red"
-                                               th:if="${#fields.hasErrors('admissionDate')}"
-                                               th:errors="*{admissionDate}">First Name Error</span>
+                                            class="help-block has-error text-red"
+                                            th:if="${#fields.hasErrors('admissionDate')}"
+                                            th:errors="*{admissionDate}">First Name Error</span>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <input type="text" class="form-control  "
-                                                th:field="*{dob}"  placeholder="dd-mm-yyyy" id="dateofBirth" />
+                                               th:field="*{dob}"  placeholder="dd-mm-yyyy" id="dateofBirth" />
                                         <span class="help-block has-error text-red"
                                               th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}">First
                                             Name Error</span>
@@ -113,19 +113,19 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <div class="input-group date" >
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
 
                                             <input type="text" class="form-control  "
                                                    th:field="*{entryDate}"  
                                                    placeholder="dd-mm-yyyy" 
                                                    id="entrydate" />
-                                            
+
                                             <span
-                                                   class="help-block has-error text-red"
-                                                   th:if="${#fields.hasErrors('entryDate')}"
-                                                   th:errors="*{entryDate}">First Name Error</span>
+                                                class="help-block has-error text-red"
+                                                th:if="${#fields.hasErrors('entryDate')}"
+                                                th:errors="*{entryDate}">First Name Error</span>
                                         </div>
 
                                     </div>

@@ -50,7 +50,7 @@
                                         <label for="co" class="col-sm-4 control-label"> Therapeutic Session Date :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-                                 
+
                                                 <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{therapeuticSessionDate}" id="startDate"/>    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('therapeuticSessionDate')}" th:errors="*{therapeuticSessionDate}">First Name Error</span>
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>                 
 
-                            <div class="text-center">
+                                <div class="text-center">
                                     <button type="submit" class="btn btn-info">Save</button>
                                 </div>
                             </div>

@@ -32,36 +32,36 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="tablesdata" class="table table-bordered">
-                                         <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th> Edit</th>    
-                                        <th>Delete</th>   
-                                        <!--                                        <th>Mother Name</th>-->
-                                        <!--                                        <th>Mother Master Code</th>-->
-                                        <!--                                        <th>Child name</th>-->
-                                        <th>Child master code</th>
-                                        <th>Released Date </th>
-                                        <th>Released Reason</th>
-                                        <th>Remark</th>
-                                    </tr>    
-                                            </thead>
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th> Edit</th>    
+                                            <th>Delete</th>   
+                                            <!--                                        <th>Mother Name</th>-->
+                                            <!--                                        <th>Mother Master Code</th>-->
+                                            <!--                                        <th>Child name</th>-->
+                                            <th>Child master code</th>
+                                            <th>Released Date </th>
+                                            <th>Released Reason</th>
+                                            <th>Remark</th>
+                                        </tr>    
+                                    </thead>
                                     <tbody>
-                                    <tr th:each="list,status:${clildlist}">                                
-                                        <td th:text="${status.count}">2.</td>      
-                                        <td><a th:href="@{/discontinuity/edit/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info"> Edit</a></td>
-                                        <td><a th:href="@{/discontinuity/delete/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info "> Delete</a></td>
-                                        <!--                                        <td th:text="${list.childMasterCode.motherName}">Chakma</td>-->
-                                        <!--                                        <td th:text="${list.childMasterCode.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                                                <td th:text="${list.childMasterCode.name}">Chakma</td>-->
-                                        <td th:text="${list.childMasterCode}">Chakma</td>
+                                        <tr th:each="list,status:${clildlist}">                                
+                                            <td th:text="${status.count}">2.</td>      
+                                            <td><a th:href="@{/discontinuity/edit/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info"> Edit</a></td>
+                                            <td><a th:href="@{/discontinuity/delete/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info "> Delete</a></td>
+                                            <!--                                        <td th:text="${list.childMasterCode.motherName}">Chakma</td>-->
+                                            <!--                                        <td th:text="${list.childMasterCode.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                                                    <td th:text="${list.childMasterCode.name}">Chakma</td>-->
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
 
-                                        <td th:text="${list.dateDismissal}">Chakma</td>
-                                        <td th:text="${list.discontinuityReason}">Chakma</td>
-                                        <td th:text="${list.remark}">Chakma</td>
-                                        <!--<td th:text="${#dates.format(list.created)}">Chakma</td>-->
-                                    </tr>
-                                       </tbody>
+                                            <td th:text="${list.dateDismissal}">Chakma</td>
+                                            <td th:text="${list.discontinuityReason}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
+                                            <!--<td th:text="${#dates.format(list.created)}">Chakma</td>-->
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

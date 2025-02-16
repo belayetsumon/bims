@@ -32,46 +32,46 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                            <table id="tablesdata" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
-                                        <th> Mother  Id</th>
-                                        <th> Mother Name</th>
-                                        <th> Mother Mobile Number</th>
-                                        <th>Admission Date</th>
-                                        <th>Add Image</th>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <tr th:each="list,status:${list}">
-                                        <td th:text="${status.count}">2.</td>
-                                        <td th:text="${list.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.mMothersName}">Chakma</td>
-                                        <td th:text="${list.mobileNumber}">Chakma</td>
-                                        <td th:text="${list.dateAdmission}" >Chakma</td>
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>  
+                                            <th> Mother  Id</th>
+                                            <th> Mother Name</th>
+                                            <th> Mother Mobile Number</th>
+                                            <th>Admission Date</th>
+                                            <th>Add Image</th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.mMothersName}">Chakma</td>
+                                            <td th:text="${list.mobileNumber}">Chakma</td>
+                                            <td th:text="${list.dateAdmission}" >Chakma</td>
 
-                                        <td> 
-                                            <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Add Image</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
+                                            <td> 
+                                                <a   th:href="@{/image/index/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Add Image</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
 
+                            </div>
                         </div>
+                        <!-- /.card -->
+
                     </div>
-                    <!-- /.card -->
+                    <!-- /.col -->
 
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-
-                <!-- /.col -->
+            </section>
+            <!-- /.content -->
         </div>
-        </section>
-        <!-- /.content -->
     </div>
-</div>
 </div>

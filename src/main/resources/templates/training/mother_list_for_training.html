@@ -31,40 +31,40 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                                
-                                     <table id="tablesdata" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>  
-                                                <th> Mother Master Code</th>
-                                                <th> Mother Name</th>
-                                                <th> Mother Mobile</th>
-                                                <th> Arrival Date</th>
-                                                <th>Admission Date</th>                                               
-                                                 <th>Add New Traning </th>
-                                            </tr>  
-                                        </thead>
 
-                                        <tbody> 
-                                            <tr th:each="list,status:${list}">
-                                                <td th:text="${status.count}">2.</td>
-                               
-                                                <td th:text="${list.motherMasterCode}">Chakma</td>
-                                                <td th:text="${list.motherName}">Chakma</td>
-                                                 <td th:text="${list.mobileNumber}">Chakma</td>
-                                                <td th:text="${list.arrivalDate}">Chakma</td>
-                                                <td th:text="${list.admissionDate}" >Chakma</td>
-                                            
-                                                                 <td>
-                                                    <a th:href="@{/rtraining/index/{id} (id=${list.motherMasterCodeId})}"
-                                                        type="button" class="btn btn-xs bg-info ">Add New </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>  
+                                            <th> Mother Master Code</th>
+                                            <th> Mother Name</th>
+                                            <th> Mother Mobile</th>
+                                            <th> Arrival Date</th>
+                                            <th>Admission Date</th>                                               
+                                            <th>Add New Traning </th>
+                                        </tr>  
+                                    </thead>
 
-                                
-                                
+                                    <tbody> 
+                                        <tr th:each="list,status:${list}">
+                                            <td th:text="${status.count}">2.</td>
+
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>
+                                            <td th:text="${list.mobileNumber}">Chakma</td>
+                                            <td th:text="${list.arrivalDate}">Chakma</td>
+                                            <td th:text="${list.admissionDate}" >Chakma</td>
+
+                                            <td>
+                                                <a th:href="@{/rtraining/index/{id} (id=${list.motherMasterCodeId})}"
+                                                   type="button" class="btn btn-xs bg-info ">Add New </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">

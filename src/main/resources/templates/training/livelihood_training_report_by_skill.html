@@ -96,7 +96,7 @@
                         </form> 
 
 
-                         <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                        <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
                             <thead>         
                                 <tr>
                                     <th> # </th>  
@@ -108,12 +108,12 @@
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Total Days</th>
-                                      <th> Ext Date </th>
+                                    <th> Ext Date </th>
                                     <th>Extra Date </th>
                                     <th> Grand Total Days </th>
                                     <th>Conducted By</th>
                                 </tr>  
-                             </thead>
+                            </thead>
                             <tbody>
                                 <tr th:each="lists,status:${list}">
                                     <td th:text="${status.count}">Chakma</td>
@@ -126,9 +126,9 @@
                                     <td th:text="${lists.endDate}">Chakma</td>
                                     <td th:text="${lists.totaldays}">Chakma</td>                                 
                                     <td th:text="${lists.extentionDate}">Chakma</td>
-                                       <td th:text="${lists.extentionDays}">Chakma</td>
-                                          <td th:text="${lists.grandTotalDay}">Chakma</td>
-                                   <td th:text="${lists.conductedBy}">Chakma</td>
+                                    <td th:text="${lists.extentionDays}">Chakma</td>
+                                    <td th:text="${lists.grandTotalDay}">Chakma</td>
+                                    <td th:text="${lists.conductedBy}">Chakma</td>
                                 </tr>
                             </tbody>
                         </table>

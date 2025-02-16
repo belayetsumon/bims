@@ -39,8 +39,8 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        
-                         <form class=" justify-content-center mb-1" 
+
+                        <form class=" justify-content-center mb-1" 
                               th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
 
                             <div class="row justify-content-center">
@@ -94,25 +94,25 @@
                             </div>
                         </form> 
 
-                        
-                           <table id="tablesdata" class="table table-bordered table-striped">
-                            <thead> 
-                            <tr>
-                                <th style="width: 10px">#</th>  
 
-                                <th>Mother Master Code</th>
-                                <th>Mother Name </th>
-                                <th> Total Complete Training</th>
-                            </tr>  
-                                    </thead>
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead> 
+                                <tr>
+                                    <th style="width: 10px">#</th>  
+
+                                    <th>Mother Master Code</th>
+                                    <th>Mother Name </th>
+                                    <th> Total Complete Training</th>
+                                </tr>  
+                            </thead>
                             <tbody>
-                            <tr th:each="lists,status:${list}">
-                                <td th:text="${status.count}">Chakma</td>
-                                <td th:text="${lists.motherMasterCode}">Chakma</td>
-                                <td th:text="${lists.name}">Chakma</td>
-                                <td th:text="${lists.totalTraining}">Chakma</td>
-                            </tr>
-                                 </tbody>
+                                <tr th:each="lists,status:${list}">
+                                    <td th:text="${status.count}">Chakma</td>
+                                    <td th:text="${lists.motherMasterCode}">Chakma</td>
+                                    <td th:text="${lists.name}">Chakma</td>
+                                    <td th:text="${lists.totalTraining}">Chakma</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

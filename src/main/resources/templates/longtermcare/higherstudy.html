@@ -5,7 +5,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-                <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-3">
@@ -53,9 +53,9 @@
                                         <label for="co" class="col-sm-4 control-label"> Higher Study Date  :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{higherStudyDate}" id="startDate"/>    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('higherStudyDate')}" th:errors="*{higherStudyDate}">First Name Error</span>
@@ -76,9 +76,9 @@
                                         <label for="name" class="col-sm-4 control-label"> Admission Date  <span class="text-red">  *</span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{addmissionDate}"  id="endDate"   />                
                                             </div>  
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('addmissionDate')}" th:errors="*{addmissionDate}">First Name Error</span>
@@ -115,12 +115,12 @@
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Institute Name<span class="text-red">  *</span> </label>
                                         <div class="col-sm-8">                   
-                                           <input type="text"   class="form-control  "   th:field="*{instituteName}"  />
+                                            <input type="text"   class="form-control  "   th:field="*{instituteName}"  />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('instituteName')}" th:errors="*{instituteName}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    
-                                           <div class="form-group col-sm-6 row">
+
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Result<span class="text-red">  </span> </label>
                                         <div class="col-sm-8">                   
                                             <input    type="text" class="form-control  "    th:field="*{result}" /> 
@@ -133,9 +133,9 @@
                                         <label for="co" class="col-sm-4 control-label"> End Date :<span class="text-red">  &nbsp;</span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text" placeholder="dd/mm/yyyy"  class="form-control  "   th:field="*{endDate}" id="extDate" />    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">First Name Error</span>

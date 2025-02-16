@@ -79,7 +79,7 @@ $(document).ready(function () {
     });
 
     $(function () {
-             
+
         $("#endDate").datepicker({
             dateFormat: 'dd-mm-yy',
             yearRange: "1940:+10",
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 
     $(function () {
-      
+
         $("#postVisitstartDate").datepicker({
             dateFormat: 'dd-mm-yy',
             yearRange: "1940:+10",

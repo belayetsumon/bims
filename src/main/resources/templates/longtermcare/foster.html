@@ -58,28 +58,28 @@
                             <div class="card-body">
 
 
-                            
-                                    <div class="form-group col-sm-6 row">
-                                        <label for="co" class="col-sm-4 control-label"> Admission Date  :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">    
-                                            <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
-                                                <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{admissionDate}" id="startDate"/>    
-                                            </div>
-                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('admissionDate')}" th:errors="*{admissionDate}">First Name Error</span>
-                                        </div>     
-                                    </div> 
 
-                                    <div class="form-group col-sm-6 row">
-                                        <label for="name" class="col-sm-4 control-label"> Address<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{adress}" > </textarea>         
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}">First Name Error</span>
-                                        </div>                            
-                                    </div>
-                        
+                                <div class="form-group col-sm-6 row">
+                                    <label for="co" class="col-sm-4 control-label"> Admission Date  :<span class="text-red"> * </span> </label>
+                                    <div class="col-sm-8">    
+                                        <div class="input-group date" >
+                                            <!--                                                <div class="input-group-addon" > 
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                            </div>-->
+                                            <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{admissionDate}" id="startDate"/>    
+                                        </div>
+                                        <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('admissionDate')}" th:errors="*{admissionDate}">First Name Error</span>
+                                    </div>     
+                                </div> 
+
+                                <div class="form-group col-sm-6 row">
+                                    <label for="name" class="col-sm-4 control-label"> Address<span class="text-red"> * </span> </label>
+                                    <div class="col-sm-8">                   
+                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{adress}" > </textarea>         
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}">First Name Error</span>
+                                    </div>                            
+                                </div>
+
                                 <div class="form-group col-sm-6 row">
                                     <label for="co" class="col-sm-4 control-label"> Fostering   Date  :<span class="text-red"> * </span> </label>
                                     <div class="col-sm-8">    
@@ -93,15 +93,15 @@
                                     </div>     
                                 </div> 
 
-                           
-                                    <div class="form-group col-sm-12 row">
-                                        <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
-                                        </div>                            
-                                    </div>
-                                          
+
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                    <div class="col-sm-8">                   
+                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                    </div>                            
+                                </div>
+
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-info">Save</button>

@@ -34,19 +34,19 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="tablesdata" class="table table-bordered">
-                                        <thead>
-                                    <tr>
-                                        
-                                        <th style="width: 10px">#</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Induction Start Date </th>
-                                        <th> Induction End Date</th>
-                                        <th> Immediate Support On</th>
-                                        <th> Challenges of Beneficiary</th>
-                                        <th> Possible length of staying at SPP </th>
-                                        <th>Remark</th>
-                                    </tr>   
-                                           </thead>
+                                    <thead>
+                                        <tr>
+
+                                            <th style="width: 10px">#</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Induction Start Date </th>
+                                            <th> Induction End Date</th>
+                                            <th> Immediate Support On</th>
+                                            <th> Challenges of Beneficiary</th>
+                                            <th> Possible length of staying at SPP </th>
+                                            <th>Remark</th>
+                                        </tr>   
+                                    </thead>
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
                                         <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>

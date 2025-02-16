@@ -41,7 +41,7 @@
 
                             <input type="hidden"    class="form-control " th:field="*{id}"  />   
                             <input type="hidden"  class="form-control  "   th:field="*{childMasterCode}"/>    
-                           
+
                             <div class="form-group col-sm-6 row">
                                 <label for="co" class="col-sm-4 control-label"> Name<span class="text-red"> * </span> </label>
                                 <div class="col-sm-8">   
@@ -65,26 +65,26 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('graduateStatus')}" th:errors="*{graduateStatus}">First Name Error</span>
                                 </div>    
                             </div>
-                      
-                                <div class="form-group col-sm-6 row">
-                                    <label for="co" class="col-sm-4 control-label"> Start Date  :<span class="text-red"> * </span> </label>
-                                    <div class="col-sm-8">    
-                                        <div class="input-group date" >
-                                            <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{startDate}" id="startDate"/>    
-                                        </div>
-                                        <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">First Name Error</span>
-                                    </div>     
-                                </div> 
-                                <div class="form-group col-sm-6 row">
-                                    <label for="name" class="col-sm-4 control-label"> End Date   <span class="text-red"> </span> </label>
-                                    <div class="col-sm-8">    
-                                        <div class="input-group date" >
-                                            <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{endDate}"  id="endDate"   />                
-                                        </div>  
-                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">First Name Error</span>
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="co" class="col-sm-4 control-label"> Start Date  :<span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">    
+                                    <div class="input-group date" >
+                                        <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{startDate}" id="startDate"/>    
                                     </div>
+                                    <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">First Name Error</span>
+                                </div>     
+                            </div> 
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-4 control-label"> End Date   <span class="text-red"> </span> </label>
+                                <div class="col-sm-8">    
+                                    <div class="input-group date" >
+                                        <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{endDate}"  id="endDate"   />                
+                                    </div>  
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">First Name Error</span>
                                 </div>
-                     
+                            </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info">Save</button>
                             </div>

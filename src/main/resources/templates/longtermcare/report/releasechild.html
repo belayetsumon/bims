@@ -5,7 +5,7 @@
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-           <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
@@ -29,16 +29,16 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title">Reintegration Child List ( Total: <span th:text="${list.size()}"></span>) </h3>
-                              <div class="card-tools pull-right">
+                                <div class="card-tools pull-right">
                                     <div class="btn-group">           
-                                <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
-                                </div>
-                                </div>
+                                        <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
                                     </div>
+                                </div>
+                            </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
-                                
-                                  <form class="row  justify-content-center mb-1" 
+
+                                <form class="row  justify-content-center mb-1" 
                                       th:action="@{/longtremcare/releasechild}"   method="get">
 
                                     <div class="col-auto">
@@ -79,8 +79,8 @@
                                         <button type="submit" class="btn btn-info ">Submit</button>
                                     </div>
                                 </form>  
-                                
-                                
+
+
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -88,13 +88,13 @@
                                             <th> Mother Name</th>
                                             <th> Child Name</th>
                                             <th> Child Id</th>
-                                                 <th>Gender</th>
+                                            <th>Gender</th>
                                             <th>Release Date</th>
                                             <th>Training</th>
                                             <th>Address</th>
                                             <th> Remark </th>
 
-                                    
+
 
                                         </tr>  
                                     </thead>
@@ -108,7 +108,7 @@
                                             <td th:text="${list.name}">Chakma</td>
 
                                             <td th:text="${list.childMasterCode}">Chakma</td>
-                                              <td th:text="${list.gender}">Chakma</td>
+                                            <td th:text="${list.gender}">Chakma</td>
 
                                             <td th:text="${list.releaseDate}" >Chakma</td>
                                             <td th:text="${list.training}" >Chakma</td>
@@ -117,7 +117,7 @@
 
                                             <td th:text="${list.remark}" >Chakma</td>
 
-                                
+
                                         </tr>
                                     </tbody>
                                 </table>

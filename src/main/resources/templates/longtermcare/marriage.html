@@ -5,7 +5,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-                <section class="content-header">
+            <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-3">
@@ -51,19 +51,19 @@
                                         <label for="co" class="col-sm-4 control-label"> Marriage Date  :<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">    
                                             <div class="input-group date" >
-<!--                                                <div class="input-group-addon" > 
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>-->
+                                                <!--                                                <div class="input-group-addon" > 
+                                                                                                    <i class="fa fa-calendar"></i>
+                                                                                                </div>-->
                                                 <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{marriageDate}" id="startDate"/>    
                                             </div>
                                             <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('marriageDate')}" th:errors="*{marriageDate}">First Name Error</span>
                                         </div>     
                                     </div> 
 
-                        
+
 
                                 </div>
-                                   <div class="row">
+                                <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Husband Name / Wife Name<span class="text-red">*  </span> </label>
                                         <div class="col-sm-8">                   
@@ -73,18 +73,18 @@
                                     </div>
                                 </div> 
                                 <div  class=" row">
-                                                <div class="form-group col-sm-6 row">
+                                    <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Address<span class="text-red"> * </span> </label>
                                         <div class="col-sm-8">                   
                                             <textarea type="textarea" cols="60" rows="2" class="form-control  "  id="monthlyTotalIncome"    th:field="*{address}" > </textarea>         
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">First Name Error</span>
                                         </div>                            
                                     </div>
-                                    
-                                    
+
+
                                 </div>
-                                
-                             
+
+
 
                                 <div class="row">
                                     <div class="form-group col-sm-12 row">
@@ -102,7 +102,7 @@
                         </form>
                     </div>
                     <!-- /.card-body -->
-                      </div>
+                </div>
                 <!-- /.card -->
 
             </section>

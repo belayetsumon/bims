@@ -153,7 +153,7 @@
             <section class="content-header">
                 <h1>
                     Home Visit Look Up Data
-                
+
                     <small></small>
                 </h1>
 
@@ -189,7 +189,7 @@
                                 <div class="box-body">
                                     <form action="#" th:action="@{/light_source_type/save}" th:object="${light_Source_type}" method="post">
                                         <input type="hidden" class="form-control"  id="bookName"  name="id" th:value="${light_Source_type.id}" />   
-                                         <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
+                                        <label for="name" class=" control-label"> Name<span class="text-red"> * </span></label>
                                         <input type="text" class="form-contro col-sm-6l"  id="bookName"   name="name" th:value="${light_Source_type.name}" />
                                         <span  class="help-block text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
                                         <div class="text-right">

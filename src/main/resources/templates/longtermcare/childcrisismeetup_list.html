@@ -35,79 +35,79 @@
                         </div>
                     </div>
 
-                         <div class="card-body table-responsive ">
-                                     <form class="row  justify-content-center mb-1" 
-                                              th:action="@{/childcrisismeetup/list}"   method="get">
+                    <div class="card-body table-responsive ">
+                        <form class="row  justify-content-center mb-1" 
+                              th:action="@{/childcrisismeetup/list}"   method="get">
 
-                                            <div class="col-auto">
+                            <div class="col-auto">
 
-                                                <label class="" for="email">From:</label>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-group input-group date">
+                                <label class="" for="email">From:</label>
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-group input-group date">
 
-                                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <label class="" for="to">To:</label>
-                                            </div>
-                                            <div class="col-auto"> 
-                                                <div class="form-group input-group date">
+                                    <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <label class="" for="to">To:</label>
+                            </div>
+                            <div class="col-auto"> 
+                                <div class="form-group input-group date">
 
-                                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <label class="" for="to">Gender:</label>
-                                            </div>
-                                            <div class="col-auto"> 
-                                                <div class="form-group input-group date">
+                                    <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <label class="" for="to">Gender:</label>
+                            </div>
+                            <div class="col-auto"> 
+                                <div class="form-group input-group date">
 
-                                                    <select class="form-control"    name="gender" >
-                                                        <option value=" "> Select one</option>
-                                                        <option th:each =" genderLists :${genderList}"
-                                                                th:value=" ${genderLists}" 
-                                                                th:text="${genderLists}"> Select one</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                    <select class="form-control"    name="gender" >
+                                        <option value=" "> Select one</option>
+                                        <option th:each =" genderLists :${genderList}"
+                                                th:value=" ${genderLists}" 
+                                                th:text="${genderLists}"> Select one</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                            <div class=" col-auto text-center">
-                                                <button type="submit" class="btn btn-info ">Submit</button>
-                                            </div>
-                                        </form>   
-                                <table id="tablesdata" class="table table-bordered table-striped">
-                                    <thead>
-                            <tr>
-                                <th>Details </th>
-                                <th>Child Id </th>
-                                <th>Date</th>
-                                <th>Location </th>
-                                <th>Reason </th>
-                                <th>Challenges</th>
-                                <th>Action</th>
-                                <th>Victim Number </th>
-                                <th>Supports </th>
-                                <th>Expected Solving Date</th>
-                                <th>Remarks </th>
-                            </tr>   
-                                  </thead>
-                                    <tbody>
-                            <tr th:each="lists,status:${list}">                                
-                                <td> <a   th:href="@{/longtremcare/index/{id} (id=${lists.id})}" type="button"  class="btn btn-sm  btn-info"> Details </a> </td>
-                                <td th:text="${lists.childMasterCode.childMasterCode}">  </td>
-                                <td th:text="${lists.entrydate}">  </td>
-                                <td th:text="${lists.location}">  </td>
-                                <td th:text="${lists.reason}">  </td>
-                                <td th:text="${lists.challenge}">  </td>
-                                <td th:text="${lists.action}">  </td>
-                                <td th:text="${lists.victimnumber}">  </td>
-                                <td th:text="${lists.supports}">  </td>      
-                                <td th:text="${lists.expectedsolvingdate}">  </td>      
-                                <td th:text="${lists.remarks}">  </td>
-                            </tr>
-                                </tbody>
+                            <div class=" col-auto text-center">
+                                <button type="submit" class="btn btn-info ">Submit</button>
+                            </div>
+                        </form>   
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Details </th>
+                                    <th>Child Id </th>
+                                    <th>Date</th>
+                                    <th>Location </th>
+                                    <th>Reason </th>
+                                    <th>Challenges</th>
+                                    <th>Action</th>
+                                    <th>Victim Number </th>
+                                    <th>Supports </th>
+                                    <th>Expected Solving Date</th>
+                                    <th>Remarks </th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                <tr th:each="lists,status:${list}">                                
+                                    <td> <a   th:href="@{/longtremcare/index/{id} (id=${lists.id})}" type="button"  class="btn btn-sm  btn-info"> Details </a> </td>
+                                    <td th:text="${lists.childMasterCode.childMasterCode}">  </td>
+                                    <td th:text="${lists.entrydate}">  </td>
+                                    <td th:text="${lists.location}">  </td>
+                                    <td th:text="${lists.reason}">  </td>
+                                    <td th:text="${lists.challenge}">  </td>
+                                    <td th:text="${lists.action}">  </td>
+                                    <td th:text="${lists.victimnumber}">  </td>
+                                    <td th:text="${lists.supports}">  </td>      
+                                    <td th:text="${lists.expectedsolvingdate}">  </td>      
+                                    <td th:text="${lists.remarks}">  </td>
+                                </tr>
+                            </tbody>
                         </table> 
                     </div>
                     <!-- /.card-body -->

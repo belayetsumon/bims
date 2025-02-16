@@ -75,9 +75,9 @@
                                     <label for="name" class="col-sm-2 control-label"> Date Admission <span class="text-red">  </span> </label>
                                     <div class="col-sm-4">       
                                         <div class="input-group date" >
-<!--                                            <div class="input-group-addon" > 
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
                                             <input type="text"   placeholder="dd/mm/yyyy" class="form-control  referral_date " th:field="*{dateAdmission}"  id="endDate"   />                
                                         </div> 
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dateAdmission')}" th:errors="*{dateAdmission}">First Name Error</span>

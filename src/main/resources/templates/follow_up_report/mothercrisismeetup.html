@@ -118,56 +118,56 @@
                                     <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('victimnumber')}" th:errors="*{victimnumber}">First Name Error</span>
                                 </div>   
                             </div>
-                
 
-                    <div class="row">
-                        <div class="form-group col-sm-12 row">
-                            <label for="name" class="col-sm-3 control-label">Supports <span class="text-red">   </span>: </label>
-                            <div class="col-sm-4">         
-                                <input type="text" class="form-control  "  id="monthlyTotalIncome"    th:field="*{supports}" /> 
 
-                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('supports')}" th:errors="*{supports}">First Name Error</span>
-                            </div>                            
-                        </div>
-                    </div> 
-                    <div class="row">
+                            <div class="row">
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-3 control-label">Supports <span class="text-red">   </span>: </label>
+                                    <div class="col-sm-4">         
+                                        <input type="text" class="form-control  "  id="monthlyTotalIncome"    th:field="*{supports}" /> 
 
-                        <div class="form-group col-sm-12 row">
-                            <label for="name" class="col-sm-3 control-label">Expected Solving Date <span class="text-red">   </span>: </label>
-                            <div class="  col-sm-4">  
-                                <div class=" input-group date ">  
-                                    <!--                                            <div class="input-group-addon" > 
-                                                                                    <i class="fa fa-calendar"></i>
-                                                                                </div>-->
-                                    <input type="text"   class="form-control  "  th:required="required" th:field="*{expectedsolvingdate}" placeholder="dd-MM-yyyy"  />                
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('supports')}" th:errors="*{supports}">First Name Error</span>
+                                    </div>                            
                                 </div>
-                                <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('expectedsolvingdate')}" th:errors="*{expectedsolvingdate}">First Name Error</span>
-                            </div>   
-                        </div>
-                    </div>
+                            </div> 
+                            <div class="row">
+
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-3 control-label">Expected Solving Date <span class="text-red">   </span>: </label>
+                                    <div class="  col-sm-4">  
+                                        <div class=" input-group date ">  
+                                            <!--                                            <div class="input-group-addon" > 
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
+                                            <input type="text"   class="form-control  "  th:required="required" th:field="*{expectedsolvingdate}" placeholder="dd-MM-yyyy"  />                
+                                        </div>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('expectedsolvingdate')}" th:errors="*{expectedsolvingdate}">First Name Error</span>
+                                    </div>   
+                                </div>
+                            </div>
 
 
-                    <div class="form-group col-sm-12 row">
-                        <label for="name" class="col-sm-3 control-label"> Remark <span class="text-red">  </span> </label>
-                        <div class="col-sm-8">                   
-                            <textarea type="textarea" cols="60" rows="8"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
-                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
-                        </div>                            
-                    </div>
+                            <div class="form-group col-sm-12 row">
+                                <label for="name" class="col-sm-3 control-label"> Remark <span class="text-red">  </span> </label>
+                                <div class="col-sm-8">                   
+                                    <textarea type="textarea" cols="60" rows="8"  class="form-control  "  id="monthlyTotalIncome"    th:field="*{remarks}" > </textarea>         
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}">First Name Error</span>
+                                </div>                            
+                            </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-info">Save</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info">Save</button>
+                            </div>
+                        </form>
                     </div>
-                    </form>
+                    <!-- /.card-body -->
+
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card-body -->
-
-                <!-- /.card-footer-->
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.card -->
-        </section>
-        <!-- /.content -->
+        <!-- /.content-wrapper -->
     </div>
-    <!-- /.content-wrapper -->
-</div>
 </div>

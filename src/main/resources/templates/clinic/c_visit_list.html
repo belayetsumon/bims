@@ -34,38 +34,38 @@
                                     <a   th:href="@{/cvisit/create/{id}(id=${m_id})}"  type="button" class="btn  btn-light  btn-sm  text-info"> Add Daily Visit </a>
                                 </div>    </div>
                             <!-- /.card-header -->
-                             <div class="card-body table-responsive ">
+                            <div class="card-body table-responsive ">
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th> Edit </th>      
-                                        <th> Delete</th>  
-                                        <th>Mother Master Code</th>
-                                        <th>Visit Date</th>
-                                        <th>Problem  </th>
-                                        <th>Primary Diagnosis</th>
-                                        <th>Medicine</th>
-                                        <th>Prescribed By </th>
-                                        <th>Remark</th>
-                                        <th>Refer To</th>
-                                    </tr>  
-                                          </thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th> Edit </th>      
+                                            <th> Delete</th>  
+                                            <th>Mother Master Code</th>
+                                            <th>Visit Date</th>
+                                            <th>Problem  </th>
+                                            <th>Primary Diagnosis</th>
+                                            <th>Medicine</th>
+                                            <th>Prescribed By </th>
+                                            <th>Remark</th>
+                                            <th>Refer To</th>
+                                        </tr>  
+                                    </thead>
                                     <tbody>
-                                    <tr th:each="cvisit,status:${cvisit}">                                
-                                        <td th:text="${status.count}"> 2. </td>      
-                                        <td><a th:href="@{/cvisit/edit/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
-                                        <td><a th:href="@{/cvisit/delete/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
-                                        <td th:text="${cvisit.motherMasterCode}">Chakma</td>
-                                        <td th:text="${cvisit.visitDate}">Chakma</td>
-                                        <td th:text="${cvisit.problem}">Chakma</td>
-                                        <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
-                                        <td th:text="${cvisit.medicine}">Chakma</td>
-                                        <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
-                                        <td th:text="${cvisit.remark}">Chakma</td>
-                                        <td><a th:href="@{/referral/create/{id}(id=${cvisit.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info"> Refer To</a></td>
-                                    </tr>
-                                        </tbody>
+                                        <tr th:each="cvisit,status:${cvisit}">                                
+                                            <td th:text="${status.count}"> 2. </td>      
+                                            <td><a th:href="@{/cvisit/edit/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
+                                            <td><a th:href="@{/cvisit/delete/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
+                                            <td th:text="${cvisit.motherMasterCode}">Chakma</td>
+                                            <td th:text="${cvisit.visitDate}">Chakma</td>
+                                            <td th:text="${cvisit.problem}">Chakma</td>
+                                            <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
+                                            <td th:text="${cvisit.medicine}">Chakma</td>
+                                            <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>
+                                            <td th:text="${cvisit.remark}">Chakma</td>
+                                            <td><a th:href="@{/referral/create/{id}(id=${cvisit.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info"> Refer To</a></td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

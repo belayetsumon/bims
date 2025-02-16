@@ -41,78 +41,78 @@
                             <input type="hidden"    class="form-control " th:field="*{id}"  />    
 
                             <div class="card-body">
-                           
-
-                                    <div class="form-group col-sm-6 row">
-                                        <label for="name" class="col-sm-4 control-label"> Child Id <span class="text-red">  </span> :</label>
-                                        <div class="col-sm-6">                   
-                                            <select class="form-control  "  id="select2" th:field="*{childMasterCode}"  >
-                                                <option value=" "> Select one</option>
-                                                <option th:each =" childIds :${childId}"
-                                                        th:value=" ${childIds.childMasterCodeId }" 
-                                                        th:text="${childIds.childMasterCode} +'-'+ ${childIds.name}"> Select one</option>
-                                            </select>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
-                                        </div>                            
-                                    </div>
 
 
-
-                                    <div class="form-group col-sm-6 row">
-                                        <label for="co" class="col-sm-4 control-label">  Date :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">    
-                                            <div class="input-group date" >
-                                                <!--                                                <div class="input-group-addon" > 
-                                                                                                    <i class="fa fa-calendar"></i>
-                                                                                                </div>-->
-                                                <input type="text"  placeholder="dd-mm-yyyy" class="form-control  "   th:field="*{careDate}" id="startDate"/>    
-                                            </div>
-                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('careDate')}" th:errors="*{careDate}">First Name Error</span>
-                                        </div>     
-                                    </div> 
+                                <div class="form-group col-sm-6 row">
+                                    <label for="name" class="col-sm-4 control-label"> Child Id <span class="text-red">  </span> :</label>
+                                    <div class="col-sm-6">                   
+                                        <select class="form-control  "  id="select2" th:field="*{childMasterCode}"  >
+                                            <option value=" "> Select one</option>
+                                            <option th:each =" childIds :${childId}"
+                                                    th:value=" ${childIds.childMasterCodeId }" 
+                                                    th:text="${childIds.childMasterCode} +'-'+ ${childIds.name}"> Select one</option>
+                                        </select>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
+                                    </div>                            
                                 </div>
-                                <!--                                <div class="row">
-                                                                    <div class="form-group col-sm-6 row">
-                                                                        <label for="name" class="col-sm-3 control-label"> Problem<span class="text-red"> * </span> </label>
-                                                                        <div class="col-sm-9">                   
-                                                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{problem}" > </textarea>         
-                                                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('problem')}" th:errors="*{problem}">First Name Error</span>
-                                                                        </div>                            
-                                                                    </div>-->
 
 
 
-
-
-                                <div class="row">
-                                    <div class="form-group col-sm-12 row">
-                                        <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
-                                        </div>                            
-                                    </div>
-                                </div>                 
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-info">Save</button>
-                                </div>
+                                <div class="form-group col-sm-6 row">
+                                    <label for="co" class="col-sm-4 control-label">  Date :<span class="text-red"> * </span> </label>
+                                    <div class="col-sm-8">    
+                                        <div class="input-group date" >
+                                            <!--                                                <div class="input-group-addon" > 
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                            </div>-->
+                                            <input type="text"  placeholder="dd-mm-yyyy" class="form-control  "   th:field="*{careDate}" id="startDate"/>    
+                                        </div>
+                                        <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('careDate')}" th:errors="*{careDate}">First Name Error</span>
+                                    </div>     
+                                </div> 
                             </div>
-                        </form>
+                            <!--                                <div class="row">
+                                                                <div class="form-group col-sm-6 row">
+                                                                    <label for="name" class="col-sm-3 control-label"> Problem<span class="text-red"> * </span> </label>
+                                                                    <div class="col-sm-9">                   
+                                                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{problem}" > </textarea>         
+                                                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('problem')}" th:errors="*{problem}">First Name Error</span>
+                                                                    </div>                            
+                                                                </div>-->
+
+
+
+
+
+                            <div class="row">
+                                <div class="form-group col-sm-12 row">
+                                    <label for="name" class="col-sm-2 control-label"> Remarks<span class="text-red">  </span> </label>
+                                    <div class="col-sm-8">                   
+                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{remark}" > </textarea>         
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}">First Name Error</span>
+                                    </div>                            
+                                </div>
+                            </div>                 
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info">Save</button>
+                            </div>
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <div class="card-tools pull-right">
-                            <div class="btn-group">
-                            </div>
+                    </form>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="card-tools pull-right">
+                        <div class="btn-group">
                         </div>
                     </div>
-                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card -->
-
-            </section>
-            <!-- /.content -->
+                <!-- /.card-footer-->
         </div>
-        <!-- /.content-wrapper -->
+        <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+</div>
 </div>

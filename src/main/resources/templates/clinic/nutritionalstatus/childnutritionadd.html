@@ -45,7 +45,7 @@
                             class="form-horizontal">
 
                             <input type="hidden" class="form-control " th:field="*{id}" /> 
-                            
+
                             <input
                                 type="hidden" class="form-control "
                                 th:field="*{motherMasterCode}" id="motherMasterCode"
@@ -81,17 +81,17 @@
                                     </label>
                                     <div class="col-sm-3">
                                         <div class="input-group date">
-<!--                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>-->
+                                            <!--                                            <div class="input-group-addon">
+                                                                                            <i class="fa fa-calendar"></i>
+                                                                                        </div>-->
 
                                             <input type="text" class="form-control  "
                                                    th:field="*{entryDate}"  id="entrydate"  />
-                                            
+
                                             <span
-                                                   class="help-block has-error text-red"
-                                                   th:if="${#fields.hasErrors('entryDate')}"
-                                                   th:errors="*{entryDate}">First Name Error</span>
+                                                class="help-block has-error text-red"
+                                                th:if="${#fields.hasErrors('entryDate')}"
+                                                th:errors="*{entryDate}">First Name Error</span>
                                         </div>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
                         </form>
                     </div>
                     <!-- /.card-body -->
-           
+
                     <!-- /.card-footer-->
                 </div>
                 <!-- /.card -->
