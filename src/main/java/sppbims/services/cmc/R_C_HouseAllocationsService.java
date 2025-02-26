@@ -182,6 +182,7 @@ public class R_C_HouseAllocationsService {
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
                 root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' is a field in MotherMasterData
                 root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("name").alias("name"),// Assuming 'code' is a field in MotherMasterData
                 root.get("houseName").get("name").alias("houseName"), // Assuming 'name' is a field in HouseName
                 root.get("allocationDate").alias("allocationDate"),
                 root.get("endDate").alias("endDate"),
@@ -207,6 +208,7 @@ public class R_C_HouseAllocationsService {
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("childMasterCode", tuple.get("childMasterCode"));
+            resultMap.put("name", tuple.get("name"));
             resultMap.put("houseName", tuple.get("houseName"));
             resultMap.put("allocationDate", tuple.get("allocationDate"));
             resultMap.put("endDate", tuple.get("endDate"));
@@ -260,7 +262,9 @@ public class R_C_HouseAllocationsService {
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("name").alias("name"),// Assuming 'code' is a field in MotherMasterData
                 root.get("childMasterCode").get("gender").alias("gender"),
                 root.get("houseName").get("name").alias("houseName"), // Assuming 'name' is a field in HouseName
                 root.get("allocationDate").alias("allocationDate"),

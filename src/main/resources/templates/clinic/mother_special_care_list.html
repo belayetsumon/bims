@@ -41,6 +41,7 @@
                                             <th>Edit </th>      
                                             <th>Delete</th>  
                                             <th>Mother Code</th>
+                                                <th>Mother Name</th>
                                             <th>Date</th>
                                             <th>Remark</th>
                                         </tr>  
@@ -51,6 +52,7 @@
                                             <td><a th:href="@{/cmotherspecialcare/edit/{id}(id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
                                             <td><a th:href="@{/cmotherspecialcare/delete/{id}(id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                             <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
+                                              <td th:text="${lists.motherMasterCode.motherName}">Chakma</td>
                                             <td th:text="${lists.careDate}">Chakma</td>
                                             <td th:text="${lists.remark}">Chakma</td>
                                         </tr>

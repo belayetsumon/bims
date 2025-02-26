@@ -42,48 +42,40 @@ public class LiteracyTalkingScienceService {
     @Autowired
     O_MAddmissionService addmissionService;
 
-    public List<MotherMasterDataDTO> getMotherMasterDataDTOs() {
+    public List<Map<String, Object>> getMotherMasterDataList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
 
-        List<Long> admitedMotherList = addmissionService.addmissionMotherIdList();
-
-        List<Long> talkingScienceMotherIdList = talkingScienceMotherIdList();
+        List<Long> admitedMotherList = addmissionService.admitedMotherButNotReleasedIdList();
 
         Root<MotherMasterData> root = cq.from(MotherMasterData.class);
 
-        // Select fields from MotherMasterData and related entities
+        // Select fields from MotherMasterData
         cq.multiselect(
-                root.get("id"),
-                root.get("motherMasterCode"),
-                root.get("motherName")
-        // Converting Enum to String
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherName").alias("motherName")
         );
 
-        List<Predicate> predicates = new ArrayList<Predicate>();
-        // Define the predicates for the conditions
-
+        // Define the predicates for filtering
+        List<Predicate> predicates = new ArrayList<>();
         predicates.add(root.get("id").in(admitedMotherList));
+        cq.where(predicates.toArray(new Predicate[0]));
 
-        if (!talkingScienceMotherIdList.isEmpty()) {
-            predicates.add(cb.not(root.get("id").in(talkingScienceMotherIdList)));
-        }
-        cq.where(predicates.toArray(new Predicate[]{}));
-
+        // Execute query
         TypedQuery<Tuple> query = em.createQuery(cq);
+        List<Tuple> results = query.getResultList();
 
-        // Execute the query and map results to DTO
-        List<MotherMasterDataDTO> result = query.getResultList().stream().map(tuple -> {
-            MotherMasterDataDTO dto = new MotherMasterDataDTO();
-            dto.setId(tuple.get(0, Long.class));
-            dto.setMotherMasterCode(tuple.get(1, String.class));
-            dto.setMotherName(tuple.get(2, String.class));
-
-            // Enum converted to String
-            return dto;
-        }).toList();
-
-        return result;
+        // Convert to List<Map<String, Object>> using a traditional loop
+        List<Map<String, Object>> dataList = new ArrayList<>();
+        for (Tuple tuple : results) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", tuple.get("id", Long.class));
+            map.put("motherMasterCode", tuple.get("motherMasterCode", String.class));
+            map.put("motherName", tuple.get("motherName", String.class));
+            dataList.add(map);
+        }
+        return dataList;
     }
 
     public List<Long> talkingScienceMotherIdList() {
@@ -200,6 +192,7 @@ public class LiteracyTalkingScienceService {
                 literacyRoot.get("result").alias("result"),
                 literacyRoot.get("remark").alias("remark"),
                 motherMasterDataJoin.get("motherMasterCode").alias("motherMasterCode"),
+                motherMasterDataJoin.get("motherName").alias("motherName"),
                 motherMasterDataJoin.get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
         );
 
@@ -223,6 +216,7 @@ public class LiteracyTalkingScienceService {
             resultMap.put("remark", tuple.get("remark"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultList.add(resultMap);
         }
         return resultList;

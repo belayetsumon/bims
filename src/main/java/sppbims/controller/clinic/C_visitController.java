@@ -92,6 +92,6 @@ public class C_visitController {
         redirectAttrs.addAttribute("id", c_visit.motherMasterCode.getId());
 
         c_visitRepository.deleteById(id);
-        return "redirect:/cvisit/index/{id}";
+        return "redirect:/cvisit/list";
     }
 }

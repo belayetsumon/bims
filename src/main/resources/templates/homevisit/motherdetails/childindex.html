@@ -44,44 +44,48 @@
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">              
                                 <table id="tablesdata" class="table table-bordered table-striped">
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Edit</th>
-                                        <th> Delete</th>
-                                        <th> view </th>
-                                        <th> Add Address </th>                                   
-                                        <th> Mother master code</th>
-                                        <th>Child master code</th>
-                                        <th>Mother's Name</th>
-                                        <th>Father's Name</th>
-                                        <th>Prime Care Name</th>
-                                        <th>Name</th>
-                                        <th>Date Of Birth </th>
-                                        <th>Gender  </th>
-                                        <th>Work</th>
-                                        <th>Religion</th>
-                                        <th>Ethnic Identity</th>
-                                    </tr>                          
-                                    <tr th:each="list,status:${list}">                                
-                                        <td th:text="${status.count}">2.</td>      
-                                        <td><a   th:href="@{/childrendetails/edit/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
-                                        <td><a   th:href="@{/childrendetails/delete/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>                              
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Edit</th>
+                                            <th> Delete</th>
+                                            <th> view </th>
+                                            <th> Add Address </th>                                   
 
-                                        <td><a   th:href="@{/childrendetails/cdetails/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-green ">View</a></td> 
-                                        <td><a th:href="@{/childaddress/index/{c_id}(c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> Add Address</a></td>
-                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.childMasterCode}">Chakma</td>
-                                        <td th:text="${list.motherName}">Chakma</td>
-                                        <td th:text="${list.fathersName}">Chakma</td>
-                                        <td th:text="${list.primeFamilyMemberName}">Chakma</td>
-                                        <td th:text="${list.name}">Chakma</td>
-                                        <td th:text="${list.dateOfBirth}">Chakma</td>
-                                        <td th:text="${list.gender}">Chakma</td>
-                                        <td th:text="${list.work}">Chakma</td>           
-                                        <td th:text="${list.religion.name}">Chakma</td>
-                                        <td th:text="${list.ethnicIdentity.name}">Chakma</td>
+                                            <th>Child master code</th>
+                                            <th>Child Name</th>
+                                            <th> Mother master code</th>
+                                            <th> Child's Mother Name</th>
+                                            <th>Child's Father Name</th>
+                                            <th>Prime Care Name</th>
 
-                                    </tr>
+                                            <th>Date Of Birth </th>
+                                            <th>Gender  </th>
+                                            <th>Work</th>
+                                            <th>Religion</th>
+                                            <th>Ethnic Identity</th>
+                                        </tr>  
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${list}">                                
+                                            <td th:text="${status.count}">2.</td>      
+                                            <td><a   th:href="@{/childrendetails/edit/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
+                                            <td><a   th:href="@{/childrendetails/delete/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>                              
+                                            <td><a   th:href="@{/childrendetails/cdetails/{c_id} (c_id=${list.id})}" type="button" class="btn btn-xs bg-green ">View</a></td> 
+                                            <td><a th:href="@{/childaddress/index/{c_id}(c_id=${list.id})}" type="button" class="btn btn-xs bg-maroon "> Add Address</a></td>
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherName}">Chakma</td>
+                                            <td th:text="${list.fathersName}">Chakma</td>
+                                            <td th:text="${list.primeFamilyMemberName}">Chakma</td>
+                                            <td th:text="${list.dateOfBirth}">Chakma</td>
+                                            <td th:text="${list.gender}">Chakma</td>
+                                            <td th:text="${list.work}">Chakma</td>           
+                                            <td th:text="${list.religion.name}">Chakma</td>
+                                            <td th:text="${list.ethnicIdentity.name}">Chakma</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->

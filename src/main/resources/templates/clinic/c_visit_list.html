@@ -29,9 +29,9 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title">Daily Visit</h3>
+                                <h3 class="card-title">Daily Visit : Total [[${cvisit.size()}]]</h3>
                                 <div class="card-tools">
-                                    <a   th:href="@{/cvisit/create/{id}(id=${m_id})}"  type="button" class="btn  btn-light  btn-sm  text-info"> Add Daily Visit </a>
+                                   
                                 </div>    </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
@@ -42,6 +42,7 @@
                                             <th> Edit </th>      
                                             <th> Delete</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Visit Date</th>
                                             <th>Problem  </th>
                                             <th>Primary Diagnosis</th>
@@ -57,6 +58,7 @@
                                             <td><a th:href="@{/cvisit/edit/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
                                             <td><a th:href="@{/cvisit/delete/{id}(id=${cvisit.visitId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                             <td th:text="${cvisit.motherMasterCode}">Chakma</td>
+                                              <td th:text="${cvisit.motherName}">Chakma</td>
                                             <td th:text="${cvisit.visitDate}">Chakma</td>
                                             <td th:text="${cvisit.problem}">Chakma</td>
                                             <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>

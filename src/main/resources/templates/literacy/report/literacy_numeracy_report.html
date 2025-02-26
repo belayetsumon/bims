@@ -110,6 +110,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th> Mother  Id</th>
+                                                  <th> Mother Name</th>
                                                 <th>Present literacy level</th>
                                                 <th>Admission Level</th>
                                                 <th> Admission   Date</th>
@@ -123,6 +124,7 @@
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">Chakma</td>
                                                 <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                  <td th:text="${list.motherName}">Chakma</td>
                                                 <td th:text="${list.presentliteracylevel}">Chakma</td>
                                                 <td th:text="${list.admissionLevel}">Chakma</td>
                                                 <td th:text="${list.admissionDate}">Chakma</td>

@@ -48,6 +48,10 @@ public class C_ReleaseService {
         Path<String> nextFollowUpDatePath = cReleaseRoot.get("nextFollowUpDate");
         Path<String> remarksPath = cReleaseRoot.get("remarks");
 
+        Path<String> motherMasterCode = cReleaseRoot.get("motherMasterCode").get("motherMasterCode");
+        Path<String> motherName = cReleaseRoot.get("motherMasterCode").get("motherName");
+        Path<String> motherMasterCodeId = cReleaseRoot.get("motherMasterCode").get("id");
+
         // Join with MotherMasterData and Users (assuming they are present in the entity)
         Join<C_Release, MotherMasterData> motherMasterJoin = cReleaseRoot.join("motherMasterCode", JoinType.LEFT);
         Join<C_Release, Users> createdByJoin = cReleaseRoot.join("createdBy", JoinType.LEFT);
@@ -59,8 +63,9 @@ public class C_ReleaseService {
                 releaseByPath.alias("releaseBy"),
                 nextFollowUpDatePath.alias("nextFollowUpDate"),
                 remarksPath.alias("remarks"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId"),
+                motherMasterCode.alias("motherMasterCode"),
+                motherMasterCodeId.alias("motherMasterCodeId"),
+                motherName.alias("motherName"),
                 createdByJoin.get("name").alias("createdBy") // Assuming 'username' exists in Users
         );
 
@@ -81,6 +86,7 @@ public class C_ReleaseService {
             resultMap.put("remarks", tuple.get("remarks"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+             resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("createdBy", tuple.get("createdBy"));
             resultMapList.add(resultMap);
         }

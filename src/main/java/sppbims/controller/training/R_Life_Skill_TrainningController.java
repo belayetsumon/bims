@@ -58,13 +58,17 @@ public class R_Life_Skill_TrainningController {
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_Life_Skill_Trainning r_Life_Skill_Trainning) {
 
-        model.addAttribute("r_Life_Skill_Trainning", r_Life_Skill_TrainningRepository.findById(id).orElse(null));
+        Optional<R_Life_Skill_Trainning> r_Life_Skill_Trainningopt = r_Life_Skill_TrainningRepository.findById(id);
+        
+        r_Life_Skill_Trainning = r_Life_Skill_Trainningopt.orElse(null);
+        
+        model.addAttribute("r_Life_Skill_Trainning",r_Life_Skill_Trainning);
 
-        MotherMasterData motherMasterData = new MotherMasterData();
 
-        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(id);
 
-        motherMasterData = optionalMotherMasterData.orElse(null);
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(r_Life_Skill_Trainning.getMotherMasterCode().getId());
+  
+        MotherMasterData  motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_Life_Skill_Trainning.setName(motherMasterData.getMotherName());
 

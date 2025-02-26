@@ -57,13 +57,15 @@ public class R_IGA_TrainingController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_IGA_Training r_IGA_Training) {
-        model.addAttribute("r_IGA_Training", r_IGA_TrainingRepository.findById(id).orElse(null));
+        Optional<R_IGA_Training> r_IGA_Trainingopt = r_IGA_TrainingRepository.findById(id);
 
-        MotherMasterData motherMasterData = new MotherMasterData();
+        r_IGA_Training = r_IGA_Trainingopt.orElse(null);
 
-        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(id);
+        model.addAttribute("r_IGA_Training", r_IGA_Training);
 
-        motherMasterData = optionalMotherMasterData.orElse(null);
+        Optional<MotherMasterData> optionalMotherMasterData = motherMasterDataRepository.findById(r_IGA_Training.getMotherMasterCode().getId());
+
+        MotherMasterData motherMasterData = optionalMotherMasterData.orElse(null);
 
         r_IGA_Training.setName(motherMasterData.getMotherName());
 

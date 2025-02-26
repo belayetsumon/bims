@@ -67,7 +67,9 @@
                                         <tr>
                                             <th style="width: 10px">#</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Child Master Code</th>
+                                            <th>Child Name</th>
                                             <th>Gender</th>
                                             <th>House Name </th>
                                             <th>Start Date</th>
@@ -83,9 +85,10 @@
                                         <tr th:each="list,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td th:text="${list.get('motherMasterCode')}">Chakma</td>
-                                            <td th:text="${list.get('motherMasterCode')}">Chakma</td>
+                                              <td th:text="${list.get('motherName')}">Chakma</td>
                                             <td th:text="${list.get('childMasterCode')}">Chakma</td>
-                                            <td th:text="${list.get('childMasterCode')}">Chakma</td>
+                                             <td th:text="${list.get('name')}">Chakma</td>
+                                            <td th:text="${list.get('gender')}">Chakma</td>
                                             <td th:text="${list.get('houseName')}">Chakma</td>
                                             <td th:text="${list.get('allocationDate')}">Chakma</td>
                                             <td th:text="${list.get('endDate')}">Chakma</td>

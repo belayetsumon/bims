@@ -46,10 +46,11 @@ public class Discontinuity {
     private LocalDate dateDismissal;
 
     @NotNull(message = "This field cannot be blank.Please enter minimum 2 character!")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
+    @Lob
     public String discontinuityReason;
 
     @Lob
+    @Column(columnDefinition="TEXT")
     public String remark;
 
     /**

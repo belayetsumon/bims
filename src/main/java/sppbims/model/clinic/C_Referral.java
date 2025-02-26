@@ -51,11 +51,13 @@ public class C_Referral {
     @NotNull(message = "Reasons field cannot be blank.")
 //    @Size(min = 1, message = "This field must between 1 and 200 characters")
     @Column(columnDefinition = "TEXT")
+    @Lob
     public String reasons;
 
 //    @NotNull(message = "This field cannot be blank.")
 //    @Size(min = 1, message = "This field must between 1 and 200 characters")
     @Column(columnDefinition = "TEXT")
+    @Lob
     public String remarks;
 
     /**

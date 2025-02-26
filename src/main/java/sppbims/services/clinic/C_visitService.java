@@ -52,7 +52,12 @@ public class C_visitService {
         Path<String> primaryDiagnosisPath = cVisitRoot.get("primaryDiagnosis");
         Path<String> medicinePath = cVisitRoot.get("medicine");
         Path<String> prescribedByPath = cVisitRoot.get("prescribedBy");
+
         Path<String> remarkPath = cVisitRoot.get("remark");
+
+        Path<String> motherName = cVisitRoot.get("motherMasterCode").get("motherName");
+        Path<String> motherMasterCode = cVisitRoot.get("motherMasterCode").get("motherMasterCode");
+        Path<Long> motherMasterCodeId = cVisitRoot.get("motherMasterCode").get("id");
 
         // Join with MotherMasterData and Users (assuming they are present in the entity)
         Join<C_visit, MotherMasterData> motherMasterJoin = cVisitRoot.join("motherMasterCode", JoinType.LEFT);
@@ -67,8 +72,9 @@ public class C_visitService {
                 medicinePath.alias("medicine"),
                 prescribedByPath.alias("prescribedBy"),
                 remarkPath.alias("remark"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId"),
+                motherName.alias("motherName"),
+                motherMasterCode.alias("motherMasterCode"),
+                motherMasterCodeId.alias("motherMasterCodeId"),
                 createdByJoin.get("name").alias("createdBy") // Assuming 'username' exists in Users
 
         );
@@ -90,6 +96,7 @@ public class C_visitService {
             resultMap.put("medicine", tuple.get("medicine"));
             resultMap.put("prescribedBy", tuple.get("prescribedBy"));
             resultMap.put("remark", tuple.get("remark"));
+             resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("createdBy", tuple.get("createdBy"));

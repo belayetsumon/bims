@@ -38,7 +38,7 @@ public class LiteracyNumeracyController {
     @RequestMapping("/add")
     public String index(Model model, LiteracyNumeracy literacyNumeracy) {
         model.addAttribute("educationLavel", educationLevelRepository.findAll());
-        model.addAttribute("motherId", literacyNumeracyService.getMotherList());
+        model.addAttribute("motherId", literacyNumeracyService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacynumeracy";
     }
@@ -48,7 +48,7 @@ public class LiteracyNumeracyController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("educationLavel", educationLevelRepository.findAll());
-            model.addAttribute("motherId", literacyNumeracyService.getMotherList());
+            model.addAttribute("motherId", literacyNumeracyService.getMotherMasterDataList());
             model.addAttribute("status", ResultEnum.values());
 
             return "literacy/add_literacynumeracy";
@@ -68,7 +68,7 @@ public class LiteracyNumeracyController {
     public String edit(@PathVariable Long id, LiteracyNumeracy literacyNumeracy, Model model) {
         model.addAttribute("educationLavel", educationLevelRepository.findAll());
         model.addAttribute("literacyNumeracy", literacyNumeracyRepository.findById(id).orElse(null));
-        model.addAttribute("motherId", literacyNumeracyService.getMotherList());
+        model.addAttribute("motherId", literacyNumeracyService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacynumeracy";
     }

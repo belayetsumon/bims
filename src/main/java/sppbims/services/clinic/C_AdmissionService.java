@@ -51,6 +51,9 @@ public class C_AdmissionService {
         Path<String> admittedToPath = cAdmissionRoot.get("admittedTo");
         Path<String> reasonPath = cAdmissionRoot.get("reason");
         Path<String> remarkPath = cAdmissionRoot.get("remark");
+        Path<String> motherName = cAdmissionRoot.get("motherMasterCode").get("motherName");
+        Path<String> motherMasterCode = cAdmissionRoot.get("motherMasterCode").get("motherMasterCode");
+        Path<Long> motherMasterCodeId = cAdmissionRoot.get("motherMasterCode").get("id");
 
         // Join with MotherMasterData (assuming it is present in the entity)
         Join<C_Admission, MotherMasterData> motherMasterJoin = cAdmissionRoot.join("motherMasterCode", JoinType.LEFT);
@@ -62,8 +65,9 @@ public class C_AdmissionService {
                 admittedToPath.alias("admittedTo"),
                 reasonPath.alias("reason"),
                 remarkPath.alias("remark"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId")
+                motherMasterCode.alias("motherMasterCode"),
+                motherMasterCodeId.alias("motherMasterCodeId"),
+                motherName.alias("motherName")
         );
 
         // Order by admissionDate descending
@@ -83,6 +87,7 @@ public class C_AdmissionService {
             resultMap.put("remark", tuple.get("remark"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMapList.add(resultMap);
         }
 

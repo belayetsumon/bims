@@ -8,7 +8,6 @@ package sppbims.controller.clinic;
 import sppbims.model.clinic.C_Release;
 import sppbims.model.homevisit.MotherMasterData;
 import sppbims.repository.clinic.C_ReleaseRepository;
-import sppbims.services.clinic.C_ReferralService;
 import sppbims.services.clinic.C_ReleaseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

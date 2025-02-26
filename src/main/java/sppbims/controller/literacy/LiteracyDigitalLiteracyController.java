@@ -33,7 +33,7 @@ public class LiteracyDigitalLiteracyController {
 
     @RequestMapping("/add")
     public String index(Model model, LiteracyDigitalLiteracy literacyDigitalLiteracy) {
-        model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_digitalliteracy";
     }
@@ -42,7 +42,7 @@ public class LiteracyDigitalLiteracyController {
     public String save(Model model, @Valid LiteracyDigitalLiteracy literacyDigitalLiteracy, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataDTOs());
+            model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataList());
             model.addAttribute("status", ResultEnum.values());
 
             return "leave/add_mother_leave";
@@ -62,7 +62,7 @@ public class LiteracyDigitalLiteracyController {
     public String edit(@PathVariable Long id, LiteracyDigitalLiteracy literacyDigitalLiteracy, Model model) {
 
         model.addAttribute("literacyDigitalLiteracy", literacyDigitalLiteracyRepository.findById(id).orElse(null));
-        model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", digitalliteracyService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_digitalliteracy";
     }

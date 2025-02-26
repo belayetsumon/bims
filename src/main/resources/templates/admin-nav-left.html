@@ -60,9 +60,9 @@
                         </a>
                         <ul class="nav nav-treeview">   
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')"><a class="nav-link" th:href="@{/induction/newmother}"><i class="far fa-circle nav-icon"></i> New Mother Induction</a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')"><a class="nav-link" th:href="@{/induction/motherlist}"><i class="far fa-circle nav-icon"></i> All Induction <br> Mother List </a></li>
                             <li class="nav-item"  sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/healthcheckup/newmother}"><i class="far fa-circle nav-icon"></i>New Mother  <br> Health Checkup </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/healthcheckup/mothersearch}"><i class="far fa-circle nav-icon"></i> All Mother Health <br>Checkup List </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')"><a class="nav-link" th:href="@{/induction/motherlist}"><i class="far fa-circle nav-icon"></i> All Induction <br> Mother List </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/inductionoutcome/mothersearch}"><i class="far fa-circle nav-icon"></i> Induction Outcome</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/admission/newadmission}"><i class="far fa-circle nav-icon"></i> New Admission </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/admission/motherlist}"><i class="far fa-circle nav-icon"></i> All Admitted List </a></li>

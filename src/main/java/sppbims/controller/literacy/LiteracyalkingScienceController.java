@@ -33,7 +33,7 @@ public class LiteracyalkingScienceController {
 
     @RequestMapping("/add")
     public String index(Model model, LiteracyTalkingScience literacyTalkingScience) {
-        model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacytalkingscience";
     }
@@ -42,7 +42,7 @@ public class LiteracyalkingScienceController {
     public String save(Model model, @Valid LiteracyTalkingScience literacyTalkingScience, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataDTOs());
+            model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataList());
             model.addAttribute("status", ResultEnum.values());
 
             return "literacy/add_literacytalkingscience";
@@ -61,7 +61,7 @@ public class LiteracyalkingScienceController {
     @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, LiteracyTalkingScience literacyTalkingScience, Model model) {
         model.addAttribute("literacyTalkingScience", literacyTalkingScienceRepository.findById(id).orElse(null));
-        model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", literacyTalkingScienceService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacytalkingscience";
     }

@@ -77,9 +77,10 @@
                                     <table id="tablesdata" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>         <th>#</th>
-                                                <th> Mother  Id</th>
-                                                <th> Admission   Date</th>
-                                                <th> End   Date</th>
+                                                <th>Mother Id</th>
+                                                <th>Mother Name</th>
+                                                <th>Admission Date</th>
+                                                <th>End Date</th>
                                                 <th>Status</th>
                                                 <th>Remark</th>
                                             </tr>  
@@ -88,6 +89,7 @@
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">Chakma</td>
                                                 <td th:text="${list.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list.motherName}">Chakma</td>
                                                 <td th:text="${list.admissionDate}">Chakma</td>
                                                 <td th:text="${list.endDate}">Chakma</td>
                                                 <td th:text="${list.result}" >Chakma</td>

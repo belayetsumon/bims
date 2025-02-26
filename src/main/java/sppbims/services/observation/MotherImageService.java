@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
+import sppbims.model.observation.O_ChildAdmission;
 
 /**
  *
@@ -29,6 +30,31 @@ public class MotherImageService {
 
     @PersistenceContext
     EntityManager em;
+    
+    
+    
+     public List<Long> motherImageid() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        CriteriaQuery<Tuple> cq = cb.createQuery(Tuple.class);
+
+        Root<MotherImage> root = cq.from(MotherImage.class);
+
+        cq.multiselect(root.get("motherMasterCode").get("id").alias("id"));
+
+        cq.orderBy(cb.desc(root.get("motherMasterCode").get("id")));
+
+        List<Tuple> result = em.createQuery(cq).getResultList();
+
+        List<Long> idList = new ArrayList<Long>();
+        for (Tuple tuple : result) {
+            Long id = tuple.get("id", Long.class);
+            idList.add(id);
+        }
+        return idList;
+    }
+
 
     public List<Map<String, Object>> allMotherImages() {
         CriteriaBuilder cb = em.getCriteriaBuilder();

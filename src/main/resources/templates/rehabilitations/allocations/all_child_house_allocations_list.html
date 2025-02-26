@@ -46,7 +46,9 @@
                                             <!--                                            <th>Edit</th>
                                                                                         <th>Delete</th>-->
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Child Master Code</th>
+                                            <th>Child Name</th>
                                             <th>House Name </th>
                                             <th> Start Date</th>
                                             <th>End Date</th>
@@ -63,7 +65,9 @@
                                             <!--                                            <td><a   th:href="@{/chouseallocation/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                                                                         <td> <a   th:href="@{/chouseallocation/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>-->
                                             <td th:text="${list2.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list2.motherName}">Chakma</td>
                                             <td th:text="${list2.childMasterCode}">Chakma</td>
+                                            <td th:text="${list2.name}">Chakma</td>
                                             <td th:text="${list2.houseName}">Chakma</td>
                                             <td th:text="${list2.allocationDate}">Chakma</td>
                                             <td th:text="${list2.endDate}">Chakma</td>

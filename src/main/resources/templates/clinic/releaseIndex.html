@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Clinic Release</h3>
+                                <h3 class="card-title"> Clinic Release [[${release.size()}]]</h3>
                                 <!--                                <a   th:href="@{/cvisit/create/{id}(id=${m_id})}" type="button" class="btn  btn-warning pull-right"> Add Daily Visit </a>-->
                             </div>
                             <!-- /.card-header -->
@@ -40,6 +40,7 @@
                                             <th> Edit </th>      
                                             <th> Delete</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Release Date</th>
                                             <th>Release By  </th>
                                             <th> Next Follow Up Date </th>
@@ -54,6 +55,7 @@
                                             <td><a th:href="@{/crelease/edit/{id}(id=${release.releaseId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
                                             <td><a th:href="@{/crelease/delete/{id}(id=${release.releaseId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                             <td th:text="${release.motherMasterCode}">Chakma</td>
+                                                 <td th:text="${release.motherName}">Chakma</td>
                                             <td th:text="${release.releaseDate}">Chakma</td>
                                             <td th:text="${release.releaseBy}">Chakma</td>
                                             <td th:text="${release.nextFollowUpDate}">Chakma</td>

@@ -37,7 +37,7 @@ public class LiteracyHigherEducationAdmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false,fetch = FetchType.LAZY)
     @JoinColumn(name = "mother_master_code_id", nullable = false)
     private MotherMasterData motherMasterCode;
 

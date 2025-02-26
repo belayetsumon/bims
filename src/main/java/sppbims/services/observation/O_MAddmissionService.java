@@ -6,7 +6,6 @@ package sppbims.services.observation;
 
 import sppbims.model.homevisit.DTO.MotherMasterDataDTO;
 import sppbims.model.homevisit.MotherMasterData;
-import sppbims.model.observation.MotherImage;
 import sppbims.model.observation.O_MAddmission;
 import sppbims.services.reintegration_release.ReleaseMotherService;
 import jakarta.persistence.EntityManager;
@@ -15,8 +14,6 @@ import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
@@ -41,6 +38,8 @@ public class O_MAddmissionService {
 
     @Autowired
     ReleaseMotherService releaseMotherService;
+    @Autowired
+    MotherImageService motherImageService;
 
     public List<MotherMasterDataDTO> getMotherMasterDataDTOs() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -282,21 +281,22 @@ public class O_MAddmissionService {
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<O_MAddmission> root = cq.from(O_MAddmission.class);
 
-        // Left join with MotherImage
-        Join<O_MAddmission, MotherImage> motherImageJoin = root.join("motherImage", JoinType.LEFT);
-
-        // Adding a condition to filter where motherImage is null
-        Predicate condition = cb.isNull(motherImageJoin);
-
-        // Selecting multiple fields with aliases
+        List<Predicate> predicates = new ArrayList<>();
         cq.multiselect(
                 root.get("id").alias("admissionId"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
-                root.get("motherMasterCode").get("mMothersName").alias("mMothersName"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("motherMasterCode").get("mobileNumber").alias("mobileNumber"),
                 root.get("dateAdmission").alias("dateAdmission")
-        ).where(condition);  // Applying the condition
+        );  // Applying the condition
+
+        predicates.add(root.get("motherMasterCode").get("id").in(releaseMotherService.allReleasedMotherIdList()).not());
+        predicates.add(root.get("motherMasterCode").get("id").in(motherImageService.motherImageid()).not());
+
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
+        cq.orderBy(cb.desc(root.get("id")));
 
         // Execute the query
         List<Tuple> resultList = em.createQuery(cq).getResultList();
@@ -308,7 +308,7 @@ public class O_MAddmissionService {
             resultMap.put("admissionId", result.get("admissionId"));
             resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", result.get("motherMasterCode"));
-            resultMap.put("mMothersName", result.get("mMothersName"));
+            resultMap.put("motherName", result.get("motherName"));
             resultMap.put("mobileNumber", result.get("mobileNumber"));
             resultMap.put("dateAdmission", result.get("dateAdmission"));
 

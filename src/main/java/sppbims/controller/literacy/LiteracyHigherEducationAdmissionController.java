@@ -34,7 +34,7 @@ public class LiteracyHigherEducationAdmissionController {
     @RequestMapping("/add")
     public String index(Model model, LiteracyHigherEducationAdmission literacyHigherEducationAdmission) {
         model.addAttribute("educationLavel", educationLevelRepository.findAll());
-        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacyhighereducation";
     }
@@ -44,7 +44,7 @@ public class LiteracyHigherEducationAdmissionController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("educationLavel", educationLevelRepository.findAll());
-            model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+            model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataList());
             model.addAttribute("status", ResultEnum.values());
 
             return "literacy/add_literacyhighereducation";
@@ -64,7 +64,7 @@ public class LiteracyHigherEducationAdmissionController {
     public String edit(@PathVariable Long id, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, Model model) {
         model.addAttribute("educationLavel", educationLevelRepository.findAll());
         model.addAttribute("literacyHigherEducationAdmission", literacyHigherEducationAdmissionRepository.findById(id).orElse(null));
-        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataDTOs());
+        model.addAttribute("motherId", literacyHigherEducationAdmissionService.getMotherMasterDataList());
         model.addAttribute("status", ResultEnum.values());
         return "literacy/add_literacyhighereducation";
     }
