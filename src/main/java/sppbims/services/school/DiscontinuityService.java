@@ -74,8 +74,9 @@ public class DiscontinuityService {
                 discontinuityReason.alias("discontinuityReason"),
                 dateDismissal.alias("dateDismissal"),
                 remark.alias("remark"),
-                childMasterCode.get("childMasterCode").alias("childMasterCode"),
-                childMasterCodeid.alias("childMasterCodeId")// assuming you want childMasterCode.id
+                discontinuity.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                discontinuity.get("childMasterCode").get("name").alias("name"),
+                discontinuity.get("childMasterCode").get("id").alias("childMasterCodeId")// assuming you want childMasterCode.id
         );
 
         // Order by id in descending order
@@ -94,6 +95,7 @@ public class DiscontinuityService {
             map.put("dateDismissal", tuple.get("dateDismissal", LocalDate.class));
             map.put("remark", tuple.get("remark", String.class));
             map.put("childMasterCode", tuple.get("childMasterCode", String.class));
+            map.put("name", tuple.get("name", String.class));
             map.put("childMasterCodeId", tuple.get("childMasterCodeId", Long.class));
             resultList.add(map);
         });
@@ -117,6 +119,7 @@ public class DiscontinuityService {
         Path<M_Child_info> childMasterCode = discontinuity.get("childMasterCode");
         Path<M_Child_info> childMasterCodeid = discontinuity.get("childMasterCode").get("id");
 
+
         List<Predicate> predicates = new ArrayList<>();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -138,6 +141,7 @@ public class DiscontinuityService {
                 dateDismissal.alias("dateDismissal"),
                 remark.alias("remark"),
                 childMasterCode.get("childMasterCode").alias("childMasterCode"),
+               discontinuity.get("childMasterCode").get("name").alias("name"),
                 childMasterCodeid.alias("childMasterCodeId")// assuming you want childMasterCode.id
         );
 
@@ -159,6 +163,7 @@ public class DiscontinuityService {
             map.put("dateDismissal", tuple.get("dateDismissal", LocalDate.class));
             map.put("remark", tuple.get("remark", String.class));
             map.put("childMasterCode", tuple.get("childMasterCode", String.class));
+            map.put("name", tuple.get("name", String.class));
             map.put("childMasterCodeId", tuple.get("childMasterCodeId", Long.class));
             resultList.add(map);
         });

@@ -40,9 +40,11 @@
                         <table id="tablesdata" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Edit </th>
                                     <th>Delete</th>
                                     <th>Mother Id </th>
+                                    <th>Mother Name</th>
                                     <th>Date</th>
                                     <th>Location </th>
                                     <th>Reason</th>
@@ -55,10 +57,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="lists,status:${list}">  
+                                <tr th:each="lists,status :${list}">  
+                                    <td th:text="${status.count}">  </td>
                                     <td> <a   th:href="@{/mothercrisismeetup/edit/{id} (id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Edit </a> </td>
                                     <td> <a   th:href="@{/mothercrisismeetup/delete/{id} (id=${lists.id})}" type="button" class="btn btn-sm btn-info"> Delete </a> </td>
                                     <td th:text="${lists.motherMasterCode.motherMasterCode}">  </td>
+                                    <td th:text="${lists.motherMasterCode.motherName}">  </td>
                                     <td th:text="${lists.entrydate}">  </td>
                                     <td th:text="${lists.location}">  </td>
                                     <td th:text="${lists.reason}">  </td>

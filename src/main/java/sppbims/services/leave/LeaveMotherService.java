@@ -104,7 +104,8 @@ public class LeaveMotherService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -130,6 +131,7 @@ public class LeaveMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -191,6 +193,7 @@ public class LeaveMotherService {
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -216,6 +219,7 @@ public class LeaveMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -282,7 +286,8 @@ public class LeaveMotherService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -308,6 +313,7 @@ public class LeaveMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -370,7 +376,8 @@ public class LeaveMotherService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -396,6 +403,7 @@ public class LeaveMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -447,7 +455,8 @@ public class LeaveMotherService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -472,6 +481,7 @@ public class LeaveMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));

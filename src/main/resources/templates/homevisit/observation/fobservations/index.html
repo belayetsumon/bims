@@ -44,7 +44,7 @@
                                                     <th><a th:href="@{/mprofessionalobserbations/delete/{id}(id=${o_ProfessionalObserbationsMother.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></th> <th></th>
                                                 </tr>
                                                 <tr><th>Mother Master Code</th> <td th:text="${o_ProfessionalObserbationsMother.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                    <th> </th> <td ></td>
+                                                    <th>Mother Name </th> <td th:text="${o_ProfessionalObserbationsMother.motherMasterCode.motherName}"></td>
                                                 </tr>
                                                 <tr><th>Induction Start Date</th> <td th:text="${o_ProfessionalObserbationsMother.inductionStartDate}">Chakma</td>
                                                     <th>Observation Start Date </th> <td th:text="${o_ProfessionalObserbationsMother.obStartDate}">Chakma</td>
@@ -101,8 +101,9 @@
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
                                         <th>Delete</th>
-                                        <th>Mother Master Code</th>
+
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Observation Start Date</th>
 
                                         <th> Physical Disability</th>
@@ -125,9 +126,10 @@
 
                                         <td> <a   th:href="@{/opobserbationschild/delete/{id} (id=${o_ProfessionalObserbationsChild.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
 
-                                        <td th:text="${o_ProfessionalObserbationsChild.motherMasterCode.motherMasterCode}">Chakma</td>
+                     
 
                                         <td th:text="${o_ProfessionalObserbationsChild.childMasterCode.childMasterCode}">Chakma</td>
+                                         <td th:text="${o_ProfessionalObserbationsChild.childMasterCode.name}">Chakma</td>
 
                                         <td th:text="${o_ProfessionalObserbationsChild.obStartDate}">Chakma</td>
 

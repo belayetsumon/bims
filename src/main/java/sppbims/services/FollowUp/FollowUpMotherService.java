@@ -87,7 +87,8 @@ public class FollowUpMotherService {
                 followUpMotherRoot.get("handWash").alias("handWash"),
                 followUpMotherRoot.get("recommendation").alias("recommendation"),
                 followUpMotherRoot.get("remarks").alias("remarks"),
-                motherMasterCodeJoin.get("motherMasterCode").alias("motherMasterCode")
+                followUpMotherRoot.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                followUpMotherRoot.get("motherMasterCode").get("motherName").alias("motherName")
         );
 
         query.where(cb.and(predicates.toArray(new Predicate[0])));
@@ -126,6 +127,7 @@ public class FollowUpMotherService {
             map.put("recommendation", tuple.get("recommendation"));
             map.put("remarks", tuple.get("remarks"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
 
             resultList.add(map);
         }

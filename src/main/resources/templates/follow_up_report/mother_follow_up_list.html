@@ -89,8 +89,9 @@
                         <table id="tablesdata" class="table table-bordered table-striped">
                             <thead>      
                                 <tr>
-
+                                    <th>#</th>
                                     <th>Mother Id </th>
+                                    <th>Mother Name</th>
                                     <th>Release date </th>
                                     <th> Visited Staff name</th>
                                     <th>Follow up date</th>
@@ -114,8 +115,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="motherlist,status:${list}">  
+                                <tr th:each="motherlist,status:${list}">
+                                    <td th:text="${status.count}">  </td>
                                     <td th:text="${motherlist.motherMasterCode}">  </td>
+                                    <td th:text="${motherlist.motherName}">  </td>
                                     <td th:text="${motherlist.releaseDate}">  </td>
                                     <td th:text="${motherlist.visitedStaffName}">   </td>
                                     <td th:text="${motherlist.followUpDate}">   </td>

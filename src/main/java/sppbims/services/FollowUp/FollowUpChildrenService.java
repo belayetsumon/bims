@@ -76,8 +76,10 @@ public class FollowUpChildrenService {
                 followUpChildrenRoot.get("workNote").alias("workNote"),
                 followUpChildrenRoot.get("childClass").alias("childClass"),
                 followUpChildrenRoot.get("remarks").alias("remarks"),
-                motherMasterCodeJoin.get("motherMasterCode").alias("motherMasterCode"),
-                childMasterCodeJoin.get("childMasterCode").alias("childMasterCode")
+                followUpChildrenRoot.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                followUpChildrenRoot.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                followUpChildrenRoot.get("motherMasterCode").get("motherName").alias("motherName"),
+                followUpChildrenRoot.get("childMasterCode").get("name").alias("name")
         );
         query.where(cb.and(predicates.toArray(new Predicate[0])));
         // Step 6: Set the order by `id` descending
@@ -100,6 +102,8 @@ public class FollowUpChildrenService {
             map.put("remarks", tuple.get("remarks"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
+            map.put("name", tuple.get("name"));
 //            map.put("createdBy", tuple.get("createdBy"));
 //            map.put("updatedBy", tuple.get("updatedBy"));
             resultList.add(map);

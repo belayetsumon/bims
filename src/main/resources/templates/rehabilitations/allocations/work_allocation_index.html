@@ -40,6 +40,7 @@
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
+                                         <th>Mother Name</th>
                                         <th>Work Allocation Date</th>
                                         <th>Work</th>
                                         <th> Section Place</th>
@@ -55,6 +56,7 @@
                                         <td><a   th:href="@{/rmworkallocation/edit/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/rmworkallocation/delete/{id} (id=${list3.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list3.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list3.motherName}">Chakma</td>
                                         <td th:text="${list3.allocationDate}">Chakma</td>
                                         <td th:text="${list3.work}">Chakma</td>
                                         <td th:text="${list3.sectionPlace}">Chakma</td>

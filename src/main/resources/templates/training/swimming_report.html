@@ -16,7 +16,7 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#"> Training</a></li>
 
-                                <li class="breadcrumb-item active">  Children List Of Completed Swim Safe Lesson </li>
+                                <li class="breadcrumb-item active">  Swim Safe Lesson Report </li>
                             </ol>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card card-info">
                             <div class="card-header with-border">
-                                <h3 class="card-title"> Children List For Swim Safe Lesson Total [[${list.size()}]]</h3>
+                                <h3 class="card-title"> Swim Safe Lesson Report Total [[${list.size()}]]</h3>
                                 <div class="card-tools">
                                     <div class="btn-group">
                                         <a  th:href="@{/trainingreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
@@ -38,8 +38,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <div class="table-responsive">  
-                                    <form class=" justify-content-center mb-1" 
+                                <div class="table-responsive">
+                                    <form class=" justify-content-center mb-1"
                                           th:action="@{/trainingreport/livelihood_training_report_by_mother}"   method="get">
 
                                         <div class="row justify-content-center">
@@ -54,7 +54,7 @@
                                             <div class="col-auto">
                                                 <label class="" for="to">To:</label>
                                             </div>
-                                            <div class="col-auto"> 
+                                            <div class="col-auto">
                                                 <div class="form-group input-group date">
 
                                                     <input type="text" class="form-control"  id="endDate" name="endDate"/>
@@ -73,13 +73,13 @@
                                             <div class="col-auto">
                                                 <label class="" for="to">Graduate Status:</label>
                                             </div>
-                                            <div class="col-auto"> 
+                                            <div class="col-auto">
                                                 <div class="form-group input-group date">
 
                                                     <select class="form-control"    name="graduateStatus" >
                                                         <option value=" "> Select one</option>
                                                         <option th:each =" graduatestatuss :${graduatestatus}"
-                                                                th:value=" ${graduatestatuss}" 
+                                                                th:value=" ${graduatestatuss}"
                                                                 th:text="${graduatestatuss}"> Select one</option>
                                                     </select>
                                                 </div>
@@ -91,9 +91,9 @@
                                                 <button type="submit" class="btn btn-info ">Submit</button>
                                             </div>
                                         </div>
-                                    </form> 
+                                    </form>
                                     <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
-                                        <thead> 
+                                        <thead>
                                             <tr>
                                                 <th style="width: 10px">#</th>
 
@@ -101,14 +101,14 @@
                                                 <th>Child master code</th>
                                                 <th>Child Name</th>
                                                 <th>Result</th>
-                                                <th>Start Date</th> 
-                                                <th>End Date</th>  
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
 
-                                            </tr>    
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="lists,status:${list}">                                
-                                                <td th:text="${status.count}">2.</td>      
+                                            <tr th:each="lists,status:${list}">
+                                                <td th:text="${status.count}">2.</td>
 
 
                                                 <!--                                            <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
@@ -118,7 +118,7 @@
                                                 <td th:text="${lists.status}">Chakma</td>
                                                 <td th:text="${lists.startDate}">Chakma</td>
                                                 <td th:text="${lists.endDate}">Chakma</td>
-                                            </tr> 
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

@@ -172,9 +172,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>  
-
-                                            <th>Mother Master Code</th>
-
+                                            <th>Child Master Code</th>
+                                            <th>Child Name</th>
                                             <th>Observation Duration/Day</th>
                                             <th> Previous Disease</th>
                                             <th> Previous Treatment</th>
@@ -201,8 +200,9 @@
                                     <tbody>
                                         <tr th:each="list,status:${o_CHealthConditions}">
                                             <td th:text="${status.count}">2.</td>                                 
-                                            <td th:text="${list.motherMasterCode}">Chakma</td>
 
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
                                             <td th:text="${list.observationDuration}">Chakma</td>
                                             <td th:text="${list.previousDisease}">Chakma</td>
                                             <td th:text="${list.previousTreatment}">Chakma</td>

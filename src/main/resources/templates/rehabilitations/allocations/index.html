@@ -43,6 +43,7 @@
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
+                                        <th>Mother Name</th>
                                         <th>House Name </th>
                                         <th> Start Date</th>
                                         <th>End Date</th>
@@ -58,6 +59,7 @@
                                         <td><a   th:href="@{/rmhousallocation/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info">Edit</a></td>
                                         <td> <a   th:href="@{/rmhousallocation/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherName}">Chakma</td>
                                         <td th:text="${list.houseName}">Chakma</td>
                                         <td th:text="${list.allocationDate}">Chakma</td>
                                         <td th:text="${list.endDate}">Chakma</td>
@@ -96,8 +98,8 @@
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
                                         <th>Delete</th>
-                                        <th>Mother Master Code</th>
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>House Name </th>
                                         <th> Start Date</th>
                                         <th>End Date</th>
@@ -111,8 +113,8 @@
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/chouseallocation/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/chouseallocation/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
-                                        <td th:text="${list2.motherMasterCode}">Chakma</td>
                                         <td th:text="${list2.childMasterCode}">Chakma</td>
+                                        <td th:text="${list2.name}">Chakma</td>
                                         <td th:text="${list2.houseName}">Chakma</td>
                                         <td th:text="${list2.allocationDate}">Chakma</td>
                                         <td th:text="${list2.endDate}">Chakma</td>

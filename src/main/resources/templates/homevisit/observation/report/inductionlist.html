@@ -44,6 +44,7 @@
 
                                             <th style="width: 10px">#</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Induction Start Date </th>
                                             <th> Induction End Date</th>
                                             <th> Immediate Support On</th>
@@ -55,6 +56,7 @@
                                     <tr th:each="list,status:${o_Induction}">
                                         <td th:text="${status.count}">2.</td>
                                         <td th:text="${list.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherName}">Chakma</td>
                                         <td th:text="${list.startDate}">Chakma</td>
                                         <td th:text="${list.endDate}">Chakma</td>
                                         <td th:text="${list.immediateSupportOn}">Chakma</td>

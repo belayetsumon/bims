@@ -42,7 +42,8 @@ public class InductionoutcomeService {
                 root.get("challagesOfCandidare").alias("challagesOfCandidare"),
                 root.get("remark").alias("inductionRemark"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"), // Assuming there's a 'code' field in MotherMasterData
-                root.get("motherMasterCode").get("id").alias("motherMasterCodeId")
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherName").alias("motherName")
         );
 
         // Execute the query
@@ -69,6 +70,7 @@ public class InductionoutcomeService {
             resultMap.put("motherMasterCode", result.get("motherMasterCode"));
 
             resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
+            resultMap.put("motherName", result.get("motherName"));
             resultMaps.add(resultMap);
         }
 

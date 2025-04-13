@@ -41,6 +41,7 @@
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
+                                        <th>Mother Name</th>
                                         <th>Therapeutic Session Date </th>
                                         <th> Session Type</th>
                                         <th>Diagnosis  </th>
@@ -53,6 +54,7 @@
                                         <td><a   th:href="@{/ot/edit/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/ot/delete/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
                                         <td th:text="${list.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list.sessionType.name}">Chakma</td>
                                         <td th:text="${list.diagonosis.name}">Chakma</td>
@@ -93,6 +95,7 @@
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Therapeutic Session Date </th>
                                         <th> Session Type</th>
                                         <th>Diagnosis  </th>
@@ -106,6 +109,7 @@
                                         <td> <a   th:href="@{/otchild/delete/{id} (id=${lists.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${lists.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${lists.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${lists.childMasterCode.name}">Chakma</td>
                                         <td th:text="${lists.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${lists.sessionType.name}">Chakma</td>
                                         <td th:text="${lists.diagonosis.name}">Chakma</td>
@@ -143,6 +147,7 @@
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
+                                        <th>Mother Name</th>
                                         <th>Therapeutic Session Date</th>
                                         <th>Pain </th>
                                         <th> Pain Note</th>
@@ -162,6 +167,7 @@
                                         <td><a   th:href="@{/pt/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/pt/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
                                         <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list2.motherMasterCode.motherName}">Chakma</td>
                                         <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list2.pain}">Chakma</td>
                                         <td th:text="${list2.painNote}">Chakma</td>
@@ -205,7 +211,8 @@
                                         <th style="width: 10px">#</th>  
                                         <th>Edit</th>
                                         <th>Delete</th>
-                                        <th>Mother Master Code</th>
+                                        <th>Child Code</th>
+                                        <th>Child Name</th>
                                         <th>Therapeutic Session Date</th>
                                         <th>Pain </th>
                                         <th> Pain Note</th>
@@ -224,7 +231,8 @@
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/cpt/edit/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
                                         <td> <a   th:href="@{/cpt/delete/{id} (id=${list2.id})}" type="button" class="btn btn-xs bg-info ">Delete</a></td>
-                                        <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${list2.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${list2.childMasterCode.name}">Chakma</td>
                                         <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
                                         <td th:text="${list2.pain}">Chakma</td>
                                         <td th:text="${list2.painNote}">Chakma</td>

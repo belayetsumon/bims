@@ -33,11 +33,12 @@
                             <div class="card-header with-border">
                                 <h3 class="card-title">Mother Admission </h3>
                                 <div class="card-tools pull-right">
+                                    <a   th:href="@{/admission/pdf/{id}(id=${minfo})}" type="button" class="btn  btn-light text-info btn-sm pull-right">pdf</a>
                                     <a   th:href="@{/admission/create/{id}(id=${minfo})}" type="button" class="btn  btn-light text-info btn-sm pull-right"> Add</a>
                                 </div>      </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <!-- 
+                                <!--
                                 <img  class="img-responsive" th:src="@{/files/amenakatun.jpg}"   />
                                 <img  class="img-responsive" th:src="@{/images/google-ads.png}"/>
                                 -->
@@ -45,7 +46,7 @@
                                 <span th:text="${message}"></span>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th style="width: 10px">#</th> 
+                                        <th style="width: 10px">#</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th> Id</th>
@@ -53,7 +54,7 @@
                                         <th>Date Arrival</th>
                                         <th>Date Admission</th>
                                         <th>Remark</th>
-                                    </tr>                          
+                                    </tr>
                                     <tr th:each="o_MAddmission,status:${o_MAddmission}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/admission/edit/{id} (id=${o_MAddmission.id})}" type="button" class="btn btn-xs bg-maroon ">Edit</a></td>
@@ -81,7 +82,7 @@
                                 </div>    </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <!-- 
+                                <!--
                                 <img  class="img-responsive" th:src="@{/files/amenakatun.jpg}"   />
                                 <img  class="img-responsive" th:src="@{/images/google-ads.png}"/>
                                 -->
@@ -89,7 +90,7 @@
                                 <span th:text="${message}"></span>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th style="width: 10px">#</th> 
+                                        <th style="width: 10px">#</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th> Id</th>
@@ -98,7 +99,7 @@
                                         <th>Date Arrival</th>
                                         <th>Date Admission</th>
                                         <th>Remark</th>
-                                    </tr>                          
+                                    </tr>
                                     <tr th:each="o_ChildAddmission,status:${o_ChildAddmission}">
                                         <td th:text="${status.count}">2.</td>
                                         <td><a   th:href="@{/childadmission/edit/{c_id} (c_id=${o_ChildAddmission.id})}" type="button" class="btn btn-xs bg-maroon ">edit</a></td>
@@ -123,19 +124,19 @@
                     <!-- /.col -->
                 </div>
                 <!--                <div class="row">
-                
+
                                     <div class="col-sm-12">
                                         <div class="card card-primary">
                                             <div class="card-header with-border">
                                                 <h3 class="card-title">Child Images </h3>
                                                 <a   th:href="@{/admission/create/{id}(id=${minfo})}"  type="button" class="btn  btn-warning pull-right"> Add Child Image</a>
                                             </div>
-                                             /.card-header 
+                                             /.card-header
                                             <div class="card-body">
                                                 <table class="table table-bordered">
                                                     <tr>
-                                                        <th style="width: 10px">#</th>  
-                
+                                                        <th style="width: 10px">#</th>
+
                                                         <th>Add Details</th>
                                                         <th>Home Visit Date</th>
                                                         <th>  Id</th>
@@ -143,30 +144,30 @@
                                                         <th>Date of Birth</th>
                                                         <th>Number of Eligible Children</th>
                                                         <th>Status</th>
-                                                    </tr>                          
+                                                    </tr>
                                                     <tr th:each="list,status:${list}">
                                                         <td th:text="${status.count}">2.</td>
-                                                        <td> 
+                                                        <td>
                                                             <a   th:href="@{/motherdetails/motherdetails/{id} (id=${list.id})}" type="button" class="btn btn-xs bg-maroon ">Add Details</a>
                                                         </td>
                                                         <td th:text="${list.homeVisitDate}">Chakma</td>
                                                         <td th:text="${list.motherMasterCode}">Chakma</td>
                                                         <td th:text="${list.motherName}">Chakma</td>
-                                                        <td th:text="${list.dateOfBirth}">Chakma</td> 
+                                                        <td th:text="${list.dateOfBirth}">Chakma</td>
                                                         <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
                                                         <td th:text="${list.eligibility}">Chakma</td>
                                                     </tr>
                                                 </table>
                                             </div>
-                                             /.card-body 
+                                             /.card-body
                                             <div class="card-footer clearfix">
-                
+
                                             </div>
                                         </div>
-                                         /.card 
+                                         /.card
                                     </div>
-                                     /.col 
-                                     /.col 
+                                     /.col
+                                     /.col
                                 </div>-->
             </section>
             <!-- /.content -->

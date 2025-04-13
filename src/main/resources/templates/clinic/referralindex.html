@@ -29,6 +29,7 @@
                                             <th> Edit </th>      
                                             <th> Delete</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Referral Date</th>
                                             <th>Referred  To  </th>
                                             <th>Reasons</th>
@@ -42,6 +43,7 @@
                                             <td><a th:href="@{/referral/edit/{id}(id=${referral.referralId})}" type="button" class="btn btn-sm btn-info"> Edit</a></td>
                                             <td><a th:href="@{/referral/delete/{id}(id=${referral.referralId})}" type="button" class="btn btn-sm btn-info"> Delete</a></td>
                                             <td th:text="${referral.motherMasterCode}">Chakma</td>
+                                            <td th:text="${referral.motherName}">Chakma</td>
                                             <td th:text="${referral.referralDate}">Chakma</td>
                                             <td th:text="${referral.reffrredTo}">Chakma</td>
                                             <td th:text="${referral.reasons}">Chakma</td>

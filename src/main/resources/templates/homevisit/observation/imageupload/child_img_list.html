@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-5">
+                            <h1>Observation</h1>
+                        </div>
+                        <div class="col-sm-7">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">Child Image List </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Child Image List. Total: [[${list.size()}]]</h3>
+                                <div class="card-tools">
+
+                                </div>  </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <!-- 
+                                <img  class="img-responsive" th:src="@{/files/amenakatun.jpg}"   />
+                                <img  class="img-responsive" th:src="@{/images/google-ads.png}"/>
+                                -->
+
+
+                                <table id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th> 
+                                            <th>Edit</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
+                                            <th>Child Master Code</th>
+                                            <th>Child Name</th>
+                                            <th>Image</th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cimage,status:${list}">
+                                            <td th:text="${status.count}">Chakma</td>
+                                            <td><a   th:href="@{/image/index/{id} (id=${cimage.motherMasterCodeId})}" type="button" class="btn btn-xs bg-info ">Edit</a></td>
+                                            <td th:text="${cimage.motherMasterCode}">Chakma</td>
+                                            <td th:text="${cimage.motherName}">Chakma</td>
+                                            <td th:text="${cimage.childMasterCode}">Chakma</td>
+                                            <td th:text="${cimage.name}">Chakma</td>
+                                            <td> <img  class="img-responsive" th:src="@{/files/childimage/}+${cimage.imageName}" width="150px" height="150px" /> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

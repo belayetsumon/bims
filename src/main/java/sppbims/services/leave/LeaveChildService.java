@@ -7,7 +7,6 @@ package sppbims.services.leave;
 import sppbims.model.homevisit.M_Child_info;
 import sppbims.model.homevisit.MotherMasterData;
 import sppbims.model.leave.LeaveChild;
-import sppbims.model.leave.LeaveMother;
 import sppbims.model.leave.LeaveTypeEnum;
 import sppbims.repository.leave.LeaveChildRepository;
 import jakarta.persistence.EntityManager;
@@ -106,8 +105,10 @@ public class LeaveChildService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                m_Child_info_join.get("childMasterCode").alias("childMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -133,7 +134,9 @@ public class LeaveChildService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -198,8 +201,10 @@ public class LeaveChildService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                m_Child_info_join.get("childMasterCode").alias("childMasterCode"),
+               root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -225,7 +230,9 @@ public class LeaveChildService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -294,8 +301,10 @@ public class LeaveChildService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                m_Child_info_join.get("childMasterCode").alias("childMasterCode"),
+       root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -321,7 +330,9 @@ public class LeaveChildService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));
@@ -387,8 +398,10 @@ public class LeaveChildService {
         // Create the select clause with aliasing
         criteriaQuery.multiselect(
                 root.get("id").alias("leaveMotherId"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                m_Child_info_join.get("childMasterCode").alias("childMasterCode"),
+       root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("sectionName").alias("sectionName"),
                 root.get("leaveFrom").alias("leaveFrom"),
                 root.get("leaveTo").alias("leaveTo"),
@@ -414,7 +427,9 @@ public class LeaveChildService {
             Map<String, Object> map = new HashMap<>();
             map.put("leaveMotherId", tuple.get("leaveMotherId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             map.put("sectionName", tuple.get("sectionName"));
             map.put("leaveFrom", tuple.get("leaveFrom"));
             map.put("leaveTo", tuple.get("leaveTo"));

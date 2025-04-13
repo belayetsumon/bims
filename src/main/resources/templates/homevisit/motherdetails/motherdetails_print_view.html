@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mother Basic Information</title>
+
+        <!-- jsPDF -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <!-- html2canvas -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <style>
+            /* General table styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 30px;
+
+            }
+
+            table th, table td {
+                font-size: 14pt;
+                padding: 12px;
+                text-align: left;
+                border: 1px solid #000;
+            }
+
+            table th {
+                color: black;
+            }
+
+            /* Print-specific styles */
+            @media print {
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 14pt;
+                    color: #000;
+                    background: #fff;
+                    padding: 20px;
+                    color: #333;
+                    overflow: hidden;
+                }
+                #content {
+                    font-size: 14pt;
+                    max-width: 800px;
+                    margin: auto;
+                    padding: 30px;
+                    background: white;
+                    border: 1px solid #ccc;
+                    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+                    position: relative;
+                }
+                /* Hide non-printable elements */
+                .no-print, button {
+                    display: none !important;
+                }
+
+                table  tr, td, th {
+                    page-break-inside: avoid;
+                }
+
+                .page-break {
+                    page-break-after: always;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Button hidden during print -->
+        <button id="downloadBtn" class="no-print">Download Property Info PDF</button>
+
+        <!-- Printable content -->
+        <div id="content">
+            <h4>Mother Basic Information: <span th:text="${m_info.motherName}">Chakma</span></h4>
+            <table>
+                <tr>
+                    <th>Visit Officer's Name</th>
+                    <td th:text="${m_info.visitOfficersName}">Officer</td>
+                    <th></th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Refer From</th>
+                    <td th:text="${m_info.referredFrom}">Source</td>
+                    <th>Referral Date</th>
+                    <td th:text="${m_info.dateReferral}">2025-04-01</td>
+                </tr>
+                <tr>
+                    <th>Reasons</th>
+                    <td th:text="${m_info.resons.name}">Reason</td>
+                    <th>Home Visit Date</th>
+                    <td th:text="${m_info.homeVisitDate}">2025-04-01</td>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <td th:text="${m_info.motherMasterCode}">ID123</td>
+                    <th>Mother Name</th>
+                    <td th:text="${m_info.motherName}">Name</td>
+                </tr>
+                <tr>
+                    <th>Date of Birth</th>
+                    <td th:text="${m_info.dateOfBirth}">1990-01-01</td>
+                    <th>Mother's Mother Name</th>
+                    <td th:text="${m_info.mMothersName}">Grandma</td>
+                </tr>
+                <tr>
+                    <th>Father Name</th>
+                    <td th:text="${m_info.fathersName}">Father</td>
+                    <th>Religion</th>
+                    <td th:text="${m_info.religion.name}">Religion</td>
+                </tr>
+                <tr>
+                    <th>Marital Status</th>
+                    <td th:text="${m_info.maritalStatus.name}">Married</td>
+                    <th>Husband's Name</th>
+                    <td th:text="${m_info.husbandsName}">Husband</td>
+                </tr>
+                <tr>
+                    <th>Husband's Status</th>
+                    <td th:text="${m_info.husbandsStatus.name}">Alive</td>
+                    <th>Prime Family Member</th>
+                    <td th:text="${m_info.primeFamilyMemberName}">PFM</td>
+                </tr>
+                <tr>
+                    <th>Relation with PFM</th>
+                    <td th:text="${m_info.relationWithPfm.name}">Daughter</td>
+                    <th>Ethnic Identity</th>
+                    <td th:text="${m_info.ethnicIdentity.name}">Tribe</td>
+                </tr>
+            </table>
+
+            <h4>Mother Address</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Address Type</th>
+                        <th>C/O</th>
+                        <th>Vill/House</th>
+                        <th>P.O</th>
+                        <th>District</th>
+                        <th>Thana</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="addres : ${addres}">
+                        <td th:text="${addres.addressType}">Type</td>
+                        <td th:text="${addres.co}">CO</td>
+                        <td th:text="${addres.vill}">Village</td>
+                        <td th:text="${addres.po}">PO</td>
+                        <td th:text="${addres.district}">District</td>
+                        <td th:text="${addres.thana.name}">Thana</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>House Information</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother Master Code</th>
+                        <th>House Type</th>
+                        <th>Ownership</th>
+                        <th>Value Title</th>
+                        <th>Value</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="house : ${house}">
+                        <td th:text="${house.motherMasterCode.motherMasterCode}">Code</td>
+                        <td th:text="${house.houseType.name}">Type</td>
+                        <td th:text="${house.ownership.name}">Owner</td>
+                        <td th:text="${house.valueTitle}">Title</td>
+                        <td th:text="${house.value}">Value</td>
+                        <td th:text="${house.remarks}">Remarks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Per Capita Income Information</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother ID</th>
+                        <th>Income Generating Activity</th>
+                        <th>Monthly Income</th>
+                        <th>Other Income Source</th>
+                        <th>Other Income Amount</th>
+                        <th>Total Household Members</th>
+                        <th>Per Capita Income</th>
+                        <th>Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="income : ${income}">
+                        <td th:text="${income.motherMasterCode.motherMasterCode}">ID</td>
+                        <td th:text="${income.incomeGeneratingActivites.name}">Activity</td>
+                        <td th:text="${income.monthlyIncome}">0</td>
+                        <td th:text="${income.otherIncomeSource}">Source</td>
+                        <td th:text="${income.otherIncomeAmt}">0</td>
+                        <td th:text="${income.totalHouseMember}">1</td>
+                        <td th:text="${(income.monthlyIncome + income.otherIncomeAmt) / income.totalHouseMember}">0</td>
+                        <td th:text="${income.remark}">Remark</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Property Information</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mother ID</th>
+                    <td><label th:text="${property.motherMasterCode.motherMasterCode}"></label></td>
+
+                    <th>Homestead Land Qty</th>
+                    <td><label th:text="${property.homelandQuantity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Homestead Land Value</th>
+                    <td><label th:text="${property.homeLandValue}"></label></td>
+
+                    <th>Cultivable Land Qty</th>
+                    <td><label th:text="${property.cultivableLandQuantity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Cultivable Land Value</th>
+                    <td><label th:text="${property.cultivableLandValue}"></label></td>
+
+                    <th>Jewelry Qty</th>
+                    <td><label th:text="${property.jewelryQuentity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Jewelry Value</th>
+                    <td><label th:text="${property.jewelryValue}"></label></td>
+
+                    <th>Animals Qty</th>
+                    <td><label th:text="${property.animalsQuantity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Animals Value</th>
+                    <td><label th:text="${property.animalsValue}"></label></td>
+
+                    <th>Investments Qty</th>
+                    <td><label th:text="${property.investmentsSharesQuentity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Investments Value</th>
+                    <td><label th:text="${property.investmentsSharesValue}"></label></td>
+
+                    <th>Loan (Person)</th>
+                    <td><label th:text="${property.loanPersonQuantity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Loan Person Name</th>
+                    <td><label th:text="${property.loanPersonName}"></label></td>
+
+                    <th>Loan (Org)</th>
+                    <td><label th:text="${property.organizationsLoanQuantity}"></label></td>
+                </tr>
+                <tr>
+                    <th>Loan Org Name</th>
+                    <td><label th:text="${property.organizationName}"></label></td>
+
+                    <th>Remark</th>
+                    <td><label th:text="${property.remark}"></label></td>
+                </tr>
+            </table>
+
+
+            <h4>Current Support Information</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother ID</th>
+                        <th>Organization/Person</th>
+                        <th>Help Type</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="current : ${current}">
+                        <td th:text="${current.motherMasterCode.motherMasterCode}">ID</td>
+                        <td th:text="${current.organizations}">Org</td>
+                        <td th:text="${current.aidType.name}">Aid</td>
+                        <td th:text="${current.remarks}">Remarks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Community Information </h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother ID</th>
+                        <th>Economy Type</th>
+                        <th>Available IGA</th>
+                        <th>Note</th>
+                        <th>Prospective IGA</th>
+                        <th>Note</th>
+                        <th>Unemployment Session</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="community : ${community}">
+                        <td th:text="${community.motherMasterCode.motherMasterCode}">ID</td>
+                        <td th:text="${community.economyType.name}">Type</td>
+                        <td th:text="${community.avilableIga}">Available</td>
+                        <td th:text="${community.avilableIgaNote}">Note</td>
+                        <td th:text="${community.prospectiveIga}">Prospective</td>
+                        <td th:text="${community.prospectiveIgaNote}">Note</td>
+                        <td th:text="${community.unemploymentSession}">Season</td>
+                        <td th:text="${community.REMARKS}">Remarks</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Accessibility Information</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Mother Id Information</th>
+                    <td><label th:text="${accessibility.motherMasterCode.motherMasterCode}"></label></td>
+
+                    <th>Road Type</th>
+                    <td><label th:text="${accessibility.roadType.name}"></label></td>
+                </tr>
+                <tr>
+                    <th>Transport Type</th>
+                    <td><label th:text="${accessibility.transportType.name}"></label></td>
+
+                    <th>Distance To Main Road</th>
+                    <td><label th:text="${accessibility.distanceToMainRoad}"></label></td>
+                </tr>
+                <tr>
+                    <th>Primary School</th>
+                    <td><label th:text="${accessibility.primarySchool}"></label></td>
+
+                    <th>Primary School Distance</th>
+                    <td><label th:text="${accessibility.primarySchoolDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Secondary School</th>
+                    <td><label th:text="${accessibility.secondarySchool}"></label></td>
+
+                    <th>Secondary School Distance</th>
+                    <td><label th:text="${accessibility.secondarySchoolDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Hospital</th>
+                    <td><label th:text="${accessibility.hospital}"></label></td>
+
+                    <th>Hospital/Clinic Distance</th>
+                    <td><label th:text="${accessibility.hospitalDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Market Place</th>
+                    <td><label th:text="${accessibility.marketPlace}"></label></td>
+
+                    <th>Market Place Distance</th>
+                    <td><label th:text="${accessibility.marketPlaceDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Bank</th>
+                    <td><label th:text="${accessibility.bank}"></label></td>
+
+                    <th>Bank Distance</th>
+                    <td><label th:text="${accessibility.bankDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>NGO</th>
+                    <td><label th:text="${accessibility.ngo}"></label></td>
+
+                    <th>NGO Distance</th>
+                    <td><label th:text="${accessibility.ngoDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Welfare Institutions</th>
+                    <td><label th:text="${accessibility.wellfareInstitutions}"></label></td>
+
+                    <th>Welfare Institutions Distance</th>
+                    <td><label th:text="${accessibility.wellfareInstitutionsDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Technical Training Institute</th>
+                    <td><label th:text="${accessibility.technicalInstiute}"></label></td>
+
+                    <th>Technical Training Institute Distance</th>
+                    <td><label th:text="${accessibility.technicalInstiuteDistance}"></label></td>
+                </tr>
+                <tr>
+                    <th>Remarks</th>
+                    <td colspan="3"><label th:text="${accessibility.REMARKS}"></label></td>
+                </tr>
+            </table>
+
+
+
+            <!-- Lifestyle Table -->
+            <h3>Lifestyle Information</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother Id</th>
+                        <th>Water Source</th>
+                        <th>Source Of Drinking Water</th>
+                        <th>Toilet Type</th>
+                        <th>Cooking Fuel</th>
+                        <th>Light Source</th>
+                        <th>Leisure Facilities</th>
+                        <th>Leisure Engagement</th>
+                        <th>Personal Habits</th>
+                        <th>Craftsmanship</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="lifestyle,status:${lifestyle}">
+                        <td th:text="${lifestyle.motherMasterCode.motherMasterCode}"></td>
+                        <td th:text="${lifestyle.waterSource.name}"></td>
+                        <td th:text="${lifestyle.drinkingWaterSource.name}"></td>
+                        <td th:text="${lifestyle.toilet_type.name}"></td>
+                        <td th:text="${lifestyle.cookingFuel.name}"></td>
+                        <td th:text="${lifestyle.lightSource.name}"></td>
+                        <td th:text="${lifestyle.leisurFacilities.name}"></td>
+                        <td th:text="${lifestyle.leisureEngagment}"></td>
+                        <td th:text="${lifestyle.personalHabits.name}"></td>
+                        <td th:text="${lifestyle.craftsManShip}"></td>
+                        <td th:text="${lifestyle.remarks}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Nutrition Table -->
+            <h3>Nutrition Information</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother Id</th>
+                        <th>No of Meal Daily</th>
+                        <th>Fish</th>
+                        <th>Meat</th>
+                        <th>Milk</th>
+                        <th>Fruits</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="nutrition,status:${nutrition}">
+                        <td th:text="${nutrition.motherMasterCode.motherMasterCode}"></td>
+                        <td th:text="${nutrition.dailyMeal}"></td>
+                        <td th:text="${nutrition.fish}"></td>
+                        <td th:text="${nutrition.meat}"></td>
+                        <td th:text="${nutrition.milk}"></td>
+                        <td th:text="${nutrition.fruits}"></td>
+                        <td th:text="${nutrition.remarks}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Local Govt Table -->
+            <h3>Local Govt Facilities Information</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother Id</th>
+                        <th>Local Elite Person</th>
+                        <th>Name</th>
+                        <th>Contact Number</th>
+                        <th>Voter of this community</th>
+                        <th>VGF/VGD Card</th>
+                        <th>Any Govt. Support</th>
+                        <th>Number of SPP Mother in village</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="localgovt,status:${localgovt}">
+                        <td th:text="${localgovt.motherMasterCode.motherMasterCode}"></td>
+                        <td th:text="${localgovt.localContactPersons.name}"></td>
+                        <td th:text="${localgovt.name}"></td>
+                        <td th:text="${localgovt.contactNumber}"></td>
+                        <td th:text="${localgovt.votingParticipation}"></td>
+                        <td th:text="${localgovt.vgfCard}"></td>
+                        <td th:text="${localgovt.govtSupport}"></td>
+                        <td th:text="${localgovt.sppMotherNo}"></td>
+                        <td th:text="${localgovt.remarks}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Family Info Table -->
+            <h3>Family Information</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mother Id</th>
+                        <th>Name Of Member</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Occupation</th>
+                        <th>Relationship</th>
+                        <th>Cell No</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="family,status:${family}">
+                        <td th:text="${family.motherMasterCode.motherMasterCode}"></td>
+                        <td th:text="${family.name}"></td>
+                        <td th:text="${family.dateofBirth}"></td>
+                        <td th:text="${family.sex}"></td>
+                        <td th:text="${family.occopation.name}"></td>
+                        <td th:text="${family.relation.name}"></td>
+                        <td th:text="${family.cellNo}"></td>
+                        <td th:text="${family.remarks}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            document.getElementById('downloadBtn').addEventListener('click', function () {
+                const {jsPDF} = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+
+                const invoiceContent = document.getElementById('content');
+
+                html2canvas(invoiceContent, {
+                    scale: 2,
+                    useCORS: true
+                }).then(function (canvas) {
+                    const imgData = canvas.toDataURL('image/png');
+
+                    const pageWidth = doc.internal.pageSize.getWidth();
+                    const pageHeight = doc.internal.pageSize.getHeight();
+
+                    const marginTop = 20;
+                    const marginBottom = 20;
+                    const availablePageHeight = pageHeight - marginTop - marginBottom;
+
+                    const imgWidth = pageWidth - 20;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    const totalPages = Math.ceil(imgHeight / availablePageHeight);
+
+                    let pageNumber = 1;
+                    let renderedHeight = 0;
+                    const canvasPageHeight = (canvas.height * availablePageHeight) / imgHeight;
+
+                    function addHeader(doc) {
+                        doc.setFontSize(14);
+                        doc.setTextColor(40);
+                        doc.text("Mother Basic Information", pageWidth / 2, 10, {align: "center"});
+                    }
+
+                    function addFooter(doc, pageNumber) {
+                        doc.setFontSize(12);
+                        doc.setTextColor(150);
+
+                        const createdDate = new Date().toLocaleDateString(); // Get current date
+
+                        // Page number centered
+                        doc.text(`Page ${pageNumber}`, pageWidth / 2, pageHeight - 10, {align: "center"});
+
+                        // Created date right-aligned
+                        doc.text(`Created: ${createdDate}`, pageWidth - 10, pageHeight - 10, {align: "right"});
+                    }
+
+                    for (let i = 0; i < totalPages; i++) {
+                        if (i > 0)
+                            doc.addPage();
+
+                        const pageCanvas = document.createElement('canvas');
+                        pageCanvas.width = canvas.width;
+                        pageCanvas.height = canvasPageHeight;
+
+                        const ctx = pageCanvas.getContext('2d');
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+                        ctx.drawImage(canvas, 0, renderedHeight, canvas.width, canvasPageHeight, 0, 0, canvas.width, canvasPageHeight);
+
+                        const pageImgData = pageCanvas.toDataURL('image/png');
+
+                        addHeader(doc);
+                        doc.addImage(pageImgData, 'PNG', 10, marginTop, imgWidth, availablePageHeight);
+                        addFooter(doc, pageNumber);
+
+                        renderedHeight += canvasPageHeight;
+                        pageNumber++;
+                    }
+
+                    doc.save('mother-info.pdf');
+                }).catch(function (error) {
+                    console.error('Error generating canvas:', error);
+                });
+            });
+        </script>
+
+
+
+
+    </body>
+</html>

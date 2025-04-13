@@ -82,9 +82,9 @@ public class O_CHealthConditionsService {
 
         cq.multiselect(
                 root.get("id").alias("healthConditionId"),
-                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
-                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
-                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("id").alias("childMasterCodeId"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("observationDuration").alias("observationDuration"),
                 root.get("previousDisease").alias("previousDisease"),
                 root.get("previousTreatment").alias("previousTreatment"),
@@ -122,9 +122,9 @@ public class O_CHealthConditionsService {
 
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("healthConditionId", result.get("healthConditionId"));
-            resultMap.put("motherMasterCodeId", result.get("motherMasterCodeId"));
-            resultMap.put("motherMasterCode", result.get("motherMasterCode"));
-            resultMap.put("motherName", result.get("motherName"));
+            resultMap.put("childMasterCodeId", result.get("childMasterCodeId"));
+            resultMap.put("childMasterCode", result.get("childMasterCode"));
+            resultMap.put("name", result.get("name"));
             resultMap.put("observationDuration", result.get("observationDuration"));
             resultMap.put("previousDisease", result.get("previousDisease"));
             resultMap.put("previousTreatment", result.get("previousTreatment"));

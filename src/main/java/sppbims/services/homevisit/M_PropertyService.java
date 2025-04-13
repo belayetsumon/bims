@@ -48,6 +48,7 @@ public class M_PropertyService {
         cq.multiselect(
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                 root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("bankAccount").alias("bankAccount"),
                 root.get("savingMoney").alias("savingMoney"),
                 root.get("homelandQuantity").alias("homelandQuantity"),

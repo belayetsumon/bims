@@ -84,6 +84,7 @@
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                              <th>#</th>
                                             <th> Mother  Id</th>
                                             <th> Mother Name</th>
                                             <th> Child Name</th>
@@ -100,7 +101,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="list,status:${list}">
-
+      <td th:text="${status.count}"> 2. </td>   
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
 
                                             <td th:text="${list.motherName}">Chakma</td>

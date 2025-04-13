@@ -76,6 +76,7 @@
                                             <th style="width: 10px">#</th>
 
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th>Release Date</th>
                                             <th>Release By  </th>
                                             <th> Next Follow Up Date </th>
@@ -87,6 +88,7 @@
                                         <tr th:each="release,status:${release}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${release.motherMasterCode}">Chakma</td>
+                                            <td th:text="${release.motherName}">Chakma</td>
                                             <td th:text="${release.releaseDate}">Chakma</td>
                                             <td th:text="${release.releaseBy}">Chakma</td>
                                             <td th:text="${release.nextFollowUpDate}">Chakma</td>

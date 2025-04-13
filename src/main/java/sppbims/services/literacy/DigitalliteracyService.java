@@ -124,8 +124,9 @@ public class DigitalliteracyService {
                 literacyRoot.get("endDate").alias("endDate"),
                 literacyRoot.get("result").alias("result"),
                 literacyRoot.get("remark").alias("remark"),
-                motherMasterDataJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterDataJoin.get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
+                literacyRoot.get("motherMasterCode").alias("motherMasterCode"),
+                literacyRoot.get("motherMasterCode").get("motherName").alias("motherName"),
+                literacyRoot.get("motherMasterCode").get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
         );
 
         // Applying where conditions (if needed, e.g., filtering by some condition)
@@ -147,6 +148,7 @@ public class DigitalliteracyService {
             resultMap.put("result", tuple.get("result"));
             resultMap.put("remark", tuple.get("remark"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultList.add(resultMap);
         }
@@ -196,9 +198,9 @@ public class DigitalliteracyService {
                 literacyRoot.get("endDate").alias("endDate"),
                 literacyRoot.get("result").alias("result"),
                 literacyRoot.get("remark").alias("remark"),
-                motherMasterDataJoin.get("motherName").alias("motherName"),
-                motherMasterDataJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterDataJoin.get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
+                literacyRoot.get("motherMasterCode").get("motherName").alias("motherName"),
+                literacyRoot.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                literacyRoot.get("motherMasterCode").get("id").alias("motherMasterCodeId") // Assuming some field exists in the MotherMasterData entity
         );
 
         // Applying where conditions (if needed, e.g., filtering by some condition)

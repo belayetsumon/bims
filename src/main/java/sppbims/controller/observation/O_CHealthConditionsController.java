@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sppbims.services.observation.O_CHealthConditionsService;
 
 /**
  *
@@ -33,6 +34,9 @@ public class O_CHealthConditionsController {
 
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
+
+    @Autowired
+    O_CHealthConditionsService o_CHealthConditionsService;
 
     @RequestMapping("/create/{m_id}")
     public String add(Model model, @PathVariable Long m_id, O_CHealthConditions o_CHealthConditions) {
@@ -58,14 +62,10 @@ public class O_CHealthConditionsController {
     public String edit(Model model, @PathVariable Long id, O_CHealthConditions o_CHealthConditions) {
 
         Optional<O_CHealthConditions> o_CHealthConditionsopt = o_CHealthConditionsRepository.findById(id);
-
         o_CHealthConditions = o_CHealthConditionsopt.orElse(null);
-
         model.addAttribute("o_CHealthConditions", o_CHealthConditions);
-
         MotherMasterData motherMasterData = new MotherMasterData();
         motherMasterData.setId(o_CHealthConditions.getMotherMasterCode().getId());
-
         model.addAttribute("childList", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("bloodPressure", Yes_No.values());
         model.addAttribute("eyeProblem", Yes_No.values());
@@ -112,6 +112,13 @@ public class O_CHealthConditionsController {
         redirectAttrs.addAttribute("m_id", o_CHealthConditions.motherMasterCode.getId());
         o_CHealthConditionsRepository.deleteById(id);
         return "redirect:/healthcheckup/index/{m_id}";
+    }
+
+    @RequestMapping("/healthcheckupchild")
+    public String healthcheckupchild(Model model
+    ) {
+        model.addAttribute("o_CHealthConditions", o_CHealthConditionsService.childHelthConditionsReport(null, null, null, null, null, null, null, null, null, null));
+        return "homevisit/observation/healthcheckup/childhealthcondition_list";
     }
 
 }

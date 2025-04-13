@@ -39,8 +39,9 @@
                                             <th style="width: 10px">#</th>  
                                             <th>Induction Details</th>
                                             <th>Mother  Id</th>
-                                            <th>Home Visit Date</th>
                                             <th>Mother Name</th>
+                                            <th>Home Visit Date</th>
+
                                             <th>Date of Birth</th>
                                             <th>Number of Eligible Children</th>
                                             <th>Eligibility </th>
@@ -57,8 +58,11 @@
 
                                         </td>
                                         <td th:text="${list.motherMasterCode}">Chakma</td>
+
+                                        <td th:text="${list.motherName}">Chakma</td> 
+
                                         <td th:text="${ list.homeVisitDate}" >Chakma</td>
-                                        <td th:text="${list.motherName}">Chakma</td>
+
                                         <td th:text="${list.dateOfBirth}" >Chakma</td>
                                         <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
                                         <td th:text="${list.eligibility}">Chakma</td>

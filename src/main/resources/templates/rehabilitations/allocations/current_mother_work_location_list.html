@@ -64,6 +64,7 @@
                                             <th style="width: 10px">#</th>  
 
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
                                             <th> Section Place </th>
                                             <th> Start Date</th>
                                             <th>End Date</th>
@@ -72,7 +73,6 @@
                                             <th> Ext Date </th>
                                             <th> Total Days </th>
                                             <th> Grand Total Days </th>
-
                                             <th>Remark</th>
                                         </tr>       </thead>
                                     <tbody>                      
@@ -80,6 +80,7 @@
                                             <td th:text="${status.count}">2.</td>
 
                                             <td th:text="${list.get('motherMasterCode')}">Chakma</td>
+                                            <td th:text="${list.get('motherName')}">Chakma</td>
                                             <td th:text="${list.get('sectionPlace')}">Chakma</td>
                                             <td th:text="${list.get('allocationDate')}">Chakma</td>
                                             <td th:text="${list.get('endDate')}">Chakma</td>

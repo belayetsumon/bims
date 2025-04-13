@@ -76,7 +76,7 @@
                                             <th>#</th>
 
                                             <th>Child Master Code</th>
-
+                                            <th>Child Name</th>
                                             <th>Gender</th>
 
                                         </tr> 
@@ -85,7 +85,7 @@
                                         <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${lists.childMasterCode}">Chakma</td>
-
+                                            <td th:text="${lists.name}">Chakma</td>
                                             <td th:text="${lists.gender}">Chakma</td>
 
                                         </tr>

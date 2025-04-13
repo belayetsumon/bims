@@ -29,7 +29,6 @@
                         <div class="card card-info">
                             <div class="card-header with-border">
                                 <h3 class="card-title">Child occupational therapy session report. Total:  [[${list.size()}]]</h3>
-
                                 <div class="card-tools">
                                     <a  th:href="@{/sychological_and_therapy_report/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
                                 </div>
@@ -37,9 +36,7 @@
                             <!-- /.card-header -->
 
                             <div class="card-body table-responsive ">
-
                                 <form  class="  " th:action="@{/sychological_and_therapy_report/child_occupational_therapy_session_report}"    method="GET" >
-
                                     <div class="row mb-4 justify-content-center">  
 
                                         <div class="col-auto">
@@ -73,6 +70,9 @@
                                         <tr>
                                             <th style="width: 10px">#</th>  
                                             <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
+                                            <th>Child Master Code</th>
+                                            <th>Child Name</th>
                                             <th>Therapeutic Session Date </th>
                                             <th> Session Type</th>
                                             <th>Diagnosis  </th>
@@ -82,9 +82,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${r_ot}">
+                                        <tr th:each="list,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                            
+                                            <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.childMasterCode.name}">Chakma</td>
+                                            
                                             <td th:text="${list.therapeuticSessionDate}">Chakma</td>
                                             <td th:text="${list.sessionType.name}">Chakma</td>
                                             <td th:text="${list.diagonosis.name}">Chakma</td>

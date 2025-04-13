@@ -140,8 +140,9 @@ public class C_ReleaseService {
                 releaseByPath.alias("releaseBy"),
                 nextFollowUpDatePath.alias("nextFollowUpDate"),
                 remarksPath.alias("remarks"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId"),
+                cReleaseRoot.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                 cReleaseRoot.get("motherMasterCode").get("motherName").alias("motherName"),
+                cReleaseRoot.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 createdByJoin.get("name").alias("createdBy") // Assuming 'username' exists in Users
         );
 
@@ -161,6 +162,7 @@ public class C_ReleaseService {
             resultMap.put("nextFollowUpDate", tuple.get("nextFollowUpDate"));
             resultMap.put("remarks", tuple.get("remarks"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("createdBy", tuple.get("createdBy"));
             resultMapList.add(resultMap);

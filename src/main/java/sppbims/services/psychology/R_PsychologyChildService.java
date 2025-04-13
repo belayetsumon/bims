@@ -60,6 +60,8 @@ public class R_PsychologyChildService {
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
                 root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 // Mood/Emotion properties
                 root.get("anger").alias("anger"),
                 root.get("sad").alias("sad"),
@@ -107,7 +109,8 @@ public class R_PsychologyChildService {
             map.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
             map.put("motherName", tuple.get("motherName"));
-
+            map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             // Mood/Emotion properties
             map.put("anger", tuple.get("anger"));
             map.put("sad", tuple.get("sad"));

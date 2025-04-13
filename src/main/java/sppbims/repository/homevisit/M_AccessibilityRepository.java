@@ -18,4 +18,6 @@ public interface M_AccessibilityRepository extends JpaRepository<M_Accessibility
 
     List<M_Accessibility> findBymotherMasterCode(MotherMasterData motherMasterData);
 
+    M_Accessibility findByMotherMasterCode_Id(Long data);
+
 }

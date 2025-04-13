@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sppbims.services.observation.ChildImageService;
 
 /**
  *
@@ -49,6 +50,9 @@ public class ChildImageController {
 
     @Autowired
     M_Child_infoRepository m_Child_infoRepository;
+
+    @Autowired
+    ChildImageService childImageService;
 
     @RequestMapping("/create/{m_id}")
     public String mAdd(Model model, @PathVariable Long m_id, Child_image child_image) {
@@ -145,5 +149,12 @@ public class ChildImageController {
         child_imageRepository.deleteById(id);
 
         return "redirect:/image/index/{m_id}";
+    }
+
+    @Transactional
+    @RequestMapping("/child_image_list")
+    public String child_image_list(Model model) {
+        model.addAttribute("list", childImageService.all_Child_Images());
+        return "homevisit/observation/imageupload/child_img_list";
     }
 }

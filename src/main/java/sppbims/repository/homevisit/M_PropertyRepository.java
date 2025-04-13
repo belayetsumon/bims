@@ -18,4 +18,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface M_PropertyRepository extends JpaRepository<M_Property, Long> {
 
     List<  M_Property> findBymotherMasterCode(MotherMasterData motherMasterData);
+
+    M_Property findByMotherMasterCode_Id(Long id);
 }

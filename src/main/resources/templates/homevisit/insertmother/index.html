@@ -39,14 +39,15 @@
                                     <th>#</th>
                                     <th>Action</th>
                                     <th>Eligibility</th>
-                                    <th>M.Id</th>
+                                    <th>Mother ID</th>
+                                    <th>Mother Name</th>
                                     <th>Mobile</th>
                                     <th>Visit Officers Name </th>
                                     <th>Referral Date</th>
                                     <th>Referral From</th>
                                     <th>Reasons </th>
                                     <th>Home Visit Date</th>
-                                    <th>Mother Name</th>
+
                                     <th>Date of Birth</th>
                                     <th>Number of Eligible Children</th>
                                     <th>Created Date </th>
@@ -58,13 +59,14 @@
                                     <td><a   th:href="@{/mothermasterdata/view/{id} (id=${list.id})}" type="button" class="btn btn-sm btn-info">View</a></td>
                                     <td th:text="${list.eligibility}">Chakma</td>
                                     <td th:text="${list.motherMasterCode}">Chakma</td>
+                                    <td th:text="${list.motherName}">Chakma</td>
                                     <td th:text="${list.mobileNumber}">Chakma</td>
                                     <td th:text="${list.visitOfficersName}">Chakma</td>
                                     <td th:text="${list.dateReferral}">Chakma</td>
                                     <td th:text="${list.referredFrom}">Chakma</td>
                                     <td th:text="${list.resons.name}">Chakma</td>
                                     <td th:text="${list.homeVisitDate}">Chakma</td>                                 
-                                    <td th:text="${list.motherName}">Chakma</td>
+
                                     <td th:text="${list.dateOfBirth}">Chakma</td>
                                     <td th:text="${list.numberOfEligibleChildren}">Chakma</td>
                                     <td th:text="${list.created}">Chakma</td>

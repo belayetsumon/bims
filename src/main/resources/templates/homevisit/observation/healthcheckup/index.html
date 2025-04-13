@@ -31,7 +31,8 @@
                             <div class="card-header with-border">
                                 <h3 class="card-title">Mother Health Condition </h3>
                                 <div class="card-tools">
-                                    <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Mother Health Condition </a>
+                                    <a   th:href="@{/healthcheckup/pdf/{id}(id=${m_id})}" type="button" class="btn  btn-warning text-info btn-sm"> PDF </a>
+                                    <a   th:href="@{/mhealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info btn-sm"> Add Mother Health Condition </a>
                                 </div>        </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -115,18 +116,19 @@
 
 
                                     <a   th:href="@{/chealthconditions/create/{id}(id=${m_id})}" type="button" class="btn  btn-light text-info "> Add Child Health Condition </a>
-                                </div> 
+                                </div>
 
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive ">
                                 <table class="table table-bordered table-striped">
                                     <tr>
-                                        <th style="width: 10px">#</th>  
+                                        <th style="width: 10px">#</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                         <th>Mother Master Code</th>
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Observation Duration/Day</th>
                                         <th> Previous Disease</th>
                                         <th> Previous Treatment</th>
@@ -150,7 +152,7 @@
                                         <th> Previous Report </th>
                                         <th> Plan For Further Action </th>
                                         <th> Other Important Findings </th>
-                                    </tr>                                                    
+                                    </tr>
                                     <tr th:each="o_CHealthConditions,status:${o_CHealthConditions}">
                                         <td th:text="${status.count}">2.</td>
 
@@ -160,6 +162,7 @@
 
                                         <td th:text="${o_CHealthConditions.motherMasterCode.motherMasterCode}">Chakma</td>
                                         <td th:text="${o_CHealthConditions.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${o_CHealthConditions.childMasterCode.name}">Chakma</td>
                                         <td th:text="${o_CHealthConditions.observationDuration}">Chakma</td>
                                         <td th:text="${o_CHealthConditions.previousDisease}">Chakma</td>
                                         <td th:text="${o_CHealthConditions.previousTreatment}">Chakma</td>

@@ -116,6 +116,7 @@ public class LiteracyNumeracyService {
         Expression<String> remarkAlias = root.get("remark");
         Expression<Long> motherMasterCodeIdAlias = root.get("motherMasterCode").get("id");
         Expression<String> motherMasterCodeAlias = root.get("motherMasterCode").get("motherMasterCode");// Assuming id for motherMasterCode
+        Expression<String> motherNameCodeAlias = root.get("motherMasterCode").get("motherName");// Assuming id for motherMasterCode
 
         // Add the SELECT clause (multi-select)
         cq.multiselect(
@@ -127,6 +128,7 @@ public class LiteracyNumeracyService {
                 resultAlias,
                 remarkAlias,
                 motherMasterCodeIdAlias,
+                motherNameCodeAlias,
                 motherMasterCodeAlias
         );
 
@@ -148,6 +150,7 @@ public class LiteracyNumeracyService {
             rowMap.put("remark", tuple.get(remarkAlias));
             rowMap.put("motherMasterCodeId", tuple.get(motherMasterCodeIdAlias));
             rowMap.put("motherMasterCode", tuple.get(motherMasterCodeAlias));
+            rowMap.put("motherName", tuple.get(motherNameCodeAlias));
 
             resultList.add(rowMap);
         }

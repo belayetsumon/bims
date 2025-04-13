@@ -2,6 +2,7 @@
 
 
     <!-- Main Sidebar Container -->
+
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a class="brand-link "  th:href="@{/dashboards/index}" >
@@ -13,29 +14,30 @@
 
             <nav class="mt-2">
 
-                <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-
-                    <li class="nav-item">
-                        <a class="nav-link"  th:href="@{/dashboards/index}">
+                    <li class="nav-item menu-open">
+                        <a class="nav-link "  th:href="@{/dashboards/index}">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>Dashboard</p>
+                            <p>Dashboard
+                                <i class="right fas fa-angle-left"></i></p>
                         </a>
                     </li>
 
-
-                    <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
-                            <i class="nav-icon fas fa-copy"></i>
+                    <li class="nav-item  has-treeview" id="homeVisit">
+                        <a href="#" class="nav-link " >
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Home Visit
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">   
-                            <li  class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a  class="nav-link" th:href="@{/lookupdashboards/homevisit}"> <i class="far fa-circle nav-icon"></i>Home Visit Settings</a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a class="nav-link" th:href="@{/mothermasterdata/index}"><i class="far fa-circle nav-icon"></i>Insert Mother</a></li>
+
+
+                        <ul class="nav nav-treeview">
+                            <li  class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a  class="nav-link" th:href="@{/lookupdashboards/homevisit}"> <i class="far fa-circle nav-icon" onclick="selectSubmenu(this)"></i>Home Visit Settings</a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a class="nav-link" th:href="@{/mothermasterdata/index}"><i class="far fa-circle nav-icon" onclick="selectSubmenu(this)"></i>Insert Mother</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a class="nav-link" th:href="@{/motherdetails/mothersearch}"> <i class="far fa-circle nav-icon"></i>Insert Mother Details New</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a class="nav-link"  th:href="@{/motherdetails/incompletemotherdetails}"><i class="far fa-circle nav-icon"></i> Incomplete Mother Details</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('HOME_VISIT')"><a class="nav-link" th:href="@{/motherdetails/allmotherdetails}"> <i class="far fa-circle nav-icon"></i> Completed Mother Details <br> List  </a></li>
@@ -50,37 +52,41 @@
 
                     </li>
 
+
+
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#" >
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
-                                Observation & <br> Admission 
+                                Observation & <br> Admission
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">   
+                        <ul class="nav nav-treeview"  >
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')"><a class="nav-link" th:href="@{/induction/newmother}"><i class="far fa-circle nav-icon"></i> New Mother Induction</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')"><a class="nav-link" th:href="@{/induction/motherlist}"><i class="far fa-circle nav-icon"></i> All Induction <br> Mother List </a></li>
                             <li class="nav-item"  sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/healthcheckup/newmother}"><i class="far fa-circle nav-icon"></i>New Mother  <br> Health Checkup </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/healthcheckup/mothersearch}"><i class="far fa-circle nav-icon"></i> All Mother Health <br>Checkup List </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/chealthconditions/healthcheckupchild}"><i class="far fa-circle nav-icon"></i> All Child Health <br>Checkup List </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/inductionoutcome/mothersearch}"><i class="far fa-circle nav-icon"></i> Induction Outcome</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/admission/newadmission}"><i class="far fa-circle nav-icon"></i> New Admission </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/admission/motherlist}"><i class="far fa-circle nav-icon"></i> All Admitted List </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/image/newmother}"><i class="far fa-circle nav-icon"></i> New Image Upload </a></li>
-                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/image/motherlist}"><i class="far fa-circle nav-icon"></i> All  Image List </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/image/motherlist}"><i class="far fa-circle nav-icon"></i> All  Mother Image List </a></li>
+                            <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/childimage/child_image_list}"><i class="far fa-circle nav-icon"></i> All  Child Image List </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/observationreport/observation}"><i class="far fa-circle nav-icon"></i> Report </a></li>
-                        </ul>                             
+                        </ul>
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>                                CMC Support
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
 
-                        <ul class="nav nav-treeview">   
+                        <ul class="nav nav-treeview">
                             <li class="nav-item"  sec:authorize="hasAuthority('REHAVILATIONS')" > <a  class="nav-link" th:href="@{/rehabilitations/lookup}"><i class="far fa-circle nav-icon"></i>Rehabilitations Settings </a></li>
 
 
@@ -96,18 +102,18 @@
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/houseworkallocation/motherlistforworkallocation}"><i class="far fa-circle nav-icon"></i>New  Work Allocation</a></li>
 
 
-                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/houseworkallocation/workallocatedlist}"><i class="far fa-circle nav-icon"></i> Work Allocation List <br> By Mother </a></li> 
+                            <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/houseworkallocation/workallocatedlist}"><i class="far fa-circle nav-icon"></i> Work Allocation List <br> By Mother </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REHAVILATIONS')" > <a class="nav-link" th:href="@{/rmworkallocation/all_work_allocations_list}"><i class="far fa-circle nav-icon"></i> Work Allocation List  </a></li>
 
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/food/index}"><i class="far fa-circle nav-icon"></i>Food Support </a></li>
 
                             <li class="nav-item" sec:authorize="hasAuthority('OBSERVATION')" ><a class="nav-link" th:href="@{/houseworkallocation/report}"><i class="far fa-circle nav-icon"></i>Report </a></li>
 
-                        </ul>                             
+                        </ul>
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Psychological and Therapy Support
@@ -126,7 +132,7 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Training
@@ -147,7 +153,7 @@
                     <!--               Start 2nd stape-->
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Leave
@@ -169,7 +175,7 @@
 
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Long Term Care
@@ -182,11 +188,11 @@
                             <li class="nav-item" sec:authorize="hasAuthority('LONG_TERM_CARE')" ><a class="nav-link" th:href="@{/childcrisismeetup/list}"><i class="far fa-circle nav-icon"></i>Child Crisis Meet Up </a></li>
                             <li  class="nav-item" sec:authorize="hasAuthority('LONG_TERM_CARE')" > <a class="nav-link" th:href="@{/longtrmcare/report}"><i class="far fa-circle nav-icon"></i> Report </a></li>
                         </ul>
-                    </li>            
+                    </li>
 
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Clinic
@@ -215,7 +221,7 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 School
@@ -237,7 +243,7 @@
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Literacy
@@ -262,7 +268,7 @@
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Pre-reintegration visit
@@ -278,27 +284,27 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Reintegration Check List
                                 <i class="right fas fa-angle-left"></i>
                             </p>
-                        </a>                       
+                        </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item" sec:authorize="hasAuthority('REINTEGRATION_CHEK_LIST')"><a class="nav-link" th:href="@{/reintegrationcheklist/motherlist}"> <i class="far fa-circle nav-icon"></i>Reintegration New</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REINTEGRATION_CHEK_LIST')"><a class="nav-link" th:href="@{/reintegrationcheklist/index}"> <i class="far fa-circle nav-icon"></i>Reintegration Check List</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('REINTEGRATION_CHEK_LIST')"><a class="nav-link" th:href="@{/reintegrationcheklist/report}"> <i class="far fa-circle nav-icon"></i>Report</a></li>
-                        </ul> 
+                        </ul>
                     </li>
 
 
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
-                                Reintegration/release 
+                                Reintegration/release
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -311,13 +317,13 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Follow Up
                                 <i class="right fas fa-angle-left"></i>
                             </p>
-                        </a>                       
+                        </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/followupmother/mothersearch}"><i class="far fa-circle nav-icon"></i> New Follow up</a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/followupmother/list}"><i class="far fa-circle nav-icon"></i> Mother Follow up List</a></li>
@@ -327,13 +333,13 @@
                     </li>
 
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>
                                 Impact Measurement
                                 <i class="right fas fa-angle-left"></i>
                             </p>
-                        </a>                       
+                        </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/shorttermtmpactmeasurement/add}"><i class="far fa-circle nav-icon"></i>New Short-term Impact <br> on released families </a></li>
                             <li class="nav-item" sec:authorize="hasAuthority('FOLLOW_UP')"><a class="nav-link" th:href="@{/shorttermtmpactmeasurement/list}"><i class="far fa-circle nav-icon"></i>All New Short-term <br>Impact on released families</a></li>
@@ -344,11 +350,11 @@
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link " href="#">
                             <i class="nav-icon fas fa-copy"></i>
                             <p>User Management<i class="right fas fa-angle-left"></i></p>
                         </a>
-                        <ul class="nav nav-treeview">                        
+                        <ul class="nav nav-treeview">
                             <!--                                                                         <li class="nav-item" sec:authorize="hasAuthority('USER_MANAGEMENT')"> <a class="nav-link" th:href="@{/role/index}"><i class="far fa-circle nav-icon"></i>Role List </a></li>-->
                             <li class="nav-item"  sec:authorize="hasAuthority('USER_MANAGEMENT')"><a class="nav-link" th:href="@{/users/index}"><i class="far fa-circle nav-icon"></i> Users</a></li>
 
@@ -358,7 +364,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"  th:href="@{/users/logout}" >
+                        <a class="nav-link "  th:href="@{/users/logout}" >
                             <i class='fas fa-sign-out-alt'></i>
                             <p> Log Out</p>
                         </a>
@@ -371,4 +377,9 @@
         </div>
         <!-- /.sidebar -->
     </aside>
+
+
+
+
+
 </div>

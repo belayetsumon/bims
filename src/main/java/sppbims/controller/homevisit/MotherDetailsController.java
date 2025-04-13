@@ -199,6 +199,27 @@ public class MotherDetailsController {
         return "homevisit/motherdetails/motherdetails";
     }
 
+    @RequestMapping("/pdf/{mother_id}")
+    public String single_mother_pdf(Model model, @PathVariable Long mother_id) {
+
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(mother_id);
+        model.addAttribute("m_info", motherMasterDataRepository.findById(mother_id).orElse(null));
+        model.addAttribute("accessibility", m_AccessibilityRepository.findByMotherMasterCode_Id(mother_id));
+        model.addAttribute("addres", m_AddressRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("approval", m_ApprovalRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("community", m_Community_InformationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("current", m_Current_HelpRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("family", m_Family_informationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("house", m_House_InformationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("income", m_Income_InformationRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("lifestyle", m_LifestyleRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("localgovt", m_Local_Govt_FacilitiesRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("nutrition", m_NutritionRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("property", m_PropertyRepository.findByMotherMasterCode_Id(mother_id));
+        return "homevisit/motherdetails/motherdetails_print_view";
+    }
+
     @RequestMapping("/newchildren")
     public String newchildren(Model model) {
         //model.addAttribute("list", motherMasterDataRepository.findAll());

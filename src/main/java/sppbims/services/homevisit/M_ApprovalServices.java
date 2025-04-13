@@ -42,8 +42,9 @@ public class M_ApprovalServices {
 
         // Create aliases for the fields you want to select
         Expression<Long> idExpression = approvalRoot.get("id");
-        Expression<LocalDate> motherMasterCodeId = approvalRoot.get("motherMasterCode").get("id");
-        Expression<LocalDate> motherMasterCode = approvalRoot.get("motherMasterCode").get("motherMasterCode");
+        Expression<Long> motherMasterCodeId = approvalRoot.get("motherMasterCode").get("id");
+        Expression<String> motherMasterCode = approvalRoot.get("motherMasterCode").get("motherMasterCode");
+        Expression<String> motherName = approvalRoot.get("motherMasterCode").get("motherName");
         Expression<LocalDate> approveDateExpression = approvalRoot.get("approveDate");
         Expression<String> approveByExpression = approvalRoot.get("approveBy");
         Expression<Decision> decisionExpression = approvalRoot.get("decission");
@@ -53,6 +54,7 @@ public class M_ApprovalServices {
         cq.multiselect(
                 motherMasterCodeId.alias("motherMasterCodeId"),
                 motherMasterCode.alias("motherMasterCode"),
+                motherName.alias("motherName"),
                 idExpression.alias("approvalId"),
                 approveDateExpression.alias("approvalDate"),
                 approveByExpression.alias("approver"),
@@ -70,6 +72,7 @@ public class M_ApprovalServices {
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("approvalId", tuple.get("approvalId"));
             resultMap.put("approvalDate", tuple.get("approvalDate"));
             resultMap.put("approver", tuple.get("approver"));
@@ -94,8 +97,9 @@ public class M_ApprovalServices {
 
         // Create aliases for the fields you want to select
         Expression<Long> idExpression = approvalRoot.get("id");
-        Expression<LocalDate> motherMasterCodeId = approvalRoot.get("motherMasterCode").get("id");
-        Expression<LocalDate> motherMasterCode = approvalRoot.get("motherMasterCode").get("motherMasterCode");
+        Expression<Long> motherMasterCodeId = approvalRoot.get("motherMasterCode").get("id");
+        Expression<String> motherMasterCode = approvalRoot.get("motherMasterCode").get("motherMasterCode");
+        Expression<String> motherName = approvalRoot.get("motherMasterCode").get("motherName");
         Expression<LocalDate> approveDateExpression = approvalRoot.get("approveDate");
         Expression<String> approveByExpression = approvalRoot.get("approveBy");
         Expression<Decision> decisionExpression = approvalRoot.get("decission");
@@ -121,6 +125,7 @@ public class M_ApprovalServices {
         cq.multiselect(
                 motherMasterCodeId.alias("motherMasterCodeId"),
                 motherMasterCode.alias("motherMasterCode"),
+                motherName.alias("motherName"),
                 idExpression.alias("approvalId"),
                 approveDateExpression.alias("approvalDate"),
                 approveByExpression.alias("approver"),
@@ -138,6 +143,7 @@ public class M_ApprovalServices {
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("approvalId", tuple.get("approvalId"));
             resultMap.put("approvalDate", tuple.get("approvalDate"));
             resultMap.put("approver", tuple.get("approver"));

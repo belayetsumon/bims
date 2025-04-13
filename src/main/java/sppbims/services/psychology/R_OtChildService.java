@@ -52,8 +52,9 @@ public class R_OtChildService {
         // Use multiselect to select all fields with aliases
         cq.multiselect(
                 root.get("id").alias("id"),
-                root.get("motherMasterCode").alias("motherMasterCode"),
-                root.get("childMasterCode").alias("childMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("therapeuticSessionDate").alias("therapeuticSessionDate"),
                 root.get("sessionType").alias("sessionType"),
                 root.get("diagonosis").alias("diagonosis"),
@@ -82,6 +83,8 @@ public class R_OtChildService {
             Map<String, Object> map = new HashMap<>();
             map.put("id", tuple.get("id"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
             map.put("therapeuticSessionDate", tuple.get("therapeuticSessionDate"));
             map.put("sessionType", tuple.get("sessionType"));
             map.put("diagonosis", tuple.get("diagonosis"));

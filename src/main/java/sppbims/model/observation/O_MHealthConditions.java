@@ -89,11 +89,11 @@ public class O_MHealthConditions {
     @Enumerated(EnumType.ORDINAL)
     public Yes_No heart_disease;
 
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Diabetes cannot be blank.")
     @Enumerated(EnumType.ORDINAL)
     public Yes_No diabetes;
 
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Bony fracture cannot be blank.")
     @Enumerated(EnumType.ORDINAL)
     public Yes_No bonyFracture;
 

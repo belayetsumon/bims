@@ -62,6 +62,7 @@ public class O_InductionService {
         criteriaQuery.multiselect(
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("startDate").alias("startDate"),
                 root.get("endDate").alias("endDate"),
                 root.get("immediateSupportOn").alias("immediateSupportOn"),
@@ -81,6 +82,7 @@ public class O_InductionService {
             return Map.of(
                     "id", tuple.get("id"),
                     "motherMasterCode", tuple.get("motherMasterCode"),
+                    "motherName", tuple.get("motherName"),
                     "startDate", tuple.get("startDate"),
                     "endDate", tuple.get("endDate"),
                     "immediateSupportOn", tuple.get("immediateSupportOn"),

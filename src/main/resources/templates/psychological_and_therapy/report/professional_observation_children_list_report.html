@@ -112,9 +112,10 @@
                                 <table id="tablesdata"   class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-
+                                            <th>#</th>
                                             <th>Mother Master Code</th>
                                             <th>Child Master Code</th>
+                                            <th>Child Name</th>
                                             <th>Induction Start Date</th> 
                                             <th>Observation Start Date </th>
                                             <th>Physical Disability</th>
@@ -130,10 +131,11 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr th:each="list,status:${list}">
-
+                                        <tr th:each="list,status : ${list}">
+                                            <td th:text="${status.count}">Chakma</td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
                                             <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
                                             <td th:text="${list.inductionStartDate}">Chakma</td>
                                             <td th:text="${list.obStartDate}">Chakma</td>
                                             <td th:text="${list.physicalDisability}">Chakma</td>

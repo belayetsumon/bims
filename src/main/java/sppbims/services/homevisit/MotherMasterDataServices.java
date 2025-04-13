@@ -183,10 +183,11 @@ public class MotherMasterDataServices {
                 root.get("eligibility").alias("eligibility"),
                 root.get("motherMasterCode").alias("motherMasterCode"),
                 root.get("dateReferral").alias("dateReferral"),
-                root.get("mobileNumber").alias("mobileNumber"),
+               root.get("mobileNumber").alias("mobileNumber"),
                 root.get("referredFrom").alias("referredFrom"),
                 root.get("resons").alias("resons"),
                 root.get("homeVisitDate").alias("homeVisitDate"),
+                root.get("visitOfficersName").alias("visitOfficersName"),
                 root.get("motherName").alias("motherName"),
                 root.get("dateOfBirth").alias("dateOfBirth"),
                 root.get("numberOfEligibleChildren").alias("numberOfEligibleChildren"),
@@ -207,14 +208,20 @@ public class MotherMasterDataServices {
             motherDTO.setEligibility(tuple.get("eligibility", Eligibility.class));
 
             motherDTO.setMotherMasterCode(tuple.get("motherMasterCode", String.class));
-
+            
+            motherDTO.setReferredFrom(tuple.get("referredFrom", String.class));
+            
             motherDTO.setDateReferral(tuple.get("dateReferral", LocalDate.class));
 
             motherDTO.setResons(tuple.get("resons", Reasons.class));
 
             motherDTO.setHomeVisitDate(tuple.get("homeVisitDate", LocalDate.class));
 
+            motherDTO.setVisitOfficersName(tuple.get("visitOfficersName", String.class));
+
             motherDTO.setMotherName(tuple.get("motherName", String.class));
+
+            motherDTO.setMobileNumber(tuple.get("mobileNumber", String.class));
 
             motherDTO.setDateOfBirth(tuple.get("dateOfBirth", LocalDate.class));
 

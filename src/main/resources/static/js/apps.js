@@ -3,7 +3,7 @@
 // District Thana Cascade
 //Home visit
 $(document).ready(function () {
-    //alert("Hello");
+//    alert("Hello");
     $('#district').change(function () {
         var district = $('#district').val();
         //alert(district);
@@ -46,34 +46,15 @@ $(document).ready(function () {
     );
 });
 
+//new code 
 
-
-
-
-
-
-
-// file validation for pic
-//$(document).ready(function () {
-//    $.validate({
-//        modules: 'file'
-//    });
-//});
-
-
-
-//// pagination controll
-//$(document).ready(function () {
-//
-//    $.jqPaginator('#pagination-demo', {
-//        totalPages: 50,
-//        totalCounts: 50,
-//        pageSize: 0,
-//        currentPage: 1,
-//        visiblePages: 7
-//    });
-//});
-
-
-
-
+$(document).ready(function () {
+    let url = window.location.href;
+    
+    $(".nav-link").each(function () {
+        if (this.href === url) {
+            $(this).addClass("active");
+            $(this).closest(".has-treeview").addClass("menu-open");
+        }
+    });
+});

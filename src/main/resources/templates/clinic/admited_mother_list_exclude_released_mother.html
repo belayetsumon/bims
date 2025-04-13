@@ -37,7 +37,7 @@
                                         <tr>
                                             <th style="width: 10px">#</th> 
                                             <th>Details</th>
-                                            <th> Id</th>
+                                     
                                             <th>Mother Master Code</th>
                                             <th>Mother Name</th>
                                             <th>Mobile </th>
@@ -51,9 +51,9 @@
                                         <tr th:each="o_MAddmission,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td> 
-                                                <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.admissionId})}" type="button" class="btn btn-sm btn-info">Add Daily Visit</a>
+                                                <a   th:href="@{/cvisit/index/{id} (id=${o_MAddmission.motherMasterCodeId})}" type="button" class="btn btn-sm btn-info">Add Daily Visit</a>
                                             </td>
-                                            <td th:text="${o_MAddmission.admissionId}">Chakma</td>
+                                       
                                             <td th:text="${o_MAddmission.motherMasterCode}">Chakma</td>
                                             <td th:text="${o_MAddmission.motherName}">Chakma</td>
                                             <td th:text="${o_MAddmission.mobileNumber}">Chakma</td>

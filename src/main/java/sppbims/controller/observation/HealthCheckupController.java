@@ -73,4 +73,15 @@ public class HealthCheckupController {
         return "homevisit/observation/healthcheckup/index";
     }
 
+    @RequestMapping("/pdf/{id}")
+    public String pdf(Model model, @PathVariable Long id) {
+        model.addAttribute("m_id", id);
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(id);
+        model.addAttribute("o_MHConditions", o_MHealthConditionsRepository.findBymotherMasterCode(motherMasterData));
+
+        model.addAttribute("o_CHealthConditions", o_CHealthConditionsRepository.findBymotherMasterCode(motherMasterData));
+        return "homevisit/observation/healthcheckup/index_pdf";
+    }
+
 }

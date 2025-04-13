@@ -226,7 +226,7 @@ public class HouseWorkAllocationController {
         model.addAttribute("list", r_M_HousAllocationService.all_Mother_House_Allocation_by_id(id));
 
         // model.addAttribute("list2", r_C_HouseAllocationsRepository.findBymotherMasterCode(motherMasterData));
-        model.addAttribute("list2", r_C_HouseAllocationsService.all_childHouse_Allocation_by_id(id));
+        model.addAttribute("list2", r_C_HouseAllocationsService.all_childHouse_Allocation_by_mother_id(id));
 
         return "rehabilitations/allocations/index";
     }

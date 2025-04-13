@@ -73,6 +73,7 @@
                                         <tr>
                                             <th style="width: 10px">#</th>
                                             <th>Mother Code</th>
+                                            <th>Mother Name</th>
                                             <th>Date</th>
                                             <th>Health Awareness </th>
                                             <th>Remark</th>
@@ -82,6 +83,7 @@
                                         <tr th:each="lists,status:${list}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${lists.motherMasterCode}">Chakma</td>
+                                                     <td th:text="${lists.motherName}">Chakma</td>
                                             <td th:text="${lists.insdate}">Chakma</td>
                                             <td th:text="${lists.healthAwareness}">Chakma</td>
                                             <td th:text="${lists.remark}">Chakma</td>

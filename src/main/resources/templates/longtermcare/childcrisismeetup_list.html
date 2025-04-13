@@ -28,11 +28,11 @@
                 <div class="card card-info">
                     <div class="card-header with-border">
                         <h3 class="card-title"> Child Crisis Meet Up</h3>
-                        <div class="card-tools pull-right">
-                            <div class="btn-group">                 
-
-                            </div>
-                        </div>
+                          <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/longtrmcare/report}"  type="button" class="btn  btn-light text-info btn-xs">Close</a>
+                                    </div>
+                                </div>
                     </div>
 
                     <div class="card-body table-responsive ">
@@ -80,8 +80,10 @@
                         <table id="tablesdata" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Details </th>
                                     <th>Child Id </th>
+                                    <th>Child Name</th>
                                     <th>Date</th>
                                     <th>Location </th>
                                     <th>Reason </th>
@@ -94,9 +96,12 @@
                                 </tr>   
                             </thead>
                             <tbody>
-                                <tr th:each="lists,status:${list}">                                
+                                <tr th:each="lists,status:${list}">    
+                                    <td th:text="${status.count}">  
                                     <td> <a   th:href="@{/longtremcare/index/{id} (id=${lists.id})}" type="button"  class="btn btn-sm  btn-info"> Details </a> </td>
                                     <td th:text="${lists.childMasterCode.childMasterCode}">  </td>
+
+                                    <td th:text="${lists.childMasterCode.name}">  
                                     <td th:text="${lists.entrydate}">  </td>
                                     <td th:text="${lists.location}">  </td>
                                     <td th:text="${lists.reason}">  </td>

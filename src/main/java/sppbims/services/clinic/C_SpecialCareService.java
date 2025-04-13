@@ -65,8 +65,8 @@ public class C_SpecialCareService {
                 root.get("id").alias("id"),
                 root.get("careDate").alias("careDate"),
                 root.get("remark").alias("remark"),
-                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode") // Alias for childMasterCode
-
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"), // Alias for childMasterCode
+                root.get("childMasterCode").get("name").alias("name")
         );
 
         // Apply ordering by id in descending order
@@ -86,6 +86,7 @@ public class C_SpecialCareService {
             map.put("careDate", tuple.get("careDate"));
             map.put("remark", tuple.get("remark"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+            map.put("name", tuple.get("name"));
 
             resultMapList.add(map);
         }

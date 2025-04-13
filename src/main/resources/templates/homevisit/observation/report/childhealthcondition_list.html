@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Observation Report
+                </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Child Health Conditions Report . Total [[${o_CHealthConditions.size()}]]</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group">                 
+                                        <a  th:href="@{/observationreport/observation}"  type="button" class="btn  btn-light btn-xs text-danger">Close</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <form  th:action="@{/observationreport/healthcheckupmother}"    method="GET" >
+
+                                    <div class="row mb-4">
+
+                                        <label for="name" class="col-auto control-label"> Blood Pressure<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto">   
+                                            <select class="form-control  "   name="bloodPressure"  >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+
+                                        </div>    
+
+
+                                        <label for="name" class="col-auto control-label"> Ear Problem<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto ">   
+                                            <select class="form-control"   name="earProblem" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+
+                                        </div>    
+
+
+
+                                        <label for="name" class="col-auto  control-label"> Eye Problem<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto ">   
+                                            <select class="form-control  "  id="bookName"   name="eyeProblem" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+
+                                        </div>    
+
+
+                                    </div>
+
+                                    <div class="row mb-4">
+
+                                        <label for="name" class="col-auto  control-label"> Gynological Problem<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto ">   
+                                            <select class="form-control  "  id="bookName"  name="gynologicalProblem" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+
+                                        </div> 
+
+                                        <label for="name" class="col-auto  control-label"> TT<span class="text-red">  </span> :</label>
+                                        <div class="col-auto ">   
+                                            <select class="form-control  "  name="tt"  >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>    
+                                        <label for="name" class="col-auto control-label"> Heart Disease<span class="text-red">  </span> :</label>
+                                        <div class="col-auto">   
+                                            <select class="form-control  "  name="heart_disease"   >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>    
+
+                                        <label for="name" class="  col-auto control-label"> Disability<span class="text-red">  </span> :</label>
+                                        <div class="col-auto ">   
+                                            <select class="form-control  "  id="bookName"   name="disability" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4">  
+                                        <label for="name" class="col-auto control-label">Bony Fracture <span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto">   
+                                            <select class="form-control  "  id="bookName"   name="bonyFracture" >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>    
+                                        <label for="name" class="col-auto control-label"> Neurological Disease<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto">   
+                                            <select class="form-control  "  id="bookName" name="neurologicalDisease">
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>    
+
+                                        <label for="name" class="col-auto control-label"> Resporatory Problem<span class="text-red"> </span> :</label>
+
+                                        <div class="col-auto">   
+                                            <select class="form-control  "   name="resporatoryProblem"  >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>    
+
+                                        <label for="name" class="col-auto control-label"> UTI<span class="text-red">  </span> :</label>
+
+                                        <div class="col-auto">   
+                                            <select class="form-control  "  id="bookName"  name="uti"  >
+                                                <option value=" "> Select one</option>
+                                                <option th:each ="yesnos :${yesno}"
+                                                        th:value=" ${yesnos}" 
+                                                        th:text="${yesnos}"> Select one</option>
+                                            </select>
+                                        </div>  </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-sm">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <hr>
+                            <div class="card-body table-responsive ">
+                                <table id="tablesdata"  class="table table-bordered table-striped display nowrap" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>  
+                                            <th>Child Master Code</th>
+                                            <th>Child Name</th>
+                                            <th>Observation Duration/Day</th>
+                                            <th> Previous Disease</th>
+                                            <th> Previous Treatment</th>
+                                            <th> Present Health Status</th>
+                                            <th> Nutrition Status </th>
+                                            <th> Height(CM) </th>
+                                            <th> Weight(KG) </th>
+                                            <th> Blood Pressure </th>
+                                            <th> Ear Problem </th>
+                                            <th> Eye Problem </th>
+                                            <th> TT </th>
+                                            <th> Heart Disease </th>
+                                            <th> Disability </th>
+                                            <th> Bony Fracture </th>
+                                            <th> Note</th>
+                                            <th> Neurological Disease </th>
+                                            <th> Respiratory Problem  </th>
+                                            <th> UTI  </th>
+                                            <th> Previous Report </th>
+                                            <th> Plan For Further Action </th>
+                                            <th> Other Important Findings </th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${o_CHealthConditions}">
+                                            <td th:text="${status.count}">2.</td>                                 
+
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
+                                            <td th:text="${list.observationDuration}">Chakma</td>
+                                            <td th:text="${list.previousDisease}">Chakma</td>
+                                            <td th:text="${list.previousTreatment}">Chakma</td>
+                                            <td th:text="${list.presentHealthStatus}">Chakma</td>
+                                            <td th:text="${list.nutritionStatus}">Chakma</td>
+                                            <td th:text="${list.height}">Chakma</td>
+                                            <td th:text="${list.weight}">Chakma</td>
+                                            <td th:text="${list.bloodPressure}">Chakma</td>
+                                            <td th:text="${list.earProblem}">Chakma</td>
+                                            <td th:text="${list.eyeProblem}">Chakma</td>
+                                            <td th:text="${list.tt}">Chakma</td>
+                                            <td th:text="${list.heartDisease}">Chakma</td>
+
+                                            <td th:text="${list.disability}">Chakma</td>
+                                            <td th:text="${list.bonyFracture}">Chakma</td>
+                                            <td th:text="${list.note}">Chakma</td>
+                                            <td th:text="${list.neurologicalDisease}">Chakma</td>
+                                            <td th:text="${list.respiratoryProblem}">Chakma</td>
+                                            <td th:text="${list.uti}">Chakma</td>
+                                            <td th:text="${list.previousReport}">Chakma</td>
+                                            <td th:text="${list.planForFurtherAction}">Chakma</td>
+                                            <td th:text="${list.otherImportantFindings}">Chakma</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+
+                    <!-- /.col -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>

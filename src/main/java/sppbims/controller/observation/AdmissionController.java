@@ -80,6 +80,16 @@ public class AdmissionController {
         return "homevisit/observation/admission/index";
     }
 
+    @RequestMapping("/pdf/{id}")
+    public String pdf(Model model, @PathVariable Long id) {
+        model.addAttribute("minfo", id);
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(id);
+        model.addAttribute("o_MAddmission", o_MAddmissionRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("o_ChildAddmission", o_ChildAdmissionRepository.findBymotherMasterCode(motherMasterData));
+        return "homevisit/observation/admission/index_pdf";
+    }
+
     @RequestMapping("/create/{id}")
     public String mAdd(Model model, @PathVariable Long id, O_MAddmission o_MAddmission) {
         MotherMasterData motherMasterData = new MotherMasterData();

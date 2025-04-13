@@ -36,7 +36,6 @@
                             <!-- Buttons, labels, and many other things can be placed here! -->
                             <!-- Here is a label for example -->
                             <a  th:href="@{/}" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
-
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -46,6 +45,7 @@
                                 <tr>
                                     <th style="width: 10px">#</th> 
                                     <th>Mother Id</th>
+                                    <th>Mother Name</th>
                                     <th>Approve Date</th>
                                     <th>Approved By</th>
                                     <th>Action</th>
@@ -55,6 +55,7 @@
                                 <tr th:each="list,status:${list}">
                                     <td th:text="${status.count}">2.</td>
                                     <td th:text="${list.motherMasterCode}">Chakma</td> 
+                                    <td th:text="${list.motherName}">Chakma</td> 
                                     <td th:text="${list.approvalDate}">Chakma</td> 
                                     <td th:text="${list.approver}">Chakma</td>
                                     <td> <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">View</a>

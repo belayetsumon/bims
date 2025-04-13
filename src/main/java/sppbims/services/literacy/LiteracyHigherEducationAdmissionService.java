@@ -114,6 +114,7 @@ public class LiteracyHigherEducationAdmissionService {
         Expression<String> remarkAlias = root.get("remark");
         Expression<String> motherMasterCodeIdAlias = root.get("motherMasterCode").get("id");
         Expression<String> motherMasterCodeAlias = root.get("motherMasterCode").get("motherMasterCode");// Assuming id for motherMasterCode
+        Expression<String> motherNameAlias = root.get("motherMasterCode").get("motherName");// Assuming id for motherMasterCode
         Expression<String> lastEducationLevelAlias = root.get("lastEducationleve").get("name");  // Assuming id for EducationLevel
         Expression<String> admissionClassAlias = root.get("admissionClass").get("name");  // Assuming id for EducationLevel
 
@@ -126,6 +127,7 @@ public class LiteracyHigherEducationAdmissionService {
                 remarkAlias,
                 motherMasterCodeAlias,
                 motherMasterCodeIdAlias,
+                motherNameAlias,
                 lastEducationLevelAlias,
                 admissionClassAlias
         );
@@ -145,6 +147,7 @@ public class LiteracyHigherEducationAdmissionService {
             rowMap.put("remark", tuple.get(remarkAlias));
             rowMap.put("motherMasterCodeId", tuple.get(motherMasterCodeAlias));
             rowMap.put("motherMasterCode", tuple.get(motherMasterCodeAlias));
+            rowMap.put("motherName", tuple.get(motherNameAlias));
             rowMap.put("lastEducationLevelId", tuple.get(lastEducationLevelAlias));
             rowMap.put("admissionClassId", tuple.get(admissionClassAlias));
 

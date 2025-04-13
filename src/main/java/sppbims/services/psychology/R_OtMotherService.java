@@ -5,7 +5,6 @@
 package sppbims.services.psychology;
 
 import sppbims.model.rehabilitations.R_OT;
-import sppbims.model.rehabilitations.R_PT;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
@@ -95,7 +94,8 @@ public class R_OtMotherService {
         // Use multiselect to select all fields with aliases
         cq.multiselect(
                 root.get("id").alias("id"),
-                root.get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("therapeuticSessionDate").alias("therapeuticSessionDate"),
                 root.get("sessionType").alias("sessionType"),
                 root.get("diagonosis").alias("diagonosis"),
@@ -117,6 +117,7 @@ public class R_OtMotherService {
             Map<String, Object> map = new HashMap<>();
             map.put("id", tuple.get("id"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("therapeuticSessionDate", tuple.get("therapeuticSessionDate"));
             map.put("sessionType", tuple.get("sessionType"));
             map.put("diagonosis", tuple.get("diagonosis"));

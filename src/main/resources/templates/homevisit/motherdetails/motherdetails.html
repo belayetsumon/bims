@@ -30,10 +30,10 @@
                             <div class="card-header with-border">
                                 <h3 class="card-title"> Mother Basic Information: <span th:text="${m_info.motherName}">Chakma</span></h3>
                                 <div class="card-tools pull-right">
-                                    <div class="btn-group">          
-
-                                        <a  th:href="@{/motherdetails/mothersearch}"  type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
-                                    </div>              
+                                    <div class="btn-group">
+                                        <a th:href="@{/motherdetails/pdf/{id} (id=${m_info.id})}" type="button" class="btn btn-warning text-red btn-sm">PDF</a>
+                                        <a  th:href="@{/motherdetails/mothersearch}"  type="button" class="btn btn-light text-red btn-sm">Close</a>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -41,7 +41,7 @@
                                 <table class="table table-bordered  table-striped">
                                     <tr>
                                         <th >Visit Officers Name</th>
-                                        <td th:text="${m_info.visitOfficersName}">Id</td>                        
+                                        <td th:text="${m_info.visitOfficersName}">Id</td>
                                         <th> </th> <td > </td>
                                     </tr><tr>
                                         <th>Refer From </th> <td th:text="${m_info.referredFrom}">Chakma</td>
@@ -69,7 +69,7 @@
                                         <th>Relations</th> <td th:text="${m_info.relationWithPfm.name}">Chakma</td>
 
                                         <th>Ethnic Identity</th> <td th:text="${m_info.ethnicIdentity.name}">Chakma</td>
-                                    </tr> 
+                                    </tr>
 
                                 </table>
                             </div>
@@ -102,13 +102,13 @@
                                         <th>Delete</th>
 
                                     </tr>
-                                    <tr th:each="addres,status:${addres}">        
+                                    <tr th:each="addres,status:${addres}">
                                         <td th:text="${addres.addressType}">  </td>
                                         <td th:text="${addres.co}"> cccz </td>
                                         <td th:text="${addres.vill}">    </td>
                                         <td th:text="${addres.po}">   </td>
                                         <td th:text="${addres.district}">  </td>
-                                        <td th:text="${addres.thana.name}">   </td>     
+                                        <td th:text="${addres.thana.name}">   </td>
                                         <td> <a   th:href="@{/m_address/edit/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
                                         <td> <a   th:href="@{/m_address/delete/{id} (id=${addres.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
                                     </tr>
@@ -123,7 +123,7 @@
                                 <h3 class="card-title"> Mother House Information</h3>
                                 <div class="card-tools">
                                     <a   th:href="@{/m_house_information/create/{m_id} (m_id=${m_info.id})}" type="button" class="btn btn-block btn-light  btn-xs pull-right text-info"> Add </a>
-                                </div>   
+                                </div>
                             </div>
 
                             <!-- /.card-header -->
@@ -141,14 +141,14 @@
                                         <th>Edit </th>
                                         <th>Delete</th>
                                     </tr>
-                                    <tr th:each="house,status:${house}">        
+                                    <tr th:each="house,status:${house}">
 
                                         <td th:text="${house.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${house.houseType.name}"> cccz </td>
                                         <td th:text="${house.ownership.name}">    </td>
                                         <td th:text="${house.valueTitle}">   </td>
                                         <td th:text="${house.value}">  </td>
-                                        <td th:text="${house.remarks}">   </td> 
+                                        <td th:text="${house.remarks}">   </td>
                                         <td> <a   th:href="@{/m_house_information/edit/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-maroon "> Edit</a> </td>
                                         <td> <a   th:href="@{/m_house_information/delete/{id} (id=${house.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a> </td>
                                     </tr>
@@ -183,13 +183,13 @@
                                         <th>Edit </th>
                                         <th>Delete </th>
                                     </tr>
-                                    <tr th:each="income,status:${income}">      
+                                    <tr th:each="income,status:${income}">
 
                                         <td th:text="${income.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${income.incomeGeneratingActivites.name}">  </td>
                                         <td th:text="${income.monthlyIncome}"> </td>
                                         <td th:text="${income.otherIncomeSource}">  </td>
-                                        <td th:text="${income.otherIncomeAmt}">  </td>     
+                                        <td th:text="${income.otherIncomeAmt}">  </td>
                                         <td th:text="${income.totalHouseMember}">  </td>
                                         <td th:text="${(income.monthlyIncome+income.otherIncomeAmt)/income.totalHouseMember}">  </td>
                                         <td th:text="${income.remark}">  </td>
@@ -221,20 +221,20 @@
                                         <th>Cultivable Land Quantity/Decimal</th>
                                         <th>Cultivable Land Value/Taka</th>
                                         <th>Jewelry Quantity/vori</th>
-                                        <th>Jewelry Value/Taka</th>  
-                                        <th>Animals Quantity/Numbers</th>   
-                                        <th>Animals Value/Taka</th>  
-                                        <th>Investments/Shares Quantity(Numbers)</th> 
-                                        <th>Investments/Shares Value(Taka)</th> 
+                                        <th>Jewelry Value/Taka</th>
+                                        <th>Animals Quantity/Numbers</th>
+                                        <th>Animals Value/Taka</th>
+                                        <th>Investments/Shares Quantity(Numbers)</th>
+                                        <th>Investments/Shares Value(Taka)</th>
                                         <th>Loan (Person) /Quantity</th>
                                         <th>Loan (Person) Name</th>
-                                        <th>Loan (Organization) Quantity</th> 
+                                        <th>Loan (Organization) Quantity</th>
                                         <th>Loan (Organization) Name</th>
                                         <th>Remark</th>
                                         <th>Edit </th>
                                         <th>Delete </th>
                                     </tr>
-                                    <tr th:each="property,status:${property}">      
+                                    <tr th:each="property,status:${property}">
 
                                         <td th:text="${property.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${property.homelandQuantity}">  </td>
@@ -281,7 +281,7 @@
                                         <th>Edit </th>
                                         <th>Delete</th>
                                     </tr>
-                                    <tr th:each="current,status:${current}">   
+                                    <tr th:each="current,status:${current}">
 
                                         <td th:text="${current.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${current.organizations}">  </td>
@@ -322,7 +322,7 @@
                                         <th>Edit </th>
                                         <th>Delete</th>
                                     </tr>
-                                    <tr th:each="community,status:${community}">  
+                                    <tr th:each="community,status:${community}">
 
                                         <td th:text="${community.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${community.economyType.name}">  </td>
@@ -380,7 +380,7 @@
                                         <th>Edit </th>
                                         <th>Delete </th>
                                     </tr>
-                                    <tr th:each="accessibility,status:${accessibility}">  
+                                    <tr th:each="accessibility,status:${accessibility}">
 
 
                                         <td th:text="${accessibility.motherMasterCode.motherMasterCode}">  </td>
@@ -448,14 +448,14 @@
 
                                     </tr>
 
-                                    <tr th:each="lifestyle,status:${lifestyle}">  
+                                    <tr th:each="lifestyle,status:${lifestyle}">
 
                                         <td th:text="${lifestyle.motherMasterCode.motherMasterCode}">  </td>
                                         <td th:text="${lifestyle.waterSource.name}">  </td>
                                         <td th:text="${lifestyle.drinkingWaterSource.name}">  </td>
                                         <td th:text="${lifestyle.toilet_type.name}">  </td>
                                         <td th:text="${lifestyle.cookingFuel.name}">  </td>
-                                        <td th:text="${lifestyle.lightSource.name}">  </td>                    
+                                        <td th:text="${lifestyle.lightSource.name}">  </td>
                                         <td th:text="${lifestyle.leisurFacilities.name}">  </td>
                                         <td th:text="${lifestyle.leisureEngagment}">  </td>
                                         <td th:text="${lifestyle.personalHabits.name}">  </td>
@@ -500,10 +500,10 @@
                                         <th>Delete </th>
 
                                     </tr>
-                                    <tr th:each="nutrition,status:${nutrition}">  
+                                    <tr th:each="nutrition,status:${nutrition}">
 
                                         <td th:text="${nutrition.motherMasterCode.motherMasterCode}">  </td>
-                                        <td th:text="${nutrition.dailyMeal}">  </td>  
+                                        <td th:text="${nutrition.dailyMeal}">  </td>
                                         <td th:text="${nutrition.fish}">  </td>
                                         <td th:text="${nutrition.meat}">  </td>
                                         <td th:text="${nutrition.milk}">  </td>
@@ -544,13 +544,13 @@
                                         <th>Voter of this community </th>
                                         <th>VGF /VGD Card</th>
                                         <th>Any Govt. Support </th>
-                                        <th>Number of SPP Mother in Valage </th>
+                                        <th>Number of SPP Mother in village </th>
                                         <th>Remarks  </th>
                                         <th>Edit </th>
                                         <th>Delete</th>
 
                                     </tr>
-                                    <tr th:each="localgovt,status:${localgovt}">  
+                                    <tr th:each="localgovt,status:${localgovt}">
 
                                         <td th:text="${localgovt.motherMasterCode.motherMasterCode}"> </td>
 
@@ -598,7 +598,7 @@
                                         <th>Edit </th>
                                         <th>Delete </th>
                                     </tr>
-                                    <tr th:each="family,status:${family}">  
+                                    <tr th:each="family,status:${family}">
 
                                         <td th:text="${family.motherMasterCode.motherMasterCode}"> </td>
                                         <td th:text="${family.name}"> </td>
@@ -623,9 +623,9 @@
                                                     <div class="card-header with-border">
                                                         <h3 class="card-title"> Approval</h3>
                                                         <a   th:href="@{/m_approval/create/{id} (id=${m_info.id})}"  type="button" class="btn  btn-warning pull-right"> Add </a>
-                        
+
                                                     </div>
-                                                     /.card-header 
+                                                     /.card-header
                                                     <div class="card-body">
                                                         <table class="table table-bordered">
                                                             <tr>
@@ -637,9 +637,9 @@
                                                                 <th>Decision </th>
                                                                 <th>Remarks</th>
                                                             </tr>
-                                                            <tr th:each="approval,status:${approval}">  
+                                                            <tr th:each="approval,status:${approval}">
                                                                 <td>
-                                                                    <a  th:href="@{/m_approval/edit/{id} (id=${approval.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a> 
+                                                                    <a  th:href="@{/m_approval/edit/{id} (id=${approval.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>
                                                                 </td>
                                                                 <td> <a  th:href="@{/m_approval/delete/{id} (id=${approval.id})}" type="button" class="btn btn-xs bg-danger "> Delete</a> </td>
                                                                 <td th:text="${approval.motherMasterCode.motherMasterCode}"> </td>
@@ -650,12 +650,12 @@
                                                             </tr>
                                                         </table>
                                                     </div>
-                        
-                        
-                        
-                                                     /.card-body 
+
+
+
+                                                     /.card-body
                                                     <div class="card-footer clearfix">
-                        
+
                                                     </div>
                                                 </div>-->
                     </div>

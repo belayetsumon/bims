@@ -86,6 +86,7 @@ public class O_Professional_Obserbations_Child_Service {
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
                 root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
+                root.get("childMasterCode").get("name").alias("name"),
                 root.get("obStartDate").alias("obStartDate"),
                 root.get("inductionStartDate").alias("inductionStartDate"),
                 root.get("physicalDisability").alias("physicalDisability"),
@@ -118,6 +119,7 @@ public class O_Professional_Obserbations_Child_Service {
             map.put("motherName", tuple.get("motherName"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
             map.put("childMasterCode", tuple.get("childMasterCode"));
+              map.put("name", tuple.get("name"));
 //            map.put("induction", tuple.get("induction"));
             map.put("obStartDate", tuple.get("obStartDate"));
             map.put("inductionStartDate", tuple.get("inductionStartDate"));

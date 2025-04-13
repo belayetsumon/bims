@@ -80,6 +80,17 @@ public class InductionController {
         return "homevisit/observation/induction/inductionIndex";
     }
 
+    @RequestMapping("/pdf/{id}")
+    public String pdf(Model model, @PathVariable Long id, O_Induction o_Induction) {
+        model.addAttribute("m_id", id);
+        MotherMasterData motherMasterData = new MotherMasterData();
+        motherMasterData.setId(id);
+        model.addAttribute("o_Induction", o_InductionRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("o_Inhouse_Inductions_Mother", o_Inhouse_Inductions_MotherRepository.findBymotherMasterCode(motherMasterData));
+        model.addAttribute("o_Inhouse_Inductions_child", o_Inhouse_Inductions_childRepository.findBymotherMasterCode(motherMasterData));
+        return "homevisit/observation/induction/induction_print_view";
+    }
+
     @RequestMapping("/create/{id}")
     public String create(Model model, @PathVariable Long id, O_Induction o_Induction) {
         MotherMasterData motherMasterData = new MotherMasterData();

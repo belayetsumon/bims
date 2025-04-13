@@ -39,6 +39,7 @@
                                             <th>Induction Outcome Details</th>
 
                                             <th>Mother Master Code</th>
+                                                    <th>Mother Name</th>
                                             <th>Induction Start Date </th>
                                             <th> Induction End Date</th>
                                             <th> Immediate Support On</th>
@@ -54,6 +55,7 @@
                                                 <a   th:href="@{/inductionoutcome/index/{id} (id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">Induction Outcome Details</a>
                                             </td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
+                                             <td th:text="${list.motherName}">Chakma</td>
                                             <td th:text="${list.inductionStartDate}">Chakma</td>
                                             <td th:text="${list.inductionEndDate}">Chakma</td>
                                             <td th:text="${list.immediateSupportOn}">Chakma</td>

@@ -49,7 +49,7 @@ public class R_C_HouseAllocationsService {
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
                 root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' is a field in MotherMasterData
-                root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("name").alias("name"),// Assuming 'code' is a field in MotherMasterData
                 root.get("houseName").get("name").alias("houseName"), // Assuming 'name' is a field in HouseName
                 root.get("allocationDate").alias("allocationDate"),
                 root.get("endDate").alias("endDate"),
@@ -104,6 +104,7 @@ public class R_C_HouseAllocationsService {
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
                 root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' is a field in MotherMasterData
                 root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("name").alias("name"),// Assuming 'code' is a field in MotherMasterData
                 root.get("houseName").get("name").alias("houseName"), // Assuming 'name' is a field in HouseName
                 root.get("allocationDate").alias("allocationDate"),
                 root.get("endDate").alias("endDate"),
@@ -128,6 +129,89 @@ public class R_C_HouseAllocationsService {
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherName", tuple.get("motherName"));
+            resultMap.put("childMasterCode", tuple.get("childMasterCode"));
+            resultMap.put("name", tuple.get("name"));
+            resultMap.put("houseName", tuple.get("houseName"));
+            resultMap.put("allocationDate", tuple.get("allocationDate"));
+            resultMap.put("endDate", tuple.get("endDate"));
+            resultMap.put("extDate", tuple.get("extDate"));
+            resultMap.put("totaldays", tuple.get("totaldays"));
+            resultMap.put("extentionDays", tuple.get("extentionDays"));
+            resultMap.put("grandTotalDay", tuple.get("grandTotalDay"));
+            resultMap.put("remark", tuple.get("remark"));
+
+            resultMaps.add(resultMap);
+        }
+        return resultMaps;
+    }
+
+    public List<Map<String, Object>> all_childHouse_Allocation_by_mother_id(
+            Long id
+    ) {
+// Create CriteriaBuilder
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+// Create CriteriaQuery for R_M_HousAllocation
+        CriteriaQuery<Tuple> cq = cb.createTupleQuery();
+        Root<R_C_HouseAllocations> root = cq.from(R_C_HouseAllocations.class);
+
+        Path<LocalDate> startDate = root.get("allocationDate");
+        Path<LocalDate> endDate = root.get("endDate");
+        Path<LocalDate> extentionDate = root.get("extDate");
+
+        // Handle null values by coalescing to default values (e.g., LocalDate.ofEpochDay(0))
+        Expression<Long> totalDate = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(endDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(startDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        // Handle extension date similarly, assuming extensionDate may also be null
+        Expression<Long> extentionDays = cb.diff(
+                cb.function("DATEDIFF", Long.class,
+                        cb.coalesce(extentionDate, cb.literal(0L)), // Replace null with default date
+                        cb.coalesce(endDate, cb.literal(0L)) // Replace null with default date
+                ),
+                cb.literal(0L)
+        );
+
+        Expression<Long> grandTotalDay = cb.sum(totalDate, extentionDays);
+
+// Define the selection (using tuple)
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),// Assuming 'code' is a field in MotherMasterData
+                root.get("childMasterCode").get("name").alias("name"),// Assuming 'code' is a field in MotherMasterData
+                root.get("houseName").get("name").alias("houseName"), // Assuming 'name' is a field in HouseName
+                root.get("allocationDate").alias("allocationDate"),
+                root.get("endDate").alias("endDate"),
+                root.get("extDate").alias("extDate"),
+                totalDate.alias("totaldays"),
+                extentionDays.alias("extentionDays"),
+                grandTotalDay.alias("grandTotalDay"),
+                root.get("remark").alias("remark")
+        );
+        cq.where(cb.equal(root.get("motherMasterCode").get("id"), id));
+// Add predicates to the query
+        cq.orderBy(cb.desc(root.get("id")));
+// Execute the query
+        List<Tuple> resultList = em.createQuery(cq).getResultList();
+
+        List<Map<String, Object>> resultMaps = new ArrayList<>();
+
+        for (Tuple tuple : resultList) {
+            Map<String, Object> resultMap = new HashMap<>();
+
+            resultMap.put("id", tuple.get("id"));
+            resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
+            resultMap.put("name", tuple.get("name"));
             resultMap.put("childMasterCode", tuple.get("childMasterCode"));
             resultMap.put("houseName", tuple.get("houseName"));
             resultMap.put("allocationDate", tuple.get("allocationDate"));

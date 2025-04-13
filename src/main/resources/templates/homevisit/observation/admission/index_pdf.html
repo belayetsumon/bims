@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Induction Report </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background: #fff;
+            }
+
+            .page-wrapper {
+                width: 210mm;
+                min-height: 297mm;
+                padding: 20mm 15mm 30mm; /* top, left/right, bottom */
+                margin: auto;
+                background: #fff;
+                position: relative;
+            }
+
+            .header, .footer {
+                position: fixed;
+                left: 0;
+                right: 0;
+                color: #333;
+                font-size: 12px;
+                text-align: center;
+            }
+
+            .header {
+                top: 10mm;
+            }
+
+            .footer {
+                bottom: 10mm;
+            }
+
+            .content {
+                /*                margin-top: 10mm;
+                                margin-bottom: 10mm;*/
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                font-size: 12px;
+            }
+
+            th, td {
+                border: 1px solid #000;
+                padding: 6px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f0f0f0;
+            }
+
+            button {
+                margin: 20px;
+                padding: 10px 20px;
+            }
+
+            @media print {
+                .no-print {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <button class="no-print" onclick="downloadPDF()">Download PDF</button>
+
+        <div id="pdfContent" class="page-wrapper">
+            <!-- Header -->
+
+
+
+            <!-- Main Content -->
+            <div class="content">
+                <h3>Mother Admission </h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+
+
+                        <th>Mother Master Code</th>
+                        <th>Date Arrival</th>
+                        <th>Date Admission</th>
+                        <th>Remark</th>
+                    </tr>
+                    <tr th:each="o_MAddmission,status:${o_MAddmission}">
+                        <td th:text="${status.count}">2.</td>
+
+                        <td th:text="${o_MAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
+                        <td th:text="${o_MAddmission.dateArrival}">Chakma</td>
+                        <td th:text="${o_MAddmission.dateAdmission}">Chakma</td>
+                        <td th:text="${o_MAddmission.remarks}">Chakma</td>
+                    </tr>
+                </table>
+
+
+
+                <h3>Child Admission</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+
+                        <th>Mother Master Code</th>
+                        <th>Child Master Code</th>
+                        <th>Date Arrival</th>
+                        <th>Date Admission</th>
+                        <th>Remark</th>
+                    </tr>
+                    <tr th:each="o_ChildAddmission,status:${o_ChildAddmission}">
+                        <td th:text="${status.count}">2.</td>
+
+                        <td th:text="${o_ChildAddmission.motherMasterCode.motherMasterCode}">Chakma</td>
+                        <td th:text="${o_ChildAddmission.childMasterCode.childMasterCode}">Chakma</td>
+                        <td th:text="${o_ChildAddmission.dateArrival}">Chakma</td>
+                        <td th:text="${o_ChildAddmission.dateAdmission}">Chakma</td>
+                        <td th:text="${o_ChildAddmission.remarks}">Chakma</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+        <!-- PDF Script -->
+        <script>
+            async function downloadPDF() {
+                const {jsPDF} = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                const content = document.getElementById('pdfContent');
+                const canvas = await html2canvas(content, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true
+                });
+
+                const imgData = canvas.toDataURL('image/png');
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save("induction-report.pdf");
+            }
+        </script>
+    </body>
+</html>

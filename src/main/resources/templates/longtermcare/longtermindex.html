@@ -43,6 +43,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Admission Date</th>
                                         <th>Address </th>
                                         <th>Fostering Date  </th>
@@ -54,6 +55,7 @@
                                         <td><a th:href="@{/foster/edit/{id}(id=${foster.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                         <td><a th:href="@{/foster/delete/{id}(id=${foster.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${foster.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${foster.childMasterCode.name}">Chakma</td>
                                         <td th:text="${foster.admissionDate}">Chakma</td>
                                         <td th:text="${foster.adress}">Chakma</td>
                                         <td th:text="${foster.fostringDate}">Chakma</td>
@@ -86,6 +88,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Follow Up Type</th>
                                         <th>Follow Up Date </th>
                                         <th>Follow Up By </th>
@@ -98,6 +101,7 @@
                                         <td><a th:href="@{/foster/fosterfllowupdelete/{id}(id=${foster_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
 
                                         <td th:text="${foster_follow_up.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${foster_follow_up.childMasterCode.name}">Chakma</td>
                                         <td th:text="${foster_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${foster_follow_up.followUpDate}">Chakma</td>
                                         <td th:text="${foster_follow_up.followUpBy}">Chakma</td>
@@ -130,6 +134,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Higher Study Date</th>
                                         <th>Address </th>
                                         <th>Admission Date </th>
@@ -146,6 +151,7 @@
                                         <td><a th:href="@{/higherstudy/edit/{id}(id=${higherstudy.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                         <td><a th:href="@{/higherstudy/delete/{id}(id=${higherstudy.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${higherstudy.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${higherstudy.childMasterCode.name}">Chakma</td>
                                         <td th:text="${higherstudy.higherStudyDate}">Chakma</td>
                                         <td th:text="${higherstudy.address}">Chakma</td>
                                         <td th:text="${higherstudy.addmissionDate}">Chakma</td>
@@ -177,6 +183,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Follow Up Type</th>
                                         <th>Follow Up Date </th>
                                         <th>Follow Up By </th>
@@ -187,6 +194,7 @@
                                         <td><a th:href="@{/higherstudy/higherstudyfollowupedit/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                         <td><a th:href="@{/higherstudy/higherstudyfllowupdelete/{id}(id=${higherstudy_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${higherstudy_follow_up.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${higherstudy_follow_up.childMasterCode.name}">Chakma</td>
                                         <td th:text="${higherstudy_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${higherstudy_follow_up.followUpDate}">Chakma</td>
                                         <td th:text="${higherstudy_follow_up.followUpBy}">Chakma</td>
@@ -216,6 +224,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Job Date</th>
                                         <th>Job Type</th>
                                         <th>Position</th>
@@ -230,6 +239,7 @@
                                         <td><a th:href="@{/ljob/edit/{id}(id=${job.id})}" type="button" class="btn btn-sm  btn-info">Edit</a></td>
                                         <td><a th:href="@{/ljob/delete/{id}(id=${job.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${job.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${job.childMasterCode.name}">Chakma</td>
                                         <td th:text="${job.jobDate}">Chakma</td>
                                         <td th:text="${job.jobType}">Chakma</td>
                                         <td th:text="${job.position}">Chakma</td>
@@ -261,6 +271,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Follow Up Type</th>
                                         <th>Follow Up Date </th>
                                         <th>Follow Up By </th>
@@ -271,6 +282,7 @@
                                         <td><a th:href="@{/ljob/jobfollowupedit/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                         <td><a th:href="@{/ljob/jobfllowupdelete/{id}(id=${job_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${job_follow_up.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${job_follow_up.childMasterCode.name}">Chakma</td>
                                         <td th:text="${job_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${job_follow_up.followUpDate}">Chakma</td>
                                         <td th:text="${job_follow_up.followUpBy}">Chakma</td>
@@ -296,6 +308,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Marriage Date</th>
                                         <th>Husband Name/Wife Name</th>
                                         <th>Address </th>
@@ -306,6 +319,7 @@
                                         <td><a th:href="@{/marriage/edit/{id}(id=${marriage.id})}" type="button" class="btn btn-sm  btn-info">Edit</a></td>
                                         <td><a th:href="@{/marriage/delete/{id}(id=${marriage.id})}" type="button" class="btn btn-sm  btn-info">Delete</a></td>
                                         <td th:text="${marriage.childMasterCode.childMasterCode}">Chakma</td>
+                                         <td th:text="${marriage.childMasterCode.name}">Chakma</td>
                                         <td th:text="${marriage.marriageDate}">Chakma</td>
                                         <td th:text="${marriage.hasbandName}">Chakma</td>
                                         <td th:text="${marriage.address}">Chakma</td>
@@ -333,6 +347,7 @@
                                         <th> Edit </th>      
                                         <th> Delete</th>  
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Follow Up Type</th>
                                         <th>Follow Up Date </th>
                                         <th>Follow Up By </th>
@@ -343,6 +358,7 @@
                                         <td><a th:href="@{/marriage/marriagefollowupedit/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Edit</a></td>
                                         <td><a th:href="@{/marriage/marriagefllowupdelete/{id}(id=${marriage_follow_up.id})}" type="button" class="btn btn-sm  btn-info"> Delete</a></td>
                                         <td th:text="${marriage_follow_up.childMasterCode.childMasterCode}">Chakma</td>
+                                         <td th:text="${marriage_follow_up.childMasterCode.name}">Chakma</td>
                                         <td th:text="${marriage_follow_up.followUpType}">Chakma</td>
                                         <td th:text="${marriage_follow_up.followUpDate}">Chakma</td>
                                         <td th:text="${marriage_follow_up.followUpBy}">Chakma</td>
@@ -369,6 +385,7 @@
                                         <th>Edit </th>
                                         <th>Delete</th>
                                         <th>Child Id </th>
+                                        <th>Child Name</th>
                                         <th>Date</th>
                                         <th>Location </th>
                                         <th>Reason </th>
@@ -384,6 +401,7 @@
                                         <td> <a   th:href="@{/childcrisismeetup/edit/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Edit </a> </td>
                                         <td> <a   th:href="@{/childcrisismeetup/delete/{id} (id=${list.id})}" type="button" class="btn btn-sm  btn-info"> Delete </a> </td>
                                         <td th:text="${list.childMasterCode.childMasterCode}">  </td>
+                                                                   <td th:text="${list.childMasterCode.name}">  </td>
                                         <td th:text="${list.entrydate}">  </td>
                                         <td th:text="${list.location}">  </td>
                                         <td th:text="${list.reason}">  </td>

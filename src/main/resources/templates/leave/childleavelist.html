@@ -65,8 +65,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th> Mother  Id</th>
-                                                <th> Section name</th>
+                                                <th> Child  Id</th>
+                                                <th> Child Name</th>
+                                                <th> Section Name</th>
                                                 <th> Leave start date</th>
                                                 <th>Leave end date</th>
                                                 <th>C/O</th>
@@ -78,15 +79,14 @@
 
                                                 <th>Edit</th>
                                                 <th>Delete</th>
-
                                             </tr>  
                                         </thead>
                                         <tbody>
                                             <tr th:each="list,status:${list}">
                                                 <td th:text="${status.count}">Chakma</td>
-
-                                                <td th:text="${list.motherMasterCode}">Chakma</td>
-                                                <td th:text="${list.sectionName}">Chakma</td>
+                                                <td th:text="${list.childMasterCode}">Chakma</td>
+                                                <td th:text="${list.name}">Chakma</td>
+                                                   <td th:text="${list.sectionName}">Chakma</td>
                                                 <td th:text="${list.leaveFrom}">Chakma</td>
 
                                                 <td th:text="${list.leaveTo}" >Chakma</td>

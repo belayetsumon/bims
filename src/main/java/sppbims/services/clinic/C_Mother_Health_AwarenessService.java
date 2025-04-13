@@ -66,6 +66,7 @@ public class C_Mother_Health_AwarenessService {
                 root.get("insdate").alias("insdate"),
                 root.get("remark").alias("remark"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"), // Alias for childMasterCode
+                root.get("motherMasterCode").get("motherName").alias("motherName"), // Alias for childMasterCode
                 root.get("healthAwareness").get("name").alias("healthAwareness") // Alias for healthAwareness
         );
 
@@ -86,6 +87,7 @@ public class C_Mother_Health_AwarenessService {
             map.put("insdate", tuple.get("insdate"));
             map.put("remark", tuple.get("remark"));
             map.put("motherMasterCode", tuple.get("motherMasterCode"));
+            map.put("motherName", tuple.get("motherName"));
             map.put("healthAwareness", tuple.get("healthAwareness"));
             resultMapList.add(map);
         }

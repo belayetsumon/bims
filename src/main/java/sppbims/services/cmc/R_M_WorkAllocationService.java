@@ -181,6 +181,7 @@ public class R_M_WorkAllocationService {
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionPlace").alias("sectionPlace"), // Assuming 'name' is a field in HouseName
                 root.get("work").alias("work"),
                 root.get("allocationDate").alias("allocationDate"),
@@ -208,6 +209,7 @@ public class R_M_WorkAllocationService {
             resultMap.put("id", tuple.get("id"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("sectionPlace", tuple.get("sectionPlace"));
             resultMap.put("work", tuple.get("work"));
             resultMap.put("allocationDate", tuple.get("allocationDate"));
@@ -262,6 +264,7 @@ public class R_M_WorkAllocationService {
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionPlace").alias("sectionPlace"), // Assuming 'name' is a field in HouseName
                 root.get("work").alias("work"),
                 root.get("allocationDate").alias("allocationDate"),
@@ -287,6 +290,7 @@ public class R_M_WorkAllocationService {
             resultMap.put("id", tuple.get("id"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("sectionPlace", tuple.get("sectionPlace"));
             resultMap.put("work", tuple.get("work"));
             resultMap.put("allocationDate", tuple.get("allocationDate"));

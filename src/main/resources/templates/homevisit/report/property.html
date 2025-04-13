@@ -78,7 +78,9 @@
                         <table id="tablesdata"   class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Mother Id </th>
+                                    <th>Mother Name</th>
                                     <th>Homestead Land Quantity/Decimal</th>
                                     <th>Homestead Land Value/Taka</th>
                                     <th>Cultivable Land Quantity/Decimal</th>
@@ -98,9 +100,10 @@
                             </thead>
 
                             <tbody>
-                                <tr th:each="property,status:${list}">      
-
+                                <tr th:each="property,status:${list}"> 
+                                    <td th:text="${status.count}">  </td>
                                     <td th:text="${property.get('motherMasterCode')}">  </td>
+                                    <td th:text="${property.get('motherName')}">  </td>
                                     <td th:text="${property.get('homelandQuantity')}">  </td>
                                     <td th:text="${property.get('homeLandValue')}">   </td>
                                     <td th:text="${property.get('cultivableLandQuantity')}">  </td>

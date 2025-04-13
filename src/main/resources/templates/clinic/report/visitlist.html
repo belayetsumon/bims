@@ -76,6 +76,7 @@
                                             <th style="width: 10px">#</th>
 
                                             <th>Mother Master Code</th>
+                                             <th>Mother Name</th>
                                             <th>Visit Date</th>
                                             <th>Problem  </th>
                                             <th>Primary Diagnosis</th>
@@ -89,6 +90,7 @@
                                         <tr th:each="cvisit,status:${cvisit}">                                
                                             <td th:text="${status.count}"> 2. </td>      
                                             <td th:text="${cvisit.motherMasterCode}">Chakma</td>
+                                                 <td th:text="${cvisit.motherName}">Chakma</td>
                                             <td th:text="${cvisit.visitDate}">Chakma</td>
                                             <td th:text="${cvisit.problem}">Chakma</td>
                                             <td th:text="${cvisit.primaryDiagnosis}">Chakma</td>

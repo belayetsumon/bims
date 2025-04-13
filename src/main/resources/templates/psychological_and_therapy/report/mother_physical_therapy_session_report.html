@@ -75,6 +75,7 @@
                                             <tr>
                                                 <th style="width: 10px">#</th>  
                                                 <th>Mother Master Code</th>
+                                                    <th>Mother Name</th>
                                                 <th>Therapeutic Session Date</th>
                                                 <th>Pain </th>
                                                 <th>Pain Note</th>
@@ -92,7 +93,8 @@
                                         <tbody>
                                             <tr th:each="list2,status:${r_pt}">
                                                 <td th:text="${status.count}">2.</td>                                        
-                                                <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                <td th:text="${list2.motherMasterCode}">Chakma</td>
+                                                  <td th:text="${list2.motherName}">Chakma</td>
                                                 <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
                                                 <td th:text="${list2.pain}">Chakma</td>
                                                 <td th:text="${list2.painNote}">Chakma</td>

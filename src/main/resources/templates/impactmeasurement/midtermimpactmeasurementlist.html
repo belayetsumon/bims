@@ -38,7 +38,9 @@
                                 <table id="tablesdata" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Mother  Id</th>
+                                            <th>Mother Name</th>
                                             <th>Present income source</th>
                                             <th>Monthly Income- Amount</th>
                                             <th>Monthly expenditure- Amount</th>
@@ -58,12 +60,11 @@
                                         </tr> 
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${list}">
-
+                                        <tr th:each="list,status :${list}">
+                                            <td th:text="${status.count}">Chakma</td>
                                             <td th:text="${list.releaseMotherId.motherMasterCode.motherMasterCode}">Chakma</td>
-
+                                            <td th:text="${list.releaseMotherId.motherMasterCode.motherName}">Chakma</td>
                                             <td th:text="${list.presentIncomeSource}">Chakma</td>
-
                                             <td th:text="${list.monthlyIncomeAmount}" >Chakma</td>
                                             <td th:text="${list.monthlyExpenditureAmount}" >Chakma</td>
                                             <td th:text="${list.savingsAmount}" >Chakma</td>

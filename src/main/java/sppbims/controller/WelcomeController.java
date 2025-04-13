@@ -18,7 +18,8 @@ public class WelcomeController {
 
     @RequestMapping(value = {"/"})
     public String index(Model model) {
-        return "welcome";
+        //return "welcome";
+         return "redirect:/dashboards/index";
     }
 
 }

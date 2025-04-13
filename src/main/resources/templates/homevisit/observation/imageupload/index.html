@@ -46,6 +46,8 @@
 
                                         <!--                                        <th> Id</th>-->
                                         <th>Mother Master Code</th>
+                                        <th>Mother Name</th>
+                                        <th>Image Type</th>
                                         <th>Image</th>
                                         <th>Delete</th>
                                     </tr>                          
@@ -54,6 +56,8 @@
 
                                         <!--    <td th:text="${mimage.id}">Chakma</td>-->
                                         <td th:text="${mimage.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td th:text="${mimage.motherMasterCode.motherName}">Chakma</td>
+                                        <td th:text="${mimage.imagetype}">Chakma</td>
                                         <td> <img  class="img-responsive" th:src="@{/files/}+${mimage.imageName}" width="150px" height="150px" /> </td>
 
                                         <td><a   th:href="@{/image/delete/{id} (id=${mimage.id})}" type="button" class="btn btn-xs bg-danger ">Delete</a></td>
@@ -85,15 +89,16 @@
                                     <tr>
                                         <th style="width: 10px">#</th> 
                                         <th>Delete</th>
-                                        <th>Mother Master Code</th>
+
                                         <th>Child Master Code</th>
+                                        <th>Child Name</th>
                                         <th>Image</th>
                                     </tr>                          
                                     <tr th:each="cimage,status:${cimage}">
-                                        <td><a   th:href="@{/childimage/delete/{id} (id=${cimage.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${cimage.id}">Chakma</td>
-                                        <td th:text="${cimage.motherMasterCode.motherMasterCode}">Chakma</td>
+                                        <td><a   th:href="@{/childimage/delete/{id} (id=${cimage.id})}" type="button" class="btn btn-xs bg-maroon ">Delete</a></td>
                                         <td th:text="${cimage.childMasterCode.childMasterCode}">Chakma</td>
+                                        <td th:text="${cimage.childMasterCode.name}">Chakma</td>
                                         <td> <img  class="img-responsive" th:src="@{/files/childimage/}+${cimage.imageName}" width="150px" height="150px" /> </td>
                                     </tr>
                                 </table>

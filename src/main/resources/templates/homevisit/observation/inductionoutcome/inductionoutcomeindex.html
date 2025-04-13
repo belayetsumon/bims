@@ -32,104 +32,36 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table  class="table table-bordered table-striped">
-                                    <tr>
-                                        <th style="width: 10px">#</th>  
+                                <table  id="tablesdata" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
 
-                                        <th>Mother Master Code</th>
-                                        <th>Induction Start Date </th>
-                                        <th> Induction End Date</th>
-                                        <th> Immediate Support On</th>
-                                        <th> Challenges of Beneficiary</th>
-                                        <th> Possible length of staying at SPP </th>
-                                        <th>Remark</th>
-                                    </tr>                          
-                                    <tr th:each="list,status:${o_Induction}">
-                                        <td th:text="${status.count}">2.</td>
-                                        <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                        <td th:text="${list.startDate}">Chakma</td>
-                                        <td th:text="${list.endDate}">Chakma</td>
-                                        <td th:text="${list.immediateSupportOn}">Chakma</td>
-                                        <td th:text="${list.challagesOfCandidare}">Chakma</td>                                 
-                                        <td th:text="${list.possibleLength}">Chakma</td>
-                                        <td th:text="${list.remark}">Chakma</td>
+                                            <th>Mother Master Code</th>
+                                            <th>Mother Name</th>
+                                            <th>Induction Start Date </th>
+                                            <th> Induction End Date</th>
+                                            <th> Immediate Support On</th>
+                                            <th> Challenges of Beneficiary</th>
+                                            <th> Possible length of staying at SPP </th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${o_Induction}">
+                                            <td th:text="${status.count}">2.</td>
+                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
+                                            <td th:text="${list.startDate}">Chakma</td>
+                                            <td th:text="${list.endDate}">Chakma</td>
+                                            <td th:text="${list.immediateSupportOn}">Chakma</td>
+                                            <td th:text="${list.challagesOfCandidare}">Chakma</td>
+                                            <td th:text="${list.possibleLength}">Chakma</td>
+                                            <td th:text="${list.remark}">Chakma</td>
 
-                                    </tr>
+                                        </tr>
+                                    <tbody>
                                 </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer clearfix">
-
-                            </div>
-                        </div>
-                        <!-- /.card -->
-
-                    </div>
-                    <!-- /.col -->
-
-                    <!-- /.col -->
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-info">
-                            <div class="card-header with-border">
-                                <h3 class="card-title"> Health Check Outcome</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table class="table table-bordered table-striped">
-                                    <tr th:each="o_MHConditions,status:${o_MHConditions}">
-                                        <td>
-
-                                            <table class="table table-bordered">
-
-                                                <tr><th>Mother Master Code</th> <td th:text="${o_MHConditions.motherMasterCode.motherMasterCode}">Chakma</td>
-                                                    <th>Observation Duration</th> <td th:text="${o_MHConditions.observationDuration}">Chakma</td>
-                                                </tr><tr>
-
-                                                    <th> Previous Disease</th> <td th:text="${o_MHConditions.previousDisease}">Chakma</td>
-                                                    <th> Previous Treatment</th> <td th:text="${o_MHConditions.previousTreatment}">Chakma</td>
-                                                </tr><tr>
-
-                                                </tr><tr>
-                                                    <th> Present Health Status</th> <td th:text="${o_MHConditions.preasentHealtsStatus}">Chakma</td>
-                                                    <th> Nutrition Status </th> <td th:text="${o_MHConditions.nutritionStatus}">Chakma</td>
-                                                </tr><tr>
-                                                    <th> Height(CM) </th> <td th:text="${o_MHConditions.height}">Chakma</td>
-                                                    <th> Weight(KG) </th> <td th:text="${o_MHConditions.weight}">Chakma</td>
-                                                </tr>
-                                                <tr>
-                                                    <th> Blood Pressure </th> <td th:text="${o_MHConditions.bloodPressure}">Chakma</td>
-                                                    <th> TT </th> <td th:text="${o_MHConditions.tt}">Chakma</td>
-                                                </tr><tr>
-                                                    <th> Eye Problem </th> <td th:text="${o_MHConditions.eyeProblem}">Chakma</td>
-                                                    <th> Ear Problem </th> <td th:text="${o_MHConditions.earProblem}">Chakma</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th> Gynecological Problem </th> <td th:text="${o_MHConditions.gynologicalProblem}">Chakma</td>
-                                                    <th> Diabetes</th> <td th:text="${o_MHConditions.diabetes}">Chakma</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <th>  Heart Disease </th> <td th:text="${o_MHConditions.heart_disease}">Chakma</td>
-                                                    <th>  </th> <td></td>
-                                                </tr><tr>
-                                                    <th> Bony Fracture </th> <td th:text="${o_MHConditions.bonyFracture}">Chakma</td>
-                                                    <th> Note</th> <td th:text="${o_MHConditions.note}">Chakma</td>
-                                                </tr>
-                                                <tr>
-                                                    <th> Neurological Disease </th> <td th:text="${o_MHConditions.neurologicalDisease}">Chakma</td>
-                                                    <th> Respiratory  Problem </th> <td th:text="${o_MHConditions.resporatoryProblem}">Chakma</td>
-                                                </tr><tr>
-                                                    <th> UTI </th> <td th:text="${o_MHConditions.uti}">Chakma</td>
-                                                    <th> Previous Report </th> <td th:text="${o_MHConditions.previousReport}">Chakma</td>
-                                                </tr><tr>
-                                                    <th> Plan For Further Action </th> <td th:text="${o_MHConditions.planForFurtherAction}">Chakma</td>
-                                                    <th> Other Important Findings </th> <td th:text="${o_MHConditions.otherImportantFindings}">Chakma</td>
-                                                </tr>
-                                            </table>
-                                        </td>   </tr> </table>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
@@ -147,15 +79,89 @@
                                     <div class="col-md-12">
                                         <div class="card card-info">
                                             <div class="card-header with-border">
+                                                <h3 class="card-title"> Health Check Outcome</h3>
+                                            </div>
+                                             /.card-header
+                                            <div class="card-body">
+                                                <table class="table table-bordered table-striped">
+                                                    <tr th:each="o_MHConditions,status:${o_MHConditions}">
+                                                        <td>
+
+                                                            <table class="table table-bordered">
+
+                                                                <tr><th>Mother Master Code</th> <td th:text="${o_MHConditions.motherMasterCode.motherMasterCode}">Chakma</td>
+                                                                    <th>Observation Duration</th> <td th:text="${o_MHConditions.observationDuration}">Chakma</td>
+                                                                </tr><tr>
+
+                                                                    <th> Previous Disease</th> <td th:text="${o_MHConditions.previousDisease}">Chakma</td>
+                                                                    <th> Previous Treatment</th> <td th:text="${o_MHConditions.previousTreatment}">Chakma</td>
+                                                                </tr><tr>
+
+                                                                </tr><tr>
+                                                                    <th> Present Health Status</th> <td th:text="${o_MHConditions.preasentHealtsStatus}">Chakma</td>
+                                                                    <th> Nutrition Status </th> <td th:text="${o_MHConditions.nutritionStatus}">Chakma</td>
+                                                                </tr><tr>
+                                                                    <th> Height(CM) </th> <td th:text="${o_MHConditions.height}">Chakma</td>
+                                                                    <th> Weight(KG) </th> <td th:text="${o_MHConditions.weight}">Chakma</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th> Blood Pressure </th> <td th:text="${o_MHConditions.bloodPressure}">Chakma</td>
+                                                                    <th> TT </th> <td th:text="${o_MHConditions.tt}">Chakma</td>
+                                                                </tr><tr>
+                                                                    <th> Eye Problem </th> <td th:text="${o_MHConditions.eyeProblem}">Chakma</td>
+                                                                    <th> Ear Problem </th> <td th:text="${o_MHConditions.earProblem}">Chakma</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th> Gynecological Problem </th> <td th:text="${o_MHConditions.gynologicalProblem}">Chakma</td>
+                                                                    <th> Diabetes</th> <td th:text="${o_MHConditions.diabetes}">Chakma</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th>  Heart Disease </th> <td th:text="${o_MHConditions.heart_disease}">Chakma</td>
+                                                                    <th>  </th> <td></td>
+                                                                </tr><tr>
+                                                                    <th> Bony Fracture </th> <td th:text="${o_MHConditions.bonyFracture}">Chakma</td>
+                                                                    <th> Note</th> <td th:text="${o_MHConditions.note}">Chakma</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th> Neurological Disease </th> <td th:text="${o_MHConditions.neurologicalDisease}">Chakma</td>
+                                                                    <th> Respiratory  Problem </th> <td th:text="${o_MHConditions.resporatoryProblem}">Chakma</td>
+                                                                </tr><tr>
+                                                                    <th> UTI </th> <td th:text="${o_MHConditions.uti}">Chakma</td>
+                                                                    <th> Previous Report </th> <td th:text="${o_MHConditions.previousReport}">Chakma</td>
+                                                                </tr><tr>
+                                                                    <th> Plan For Further Action </th> <td th:text="${o_MHConditions.planForFurtherAction}">Chakma</td>
+                                                                    <th> Other Important Findings </th> <td th:text="${o_MHConditions.otherImportantFindings}">Chakma</td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>   </tr> </table>
+                                            </div>
+                                             /.card-body
+                                            <div class="card-footer clearfix">
+
+                                            </div>
+                                        </div>
+                                         /.card
+
+                                    </div>
+                                     /.col
+
+                                     /.col
+                                </div>-->
+                <!--                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card card-info">
+                                            <div class="card-header with-border">
                                                 <h3 class="card-title"> Profession Observation Outcome </h3>
                                             </div>
-                                             /.card-header 
+                                             /.card-header
                                             <div class="card-body">
                                                 <table class="table">
-                
+
                                                     <tr th:each="o_ProfessionalObserbationsMother,status:${o_ProfessionalObserbationsMother}">
                                                         <td>
-                                                            <table class="table table-bordered" >                              
+                                                            <table class="table table-bordered" >
                                                                 <tr><th>Mother Master Code</th> <td th:text="${o_ProfessionalObserbationsMother.motherMasterCode.motherMasterCode}">Chakma</td>
                                                                     <th> </th> <td ></td>
                                                                 </tr>
@@ -181,23 +187,23 @@
                                                                     <th> Remarks</th> <td th:text="${o_ProfessionalObserbationsMother.remarks}">Chakma</td>
                                                                     <td></td>
                                                                 </tr>
-                
-                
+
+
                                                             </table>
                                                         </td> </tr>
                                                 </table>
                                             </div>
-                                             /.card-body 
+                                             /.card-body
                                             <div class="card-footer clearfix">
-                
+
                                             </div>
                                         </div>
-                                         /.card 
-                
+                                         /.card
+
                                     </div>
-                                     /.col 
-                
-                                     /.col 
+                                     /.col
+
+                                     /.col
                                 </div>-->
 
             </section>

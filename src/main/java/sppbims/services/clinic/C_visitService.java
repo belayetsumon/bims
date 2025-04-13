@@ -96,7 +96,7 @@ public class C_visitService {
             resultMap.put("medicine", tuple.get("medicine"));
             resultMap.put("prescribedBy", tuple.get("prescribedBy"));
             resultMap.put("remark", tuple.get("remark"));
-             resultMap.put("motherName", tuple.get("motherName"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
             resultMap.put("createdBy", tuple.get("createdBy"));
@@ -156,6 +156,7 @@ public class C_visitService {
                 prescribedByPath.alias("prescribedBy"),
                 remarkPath.alias("remark"),
                 cVisitRoot.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                cVisitRoot.get("motherMasterCode").get("motherName").alias("motherName"),
                 cVisitRoot.get("motherMasterCode").get("id").alias("motherMasterCodeId")
         // Assuming 'username' exists in Users
 
@@ -180,7 +181,8 @@ public class C_visitService {
             resultMap.put("remark", tuple.get("remark"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
-//            resultMap.put("createdBy", tuple.get("createdBy"));
+            resultMap.put("motherName", tuple.get("motherName"));
+//          resultMap.put("createdBy", tuple.get("createdBy"));
             resultMapList.add(resultMap);
         }
 

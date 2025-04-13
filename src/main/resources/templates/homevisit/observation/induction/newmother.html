@@ -41,8 +41,9 @@
                                         <tr>
                                             <th style="width: 10px">#</th>  
                                             <th>Mother  Id</th>
-                                            <th>Home Visit Date</th>
                                             <th>Mother Name</th>
+                                            <th>Home Visit Date</th>
+
                                             <th>Date of Birth</th>
                                             <th>Mobile</th>
                                             <th>Approval</th>
@@ -54,8 +55,8 @@
                                         <tr th:each="list,status:${list}">
                                             <td th:text="${status.count}">2.</td>
                                             <td th:text="${list.motherMasterCode}">Chakma</td>
-                                            <td th:text="${ list.homeVisitDate}" >Chakma</td>
                                             <td th:text="${list.motherName}">Chakma</td>
+                                            <td th:text="${ list.homeVisitDate}" >Chakma</td>
                                             <td th:text="${list.dateOfBirth}" >Chakma</td>
                                             <td th:text="${list.mobileNumber}">Chakma</td>                   
                                             <td th:text="${list.decission}">Chakma</td>

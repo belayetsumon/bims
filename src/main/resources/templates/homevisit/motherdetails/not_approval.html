@@ -46,6 +46,7 @@
                                 <tr>
                                     <th style="width: 10px">#</th> 
                                     <th>Mother Id</th>
+                                    <th>Mother Name</th>
                                     <th>Decision  Date</th>
                                     <th>Decision By</th>
                                     <th>Action</th>
@@ -55,6 +56,7 @@
                                 <tr th:each="list,status:${list}">
                                     <td th:text="${status.count}">2.</td>
                                     <td th:text="${list.motherMasterCode}">Chakma</td> 
+                                      <td th:text="${list.motherName}">Chakma</td> 
                                     <td th:text="${list.approvalDate}">Chakma</td> 
                                     <td th:text="${list.approver}">Chakma</td>
                                     <td> <a   th:href="@{/m_approval/motherdetails/{m_id} (m_id=${list.motherMasterCodeId})}" type="button" class="btn btn-xs bg-maroon ">View</a>

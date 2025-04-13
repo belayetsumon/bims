@@ -51,6 +51,9 @@ public class C_ReferralService {
         Path<String> reffrredToPath = cReferralRoot.get("reffrredTo");
         Path<String> reasonsPath = cReferralRoot.get("reasons");
         Path<String> remarksPath = cReferralRoot.get("remarks");
+        Path<String> motherMasterCode = cReferralRoot.get("motherMasterCode").get("motherMasterCode");
+        Path<String> motherName = cReferralRoot.get("motherMasterCode").get("motherName");
+        Path<String> motherMasterCodeId = cReferralRoot.get("motherMasterCode").get("id");
 
         // Join with MotherMasterData and Users (assuming they are present in the entity)
         Join<C_Referral, MotherMasterData> motherMasterJoin = cReferralRoot.join("motherMasterCode", JoinType.LEFT);
@@ -63,8 +66,9 @@ public class C_ReferralService {
                 reffrredToPath.alias("reffrredTo"),
                 reasonsPath.alias("reasons"),
                 remarksPath.alias("remarks"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId"),
+                motherMasterCode.alias("motherMasterCode"),
+                motherMasterCodeId.alias("motherMasterCodeId"),
+                motherName.alias("motherName"),
                 createdByJoin.get("name").alias("createdBy") // Assuming 'username' exists in Users
         );
 
@@ -84,6 +88,7 @@ public class C_ReferralService {
             resultMap.put("remarks", tuple.get("remarks"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("createdBy", tuple.get("createdBy"));
             resultMapList.add(resultMap);
         }
@@ -109,7 +114,9 @@ public class C_ReferralService {
         Path<String> reffrredToPath = cReferralRoot.get("reffrredTo");
         Path<String> reasonsPath = cReferralRoot.get("reasons");
         Path<String> remarksPath = cReferralRoot.get("remarks");
-
+        Path<String> motherMasterCode = cReferralRoot.get("motherMasterCode").get("motherMasterCode");
+        Path<String> motherName = cReferralRoot.get("motherMasterCode").get("motherName");
+        Path<String> motherMasterCodeId = cReferralRoot.get("motherMasterCode").get("id");
         // Join with MotherMasterData and Users (assuming they are present in the entity)
         Join<C_Referral, MotherMasterData> motherMasterJoin = cReferralRoot.join("motherMasterCode", JoinType.LEFT);
         Join<C_Referral, Users> createdByJoin = cReferralRoot.join("createdBy", JoinType.LEFT);
@@ -135,8 +142,9 @@ public class C_ReferralService {
                 reffrredToPath.alias("reffrredTo"),
                 reasonsPath.alias("reasons"),
                 remarksPath.alias("remarks"),
-                motherMasterJoin.get("motherMasterCode").alias("motherMasterCode"),
-                motherMasterJoin.get("id").alias("motherMasterCodeId"),
+                motherMasterCode.alias("motherMasterCode"),
+                motherMasterCodeId.alias("motherMasterCodeId"),
+                motherName.alias("motherName"),
                 createdByJoin.get("name").alias("createdBy") // Assuming 'username' exists in Users
         );
 
@@ -156,6 +164,7 @@ public class C_ReferralService {
             resultMap.put("remarks", tuple.get("remarks"));
             resultMap.put("motherMasterCode", tuple.get("motherMasterCode"));
             resultMap.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            resultMap.put("motherName", tuple.get("motherName"));
             resultMap.put("createdBy", tuple.get("createdBy"));
             resultMapList.add(resultMap);
         }
