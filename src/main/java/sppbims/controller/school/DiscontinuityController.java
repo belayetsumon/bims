@@ -22,6 +22,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sppbims.repository.homevisit.EducationLevelRepository;
+import sppbims.repository.homevisit.EducationTypeRepository;
 
 /**
  *
@@ -52,6 +54,12 @@ public class DiscontinuityController {
 
     @Autowired
     S_RegularAdmissionClassService s_RegularAdmissionClassService;
+
+    @Autowired
+    EducationLevelRepository educationLevelRepository;
+
+    @Autowired
+    EducationTypeRepository educationTypeRepository;
 
     @RequestMapping("/releasedchildlist")
     public String page(Model model) {
@@ -110,11 +118,11 @@ public class DiscontinuityController {
 //
 //    @RequestMapping("/delete/{id}")
 //    public String delete(Model model, @PathVariable Long id, RedirectAttributes redirectAttrs) {
-//        
+//
 //        Optional<Discontinuity> optionaldiscontinuity = discontinuityRepository.findById(id);
-//        
+//
 //        Discontinuity discontinuity = optionaldiscontinuity.orElse(null);
-//        
+//
 //        redirectAttrs.addAttribute("id", discontinuity.getChildMasterCode().getId());
 //        discontinuityRepository.deleteById(id);
 //        return "redirect:/releasedfromedu/index";
@@ -137,6 +145,10 @@ public class DiscontinuityController {
         M_Child_info m_Child_info = new M_Child_info();
         m_Child_info.setId(id);
         discontinuity.setChildMasterCode(m_Child_info);
+
+        model.addAttribute("admissionClass", educationLevelRepository.findAll());
+
+        model.addAttribute("lastAttendedEducationType", educationTypeRepository.findAll());
         return "school/discontinuity";
     }
 
@@ -148,6 +160,10 @@ public class DiscontinuityController {
 //        m_Child_info.setId(id);
 //
 //        discontinuity.setChildMasterCode(m_Child_info);
+
+        model.addAttribute("admissionClass", educationLevelRepository.findAll());
+
+        model.addAttribute("lastAttendedEducationType", educationTypeRepository.findAll());
         return "school/discontinuity";
     }
 
@@ -161,6 +177,9 @@ public class DiscontinuityController {
 //        m_Child_info.setId(id);
 //
 //        discontinuity.setChildMasterCode(m_Child_info);
+            model.addAttribute("admissionClass", educationLevelRepository.findAll());
+
+            model.addAttribute("lastAttendedEducationType", educationTypeRepository.findAll());
             return "school/discontinuity";
         }
         discontinuityRepository.save(discontinuity);

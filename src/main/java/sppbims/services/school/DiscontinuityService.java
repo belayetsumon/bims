@@ -11,6 +11,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
@@ -22,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
+import sppbims.model.homevisit.EducationLevel;
+import sppbims.model.homevisit.EducationType;
 
 /**
  *
@@ -61,26 +65,26 @@ public class DiscontinuityService {
         Root<Discontinuity> discontinuity = query.from(Discontinuity.class);
 
         // Create aliases for fields
-        Path<Long> id = discontinuity.get("id");
-        Path<String> discontinuityReason = discontinuity.get("discontinuityReason");
-        Path<LocalDate> dateDismissal = discontinuity.get("dateDismissal");
-        Path<String> remark = discontinuity.get("remark");
-        Path<M_Child_info> childMasterCode = discontinuity.get("childMasterCode");
-        Path<M_Child_info> childMasterCodeid = discontinuity.get("childMasterCode").get("id");
-
         // Build the query (multi-select)
+        Join<Discontinuity, EducationLevel> lastAttendedClass = discontinuity.join("lastAttendedClass", JoinType.LEFT);
+        Join<Discontinuity, EducationType> lastAttendedEducationType = discontinuity.join("lastAttendedEducationType", JoinType.LEFT);
+        Join<Discontinuity, M_Child_info> childMasterCode = discontinuity.join("childMasterCode", JoinType.LEFT);
+
         query.multiselect(
-                id.alias("id"),
-                discontinuityReason.alias("discontinuityReason"),
-                dateDismissal.alias("dateDismissal"),
-                remark.alias("remark"),
-                discontinuity.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
-                discontinuity.get("childMasterCode").get("name").alias("name"),
-                discontinuity.get("childMasterCode").get("id").alias("childMasterCodeId")// assuming you want childMasterCode.id
+                discontinuity.get("id").alias("id"),
+                discontinuity.get("discontinuityReason").alias("discontinuityReason"),
+                discontinuity.get("dateDismissal").alias("dateDismissal"),
+                discontinuity.get("remark").alias("remark"),
+                discontinuity.get("lastAttendedSession").alias("lastAttendedSession"),
+                lastAttendedClass.get("name").alias("lastAttendedClass"),
+                lastAttendedEducationType.get("name").alias("lastAttendedEducationType"),
+                childMasterCode.get("childMasterCode").alias("childMasterCode"),
+                childMasterCode.get("name").alias("name"),
+                childMasterCode.get("id").alias("childMasterCodeId")
         );
 
         // Order by id in descending order
-        query.orderBy(cb.desc(id));
+        query.orderBy(cb.desc(discontinuity.get("id")));
 
         // Execute the query and collect the results
         List<Tuple> result = em.createQuery(query).getResultList();
@@ -97,6 +101,9 @@ public class DiscontinuityService {
             map.put("childMasterCode", tuple.get("childMasterCode", String.class));
             map.put("name", tuple.get("name", String.class));
             map.put("childMasterCodeId", tuple.get("childMasterCodeId", Long.class));
+            map.put("lastAttendedSession", tuple.get("lastAttendedSession"));
+            map.put("lastAttendedClass", tuple.get("lastAttendedClass"));
+            map.put("lastAttendedEducationType", tuple.get("lastAttendedEducationType"));
             resultList.add(map);
         });
 
@@ -112,13 +119,9 @@ public class DiscontinuityService {
         Root<Discontinuity> discontinuity = query.from(Discontinuity.class);
 
         // Create aliases for fields
-        Path<Long> id = discontinuity.get("id");
-        Path<String> discontinuityReason = discontinuity.get("discontinuityReason");
-        Path<LocalDate> dateDismissal = discontinuity.get("dateDismissal");
-        Path<String> remark = discontinuity.get("remark");
-        Path<M_Child_info> childMasterCode = discontinuity.get("childMasterCode");
-        Path<M_Child_info> childMasterCodeid = discontinuity.get("childMasterCode").get("id");
-
+        Join<Discontinuity, EducationLevel> lastAttendedClass = discontinuity.join("lastAttendedClass", JoinType.LEFT);
+        Join<Discontinuity, EducationType> lastAttendedEducationType = discontinuity.join("lastAttendedEducationType", JoinType.LEFT);
+        Join<Discontinuity, M_Child_info> childMasterCode = discontinuity.join("childMasterCode", JoinType.LEFT);
 
         List<Predicate> predicates = new ArrayList<>();
 
@@ -136,19 +139,22 @@ public class DiscontinuityService {
 
         // Build the query (multi-select)
         query.multiselect(
-                id.alias("id"),
-                discontinuityReason.alias("discontinuityReason"),
-                dateDismissal.alias("dateDismissal"),
-                remark.alias("remark"),
+                discontinuity.get("id").alias("id"),
+                discontinuity.get("discontinuityReason").alias("discontinuityReason"),
+                discontinuity.get("dateDismissal").alias("dateDismissal"),
+                discontinuity.get("remark").alias("remark"),
+                discontinuity.get("lastAttendedSession").alias("lastAttendedSession"),
+                lastAttendedClass.get("name").alias("lastAttendedClass"),
+                lastAttendedEducationType.get("name").alias("lastAttendedEducationType"),
                 childMasterCode.get("childMasterCode").alias("childMasterCode"),
-               discontinuity.get("childMasterCode").get("name").alias("name"),
-                childMasterCodeid.alias("childMasterCodeId")// assuming you want childMasterCode.id
+                childMasterCode.get("name").alias("name"),
+                childMasterCode.get("id").alias("childMasterCodeId")
         );
 
         query.where(cb.and(predicates.toArray(new Predicate[0])));
 
         // Order by id in descending order
-        query.orderBy(cb.desc(id));
+        query.orderBy(cb.desc(discontinuity.get("id")));
 
         // Execute the query and collect the results
         List<Tuple> result = em.createQuery(query).getResultList();
@@ -165,6 +171,9 @@ public class DiscontinuityService {
             map.put("childMasterCode", tuple.get("childMasterCode", String.class));
             map.put("name", tuple.get("name", String.class));
             map.put("childMasterCodeId", tuple.get("childMasterCodeId", Long.class));
+            map.put("lastAttendedSession", tuple.get("lastAttendedSession"));
+            map.put("lastAttendedClass", tuple.get("lastAttendedClass"));
+            map.put("lastAttendedEducationType", tuple.get("lastAttendedEducationType"));
             resultList.add(map);
         });
 

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">
+                                    All Family Information List </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">All Family Information List Total. [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <!-- Buttons, labels, and many other things can be placed here! -->
+                            <!-- Here is a label for example -->
+                            <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive">
+
+                        <div class="row">
+                            <div class="col-sm-12 ">
+
+                                <form class="row  justify-content-center mb-1"
+                                      th:action="@{/homevisitreport/family_information_list}"   method="get">
+
+                                    <div class="col-auto">
+
+                                        <label class="" for="email">From:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
+
+                                            <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">To:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
+
+                                            <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                        </div>
+                                    </div>
+                                    <div class=" col-auto text-center">
+                                        <button type="submit" class="btn btn-info ">Submit</button>
+                                    </div>
+                                </form>
+                                <br/>
+                            </div>
+                        </div>
+
+
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Mother Id </th>
+                                    <th>Name Of Member</th>
+                                    <th> Date Of Birth</th>
+                                    <th>Gender</th>
+                                    <th>Occupation</th>
+                                    <th>Relationship</th>
+                                    <th>Cell No</th>
+                                    <th>Remarks  </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="family,status:${list}">
+                                    <td th:text="${status.count}">2.</td>
+                                    <td th:text="${family.motherMasterCode}"> </td>
+                                    <td th:text="${family.name}"> </td>
+                                    <td th:text="${family.dob}"> </td>
+                                    <td th:text="${family.sex}"> </td>
+                                    <td th:text="${family.occupationName}"> </td>
+                                    <td th:text="${family.relationName}"> </td>
+                                    <td th:text="${family.cellNo}"> </td>
+                                    <td th:text="${family.remarks}"> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>
+

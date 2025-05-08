@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -66,8 +67,12 @@ public class S_RegularAdmissionClass {
     @ManyToOne(optional = false)
     EducationType lastAttendedEducationType;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     public String specialNeed;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     public String remark;
 
     /**

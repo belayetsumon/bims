@@ -35,24 +35,30 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th> Edit</th>    
-                                            <th>Delete</th>   
+                                            <th> Edit</th>
+                                            <th>Delete</th>
                                             <th>Child master code</th>
                                             <th>Child Name</th>
                                             <th>Released Date </th>
                                             <th>Released Reason</th>
+                                            <th>Last Attended Session </th>
+                                            <th>Last Attended Class </th>
+                                            <th>Last Attended Education Type</th>
                                             <th>Remark</th>
-                                        </tr>    
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="list,status:${clildlist}">                                
-                                            <td th:text="${status.count}">2.</td>      
+                                        <tr th:each="list,status:${clildlist}">
+                                            <td th:text="${status.count}">2.</td>
                                             <td><a th:href="@{/discontinuity/edit/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info"> Edit</a></td>
                                             <td><a th:href="@{/discontinuity/delete/{id}(id=${list.id})}" type="button" class="btn btn-xs bg-info "> Delete</a></td>
                                             <td th:text="${list.childMasterCode}">Chakma</td>
-                                              <td th:text="${list.name}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
                                             <td th:text="${list.dateDismissal}">Chakma</td>
                                             <td th:text="${list.discontinuityReason}">Chakma</td>
+                                            <td th:text="${list.lastAttendedSession}">Chakma</td>
+                                            <td th:text="${list.lastAttendedClass}">Chakma</td>
+                                            <td th:text="${list.lastAttendedEducationType}">Chakma</td>
                                             <td th:text="${list.remark}">Chakma</td>
                                             <!--<td th:text="${#dates.format(list.created)}">Chakma</td>-->
                                         </tr>

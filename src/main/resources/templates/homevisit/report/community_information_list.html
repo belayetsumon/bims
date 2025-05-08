@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Home Visit</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active"><a href="#">Home Visit</a></li>
+                                <li class="breadcrumb-item "><a href="#">Report</a></li>
+                                <li class="breadcrumb-item active">
+                                    Community Information  List  </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Community Information  List Total. [[${list.size()}]]</h3>
+                        <div class="card-tools">
+                            <!-- Buttons, labels, and many other things can be placed here! -->
+                            <!-- Here is a label for example -->
+                            <a  th:href="@{/homevisitreport/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
+
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive">
+
+                        <div class="row">
+                            <div class="col-sm-12 ">
+
+                                <form class="row  justify-content-center mb-1"
+                                      th:action="@{/homevisitreport/community_information_list}"   method="get">
+
+                                    <div class="col-auto">
+
+                                        <label class="" for="email">From:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
+
+                                            <input type="text"   id="startDate"  class="form-control"  name="startDate"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="" for="to">To:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-group input-group date">
+
+                                            <input type="text" class="form-control"  id="endDate" name="endDate"/>
+                                        </div>
+                                    </div>
+                                    <div class=" col-auto text-center">
+                                        <button type="submit" class="btn btn-info ">Submit</button>
+                                    </div>
+                                </form>
+                                <br/>
+                            </div>
+                        </div>
+
+
+
+                        <table id="tablesdata" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Mother name </th>
+                                    <th>Economy Type </th>
+                                    <th> Available IGA
+                                    </th>
+                                    <th>Note</th>
+                                    <th>Prospective IGA</th>
+                                    <th>Note</th>
+                                    <th>Unemployment session</th>
+                                    <th>Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="community,status:${list}">
+                                    <td th:text="${status.count}">  </td>
+                                    <td th:text="${community.motherName}">  </td>
+                                    <td th:text="${community.economyTypeName}">  </td>
+                                    <td th:text="${community.avilableIga}">  </td>
+                                    <td th:text="${community.avilableIgaNote}">  </td>
+                                    <td th:text="${community.prospectiveIga}">  </td>
+                                    <td th:text="${community.prospectiveIgaNote}">  </td>
+                                    <td th:text="${community.unemploymentSession}">  </td>
+                                    <td th:text="${community.remarks}">  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>
+

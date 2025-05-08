@@ -103,6 +103,7 @@ public class R_M_WorkAllocationService {
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("sectionPlace").alias("sectionPlace"), // Assuming 'name' is a field in HouseName
                 root.get("allocationDate").alias("allocationDate"),
                 root.get("endDate").alias("endDate"),

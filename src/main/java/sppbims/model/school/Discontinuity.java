@@ -22,13 +22,14 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
+import sppbims.model.homevisit.EducationLevel;
+import sppbims.model.homevisit.EducationType;
 
 /**
  *
  * @author Md Belayet Hossin
  */
 @Entity
-
 public class Discontinuity {
 
     @Id
@@ -49,8 +50,20 @@ public class Discontinuity {
     @Lob
     public String discontinuityReason;
 
+    @NotNull(message = "This field cannot be blank.")
+    @Size(min = 2, max = 100, message = "This field cannot be blank.")
+    public String lastAttendedSession;
+
+    @NotNull(message = "This field cannot be blank.")
+    @ManyToOne(optional = false)
+    EducationLevel lastAttendedClass;
+
+    @NotNull(message = "This field cannot be blank.")
+    @ManyToOne(optional = false)
+    EducationType lastAttendedEducationType;
+
     @Lob
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     public String remark;
 
     /**
@@ -73,11 +86,14 @@ public class Discontinuity {
     public Discontinuity() {
     }
 
-    public Discontinuity(Long id, M_Child_info childMasterCode, LocalDate dateDismissal, String discontinuityReason, String remark, Users createdBy, Users updatedBy) {
+    public Discontinuity(Long id, M_Child_info childMasterCode, LocalDate dateDismissal, String discontinuityReason, String lastAttendedSession, EducationLevel lastAttendedClass, EducationType lastAttendedEducationType, String remark, Users createdBy, Users updatedBy) {
         this.id = id;
         this.childMasterCode = childMasterCode;
         this.dateDismissal = dateDismissal;
         this.discontinuityReason = discontinuityReason;
+        this.lastAttendedSession = lastAttendedSession;
+        this.lastAttendedClass = lastAttendedClass;
+        this.lastAttendedEducationType = lastAttendedEducationType;
         this.remark = remark;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
@@ -113,6 +129,30 @@ public class Discontinuity {
 
     public void setDiscontinuityReason(String discontinuityReason) {
         this.discontinuityReason = discontinuityReason;
+    }
+
+    public String getLastAttendedSession() {
+        return lastAttendedSession;
+    }
+
+    public void setLastAttendedSession(String lastAttendedSession) {
+        this.lastAttendedSession = lastAttendedSession;
+    }
+
+    public EducationLevel getLastAttendedClass() {
+        return lastAttendedClass;
+    }
+
+    public void setLastAttendedClass(EducationLevel lastAttendedClass) {
+        this.lastAttendedClass = lastAttendedClass;
+    }
+
+    public EducationType getLastAttendedEducationType() {
+        return lastAttendedEducationType;
+    }
+
+    public void setLastAttendedEducationType(EducationType lastAttendedEducationType) {
+        this.lastAttendedEducationType = lastAttendedEducationType;
     }
 
     public String getRemark() {

@@ -52,6 +52,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sppbims.services.homevisit.M_AccessibilityService;
+import sppbims.services.homevisit.M_Community_InformationService;
+import sppbims.services.homevisit.M_Family_informationService;
+import sppbims.services.homevisit.M_LifestyleService;
+import sppbims.services.homevisit.M_Local_Govt_FacilitiesService;
+import sppbims.services.homevisit.M_NutritionService;
 
 @Controller
 @RequestMapping({"/homevisitreport"})
@@ -110,6 +116,24 @@ public class ReportController {
 
     @Autowired
     M_ApprovalServices approvalService;
+
+    @Autowired
+    M_AccessibilityService m_AccessibilityService;
+
+    @Autowired
+    M_Community_InformationService m_Community_InformationService;
+
+    @Autowired
+    M_LifestyleService m_LifestyleService;
+
+    @Autowired
+    M_Family_informationService m_Family_informationService;
+
+    @Autowired
+    M_NutritionService m_NutritionService;
+
+    @Autowired
+    M_Local_Govt_FacilitiesService m_Local_Govt_FacilitiesService;
 
     @RequestMapping({"/index"})
     public String index(Model model) {
@@ -301,6 +325,60 @@ public class ReportController {
     ) {
         model.addAttribute("list", approvalService.allApprovalMotherReport(Decision.Approve, startDate, endDate));
         return "homevisit/report/approval_mother_list";
+    }
+
+    @RequestMapping({"/community_information_list"})
+    public String community_information_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_Community_InformationService.getCommunityInfoList(startDate, endDate));
+        return "homevisit/report/community_information_list";
+    }
+
+    @RequestMapping({"/accessibility_list"})
+    public String accessibility_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_AccessibilityService.findAllWithDateFilter(startDate, endDate));
+        return "homevisit/report/accessibility_list";
+    }
+
+    @RequestMapping({"/lifestyle_list"})
+    public String lifestyle_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_LifestyleService.getLifestyleInfoList(startDate, endDate));
+        return "homevisit/report/lifestyle_list";
+    }
+
+    @RequestMapping({"/nutrition_list"})
+    public String nutrition_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_NutritionService.getNutritionList(startDate, endDate));
+        return "homevisit/report/nutrition_list";
+    }
+
+    @RequestMapping({"/local_govt_facilities_list"})
+    public String local_govt_facilities_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_Local_Govt_FacilitiesService.getLocalGovtFacilitiesList(startDate, endDate));
+        return "homevisit/report/local_govt_facilities_list";
+    }
+
+    @RequestMapping({"/family_information_list"})
+    public String family_nformation_list(Model model,
+            @RequestParam(name = "startDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
+    ) {
+        model.addAttribute("list", m_Family_informationService.getFamilyInfoList(startDate, endDate));
+        return "homevisit/report/family_nformation_list";
     }
 
 }

@@ -4,8 +4,6 @@
  */
 package sppbims.services.homevisit;
 
-import sppbims.model.homevisit.Address_Type;
-import sppbims.model.homevisit.District;
 import sppbims.model.homevisit.M_Property;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -16,7 +14,6 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,12 +40,12 @@ public class M_PropertyService {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<M_Property> root = cq.from(M_Property.class);
-        // Define multiselect with aliases     
+        // Define multiselect with aliases
         // Define multiselect with aliases for each field
         cq.multiselect(
                 root.get("id").alias("id"),
                 root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
-                 root.get("motherMasterCode").get("motherName").alias("motherName"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
                 root.get("bankAccount").alias("bankAccount"),
                 root.get("savingMoney").alias("savingMoney"),
                 root.get("homelandQuantity").alias("homelandQuantity"),

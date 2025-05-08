@@ -1,152 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Induction Report</title>
-        <style>
-            @media print {
-                @page {
-                    size: A4 portrait;
-                    margin: 20mm;
-                }
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
 
-                body {
-                    font-size: 12px;
-                    color: #000;
-                    margin: 0;
-                    padding: 0;
-                }
+    <div layout:fragment = "main_content">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1> Observation</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Observation</a></li>
+                                <li class="breadcrumb-item active">
 
-                table {
-                    width: 100%;
-                    border-collapse: collapse !important;
-                    page-break-inside: auto;
-                }
+                                    Induction Information
 
-                th, td {
-                    border: 1px solid #000 !important;
-                    padding: 4px !important;
-                    word-wrap: break-word;
-                    text-align: left;
-                }
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">Induction Information</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group ">
+                                        <a  th:href="@{/induction/pdf/{id}(id=${m_id})}"   type="button" class="btn  btn-warning text-info btn-sm">PDF</a>
+                                        <a  th:href="@{/induction/create/{id}(id=${m_id})}"   type="button" class="btn  btn-light text-info btn-sm">Add Induction</a>
+                                    </div>
+                                </div></div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
 
-                tr {
-                    page-break-inside: avoid;
-                    page-break-after: auto;
-                }
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Induction Start Date</th>
+                                            <th>Induction End Date</th>
+                                            <th>Immediate Support On</th>
+                                            <th>Challenges of Beneficiary</th>
+                                            <th>Possible Length of Staying at SPP</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list,status:${o_Induction}">
+                                            <td th:text="${status.count}">1</td>
+                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.startDate}">01-01-2025</td>
+                                            <td th:text="${list.endDate}">31-01-2025</td>
+                                            <td th:text="${list.immediateSupportOn}">Support</td>
+                                            <td th:text="${list.challagesOfCandidare}">Challenge</td>
+                                            <td th:text="${list.possibleLength}">3 months</td>
+                                            <td th:text="${list.remark}">Remark</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                            </div>
+                        </div>
 
-                thead {
-                    display: table-header-group;
-                }
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">In-House Inductions (Mother)</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group ">
 
-                tfoot {
-                    display: table-footer-group;
-                }
-            }
+                                        <a  th:href="@{/inhouseinductionmother/create/{id}(id=${m_id})}"   type="button" class="btn  btn-light text-info btn-sm">Add In-House Inductions (Mother)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
 
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px auto;
-                width: 210mm;
-                min-height: 297mm;
-                padding: 10mm;
-                box-sizing: border-box;
-                background: #fff;
-            }
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Overall Behavior</th>
+                                            <th>Advocate Feedback</th>
+                                            <th>Beneficiary Opinion</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list2,status:${o_Inhouse_Inductions_Mother}">
+                                            <td th:text="${status.count}">1</td>
+                                            <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list2.overallBehavior}">Good</td>
+                                            <td th:text="${list2.advocateFeedback}">Positive</td>
+                                            <td th:text="${list2.beneficiaryOpinion}">Satisfied</td>
+                                            <td th:text="${list2.remarks}">No issues</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                            </div>
+                        </div>
 
-            table {
-                width: 100%;
-                margin-bottom: 20px;
-            }
+                        <div class="card card-info">
+                            <div class="card-header with-border">
+                                <h3 class="card-title">In-House Inductions (Child)</h3>
+                                <div class="card-tools pull-right">
+                                    <div class="btn-group ">
+                                        <a  th:href="@{/inhouseinductionchild/create/{id}(id=${m_id})}"   type="button" class="btn  btn-light text-info btn-sm">Add In-House Inductions (Child)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
 
-            th, td {
-                padding: 8px;
-            }
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Mother Master Code</th>
+                                            <th>Child Master Code</th>
+                                            <th>Overall Behavior</th>
+                                            <th>Advocate Feedback</th>
+                                            <th>Beneficiary Opinion</th>
+                                            <th>Remark</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="list3,status:${o_Inhouse_Inductions_child}">
+                                            <td th:text="${status.count}">1</td>
+                                            <td th:text="${list3.motherMasterCode.motherMasterCode}">MM123</td>
+                                            <td th:text="${list3.childMasterCode.childMasterCode}">CM456</td>
+                                            <td th:text="${list3.overallBehavior}">Good</td>
+                                            <td th:text="${list3.advocateFeedback}">Helpful</td>
+                                            <td th:text="${list3.beneficiaryOpinion}">Content</td>
+                                            <td th:text="${list3.remarks}">Stable</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-            th {
-                background-color: #f0f0f0;
-            }
-        </style>
-    </head>
-    <body>
 
-        <h2>Induction Information</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Mother Master Code</th>
-                    <th>Induction Start Date</th>
-                    <th>Induction End Date</th>
-                    <th>Immediate Support On</th>
-                    <th>Challenges of Beneficiary</th>
-                    <th>Possible Length of Staying at SPP</th>
-                    <th>Remark</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="list,status:${o_Induction}">
-                    <td th:text="${status.count}">1</td>
-                    <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                    <td th:text="${list.startDate}">01-01-2025</td>
-                    <td th:text="${list.endDate}">31-01-2025</td>
-                    <td th:text="${list.immediateSupportOn}">Support</td>
-                    <td th:text="${list.challagesOfCandidare}">Challenge</td>
-                    <td th:text="${list.possibleLength}">3 months</td>
-                    <td th:text="${list.remark}">Remark</td>
-                </tr>
-            </tbody>
-        </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
 
-        <h2>In-House Inductions (Mother)</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Mother Master Code</th>
-                    <th>Overall Behavior</th>
-                    <th>Advocate Feedback</th>
-                    <th>Beneficiary Opinion</th>
-                    <th>Remark</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="list2,status:${o_Inhouse_Inductions_Mother}">
-                    <td th:text="${status.count}">1</td>
-                    <td th:text="${list2.motherMasterCode.motherMasterCode}">Chakma</td>
-                    <td th:text="${list2.overallBehavior}">Good</td>
-                    <td th:text="${list2.advocateFeedback}">Positive</td>
-                    <td th:text="${list2.beneficiaryOpinion}">Satisfied</td>
-                    <td th:text="${list2.remarks}">No issues</td>
-                </tr>
-            </tbody>
-        </table>
+                    <!-- /.col -->
+                </div>
 
-        <h2>In-House Inductions (Child)</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Mother Master Code</th>
-                    <th>Child Master Code</th>
-                    <th>Overall Behavior</th>
-                    <th>Advocate Feedback</th>
-                    <th>Beneficiary Opinion</th>
-                    <th>Remark</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="list3,status:${o_Inhouse_Inductions_child}">
-                    <td th:text="${status.count}">1</td>
-                    <td th:text="${list3.motherMasterCode.motherMasterCode}">MM123</td>
-                    <td th:text="${list3.childMasterCode.childMasterCode}">CM456</td>
-                    <td th:text="${list3.overallBehavior}">Good</td>
-                    <td th:text="${list3.advocateFeedback}">Helpful</td>
-                    <td th:text="${list3.beneficiaryOpinion}">Content</td>
-                    <td th:text="${list3.remarks}">Stable</td>
-                </tr>
-            </tbody>
-        </table>
-
-    </body>
-</html>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+</div>
