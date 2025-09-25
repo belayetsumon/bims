@@ -31,7 +31,7 @@
                     <div class="card-header with-border">
                         <h3 class="card-title">Insert Children Information </h3>
                         <div class="card-tools pull-right">
-                            <div class="btn-group">                 
+                            <div class="btn-group">
                                 <a  th:href="@{/childrendetails/index/{id}(id=${m_Child_info.motherMasterCode.id})}"  type="button" class="btn  btn-light text-red btn-xs">Close</a>
                             </div>
                         </div>
@@ -50,8 +50,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
-                                        <input type="hidden"    class="form-control " th:field="*{id}" /> 
-                                        <input type="hidden"  class="form-control  "  id="bookName"   th:field="*{motherMasterCode}"   />                
+                                        <input type="hidden"    class="form-control " th:field="*{id}" />
+                                        <input type="hidden"  class="form-control  "  id="bookName"   th:field="*{motherMasterCode}"   />
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherMasterCode')}" th:errors="*{motherMasterCode}">First Name Error</span>
                                     </div>
                                 </div>
@@ -59,17 +59,17 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">Mother's Name<span class="text-red"> * </span></label>
-                                        <div class="col-sm-8">                   
-                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{motherName}" name="motherName"  />                
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{motherName}" name="motherName"  />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('motherName')}" th:errors="*{motherName}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Father's Name<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{fathersName}" name="fathersName"  />                
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{fathersName}" name="fathersName"  />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('fathersName')}" th:errors="*{fathersName}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
 
@@ -78,17 +78,17 @@
 
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">  Prime Family Member Name  <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{primeFamilyMemberName}" name="primeFamilyMemberName"  />                
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{primeFamilyMemberName}" name="primeFamilyMemberName"  />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('primeFamilyMemberName')}" th:errors="*{primeFamilyMemberName}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Children ID<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <input type="text"  class="form-control  "  id="bookName"   th:field="*{childMasterCode}"   />                
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control  "  id="bookName"   th:field="*{childMasterCode}"   />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
 
                                 </div>
@@ -96,68 +96,68 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label">Children Name  <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
-                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{name}" name="name"  />                
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control  "  id="bookName"  th:field="*{name}" name="name"  />
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
-                                        </div>                            
-                                    </div> 
+                                        </div>
+                                    </div>
 
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Date of Birth<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">   
+                                        <div class="col-sm-8">
                                             <div class="input-group date" >
-                                                <div class="input-group-addon" > 
+                                                <div class="input-group-addon" >
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text"  class="form-control  " placeholder="dd/mm/yyyy"  id="dateOfBirth"  th:field="*{dateOfBirth}" name="dateOfBirth"  />                              
+                                                <input type="text"  class="form-control  " placeholder="dd/mm/yyyy"  id="dateOfBirth"  th:field="*{dateOfBirth}" name="dateOfBirth"  />
                                             </div>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
 
 
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Gender<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{gender}" name="gender" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" gender :${gender}"
-                                                        th:value=" ${gender}" 
+                                                        th:value=" ${gender}"
                                                         th:text="${gender}"> Select one</option>
                                             </select>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">First Name Error</span>
-                                        </div>   
+                                        </div>
                                     </div>
 
                                     <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label"> Work<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{work}" name="work" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" work :${work}"
-                                                        th:value=" ${work}" 
+                                                        th:value=" ${work}"
                                                         th:text="${work}"> Select one</option>
                                             </select>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('work')}" th:errors="*{work}">First Name Error</span>
-                                        </div>   
+                                        </div>
                                     </div>
 
                                     <div class="form-group col-sm-4 row">
                                         <label for="name" class="col-sm-6 control-label">Religion<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{religion}" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" religion :${religion}"
-                                                        th:value=" ${religion.id}" 
+                                                        th:value=" ${religion.id}"
                                                         th:text="${religion.name}"> Select one</option>
                                             </select>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('religion')}" th:errors="*{religion}">First Name Error</span>
-                                        </div>   
+                                        </div>
                                     </div>
 
                                 </div>
@@ -165,48 +165,65 @@
                                 <div class="row">
 
 
-                                    <div class="form-group col-sm-4 row">
+                                    <div class="form-group col-sm-3 row">
                                         <label for="name" class="col-sm-6 control-label"> Ethnic Identity<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{ethnicIdentity}" name="ethnicIdentity" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" ethnicIdentity :${ethnicIdentity}"
-                                                        th:value=" ${ethnicIdentity.id}" 
+                                                        th:value=" ${ethnicIdentity.id}"
                                                         th:text="${ethnicIdentity.name}"> Select one</option>
 
                                             </select>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('ethnicIdentity')}" th:errors="*{ethnicIdentity}">First Name Error</span>
-                                        </div>  
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-sm-3 row">
+                                        <label for="name" class="col-sm-6 control-label"> Last Attended Education Year <span class="text-red"> * </span> </label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control  "  id="bookName"  th:field="*{lastAttendEducationYear}" name="lastAttendEducationYear"  required="true">
+                                                <option value=" "> Select one</option>
+
+                                                <!-- Years 1971 to 2039 -->
+                                                <option th:each="year : ${#numbers.sequence(1970, 2039)}"
+                                                        th:value="${year}"
+                                                        th:text="${year}">
+                                                </option>
+
+                                            </select>
+                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('lastAttendEducationYear')}" th:errors="*{lastAttendEducationYear}">First Name Error</span>
+                                        </div>
 
                                     </div>
 
 
-                                    <div class="form-group col-sm-4 row">
+                                    <div class="form-group col-sm-3 row">
                                         <label for="name" class="col-sm-6 control-label"> Education Level <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{educationLevel}" name="educationLevel" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" educationLevel :${educationLevel}"
-                                                        th:value=" ${educationLevel.id}" 
+                                                        th:value=" ${educationLevel.id}"
                                                         th:text="${educationLevel.name}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('educationLevel')}" th:errors="*{educationLevel}">First Name Error</span>
-                                        </div>     
+                                        </div>
 
-                                    </div>                                 
-                                    <div class="form-group col-sm-4 row">
+                                    </div>
+                                    <div class="form-group col-sm-3 row">
                                         <label for="name" class="col-sm-6 control-label"> Education Type <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-6">                   
+                                        <div class="col-sm-6">
                                             <select class="form-control  "  id="bookName"  th:field="*{educationType}" name="educationType" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" educationType :${educationType}"
-                                                        th:value=" ${educationType.id}" 
+                                                        th:value=" ${educationType.id}"
                                                         th:text="${educationType.name}"> Select one</option>
 
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('educationType')}" th:errors="*{educationType}">First Name Error</span>
-                                        </div>    
+                                        </div>
 
                                     </div>
                                 </div>
@@ -214,37 +231,37 @@
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Interested Skill Area<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">   
+                                        <div class="col-sm-8">
                                             <textarea cols="6" rows="5"  th:field="*{interstedSkillArea}" class="form-control"  id = ""  maxlength="3950" > </textarea>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('interstedSkillArea')}" th:errors="*{interstedSkillArea}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Behavior Emotion<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
+                                        <div class="col-sm-8">
 
                                             <textarea cols="6" rows="5"  th:field="*{behavior_Emotion}" class="form-control"  id = ""  maxlength="3950" > </textarea>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('behavior_Emotion')}" th:errors="*{behavior_Emotion}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Physical Status<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">   
+                                        <div class="col-sm-8">
                                             <textarea cols="6" rows="5"  th:field="*{physicalStatus}" class="form-control"  id = ""  maxlength="3950" > </textarea>
 
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('physicalStatus')}" th:errors="*{physicalStatus}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-4 control-label"> Immunization <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">                   
+                                        <div class="col-sm-8">
 
                                             <textarea cols="6" rows="5"  th:field="*{immunization}" class="form-control"  id = ""  maxlength="3950" > </textarea>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('immunization')}" th:errors="*{immunization}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -254,31 +271,31 @@
                                 <div class="row">
                                     <div class="form-group  col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> Major Findings </label>
-                                        <div class="col-sm-9">                   
+                                        <div class="col-sm-9">
                                             <textarea cols="15" rows="15"  th:field="*{majorFindings}" class="form-control"  id = ""  maxlength="3950" onKeyUp="count_it()"> </textarea>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('majorFindings')}" th:errors="*{majorFindings}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                     <div class="form-group col-sm-6 row">
                                         <label for="name" class="col-sm-3 control-label"> Other Remarks </label>
-                                        <div class="col-sm-9">                   
+                                        <div class="col-sm-9">
                                             <textarea cols="15" rows="15"  th:field="*{otherRemarks}" class="form-control"  id = ""  maxlength="3950" onKeyUp="count_it()"> </textarea>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('otherRemarks')}" th:errors="*{otherRemarks}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-8 control-label"> Investigator recommendation <span class="text-red"> * </span> </label>
-                                        <div class="col-sm-4">          
+                                        <div class="col-sm-4">
                                             <select class="form-control  "  id="bookName"  th:field="*{eligibility}" name="eligibility" >
                                                 <option value=" "> Select one</option>
                                                 <option th:each =" eligibility :${eligibility}"
-                                                        th:value=" ${eligibility}" 
+                                                        th:value=" ${eligibility}"
                                                         th:text="${eligibility}"> Select one</option>
                                             </select>
                                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('eligibility')}" th:errors="*{eligibility}">First Name Error</span>
-                                        </div>                            
+                                        </div>
                                     </div>
                                 </div>
 

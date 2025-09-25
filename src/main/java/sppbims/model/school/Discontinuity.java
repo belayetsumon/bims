@@ -9,6 +9,7 @@ import sppbims.model.auth.Users;
 import sppbims.model.homevisit.M_Child_info;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,10 +18,12 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Date;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import sppbims.model.homevisit.EducationLevel;
 import sppbims.model.homevisit.EducationType;
@@ -36,7 +39,7 @@ public class Discontinuity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "This field cannot be blank.")
+    @NotNull(message = "Child master code cannot be blank.")
     @ManyToOne(optional = false)
     @JoinColumn(name = "child_master_code_id", nullable = false)
     M_Child_info childMasterCode;
@@ -50,17 +53,21 @@ public class Discontinuity {
     @Lob
     public String discontinuityReason;
 
-    @NotNull(message = "This field cannot be blank.")
-    @Size(min = 2, max = 100, message = "This field cannot be blank.")
+    @NotEmpty(message = "Last attended session cannot be empty.")
+    @Size(min = 2, max = 100, message = "min 2 max 100 characters")
     public String lastAttendedSession;
 
-    @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
-    EducationLevel lastAttendedClass;
+// ✅ This means the column last_attended_class_id references education_level(id)
+    @NotNull(message = "Last attended class cannot be blank.")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "last_attended_class_id", referencedColumnName = "id", nullable = false)
+    private EducationLevel lastAttendedClass;
 
-    @NotNull(message = "This field cannot be blank.")
-    @ManyToOne(optional = false)
-    EducationType lastAttendedEducationType;
+// ✅ This means the column last_attended_education_type_id references education_type(id)
+    @NotNull(message = "Last attended education type cannot be blank.")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "last_attended_education_type_id", referencedColumnName = "id", nullable = false)
+    private EducationType lastAttendedEducationType;
 
     @Lob
     @Column(columnDefinition = "TEXT")

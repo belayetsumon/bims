@@ -92,7 +92,8 @@ public class M_Accessibility_Pre_reintegration_visitController {
 
     @GetMapping(value = "/edit/{id}")
     public String edit(Model model, @PathVariable Long id, M_Accessibility_ReintegrationVisit m_Accessibility_ReintegrationVisit) {
-        model.addAttribute("m_Accessibility_ReintegrationVisit", pre_reintegration_visit_M_AccessibilityRepository.findById(id));
+        model.addAttribute("m_Accessibility_ReintegrationVisit", pre_reintegration_visit_M_AccessibilityRepository
+                .findById(id).orElse(null));
         model.addAttribute("road", road_TypeRepository.findAll());
         model.addAttribute("transport", transport_TypeRepository.findAll());
         model.addAttribute("primary_school", Yes_No.values());

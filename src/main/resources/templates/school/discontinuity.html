@@ -41,50 +41,60 @@
                     <div class="card-body">
                         <form  th:action="@{/discontinuity/save}"  th:object="${discontinuity}"  method="post" class="form-horizontal">
 
+
+                            <div class="alert alert-danger alert-dismissible" th:if="${#fields.hasErrors('*')}">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-ban"></i> Error </h4>
+                                <ul th:if="${#fields.hasErrors('*')}">
+                                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                </ul>
+                            </div>
+
+
                             <input type="hidden"    class="form-control " th:field="*{id}"  />
 
                             <input type="hidden"    class="form-control " th:field="*{childMasterCode}" />
 
                             <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('childMasterCode')}" th:errors="*{childMasterCode}">First Name Error</span>
 
-                            <div class="card-body">
-
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label for="co" class="col-sm-4 control-label">  Release Date :<span class="text-red"> * </span> </label>
-                                        <div class="col-sm-8">
-                                            <div class="input-group " >
-                                                <!--                                                <div class="input-group-addon" >
-                                                                                                    <i class="fa fa-calendar"></i>
-                                                                                                </div>-->
-                                                <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{dateDismissal}" id="startDate"/>
-                                            </div>
-                                            <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('dateDismissal')}" th:errors="*{dateDismissal}">First Name Error</span>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <label for="name" class="col-sm-2 control-label"> Release Reason<span class="text-red">  </span> </label>
-                                        <div class="col-sm-8">
-                                            <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{discontinuityReason}" > </textarea>
-                                            <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('discontinuityReason')}" th:errors="*{discontinuityReason}">First Name Error</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-sm-6 row">
-                                    <label for="name" class="col-sm-4 control-label"> Last Attended Session <span class="text-red"> * </span> </label>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="co" class="col-sm-4 control-label">  Release Date :<span class="text-red"> * </span> </label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control  "    th:field="*{LastAttendedSession}" />
-                                        <span> Ex: 2010,2011,2012.</span>
-                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('LastAttendedSession')}" th:errors="*{LastAttendedSession}">First Name Error</span>
+                                        <div class="input-group " >
+                                            <!--                                                <div class="input-group-addon" >
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                            </div>-->
+                                            <input type="text"  placeholder="dd/mm/yyyy" class="form-control  "   th:field="*{dateDismissal}" id="startDate"/>
+                                        </div>
+                                        <span  class="help-block has-error text-red"  th:if="${#fields.hasErrors('dateDismissal')}" th:errors="*{dateDismissal}">First Name Error</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label for="name" class="col-sm-2 control-label"> Release Reason<span class="text-red">  </span> </label>
+                                    <div class="col-sm-8">
+                                        <textarea type="textarea" cols="60" rows="8" class="form-control  "  id="monthlyTotalIncome"    th:field="*{discontinuityReason}" > </textarea>
+                                        <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('discontinuityReason')}" th:errors="*{discontinuityReason}">First Name Error</span>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group col-sm-6 row">
+                                <label for="name" class="col-sm-4 control-label"> Last Attended Session <span class="text-red"> * </span> </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control  "    th:field="*{LastAttendedSession}" />
+                                    <span> Ex: 2010,2011,2012.</span>
+                                    <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('LastAttendedSession')}" th:errors="*{LastAttendedSession}">First Name Error</span>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="form-group col-sm-6 row">
                                     <label for="name" class="col-sm-4 control-label"> Last Attended Class<span class="text-red"> * </span> :</label>
@@ -112,8 +122,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label for="name" class="col-sm-2 control-label">Remark <span class="text-red">  </span> </label>
@@ -126,23 +134,23 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
+
+                        </form>
                     </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    <div class="card-tools pull-right">
-                        <div class="btn-group">
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="card-tools pull-right">
+                            <div class="btn-group">
+                            </div>
                         </div>
                     </div>
+                    <!-- /.card-footer-->
                 </div>
-                <!-- /.card-footer-->
-        </div>
-        <!-- /.card -->
+                <!-- /.card -->
 
-        </section>
-        <!-- /.content -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
     </div>
-    <!-- /.content-wrapper -->
-</div>
 </div>

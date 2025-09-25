@@ -55,9 +55,12 @@ public class R_C_HouseAllocationsController {
 
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id, R_C_HouseAllocations r_C_HouseAllocations) {
-        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocationsRepository.findById(id).orElse(null));
+
+        r_C_HouseAllocations = r_C_HouseAllocationsRepository.findById(id).orElse(null);
+
+        model.addAttribute("r_C_HouseAllocations", r_C_HouseAllocations);
         MotherMasterData motherMasterData = new MotherMasterData();
-        motherMasterData.setId(id);
+        motherMasterData.setId(r_C_HouseAllocations.getMotherMasterCode().getId());
         model.addAttribute("childlist", m_Child_infoRepository.findByMotherMasterCode(motherMasterData));
         model.addAttribute("form_title", "Child House Allocation Edit");
         model.addAttribute("houseName", houseNameRepository.findAll());

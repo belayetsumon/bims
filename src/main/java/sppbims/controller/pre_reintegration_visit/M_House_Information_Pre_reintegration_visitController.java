@@ -103,7 +103,7 @@ public class M_House_Information_Pre_reintegration_visitController {
 
         model.addAttribute("form_title", "Mother House Information Edit");
 
-        model.addAttribute("m_House_Information_ReintegrationVisit", pre_reintegration_visit_M_House_InformationRepository.findById(id));
+        model.addAttribute("m_House_Information_ReintegrationVisit", pre_reintegration_visit_M_House_InformationRepository.findById(id).orElse(null));
 
         model.addAttribute("houseType", house_TypeRepository.findAll());
 

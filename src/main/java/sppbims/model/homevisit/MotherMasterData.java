@@ -150,6 +150,8 @@ public class MotherMasterData {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EducationLevel educationLevel;
 
+    public String lastAttendEducationYear;
+
     @NotNull(message = "This field cannot be blank.")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     public EducationType educationType;
@@ -177,7 +179,7 @@ public class MotherMasterData {
 
     @Lob
     public String majorFindings;
-    //  New version aded  
+    //  New version aded
 
     @Enumerated(EnumType.STRING)
     public Yes_No socialviolence;
@@ -305,7 +307,7 @@ public class MotherMasterData {
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<O_ChildAdmission> childAdmission = new ArrayList<>();
 
-//     Rehabilations 
+//     Rehabilations
 //    @LazyCollection(LazyCollectionOption.TRUE)
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_C_HouseAllocations> rcHouseAllocations;
@@ -323,7 +325,7 @@ public class MotherMasterData {
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<R_Life_Skill_Trainning> rlifeSkillTrainning = new ArrayList<>();
 
-    // Leave 
+    // Leave
     @OneToMany(mappedBy = "motherMasterCode", fetch = FetchType.LAZY)
     public List<LeaveMother> LeaveMother = new ArrayList<>();
 
@@ -413,7 +415,7 @@ public class MotherMasterData {
     public MotherMasterData() {
     }
 
-    public MotherMasterData(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, LiteracyDigitalLiteracy literacyDigitalLiteracy, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, LiteracyNumeracy literacyRegularAdmission, LiteracyTalkingScience literacyTalkingScience, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
+    public MotherMasterData(Long id, String visitOfficersName, LocalDate dateReferral, String referredFrom, Reasons resons, LocalDate homeVisitDate, String motherMasterCode, String motherName, LocalDate dateOfBirth, String age, String mMothersName, String fathersName, String mobileNumber, Religion religion, MaritalStatus maritalStatus, String husbandsName, HusbandsStatus husbandsStatus, String primeFamilyMemberName, Relations relationWithPfm, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, String lastAttendEducationYear, EducationType educationType, Occupation occupation, String physicalStatus, String immunization, int numberOfSons, int numberOfDaughters, int numberOfEligibleChildren, String majorFindings, Yes_No socialviolence, Yes_No childrenFacedSocialViolence, Yes_No sexualAbuse, Yes_No childrenSexualAbuse, Yes_No earlyMarriage, Yes_No pregnancyAfterBeingRaped, Yes_No facedDowryAbuse, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, M_Accessibility maccessibility, M_Approval mapproval, List<M_Child_info> mchildinfo, M_Community_Information mcommunityInformation, M_House_Information mhouseInformation, M_Lifestyle mlifestyle, M_Income_Information mincomeInformation, M_Local_Govt_Facilities mlocalGovtFacilities, M_Nutrition mnutrition, M_Property mproperty, O_Induction oinduction, O_Inhouse_Inductions_Mother oinhouseInductionsMother, O_MHealthConditions omHealthConditions, O_Professional_Obserbations_Mother oprofessionalObserbationsMother, O_MAddmission addmission, MotherImage mimage, List<R_C_HouseAllocations> rcHouseAllocations, List<R_M_HousAllocation> rmHousAllocation, LiteracyDigitalLiteracy literacyDigitalLiteracy, LiteracyHigherEducationAdmission literacyHigherEducationAdmission, LiteracyNumeracy literacyRegularAdmission, LiteracyTalkingScience literacyTalkingScience, PreReintegrationVisit preReintegrationVisit, ReintegrationCheckList reintegrationCheckList, ReleaseMother releaseMother) {
         this.id = id;
         this.visitOfficersName = visitOfficersName;
         this.dateReferral = dateReferral;
@@ -435,6 +437,7 @@ public class MotherMasterData {
         this.relationWithPfm = relationWithPfm;
         this.ethnicIdentity = ethnicIdentity;
         this.educationLevel = educationLevel;
+        this.lastAttendEducationYear = lastAttendEducationYear;
         this.educationType = educationType;
         this.occupation = occupation;
         this.physicalStatus = physicalStatus;
@@ -647,6 +650,14 @@ public class MotherMasterData {
 
     public void setEducationLevel(EducationLevel educationLevel) {
         this.educationLevel = educationLevel;
+    }
+
+    public String getLastAttendEducationYear() {
+        return lastAttendEducationYear;
+    }
+
+    public void setLastAttendEducationYear(String lastAttendEducationYear) {
+        this.lastAttendEducationYear = lastAttendEducationYear;
     }
 
     public EducationType getEducationType() {

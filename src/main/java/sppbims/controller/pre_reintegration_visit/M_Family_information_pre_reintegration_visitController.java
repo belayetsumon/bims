@@ -99,7 +99,7 @@ public class M_Family_information_pre_reintegration_visitController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Family_information_ReintegrationVisit m_Family_information_ReintegrationVisit, Model model) {
 
-        model.addAttribute("m_Family_information_ReintegrationVisit", pre_reintegration_visit_M_Family_informationRepository.findById(id));
+        model.addAttribute("m_Family_information_ReintegrationVisit", pre_reintegration_visit_M_Family_informationRepository.findById(id).orElse(null));
         model.addAttribute("form_title", "Mother Family Information  Edit");
 
         model.addAttribute("sex", Gender.values());

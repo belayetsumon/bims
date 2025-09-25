@@ -84,7 +84,7 @@ public class M_Address_Pre_reintegration_visitController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Address_ReintegrationVisit m_Address_ReintegrationVisit, Model model) {
 
-        model.addAttribute("m_Address_ReintegrationVisit", pre_reintegration_visit_M_AddressRepository.findById(id));
+        model.addAttribute("m_Address_ReintegrationVisit", pre_reintegration_visit_M_AddressRepository.findById(id).orElse(null));
 
         model.addAttribute("form_title", "Add");
         model.addAttribute("addressType", Address_Type.values());

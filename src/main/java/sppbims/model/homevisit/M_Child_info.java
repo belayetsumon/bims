@@ -107,6 +107,8 @@ public class M_Child_info {
     @ManyToOne(optional = false)
     public EducationLevel educationLevel;
 
+    public String lastAttendEducationYear;
+
     @NotNull(message = "Education type  field cannot be blank.")
     @ManyToOne(optional = false)
     public EducationType educationType;
@@ -176,7 +178,7 @@ public class M_Child_info {
     @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public List<Child_image> childimage = new ArrayList<>();
 
-    // Rehabilitations 
+    // Rehabilitations
     @OneToMany(mappedBy = "childMasterCode", fetch = FetchType.LAZY)
     public List<R_C_HouseAllocations> rCHouseAllocations = new ArrayList<>();
 
@@ -226,7 +228,7 @@ public class M_Child_info {
     public M_Child_info() {
     }
 
-    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, LocalDate dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild) {
+    public M_Child_info(Long id, MotherMasterData motherMasterCode, String childMasterCode, String motherName, String fathersName, String primeFamilyMemberName, String name, LocalDate dateOfBirth, String age, Gender gender, Yes_No work, Religion religion, EthinicIdentity ethnicIdentity, EducationLevel educationLevel, String lastAttendEducationYear, EducationType educationType, String physicalStatus, String immunization, String interstedSkillArea, String behavior_Emotion, String majorFindings, String otherRemarks, Eligibility eligibility, Users createdBy, Users updatedBy, O_ChildAdmission childAdmission, S_RegularAdmissionClass regularAdmissionClass, Discontinuity discontinuity, EligibilityStudent eligibilityStudent, ReleaseChild releaseChild) {
         this.id = id;
         this.motherMasterCode = motherMasterCode;
         this.childMasterCode = childMasterCode;
@@ -241,6 +243,7 @@ public class M_Child_info {
         this.religion = religion;
         this.ethnicIdentity = ethnicIdentity;
         this.educationLevel = educationLevel;
+        this.lastAttendEducationYear = lastAttendEducationYear;
         this.educationType = educationType;
         this.physicalStatus = physicalStatus;
         this.immunization = immunization;
@@ -368,6 +371,14 @@ public class M_Child_info {
 
     public void setEducationLevel(EducationLevel educationLevel) {
         this.educationLevel = educationLevel;
+    }
+
+    public String getLastAttendEducationYear() {
+        return lastAttendEducationYear;
+    }
+
+    public void setLastAttendEducationYear(String lastAttendEducationYear) {
+        this.lastAttendEducationYear = lastAttendEducationYear;
     }
 
     public EducationType getEducationType() {

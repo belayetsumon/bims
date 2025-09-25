@@ -85,7 +85,7 @@ public class M_Community_Information_pre_reintegration_visitController {
     @GetMapping(value = "/edit/{id}")
     public String edit(@PathVariable Long id, M_Community_Information_ReintegrationVisit m_Community_Information_ReintegrationVisit, Model model) {
 
-        model.addAttribute("m_Community_Information_ReintegrationVisit", pre_reintegration_visit_M_Community_InformationRepository.findById(id));
+        model.addAttribute("m_Community_Information_ReintegrationVisit", pre_reintegration_visit_M_Community_InformationRepository.findById(id).orElse(null));
 
         model.addAttribute("form_title", "Mother Community Information Add");
         model.addAttribute("economyType", economic_TypeRepository.findAll());
