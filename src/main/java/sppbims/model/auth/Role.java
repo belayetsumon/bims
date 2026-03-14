@@ -5,56 +5,60 @@
  */
 package sppbims.model.auth;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author Md Belayet Hossin
  */
 @Entity
+@Table(name = "usermodule_roles")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Name cannot be blank.")
-    public String name;
+    @NotEmpty(message = "*Name cannot be blank.")
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    @NotEmpty(message = "Slug cannot be blank.")
-    public String Slug;
+    @NotEmpty(message = "*Slug cannot be blank.")
+    @Column(nullable = false, unique = true)
+    private String slug;
 
-    @NotNull(message = "Please select minimum 1 privilege.")
-    @ElementCollection(targetClass = Privilege.class)
-    @CollectionTable(name = "tbl_privilege_role",
-            joinColumns = @JoinColumn(name = "privilege_id"))
-    @Enumerated(EnumType.STRING)
-    public Set<Privilege> privilege;
+    @NotNull(message = "*Please select minimum 1 privilege.")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "usermodule_privilege_role",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "privilege_id")
+    )
+    private Set<Privileges> privileges = new HashSet<>();
 
     @ManyToMany(mappedBy = "role")
-    private Set<Users> users;
+    private Set<Users> users = new HashSet<>();
 
     public Role() {
     }
 
-    public Role(Long id, String name, String Slug, Set<Privilege> privilege, Set<Users> users) {
+    public Role(Long id, String name, String slug) {
         this.id = id;
         this.name = name;
-        this.Slug = Slug;
-        this.privilege = privilege;
-        this.users = users;
+        this.slug = slug;
     }
 
     public Long getId() {
@@ -74,19 +78,19 @@ public class Role {
     }
 
     public String getSlug() {
-        return Slug;
+        return slug;
     }
 
-    public void setSlug(String Slug) {
-        this.Slug = Slug;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
-    public Set<Privilege> getPrivilege() {
-        return privilege;
+    public Set<Privileges> getPrivileges() {
+        return privileges;
     }
 
-    public void setPrivilege(Set<Privilege> privilege) {
-        this.privilege = privilege;
+    public void setPrivileges(Set<Privileges> privileges) {
+        this.privileges = privileges;
     }
 
     public Set<Users> getUsers() {

@@ -41,7 +41,7 @@
                             <a th:href="@{/role/index}" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
 
                         </div>
-                    </div>                    
+                    </div>
 
                     <div class="card-body ">
 
@@ -49,7 +49,7 @@
 
 
                         <form action="#" th:action="@{/role/save}" th:object="${role}" method="post">
-                            <input type="hidden" class="form-control"  id="bookName"  th:field="*{id}" /> 
+                            <input type="hidden" class="form-control"  id="bookName"  th:field="*{id}" />
 
                             <div class="row">
 
@@ -70,17 +70,17 @@
                                 <div class="form-group col-sm-6">
                                     <label for="name" class=" control-label"> Privilege<span class="text-red"> * </span></label>
                                     <ul class="list-unstyled">
-                                        <li th:each="privileges : ${privilege}">
-                                            <input type="checkbox" 
-                                                   th:field="*{privilege}"
-                                                   th:value="${privileges}" />
-                                            <label 
-                                                th:for="${#ids.prev('privilege')}"
-                                                th:text="${privileges}">
+                                        <li th:each="privilegess : ${privilege}">
+                                            <input type="checkbox"
+                                                   th:field="*{privileges}"
+                                                   th:value="${privilegess.id}" />
+                                            <label
+                                                th:for="${#ids.prev('privileges')}"
+                                                th:text="${privilegess.name}">
                                             </label>
                                         </li>
                                     </ul>
-                                    <span  class="help-block text-red" th:if="${#fields.hasErrors('privilege')}" th:errors="*{privilege}">First Name Error</span>
+                                    <span  class="help-block text-red" th:if="${#fields.hasErrors('privileges')}" th:errors="*{privileges}">First Name Error</span>
                                 </div>
 
                             </div>
@@ -98,7 +98,7 @@
                     <!-- /.box-body -->
 
                 </div>
-                <!-- /.box -->              
+                <!-- /.box -->
 
 
 
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body table-responsive ">      
+                    <div class="card-body table-responsive ">
 
                         <table id="tablesdata" class="table table-bordered table-hover  table-striped ">
                             <thead>
@@ -132,13 +132,18 @@
                                     <td th:text="${status.count}">2.</td>
                                     <td th:text="${list.name}">Chakma</td>
                                     <td th:text="${list.slug}">Chakma</td>
-                                    <td th:text="${list.privilege}">
+                                    <td>
+
+                                        <span th:each="priv : ${list.privileges}"
+                                              th:text="${priv.name}"
+                                              class="badge bg-info me-1">
+                                        </span>
                                     </td>
                                     <td>
                                         <a th:href="@{/role/edit/{id} (id=${list.id})}" > Edit</a>
                                     </td>
                                     <td> <a th:href="@{/role/delete/{id} (id=${list.id})}" > Delete </a></td>
-                                </tr>   
+                                </tr>
                             </tbody>
                         </table>
                     </div>

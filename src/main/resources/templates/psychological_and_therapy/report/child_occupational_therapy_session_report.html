@@ -37,7 +37,7 @@
 
                             <div class="card-body table-responsive ">
                                 <form  class="  " th:action="@{/sychological_and_therapy_report/child_occupational_therapy_session_report}"    method="GET" >
-                                    <div class="row mb-4 justify-content-center">  
+                                    <div class="row mb-4 justify-content-center">
 
                                         <div class="col-auto">
 
@@ -52,7 +52,7 @@
                                         <div class="col-auto">
                                             <label class="" for="to">To:</label>
                                         </div>
-                                        <div class="col-auto"> 
+                                        <div class="col-auto">
                                             <div class="form-group input-group date">
 
                                                 <input type="text" class="form-control"  id="endDate" name="endDate"/>
@@ -68,9 +68,8 @@
                                 <table id="tablesdata"   class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10px">#</th>  
+                                            <th style="width: 10px">#</th>
                                             <th>Mother Master Code</th>
-                                            <th>Mother Name</th>
                                             <th>Child Master Code</th>
                                             <th>Child Name</th>
                                             <th>Therapeutic Session Date </th>
@@ -84,16 +83,14 @@
                                     <tbody>
                                         <tr th:each="list,status:${list}">
                                             <td th:text="${status.count}">2.</td>
-                                            <td th:text="${list.motherMasterCode.motherMasterCode}">Chakma</td>
-                                            <td th:text="${list.motherMasterCode.motherName}">Chakma</td>
-                                            
-                                            <td th:text="${list.childMasterCode.childMasterCode}">Chakma</td>
-                                            <td th:text="${list.childMasterCode.name}">Chakma</td>
-                                            
+                                            <td th:text="${list.motherMasterCode}">Chakma</td>
+                                            <td th:text="${list.childMasterCode}">Chakma</td>
+                                            <td th:text="${list.name}">Chakma</td>
+
                                             <td th:text="${list.therapeuticSessionDate}">Chakma</td>
-                                            <td th:text="${list.sessionType.name}">Chakma</td>
-                                            <td th:text="${list.diagonosis.name}">Chakma</td>
-                                            <td th:text="${list.treatment}">Chakma</td>                                 
+                                            <td th:text="${list.sessionType}">Chakma</td>
+                                            <td th:text="${list.diagonosis}">Chakma</td>
+                                            <td th:text="${list.treatment}">Chakma</td>
                                             <td th:text="${list.conductedBy}">Chakma</td>
                                             <td th:text="${list.remarks}">Chakma</td>
                                         </tr>

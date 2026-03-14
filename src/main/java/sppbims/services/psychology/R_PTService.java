@@ -4,9 +4,7 @@
  */
 package sppbims.services.psychology;
 
-import sppbims.model.rehabilitations.R_PT;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -19,7 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sppbims.model.rehabilitations.R_PT;
 
 /**
  *
@@ -28,65 +28,76 @@ import org.springframework.stereotype.Service;
 @Service
 public class R_PTService {
 
-    @PersistenceContext
+    @Autowired
     private EntityManager em;
 
-    public List<Map<String, Object>> ptcomplete_mother_list(
+    public List<Map<String, Object>> getReportsByDate(
             String startDate,
             String endDate
     ) {
+// Create CriteriaBuilder
         CriteriaBuilder cb = em.getCriteriaBuilder();
+
+// Create CriteriaQuery for R_M_HousAllocation
         CriteriaQuery<Tuple> cq = cb.createTupleQuery();
         Root<R_PT> root = cq.from(R_PT.class);
 
-        // Build the select clause with multiselect and aliases for all fields
-        cq.multiselect(
-                root.get("id").alias("id"),
-                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
-                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
-                root.get("motherMasterCode").get("motherName").alias("motherName"),
-                root.get("therapeuticSessionDate").alias("therapeuticSessionDate"),
-                root.get("pain").alias("pain"),
-                root.get("painNote").alias("painNote"),
-                root.get("Tenderness").alias("Tenderness"),
-                root.get("PhysicalDisability").alias("PhysicalDisability"),
-                root.get("physicalDisabilityNote").alias("physicalDisabilityNote"),
-                root.get("jointMobility").alias("jointMobility"),
-                root.get("musculoskeletal").alias("musculoskeletal"),
-                root.get("degenerativeDiseases").alias("degenerativeDiseases"),
-                root.get("previouslyTherapyTaken").alias("previouslyTherapyTaken"),
-                root.get("previouslyTherapyTakenNote").alias("previouslyTherapyTakenNote"),
-                root.get("remark").alias("remark"),
-                root.get("created").alias("created"),
-                root.get("createdBy").alias("createdBy"),
-                root.get("updated").alias("updated"),
-                root.get("updatedBy").alias("updatedBy")
-        );
-
-        // Build the where clause with optional date conditions
+        // Add conditions (if any)
         List<Predicate> predicates = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         if (ObjectUtils.isNotEmpty(startDate) && ObjectUtils.isNotEmpty(endDate)) {
             LocalDate start = LocalDate.parse(startDate, formatter);
             LocalDate end = LocalDate.parse(endDate, formatter);
-            predicates.add(cb.between(root.get("therapeuticSessionDate"), start, end));
+            predicates.add(cb.between(root.get("created"), start, end));
         } else if (ObjectUtils.isNotEmpty(startDate)) {
             LocalDate start = LocalDate.parse(startDate, formatter);
-            predicates.add(cb.equal(root.get("therapeuticSessionDate"), start));
+            predicates.add(cb.equal(root.get("created"), start));
         }
 
-        // Execute query and get the result list of Tuple
-        List<Tuple> tuples = em.createQuery(cq).getResultList();
+        cq.multiselect(
+                root.get("id").alias("id"),
+                root.get("motherMasterCode").get("id").alias("motherMasterCodeId"),
+                root.get("motherMasterCode").get("motherMasterCode").alias("motherMasterCode"),
+                root.get("motherMasterCode").get("motherName").alias("motherName"),
+                // Mood/Emotion properties
+                root.get("therapeuticSessionDate").alias("therapeuticSessionDate"),
+                root.get("pain").alias("pain"),
+                root.get("painNote").alias("painNote"),
+                root.get("Tenderness").get("name").alias("Tenderness"),
+                root.get("PhysicalDisability").alias("PhysicalDisability"),
+                root.get("physicalDisabilityNote").alias("physicalDisabilityNote"),
+                root.get("jointMobility").get("name").alias("jointMobility"),
+                root.get("musculoskeletal").get("name").alias("musculoskeletal"),
+                root.get("degenerativeDiseases").get("name").alias("degenerativeDiseases"),
+                root.get("previouslyTherapyTaken").alias("previouslyTherapyTaken"),
+                root.get("previouslyTherapyTakenNote").alias("previouslyTherapyTakenNote"),
+                root.get("remark").alias("remark"),
+                root.get("created").alias("created")
+        );
 
-        // Convert Tuple list to List of Maps using for-each loop
-        List<Map<String, Object>> result = new ArrayList<>();
+        if (!predicates.isEmpty()) {
+            cq.where(cb.or(predicates.toArray(new Predicate[0])));
+        }
+
+        cq.where(predicates.toArray(new Predicate[0]));
+        cq.orderBy(cb.desc(root.get("id")));
+
+        List<Tuple> tuples = em.createQuery(cq).getResultList();
+        List<Map<String, Object>> results = new ArrayList<>();
+
+        // Convert each Tuple to a Map<String, Object>
         for (Tuple tuple : tuples) {
+
             Map<String, Object> map = new HashMap<>();
+
+            // Manually map each alias to its corresponding value from the tuple
             map.put("id", tuple.get("id"));
-            map.put("motherMasterCode", tuple.get("motherMasterCode"));
             map.put("motherMasterCodeId", tuple.get("motherMasterCodeId"));
+            map.put("motherMasterCode", tuple.get("motherMasterCode"));
             map.put("motherName", tuple.get("motherName"));
+
+            // Mood/Emotion properties
             map.put("therapeuticSessionDate", tuple.get("therapeuticSessionDate"));
             map.put("pain", tuple.get("pain"));
             map.put("painNote", tuple.get("painNote"));
@@ -100,13 +111,11 @@ public class R_PTService {
             map.put("previouslyTherapyTakenNote", tuple.get("previouslyTherapyTakenNote"));
             map.put("remark", tuple.get("remark"));
             map.put("created", tuple.get("created"));
-            map.put("createdBy", tuple.get("createdBy"));
-            map.put("updated", tuple.get("updated"));
-            map.put("updatedBy", tuple.get("updatedBy"));
-            result.add(map);
+
+            results.add(map);
         }
 
-        return result;
+        return results;
     }
 
 }

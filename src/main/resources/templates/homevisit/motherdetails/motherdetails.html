@@ -544,7 +544,7 @@
                                         <th>Voter of this community </th>
                                         <th>VGF /VGD Card</th>
                                         <th>Any Govt. Support </th>
-                                        <th>Number of SPP Mother in village </th>
+                                        <th>N-ID/Birth Registration </th>
                                         <th>Remarks  </th>
                                         <th>Edit </th>
                                         <th>Delete</th>
@@ -560,7 +560,7 @@
                                         <td th:text="${localgovt.votingParticipation}">  </td>
                                         <td th:text="${localgovt.vgfCard}">  </td>
                                         <td th:text="${localgovt.govtSupport}">  </td>
-                                        <td th:text="${localgovt.sppMotherNo}">  </td>
+                                        <td th:text="${localgovt.boNID}">  </td>
                                         <td th:text="${localgovt.remarks}">  </td>
                                         <td><a   th:href="@{/m_local_govt_facilities/edit/{id} (id=${localgovt.id})}" type="button" class="btn btn-xs bg-maroon "> Edit </a>  </td>
                                         <td><a   th:href="@{/m_local_govt_facilities/delete/{id} (id=${localgovt.id})}" type="button" class="btn btn-xs bg-danger "> Delete </a>  </td>

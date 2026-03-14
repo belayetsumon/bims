@@ -39,6 +39,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(
+                        //                        "/**",
                         "/registration",
                         "/users/login").permitAll()
                 // .antMatchers("/dashboards/index").hasRole("admin")

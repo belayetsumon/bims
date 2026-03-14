@@ -32,14 +32,14 @@
                                 <h3 class="card-title">Mother Physical Therapy Session Report  Total:  [[${list.size()}]]</h3>
                                 <div class="card-tools">
                                     <a  th:href="@{/sychological_and_therapy_report/index}"  type="button" class="btn  btn-light text-danger btn-sm">Close</a>
-                                </div> 
+                                </div>
                             </div>
                             <!-- /.card-header -->
 
                             <div class="card-body table-responsive ">
 
-                                <form  class="  " th:action="@{/sychological_and_therapy_report/mother_psychology_session_report}"    method="GET" >
-                                    <div class="row mb-4 justify-content-center">  
+                                <form  class="  " th:action="@{/sychological_and_therapy_report/mother_physical_therapy_session_report}"    method="GET" >
+                                    <div class="row mb-4 justify-content-center">
                                         <div class="col-auto">
                                             <label class="" for="email">From:</label>
                                         </div>
@@ -52,7 +52,7 @@
                                         <div class="col-auto">
                                             <label class="" for="to">To:</label>
                                         </div>
-                                        <div class="col-auto"> 
+                                        <div class="col-auto">
                                             <div class="form-group input-group date">
 
                                                 <input type="text" class="form-control"  id="endDate" name="endDate"/>
@@ -67,15 +67,13 @@
                                 </form>
                                 <hr>
                                 <hr>
-
-
                                 <div class="card-body">
                                     <table id="tablesdata"   class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th style="width: 10px">#</th>  
+                                                <th style="width: 10px">#</th>
                                                 <th>Mother Master Code</th>
-                                                    <th>Mother Name</th>
+                                                <th>Mother Name</th>
                                                 <th>Therapeutic Session Date</th>
                                                 <th>Pain </th>
                                                 <th>Pain Note</th>
@@ -91,19 +89,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="list2,status:${r_pt}">
-                                                <td th:text="${status.count}">2.</td>                                        
+                                            <tr th:each="list2,status:${list}">
+                                                <td th:text="${status.count}">2.</td>
                                                 <td th:text="${list2.motherMasterCode}">Chakma</td>
-                                                  <td th:text="${list2.motherName}">Chakma</td>
+                                                <td th:text="${list2.motherName}">Chakma</td>
                                                 <td th:text="${list2.therapeuticSessionDate}">Chakma</td>
                                                 <td th:text="${list2.pain}">Chakma</td>
                                                 <td th:text="${list2.painNote}">Chakma</td>
-                                                <td th:text="${list2.Tenderness.name}">Chakma</td>
+                                                <td th:text="${list2.Tenderness}">Chakma</td>
                                                 <td th:text="${list2.PhysicalDisability}">Chakma</td>
-                                                <td th:text="${list2.PhysicalDisabilityNote}">Chakma</td>
-                                                <td th:text="${list2.jointMobility.name}">Chakma</td>
-                                                <td th:text="${list2.Musculoskeletal.name}">Chakma</td>
-                                                <td th:text="${list2.degenerativeDiseases.name}">Chakma</td>
+                                                <td th:text="${list2.physicalDisabilityNote}">Chakma</td>
+                                                <td th:text="${list2.jointMobility}">Chakma</td>
+                                                <td th:text="${list2.musculoskeletal}">Chakma</td>
+                                                <td th:text="${list2.degenerativeDiseases}">Chakma</td>
                                                 <td th:text="${list2.previouslyTherapyTaken}">Chakma</td>
                                                 <td th:text="${list2.previouslyTherapyTakenNote}">Chakma</td>
                                                 <td th:text="${list2.remark}">Chakma</td>

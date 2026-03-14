@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sppbims.model.auth.Privileges;
 
 /**
  *
@@ -39,8 +40,8 @@ public class UserDetails implements UserDetailsService {
 
         for (Role role : user.getRole()) {
 
-            for (Privilege privilegelist : role.getPrivilege()) {
-                grantedAuthorities.add(new SimpleGrantedAuthority(privilegelist.name()));
+            for (Privileges privilegelist : role.getPrivileges()) {
+                grantedAuthorities.add(new SimpleGrantedAuthority(privilegelist.getSlug()));
             }
 
         }

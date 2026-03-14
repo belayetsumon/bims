@@ -56,9 +56,9 @@ public class M_Local_Govt_Facilities {
     @Enumerated(EnumType.ORDINAL)
     public Yes_No votingParticipation;
 
-    @NotEmpty(message = "Please provide beneficiary  NID number.")
-    @Size(min = 10, max = 17, message = " Please provide value minimum 10 digit maximum 17 digit")
-    @Column(unique = true)
+//    @NotEmpty(message = "Please provide beneficiary  NID number.")
+//    @Size(min = 10, max = 17, message = " Please provide value minimum 10 digit maximum 17 digit")
+//    @Column(unique = true)
     public String boNID;
 
     public String vgfCard;

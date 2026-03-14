@@ -56,15 +56,15 @@ public class R_OtChildService {
                 root.get("childMasterCode").get("childMasterCode").alias("childMasterCode"),
                 root.get("childMasterCode").get("name").alias("name"),
                 root.get("therapeuticSessionDate").alias("therapeuticSessionDate"),
-                root.get("sessionType").alias("sessionType"),
-                root.get("diagonosis").alias("diagonosis"),
+                root.get("sessionType").get("name").alias("sessionType"),
+                root.get("diagonosis").get("name").alias("diagonosis"),
                 root.get("treatment").alias("treatment"),
                 root.get("conductedBy").alias("conductedBy"),
-                root.get("remarks").alias("remarks"),
-                root.get("created").alias("created"),
-                root.get("createdBy").alias("createdBy"),
-                root.get("updated").alias("updated"),
-                root.get("updatedBy").alias("updatedBy")
+                root.get("remarks").alias("remarks")
+        //                root.get("created").alias("created"),
+        //                root.get("createdBy").alias("createdBy"),
+        //                root.get("updated").alias("updated"),
+        //                root.get("updatedBy").alias("updatedBy")
         );
 
         if (!predicates.isEmpty()) {
@@ -91,10 +91,10 @@ public class R_OtChildService {
             map.put("treatment", tuple.get("treatment"));
             map.put("conductedBy", tuple.get("conductedBy"));
             map.put("remarks", tuple.get("remarks"));
-            map.put("created", tuple.get("created"));
-            map.put("createdBy", tuple.get("createdBy"));
-            map.put("updated", tuple.get("updated"));
-            map.put("updatedBy", tuple.get("updatedBy"));
+//            map.put("created", tuple.get("created"));
+//            map.put("createdBy", tuple.get("createdBy"));
+//            map.put("updated", tuple.get("updated"));
+//            map.put("updatedBy", tuple.get("updatedBy"));
             result.add(map);
         }
         return result;

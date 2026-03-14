@@ -68,8 +68,18 @@ public class UsersController {
     }
 
     @RequestMapping("/save")
-    //@Transactional
-    public String save(Model model, @RequestParam(value = "password2", required = false) String password2, @Valid Users users, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String save(Model model,
+            @RequestParam(value = "password2", required = false) String password2,
+            @Valid Users users,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        // 🔴 If creating user and password is empty
+        if (users.getId() == null
+                && (users.getPassword() == null || users.getPassword().trim().isEmpty())) {
+
+            bindingResult.rejectValue("password", "error.users", "Password is required");
+        }
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", roleRepository.findAll());
@@ -77,14 +87,20 @@ public class UsersController {
             return "auth/registration";
         }
 
-        // users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
         try {
 
-            if (users.getPassword().isEmpty() && password2 != null && users.getId() != null) {
+            // 🟢 EDIT MODE
+            if (users.getId() != null) {
 
-                users.setPassword(password2);
+                // If password field is empty → keep old password
+                if (users.getPassword() == null || users.getPassword().trim().isEmpty()) {
+                    users.setPassword(password2);
+                } else {
+                    users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+                }
+
             } else {
-
+                // 🟢 CREATE MODE → always encode
                 users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
             }
 
@@ -92,14 +108,48 @@ public class UsersController {
             return "redirect:/users/index";
 
         } catch (Exception e) {
+
             model.addAttribute("roles", roleRepository.findAll());
             model.addAttribute("status", Yes_No.values());
-            redirectAttributes.addFlashAttribute("message", e);
-            model.addAttribute("message", e);
+            model.addAttribute("message", e.getMessage());
+
             return "auth/registration";
         }
     }
 
+//
+//    @RequestMapping("/save")
+//    //@Transactional
+//    public String save(Model model, @RequestParam(value = "password2", required = false) String password2, @Valid Users users, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+//
+//        if (bindingResult.hasErrors()) {
+//            model.addAttribute("roles", roleRepository.findAll());
+//            model.addAttribute("status", Yes_No.values());
+//            return "auth/registration";
+//        }
+//
+//        // users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+//        try {
+//
+//            if (users.getPassword().isEmpty() && password2 != null && users.getId() != null) {
+//
+//                users.setPassword(password2);
+//            } else {
+//
+//                users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+//            }
+//
+//            usersRepository.save(users);
+//            return "redirect:/users/index";
+//
+//        } catch (Exception e) {
+//            model.addAttribute("roles", roleRepository.findAll());
+//            model.addAttribute("status", Yes_No.values());
+//            redirectAttributes.addFlashAttribute("message", e);
+//            model.addAttribute("message", e);
+//            return "auth/registration";
+//        }
+//    }
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable Long id) {
         usersRepository.deleteById(id);

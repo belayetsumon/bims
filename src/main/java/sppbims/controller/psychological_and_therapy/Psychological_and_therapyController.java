@@ -4,6 +4,8 @@
  */
 package sppbims.controller.psychological_and_therapy;
 
+import java.util.List;
+import java.util.Map;
 import sppbims.model.homevisit.Yes_No;
 import sppbims.repository.observation.O_Professional_Obserbations_ChildRepository;
 import sppbims.repository.observation.O_Professional_Obserbations_MotherRepository;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sppbims.repository.rehabilitations.R_PTRepository;
 
 /**
  *
@@ -53,6 +56,9 @@ public class Psychological_and_therapyController {
     R_OtMotherService r_OtMotherService;
     @Autowired
     R_OtChildService r_OtChildService;
+
+    @Autowired
+    R_PTRepository r_PTRepository;
 
     @RequestMapping("/index")
     public String observation(Model model) {
@@ -104,7 +110,7 @@ public class Psychological_and_therapyController {
             @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
             @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
     ) {
-        model.addAttribute("list", r_OtMotherService.motherOtCompletedListReport(startDate, endDate));
+        model.addAttribute("list", r_OtMotherService.motherOtCompletedListReport2(startDate, endDate));
         return "psychological_and_therapy/report/mother_occupational_therapy_session_report";
     }
 
@@ -119,11 +125,15 @@ public class Psychological_and_therapyController {
     }
 
     @RequestMapping("/mother_physical_therapy_session_report")
-    public String mother_physical_therapy_session_report(Model model,
+    public String mother_physical_therapy_session_report(
+            Model model,
             @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String startDate,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate
-    ) {
-        model.addAttribute("list", r_PTService.ptcomplete_mother_list(startDate, endDate));
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") String endDate) {
+
+        List<Map<String, Object>> results = r_PTService.getReportsByDate(startDate, endDate);
+        model.addAttribute("list", results);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
         return "psychological_and_therapy/report/mother_physical_therapy_session_report";
     }
 

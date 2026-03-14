@@ -36,7 +36,7 @@
                                 <!-- Here is a label for example -->
                                 <a th:href="@{/users/index}" type="button" class="btn btn-block btn-light text-red  btn-sm pull-right "> Close </i><i class="fas fa-times"></i></a>
                             </div>
-                        </div>                    
+                        </div>
 
                         <div class="card-body ">
 
@@ -53,34 +53,34 @@
 
 
                                 </div>
-                                <input type="hidden" class="form-control"   th:field="*{id}"  />  
+                                <input type="hidden" class="form-control"   th:field="*{id}"  />
 
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-1 col-form-label"> Name<span class="text-red" > * </span> </label>
-                                    <div class="col-sm-8">    
+                                    <div class="col-sm-8">
                                         <div class="input-group " >
-                                            <input type="text"  minlength="5"  class="form-control"  th:field="*{name}" required="true" />                
-                                        </div>  
+                                            <input type="text"  minlength="5"  class="form-control"  th:field="*{name}" required="true" />
+                                        </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">First Name Error</span>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-1 control-label"> Email <span class="text-red"> * </span> </label>
-                                    <div class="col-sm-8">    
+                                    <div class="col-sm-8">
                                         <div class="input-group " >
-                                            <input type="email"    class="form-control "  th:field="*{email}"  required="true" />                
-                                        </div>  
+                                            <input type="email"    class="form-control "  th:field="*{email}"  required="true" />
+                                        </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">First Name Error</span>
                                         <span  class="help-block has-error text-red" th:if="${email_exist}" th:text="${email_exist}">First Name Error</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 col-form-label" > Password<span class="text-red"> * </span> </label>
-                                    <div class="col-sm-7">    
+                                    <div class="col-sm-7">
                                         <div class="input-group " >
-                                            <input type="password" class="form-control"   minlength="5"  th:field="*{password}" required="ture"/>               
-                                        </div>  
+                                            <input type="password" class="form-control"   minlength="5"  th:field="*{password}"   />
+                                        </div>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">First Name Error</span>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
                                         <select class="form-control"  id="role"  th:field="*{role}" >
                                             <option value=" "> Select one</option>
                                             <option th:each =" rolese :${roles}"
-                                                    th:value=" ${rolese.id}" 
+                                                    th:value=" ${rolese.id}"
                                                     th:text="${rolese.name}"> Select one</option>
                                         </select>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">First Name Error</span>
@@ -112,13 +112,13 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="name"class="col-sm-1 control-label"> Active <span class="text-red"> * </span> </label>
-                                    <div class="col-sm-7">    
+                                    <div class="col-sm-7">
                                         <select class="form-control  "  id="role"  th:field="*{active}" >
                                             <option value=" "> Select one</option>
                                             <option th:each =" status :${status}"
-                                                    th:value=" ${status}" 
+                                                    th:value=" ${status}"
                                                     th:text="${status}"> Select one</option>
-                                        </select> 
+                                        </select>
                                         <span  class="help-block has-error text-red" th:if="${#fields.hasErrors('active')}" th:errors="*{active}">First Name Error</span>
                                     </div>
                                 </div>
@@ -130,12 +130,12 @@
 
 
                             </form>
-                        </div> 
+                        </div>
 
 
 
 
-                    </div> 
+                    </div>
 
                 </section>
                 <!-- /.content -->

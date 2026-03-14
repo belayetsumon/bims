@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<div xmlns:th="http://www.thymeleaf.org" layout:decorate="admin-layout">
+
+    <div layout:fragment = "main_content">
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>User Management Panel</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Users</a></li>
+                                <li class="breadcrumb-item active">Module List</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+
+
+            <!-- Main content -->
+            <section class="content">
+
+
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">Module List</h3>
+                        <div class="card-tools">
+                            <!-- Buttons, labels, and many other things can be placed here! -->
+                            <!-- Here is a label for example -->
+                            <a th:href="@{/modules/create}" type="button" class="btn btn-block btn-light  btn-sm pull-right text-info">Add New Module</a>
+
+
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive ">
+                        <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                        <div class="container mt-4">
+
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="m : ${list}">
+                                        <td th:text="${m.id}"></td>
+                                        <td th:text="${m.name}"></td>
+                                        <td th:text="${m.slug}"></td>
+                                        <td>
+                                            <a th:href="@{'/modules/edit/' + ${m.id}}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a th:href="@{'/modules/delete/' + ${m.id}}" class="btn btn-sm btn-danger"
+                                               onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer-->
+                </div>
+                <!-- /.box -->
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</div>

@@ -120,6 +120,10 @@ public class R_PT {
         this.updatedBy = updatedBy;
     }
 
+    public R_PT(Object object, LocalDate of) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public Long getId() {
         return id;
     }
